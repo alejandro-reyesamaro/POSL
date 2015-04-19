@@ -54,7 +54,8 @@ SOURCES       = ../main.cpp \
 		../factory_n_int_domain.cpp \
 		../dom-interval.cpp \
 		../node.cpp \
-		../solution.cpp 
+		../solution.cpp \
+		../ngbh_function.cpp 
 OBJECTS       = main.o \
 		compound_module.o \
 		operation_module.o \
@@ -64,7 +65,8 @@ OBJECTS       = main.o \
 		factory_n_int_domain.o \
 		dom-interval.o \
 		node.o \
-		solution.o
+		solution.o \
+		ngbh_function.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -286,7 +288,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/POSL1.0.0 || mkdir -p .tmp/POSL1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../compound_module.h ../operation_module.h ../open_channel.h ../domain.h ../factory_domain.h ../factory_n_int_domain.h ../dom_interval.h ../node.h ../solution.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../compound_module.cpp ../operation_module.cpp ../open_channel.cpp ../domain.cpp ../factory_domain.cpp ../factory_n_int_domain.cpp ../dom-interval.cpp ../node.cpp ../solution.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../compound_module.h ../operation_module.h ../open_channel.h ../domain.h ../factory_domain.h ../factory_n_int_domain.h ../dom_interval.h ../node.h ../solution.h ../ngbh_function.h ../posl_iterator.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../compound_module.cpp ../operation_module.cpp ../open_channel.cpp ../domain.cpp ../factory_domain.cpp ../factory_n_int_domain.cpp ../dom-interval.cpp ../node.cpp ../solution.cpp ../ngbh_function.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
 
 
 clean:compiler_clean 
@@ -352,8 +354,14 @@ dom-interval.o: ../dom-interval.cpp ../dom_interval.h
 node.o: ../node.cpp ../node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../node.cpp
 
-solution.o: ../solution.cpp ../solution.h
+solution.o: ../solution.cpp ../solution.h \
+		../domain.h \
+		../factory_domain.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o solution.o ../solution.cpp
+
+ngbh_function.o: ../ngbh_function.cpp ../ngbh_function.h \
+		../posl_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ngbh_function.o ../ngbh_function.cpp
 
 ####### Install
 
