@@ -35,6 +35,9 @@ class Domain
         */
         vector<int> GetValues();
 
+        int minimum();
+        int maximum();
+
     private:
         //! Vector of values
         vector<int> D;

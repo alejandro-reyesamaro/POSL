@@ -13,9 +13,13 @@
  * \class OperationModule operation_module.h
  * \brief Class to represent an Open Channel
  */
+
+
+template <typename IN, typename OUT>
 class OperationModule
 {
     public:
         //! Constructor
-        OperationModule();
+        //OperationModule();
+        virtual OUT execute(IN input) = 0;
 };

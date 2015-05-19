@@ -50,23 +50,45 @@ SOURCES       = ../main.cpp \
 		../operation_module.cpp \
 		../open_channel.cpp \
 		../domain.cpp \
-		../factory_domain.cpp \
 		../factory_n_int_domain.cpp \
-		../dom-interval.cpp \
 		../node.cpp \
 		../solution.cpp \
-		../ngbh_function.cpp 
+		../ngbh_function.cpp \
+		../solver.cpp \
+		../benchmark.cpp \
+		../factory_compound_module.cpp \
+		../dom_interval.cpp \
+		../data_open_channel.cpp \
+		../object_open_channel.cpp \
+		../operator.cpp \
+		../golfers.cpp \
+		../../LongInteger/long_int.cpp \
+		../../LongInteger/merged_longint.cpp \
+		../om_random_conf_generation.cpp \
+		../posl_data.cpp \
+		../om_florian_random_conf_generation.cpp 
 OBJECTS       = main.o \
 		compound_module.o \
 		operation_module.o \
 		open_channel.o \
 		domain.o \
-		factory_domain.o \
 		factory_n_int_domain.o \
-		dom-interval.o \
 		node.o \
 		solution.o \
-		ngbh_function.o
+		ngbh_function.o \
+		solver.o \
+		benchmark.o \
+		factory_compound_module.o \
+		dom_interval.o \
+		data_open_channel.o \
+		object_open_channel.o \
+		operator.o \
+		golfers.o \
+		long_int.o \
+		merged_longint.o \
+		om_random_conf_generation.o \
+		posl_data.o \
+		om_florian_random_conf_generation.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -288,7 +310,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/POSL1.0.0 || mkdir -p .tmp/POSL1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../compound_module.h ../operation_module.h ../open_channel.h ../domain.h ../factory_domain.h ../factory_n_int_domain.h ../dom_interval.h ../node.h ../solution.h ../ngbh_function.h ../posl_iterator.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../compound_module.cpp ../operation_module.cpp ../open_channel.cpp ../domain.cpp ../factory_domain.cpp ../factory_n_int_domain.cpp ../dom-interval.cpp ../node.cpp ../solution.cpp ../ngbh_function.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../compound_module.h ../operation_module.h ../open_channel.h ../domain.h ../factory_domain.h ../factory_n_int_domain.h ../dom_interval.h ../node.h ../solution.h ../ngbh_function.h ../posl_iterator.h ../solver.h ../benchmark.h ../factory_compound_module.h ../data_open_channel.h ../object_open_channel.h ../operator.h ../golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../om_random_conf_generation.h ../posl_data.h ../om_florian_random_conf_generation.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../compound_module.cpp ../operation_module.cpp ../open_channel.cpp ../domain.cpp ../factory_n_int_domain.cpp ../node.cpp ../solution.cpp ../ngbh_function.cpp ../solver.cpp ../benchmark.cpp ../factory_compound_module.cpp ../dom_interval.cpp ../data_open_channel.cpp ../object_open_channel.cpp ../operator.cpp ../golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../om_random_conf_generation.cpp ../posl_data.cpp ../om_florian_random_conf_generation.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
 
 
 clean:compiler_clean 
@@ -325,7 +347,14 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../main.cpp 
+main.o: ../main.cpp ../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../golfers.h \
+		../factory_n_int_domain.h \
+		../om_random_conf_generation.h \
+		../operation_module.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
 compound_module.o: ../compound_module.cpp ../compound_module.h
@@ -341,15 +370,9 @@ domain.o: ../domain.cpp ../domain.h \
 		../factory_domain.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o domain.o ../domain.cpp
 
-factory_domain.o: ../factory_domain.cpp ../factory_domain.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory_domain.o ../factory_domain.cpp
-
 factory_n_int_domain.o: ../factory_n_int_domain.cpp ../factory_n_int_domain.h \
 		../factory_domain.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory_n_int_domain.o ../factory_n_int_domain.cpp
-
-dom-interval.o: ../dom-interval.cpp ../dom_interval.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dom-interval.o ../dom-interval.cpp
 
 node.o: ../node.cpp ../node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../node.cpp
@@ -362,6 +385,75 @@ solution.o: ../solution.cpp ../solution.h \
 ngbh_function.o: ../ngbh_function.cpp ../ngbh_function.h \
 		../posl_iterator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ngbh_function.o ../ngbh_function.cpp
+
+solver.o: ../solver.cpp ../solver.h \
+		../compound_module.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../factory_compound_module.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o solver.o ../solver.cpp
+
+benchmark.o: ../benchmark.cpp ../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o benchmark.o ../benchmark.cpp
+
+factory_compound_module.o: ../factory_compound_module.cpp ../factory_compound_module.h \
+		../compound_module.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory_compound_module.o ../factory_compound_module.cpp
+
+dom_interval.o: ../dom_interval.cpp ../dom_interval.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dom_interval.o ../dom_interval.cpp
+
+data_open_channel.o: ../data_open_channel.cpp ../data_open_channel.h \
+		../open_channel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o data_open_channel.o ../data_open_channel.cpp
+
+object_open_channel.o: ../object_open_channel.cpp ../object_open_channel.h \
+		../open_channel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o object_open_channel.o ../object_open_channel.cpp
+
+operator.o: ../operator.cpp ../operator.h \
+		../compound_module.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o operator.o ../operator.cpp
+
+golfers.o: ../golfers.cpp ../golfers.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../../LongInteger/long_int.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o golfers.o ../golfers.cpp
+
+long_int.o: ../../LongInteger/long_int.cpp ../../LongInteger/long_int.h \
+		../../LongInteger/merged_longint.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o long_int.o ../../LongInteger/long_int.cpp
+
+merged_longint.o: ../../LongInteger/merged_longint.cpp ../../LongInteger/merged_longint.h \
+		../../LongInteger/long_int.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o merged_longint.o ../../LongInteger/merged_longint.cpp
+
+om_random_conf_generation.o: ../om_random_conf_generation.cpp ../om_random_conf_generation.h \
+		../operation_module.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../benchmark.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_random_conf_generation.o ../om_random_conf_generation.cpp
+
+posl_data.o: ../posl_data.cpp ../posl_data.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o posl_data.o ../posl_data.cpp
+
+om_florian_random_conf_generation.o: ../om_florian_random_conf_generation.cpp ../om_florian_random_conf_generation.h \
+		../operation_module.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../benchmark.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_florian_random_conf_generation.o ../om_florian_random_conf_generation.cpp
 
 ####### Install
 

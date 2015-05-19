@@ -20,12 +20,23 @@ SOURCES += main.cpp \
     operation_module.cpp \
     open_channel.cpp \
     domain.cpp \
-    factory_domain.cpp \
     factory_n_int_domain.cpp \
-    dom-interval.cpp \
     node.cpp \
     solution.cpp \
-    ngbh_function.cpp
+    ngbh_function.cpp \
+    solver.cpp \
+    benchmark.cpp \
+    factory_compound_module.cpp \
+    dom_interval.cpp \
+    data_open_channel.cpp \
+    object_open_channel.cpp \
+    operator.cpp \
+    golfers.cpp \
+    ../LongInteger/long_int.cpp \
+    ../LongInteger/merged_longint.cpp \
+    om_random_conf_generation.cpp \
+    posl_data.cpp \
+    om_florian_random_conf_generation.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -40,4 +51,16 @@ HEADERS += \
     node.h \
     solution.h \
     ngbh_function.h \
-    posl_iterator.h
+    posl_iterator.h \
+    solver.h \
+    benchmark.h \
+    factory_compound_module.h \
+    data_open_channel.h \
+    object_open_channel.h \
+    operator.h \
+    golfers.h \
+    ../LongInteger/long_int.h \
+    ../LongInteger/merged_longint.h \
+    om_random_conf_generation.h \
+    posl_data.h \
+    om_florian_random_conf_generation.h

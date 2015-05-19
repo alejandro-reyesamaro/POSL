@@ -27,12 +27,15 @@ class Solution
         /*!
         * \param _domains The variables domais
         */
-        Solution(vector<shared_ptr<Domain>> _domains);
+        Solution(vector<Domain> _domains);
+        Solution(vector<Domain> _domains, vector<int> conf);
 
-    private:
+
+
+    //private:
         //! The current configuration
         vector<int> configuration;
 
         //! The variables domains
-        vector<shared_ptr<Domain>> domains;
+        vector<Domain> domains;
 };
