@@ -11,8 +11,17 @@
 #include "factory_n_int_domain.h"
 #include "om_random_conf_generation.h"
 #include "om_florian_random_conf_generation.h"
+#include "neighborhood.h"
+#include "one_element_changed_neighborhood.h"
 
 using namespace std;
+
+string TEST_CostOfSolution(vector<Domain> domains, vector<int> config);
+string TEST_OM_FirstRandomConfiguration_Trivial(vector<Domain> domains);
+string TEST_OM_FirstRandomConfiguration_Florian(vector<Domain> domains);
+void TEST_OneElementChangedNeighborhood(vector<Domain> domains, vector<int> config);
+string returnSTR(int c);
+string writeConfiguration(vector<int> conf);
 
 int main(int argc, char *argv[])
 {
@@ -45,21 +54,81 @@ int main(int argc, char *argv[])
         16,  3,  6,  9
     });
 
-    shared_ptr<Solution> sol = make_shared<Solution>(domains, config2);
+    TEST_OneElementChangedNeighborhood(domains, config2);
+}
+
+string TEST_CostOfSolution(vector<Domain> domains, vector<int> config)
+{
+    shared_ptr<Solution> sol = make_shared<Solution>(domains, config);
     shared_ptr<Benchmark> bench = make_shared<Golfers>(4,4,2);
-    float c = bench->solutionCost(sol);
-    cout << "Cost : " << c << endl;
-    bench->UpdateSolution(sol);
+    int c = bench->solutionCost(sol);
+    return "Cost : " + returnSTR(c);
+}
+
+string TEST_OM_FirstRandomConfiguration_Trivial(vector<Domain> domains)
+{
+    shared_ptr<Solution> sol = make_shared<Solution>(domains);
+    shared_ptr<Benchmark> bench = make_shared<Golfers>(4,4,2);
     OperationModule<shared_ptr<Benchmark>, vector<int>> * op1 = new OM_RandomConfGeneration();
-    OperationModule<shared_ptr<Benchmark>, vector<int>> * op2 = new OM_FlorianRandomConfGeneration();
     vector<int> rand_conf = op1->execute(bench);
-    vector<int> rand_conf2 = op2->execute(bench);
+    sol->configuration = rand_conf;
+    bench->UpdateSolution(sol);
+    int c = bench->solutionCost(sol);
+    return "Cost : " + returnSTR(c);
+}
 
-    sol = make_shared<Solution>(domains, rand_conf);
-    c = bench->solutionCost(sol);
-    cout << "Cost : " << c << endl;
+string TEST_OM_FirstRandomConfiguration_Florian(vector<Domain> domains)
+{
+    shared_ptr<Solution> sol = make_shared<Solution>(domains);
+    shared_ptr<Benchmark> bench = make_shared<Golfers>(4,4,2);
+    OperationModule<shared_ptr<Benchmark>, vector<int>> * op1 = new OM_FlorianRandomConfGeneration();
+    vector<int> rand_conf = op1->execute(bench);
+    sol->configuration = rand_conf;
+    bench->UpdateSolution(sol);
+    int c = bench->solutionCost(sol);
+    return "Cost : " + returnSTR(c);
+}
 
-    sol = make_shared<Solution>(domains, rand_conf2);
-    c = bench->solutionCost(sol);
-    cout << "Cost : " << c << endl;
+void TEST_OneElementChangedNeighborhood(vector<Domain> domains, vector<int> config)
+{
+    shared_ptr<Solution> sol = make_shared<Solution>(domains, config);
+    shared_ptr<Benchmark> bench = make_shared<Golfers>(4,4,2);
+
+    Neighborhood * V = new OneElementChangedNeighborhood(sol);
+    vector<int> conf = (*V)[5];
+
+    POSL_Iterator<vector<int>> * it = V ->getIterator();
+    it->Reset();
+    while(it->SomeNext())
+    {
+        vector<int> config = it->GetNext();
+        string out = writeConfiguration(config);
+        cout << out << endl;
+        sol = make_shared<Solution>(domains, config);
+        bench->UpdateSolution(sol);
+        int c = bench->solutionCost(sol);
+        cout << "Cost : " << returnSTR(c) << endl;
+    }
+}
+
+string returnSTR(int c)
+{
+    ostringstream ss;
+    ss << c;
+    std::string s(ss.str());
+    return s;
+}
+
+string writeConfiguration(vector<int> conf)
+{
+    string txt = "[ ";
+    vector<int>::iterator it = conf.begin();
+    txt += returnSTR(*it);
+    it++;
+    while ( it != conf.end())
+    {
+        txt += ", " + returnSTR(*it);
+        ++it;
+    }
+    return txt + " ]";
 }

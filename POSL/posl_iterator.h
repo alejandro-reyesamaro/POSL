@@ -13,6 +13,7 @@
  * \class POSL_Iterator posl_iterator.h
  * \brief Interface to represent iterators
  */
+template <typename T>
 class POSL_Iterator
 {
     public:
@@ -20,7 +21,7 @@ class POSL_Iterator
         /*!
         * \return The next Value to be returned
         */
-        virtual int GetNext() = 0;
+        virtual T GetNext() = 0;
 
         //! Returns true if there are more values to iterate with
         /*!

@@ -36,7 +36,10 @@ SOURCES += main.cpp \
     ../LongInteger/merged_longint.cpp \
     om_random_conf_generation.cpp \
     posl_data.cpp \
-    om_florian_random_conf_generation.cpp
+    om_florian_random_conf_generation.cpp \
+    neighborhood.cpp \
+    one_element_changed_neighborhood.cpp \
+    om_one_element_changed_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -63,4 +66,7 @@ HEADERS += \
     ../LongInteger/merged_longint.h \
     om_random_conf_generation.h \
     posl_data.h \
-    om_florian_random_conf_generation.h
+    om_florian_random_conf_generation.h \
+    neighborhood.h \
+    one_element_changed_neighborhood.h \
+    om_one_element_changed_neighborhood.h

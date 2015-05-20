@@ -24,7 +24,7 @@ class Benchmark
 {
     public:
         Benchmark();
-        virtual float solutionCost(shared_ptr<Solution> sol) = 0;
+        virtual int solutionCost(shared_ptr<Solution> sol) = 0;
         void UpdateSolution(shared_ptr<Solution> sol);
 
     //protected:

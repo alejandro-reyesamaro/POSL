@@ -27,7 +27,7 @@ class NgbhFunction
         /*!
         * \return Elements iterator
         */
-        virtual shared_ptr<POSL_Iterator> getIterator() = 0;
+        virtual shared_ptr<POSL_Iterator<vector<int>>> getIterator() = 0;
 
         //! Returns the element at the position pos
         /*!

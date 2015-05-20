@@ -66,7 +66,10 @@ SOURCES       = ../main.cpp \
 		../../LongInteger/merged_longint.cpp \
 		../om_random_conf_generation.cpp \
 		../posl_data.cpp \
-		../om_florian_random_conf_generation.cpp 
+		../om_florian_random_conf_generation.cpp \
+		../neighborhood.cpp \
+		../one_element_changed_neighborhood.cpp \
+		../om_one_element_changed_neighborhood.cpp 
 OBJECTS       = main.o \
 		compound_module.o \
 		operation_module.o \
@@ -88,7 +91,10 @@ OBJECTS       = main.o \
 		merged_longint.o \
 		om_random_conf_generation.o \
 		posl_data.o \
-		om_florian_random_conf_generation.o
+		om_florian_random_conf_generation.o \
+		neighborhood.o \
+		one_element_changed_neighborhood.o \
+		om_one_element_changed_neighborhood.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -310,7 +316,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/POSL1.0.0 || mkdir -p .tmp/POSL1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../compound_module.h ../operation_module.h ../open_channel.h ../domain.h ../factory_domain.h ../factory_n_int_domain.h ../dom_interval.h ../node.h ../solution.h ../ngbh_function.h ../posl_iterator.h ../solver.h ../benchmark.h ../factory_compound_module.h ../data_open_channel.h ../object_open_channel.h ../operator.h ../golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../om_random_conf_generation.h ../posl_data.h ../om_florian_random_conf_generation.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../compound_module.cpp ../operation_module.cpp ../open_channel.cpp ../domain.cpp ../factory_n_int_domain.cpp ../node.cpp ../solution.cpp ../ngbh_function.cpp ../solver.cpp ../benchmark.cpp ../factory_compound_module.cpp ../dom_interval.cpp ../data_open_channel.cpp ../object_open_channel.cpp ../operator.cpp ../golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../om_random_conf_generation.cpp ../posl_data.cpp ../om_florian_random_conf_generation.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../compound_module.h ../operation_module.h ../open_channel.h ../domain.h ../factory_domain.h ../factory_n_int_domain.h ../dom_interval.h ../node.h ../solution.h ../ngbh_function.h ../posl_iterator.h ../solver.h ../benchmark.h ../factory_compound_module.h ../data_open_channel.h ../object_open_channel.h ../operator.h ../golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../om_random_conf_generation.h ../posl_data.h ../om_florian_random_conf_generation.h ../neighborhood.h ../one_element_changed_neighborhood.h ../om_one_element_changed_neighborhood.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../compound_module.cpp ../operation_module.cpp ../open_channel.cpp ../domain.cpp ../factory_n_int_domain.cpp ../node.cpp ../solution.cpp ../ngbh_function.cpp ../solver.cpp ../benchmark.cpp ../factory_compound_module.cpp ../dom_interval.cpp ../data_open_channel.cpp ../object_open_channel.cpp ../operator.cpp ../golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../om_random_conf_generation.cpp ../posl_data.cpp ../om_florian_random_conf_generation.cpp ../neighborhood.cpp ../one_element_changed_neighborhood.cpp ../om_one_element_changed_neighborhood.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
 
 
 clean:compiler_clean 
@@ -354,7 +360,11 @@ main.o: ../main.cpp ../benchmark.h \
 		../golfers.h \
 		../factory_n_int_domain.h \
 		../om_random_conf_generation.h \
-		../operation_module.h
+		../operation_module.h \
+		../om_florian_random_conf_generation.h \
+		../neighborhood.h \
+		../posl_iterator.h \
+		../one_element_changed_neighborhood.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
 compound_module.o: ../compound_module.cpp ../compound_module.h
@@ -452,8 +462,32 @@ om_florian_random_conf_generation.o: ../om_florian_random_conf_generation.cpp ..
 		../solution.h \
 		../domain.h \
 		../factory_domain.h \
-		../benchmark.h
+		../benchmark.h \
+		../om_random_conf_generation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_florian_random_conf_generation.o ../om_florian_random_conf_generation.cpp
+
+neighborhood.o: ../neighborhood.cpp ../neighborhood.h \
+		../posl_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighborhood.o ../neighborhood.cpp
+
+one_element_changed_neighborhood.o: ../one_element_changed_neighborhood.cpp ../one_element_changed_neighborhood.h \
+		../neighborhood.h \
+		../posl_iterator.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o one_element_changed_neighborhood.o ../one_element_changed_neighborhood.cpp
+
+om_one_element_changed_neighborhood.o: ../om_one_element_changed_neighborhood.cpp ../om_one_element_changed_neighborhood.h \
+		../operation_module.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../benchmark.h \
+		../neighborhood.h \
+		../posl_iterator.h \
+		../one_element_changed_neighborhood.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_one_element_changed_neighborhood.o ../om_one_element_changed_neighborhood.cpp
 
 ####### Install
 
