@@ -10,8 +10,11 @@
  */
 
 #include "compound_module.h"
+#include "sequential_computation_strategy.h"
+#include "parallelc_omputation_strategy.h"
 
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -22,9 +25,12 @@ using namespace std;
 class Operator
 {
     public:
-        Operator();
+        Operator(shared_ptr<ComputationStrategy> _seq_strategy,
+                 shared_ptr<ComputationStrategy> _para_strategy);
+
         virtual void evaluate() = 0;
 
     private:
-        vector<CompoundModule> modules;
+        shared_ptr<ComputationStrategy> seq_strategy;
+        shared_ptr<ComputationStrategy> para_strategy;
 };

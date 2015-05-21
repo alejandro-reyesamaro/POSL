@@ -13,13 +13,10 @@
  * \class OperationModule operation_module.h
  * \brief Class to represent an Open Channel
  */
-
+#include "compound_module.h"
 
 template <typename IN, typename OUT>
-class OperationModule
+class OperationModule : public CompoundModule<IN, OUT>
 {
-    public:
-        //! Constructor
-        //OperationModule();
-        virtual OUT execute(IN input) = 0;
+
 };

@@ -21,6 +21,6 @@ class FactoryCompoundModule
 {
     public:
         FactoryCompoundModule();
-        virtual CompoundModule buildCM() = 0;
+        //virtual CompoundModule buildCM() = 0;
 };
 

@@ -1,12 +1,13 @@
 #pragma once
 
 #include "posl_iterator.h"
+#include "computation_data.h"
 #include <vector>
 #include <memory>
 
 using namespace std;
 
-class Neighborhood
+class Neighborhood : ComputationData
 {
     public:
         Neighborhood();

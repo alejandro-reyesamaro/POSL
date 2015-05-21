@@ -17,13 +17,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     compound_module.cpp \
-    operation_module.cpp \
     open_channel.cpp \
     domain.cpp \
     factory_n_int_domain.cpp \
     node.cpp \
     solution.cpp \
-    ngbh_function.cpp \
     solver.cpp \
     benchmark.cpp \
     factory_compound_module.cpp \
@@ -35,11 +33,14 @@ SOURCES += main.cpp \
     ../LongInteger/long_int.cpp \
     ../LongInteger/merged_longint.cpp \
     om_random_conf_generation.cpp \
-    posl_data.cpp \
     om_florian_random_conf_generation.cpp \
     neighborhood.cpp \
     one_element_changed_neighborhood.cpp \
-    om_one_element_changed_neighborhood.cpp
+    om_one_element_changed_neighborhood.cpp \
+    sequential_exec_operator.cpp \
+    sequential_computation_strategy.cpp \
+    parallel_computation_strategy.cpp \
+    computation_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -53,7 +54,6 @@ HEADERS += \
     dom_interval.h \
     node.h \
     solution.h \
-    ngbh_function.h \
     posl_iterator.h \
     solver.h \
     benchmark.h \
@@ -65,8 +65,12 @@ HEADERS += \
     ../LongInteger/long_int.h \
     ../LongInteger/merged_longint.h \
     om_random_conf_generation.h \
-    posl_data.h \
     om_florian_random_conf_generation.h \
     neighborhood.h \
     one_element_changed_neighborhood.h \
-    om_one_element_changed_neighborhood.h
+    om_one_element_changed_neighborhood.h \
+    sequential_exec_operator.h \
+    sequential_computation_strategy.h \
+    parallelc_omputation_strategy.h \
+    computation_strategy.h \
+    computation_data.h

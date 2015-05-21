@@ -27,6 +27,6 @@ class Solver
         Solver(shared_ptr<FactoryCompoundModule> facCM, shared_ptr<Benchmark> bench);
 
     private:
-        CompoundModule cm;
+        //CompoundModule cm;
         shared_ptr<Benchmark> problem;
 };

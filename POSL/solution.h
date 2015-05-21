@@ -10,6 +10,7 @@
  */
 
 #include "domain.h"
+#include "computation_data.h"
 
 #include <vector>
 #include <memory>
@@ -20,7 +21,7 @@ using namespace std;
  * \class Solution solution.h
  * \brief Class to represent a solution (configuration)
  */
-class Solution
+class Solution : ComputationData
 {
     public:
         //! Constructor
