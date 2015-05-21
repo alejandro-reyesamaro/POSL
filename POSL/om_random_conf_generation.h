@@ -3,10 +3,16 @@
 #include "operation_module.h"
 #include "solution.h"
 #include "benchmark.h"
+#include "seed.h"
 
-class OM_RandomConfGeneration : public OperationModule<shared_ptr<Benchmark>, vector<int>>
+class OM_RandomConfGeneration : public OperationModule
 {
     public:
         OM_RandomConfGeneration();
-        vector<int> execute(shared_ptr<Benchmark> input);
+        ComputationData * execute(Benchmark * bench, ComputationData * input);
+
+    private:
+        // casting
+        Solution * CastForSolution(ComputationData * output);
+        Seed * CastForSeed(ComputationData * input);
 };

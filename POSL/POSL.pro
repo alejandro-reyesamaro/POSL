@@ -39,8 +39,10 @@ SOURCES += main.cpp \
     om_one_element_changed_neighborhood.cpp \
     sequential_exec_operator.cpp \
     sequential_computation_strategy.cpp \
-    parallel_computation_strategy.cpp \
-    computation_strategy.cpp
+    computation_strategy.cpp \
+    seed.cpp \
+    not_implemented_parallel_strategy.cpp \
+    sequential_execution_sequential_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -71,6 +73,9 @@ HEADERS += \
     om_one_element_changed_neighborhood.h \
     sequential_exec_operator.h \
     sequential_computation_strategy.h \
-    parallelc_omputation_strategy.h \
     computation_strategy.h \
-    computation_data.h
+    computation_data.h \
+    seed.h \
+    parallelc_computation_strategy.h \
+    not_implemented_parallel_strategy.h \
+    sequential_execution_sequential_strategy.h

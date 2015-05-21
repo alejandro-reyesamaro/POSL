@@ -3,10 +3,11 @@
 #include "operation_module.h"
 #include "solution.h"
 #include "benchmark.h"
+#include "seed.h"
 
-class OM_FlorianRandomConfGeneration : public OperationModule<shared_ptr<Benchmark>, vector<int>>
+class OM_FlorianRandomConfGeneration : public OperationModule
 {
     public:
         OM_FlorianRandomConfGeneration();
-        vector<int> execute(shared_ptr<Benchmark> input);
+        ComputationData * execute(Benchmark * bench, ComputationData * input);
 };

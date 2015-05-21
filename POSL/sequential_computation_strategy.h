@@ -2,9 +2,7 @@
 
 #include "computation_strategy.h"
 
-template <typename IN, typename OUT>
-class SequentialComputationStrategy : ComputationStrategy
+class SequentialComputationStrategy : public ComputationStrategy
 {
-    public:
-        virtual OUT evaluate(IN input) = 0;
+
 };

@@ -26,7 +26,7 @@ class OneElementChangedIterator : public POSL_Iterator<vector<int>>
         int current;
 };
 
-OneElementChangedNeighborhood::OneElementChangedNeighborhood(shared_ptr<Solution> sol)
+OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
 {
     current_solution = sol;
     int n = sol->configuration.size();

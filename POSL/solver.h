@@ -13,8 +13,6 @@
 #include "benchmark.h"
 #include "factory_compound_module.h"
 
-#include <memory>
-
 using namespace std;
 
 /*!
@@ -24,9 +22,9 @@ using namespace std;
 class Solver
 {
     public:
-        Solver(shared_ptr<FactoryCompoundModule> facCM, shared_ptr<Benchmark> bench);
+        Solver(FactoryCompoundModule * facCM, Benchmark * bench);
 
     private:
         //CompoundModule cm;
-        shared_ptr<Benchmark> problem;
+        Benchmark * problem;
 };

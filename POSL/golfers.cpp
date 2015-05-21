@@ -10,7 +10,7 @@ Golfers::Golfers(int g, int p, int w) : groups(g), players(p), weeks(w)
 {
 }
 
-int Golfers::solutionCost(shared_ptr<Solution> sol)
+int Golfers::solutionCost(Solution *sol)
 {
     //cout << "Begin" << endl;
     int golfers = players*groups;

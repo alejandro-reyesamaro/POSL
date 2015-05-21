@@ -13,7 +13,7 @@ class OneElementChangedNeighborhood : public Neighborhood
 {
     friend class OneElementChangedIterator;
     public:
-        OneElementChangedNeighborhood(shared_ptr<Solution> sol);
+        OneElementChangedNeighborhood(Solution * sol);
 
         POSL_Iterator<vector<int>> * getIterator();
         int size();
@@ -22,6 +22,6 @@ class OneElementChangedNeighborhood : public Neighborhood
     private:
         vector<int> applyChangeAt(int index);
 
-        shared_ptr<Solution> current_solution;
+        Solution * current_solution;
         vector<T_change> changes;
 };

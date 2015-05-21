@@ -12,7 +12,6 @@
 #include "solution.h"
 
 #include <vector>
-#include <memory>
 
 using namespace std;
 
@@ -24,9 +23,9 @@ class Benchmark
 {
     public:
         Benchmark();
-        virtual int solutionCost(shared_ptr<Solution> sol) = 0;
-        void UpdateSolution(shared_ptr<Solution> sol);
+        virtual int solutionCost(Solution * sol) = 0;
+        void UpdateSolution(Solution * sol);
 
     //protected:
-        shared_ptr<Solution> solution;
+        Solution * solution;
 };

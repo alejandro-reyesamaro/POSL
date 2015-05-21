@@ -15,8 +15,7 @@
  */
 #include "compound_module.h"
 
-template <typename IN, typename OUT>
-class OperationModule : public CompoundModule<IN, OUT>
+class OperationModule : public CompoundModule
 {
 
 };

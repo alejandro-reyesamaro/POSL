@@ -2,7 +2,6 @@
 #include "om_random_conf_generation.h"
 
 #include <random>
-#include <chrono>
 #include <limits>
 
 #include <iostream>
@@ -11,10 +10,10 @@ OM_FlorianRandomConfGeneration::OM_FlorianRandomConfGeneration()
 {
 }
 
-vector<int> OM_FlorianRandomConfGeneration::execute(shared_ptr<Benchmark> input)
+ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, ComputationData * input)
 {
-    shared_ptr<OperationModule<shared_ptr<Benchmark>, vector<int>>> op = make_shared<OM_RandomConfGeneration>();
-    vector<Domain> domains = input->solution->domains;
+    OperationModule * op = new OM_RandomConfGeneration();
+    vector<Domain> domains = bench->solution->domains;
 
 
     vector<int> best_conf;
@@ -22,14 +21,14 @@ vector<int> OM_FlorianRandomConfGeneration::execute(shared_ptr<Benchmark> input)
 
     for(int i = 0; i < 100; i++)
     {
-        vector<int> rand_conf = op->execute(input);
-        shared_ptr<Solution> sol = make_shared<Solution>(domains, rand_conf);
-        int cost = input->solutionCost(sol);
+        Solution * sol = (Solution *)(op->execute(bench, input));
+        int cost = bench->solutionCost(sol);
         if(cost < best_cost)
         {
-            best_conf = rand_conf;
+            best_conf = sol->configuration;
             best_cost = cost;
         }
     }
-    return best_conf;
+    Solution * new_solution = new Solution(bench->solution->domains, best_conf);
+    return new_solution;
 }

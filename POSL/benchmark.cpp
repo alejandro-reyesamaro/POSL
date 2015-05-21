@@ -4,7 +4,7 @@ Benchmark::Benchmark()
 {
 }
 
-void Benchmark::UpdateSolution(shared_ptr<Solution> sol)
+void Benchmark::UpdateSolution(Solution * sol)
 {
     solution = sol;
 }

@@ -12,7 +12,6 @@
 #include "factory_domain.h"
 
 #include <vector>
-#include <memory>
 
 using namespace std;
 
@@ -27,7 +26,7 @@ class Domain
         /*!
         * \param fd Factory object to obtain an specific kind of domain
         */
-        Domain(shared_ptr<FactoryDomain> fd);
+        Domain(FactoryDomain * fd);
 
         //! Return the vector of values
         /*!

@@ -9,15 +9,17 @@
  * \date 2015-04-15
  */
 
+#include "computation_data.h"
+#include "benchmark.h"
+
 /*!
  * \class CompoundModule compound_module.h
  * \brief Class to represent a Compound Module
  */
-template <typename IN, typename OUT>
 class CompoundModule
 {
     public:
         //! Constructor
-        CompoundModule();
-        virtual OUT execute(IN input) = 0;
+        //CompoundModule();
+        virtual ComputationData * execute(Benchmark * bench, ComputationData * input) = 0;
 };

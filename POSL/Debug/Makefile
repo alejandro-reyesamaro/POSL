@@ -52,7 +52,6 @@ SOURCES       = ../main.cpp \
 		../factory_n_int_domain.cpp \
 		../node.cpp \
 		../solution.cpp \
-		../ngbh_function.cpp \
 		../solver.cpp \
 		../benchmark.cpp \
 		../factory_compound_module.cpp \
@@ -70,8 +69,10 @@ SOURCES       = ../main.cpp \
 		../om_one_element_changed_neighborhood.cpp \
 		../sequential_exec_operator.cpp \
 		../sequential_computation_strategy.cpp \
-		../parallel_computation_strategy.cpp \
-		../computation_strategy.cpp 
+		../computation_strategy.cpp \
+		../seed.cpp \
+		../not_implemented_parallel_strategy.cpp \
+		../sequential_execution_sequential_strategy.cpp 
 OBJECTS       = main.o \
 		compound_module.o \
 		open_channel.o \
@@ -79,7 +80,6 @@ OBJECTS       = main.o \
 		factory_n_int_domain.o \
 		node.o \
 		solution.o \
-		ngbh_function.o \
 		solver.o \
 		benchmark.o \
 		factory_compound_module.o \
@@ -97,8 +97,10 @@ OBJECTS       = main.o \
 		om_one_element_changed_neighborhood.o \
 		sequential_exec_operator.o \
 		sequential_computation_strategy.o \
-		parallel_computation_strategy.o \
-		computation_strategy.o
+		computation_strategy.o \
+		seed.o \
+		not_implemented_parallel_strategy.o \
+		sequential_execution_sequential_strategy.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -320,7 +322,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/POSL1.0.0 || mkdir -p .tmp/POSL1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../compound_module.h ../operation_module.h ../open_channel.h ../domain.h ../factory_domain.h ../factory_n_int_domain.h ../dom_interval.h ../node.h ../solution.h ../ngbh_function.h ../posl_iterator.h ../solver.h ../benchmark.h ../factory_compound_module.h ../data_open_channel.h ../object_open_channel.h ../operator.h ../golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../om_random_conf_generation.h ../om_florian_random_conf_generation.h ../neighborhood.h ../one_element_changed_neighborhood.h ../om_one_element_changed_neighborhood.h ../sequential_exec_operator.h ../sequential_computation_strategy.h ../parallelc_omputation_strategy.h ../computation_strategy.h ../computation_data.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../compound_module.cpp ../open_channel.cpp ../domain.cpp ../factory_n_int_domain.cpp ../node.cpp ../solution.cpp ../ngbh_function.cpp ../solver.cpp ../benchmark.cpp ../factory_compound_module.cpp ../dom_interval.cpp ../data_open_channel.cpp ../object_open_channel.cpp ../operator.cpp ../golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../om_random_conf_generation.cpp ../om_florian_random_conf_generation.cpp ../neighborhood.cpp ../one_element_changed_neighborhood.cpp ../om_one_element_changed_neighborhood.cpp ../sequential_exec_operator.cpp ../sequential_computation_strategy.cpp ../parallel_computation_strategy.cpp ../computation_strategy.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../compound_module.h ../operation_module.h ../open_channel.h ../domain.h ../factory_domain.h ../factory_n_int_domain.h ../dom_interval.h ../node.h ../solution.h ../posl_iterator.h ../solver.h ../benchmark.h ../factory_compound_module.h ../data_open_channel.h ../object_open_channel.h ../operator.h ../golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../om_random_conf_generation.h ../om_florian_random_conf_generation.h ../neighborhood.h ../one_element_changed_neighborhood.h ../om_one_element_changed_neighborhood.h ../sequential_exec_operator.h ../sequential_computation_strategy.h ../computation_strategy.h ../computation_data.h ../seed.h ../parallelc_computation_strategy.h ../not_implemented_parallel_strategy.h ../sequential_execution_sequential_strategy.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../compound_module.cpp ../open_channel.cpp ../domain.cpp ../factory_n_int_domain.cpp ../node.cpp ../solution.cpp ../solver.cpp ../benchmark.cpp ../factory_compound_module.cpp ../dom_interval.cpp ../data_open_channel.cpp ../object_open_channel.cpp ../operator.cpp ../golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../om_random_conf_generation.cpp ../om_florian_random_conf_generation.cpp ../neighborhood.cpp ../one_element_changed_neighborhood.cpp ../om_one_element_changed_neighborhood.cpp ../sequential_exec_operator.cpp ../sequential_computation_strategy.cpp ../computation_strategy.cpp ../seed.cpp ../not_implemented_parallel_strategy.cpp ../sequential_execution_sequential_strategy.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
 
 
 clean:compiler_clean 
@@ -367,13 +369,19 @@ main.o: ../main.cpp ../benchmark.h \
 		../om_random_conf_generation.h \
 		../operation_module.h \
 		../compound_module.h \
+		../seed.h \
 		../om_florian_random_conf_generation.h \
 		../neighborhood.h \
 		../posl_iterator.h \
 		../one_element_changed_neighborhood.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
-compound_module.o: ../compound_module.cpp ../compound_module.h
+compound_module.o: ../compound_module.cpp ../compound_module.h \
+		../computation_data.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o compound_module.o ../compound_module.cpp
 
 open_channel.o: ../open_channel.cpp ../open_channel.h
@@ -396,17 +404,13 @@ solution.o: ../solution.cpp ../solution.h \
 		../computation_data.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o solution.o ../solution.cpp
 
-ngbh_function.o: ../ngbh_function.cpp ../ngbh_function.h \
-		../posl_iterator.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ngbh_function.o ../ngbh_function.cpp
-
 solver.o: ../solver.cpp ../solver.h \
 		../compound_module.h \
+		../computation_data.h \
 		../benchmark.h \
 		../solution.h \
 		../domain.h \
 		../factory_domain.h \
-		../computation_data.h \
 		../factory_compound_module.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o solver.o ../solver.cpp
 
@@ -418,7 +422,12 @@ benchmark.o: ../benchmark.cpp ../benchmark.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o benchmark.o ../benchmark.cpp
 
 factory_compound_module.o: ../factory_compound_module.cpp ../factory_compound_module.h \
-		../compound_module.h
+		../compound_module.h \
+		../computation_data.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory_compound_module.o ../factory_compound_module.cpp
 
 dom_interval.o: ../dom_interval.cpp ../dom_interval.h
@@ -434,9 +443,14 @@ object_open_channel.o: ../object_open_channel.cpp ../object_open_channel.h \
 
 operator.o: ../operator.cpp ../operator.h \
 		../compound_module.h \
+		../computation_data.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
 		../sequential_computation_strategy.h \
 		../computation_strategy.h \
-		../parallelc_omputation_strategy.h
+		../parallelc_computation_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o operator.o ../operator.cpp
 
 golfers.o: ../golfers.cpp ../golfers.h \
@@ -459,21 +473,23 @@ merged_longint.o: ../../LongInteger/merged_longint.cpp ../../LongInteger/merged_
 om_random_conf_generation.o: ../om_random_conf_generation.cpp ../om_random_conf_generation.h \
 		../operation_module.h \
 		../compound_module.h \
+		../computation_data.h \
+		../benchmark.h \
 		../solution.h \
 		../domain.h \
 		../factory_domain.h \
-		../computation_data.h \
-		../benchmark.h
+		../seed.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_random_conf_generation.o ../om_random_conf_generation.cpp
 
 om_florian_random_conf_generation.o: ../om_florian_random_conf_generation.cpp ../om_florian_random_conf_generation.h \
 		../operation_module.h \
 		../compound_module.h \
+		../computation_data.h \
+		../benchmark.h \
 		../solution.h \
 		../domain.h \
 		../factory_domain.h \
-		../computation_data.h \
-		../benchmark.h \
+		../seed.h \
 		../om_random_conf_generation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_florian_random_conf_generation.o ../om_florian_random_conf_generation.cpp
 
@@ -494,11 +510,11 @@ one_element_changed_neighborhood.o: ../one_element_changed_neighborhood.cpp ../o
 om_one_element_changed_neighborhood.o: ../om_one_element_changed_neighborhood.cpp ../om_one_element_changed_neighborhood.h \
 		../operation_module.h \
 		../compound_module.h \
+		../computation_data.h \
+		../benchmark.h \
 		../solution.h \
 		../domain.h \
 		../factory_domain.h \
-		../computation_data.h \
-		../benchmark.h \
 		../neighborhood.h \
 		../posl_iterator.h \
 		../one_element_changed_neighborhood.h
@@ -507,21 +523,62 @@ om_one_element_changed_neighborhood.o: ../om_one_element_changed_neighborhood.cp
 sequential_exec_operator.o: ../sequential_exec_operator.cpp ../sequential_exec_operator.h \
 		../operator.h \
 		../compound_module.h \
+		../computation_data.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
 		../sequential_computation_strategy.h \
 		../computation_strategy.h \
-		../parallelc_omputation_strategy.h
+		../parallelc_computation_strategy.h \
+		../not_implemented_parallel_strategy.h \
+		../sequential_execution_sequential_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sequential_exec_operator.o ../sequential_exec_operator.cpp
 
 sequential_computation_strategy.o: ../sequential_computation_strategy.cpp ../sequential_computation_strategy.h \
-		../computation_strategy.h
+		../computation_strategy.h \
+		../computation_data.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../compound_module.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sequential_computation_strategy.o ../sequential_computation_strategy.cpp
 
-parallel_computation_strategy.o: ../parallel_computation_strategy.cpp ../parallelc_omputation_strategy.h \
-		../computation_strategy.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o parallel_computation_strategy.o ../parallel_computation_strategy.cpp
-
-computation_strategy.o: ../computation_strategy.cpp ../computation_strategy.h
+computation_strategy.o: ../computation_strategy.cpp ../computation_strategy.h \
+		../computation_data.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../compound_module.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o computation_strategy.o ../computation_strategy.cpp
+
+seed.o: ../seed.cpp ../seed.h \
+		../computation_data.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o seed.o ../seed.cpp
+
+not_implemented_parallel_strategy.o: ../not_implemented_parallel_strategy.cpp ../not_implemented_parallel_strategy.h \
+		../parallelc_computation_strategy.h \
+		../computation_strategy.h \
+		../computation_data.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../compound_module.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o not_implemented_parallel_strategy.o ../not_implemented_parallel_strategy.cpp
+
+sequential_execution_sequential_strategy.o: ../sequential_execution_sequential_strategy.cpp ../sequential_execution_sequential_strategy.h \
+		../sequential_computation_strategy.h \
+		../computation_strategy.h \
+		../computation_data.h \
+		../benchmark.h \
+		../solution.h \
+		../domain.h \
+		../factory_domain.h \
+		../compound_module.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sequential_execution_sequential_strategy.o ../sequential_execution_sequential_strategy.cpp
 
 ####### Install
 

@@ -1,26 +1,26 @@
 #include "om_random_conf_generation.h"
 
 #include <random>
-#include <chrono>
-
 #include <iostream>
 
 OM_RandomConfGeneration::OM_RandomConfGeneration()
 {
 }
 
-vector<int> OM_RandomConfGeneration::execute(shared_ptr<Benchmark> input)
+ComputationData *OM_RandomConfGeneration::execute(Benchmark * bench, ComputationData * input)
 {
-    double seed = chrono::system_clock::now().time_since_epoch().count();
+    double seed = ((Seed *)input)->seed();
     default_random_engine generator (seed);
 
     vector<int> vec;
 
-    for(vector<Domain>::iterator it = input->solution->domains.begin(); it != input->solution->domains.end(); ++it)
+    for(vector<Domain>::iterator it = bench->solution->domains.begin(); it != bench->solution->domains.end(); ++it)
     {
         uniform_int_distribution<int> distribution(it->minimum(), it->maximum());
         int k = distribution(generator);
         vec.push_back(k);
     }
-    return vec;
+
+    Solution * new_solution = new Solution(bench->solution->domains, vec);
+    return new_solution;
 }
