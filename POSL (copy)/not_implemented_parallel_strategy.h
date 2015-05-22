@@ -1,6 +1,6 @@
 #pragma once
 
-#include "parallelc_computation_strategy.h"
+#include "parallel_computation_strategy.h"
 
 class NotImplementedParallelStrategy : public ParallelComputationStrategy
 {

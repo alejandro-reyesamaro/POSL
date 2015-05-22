@@ -11,7 +11,7 @@
 
 #include "compound_module.h"
 #include "sequential_computation_strategy.h"
-#include "parallelc_computation_strategy.h"
+#include "parallel_computation_strategy.h"
 
 #include <vector>
 

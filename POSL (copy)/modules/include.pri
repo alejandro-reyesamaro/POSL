@@ -1,0 +1,21 @@
+SOURCES += compound_module.cpp \
+    open_channel.cpp \
+    data_open_channel.cpp \
+    object_open_channel.cpp \
+    om_random_conf_generation.cpp \
+    om_florian_random_conf_generation.cpp \
+    om_one_element_changed_neighborhood.cpp \
+    om_first_improvement_selection.cpp \
+    om_best_improvement_selection.cpp \
+
+HEADERS += \
+    compound_module.h \
+    operation_module.h \
+    open_channel.h \
+    data_open_channel.h \
+    object_open_channel.h \
+    om_random_conf_generation.h \
+    om_florian_random_conf_generation.h \
+    om_one_element_changed_neighborhood.h \
+    om_first_improvement_selection.h \
+    om_best_improvement_selection.h \

@@ -9,7 +9,7 @@
  * \date 2015-05-12
  */
 
-#include "compound_module.h"
+#include "modules/compound_module.h"
 
 using namespace std;
 

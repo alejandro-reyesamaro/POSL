@@ -9,8 +9,8 @@
  * \date 2015-05-11
  */
 
-#include "compound_module.h"
-#include "benchmark.h"
+#include "modules/compound_module.h"
+#include "benchmarks/benchmark.h"
 #include "factory_compound_module.h"
 
 using namespace std;

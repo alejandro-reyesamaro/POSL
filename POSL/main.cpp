@@ -6,16 +6,16 @@
 #include <string>
 #include <fstream>
 
-#include "benchmark.h"
-#include "golfers.h"
-#include "factory_n_int_domain.h"
-#include "om_random_conf_generation.h"
-#include "om_florian_random_conf_generation.h"
-#include "om_one_element_changed_neighborhood.h"
-#include "neighborhood.h"
-#include "one_element_changed_neighborhood.h"
-#include "operator.h"
-#include "sequential_exec_operator.h"
+#include "benchmarks/benchmark.h"
+#include "benchmarks/golfers.h"
+#include "data/factory_n_int_domain.h"
+#include "modules/om_random_conf_generation.h"
+#include "modules/om_florian_random_conf_generation.h"
+#include "modules/om_one_element_changed_neighborhood.h"
+#include "data/neighborhood.h"
+#include "data/one_element_changed_neighborhood.h"
+#include "operators/operator.h"
+#include "operators/sequential_exec_operator.h"
 
 using namespace std;
 

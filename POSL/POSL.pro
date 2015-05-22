@@ -16,66 +16,83 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    compound_module.cpp \
-    open_channel.cpp \
-    domain.cpp \
-    factory_n_int_domain.cpp \
-    node.cpp \
-    solution.cpp \
+    modules/compound_module.cpp \
+    modules/open_channel.cpp \
+    data/domain.cpp \
+    data/factory_n_int_domain.cpp \
+    data/node.cpp \
+    data/solution.cpp \
     solver.cpp \
-    benchmark.cpp \
+    benchmarks/benchmark.cpp \
     factory_compound_module.cpp \
-    dom_interval.cpp \
-    data_open_channel.cpp \
-    object_open_channel.cpp \
-    operator.cpp \
-    golfers.cpp \
+    data/dom_interval.cpp \
+    modules/data_open_channel.cpp \
+    modules/object_open_channel.cpp \
+    operators/operator.cpp \
+    benchmarks/golfers.cpp \
     ../LongInteger/long_int.cpp \
     ../LongInteger/merged_longint.cpp \
-    om_random_conf_generation.cpp \
-    om_florian_random_conf_generation.cpp \
-    neighborhood.cpp \
-    one_element_changed_neighborhood.cpp \
-    om_one_element_changed_neighborhood.cpp \
-    sequential_exec_operator.cpp \
-    sequential_computation_strategy.cpp \
-    computation_strategy.cpp \
-    seed.cpp \
-    not_implemented_parallel_strategy.cpp \
-    sequential_execution_sequential_strategy.cpp
+    modules/om_random_conf_generation.cpp \
+    modules/om_florian_random_conf_generation.cpp \
+    data/neighborhood.cpp \
+    data/one_element_changed_neighborhood.cpp \
+    modules/om_one_element_changed_neighborhood.cpp \
+    operators/sequential_exec_operator.cpp \
+    computation/sequential_computation_strategy.cpp \
+    data/seed.cpp \
+    computation/not_implemented_parallel_strategy.cpp \
+    computation/sequential_execution_sequential_strategy.cpp \
+    modules/om_first_improvement_selection.cpp \
+    modules/om_best_improvement_selection.cpp \
+    data/decision_pair.cpp \
+    data/strategy_search_in_neighborhood.cpp \
+    data/best_improvement_v_search_state.cpp \
+    data/v_search_state.cpp \
+    modules/grouped_computation.cpp \
+    modules/grouped_sequential_computation.cpp \
+    modules/grouped_parallel_computation.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
 HEADERS += \
-    compound_module.h \
-    operation_module.h \
-    open_channel.h \
-    domain.h \
-    factory_domain.h \
-    factory_n_int_domain.h \
-    dom_interval.h \
-    node.h \
-    solution.h \
-    posl_iterator.h \
+    modules/compound_module.h \
+    modules/operation_module.h \
+    modules/open_channel.h \
+    data/domain.h \
+    data/factory_domain.h \
+    data/factory_n_int_domain.h \
+    data/dom_interval.h \
+    data/node.h \
+    data/solution.h \
+    data/posl_iterator.h \
     solver.h \
-    benchmark.h \
+    benchmarks/benchmark.h \
     factory_compound_module.h \
-    data_open_channel.h \
-    object_open_channel.h \
-    operator.h \
-    golfers.h \
+    modules/data_open_channel.h \
+    modules/object_open_channel.h \
+    operators/operator.h \
+    benchmarks/golfers.h \
     ../LongInteger/long_int.h \
     ../LongInteger/merged_longint.h \
-    om_random_conf_generation.h \
-    om_florian_random_conf_generation.h \
-    neighborhood.h \
-    one_element_changed_neighborhood.h \
-    om_one_element_changed_neighborhood.h \
-    sequential_exec_operator.h \
-    sequential_computation_strategy.h \
-    computation_strategy.h \
-    computation_data.h \
-    seed.h \
-    parallelc_computation_strategy.h \
-    not_implemented_parallel_strategy.h \
-    sequential_execution_sequential_strategy.h
+    modules/om_random_conf_generation.h \
+    modules/om_florian_random_conf_generation.h \
+    data/neighborhood.h \
+    data/one_element_changed_neighborhood.h \
+    modules/om_one_element_changed_neighborhood.h \
+    operators/sequential_exec_operator.h \
+    computation/sequential_computation_strategy.h \
+    computation/computation_strategy.h \
+    data/computation_data.h \
+    data/seed.h \
+    computation/not_implemented_parallel_strategy.h \
+    computation/sequential_execution_sequential_strategy.h \
+    modules/om_first_improvement_selection.h \
+    modules/om_best_improvement_selection.h \
+    data/decision_pair.h \
+    computation/parallel_computation_strategy.h \
+    data/strategy_search_in_neighborhood.h \
+    data/best_improvement_v_search_state.h \
+    data/v_search_state.h \
+    modules/grouped_computation.h \
+    modules/grouped_sequential_computation.h \
+    modules/grouped_parallel_computation.h
