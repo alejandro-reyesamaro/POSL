@@ -13,6 +13,7 @@
 #include "computation_data.h"
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -29,8 +30,8 @@ class Solution : public ComputationData
         */
         Solution(vector<Domain> _domains);
         Solution(vector<Domain> _domains, vector<int> conf);
-
-
+        bool equal(Solution * other);
+        string configurationToString();
 
     //private:
         //! The current configuration

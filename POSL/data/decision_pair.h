@@ -9,4 +9,5 @@ class DecisionPair : public ComputationData
         DecisionPair(Solution * _current, Solution * _found);
         Solution * current;
         Solution * found;
+        bool equals();
 };

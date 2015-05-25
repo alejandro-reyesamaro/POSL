@@ -50,7 +50,18 @@ SOURCES += main.cpp \
     data/v_search_state.cpp \
     modules/grouped_computation.cpp \
     modules/grouped_sequential_computation.cpp \
-    modules/grouped_parallel_computation.cpp
+    modules/grouped_parallel_computation.cpp \
+    data/first_improvement_v_search_state.cpp \
+    testers/tester_cost_of_solution.cpp \
+    testers/tester_random_configuration_generation.cpp \
+    computation/random_configuration_generation_strategy.cpp \
+    testers/tester_florian_random_configuration_generation.cpp \
+    testers/tester_one_element_changed_neighborhood.cpp \
+    testers/tester.cpp \
+    testers/tester_first_improvement_selection.cpp \
+    modules/om_fixed_first_configuration.cpp \
+    computation/tools.cpp \
+    testers/tester_best_improvement_selection.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -95,4 +106,15 @@ HEADERS += \
     data/v_search_state.h \
     modules/grouped_computation.h \
     modules/grouped_sequential_computation.h \
-    modules/grouped_parallel_computation.h
+    modules/grouped_parallel_computation.h \
+    data/first_improvement_v_search_state.h \
+    testers/tester.h \
+    testers/tester_cost_of_solution.h \
+    testers/tester_random_configuration_generation.h \
+    computation/random_configuration_generation_strategy.h \
+    testers/tester_florian_random_configuration_generation.h \
+    testers/tester_one_element_changed_neighborhood.h \
+    testers/tester_first_improvement_selection.h \
+    modules/om_fixed_first_configuration.h \
+    computation/tools.h \
+    testers/tester_best_improvement_selection.h

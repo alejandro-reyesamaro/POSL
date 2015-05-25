@@ -80,7 +80,18 @@ SOURCES       = ../main.cpp \
 		../data/v_search_state.cpp \
 		../modules/grouped_computation.cpp \
 		../modules/grouped_sequential_computation.cpp \
-		../modules/grouped_parallel_computation.cpp 
+		../modules/grouped_parallel_computation.cpp \
+		../data/first_improvement_v_search_state.cpp \
+		../testers/tester_cost_of_solution.cpp \
+		../testers/tester_random_configuration_generation.cpp \
+		../computation/random_configuration_generation_strategy.cpp \
+		../testers/tester_florian_random_configuration_generation.cpp \
+		../testers/tester_one_element_changed_neighborhood.cpp \
+		../testers/tester.cpp \
+		../testers/tester_first_improvement_selection.cpp \
+		../modules/om_fixed_first_configuration.cpp \
+		../computation/tools.cpp \
+		../testers/tester_best_improvement_selection.cpp 
 OBJECTS       = main.o \
 		compound_module.o \
 		open_channel.o \
@@ -116,7 +127,18 @@ OBJECTS       = main.o \
 		v_search_state.o \
 		grouped_computation.o \
 		grouped_sequential_computation.o \
-		grouped_parallel_computation.o
+		grouped_parallel_computation.o \
+		first_improvement_v_search_state.o \
+		tester_cost_of_solution.o \
+		tester_random_configuration_generation.o \
+		random_configuration_generation_strategy.o \
+		tester_florian_random_configuration_generation.o \
+		tester_one_element_changed_neighborhood.o \
+		tester.o \
+		tester_first_improvement_selection.o \
+		om_fixed_first_configuration.o \
+		tools.o \
+		tester_best_improvement_selection.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -338,7 +360,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/POSL1.0.0 || mkdir -p .tmp/POSL1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../modules/compound_module.h ../modules/operation_module.h ../modules/open_channel.h ../data/domain.h ../data/factory_domain.h ../data/factory_n_int_domain.h ../data/dom_interval.h ../data/node.h ../data/solution.h ../data/posl_iterator.h ../solver.h ../benchmarks/benchmark.h ../factory_compound_module.h ../modules/data_open_channel.h ../modules/object_open_channel.h ../operators/operator.h ../benchmarks/golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../modules/om_random_conf_generation.h ../modules/om_florian_random_conf_generation.h ../data/neighborhood.h ../data/one_element_changed_neighborhood.h ../modules/om_one_element_changed_neighborhood.h ../operators/sequential_exec_operator.h ../computation/sequential_computation_strategy.h ../computation/computation_strategy.h ../data/computation_data.h ../data/seed.h ../computation/not_implemented_parallel_strategy.h ../computation/sequential_execution_sequential_strategy.h ../modules/om_first_improvement_selection.h ../modules/om_best_improvement_selection.h ../data/decision_pair.h ../computation/parallel_computation_strategy.h ../data/strategy_search_in_neighborhood.h ../data/best_improvement_v_search_state.h ../data/v_search_state.h ../modules/grouped_computation.h ../modules/grouped_sequential_computation.h ../modules/grouped_parallel_computation.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../modules/compound_module.cpp ../modules/open_channel.cpp ../data/domain.cpp ../data/factory_n_int_domain.cpp ../data/node.cpp ../data/solution.cpp ../solver.cpp ../benchmarks/benchmark.cpp ../factory_compound_module.cpp ../data/dom_interval.cpp ../modules/data_open_channel.cpp ../modules/object_open_channel.cpp ../operators/operator.cpp ../benchmarks/golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../modules/om_random_conf_generation.cpp ../modules/om_florian_random_conf_generation.cpp ../data/neighborhood.cpp ../data/one_element_changed_neighborhood.cpp ../modules/om_one_element_changed_neighborhood.cpp ../operators/sequential_exec_operator.cpp ../computation/sequential_computation_strategy.cpp ../data/seed.cpp ../computation/not_implemented_parallel_strategy.cpp ../computation/sequential_execution_sequential_strategy.cpp ../modules/om_first_improvement_selection.cpp ../modules/om_best_improvement_selection.cpp ../data/decision_pair.cpp ../data/strategy_search_in_neighborhood.cpp ../data/best_improvement_v_search_state.cpp ../data/v_search_state.cpp ../modules/grouped_computation.cpp ../modules/grouped_sequential_computation.cpp ../modules/grouped_parallel_computation.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../modules/compound_module.h ../modules/operation_module.h ../modules/open_channel.h ../data/domain.h ../data/factory_domain.h ../data/factory_n_int_domain.h ../data/dom_interval.h ../data/node.h ../data/solution.h ../data/posl_iterator.h ../solver.h ../benchmarks/benchmark.h ../factory_compound_module.h ../modules/data_open_channel.h ../modules/object_open_channel.h ../operators/operator.h ../benchmarks/golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../modules/om_random_conf_generation.h ../modules/om_florian_random_conf_generation.h ../data/neighborhood.h ../data/one_element_changed_neighborhood.h ../modules/om_one_element_changed_neighborhood.h ../operators/sequential_exec_operator.h ../computation/sequential_computation_strategy.h ../computation/computation_strategy.h ../data/computation_data.h ../data/seed.h ../computation/not_implemented_parallel_strategy.h ../computation/sequential_execution_sequential_strategy.h ../modules/om_first_improvement_selection.h ../modules/om_best_improvement_selection.h ../data/decision_pair.h ../computation/parallel_computation_strategy.h ../data/strategy_search_in_neighborhood.h ../data/best_improvement_v_search_state.h ../data/v_search_state.h ../modules/grouped_computation.h ../modules/grouped_sequential_computation.h ../modules/grouped_parallel_computation.h ../data/first_improvement_v_search_state.h ../testers/tester.h ../testers/tester_cost_of_solution.h ../testers/tester_random_configuration_generation.h ../computation/random_configuration_generation_strategy.h ../testers/tester_florian_random_configuration_generation.h ../testers/tester_one_element_changed_neighborhood.h ../testers/tester_first_improvement_selection.h ../modules/om_fixed_first_configuration.h ../computation/tools.h ../testers/tester_best_improvement_selection.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../modules/compound_module.cpp ../modules/open_channel.cpp ../data/domain.cpp ../data/factory_n_int_domain.cpp ../data/node.cpp ../data/solution.cpp ../solver.cpp ../benchmarks/benchmark.cpp ../factory_compound_module.cpp ../data/dom_interval.cpp ../modules/data_open_channel.cpp ../modules/object_open_channel.cpp ../operators/operator.cpp ../benchmarks/golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../modules/om_random_conf_generation.cpp ../modules/om_florian_random_conf_generation.cpp ../data/neighborhood.cpp ../data/one_element_changed_neighborhood.cpp ../modules/om_one_element_changed_neighborhood.cpp ../operators/sequential_exec_operator.cpp ../computation/sequential_computation_strategy.cpp ../data/seed.cpp ../computation/not_implemented_parallel_strategy.cpp ../computation/sequential_execution_sequential_strategy.cpp ../modules/om_first_improvement_selection.cpp ../modules/om_best_improvement_selection.cpp ../data/decision_pair.cpp ../data/strategy_search_in_neighborhood.cpp ../data/best_improvement_v_search_state.cpp ../data/v_search_state.cpp ../modules/grouped_computation.cpp ../modules/grouped_sequential_computation.cpp ../modules/grouped_parallel_computation.cpp ../data/first_improvement_v_search_state.cpp ../testers/tester_cost_of_solution.cpp ../testers/tester_random_configuration_generation.cpp ../computation/random_configuration_generation_strategy.cpp ../testers/tester_florian_random_configuration_generation.cpp ../testers/tester_one_element_changed_neighborhood.cpp ../testers/tester.cpp ../testers/tester_first_improvement_selection.cpp ../modules/om_fixed_first_configuration.cpp ../computation/tools.cpp ../testers/tester_best_improvement_selection.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
 
 
 clean:compiler_clean 
@@ -375,11 +397,17 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../main.cpp ../benchmarks/benchmark.h \
+main.o: ../main.cpp ../testers/tester.h \
+		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
 		../data/factory_domain.h \
 		../data/computation_data.h \
+		../testers/tester_cost_of_solution.h \
+		../testers/tester_random_configuration_generation.h \
+		../testers/tester_florian_random_configuration_generation.h \
+		../testers/tester_one_element_changed_neighborhood.h \
+		../testers/tester_first_improvement_selection.h \
 		../benchmarks/golfers.h \
 		../data/factory_n_int_domain.h \
 		../modules/om_random_conf_generation.h \
@@ -395,7 +423,9 @@ main.o: ../main.cpp ../benchmarks/benchmark.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h \
-		../operators/sequential_exec_operator.h
+		../operators/sequential_exec_operator.h \
+		../modules/grouped_computation.h \
+		../modules/grouped_sequential_computation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
 compound_module.o: ../modules/compound_module.cpp ../modules/compound_module.h \
@@ -423,7 +453,8 @@ node.o: ../data/node.cpp ../data/node.h
 solution.o: ../data/solution.cpp ../data/solution.h \
 		../data/domain.h \
 		../data/factory_domain.h \
-		../data/computation_data.h
+		../data/computation_data.h \
+		../computation/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o solution.o ../data/solution.cpp
 
 solver.o: ../solver.cpp ../solver.h \
@@ -500,7 +531,8 @@ om_random_conf_generation.o: ../modules/om_random_conf_generation.cpp ../modules
 		../data/solution.h \
 		../data/domain.h \
 		../data/factory_domain.h \
-		../data/seed.h
+		../data/seed.h \
+		../computation/random_configuration_generation_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_random_conf_generation.o ../modules/om_random_conf_generation.cpp
 
 om_florian_random_conf_generation.o: ../modules/om_florian_random_conf_generation.cpp ../modules/om_florian_random_conf_generation.h \
@@ -512,7 +544,8 @@ om_florian_random_conf_generation.o: ../modules/om_florian_random_conf_generatio
 		../data/domain.h \
 		../data/factory_domain.h \
 		../data/seed.h \
-		../modules/om_random_conf_generation.h
+		../modules/om_random_conf_generation.h \
+		../computation/random_configuration_generation_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_florian_random_conf_generation.o ../modules/om_florian_random_conf_generation.cpp
 
 neighborhood.o: ../data/neighborhood.cpp ../data/neighborhood.h \
@@ -606,7 +639,7 @@ om_first_improvement_selection.o: ../modules/om_first_improvement_selection.cpp 
 		../data/posl_iterator.h \
 		../data/decision_pair.h \
 		../data/v_search_state.h \
-		../data/best_improvement_v_search_state.h
+		../data/first_improvement_v_search_state.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_first_improvement_selection.o ../modules/om_first_improvement_selection.cpp
 
 om_best_improvement_selection.o: ../modules/om_best_improvement_selection.cpp ../modules/om_best_improvement_selection.h \
@@ -703,6 +736,148 @@ grouped_parallel_computation.o: ../modules/grouped_parallel_computation.cpp ../m
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o grouped_parallel_computation.o ../modules/grouped_parallel_computation.cpp
+
+first_improvement_v_search_state.o: ../data/first_improvement_v_search_state.cpp ../data/first_improvement_v_search_state.h \
+		../data/v_search_state.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../data/posl_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o first_improvement_v_search_state.o ../data/first_improvement_v_search_state.cpp
+
+tester_cost_of_solution.o: ../testers/tester_cost_of_solution.cpp ../testers/tester_cost_of_solution.h \
+		../testers/tester.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../benchmarks/golfers.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution.o ../testers/tester_cost_of_solution.cpp
+
+tester_random_configuration_generation.o: ../testers/tester_random_configuration_generation.cpp ../testers/tester_random_configuration_generation.h \
+		../testers/tester.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../modules/operation_module.h \
+		../modules/compound_module.h \
+		../modules/om_random_conf_generation.h \
+		../data/seed.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_random_configuration_generation.o ../testers/tester_random_configuration_generation.cpp
+
+random_configuration_generation_strategy.o: ../computation/random_configuration_generation_strategy.cpp ../computation/random_configuration_generation_strategy.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../data/seed.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o random_configuration_generation_strategy.o ../computation/random_configuration_generation_strategy.cpp
+
+tester_florian_random_configuration_generation.o: ../testers/tester_florian_random_configuration_generation.cpp ../testers/tester_florian_random_configuration_generation.h \
+		../testers/tester.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../modules/operation_module.h \
+		../modules/compound_module.h \
+		../modules/om_florian_random_conf_generation.h \
+		../data/seed.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_florian_random_configuration_generation.o ../testers/tester_florian_random_configuration_generation.cpp
+
+tester_one_element_changed_neighborhood.o: ../testers/tester_one_element_changed_neighborhood.cpp ../testers/tester_one_element_changed_neighborhood.h \
+		../testers/tester.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../modules/operation_module.h \
+		../modules/compound_module.h \
+		../modules/om_one_element_changed_neighborhood.h \
+		../data/neighborhood.h \
+		../data/posl_iterator.h \
+		../data/one_element_changed_neighborhood.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_one_element_changed_neighborhood.o ../testers/tester_one_element_changed_neighborhood.cpp
+
+tester.o: ../testers/tester.cpp ../testers/tester.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../data/factory_n_int_domain.h \
+		../benchmarks/golfers.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester.o ../testers/tester.cpp
+
+tester_first_improvement_selection.o: ../testers/tester_first_improvement_selection.cpp ../testers/tester_first_improvement_selection.h \
+		../testers/tester.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../modules/om_fixed_first_configuration.h \
+		../modules/operation_module.h \
+		../modules/compound_module.h \
+		../modules/om_one_element_changed_neighborhood.h \
+		../data/neighborhood.h \
+		../data/posl_iterator.h \
+		../modules/om_first_improvement_selection.h \
+		../operators/operator.h \
+		../computation/sequential_computation_strategy.h \
+		../computation/computation_strategy.h \
+		../computation/parallel_computation_strategy.h \
+		../operators/sequential_exec_operator.h \
+		../modules/grouped_computation.h \
+		../modules/grouped_sequential_computation.h \
+		../data/decision_pair.h \
+		../computation/tools.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_first_improvement_selection.o ../testers/tester_first_improvement_selection.cpp
+
+om_fixed_first_configuration.o: ../modules/om_fixed_first_configuration.cpp ../modules/om_fixed_first_configuration.h \
+		../modules/operation_module.h \
+		../modules/compound_module.h \
+		../data/computation_data.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_fixed_first_configuration.o ../modules/om_fixed_first_configuration.cpp
+
+tools.o: ../computation/tools.cpp ../computation/tools.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tools.o ../computation/tools.cpp
+
+tester_best_improvement_selection.o: ../testers/tester_best_improvement_selection.cpp ../testers/tester_best_improvement_selection.h \
+		../testers/tester.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/factory_domain.h \
+		../data/computation_data.h \
+		../modules/om_fixed_first_configuration.h \
+		../modules/operation_module.h \
+		../modules/compound_module.h \
+		../modules/om_one_element_changed_neighborhood.h \
+		../data/neighborhood.h \
+		../data/posl_iterator.h \
+		../modules/om_first_improvement_selection.h \
+		../operators/operator.h \
+		../computation/sequential_computation_strategy.h \
+		../computation/computation_strategy.h \
+		../computation/parallel_computation_strategy.h \
+		../operators/sequential_exec_operator.h \
+		../modules/grouped_computation.h \
+		../modules/grouped_sequential_computation.h \
+		../data/decision_pair.h \
+		../computation/tools.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_best_improvement_selection.o ../testers/tester_best_improvement_selection.cpp
 
 ####### Install
 

@@ -1,5 +1,6 @@
 #include "om_florian_random_conf_generation.h"
 #include "om_random_conf_generation.h"
+#include "computation/random_configuration_generation_strategy.h"
 
 #include <random>
 #include <limits>
@@ -12,8 +13,8 @@ OM_FlorianRandomConfGeneration::OM_FlorianRandomConfGeneration()
 
 ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, ComputationData * input)
 {
-    OperationModule * op = new OM_RandomConfGeneration();
-    vector<Domain> domains = bench->solution->domains;
+    RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy();
+    return rconf->generate(bench->solution->domains, ((Seed *)input));
 
 
     vector<int> best_conf;
@@ -21,7 +22,7 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, Com
 
     for(int i = 0; i < 100; i++)
     {
-        Solution * sol = (Solution *)(op->execute(bench, input));
+        Solution * sol = rconf->generate(bench->solution->domains, ((Seed *)input));
         int cost = bench->solutionCost(sol);
         if(cost < best_cost)
         {
@@ -30,5 +31,6 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, Com
         }
     }
     Solution * new_solution = new Solution(bench->solution->domains, best_conf);
+    bench->UpdateSolution(new_solution);
     return new_solution;
 }
