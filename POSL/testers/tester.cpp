@@ -5,8 +5,6 @@
 #include "benchmarks/benchmark.h"
 #include "benchmarks/golfers.h"
 
-#include <iostream>
-
 Tester::Tester()
 {
     FactoryDomain * fd_integers = new Factory_NIntDomain(1,16);

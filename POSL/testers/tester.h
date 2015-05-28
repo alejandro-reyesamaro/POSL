@@ -1,6 +1,9 @@
 #pragma once
-#include <string>
+
 #include "benchmarks/benchmark.h"
+
+#include <iostream>
+#include <string>
 
 using namespace std;
 

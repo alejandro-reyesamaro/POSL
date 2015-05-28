@@ -12,12 +12,12 @@ string Tester_RandomConfigurationGeneration::test()
 
     OperationModule * op1 = new OM_RandomConfGeneration();
     bool is_random = true;
+    Solution * current_sol = (Solution *)op1->execute(bench, new Seed());
     for(int i = 0; i < 10; i++)
     {
         Solution * new_sol = (Solution *)op1->execute(bench, new Seed());
         //cout << new_sol->configurationToString() << endl;
-        is_random = is_random && (!new_sol->equal(bench->solution));
-        bench->UpdateSolution(new_sol);
+        is_random = is_random && (!current_sol->equal(new_sol));
     }
     return (is_random) ? "OM_RandomConfGeneration: OK !" : "OM_RandomConfGeneration: fail :/";
 }
