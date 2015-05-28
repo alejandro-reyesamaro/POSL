@@ -1,5 +1,4 @@
 #include "one_element_changed_neighborhood.h"
-
 #include <algorithm>
 #include <random>
 #include <chrono>
@@ -8,17 +7,23 @@ class OneElementChangedIterator : public POSL_Iterator<vector<int>>
 {
     public:
 
-        //OneElementChangedIterator(shared_ptr<OneElementChangedNeighborhood> _n) : neighborhood(_n){}
-        OneElementChangedIterator(OneElementChangedNeighborhood * _n) : neighborhood(_n), current(0){}
+        OneElementChangedIterator(OneElementChangedNeighborhood * _n) : neighborhood(_n), current(0)
+        {}
 
         vector<int> GetNext()
-        { return neighborhood->applyChangeAt(current ++); }
+        {
+            return neighborhood->applyChangeAt(current ++);
+        }
 
         bool SomeNext()
-        { return current < neighborhood->size(); }
+        {
+            return current < neighborhood->size();
+        }
 
         void Reset()
-        { current = 0; }
+        {
+            current = 0;
+        }
 
     private:
         //shared_ptr<OneElementChangedNeighborhood> neighborhood;
@@ -56,7 +61,7 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
     }
 }
 
-POSL_Iterator<vector<int>> *OneElementChangedNeighborhood::getIterator()
+POSL_Iterator<vector<int>> * OneElementChangedNeighborhood::getIterator()
 {
     //shared_ptr<POSL_Iterator> iter = make_shared<OneElementChangedIterator>(this);
     POSL_Iterator<vector<int>> * iter = new OneElementChangedIterator(this);

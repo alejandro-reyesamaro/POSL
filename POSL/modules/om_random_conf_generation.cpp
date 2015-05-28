@@ -11,7 +11,7 @@ OM_RandomConfGeneration::OM_RandomConfGeneration()
 ComputationData * OM_RandomConfGeneration::execute(Benchmark * bench, ComputationData * input)
 {
     RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy();
-    Solution * rsolution = rconf->generate(bench->solution->domains, ((Seed *)input));
+    Solution * rsolution = rconf->generate(bench->GetSolution()->domains, ((Seed *)input));
     bench->UpdateSolution(rsolution);
     return rsolution;
 }

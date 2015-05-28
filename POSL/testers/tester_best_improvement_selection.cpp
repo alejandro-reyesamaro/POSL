@@ -28,7 +28,7 @@ string Tester_BestImprovementSelection::test()
         16,  3,  6,  9
     });
 
-    Solution * sol = new Solution(bench->solution->domains, config);
+    Solution * sol = new Solution(bench->GetSolution()->domains, config);
     bench->UpdateSolution(sol);
 
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();

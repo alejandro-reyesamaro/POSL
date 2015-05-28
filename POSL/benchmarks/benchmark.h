@@ -4,7 +4,7 @@
  * POSL
  *
  * \file benchmark.h
- * \brief Class to represent an instance of a problem
+ * \brief (Abstract) Class to represent an instance of a problem
  * \author Alejandro Reyes
  * \date 2015-05-11
  */
@@ -17,15 +17,34 @@ using namespace std;
 
 /*!
  * \class Benchmark benchmark.h
- * \brief Class to represent an instance of a problem
+ * \brief (Abstract) Class to represent an instance of a problem
  */
 class Benchmark
 {
     public:
+        //! Constructor
         Benchmark();
+
+        //! The cost of a given Solution
+        /*!
+        * \param sol Solution
+        * \return The cost of the Solution sol
+        */
         virtual int solutionCost(Solution * sol) = 0;
+
+        //! Updates the problem configuration (Solution)
+        /*!
+        * \param sol New solution to the problem
+        */
         void UpdateSolution(Solution * sol);
 
-    //protected:
+        //! Returns the current configuration (Solution)
+        /*!
+        * \return Returns the current solution
+        */
+        Solution * GetSolution();
+
+    protected:
+        //! Current solution of the problem
         Solution * solution;
 };

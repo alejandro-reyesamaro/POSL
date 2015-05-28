@@ -14,7 +14,7 @@ OM_FlorianRandomConfGeneration::OM_FlorianRandomConfGeneration()
 ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, ComputationData * input)
 {
     RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy();
-    return rconf->generate(bench->solution->domains, ((Seed *)input));
+    return rconf->generate(bench->GetSolution()->domains, ((Seed *)input));
 
 
     vector<int> best_conf;
@@ -22,7 +22,7 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, Com
 
     for(int i = 0; i < 100; i++)
     {
-        Solution * sol = rconf->generate(bench->solution->domains, ((Seed *)input));
+        Solution * sol = rconf->generate(bench->GetSolution()->domains, ((Seed *)input));
         int cost = bench->solutionCost(sol);
         if(cost < best_cost)
         {
@@ -30,7 +30,7 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, Com
             best_cost = cost;
         }
     }
-    Solution * new_solution = new Solution(bench->solution->domains, best_conf);
+    Solution * new_solution = new Solution(bench->GetSolution()->domains, best_conf);
     bench->UpdateSolution(new_solution);
     return new_solution;
 }

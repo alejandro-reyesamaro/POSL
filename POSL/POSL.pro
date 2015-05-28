@@ -38,7 +38,6 @@ SOURCES += main.cpp \
     data/one_element_changed_neighborhood.cpp \
     modules/om_one_element_changed_neighborhood.cpp \
     operators/sequential_exec_operator.cpp \
-    computation/sequential_computation_strategy.cpp \
     data/seed.cpp \
     computation/not_implemented_parallel_strategy.cpp \
     computation/sequential_execution_sequential_strategy.cpp \

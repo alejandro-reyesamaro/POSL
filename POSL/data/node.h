@@ -34,6 +34,9 @@ class Node
         */
         Node(T _value):value(_value){}
 
+        //! The value
         T value;
+
+        //! A pointer to the next value
         shared_ptr<Node<T>> next;
 };

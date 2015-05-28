@@ -6,8 +6,8 @@ StrategySearchInNeighborhood::StrategySearchInNeighborhood(VSearchState *_search
 
 DecisionPair * StrategySearchInNeighborhood::select(Benchmark * bench, Neighborhood * V)
 {
-    Solution * current_solution = bench->solution;
-    Solution * best_solution = bench->solution;
+    Solution * current_solution = bench->GetSolution();
+    Solution * best_solution = bench->GetSolution();
     int current_cost = bench->solutionCost(current_solution);
 
     POSL_Iterator<vector<int>> * it = V->getIterator();
@@ -20,7 +20,7 @@ DecisionPair * StrategySearchInNeighborhood::select(Benchmark * bench, Neighborh
     while(search_state->keepSearching())
     {
         vector<int> config = it->GetNext();
-        sol = new Solution(bench->solution->domains, config);
+        sol = new Solution(bench->GetSolution()->domains, config);
         int c = bench->solutionCost(sol);
         if(c < current_cost)
         {

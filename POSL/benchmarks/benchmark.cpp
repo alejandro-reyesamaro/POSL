@@ -8,3 +8,8 @@ void Benchmark::UpdateSolution(Solution * sol)
 {
     solution = sol;
 }
+
+Solution * Benchmark::GetSolution()
+{
+    return solution;
+}

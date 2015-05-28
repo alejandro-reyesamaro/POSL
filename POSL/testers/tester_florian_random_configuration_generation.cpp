@@ -14,7 +14,7 @@ string Tester_FlorianRandomConfigurationGeneration::test()
     for(int i = 0; i < 10; i++)
     {
         Solution * new_sol = (Solution *)op1->execute(bench, new Seed());
-        is_random = is_random && (!new_sol->equal(bench->solution));
+        is_random = is_random && (!new_sol->equal(bench->GetSolution()));
         bench->UpdateSolution(new_sol);
     }
     return (is_random) ? "OM_FlorianRandomConfGeneration: OK !" : "OM_FlorianRandomConfGeneration: fail :/";

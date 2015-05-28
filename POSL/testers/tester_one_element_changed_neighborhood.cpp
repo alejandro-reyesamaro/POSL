@@ -22,7 +22,7 @@ string Tester_OneElementChangedNeighborhood::test()
         1,  1,  1,  1,
         1,  1,  1,  1,
     });
-    Solution * sol = new Solution(bench->solution->domains, config);
+    Solution * sol = new Solution(bench->GetSolution()->domains, config);
     OperationModule * op = new OM_OneElementChangedNeighborhood();
     Neighborhood * V = (Neighborhood *)op->execute(bench, sol);
 

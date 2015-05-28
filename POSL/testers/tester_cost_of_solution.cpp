@@ -35,7 +35,7 @@ string Tester_CostOfSolution::test(){
         16,  3,  6,  9
     });
 
-    Solution * sol = new Solution(bench->solution->domains, config);
+    Solution * sol = new Solution(bench->GetSolution()->domains, config);
     int c1 = bench->solutionCost(sol);
 
     sol->configuration = config2;

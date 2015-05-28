@@ -29,8 +29,25 @@ class Solution : public ComputationData
         * \param _domains The variables domais
         */
         Solution(vector<Domain> _domains);
+
+        //! Constructor
+        /*!
+        * \param _domains The variables domais
+        * \param conf An initial configuration
+        */
         Solution(vector<Domain> _domains, vector<int> conf);
+
+        //! Compare this solution with other one
+        /*!
+        * \param other Another solution
+        * \return True if the solutions are equals (not tacking into account the domains)
+        */
         bool equal(Solution * other);
+
+        //! Convert the configuration into a string
+        /*!
+        * \return The configuration as string
+        */
         string configurationToString();
 
     //private:

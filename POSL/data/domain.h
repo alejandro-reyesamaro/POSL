@@ -28,13 +28,22 @@ class Domain
         */
         Domain(FactoryDomain * fd);
 
-        //! Return the vector of values
+        //! Returns the vector of values
         /*!
         * \return Vector of values
         */
         vector<int> GetValues();
 
+        //! Returns the minimum value of the domain
+        /*!
+        * \return Minimum value
+        */
         int minimum();
+
+        //! Returns the maximum value of the domain
+        /*!
+        * \return Maximum value
+        */
         int maximum();
 
     private:
