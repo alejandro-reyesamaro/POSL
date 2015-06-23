@@ -11,6 +11,7 @@
 #include "testers/tester_one_element_changed_neighborhood.h"
 #include "testers/tester_first_improvement_selection.h"
 #include "testers/tester_best_improvement_selection.h"
+#include "testers/tester_rho_operator.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ int main(int argc, char *argv[])
     tests.push_back(new Tester_OneElementChangedNeighborhood());
     tests.push_back(new Tester_FirstImprovementSelection());
     tests.push_back(new Tester_BestImprovementSelection());
+    tests.push_back(new Tester_RhoOperator());
 
     for(unsigned int i = 0; i < tests.size(); i++)
         cout << ">> " << tests[i]->test() << endl;

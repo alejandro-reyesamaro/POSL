@@ -22,7 +22,7 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, Com
 
     for(int i = 0; i < 100; i++)
     {
-        Solution * sol = rconf->generate(bench->GetSolution()->domains, ((Seed *)input));
+        Solution * sol = rconf->generate(bench->GetSolution()->domains, new Seed());
         int cost = bench->solutionCost(sol);
         if(cost < best_cost)
         {

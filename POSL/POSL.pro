@@ -60,7 +60,11 @@ SOURCES += main.cpp \
     testers/tester_first_improvement_selection.cpp \
     modules/om_fixed_first_configuration.cpp \
     computation/tools.cpp \
-    testers/tester_best_improvement_selection.cpp
+    testers/tester_best_improvement_selection.cpp \
+    operators/binary_operator.cpp \
+    computation/rho_sequential_strategy.cpp \
+    operators/rho_operator.cpp \
+    testers/tester_rho_operator.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -116,4 +120,8 @@ HEADERS += \
     testers/tester_first_improvement_selection.h \
     modules/om_fixed_first_configuration.h \
     computation/tools.h \
-    testers/tester_best_improvement_selection.h
+    testers/tester_best_improvement_selection.h \
+    operators/binary_operator.h \
+    computation/rho_sequential_strategy.h \
+    operators/rho_operator.h \
+    testers/tester_rho_operator.h

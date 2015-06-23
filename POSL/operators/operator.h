@@ -18,19 +18,39 @@
 using namespace std;
 
 /*!
- * \class Operation operator.h
+ * \class Operator operator.h
  * \brief Class to represent an operation between modules
  */
 class Operator
 {
     public:
+        //! Constructor
+        /*!
+        * \param _seq_strgy Strategy for the sequential evaluation
+        * \param _par_strgy Strategy for the parallel evaluation
+        */
         Operator(SequentialComputationStrategy * _seq_strategy,
                  ParallelComputationStrategy * _para_strategy);
 
-        virtual ComputationData * evaluateSequentially(Benchmark * bench, ComputationData * input) = 0;
-        virtual ComputationData * evaluateInParallel(Benchmark * bench, ComputationData * input) = 0;
+        //! Method to evaluate the modules sequentially
+        /*!
+        * \param bench The Benchmark
+        * \param input The operator input
+        * \return The operator output
+        */
+        ComputationData * evaluateSequentially(Benchmark * bench, ComputationData * input);
+
+        //! Method to evaluate the modules in parallel
+        /*!
+        * \param bench The Benchmark
+        * \param input The operator input
+        * \return The operator output
+        */
+        ComputationData * evaluateInParallel(Benchmark * bench, ComputationData * input);
 
     protected:
+        //! Sequential computation strategy
         SequentialComputationStrategy * seq_strategy;
+        //! Parallel computation strategy
         ParallelComputationStrategy * para_strategy;
 };

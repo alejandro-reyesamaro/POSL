@@ -13,7 +13,7 @@ string Tester_FlorianRandomConfigurationGeneration::test()
     bool is_random = true;
     for(int i = 0; i < 10; i++)
     {
-        Solution * new_sol = (Solution *)op1->execute(bench, new Seed());
+        Solution * new_sol = (Solution *)op1->execute(bench, bench->GetSolution());
         is_random = is_random && (!new_sol->equal(bench->GetSolution()));
         bench->UpdateSolution(new_sol);
     }
