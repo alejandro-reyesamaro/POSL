@@ -18,5 +18,6 @@
 class ObjectOpenChannel : public OpenChannel
 {
     public:
+        //! Constructor
         ObjectOpenChannel();
 };

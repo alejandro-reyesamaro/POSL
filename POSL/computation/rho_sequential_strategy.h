@@ -27,7 +27,7 @@ class RhoSequentialStrategy : public SequentialComputationStrategy
         * \param input The input of the Compound Module
         * \return <ps> Returns Execute( M1 ) or Execute( M2 ) </pc> (depending on rho)
         */
-        ComputationData * evaluate(Benchmark * bench, ComputationData * input);
+        ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
         //! Left Compund Module

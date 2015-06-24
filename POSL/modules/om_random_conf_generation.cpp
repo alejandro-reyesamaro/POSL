@@ -8,10 +8,10 @@ OM_RandomConfGeneration::OM_RandomConfGeneration()
 {
 }
 
-ComputationData * OM_RandomConfGeneration::execute(Benchmark * bench, ComputationData * input)
+ComputationData * OM_RandomConfGeneration::execute(PSP *psp, ComputationData * input)
 {
     RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy();
-    Solution * rsolution = rconf->generate(bench->GetSolution()->domains, new Seed());
-    bench->UpdateSolution(rsolution);
+    Solution * rsolution = rconf->generate(psp->GetCurrentSolution()->domains, new Seed());
+    psp->UpdateSolution(rsolution);
     return rsolution;
 }

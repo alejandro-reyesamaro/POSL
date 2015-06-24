@@ -27,7 +27,7 @@ class SequentialExecutionSequentialStrategy : public SequentialComputationStrate
         * \param input The input of the Compound Module
         * \return <ps> Returns Execute( M2 ( Execute (M1) ) </pc>
         */
-        ComputationData * evaluate(Benchmark * bench, ComputationData * input);
+        ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
         //! Left Compund Module

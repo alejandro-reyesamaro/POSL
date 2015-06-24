@@ -18,5 +18,6 @@
 class DataOpenChannel : public OpenChannel
 {
     public:
+        //! Constructor
         DataOpenChannel();
 };

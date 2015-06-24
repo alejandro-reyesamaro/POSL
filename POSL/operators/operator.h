@@ -38,7 +38,7 @@ class Operator
         * \param input The operator input
         * \return The operator output
         */
-        ComputationData * evaluateSequentially(Benchmark * bench, ComputationData * input);
+        ComputationData * evaluateSequentially(PSP * psp, ComputationData * input);
 
         //! Method to evaluate the modules in parallel
         /*!
@@ -46,7 +46,7 @@ class Operator
         * \param input The operator input
         * \return The operator output
         */
-        ComputationData * evaluateInParallel(Benchmark * bench, ComputationData * input);
+        ComputationData * evaluateInParallel(PSP * psp, ComputationData * input);
 
     protected:
         //! Sequential computation strategy

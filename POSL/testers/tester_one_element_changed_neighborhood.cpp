@@ -24,7 +24,8 @@ string Tester_OneElementChangedNeighborhood::test()
     });
     Solution * sol = new Solution(bench->GetSolution()->domains, config);
     OperationModule * op = new OM_OneElementChangedNeighborhood();
-    Neighborhood * V = (Neighborhood *)op->execute(bench, sol);
+    PSP * psp = new PSP(bench);
+    Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
 
     POSL_Iterator<vector<int>> * it = V ->getIterator();
     it->Reset();

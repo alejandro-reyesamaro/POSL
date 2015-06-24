@@ -64,7 +64,14 @@ SOURCES += main.cpp \
     operators/binary_operator.cpp \
     computation/rho_sequential_strategy.cpp \
     operators/rho_operator.cpp \
-    testers/tester_rho_operator.cpp
+    testers/tester_rho_operator.cpp \
+    operators/unary_operator.cpp \
+    solver/psp.cpp \
+    expressions/iteretion_bound_expression.cpp \
+    expressions/boolean_expression.cpp \
+    operators/cyclic_operator.cpp \
+    computation/cyclic_sequential_strategy.cpp \
+    expressions/loop_bound_expression.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -124,4 +131,11 @@ HEADERS += \
     operators/binary_operator.h \
     computation/rho_sequential_strategy.h \
     operators/rho_operator.h \
-    testers/tester_rho_operator.h
+    testers/tester_rho_operator.h \
+    operators/unary_operator.h \
+    solver/psp.h \
+    expressions/iteretion_bound_expression.h \
+    expressions/boolean_expression.h \
+    operators/cyclic_operator.h \
+    computation/cyclic_sequential_strategy.h \
+    expressions/loop_bound_expression.h

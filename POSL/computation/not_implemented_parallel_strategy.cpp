@@ -4,7 +4,7 @@ NotImplementedParallelStrategy::NotImplementedParallelStrategy()
 {
 }
 
-ComputationData * NotImplementedParallelStrategy::evaluate(Benchmark * bench, ComputationData * input)
+ComputationData * NotImplementedParallelStrategy::evaluate(PSP * psp, ComputationData * input)
 {
     throw "Parallel strategy not supported";
 }

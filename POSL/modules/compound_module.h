@@ -10,7 +10,7 @@
  */
 
 #include "data/computation_data.h"
-#include "benchmarks/benchmark.h"
+#include "solver/psp.h"
 
 /*!
  * \class CompoundModule compound_module.h
@@ -19,7 +19,5 @@
 class CompoundModule
 {
     public:
-        //! Constructor
-        //CompoundModule();
-        virtual ComputationData * execute(Benchmark * bench, ComputationData * input) = 0;
+        virtual ComputationData * execute(PSP * psp, ComputationData * input) = 0;
 };

@@ -26,5 +26,5 @@ class ComputationStrategy
         * \param input The input of the Compound Module
         * \return The output of the Compound Module
         */
-        virtual ComputationData * evaluate(Benchmark * bench, ComputationData * input) = 0;
+        virtual ComputationData * evaluate(PSP * psp, ComputationData * input) = 0;
 };

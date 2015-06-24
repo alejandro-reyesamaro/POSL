@@ -11,10 +11,10 @@ OM_FlorianRandomConfGeneration::OM_FlorianRandomConfGeneration()
 {
 }
 
-ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, ComputationData * input)
+ComputationData * OM_FlorianRandomConfGeneration::execute(PSP *psp, ComputationData * input)
 {
     RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy();
-    return rconf->generate(bench->GetSolution()->domains, ((Seed *)input));
+    return rconf->generate(psp->GetCurrentSolution()->domains, ((Seed *)input));
 
 
     vector<int> best_conf;
@@ -22,15 +22,15 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(Benchmark * bench, Com
 
     for(int i = 0; i < 100; i++)
     {
-        Solution * sol = rconf->generate(bench->GetSolution()->domains, new Seed());
-        int cost = bench->solutionCost(sol);
+        Solution * sol = rconf->generate(psp->GetCurrentSolution()->domains, new Seed());
+        int cost = psp->GetBenchmark()->solutionCost(sol);
         if(cost < best_cost)
         {
             best_conf = sol->configuration;
             best_cost = cost;
         }
     }
-    Solution * new_solution = new Solution(bench->GetSolution()->domains, best_conf);
-    bench->UpdateSolution(new_solution);
+    Solution * new_solution = new Solution(psp->GetCurrentSolution()->domains, best_conf);
+    psp->UpdateSolution(new_solution);
     return new_solution;
 }

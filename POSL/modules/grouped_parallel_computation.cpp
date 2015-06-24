@@ -5,7 +5,7 @@ GroupedParallelComputation::GroupedParallelComputation(Operator * _op)
 {
 }
 
-ComputationData * GroupedParallelComputation::execute(Benchmark * bench, ComputationData * input)
+ComputationData * GroupedParallelComputation::execute(PSP *psp, ComputationData * input)
 {
-    return op->evaluateInParallel(bench, input);
+    return op->evaluateInParallel(psp, input);
 }

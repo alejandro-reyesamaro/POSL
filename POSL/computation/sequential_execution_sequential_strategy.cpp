@@ -4,8 +4,8 @@ SequentialExecutionSequentialStrategy::SequentialExecutionSequentialStrategy(Com
 {
 }
 
-ComputationData * SequentialExecutionSequentialStrategy::evaluate(Benchmark * bench, ComputationData * input)
+ComputationData * SequentialExecutionSequentialStrategy::evaluate(PSP *psp, ComputationData * input)
 {
-    ComputationData * io = M1->execute(bench, input);
-    return M2->execute(bench, io);
+    ComputationData * io = M1->execute(psp, input);
+    return M2->execute(psp, io);
 }

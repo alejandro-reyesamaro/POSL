@@ -6,8 +6,8 @@ OM_BestImprovementSelection::OM_BestImprovementSelection()
 {
 }
 
-ComputationData * OM_BestImprovementSelection::execute(Benchmark * bench, ComputationData * input)
+ComputationData * OM_BestImprovementSelection::execute(PSP *psp, ComputationData * input)
 {
     StrategySearchInNeighborhood * s = new StrategySearchInNeighborhood(new BestImprovement_VSearchState());
-    return s->select(bench, (Neighborhood *)input);
+    return s->select(psp->GetBenchmark(), (Neighborhood *)input);
 }

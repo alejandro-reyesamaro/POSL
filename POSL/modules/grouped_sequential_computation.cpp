@@ -5,7 +5,7 @@ GroupedSequentialComputation::GroupedSequentialComputation(Operator * _op)
 {
 }
 
-ComputationData * GroupedSequentialComputation::execute(Benchmark * bench, ComputationData * input)
+ComputationData * GroupedSequentialComputation::execute(PSP * psp, ComputationData * input)
 {
-    return op->evaluateSequentially(bench, input);
+    return op->evaluateSequentially(psp, input);
 }

@@ -7,8 +7,8 @@ OM_FixedFirstConfiguration::OM_FixedFirstConfiguration()
 {
 }
 
-ComputationData * OM_FixedFirstConfiguration::execute(Benchmark * bench, ComputationData * input)
+ComputationData * OM_FixedFirstConfiguration::execute(PSP *psp, ComputationData * input)
 {
-    bench->UpdateSolution((Solution *)input);
+    psp->UpdateSolution((Solution *)input);
     return (Solution *) input;
 }

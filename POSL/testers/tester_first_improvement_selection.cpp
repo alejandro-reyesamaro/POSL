@@ -15,6 +15,7 @@ Tester_FirstImprovementSelection::Tester_FirstImprovementSelection()
 
 string Tester_FirstImprovementSelection::test()
 {
+    PSP * psp = new PSP(bench);
     CompoundModule * cm1 = new OM_RandomConfGeneration();
     CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm3 = new OM_FirstImprovementSelection();
@@ -31,11 +32,12 @@ string Tester_FirstImprovementSelection::test()
     // [ [cm1 |-> cm2] |-> cm3 ] :
     GroupedComputation * G2 = new GroupedSequentialComputation(op2);
 
-    DecisionPair * pair = (DecisionPair *)G2->execute(bench, new Seed());
+    // MAL !!!! poner una solucion donde esta seed
+    DecisionPair * pair = (DecisionPair *)G2->execute(psp, new Seed());
 
 
-    int c = bench->solutionCost(pair->current);
-    int cc = bench->solutionCost(pair->found);
+    int c = psp->GetBenchmark()->solutionCost(pair->current);
+    int cc = psp->GetBenchmark()->solutionCost(pair->found);
 
     string prefix = (pair->equals()) ? "NO better solution found" : "new cost: " + Tools::int2str(cc);
     return (cc <= c) ? prefix + " -> OM_FirstImprovementSelection: OK !" : "OM_FirstImprovementSelection: fail :/";

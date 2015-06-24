@@ -8,11 +8,11 @@ RhoSequentialStrategy::RhoSequentialStrategy(CompoundModule *_M1, CompoundModule
 {
 }
 
-ComputationData * RhoSequentialStrategy::evaluate(Benchmark * bench, ComputationData * input)
+ComputationData * RhoSequentialStrategy::evaluate(PSP *psp, ComputationData * input)
 {
     double seed = chrono::system_clock::now().time_since_epoch().count();
     default_random_engine generator (seed);
     uniform_int_distribution<int> distribution(0, 10);
     float k = distribution(generator);
-    return (k*10 < rho) ? M1->execute(bench, input) : M2->execute(bench, input);
+    return (k*10 < rho) ? M1->execute(psp, input) : M2->execute(psp, input);
 }

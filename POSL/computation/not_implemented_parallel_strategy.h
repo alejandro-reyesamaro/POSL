@@ -27,5 +27,5 @@ class NotImplementedParallelStrategy : public ParallelComputationStrategy
         * \param input The input of the Compound Module
         * \return Throws an exception
         */
-        ComputationData * evaluate(Benchmark * bench, ComputationData * input);
+        ComputationData * evaluate(PSP *psp, ComputationData * input);
 };

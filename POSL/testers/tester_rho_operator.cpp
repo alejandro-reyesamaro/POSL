@@ -1,14 +1,10 @@
 #include "tester_rho_operator.h"
 #include "modules/om_fixed_first_configuration.h"
 #include "modules/om_random_conf_generation.h"
-
-
-#include "modules/om_best_improvement_selection.h"
 #include "operators/operator.h"
 #include "operators/rho_operator.h"
 #include "modules/grouped_computation.h"
 #include "modules/grouped_sequential_computation.h"
-#include "data/decision_pair.h"
 #include "computation/tools.h"
 
 Tester_RhoOperator::Tester_RhoOperator()
@@ -31,7 +27,9 @@ string Tester_RhoOperator::test()
     });
 
     Solution * sol = new Solution(bench->GetSolution()->domains, config);
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
+    PSP * psp = new PSP(bench);
+    psp->UpdateSolution(sol);
 
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();
     CompoundModule * cm2 = new OM_RandomConfGeneration();
@@ -45,7 +43,7 @@ string Tester_RhoOperator::test()
     int c = 0, cc = 0, i = 0;
     for(i = 0; i < 100; i++)
     {
-        Solution * solution = (Solution *)G1->execute(bench, sol);
+        Solution * solution = (Solution *)G1->execute(psp, sol);
         if(solution->equal(sol)) c++; else cc++;
     }
 

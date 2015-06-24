@@ -12,10 +12,11 @@ string Tester_RandomConfigurationGeneration::test()
 
     OperationModule * op1 = new OM_RandomConfGeneration();
     bool is_random = true;
-    Solution * current_sol = (Solution *)op1->execute(bench, bench->GetSolution());
+    PSP * psp = new PSP(bench);
+    Solution * current_sol = (Solution *)op1->execute(psp, bench->GetSolution());
     for(int i = 0; i < 10; i++)
     {
-        Solution * new_sol = (Solution *)op1->execute(bench, bench->GetSolution());
+        Solution * new_sol = (Solution *)op1->execute(psp, bench->GetSolution());
         //cout << new_sol->configurationToString() << endl;
         is_random = is_random && (!current_sol->equal(new_sol));
     }

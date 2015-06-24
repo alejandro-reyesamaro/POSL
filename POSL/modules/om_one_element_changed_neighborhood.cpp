@@ -3,7 +3,7 @@
 
 OM_OneElementChangedNeighborhood::OM_OneElementChangedNeighborhood(){}
 
-ComputationData * OM_OneElementChangedNeighborhood::execute(Benchmark * bench, ComputationData * input)
+ComputationData * OM_OneElementChangedNeighborhood::execute(PSP *psp, ComputationData * input)
 {
     Neighborhood * V = new OneElementChangedNeighborhood((Solution *) input);
     return V;

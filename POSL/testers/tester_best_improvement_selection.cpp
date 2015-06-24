@@ -29,7 +29,9 @@ string Tester_BestImprovementSelection::test()
     });
 
     Solution * sol = new Solution(bench->GetSolution()->domains, config);
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
+    PSP * psp = new PSP(bench);
+    psp->UpdateSolution(sol);
 
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();
     CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
@@ -47,7 +49,7 @@ string Tester_BestImprovementSelection::test()
     // [ [cm1 |-> cm2] |-> cm3 ] :
     GroupedComputation * G2 = new GroupedSequentialComputation(op2);
 
-    DecisionPair * pair = (DecisionPair *)G2->execute(bench, sol);
+    DecisionPair * pair = (DecisionPair *)G2->execute(psp, sol);
     int c = bench->solutionCost(pair->current);
     int cc = bench->solutionCost(pair->found);
 
