@@ -41,7 +41,7 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
     vector<int> indexes;
     for (int i = 0; i < n; i++)
         indexes.push_back(i);
-    n = 0.3 * n;
+    n = 0.5 * n;
     random_shuffle (indexes.begin(), indexes.end());
 
     int pos_new_value = 0;

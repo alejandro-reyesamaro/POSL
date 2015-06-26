@@ -20,7 +20,7 @@ class CyclicSequentialStrategy : public SequentialComputationStrategy
 {
     public:
         //! Constructor
-        CyclicSequentialStrategy(CompoundModule * _M1, IteretionBoundExpression * _ex);
+        CyclicSequentialStrategy(CompoundModule * _M1, BooleanExpression * _ex);
 
         //! (override) The result of evaluating a Compound Module (in parallel)
         /*!
@@ -34,5 +34,5 @@ class CyclicSequentialStrategy : public SequentialComputationStrategy
         //! The Module
         CompoundModule * M1;
         //! The stop condition
-        IteretionBoundExpression * ex;
+        BooleanExpression * ex;
 };

@@ -11,6 +11,9 @@
 
 #include "sequential_computation_strategy.h"
 
+#include <random>
+#include <chrono>
+
 /*!
  * \class RhoSequentialStrategy rho_sequential_strategy.h
  * \brief Strategy of sequential computation for the operator Rho
@@ -36,4 +39,7 @@ class RhoSequentialStrategy : public SequentialComputationStrategy
         CompoundModule * M2;
         //! Probability
         float rho;
+
+        default_random_engine generator;
+        uniform_int_distribution<int> distribution;
 };

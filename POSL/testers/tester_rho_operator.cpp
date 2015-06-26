@@ -41,12 +41,12 @@ string Tester_RhoOperator::test()
     GroupedComputation * G1 = new GroupedSequentialComputation(op1);
 
     int c = 0, cc = 0, i = 0;
-    for(i = 0; i < 100; i++)
+    for(i = 0; i < 1000; i++)
     {
         Solution * solution = (Solution *)G1->execute(psp, sol);
         if(solution->equal(sol)) c++; else cc++;
     }
 
-    string prefix = "rate: 50-" + Tools::int2str(c);
+    string prefix = "rate: 500-" + Tools::int2str(c);
     return (cc <= c+cc) ? prefix + " -> RhoOperator: OK !" : "RhoOperator: fail :/";
 }

@@ -50,8 +50,8 @@ string Tester_BestImprovementSelection::test()
     GroupedComputation * G2 = new GroupedSequentialComputation(op2);
 
     DecisionPair * pair = (DecisionPair *)G2->execute(psp, sol);
-    int c = bench->solutionCost(pair->current);
-    int cc = bench->solutionCost(pair->found);
+    int c = bench->solutionCost(pair->GetCurrent());
+    int cc = bench->solutionCost(pair->GetFound());
 
     string prefix = (pair->equals()) ? "NO better solution found" : "new cost: " + Tools::int2str(cc);
     return (cc <= c) ? prefix + " -> OM_BestImprovementSelection: OK !" : "OM_BestImprovementSelection: fail :/";

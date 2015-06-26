@@ -12,6 +12,7 @@
 #include "testers/tester_first_improvement_selection.h"
 #include "testers/tester_best_improvement_selection.h"
 #include "testers/tester_rho_operator.h"
+#include "testers/tester_cyclic_operator.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ int main(int argc, char *argv[])
     tests.push_back(new Tester_FirstImprovementSelection());
     tests.push_back(new Tester_BestImprovementSelection());
     tests.push_back(new Tester_RhoOperator());
+    tests.push_back(new Tester_CyclicOperator());
 
     for(unsigned int i = 0; i < tests.size(); i++)
         cout << ">> " << tests[i]->test() << endl;

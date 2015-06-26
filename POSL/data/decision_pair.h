@@ -28,6 +28,12 @@ class DecisionPair : public ComputationData
         */
         bool equals();
 
+        //! Returns the current solution
+        Solution * GetCurrent();
+        //! Returns the new found solution
+        Solution * GetFound();
+
+    private :
         //! Current solution
         Solution * current;
         //! New found solution

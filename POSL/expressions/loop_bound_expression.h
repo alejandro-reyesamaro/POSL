@@ -6,7 +6,7 @@ class LoopBoundExpression : public BooleanExpression
 {
     public:
         LoopBoundExpression(int _max_loops);
-        bool evaluate(PSP *psp);
+        bool evaluate(PSP * psp);
 
     private:
         int loop;

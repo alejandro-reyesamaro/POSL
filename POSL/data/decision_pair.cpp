@@ -8,3 +8,13 @@ bool DecisionPair::equals()
 {
     return current->equal(found);
 }
+
+Solution * DecisionPair::GetCurrent()
+{
+    return current;
+}
+
+Solution * DecisionPair::GetFound()
+{
+    return found;
+}

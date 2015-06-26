@@ -10,7 +10,7 @@
  */
 
 #include "unary_operator.h"
-#include "expressions/iteretion_bound_expression.h"
+#include "expressions/boolean_expression.h"
 
 /*!
  * \class CyclicOperator cyclic_operator.h
@@ -24,5 +24,5 @@ class CyclicOperator : public UnaryOperator
          * \param _M1 Module
          * \param ex Stop condition
          */
-        CyclicOperator(CompoundModule * _M1, IteretionBoundExpression * ex);
+        CyclicOperator(CompoundModule * _M1, BooleanExpression * ex);
 };

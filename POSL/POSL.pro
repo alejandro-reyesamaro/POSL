@@ -71,7 +71,9 @@ SOURCES += main.cpp \
     expressions/boolean_expression.cpp \
     operators/cyclic_operator.cpp \
     computation/cyclic_sequential_strategy.cpp \
-    expressions/loop_bound_expression.cpp
+    expressions/loop_bound_expression.cpp \
+    testers/tester_cyclic_operator.cpp \
+    modules/om_always_improve_decition.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -138,4 +140,6 @@ HEADERS += \
     expressions/boolean_expression.h \
     operators/cyclic_operator.h \
     computation/cyclic_sequential_strategy.h \
-    expressions/loop_bound_expression.h
+    expressions/loop_bound_expression.h \
+    testers/tester_cyclic_operator.h \
+    modules/om_always_improve_decition.h

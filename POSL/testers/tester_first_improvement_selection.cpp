@@ -36,8 +36,8 @@ string Tester_FirstImprovementSelection::test()
     DecisionPair * pair = (DecisionPair *)G2->execute(psp, new Seed());
 
 
-    int c = psp->GetBenchmark()->solutionCost(pair->current);
-    int cc = psp->GetBenchmark()->solutionCost(pair->found);
+    int c = psp->GetBenchmark()->solutionCost(pair->GetCurrent());
+    int cc = psp->GetBenchmark()->solutionCost(pair->GetFound());
 
     string prefix = (pair->equals()) ? "NO better solution found" : "new cost: " + Tools::int2str(cc);
     return (cc <= c) ? prefix + " -> OM_FirstImprovementSelection: OK !" : "OM_FirstImprovementSelection: fail :/";
