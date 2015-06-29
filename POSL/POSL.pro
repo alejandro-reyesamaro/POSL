@@ -73,7 +73,9 @@ SOURCES += main.cpp \
     computation/cyclic_sequential_strategy.cpp \
     expressions/loop_bound_expression.cpp \
     testers/tester_cyclic_operator.cpp \
-    modules/om_always_improve_decition.cpp
+    modules/om_always_improve_decition.cpp \
+    tools/rand_index_generator.cpp \
+    testers/tester_sets_index_generator.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -142,4 +144,6 @@ HEADERS += \
     computation/cyclic_sequential_strategy.h \
     expressions/loop_bound_expression.h \
     testers/tester_cyclic_operator.h \
-    modules/om_always_improve_decition.h
+    modules/om_always_improve_decition.h \
+    tools/rand_index_generator.h \
+    testers/tester_sets_index_generator.h
