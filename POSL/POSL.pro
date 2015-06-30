@@ -75,7 +75,11 @@ SOURCES += main.cpp \
     testers/tester_cyclic_operator.cpp \
     modules/om_always_improve_decition.cpp \
     tools/rand_index_generator.cpp \
-    testers/tester_sets_index_generator.cpp
+    testers/tester_sets_index_generator.cpp \
+    data/elements_change_iterator.cpp \
+    data/multi_elements_changed_neighborhood.cpp \
+    modules/om_multi_elements_changed_neighborhood.cpp \
+    testers/tester_multi_elements_changed_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -146,4 +150,8 @@ HEADERS += \
     testers/tester_cyclic_operator.h \
     modules/om_always_improve_decition.h \
     tools/rand_index_generator.h \
-    testers/tester_sets_index_generator.h
+    testers/tester_sets_index_generator.h \
+    data/elements_change_iterator.h \
+    data/multi_elements_changed_neighborhood.h \
+    modules/om_multi_elements_changed_neighborhood.h \
+    testers/tester_multi_elements_changed_neighborhood.h

@@ -18,7 +18,6 @@ string Tester_SetsIndexGenerator::test()
     RandIndexGenerator it(5 , 3);
     //  return Tools::int2str( it.indexes[0]->value);
     vector<vector<int>> inds = it.generate(20);
-    cout << inds.size() << endl;
     for (std::vector<vector<int>>::iterator it = inds.begin(); it!=inds.end(); ++it)
     {
         for (std::vector<int>::iterator jt = (*it).begin(); jt!=(*it).end(); ++jt)

@@ -3,10 +3,10 @@
 /**
  * POSL
  *
- * \file one_element_changed_neighborhood.h
- * \brief Class to represent a neighborhood, changing one value rndomly at the time
+ * \file multi_elements_changed_neighborhood.h
+ * \brief Class to represent a neighborhood, changing some values randomly at the time
  * \author Alejandro Reyes
- * \date 2015-05-28
+ * \date 2015-05-30
  */
 
 #include "neighborhood.h"
@@ -15,28 +15,30 @@
 #include <random>
 
 /*!
- * \class T_change one_element_changed_neighborhood.h
- * \brief Struct to a pair (position, value) as a change in a configuration
+ * \class T_Nchanges certain_elements_changed_neighborhood.h
+ * \brief Struct to a pair (positions, values) as a change in a configuration
  */
 typedef struct
 {
     //! Index in the configuration vector
-    int pos;
-    //! New value
-    int new_value;
-}T_change;
+    vector<int> positions;
+    //! New values
+    vector<int> new_values;
+    //! Number of changes
+    int dim;
+}T_Nchanges;
 
 /*!
- * \class OneElementChangedNeighborhood one_element_changed_neighborhood.h
- * \brief Class to represent a neighborhood, changing one value rndomly at the time
+ * \class MultiElementsChangedNeighborhood multi_elements_changed_neighborhood.h
+ * \brief Class to represent a neighborhood, changing some values randomly at the time
  */
-class OneElementChangedNeighborhood : public Neighborhood
+class MultiElementsChangedNeighborhood : public Neighborhood
 {
     friend class ElementsChangeIterator;
     public:
 
         //! Constructor (to build the structures)
-        OneElementChangedNeighborhood(Solution * sol);
+        MultiElementsChangedNeighborhood(Solution * sol);
 
         //! Returns the iterator over the elements of the set
         /*!
@@ -69,7 +71,7 @@ class OneElementChangedNeighborhood : public Neighborhood
         Solution * current_solution;
 
         //! Vector of changes
-        vector<T_change> changes;
+        vector<T_Nchanges> changes;
 
         //! Random generator
         default_random_engine rand_generator;

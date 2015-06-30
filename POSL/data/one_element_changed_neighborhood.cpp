@@ -1,42 +1,13 @@
 #include "one_element_changed_neighborhood.h"
+#include "elements_change_iterator.h"
+
 #include <algorithm>
-#include <random>
 #include <chrono>
 
-class OneElementChangedIterator : public POSL_Iterator<vector<int>>
-{
-    public:
-
-        OneElementChangedIterator(OneElementChangedNeighborhood * _n) : neighborhood(_n), current(0)
-        {}
-
-        vector<int> GetNext()
-        {
-            return neighborhood->applyChangeAt(current ++);
-        }
-
-        bool SomeNext()
-        {
-            return current < neighborhood->size();
-        }
-
-        void Reset()
-        {
-            current = 0;
-        }
-
-    private:
-        //shared_ptr<OneElementChangedNeighborhood> neighborhood;
-        OneElementChangedNeighborhood * neighborhood;
-        int current;
-};
-
-OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
+OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : rand_generator(chrono::system_clock::now().time_since_epoch().count())
 {
     current_solution = sol;
     int n = sol->configuration.size();
-    double seed = chrono::system_clock::now().time_since_epoch().count();
-    default_random_engine generator (seed);
 
     vector<int> indexes;
     for (int i = 0; i < n; i++)
@@ -55,7 +26,7 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
         if(p != posible_values.end())
             posible_values.erase(p); // BEST to do a swap with the first element
         uniform_int_distribution<int> distribution(0, posible_values.size()-1);
-        pos_new_value = distribution(generator);
+        pos_new_value = distribution(rand_generator);
         T_change next_change = {indexes[i], posible_values[pos_new_value]};
         changes.push_back(next_change);
     }
@@ -64,7 +35,7 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
 POSL_Iterator<vector<int>> * OneElementChangedNeighborhood::getIterator()
 {
     //shared_ptr<POSL_Iterator> iter = make_shared<OneElementChangedIterator>(this);
-    POSL_Iterator<vector<int>> * iter = new OneElementChangedIterator(this);
+    POSL_Iterator<vector<int>> * iter = new ElementsChangeIterator(this);
     return iter;
 }
 

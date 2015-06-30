@@ -14,6 +14,7 @@
 #include "testers/tester_rho_operator.h"
 #include "testers/tester_cyclic_operator.h"
 #include "testers/tester_sets_index_generator.h"
+#include "testers/tester_multi_elements_changed_neighborhood.h"
 
 using namespace std;
 
@@ -28,7 +29,8 @@ int main(int argc, char *argv[])
     tests.push_back(new Tester_BestImprovementSelection());
     tests.push_back(new Tester_RhoOperator());
     //tests.push_back(new Tester_CyclicOperator());
-    tests.push_back(new Tester_SetsIndexGenerator());
+    //tests.push_back(new Tester_SetsIndexGenerator());
+    tests.push_back(new Tester_MultiElementsChangedNeighborhood());
 
     for(unsigned int i = 0; i < tests.size(); i++)
         cout << ">> " << tests[i]->test() << endl;
