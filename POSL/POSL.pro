@@ -79,7 +79,8 @@ SOURCES += main.cpp \
     data/elements_change_iterator.cpp \
     data/multi_elements_changed_neighborhood.cpp \
     modules/om_multi_elements_changed_neighborhood.cpp \
-    testers/tester_multi_elements_changed_neighborhood.cpp
+    testers/tester_multi_elements_changed_neighborhood.cpp \
+    tools/matrix.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -154,4 +155,5 @@ HEADERS += \
     data/elements_change_iterator.h \
     data/multi_elements_changed_neighborhood.h \
     modules/om_multi_elements_changed_neighborhood.h \
-    testers/tester_multi_elements_changed_neighborhood.h
+    testers/tester_multi_elements_changed_neighborhood.h \
+    tools/matrix.h
