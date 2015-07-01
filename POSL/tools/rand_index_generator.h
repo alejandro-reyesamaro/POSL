@@ -18,7 +18,6 @@ class RandIndexGenerator
     private:
         Matrix indexes;
         int dim;
-        default_random_engine generator;
 
         /*
         NIndex * create_index(int initial_value, int max_value, int dim);

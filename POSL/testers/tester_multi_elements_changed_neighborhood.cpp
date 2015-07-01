@@ -12,17 +12,16 @@ string Tester_MultiElementsChangedNeighborhood::test()
 {
     vector<int> config(
     {
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
+        0,  0,  0,  0,
+        0,  0,  0,  0,
+        0,  0,  0,  0,
+        0,  0,  0,  0,
 
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
+        0,  0,  0,  0,
+        0,  0,  0,  0,
+        0,  0,  0,  0,
+        0,  0,  0,  0
     });
-
 
     Solution * sol = new Solution(bench->GetSolution()->domains, config);
 
@@ -33,26 +32,20 @@ string Tester_MultiElementsChangedNeighborhood::test()
     POSL_Iterator<vector<int>> * it = V ->getIterator();
     it->Reset();
     int sum  = 0;
-    int prod = 1;
-    bool only_change_one = true;
+    bool changes = true;
 
     while(it->SomeNext())
     {
         vector<int> neighbor = it->GetNext();
-
-        cout << "[ ";
+        //cout << "[ ";
         for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)
         {
-            sum  += *j;
-            prod *= *j;
-
-            cout << *j << " ";
+            if(*j != 0) sum ++;
+            //cout << *j << " ";
         }
-        cout << "]" << endl;
-
-        only_change_one = only_change_one && (prod == sum - 31);
-        sum  = 0;
-        prod = 1;
+        //cout << "]" << endl;
+        changes = changes && (sum == 5);
+        sum = 0;
     }
-    return (only_change_one) ? "OM_MultiElementsChangedNeighborhood: OK !" : "OM_MultiElementsChangedNeighborhood: fail :/";
+    return (changes) ? "OM_MultiElementsChangedNeighborhood: OK !" : "OM_MultiElementsChangedNeighborhood: fail :/";
 }

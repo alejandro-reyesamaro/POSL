@@ -4,6 +4,7 @@
 #include "modules/om_random_conf_generation.h"
 #include "modules/om_fixed_first_configuration.h"
 #include "modules/om_one_element_changed_neighborhood.h"
+#include "modules/om_multi_elements_changed_neighborhood.h"
 #include "modules/om_best_improvement_selection.h"
 #include "modules/om_always_improve_decition.h"
 #include "operators/operator.h"
@@ -23,7 +24,8 @@ string Tester_CyclicOperator::test()
     PSP * psp = new PSP(bench);
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();
     CompoundModule * cm0 = new OM_RandomConfGeneration();
-    CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
+    //CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
+    CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood();
     CompoundModule * cm3 = new OM_BestImprovementSelection();
     CompoundModule * cm4 = new OM_AlwaysImproveDecition();
 

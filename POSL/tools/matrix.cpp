@@ -32,12 +32,22 @@ vector<int> Matrix::column(int index)
     return col;
 }
 
-vector<int> diagonalRigth(int shift)
+vector<int> Matrix::diagonalRigth(int shift)
 {
-    sadfsadfsdfsadf
+    vector<int> diag;
+    shift = shift % N;
+    for(int i = 0; i < N; i++)
+        diag.push_back(elementAt( N-(i+1), (i + (shift))%N ) );
+
+    return diag;
 }
 
-vector<int> diagonalLeft(int shift)
+vector<int> Matrix::diagonalLeft(int shift)
 {
-    asdfsdfsdfsadf
+    vector<int> diag;
+    shift = shift % N;
+    for(int i = 0; i < N; i++)
+        diag.push_back(elementAt( i, (i + (shift))%N ) );
+
+    return diag;
 }

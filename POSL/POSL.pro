@@ -80,7 +80,12 @@ SOURCES += main.cpp \
     data/multi_elements_changed_neighborhood.cpp \
     modules/om_multi_elements_changed_neighborhood.cpp \
     testers/tester_multi_elements_changed_neighborhood.cpp \
-    tools/matrix.cpp
+    tools/matrix.cpp \
+    data/union_neighborhood.cpp \
+    data/union_iterator.cpp \
+    operators/union_operator.cpp \
+    computation/union_sequential_strategy.cpp \
+    testers/tester_union_operator.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -156,4 +161,9 @@ HEADERS += \
     data/multi_elements_changed_neighborhood.h \
     modules/om_multi_elements_changed_neighborhood.h \
     testers/tester_multi_elements_changed_neighborhood.h \
-    tools/matrix.h
+    tools/matrix.h \
+    data/union_neighborhood.h \
+    data/union_iterator.h \
+    operators/union_operator.h \
+    computation/union_sequential_strategy.h \
+    testers/tester_union_operator.h

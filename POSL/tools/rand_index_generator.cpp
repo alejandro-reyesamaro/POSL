@@ -5,7 +5,7 @@
 #include <algorithm>
 
 RandIndexGenerator::RandIndexGenerator(int configuration_size, int _dim)
-    :dim((int)sqrt(configuration_size)), generator(chrono::system_clock::now().time_since_epoch().count()), indexes((int)sqrt(configuration_size))
+    :dim((int)sqrt(configuration_size)), indexes((int)sqrt(configuration_size))
 {
     //NO SE ESTA TOMANDO EN CUENTA  dim
 
@@ -23,17 +23,21 @@ RandIndexGenerator::RandIndexGenerator(int configuration_size, int _dim)
 
 vector<vector<int>> RandIndexGenerator::generate()
 {
-    int max_to_generate = dim * 4;
-
     vector<vector<int>> sets_of_index;
 
-    // rows
     for(int i = 0; i < dim; i++)
     {
-        vector<int> ind;
-        chose(indexes, ind, dim);
+        vector<int> ind = indexes.row(i);
+        sets_of_index.push_back(ind);
+
+        ind = indexes.column(i);
+        sets_of_index.push_back(ind);
+
+        ind = indexes.diagonalRigth(i);
+        sets_of_index.push_back(ind);
+
+        ind = indexes.diagonalLeft(i);
         sets_of_index.push_back(ind);
     }
-    //cout << "retorna" << endl;
     return sets_of_index;
 }
