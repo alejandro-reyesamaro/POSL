@@ -6,6 +6,7 @@ OM_MultiElementsChangedNeighborhood::OM_MultiElementsChangedNeighborhood(){}
 
 ComputationData * OM_MultiElementsChangedNeighborhood::execute(PSP *psp, ComputationData * input)
 {
+    //cout << "MultiChanges..." << endl;
     Neighborhood * V = new MultiElementsChangedNeighborhood((Solution *) input);
     return V;
 }

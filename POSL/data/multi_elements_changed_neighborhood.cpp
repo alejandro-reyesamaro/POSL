@@ -13,7 +13,7 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
     int ch = 0.3 * n; // to chahge ch elements
     int N = 0.5 * n;  // to have N chahges
 
-    RandIndexGenerator rig(n-1, ch);
+    RandIndexGenerator rig(n-1);
     vector<vector<int>> the_changes = rig.generate();
 
     int pos_new_value = 0;

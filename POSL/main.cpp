@@ -16,6 +16,7 @@
 #include "testers/tester_sets_index_generator.h"
 #include "testers/tester_multi_elements_changed_neighborhood.h"
 #include "testers/tester_union_operator.h"
+#include "testers/tester_conditional_operator.h"
 
 using namespace std;
 
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
     tests.push_back(new Tester_SetsIndexGenerator());
     tests.push_back(new Tester_MultiElementsChangedNeighborhood());
     tests.push_back(new Tester_UnionOperator());
+    tests.push_back(new Tester_ConditionalOperator());
 
     for(unsigned int i = 0; i < tests.size(); i++)
         cout << ">> " << tests[i]->test() << endl;

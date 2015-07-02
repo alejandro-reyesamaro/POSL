@@ -85,7 +85,12 @@ SOURCES += main.cpp \
     data/union_iterator.cpp \
     operators/union_operator.cpp \
     computation/union_sequential_strategy.cpp \
-    testers/tester_union_operator.cpp
+    testers/tester_union_operator.cpp \
+    operators/conditional_operator.cpp \
+    computation/conditional_sequential_strategy.cpp \
+    testers/tester_conditional_operator.cpp \
+    expressions/reached_cost_expression.cpp \
+    modules/om_simulated_annealing_decition.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -166,4 +171,9 @@ HEADERS += \
     data/union_iterator.h \
     operators/union_operator.h \
     computation/union_sequential_strategy.h \
-    testers/tester_union_operator.h
+    testers/tester_union_operator.h \
+    operators/conditional_operator.h \
+    computation/conditional_sequential_strategy.h \
+    testers/tester_conditional_operator.h \
+    expressions/reached_cost_expression.h \
+    modules/om_simulated_annealing_decition.h

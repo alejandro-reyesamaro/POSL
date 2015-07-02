@@ -5,24 +5,26 @@
 #include <algorithm>
 
 RandIndexGenerator::RandIndexGenerator(int configuration_size, int _dim)
-    :dim((int)sqrt(configuration_size)), indexes((int)sqrt(configuration_size))
+    : dim(min((int)sqrt(configuration_size),_dim)), indexes(min((int)sqrt(configuration_size),_dim))
 {
-    //NO SE ESTA TOMANDO EN CUENTA  dim
-
-    int n = (int)sqrt(configuration_size);
     vector<int> conf_index;
     for (int i = 0; i < configuration_size; i++)
         conf_index.push_back(i);
 
     random_shuffle (conf_index.begin(), conf_index.end());
 
-    for(int i = 0; i < n; i++)
-        for(int j = 0; j < n; j++)
-            indexes.setValue(i, j, conf_index[i * n + j]);
+    for(int i = 0; i < dim; i++)
+        for(int j = 0; j < dim; j++)
+            indexes.setValue(i, j, conf_index[i * dim + j]);
 }
 
-vector<vector<int>> RandIndexGenerator::generate()
+RandIndexGenerator::RandIndexGenerator(int configuration_size)
+    : RandIndexGenerator(configuration_size, (int)sqrt(configuration_size))
+{}
+
+vector<vector<int>> RandIndexGenerator::generate(int card_changes)
 {
+    card_changes = min (card_changes, 4 * dim);
     vector<vector<int>> sets_of_index;
 
     for(int i = 0; i < dim; i++)
@@ -39,5 +41,19 @@ vector<vector<int>> RandIndexGenerator::generate()
         ind = indexes.diagonalLeft(i);
         sets_of_index.push_back(ind);
     }
-    return sets_of_index;
+
+    // mejorar esto :
+    if(card_changes < sets_of_index.size())
+    {
+        vector<vector<int>> v(card_changes);
+        copy ( sets_of_index.begin(), sets_of_index.begin() + card_changes, v.begin() );
+        return v;
+    }
+    else
+        return sets_of_index;
+}
+
+vector<vector<int>> RandIndexGenerator::generate()
+{
+    return generate(4 * dim);
 }

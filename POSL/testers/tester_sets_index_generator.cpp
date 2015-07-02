@@ -9,8 +9,9 @@ Tester_SetsIndexGenerator::Tester_SetsIndexGenerator()
 string Tester_SetsIndexGenerator::test()
 {
     RandIndexGenerator it(20 , 3);
-    //  return Tools::int2str( it.indexes[0]->value);    
-    vector<vector<int>> inds = it.generate();
+    //  return Tools::int2str( it.indexes[0]->value);
+    int to_generate = 5;
+    vector<vector<int>> inds = it.generate(to_generate);
 
     for (std::vector<vector<int>>::iterator it = inds.begin(); it!=inds.end(); ++it)
     {
@@ -21,5 +22,5 @@ string Tester_SetsIndexGenerator::test()
         //cout << endl;
     }
 
-    return (inds.size() == 16)? "SetsIndexGenerator: OK !" : "SetsIndexGenerator: Fail :/";
+    return (inds.size() == to_generate)? "SetsIndexGenerator: OK !" : "SetsIndexGenerator: Fail :/";
 }

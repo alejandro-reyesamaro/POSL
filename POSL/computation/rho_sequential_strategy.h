@@ -24,7 +24,7 @@ class RhoSequentialStrategy : public SequentialComputationStrategy
         //! Constructor
         RhoSequentialStrategy(CompoundModule * _M1, CompoundModule * _M2, float _rho);
 
-        //! (override) The result of evaluating a Compound Module (in parallel)
+        //! (override) The result of evaluating a Compound Module (Sequentially)
         /*!
         * \param bench A Benchmark
         * \param input The input of the Compound Module
