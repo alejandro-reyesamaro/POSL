@@ -1,16 +1,12 @@
 #include "random_configuration_generation_strategy.h"
 
-#include <random>
 
-RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy()
+
+RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy(Seed * s) : generator(s->seed())
+{}
+
+Solution * RandomConfigurationGenerationStrategy::generate(vector<Domain> domains)
 {
-}
-
-Solution * RandomConfigurationGenerationStrategy::generate(vector<Domain> domains, Seed * s)
-{
-    double seed = s->seed();
-    default_random_engine generator (seed);
-
     vector<int> vec;
 
     for(vector<Domain>::iterator it = domains.begin(); it != domains.end(); ++it)

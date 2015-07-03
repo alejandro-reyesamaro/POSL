@@ -6,7 +6,7 @@
 
 OM_SimulatedAnnealingDecition::OM_SimulatedAnnealingDecition()
     :   generator(std::chrono::system_clock::now().time_since_epoch().count()),
-        started(false),// , T( ?? )
+        started(false),
         M(5), m(0)
 {}
 

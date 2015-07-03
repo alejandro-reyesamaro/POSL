@@ -13,6 +13,8 @@
 #include "data/domain.h"
 #include "data/seed.h"
 
+#include <random>
+
 /*!
  * \class RandomConfigurationGenerationStrategy random_configuration_generation_strategy.h
  * \brief Class to generate random configurations (Solutions)
@@ -21,7 +23,7 @@ class RandomConfigurationGenerationStrategy
 {
     public:
         //! Constructor
-        RandomConfigurationGenerationStrategy();
+        RandomConfigurationGenerationStrategy(Seed *s);
 
         //! Generates a random configuration
         /*!
@@ -29,5 +31,8 @@ class RandomConfigurationGenerationStrategy
         * \param seed A seed for the random generatos
         * \return A random configuration (Solution)
         */
-        Solution * generate(vector<Domain> domains, Seed * s);
+        Solution * generate(vector<Domain> domains);
+
+    private:
+        default_random_engine generator ;
 };
