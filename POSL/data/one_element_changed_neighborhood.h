@@ -11,6 +11,7 @@
 
 #include "neighborhood.h"
 #include "solution.h"
+#include "tools/randomizer.h"
 
 #include <random>
 
@@ -72,5 +73,5 @@ class OneElementChangedNeighborhood : public Neighborhood
         vector<T_change> changes;
 
         //! Random generator
-        default_random_engine rand_generator;
+        Randomizer rand;
 };

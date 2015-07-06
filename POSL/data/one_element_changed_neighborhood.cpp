@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <chrono>
 
-OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : rand_generator(chrono::system_clock::now().time_since_epoch().count())
+OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : rand()
 {
     current_solution = sol;
     int n = sol->configuration.size();
@@ -25,8 +25,7 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : r
         vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
         if(p != posible_values.end())
             posible_values.erase(p); // BEST to do a swap with the first element
-        uniform_int_distribution<int> distribution(0, posible_values.size()-1);
-        pos_new_value = distribution(rand_generator);
+        pos_new_value = rand.NextInt(0, posible_values.size()-1);
         T_change next_change = {indexes[i], posible_values[pos_new_value]};
         changes.push_back(next_change);
     }

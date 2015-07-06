@@ -10,6 +10,7 @@
  */
 
 #include "operation_module.h"
+#include "tools/randomizer.h"
 
 #include <random>
 
@@ -31,7 +32,7 @@ class OM_SimulatedAnnealingDecition : public OperationModule
         ComputationData * execute(PSP * psp, ComputationData * input);
 
     private:
-        default_random_engine generator;
+        Randomizer rand;
         bool started;
 
         //! Temperature

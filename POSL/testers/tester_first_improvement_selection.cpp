@@ -7,7 +7,7 @@
 #include "modules/grouped_computation.h"
 #include "modules/grouped_sequential_computation.h"
 #include "data/decision_pair.h"
-#include "computation/tools.h"
+#include "tools/tools.h"
 
 Tester_FirstImprovementSelection::Tester_FirstImprovementSelection()
 {
@@ -32,9 +32,12 @@ string Tester_FirstImprovementSelection::test()
     // [ [cm1 |-> cm2] |-> cm3 ] :
     GroupedComputation * G2 = new GroupedSequentialComputation(op2);
 
+    //cout << "Modules created" << endl;
+
     // MAL !!!! poner una solucion donde esta seed
     DecisionPair * pair = (DecisionPair *)G2->execute(psp, new Seed());
 
+    //cout << "Module executed" << endl;
 
     int c = psp->GetBenchmark()->solutionCost(pair->GetCurrent());
     int cc = psp->GetBenchmark()->solutionCost(pair->GetFound());

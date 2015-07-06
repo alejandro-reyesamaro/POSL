@@ -5,8 +5,8 @@
 #include <math.h>
 
 OM_SimulatedAnnealingDecition::OM_SimulatedAnnealingDecition()
-    :   generator(std::chrono::system_clock::now().time_since_epoch().count()),
-        started(false),// , T( ?? )
+    :   rand(),
+        started(false),
         M(5), m(0)
 {}
 
@@ -18,6 +18,8 @@ ComputationData * OM_SimulatedAnnealingDecition::execute(PSP *psp, ComputationDa
     int w = psp->GetBenchmark()->solutionCost(pair->GetCurrent());
 
     int relative_dif = abs(wp - w)/abs(wp);
+
+    // Calcular T por primera vez, dependeiendo de la diferencia de los costos
     if(!started)
     {
         started = true;
@@ -25,8 +27,7 @@ ComputationData * OM_SimulatedAnnealingDecition::execute(PSP *psp, ComputationDa
     }
     int p = exp( - (relative_dif) /   T ) * 10;
 
-    uniform_int_distribution<int> distribution(0, 10);
-    int k = distribution(generator);
+    int k = rand.NextInt(0, 10);
 
     // Si se llega al limites de iteraciones por temperatura, reducir T a la mitad ????
     if(m++ > M)

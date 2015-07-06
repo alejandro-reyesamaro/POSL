@@ -5,7 +5,7 @@
 #include "operators/rho_operator.h"
 #include "modules/grouped_computation.h"
 #include "modules/grouped_sequential_computation.h"
-#include "computation/tools.h"
+#include "tools/tools.h"
 
 Tester_RhoOperator::Tester_RhoOperator()
 {

@@ -32,5 +32,6 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(PSP *psp, ComputationD
     }
     Solution * new_solution = new Solution(psp->GetCurrentSolution()->domains, best_conf);
     psp->UpdateSolution(new_solution);
+    psp->UpdateBestSolution(new_solution);
     return new_solution;
 }

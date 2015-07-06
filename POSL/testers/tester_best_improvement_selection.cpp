@@ -7,7 +7,7 @@
 #include "modules/grouped_computation.h"
 #include "modules/grouped_sequential_computation.h"
 #include "data/decision_pair.h"
-#include "computation/tools.h"
+#include "tools/tools.h"
 
 Tester_BestImprovementSelection::Tester_BestImprovementSelection()
 {

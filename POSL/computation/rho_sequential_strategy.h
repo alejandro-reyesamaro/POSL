@@ -10,6 +10,7 @@
  */
 
 #include "sequential_computation_strategy.h"
+#include "tools/randomizer.h"
 
 #include <random>
 #include <chrono>
@@ -40,6 +41,5 @@ class RhoSequentialStrategy : public SequentialComputationStrategy
         //! Probability
         float rho;
 
-        default_random_engine generator;
-        uniform_int_distribution<int> distribution;
+        Randomizer rand;
 };

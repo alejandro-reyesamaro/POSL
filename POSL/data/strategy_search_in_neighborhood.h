@@ -12,6 +12,7 @@
 #include "neighborhood.h"
 #include "decision_pair.h"
 #include "benchmarks/benchmark.h"
+#include "solver/psp.h"
 #include "v_search_state.h"
 
 /*!
@@ -29,11 +30,11 @@ class StrategySearchInNeighborhood
 
         //! Select the the current and the selected configurations when the search state indicates to stop
         /*!
-        * \param bench A Benchmark
+        * \param psp The search process
         * \param V The set (a Neighborhood)
         * \return The current and the new found configurations
         */
-        DecisionPair * select(Benchmark * bench, Neighborhood * V);
+        DecisionPair * select(PSP * psp, Neighborhood * V);
 
     private:
         //! The search state class

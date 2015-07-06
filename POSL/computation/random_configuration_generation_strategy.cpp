@@ -2,7 +2,7 @@
 
 
 
-RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy(Seed * s) : generator(s->seed())
+RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy(Seed * s) : rand()
 {}
 
 Solution * RandomConfigurationGenerationStrategy::generate(vector<Domain> domains)
@@ -11,8 +11,7 @@ Solution * RandomConfigurationGenerationStrategy::generate(vector<Domain> domain
 
     for(vector<Domain>::iterator it = domains.begin(); it != domains.end(); ++it)
     {
-        uniform_int_distribution<int> distribution(it->minimum(), it->maximum());
-        int k = distribution(generator);
+        int k = rand.NextInt(it->minimum(), it->maximum());
         vec.push_back(k);
     }
 

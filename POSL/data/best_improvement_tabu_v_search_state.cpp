@@ -1,10 +1,15 @@
-#include "v_search_state.h"
+#include "best_improvement_tabu_v_search_state.h"
 
-VSearchState::VSearchState()
+BestImprovementTabu_VSearchState::BestImprovementTabu_VSearchState(TabuList * _tabu_list) : tabu_list(_tabu_list)
 {
 }
 
-void VSearchState::updateState(Benchmark * _bench,
+bool BestImprovementTabu_VSearchState::keepSearching()
+{
+    return it->SomeNext();
+}
+
+void BestImprovementTabu_VSearchState::updateState(Benchmark * _bench,
                                POSL_Iterator<vector<int>> * _it,
                                Solution *current_solution,
                                int _current_cost,
@@ -19,17 +24,9 @@ void VSearchState::updateState(Benchmark * _bench,
     current_cost = _current_cost;
     best = best_solution;
     best_cost = _best_cost;
-    found = found_solution;
-    found_cost = _found_cost;
+    if(!tabu_list->isTabu(found_solution))
+    {
+        found = found_solution;
+        found_cost = _found_cost;
+    }
 }
-
-Solution * VSearchState::GetCurrentSolution()
-{
-    return current;
-}
-
-Solution * VSearchState::GetFoundSolution()
-{
-    return found;
-}
-

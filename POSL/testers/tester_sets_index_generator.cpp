@@ -1,6 +1,6 @@
 #include "tester_sets_index_generator.h"
 #include "tools/rand_index_generator.h"
-#include "computation/tools.h"
+#include "tools/tools.h"
 
 Tester_SetsIndexGenerator::Tester_SetsIndexGenerator()
 {

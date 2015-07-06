@@ -13,7 +13,7 @@
 #include "expressions/loop_bound_expression.h"
 #include "modules/grouped_computation.h"
 #include "modules/grouped_sequential_computation.h"
-#include "computation/tools.h"
+#include "tools/tools.h"
 
 Tester_CyclicOperator::Tester_CyclicOperator()
 {

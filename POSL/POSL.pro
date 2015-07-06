@@ -59,7 +59,7 @@ SOURCES += main.cpp \
     testers/tester.cpp \
     testers/tester_first_improvement_selection.cpp \
     modules/om_fixed_first_configuration.cpp \
-    computation/tools.cpp \
+    tools/tools.cpp \
     testers/tester_best_improvement_selection.cpp \
     operators/binary_operator.cpp \
     computation/rho_sequential_strategy.cpp \
@@ -90,7 +90,12 @@ SOURCES += main.cpp \
     computation/conditional_sequential_strategy.cpp \
     testers/tester_conditional_operator.cpp \
     expressions/reached_cost_expression.cpp \
-    modules/om_simulated_annealing_decition.cpp
+    modules/om_simulated_annealing_decition.cpp \
+    tools/randomizer.cpp \
+    modules/om_random_selection.cpp \
+    data/best_improvement_tabu_v_search_state.cpp \
+    tools/tabu_list.cpp \
+    modules/om_best_improvement_tabu_selection.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -145,7 +150,7 @@ HEADERS += \
     testers/tester_one_element_changed_neighborhood.h \
     testers/tester_first_improvement_selection.h \
     modules/om_fixed_first_configuration.h \
-    computation/tools.h \
+    tools/tools.h \
     testers/tester_best_improvement_selection.h \
     operators/binary_operator.h \
     computation/rho_sequential_strategy.h \
@@ -176,4 +181,9 @@ HEADERS += \
     computation/conditional_sequential_strategy.h \
     testers/tester_conditional_operator.h \
     expressions/reached_cost_expression.h \
-    modules/om_simulated_annealing_decition.h
+    modules/om_simulated_annealing_decition.h \
+    tools/randomizer.h \
+    modules/om_random_selection.h \
+    data/best_improvement_tabu_v_search_state.h \
+    tools/tabu_list.h \
+    modules/om_best_improvement_tabu_selection.h

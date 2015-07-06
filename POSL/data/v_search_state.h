@@ -30,7 +30,18 @@ class VSearchState
         * \param _best_cost Best cost
         * \param _found_cost Tne new found cost
         */
-        void updateState(Benchmark * _bench, POSL_Iterator<vector<int>> * _it, int _current_cost, int _best_cost, int _found_cost);
+        virtual void updateState(
+                Benchmark * _bench,
+                POSL_Iterator<vector<int>> * _it,
+                Solution * current_solution,
+                int _current_cost,
+                Solution * best_solution,
+                int _best_cost,
+                Solution * found_solution,
+                int _found_cost
+                );
+        Solution * GetCurrentSolution();
+        Solution * GetFoundSolution();
 
         //! Indicates whether the search engine keeps searching or not
         /*!
@@ -43,6 +54,7 @@ class VSearchState
         Benchmark * bench;
         //! Iterato over some set
         POSL_Iterator<vector<int>> * it;
+        Solution * current, * best, * found;
         //! The costs
         int current_cost, best_cost, found_cost;
 };

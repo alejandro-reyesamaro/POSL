@@ -6,7 +6,7 @@
 #include <iostream>
 #include <chrono>
 
-MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol) : rand_generator(chrono::system_clock::now().time_since_epoch().count())
+MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol) : rand()
 {
     current_solution = sol;
     int n = sol->configuration.size();
@@ -36,8 +36,7 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
             if(p != posible_values.end())
                 posible_values.erase(p); // BEST to do a swap with the first element
 
-            uniform_int_distribution<int> distribution(0, posible_values.size()-1);
-            pos_new_value = distribution(rand_generator);
+            pos_new_value = rand.NextInt(0, posible_values.size()-1);
 
             new_values.push_back(posible_values[pos_new_value]);
         }

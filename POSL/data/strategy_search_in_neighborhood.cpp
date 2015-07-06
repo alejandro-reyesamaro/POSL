@@ -4,32 +4,36 @@ StrategySearchInNeighborhood::StrategySearchInNeighborhood(VSearchState *_search
     : search_state(_search_state)
 {}
 
-DecisionPair * StrategySearchInNeighborhood::select(Benchmark * bench, Neighborhood * V)
+DecisionPair * StrategySearchInNeighborhood::select(PSP *psp, Neighborhood * V)
 {
-    Solution * current_solution = bench->GetSolution();
-    Solution * best_solution = bench->GetSolution();
-    int current_cost = bench->solutionCost(current_solution);
+    Solution * current_solution = psp->GetCurrentSolution();
+    Solution * best_solution = psp->GetBestSolutionSoFar();
+    int current_cost = psp->CurrentCost();
+    int best_cost = psp->BestCostSoFar();
 
     POSL_Iterator<vector<int>> * it = V->getIterator();
+    search_state->updateState(psp->GetBenchmark(), it, current_solution, current_cost, psp->GetBestSolutionSoFar(), psp->BestCostSoFar(), current_solution, current_cost);
+
+    Solution * best_found = best_solution;
+    int now_the_cost = current_cost;
 
     Solution * sol;
     it->Reset();
 
-    search_state->updateState(bench, it, current_cost, current_cost, current_cost);
 
     while(search_state->keepSearching())
     {
         vector<int> config = it->GetNext();
-        sol = new Solution(bench->GetSolution()->domains, config);
-        int c = bench->solutionCost(sol);
-        if(c < current_cost)
+        sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+        int c = psp->GetBenchmark()->solutionCost(sol);
+        if(c < now_the_cost)
         {
-            current_cost = c;
-            best_solution = sol;
+            now_the_cost = c;
+            best_found = sol;
         }
 
-        search_state->updateState(bench, it, current_cost, current_cost, current_cost);
+        search_state->updateState(psp->GetBenchmark(), it, current_solution, current_cost, best_solution, best_cost, best_found, now_the_cost);
     }
-    DecisionPair * p = new DecisionPair(current_solution, best_solution);
+    DecisionPair * p = new DecisionPair(search_state->GetCurrentSolution(), search_state->GetFoundSolution());
     return p;
 }

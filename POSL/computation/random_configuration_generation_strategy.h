@@ -12,6 +12,7 @@
 #include "data/solution.h"
 #include "data/domain.h"
 #include "data/seed.h"
+#include "tools/randomizer.h"
 
 #include <random>
 
@@ -34,5 +35,5 @@ class RandomConfigurationGenerationStrategy
         Solution * generate(vector<Domain> domains);
 
     private:
-        default_random_engine generator ;
+        Randomizer rand;
 };
