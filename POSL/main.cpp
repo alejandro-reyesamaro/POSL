@@ -17,6 +17,10 @@
 #include "testers/tester_multi_elements_changed_neighborhood.h"
 #include "testers/tester_union_operator.h"
 #include "testers/tester_conditional_operator.h"
+#include "testers/tester_random_selection.h"
+#include "testers/tester_simulated_annealing_decition.h"
+#include "testers/tester_best_improvement_tabu_selection.h"
+#include "testers/tester_random_permutation_configuration_generation.h"
 
 using namespace std;
 
@@ -35,6 +39,10 @@ int main(int argc, char *argv[])
     tests.push_back(new Tester_MultiElementsChangedNeighborhood());
     tests.push_back(new Tester_UnionOperator());
     tests.push_back(new Tester_ConditionalOperator());
+    tests.push_back(new Tester_RandomSelection());
+    tests.push_back(new Tester_SimulatedAnnealingDecition);
+    tests.push_back(new Tester_BestImprovementTabuSelection());
+    tests.push_back(new Tester_RandomPermutationConfigurationGeneration());
 
     for(unsigned int i = 0; i < tests.size(); i++)
         cout << ">> " << tests[i]->test() << endl;

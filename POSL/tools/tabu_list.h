@@ -16,4 +16,5 @@ class TabuList
     private:
         int count;
         vector<Solution *> tabu_list;
+        int size;
 };

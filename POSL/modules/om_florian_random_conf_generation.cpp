@@ -4,8 +4,9 @@
 
 #include <random>
 #include <limits>
-
 #include <iostream>
+
+#define N_ATTEMPTS 100
 
 OM_FlorianRandomConfGeneration::OM_FlorianRandomConfGeneration()
 {
@@ -20,7 +21,7 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(PSP *psp, ComputationD
     vector<int> best_conf;
     int best_cost = std::numeric_limits<int>::max();
 
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < N_ATTEMPTS; i++)
     {
         Solution * sol = rconf->generate(psp->GetCurrentSolution()->domains);
         int cost = psp->GetBenchmark()->solutionCost(sol);

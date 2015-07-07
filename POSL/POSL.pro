@@ -95,7 +95,13 @@ SOURCES += main.cpp \
     modules/om_random_selection.cpp \
     data/best_improvement_tabu_v_search_state.cpp \
     tools/tabu_list.cpp \
-    modules/om_best_improvement_tabu_selection.cpp
+    modules/om_best_improvement_tabu_selection.cpp \
+    testers/tester_random_selection.cpp \
+    testers/tester_simulated_annealing_decition.cpp \
+    testers/tester_best_improvement_tabu_selection.cpp \
+    computation/random_permutation_by_blocks_generation_strategy.cpp \
+    modules/om_random_conf_permutation_by_blocks_generation.cpp \
+    testers/tester_random_permutation_configuration_generation.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -186,4 +192,10 @@ HEADERS += \
     modules/om_random_selection.h \
     data/best_improvement_tabu_v_search_state.h \
     tools/tabu_list.h \
-    modules/om_best_improvement_tabu_selection.h
+    modules/om_best_improvement_tabu_selection.h \
+    testers/tester_random_selection.h \
+    testers/tester_simulated_annealing_decition.h \
+    testers/tester_best_improvement_tabu_selection.h \
+    computation/random_permutation_by_blocks_generation_strategy.h \
+    modules/om_random_conf_permutation_by_blocks_generation.h \
+    testers/tester_random_permutation_configuration_generation.h

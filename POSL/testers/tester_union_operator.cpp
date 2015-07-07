@@ -58,7 +58,7 @@ string Tester_UnionOperator::test()
             //cout << *j << " ";
         }
         //cout << "]" << endl;
-        if(count ++ < 20)
+        if(count ++ < 10)
             the_changes = the_changes && (changes == 5);
         else
             the_changes = the_changes && (prod == sum - 31);

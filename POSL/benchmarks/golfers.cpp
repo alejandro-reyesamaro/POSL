@@ -6,6 +6,8 @@
 #include <iostream>
 using namespace std;
 
+#define PENALIZATION 10
+
 Golfers::Golfers(int g, int p, int w) : groups(g), players(p), weeks(w)
 {
 }
@@ -73,7 +75,7 @@ int Golfers::solutionCost(Solution *sol)
         // all differents cost
         //cout << alldiff.toString() << endl;
         //cout << "Partial cost " << cost << endl;
-        cost += (golfers - alldiff.bitCount()) * 10; // PENALISATION
+        cost += (golfers - alldiff.bitCount()) * PENALIZATION; // PENALISATION
 
         //cout << "Cost week " << w+1 << " = " << cost << endl;
 

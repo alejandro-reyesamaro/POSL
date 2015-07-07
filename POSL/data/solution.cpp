@@ -1,5 +1,5 @@
 #include "solution.h"
-#include "computation/tools.h"
+#include "tools/tools.h"
 
 Solution::Solution(vector<Domain> _domains) : domains(_domains)
 {

@@ -2,18 +2,19 @@
 
 #include <algorithm>
 
-TabuList::TabuList(int _size) : count(0), tabu_list(_size)
+TabuList::TabuList(int _size) : count(0), size(_size)
 {
 }
 
 void TabuList::push(Solution * conf)
 {
-    if(count >= tabu_list.size())
+    if(count >= size)
     {
-        vector<Solution *> aux(tabu_list.size());
+        vector<Solution *> aux(tabu_list.size() - 1);
         copy ( tabu_list.begin()+1, tabu_list.end(), aux.begin() );
         tabu_list = aux;
-    }
+    } else count ++;
+
     tabu_list.push_back(conf);
 }
 

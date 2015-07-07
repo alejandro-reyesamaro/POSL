@@ -1,7 +1,5 @@
 #include "random_configuration_generation_strategy.h"
 
-
-
 RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy(Seed * s) : rand()
 {}
 

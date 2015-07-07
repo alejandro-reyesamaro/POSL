@@ -4,6 +4,9 @@
 #include <chrono>
 #include <math.h>
 
+#define P_START 0.5
+#define FALL_RATE 2
+
 OM_SimulatedAnnealingDecition::OM_SimulatedAnnealingDecition()
     :   rand(),
         started(false),
@@ -17,7 +20,7 @@ ComputationData * OM_SimulatedAnnealingDecition::execute(PSP *psp, ComputationDa
     int wp = psp->GetBenchmark()->solutionCost(pair->GetFound());
     int w = psp->GetBenchmark()->solutionCost(pair->GetCurrent());
 
-    int relative_dif = abs(wp - w)/abs(wp);
+    double relative_dif = abs((double)wp - (double)w)/abs((double)wp);
 
     // Calcular T por primera vez, dependeiendo de la diferencia de los costos
     if(!started)
@@ -33,7 +36,7 @@ ComputationData * OM_SimulatedAnnealingDecition::execute(PSP *psp, ComputationDa
     if(m++ > M)
     {
         m = 0;
-        T = T/2;
+        T = T / FALL_RATE;
     }
 
     if(k < p)

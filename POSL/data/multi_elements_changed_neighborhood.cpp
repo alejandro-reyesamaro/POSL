@@ -6,15 +6,18 @@
 #include <iostream>
 #include <chrono>
 
+#define N_NEIGHBORS 10
+#define PRC_CHANGES 0.5
+
 MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol) : rand()
 {
     current_solution = sol;
     int n = sol->configuration.size();
-    int ch = 0.3 * n; // to chahge ch elements
-    int N = 0.5 * n;  // to have N chahges
+    int ch = N_NEIGHBORS; // to chahge ch elements
+    int N = PRC_CHANGES * n;  // to have N chahges
 
     RandIndexGenerator rig(n-1);
-    vector<vector<int>> the_changes = rig.generate();
+    vector<vector<int>> the_changes = rig.generate(ch);
 
     int pos_new_value = 0;
 

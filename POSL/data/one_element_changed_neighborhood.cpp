@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <chrono>
 
+#define N_NEIGHBORS 16
+
 OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : rand()
 {
     current_solution = sol;
@@ -12,7 +14,7 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : r
     vector<int> indexes;
     for (int i = 0; i < n; i++)
         indexes.push_back(i);
-    n = 0.5 * n;
+    n = N_NEIGHBORS;
     random_shuffle (indexes.begin(), indexes.end());
 
     int pos_new_value = 0;
