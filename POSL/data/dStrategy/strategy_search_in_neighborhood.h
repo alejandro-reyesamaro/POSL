@@ -9,8 +9,8 @@
  * \date 2015-05-28
  */
 
-#include "neighborhood.h"
-#include "decision_pair.h"
+#include "../neighborhood.h"
+#include "../decision_pair.h"
 #include "benchmarks/benchmark.h"
 #include "solver/psp.h"
 #include "v_search_state.h"

@@ -11,6 +11,8 @@
 
 #include "domain.h"
 #include "computation_data.h"
+#include "dStrategy/packable.h"
+#include "dStrategy/packing_strategy.h"
 
 #include <vector>
 #include <string>
@@ -21,7 +23,7 @@ using namespace std;
  * \class Solution solution.h
  * \brief Class to represent a solution (configuration)
  */
-class Solution : public ComputationData
+class Solution : public ComputationData, public Packable
 {
     public:
         //! Constructor
@@ -50,10 +52,15 @@ class Solution : public ComputationData
         */
         string configurationToString();
 
+        //! From Packable
+        int * pack();
+
     //private:
         //! The current configuration
         vector<int> configuration;
-
         //! The variables domains
         vector<Domain> domains;
+    private:
+        //! Packing strategy
+        PackingStrategy * packing_strategy;
 };

@@ -88,3 +88,11 @@ int Golfers::solutionCost(Solution *sol)
     //cout << "End" << endl;
     return cost;
 }
+
+int Golfers::Groups(){ return groups; }
+
+int Golfers::PlayersPerGroup(){ return players; }
+
+int Golfers::Weeks(){ return weeks; }
+
+int Golfers::TotalPlayers(){ return players * groups; }

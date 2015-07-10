@@ -19,7 +19,7 @@ SOURCES += main.cpp \
     modules/compound_module.cpp \
     modules/open_channel.cpp \
     data/domain.cpp \
-    data/factory_n_int_domain.cpp \
+    data/dStrategy/factory_n_int_domain.cpp \
     data/node.cpp \
     data/solution.cpp \
     solver.cpp \
@@ -44,13 +44,13 @@ SOURCES += main.cpp \
     modules/om_first_improvement_selection.cpp \
     modules/om_best_improvement_selection.cpp \
     data/decision_pair.cpp \
-    data/strategy_search_in_neighborhood.cpp \
-    data/best_improvement_v_search_state.cpp \
-    data/v_search_state.cpp \
+    data/dStrategy/strategy_search_in_neighborhood.cpp \
+    data/dStrategy/best_improvement_v_search_state.cpp \
+    data/dStrategy/v_search_state.cpp \
     modules/grouped_computation.cpp \
     modules/grouped_sequential_computation.cpp \
     modules/grouped_parallel_computation.cpp \
-    data/first_improvement_v_search_state.cpp \
+    data/dStrategy/first_improvement_v_search_state.cpp \
     testers/tester_cost_of_solution.cpp \
     testers/tester_random_configuration_generation.cpp \
     computation/random_configuration_generation_strategy.cpp \
@@ -76,13 +76,13 @@ SOURCES += main.cpp \
     modules/om_always_improve_decition.cpp \
     tools/rand_index_generator.cpp \
     testers/tester_sets_index_generator.cpp \
-    data/elements_change_iterator.cpp \
+    data/dStrategy/elements_change_iterator.cpp \
     data/multi_elements_changed_neighborhood.cpp \
     modules/om_multi_elements_changed_neighborhood.cpp \
     testers/tester_multi_elements_changed_neighborhood.cpp \
     tools/matrix.cpp \
     data/union_neighborhood.cpp \
-    data/union_iterator.cpp \
+    data/dStrategy/union_iterator.cpp \
     operators/union_operator.cpp \
     computation/union_sequential_strategy.cpp \
     testers/tester_union_operator.cpp \
@@ -93,7 +93,7 @@ SOURCES += main.cpp \
     modules/om_simulated_annealing_decition.cpp \
     tools/randomizer.cpp \
     modules/om_random_selection.cpp \
-    data/best_improvement_tabu_v_search_state.cpp \
+    data/dStrategy/best_improvement_tabu_v_search_state.cpp \
     tools/tabu_list.cpp \
     modules/om_best_improvement_tabu_selection.cpp \
     testers/tester_random_selection.cpp \
@@ -101,7 +101,15 @@ SOURCES += main.cpp \
     testers/tester_best_improvement_tabu_selection.cpp \
     computation/random_permutation_by_blocks_generation_strategy.cpp \
     modules/om_random_conf_permutation_by_blocks_generation.cpp \
-    testers/tester_random_permutation_configuration_generation.cpp
+    testers/tester_random_permutation_configuration_generation.cpp \
+    data/golfers_single_swap_neighborhood.cpp \
+    modules/om_golfers_single_swap_neighborhood.cpp \
+    data/dStrategy/decision_pair_packing_strategy.cpp \
+    data/dStrategy/solution_packing_strategy.cpp \
+    data/dStrategy/neighborhood_packing_strategy.cpp \
+    data/dStrategy/one_element_changed_body_packing_strategy.cpp \
+    data/dStrategy/multi_elements_changed_body_packing_strategy.cpp \
+    data/dStrategy/golfers_single_swap_body_packing_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -110,12 +118,12 @@ HEADERS += \
     modules/operation_module.h \
     modules/open_channel.h \
     data/domain.h \
-    data/factory_domain.h \
-    data/factory_n_int_domain.h \
+    data/dStrategy/factory_domain.h \
+    data/dStrategy/factory_n_int_domain.h \
     data/dom_interval.h \
     data/node.h \
     data/solution.h \
-    data/posl_iterator.h \
+    data/dStrategy/posl_iterator.h \
     solver.h \
     benchmarks/benchmark.h \
     factory_compound_module.h \
@@ -141,13 +149,13 @@ HEADERS += \
     modules/om_best_improvement_selection.h \
     data/decision_pair.h \
     computation/parallel_computation_strategy.h \
-    data/strategy_search_in_neighborhood.h \
-    data/best_improvement_v_search_state.h \
-    data/v_search_state.h \
+    data/dStrategy/strategy_search_in_neighborhood.h \
+    data/dStrategy/best_improvement_v_search_state.h \
+    data/dStrategy/v_search_state.h \
     modules/grouped_computation.h \
     modules/grouped_sequential_computation.h \
     modules/grouped_parallel_computation.h \
-    data/first_improvement_v_search_state.h \
+    data/dStrategy/first_improvement_v_search_state.h \
     testers/tester.h \
     testers/tester_cost_of_solution.h \
     testers/tester_random_configuration_generation.h \
@@ -173,13 +181,13 @@ HEADERS += \
     modules/om_always_improve_decition.h \
     tools/rand_index_generator.h \
     testers/tester_sets_index_generator.h \
-    data/elements_change_iterator.h \
+    data/dStrategy/elements_change_iterator.h \
     data/multi_elements_changed_neighborhood.h \
     modules/om_multi_elements_changed_neighborhood.h \
     testers/tester_multi_elements_changed_neighborhood.h \
     tools/matrix.h \
     data/union_neighborhood.h \
-    data/union_iterator.h \
+    data/dStrategy/union_iterator.h \
     operators/union_operator.h \
     computation/union_sequential_strategy.h \
     testers/tester_union_operator.h \
@@ -190,7 +198,7 @@ HEADERS += \
     modules/om_simulated_annealing_decition.h \
     tools/randomizer.h \
     modules/om_random_selection.h \
-    data/best_improvement_tabu_v_search_state.h \
+    data/dStrategy/best_improvement_tabu_v_search_state.h \
     tools/tabu_list.h \
     modules/om_best_improvement_tabu_selection.h \
     testers/tester_random_selection.h \
@@ -198,4 +206,15 @@ HEADERS += \
     testers/tester_best_improvement_tabu_selection.h \
     computation/random_permutation_by_blocks_generation_strategy.h \
     modules/om_random_conf_permutation_by_blocks_generation.h \
-    testers/tester_random_permutation_configuration_generation.h
+    testers/tester_random_permutation_configuration_generation.h \
+    data/golfers_single_swap_neighborhood.h \
+    modules/om_golfers_single_swap_neighborhood.h \
+    data/dStrategy/packable.h \
+    data/dStrategy/packing_strategy.h \
+    data/dStrategy/decision_pair_packing_strategy.h \
+    data/dStrategy/solution_packing_strategy.h \
+    data/dStrategy/neighborhood_packing_strategy.h \
+    data/dStrategy/neighborhood_body_packing_strategy.h \
+    data/dStrategy/one_element_changed_body_packing_strategy.h \
+    data/dStrategy/multi_elements_changed_body_packing_strategy.h \
+    data/dStrategy/golfers_single_swap_body_packing_strategy.h

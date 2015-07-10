@@ -1,5 +1,5 @@
 #include "random_permutation_by_blocks_generation_strategy.h"
-#include "data/factory_n_int_domain.h"
+#include "data/dStrategy/factory_n_int_domain.h"
 
 #include <algorithm>
 

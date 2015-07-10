@@ -1,7 +1,7 @@
 #pragma once
 
 #include "posl_iterator.h"
-#include "union_neighborhood.h"
+#include "../union_neighborhood.h"
 
 class UnionIterator : public POSL_Iterator<vector<int>>
 {

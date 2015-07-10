@@ -1,5 +1,5 @@
 #include "one_element_changed_neighborhood.h"
-#include "elements_change_iterator.h"
+#include "dStrategy/elements_change_iterator.h"
 
 #include <algorithm>
 #include <chrono>

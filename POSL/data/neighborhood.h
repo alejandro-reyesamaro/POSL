@@ -9,7 +9,7 @@
  * \date 2015-05-28
  */
 
-#include "posl_iterator.h"
+#include "dStrategy/posl_iterator.h"
 #include "computation_data.h"
 #include <vector>
 

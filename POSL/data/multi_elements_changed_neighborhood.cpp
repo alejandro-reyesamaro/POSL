@@ -1,5 +1,5 @@
 #include "multi_elements_changed_neighborhood.h"
-#include "elements_change_iterator.h"
+#include "dStrategy/elements_change_iterator.h"
 #include "tools/rand_index_generator.h"
 
 #include <algorithm>

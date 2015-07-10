@@ -1,7 +1,7 @@
 #include "tester.h"
 #include "data/solution.h"
 #include "data/domain.h"
-#include "data/factory_n_int_domain.h"
+#include "data/dStrategy/factory_n_int_domain.h"
 #include "benchmarks/benchmark.h"
 #include "benchmarks/golfers.h"
 

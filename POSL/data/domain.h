@@ -9,7 +9,7 @@
  * \date 2015-04-14
  */
 
-#include "factory_domain.h"
+#include "dStrategy/factory_domain.h"
 
 #include <vector>
 

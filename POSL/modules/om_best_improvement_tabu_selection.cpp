@@ -1,6 +1,6 @@
 #include "om_best_improvement_tabu_selection.h"
-#include "data/strategy_search_in_neighborhood.h"
-#include "data/best_improvement_tabu_v_search_state.h"
+#include "data/dStrategy/strategy_search_in_neighborhood.h"
+#include "data/dStrategy/best_improvement_tabu_v_search_state.h"
 
 #define N_TABULIST 5
 

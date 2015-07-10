@@ -49,7 +49,7 @@ SOURCES       = ../main.cpp \
 		../modules/compound_module.cpp \
 		../modules/open_channel.cpp \
 		../data/domain.cpp \
-		../data/factory_n_int_domain.cpp \
+		../data/dStrategy/factory_n_int_domain.cpp \
 		../data/node.cpp \
 		../data/solution.cpp \
 		../solver.cpp \
@@ -74,13 +74,13 @@ SOURCES       = ../main.cpp \
 		../modules/om_first_improvement_selection.cpp \
 		../modules/om_best_improvement_selection.cpp \
 		../data/decision_pair.cpp \
-		../data/strategy_search_in_neighborhood.cpp \
-		../data/best_improvement_v_search_state.cpp \
-		../data/v_search_state.cpp \
+		../data/dStrategy/strategy_search_in_neighborhood.cpp \
+		../data/dStrategy/best_improvement_v_search_state.cpp \
+		../data/dStrategy/v_search_state.cpp \
 		../modules/grouped_computation.cpp \
 		../modules/grouped_sequential_computation.cpp \
 		../modules/grouped_parallel_computation.cpp \
-		../data/first_improvement_v_search_state.cpp \
+		../data/dStrategy/first_improvement_v_search_state.cpp \
 		../testers/tester_cost_of_solution.cpp \
 		../testers/tester_random_configuration_generation.cpp \
 		../computation/random_configuration_generation_strategy.cpp \
@@ -106,13 +106,13 @@ SOURCES       = ../main.cpp \
 		../modules/om_always_improve_decition.cpp \
 		../tools/rand_index_generator.cpp \
 		../testers/tester_sets_index_generator.cpp \
-		../data/elements_change_iterator.cpp \
+		../data/dStrategy/elements_change_iterator.cpp \
 		../data/multi_elements_changed_neighborhood.cpp \
 		../modules/om_multi_elements_changed_neighborhood.cpp \
 		../testers/tester_multi_elements_changed_neighborhood.cpp \
 		../tools/matrix.cpp \
 		../data/union_neighborhood.cpp \
-		../data/union_iterator.cpp \
+		../data/dStrategy/union_iterator.cpp \
 		../operators/union_operator.cpp \
 		../computation/union_sequential_strategy.cpp \
 		../testers/tester_union_operator.cpp \
@@ -123,7 +123,7 @@ SOURCES       = ../main.cpp \
 		../modules/om_simulated_annealing_decition.cpp \
 		../tools/randomizer.cpp \
 		../modules/om_random_selection.cpp \
-		../data/best_improvement_tabu_v_search_state.cpp \
+		../data/dStrategy/best_improvement_tabu_v_search_state.cpp \
 		../tools/tabu_list.cpp \
 		../modules/om_best_improvement_tabu_selection.cpp \
 		../testers/tester_random_selection.cpp \
@@ -131,7 +131,15 @@ SOURCES       = ../main.cpp \
 		../testers/tester_best_improvement_tabu_selection.cpp \
 		../computation/random_permutation_by_blocks_generation_strategy.cpp \
 		../modules/om_random_conf_permutation_by_blocks_generation.cpp \
-		../testers/tester_random_permutation_configuration_generation.cpp 
+		../testers/tester_random_permutation_configuration_generation.cpp \
+		../data/golfers_single_swap_neighborhood.cpp \
+		../modules/om_golfers_single_swap_neighborhood.cpp \
+		../data/dStrategy/decision_pair_packing_strategy.cpp \
+		../data/dStrategy/solution_packing_strategy.cpp \
+		../data/dStrategy/neighborhood_packing_strategy.cpp \
+		../data/dStrategy/one_element_changed_body_packing_strategy.cpp \
+		../data/dStrategy/multi_elements_changed_body_packing_strategy.cpp \
+		../data/dStrategy/golfers_single_swap_body_packing_strategy.cpp 
 OBJECTS       = main.o \
 		compound_module.o \
 		open_channel.o \
@@ -218,7 +226,15 @@ OBJECTS       = main.o \
 		tester_best_improvement_tabu_selection.o \
 		random_permutation_by_blocks_generation_strategy.o \
 		om_random_conf_permutation_by_blocks_generation.o \
-		tester_random_permutation_configuration_generation.o
+		tester_random_permutation_configuration_generation.o \
+		golfers_single_swap_neighborhood.o \
+		om_golfers_single_swap_neighborhood.o \
+		decision_pair_packing_strategy.o \
+		solution_packing_strategy.o \
+		neighborhood_packing_strategy.o \
+		one_element_changed_body_packing_strategy.o \
+		multi_elements_changed_body_packing_strategy.o \
+		golfers_single_swap_body_packing_strategy.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -440,7 +456,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/POSL1.0.0 || mkdir -p .tmp/POSL1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../modules/compound_module.h ../modules/operation_module.h ../modules/open_channel.h ../data/domain.h ../data/factory_domain.h ../data/factory_n_int_domain.h ../data/dom_interval.h ../data/node.h ../data/solution.h ../data/posl_iterator.h ../solver.h ../benchmarks/benchmark.h ../factory_compound_module.h ../modules/data_open_channel.h ../modules/object_open_channel.h ../operators/operator.h ../benchmarks/golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../modules/om_random_conf_generation.h ../modules/om_florian_random_conf_generation.h ../data/neighborhood.h ../data/one_element_changed_neighborhood.h ../modules/om_one_element_changed_neighborhood.h ../operators/sequential_exec_operator.h ../computation/sequential_computation_strategy.h ../computation/computation_strategy.h ../data/computation_data.h ../data/seed.h ../computation/not_implemented_parallel_strategy.h ../computation/sequential_execution_sequential_strategy.h ../modules/om_first_improvement_selection.h ../modules/om_best_improvement_selection.h ../data/decision_pair.h ../computation/parallel_computation_strategy.h ../data/strategy_search_in_neighborhood.h ../data/best_improvement_v_search_state.h ../data/v_search_state.h ../modules/grouped_computation.h ../modules/grouped_sequential_computation.h ../modules/grouped_parallel_computation.h ../data/first_improvement_v_search_state.h ../testers/tester.h ../testers/tester_cost_of_solution.h ../testers/tester_random_configuration_generation.h ../computation/random_configuration_generation_strategy.h ../testers/tester_florian_random_configuration_generation.h ../testers/tester_one_element_changed_neighborhood.h ../testers/tester_first_improvement_selection.h ../modules/om_fixed_first_configuration.h ../tools/tools.h ../testers/tester_best_improvement_selection.h ../operators/binary_operator.h ../computation/rho_sequential_strategy.h ../operators/rho_operator.h ../testers/tester_rho_operator.h ../operators/unary_operator.h ../solver/psp.h ../expressions/iteretion_bound_expression.h ../expressions/boolean_expression.h ../operators/cyclic_operator.h ../computation/cyclic_sequential_strategy.h ../expressions/loop_bound_expression.h ../testers/tester_cyclic_operator.h ../modules/om_always_improve_decition.h ../tools/rand_index_generator.h ../testers/tester_sets_index_generator.h ../data/elements_change_iterator.h ../data/multi_elements_changed_neighborhood.h ../modules/om_multi_elements_changed_neighborhood.h ../testers/tester_multi_elements_changed_neighborhood.h ../tools/matrix.h ../data/union_neighborhood.h ../data/union_iterator.h ../operators/union_operator.h ../computation/union_sequential_strategy.h ../testers/tester_union_operator.h ../operators/conditional_operator.h ../computation/conditional_sequential_strategy.h ../testers/tester_conditional_operator.h ../expressions/reached_cost_expression.h ../modules/om_simulated_annealing_decition.h ../tools/randomizer.h ../modules/om_random_selection.h ../data/best_improvement_tabu_v_search_state.h ../tools/tabu_list.h ../modules/om_best_improvement_tabu_selection.h ../testers/tester_random_selection.h ../testers/tester_simulated_annealing_decition.h ../testers/tester_best_improvement_tabu_selection.h ../computation/random_permutation_by_blocks_generation_strategy.h ../modules/om_random_conf_permutation_by_blocks_generation.h ../testers/tester_random_permutation_configuration_generation.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../modules/compound_module.cpp ../modules/open_channel.cpp ../data/domain.cpp ../data/factory_n_int_domain.cpp ../data/node.cpp ../data/solution.cpp ../solver.cpp ../benchmarks/benchmark.cpp ../factory_compound_module.cpp ../data/dom_interval.cpp ../modules/data_open_channel.cpp ../modules/object_open_channel.cpp ../operators/operator.cpp ../benchmarks/golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../modules/om_random_conf_generation.cpp ../modules/om_florian_random_conf_generation.cpp ../data/neighborhood.cpp ../data/one_element_changed_neighborhood.cpp ../modules/om_one_element_changed_neighborhood.cpp ../operators/sequential_exec_operator.cpp ../data/seed.cpp ../computation/not_implemented_parallel_strategy.cpp ../computation/sequential_execution_sequential_strategy.cpp ../modules/om_first_improvement_selection.cpp ../modules/om_best_improvement_selection.cpp ../data/decision_pair.cpp ../data/strategy_search_in_neighborhood.cpp ../data/best_improvement_v_search_state.cpp ../data/v_search_state.cpp ../modules/grouped_computation.cpp ../modules/grouped_sequential_computation.cpp ../modules/grouped_parallel_computation.cpp ../data/first_improvement_v_search_state.cpp ../testers/tester_cost_of_solution.cpp ../testers/tester_random_configuration_generation.cpp ../computation/random_configuration_generation_strategy.cpp ../testers/tester_florian_random_configuration_generation.cpp ../testers/tester_one_element_changed_neighborhood.cpp ../testers/tester.cpp ../testers/tester_first_improvement_selection.cpp ../modules/om_fixed_first_configuration.cpp ../tools/tools.cpp ../testers/tester_best_improvement_selection.cpp ../operators/binary_operator.cpp ../computation/rho_sequential_strategy.cpp ../operators/rho_operator.cpp ../testers/tester_rho_operator.cpp ../operators/unary_operator.cpp ../solver/psp.cpp ../expressions/iteretion_bound_expression.cpp ../expressions/boolean_expression.cpp ../operators/cyclic_operator.cpp ../computation/cyclic_sequential_strategy.cpp ../expressions/loop_bound_expression.cpp ../testers/tester_cyclic_operator.cpp ../modules/om_always_improve_decition.cpp ../tools/rand_index_generator.cpp ../testers/tester_sets_index_generator.cpp ../data/elements_change_iterator.cpp ../data/multi_elements_changed_neighborhood.cpp ../modules/om_multi_elements_changed_neighborhood.cpp ../testers/tester_multi_elements_changed_neighborhood.cpp ../tools/matrix.cpp ../data/union_neighborhood.cpp ../data/union_iterator.cpp ../operators/union_operator.cpp ../computation/union_sequential_strategy.cpp ../testers/tester_union_operator.cpp ../operators/conditional_operator.cpp ../computation/conditional_sequential_strategy.cpp ../testers/tester_conditional_operator.cpp ../expressions/reached_cost_expression.cpp ../modules/om_simulated_annealing_decition.cpp ../tools/randomizer.cpp ../modules/om_random_selection.cpp ../data/best_improvement_tabu_v_search_state.cpp ../tools/tabu_list.cpp ../modules/om_best_improvement_tabu_selection.cpp ../testers/tester_random_selection.cpp ../testers/tester_simulated_annealing_decition.cpp ../testers/tester_best_improvement_tabu_selection.cpp ../computation/random_permutation_by_blocks_generation_strategy.cpp ../modules/om_random_conf_permutation_by_blocks_generation.cpp ../testers/tester_random_permutation_configuration_generation.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../modules/compound_module.h ../modules/operation_module.h ../modules/open_channel.h ../data/domain.h ../data/dStrategy/factory_domain.h ../data/dStrategy/factory_n_int_domain.h ../data/dom_interval.h ../data/node.h ../data/solution.h ../data/dStrategy/posl_iterator.h ../solver.h ../benchmarks/benchmark.h ../factory_compound_module.h ../modules/data_open_channel.h ../modules/object_open_channel.h ../operators/operator.h ../benchmarks/golfers.h ../../LongInteger/long_int.h ../../LongInteger/merged_longint.h ../modules/om_random_conf_generation.h ../modules/om_florian_random_conf_generation.h ../data/neighborhood.h ../data/one_element_changed_neighborhood.h ../modules/om_one_element_changed_neighborhood.h ../operators/sequential_exec_operator.h ../computation/sequential_computation_strategy.h ../computation/computation_strategy.h ../data/computation_data.h ../data/seed.h ../computation/not_implemented_parallel_strategy.h ../computation/sequential_execution_sequential_strategy.h ../modules/om_first_improvement_selection.h ../modules/om_best_improvement_selection.h ../data/decision_pair.h ../computation/parallel_computation_strategy.h ../data/dStrategy/strategy_search_in_neighborhood.h ../data/dStrategy/best_improvement_v_search_state.h ../data/dStrategy/v_search_state.h ../modules/grouped_computation.h ../modules/grouped_sequential_computation.h ../modules/grouped_parallel_computation.h ../data/dStrategy/first_improvement_v_search_state.h ../testers/tester.h ../testers/tester_cost_of_solution.h ../testers/tester_random_configuration_generation.h ../computation/random_configuration_generation_strategy.h ../testers/tester_florian_random_configuration_generation.h ../testers/tester_one_element_changed_neighborhood.h ../testers/tester_first_improvement_selection.h ../modules/om_fixed_first_configuration.h ../tools/tools.h ../testers/tester_best_improvement_selection.h ../operators/binary_operator.h ../computation/rho_sequential_strategy.h ../operators/rho_operator.h ../testers/tester_rho_operator.h ../operators/unary_operator.h ../solver/psp.h ../expressions/iteretion_bound_expression.h ../expressions/boolean_expression.h ../operators/cyclic_operator.h ../computation/cyclic_sequential_strategy.h ../expressions/loop_bound_expression.h ../testers/tester_cyclic_operator.h ../modules/om_always_improve_decition.h ../tools/rand_index_generator.h ../testers/tester_sets_index_generator.h ../data/dStrategy/elements_change_iterator.h ../data/multi_elements_changed_neighborhood.h ../modules/om_multi_elements_changed_neighborhood.h ../testers/tester_multi_elements_changed_neighborhood.h ../tools/matrix.h ../data/union_neighborhood.h ../data/dStrategy/union_iterator.h ../operators/union_operator.h ../computation/union_sequential_strategy.h ../testers/tester_union_operator.h ../operators/conditional_operator.h ../computation/conditional_sequential_strategy.h ../testers/tester_conditional_operator.h ../expressions/reached_cost_expression.h ../modules/om_simulated_annealing_decition.h ../tools/randomizer.h ../modules/om_random_selection.h ../data/dStrategy/best_improvement_tabu_v_search_state.h ../tools/tabu_list.h ../modules/om_best_improvement_tabu_selection.h ../testers/tester_random_selection.h ../testers/tester_simulated_annealing_decition.h ../testers/tester_best_improvement_tabu_selection.h ../computation/random_permutation_by_blocks_generation_strategy.h ../modules/om_random_conf_permutation_by_blocks_generation.h ../testers/tester_random_permutation_configuration_generation.h ../data/golfers_single_swap_neighborhood.h ../modules/om_golfers_single_swap_neighborhood.h ../data/dStrategy/packable.h ../data/dStrategy/packing_strategy.h ../data/dStrategy/decision_pair_packing_strategy.h ../data/dStrategy/solution_packing_strategy.h ../data/dStrategy/neighborhood_packing_strategy.h ../data/dStrategy/neighborhood_body_packing_strategy.h ../data/dStrategy/one_element_changed_body_packing_strategy.h ../data/dStrategy/multi_elements_changed_body_packing_strategy.h ../data/dStrategy/golfers_single_swap_body_packing_strategy.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../main.cpp ../modules/compound_module.cpp ../modules/open_channel.cpp ../data/domain.cpp ../data/dStrategy/factory_n_int_domain.cpp ../data/node.cpp ../data/solution.cpp ../solver.cpp ../benchmarks/benchmark.cpp ../factory_compound_module.cpp ../data/dom_interval.cpp ../modules/data_open_channel.cpp ../modules/object_open_channel.cpp ../operators/operator.cpp ../benchmarks/golfers.cpp ../../LongInteger/long_int.cpp ../../LongInteger/merged_longint.cpp ../modules/om_random_conf_generation.cpp ../modules/om_florian_random_conf_generation.cpp ../data/neighborhood.cpp ../data/one_element_changed_neighborhood.cpp ../modules/om_one_element_changed_neighborhood.cpp ../operators/sequential_exec_operator.cpp ../data/seed.cpp ../computation/not_implemented_parallel_strategy.cpp ../computation/sequential_execution_sequential_strategy.cpp ../modules/om_first_improvement_selection.cpp ../modules/om_best_improvement_selection.cpp ../data/decision_pair.cpp ../data/dStrategy/strategy_search_in_neighborhood.cpp ../data/dStrategy/best_improvement_v_search_state.cpp ../data/dStrategy/v_search_state.cpp ../modules/grouped_computation.cpp ../modules/grouped_sequential_computation.cpp ../modules/grouped_parallel_computation.cpp ../data/dStrategy/first_improvement_v_search_state.cpp ../testers/tester_cost_of_solution.cpp ../testers/tester_random_configuration_generation.cpp ../computation/random_configuration_generation_strategy.cpp ../testers/tester_florian_random_configuration_generation.cpp ../testers/tester_one_element_changed_neighborhood.cpp ../testers/tester.cpp ../testers/tester_first_improvement_selection.cpp ../modules/om_fixed_first_configuration.cpp ../tools/tools.cpp ../testers/tester_best_improvement_selection.cpp ../operators/binary_operator.cpp ../computation/rho_sequential_strategy.cpp ../operators/rho_operator.cpp ../testers/tester_rho_operator.cpp ../operators/unary_operator.cpp ../solver/psp.cpp ../expressions/iteretion_bound_expression.cpp ../expressions/boolean_expression.cpp ../operators/cyclic_operator.cpp ../computation/cyclic_sequential_strategy.cpp ../expressions/loop_bound_expression.cpp ../testers/tester_cyclic_operator.cpp ../modules/om_always_improve_decition.cpp ../tools/rand_index_generator.cpp ../testers/tester_sets_index_generator.cpp ../data/dStrategy/elements_change_iterator.cpp ../data/multi_elements_changed_neighborhood.cpp ../modules/om_multi_elements_changed_neighborhood.cpp ../testers/tester_multi_elements_changed_neighborhood.cpp ../tools/matrix.cpp ../data/union_neighborhood.cpp ../data/dStrategy/union_iterator.cpp ../operators/union_operator.cpp ../computation/union_sequential_strategy.cpp ../testers/tester_union_operator.cpp ../operators/conditional_operator.cpp ../computation/conditional_sequential_strategy.cpp ../testers/tester_conditional_operator.cpp ../expressions/reached_cost_expression.cpp ../modules/om_simulated_annealing_decition.cpp ../tools/randomizer.cpp ../modules/om_random_selection.cpp ../data/dStrategy/best_improvement_tabu_v_search_state.cpp ../tools/tabu_list.cpp ../modules/om_best_improvement_tabu_selection.cpp ../testers/tester_random_selection.cpp ../testers/tester_simulated_annealing_decition.cpp ../testers/tester_best_improvement_tabu_selection.cpp ../computation/random_permutation_by_blocks_generation_strategy.cpp ../modules/om_random_conf_permutation_by_blocks_generation.cpp ../testers/tester_random_permutation_configuration_generation.cpp ../data/golfers_single_swap_neighborhood.cpp ../modules/om_golfers_single_swap_neighborhood.cpp ../data/dStrategy/decision_pair_packing_strategy.cpp ../data/dStrategy/solution_packing_strategy.cpp ../data/dStrategy/neighborhood_packing_strategy.cpp ../data/dStrategy/one_element_changed_body_packing_strategy.cpp ../data/dStrategy/multi_elements_changed_body_packing_strategy.cpp ../data/dStrategy/golfers_single_swap_body_packing_strategy.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
 
 
 clean:compiler_clean 
@@ -481,8 +497,10 @@ main.o: ../main.cpp ../testers/tester.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../testers/tester_cost_of_solution.h \
 		../testers/tester_random_configuration_generation.h \
 		../testers/tester_florian_random_configuration_generation.h \
@@ -497,7 +515,8 @@ main.o: ../main.cpp ../testers/tester.h \
 		../testers/tester_conditional_operator.h \
 		../testers/tester_random_selection.h \
 		../testers/tester_simulated_annealing_decition.h \
-		../testers/tester_best_improvement_tabu_selection.h
+		../testers/tester_best_improvement_tabu_selection.h \
+		../testers/tester_random_permutation_configuration_generation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
 compound_module.o: ../modules/compound_module.cpp ../modules/compound_module.h \
@@ -506,28 +525,33 @@ compound_module.o: ../modules/compound_module.cpp ../modules/compound_module.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o compound_module.o ../modules/compound_module.cpp
 
 open_channel.o: ../modules/open_channel.cpp ../modules/open_channel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o open_channel.o ../modules/open_channel.cpp
 
 domain.o: ../data/domain.cpp ../data/domain.h \
-		../data/factory_domain.h
+		../data/dStrategy/factory_domain.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o domain.o ../data/domain.cpp
 
-factory_n_int_domain.o: ../data/factory_n_int_domain.cpp ../data/factory_n_int_domain.h \
-		../data/factory_domain.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory_n_int_domain.o ../data/factory_n_int_domain.cpp
+factory_n_int_domain.o: ../data/dStrategy/factory_n_int_domain.cpp ../data/dStrategy/factory_n_int_domain.h \
+		../data/dStrategy/factory_domain.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory_n_int_domain.o ../data/dStrategy/factory_n_int_domain.cpp
 
 node.o: ../data/node.cpp ../data/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../data/node.cpp
 
 solution.o: ../data/solution.cpp ../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
-		../tools/tools.h
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../tools/tools.h \
+		../data/dStrategy/solution_packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o solution.o ../data/solution.cpp
 
 solver.o: ../solver.cpp ../solver.h \
@@ -537,15 +561,19 @@ solver.o: ../solver.cpp ../solver.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../factory_compound_module.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o solver.o ../solver.cpp
 
 benchmark.o: ../benchmarks/benchmark.cpp ../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/computation_data.h
+		../data/dStrategy/factory_domain.h \
+		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o benchmark.o ../benchmarks/benchmark.cpp
 
 factory_compound_module.o: ../factory_compound_module.cpp ../factory_compound_module.h \
@@ -555,7 +583,9 @@ factory_compound_module.o: ../factory_compound_module.cpp ../factory_compound_mo
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory_compound_module.o ../factory_compound_module.cpp
 
 dom_interval.o: ../data/dom_interval.cpp ../data/dom_interval.h
@@ -576,7 +606,9 @@ operator.o: ../operators/operator.cpp ../operators/operator.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h
@@ -586,8 +618,10 @@ golfers.o: ../benchmarks/golfers.cpp ../benchmarks/golfers.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../../LongInteger/long_int.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o golfers.o ../benchmarks/golfers.cpp
 
@@ -607,7 +641,9 @@ om_random_conf_generation.o: ../modules/om_random_conf_generation.cpp ../modules
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../data/seed.h \
 		../computation/random_configuration_generation_strategy.h \
 		../tools/randomizer.h
@@ -621,7 +657,9 @@ om_florian_random_conf_generation.o: ../modules/om_florian_random_conf_generatio
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../data/seed.h \
 		../modules/om_random_conf_generation.h \
 		../computation/random_configuration_generation_strategy.h \
@@ -629,20 +667,22 @@ om_florian_random_conf_generation.o: ../modules/om_florian_random_conf_generatio
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_florian_random_conf_generation.o ../modules/om_florian_random_conf_generation.cpp
 
 neighborhood.o: ../data/neighborhood.cpp ../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/computation_data.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighborhood.o ../data/neighborhood.cpp
 
 one_element_changed_neighborhood.o: ../data/one_element_changed_neighborhood.cpp ../data/one_element_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/computation_data.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../tools/randomizer.h \
 		../data/seed.h \
-		../data/elements_change_iterator.h
+		../data/dStrategy/elements_change_iterator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o one_element_changed_neighborhood.o ../data/one_element_changed_neighborhood.cpp
 
 om_one_element_changed_neighborhood.o: ../modules/om_one_element_changed_neighborhood.cpp ../modules/om_one_element_changed_neighborhood.h \
@@ -653,9 +693,11 @@ om_one_element_changed_neighborhood.o: ../modules/om_one_element_changed_neighbo
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/one_element_changed_neighborhood.h \
 		../tools/randomizer.h \
 		../data/seed.h
@@ -670,7 +712,9 @@ sequential_exec_operator.o: ../operators/sequential_exec_operator.cpp ../operato
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h \
@@ -689,7 +733,9 @@ not_implemented_parallel_strategy.o: ../computation/not_implemented_parallel_str
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/compound_module.h \
 		../solver/psp.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o not_implemented_parallel_strategy.o ../computation/not_implemented_parallel_strategy.cpp
@@ -701,7 +747,9 @@ sequential_execution_sequential_strategy.o: ../computation/sequential_execution_
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/compound_module.h \
 		../solver/psp.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sequential_execution_sequential_strategy.o ../computation/sequential_execution_sequential_strategy.cpp
@@ -714,13 +762,15 @@ om_first_improvement_selection.o: ../modules/om_first_improvement_selection.cpp 
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/strategy_search_in_neighborhood.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/strategy_search_in_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/decision_pair.h \
-		../data/v_search_state.h \
-		../data/first_improvement_v_search_state.h
+		../data/dStrategy/v_search_state.h \
+		../data/dStrategy/first_improvement_v_search_state.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_first_improvement_selection.o ../modules/om_first_improvement_selection.cpp
 
 om_best_improvement_selection.o: ../modules/om_best_improvement_selection.cpp ../modules/om_best_improvement_selection.h \
@@ -731,53 +781,64 @@ om_best_improvement_selection.o: ../modules/om_best_improvement_selection.cpp ..
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/strategy_search_in_neighborhood.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/strategy_search_in_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/decision_pair.h \
-		../data/v_search_state.h \
-		../data/best_improvement_v_search_state.h
+		../data/dStrategy/v_search_state.h \
+		../data/dStrategy/best_improvement_v_search_state.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_best_improvement_selection.o ../modules/om_best_improvement_selection.cpp
 
 decision_pair.o: ../data/decision_pair.cpp ../data/decision_pair.h \
 		../data/computation_data.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/decision_pair_packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o decision_pair.o ../data/decision_pair.cpp
 
-strategy_search_in_neighborhood.o: ../data/strategy_search_in_neighborhood.cpp ../data/strategy_search_in_neighborhood.h \
+strategy_search_in_neighborhood.o: ../data/dStrategy/strategy_search_in_neighborhood.cpp ../data/dStrategy/strategy_search_in_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/computation_data.h \
 		../data/decision_pair.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../benchmarks/benchmark.h \
 		../solver/psp.h \
-		../data/v_search_state.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o strategy_search_in_neighborhood.o ../data/strategy_search_in_neighborhood.cpp
+		../data/dStrategy/v_search_state.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o strategy_search_in_neighborhood.o ../data/dStrategy/strategy_search_in_neighborhood.cpp
 
-best_improvement_v_search_state.o: ../data/best_improvement_v_search_state.cpp ../data/best_improvement_v_search_state.h \
-		../data/v_search_state.h \
+best_improvement_v_search_state.o: ../data/dStrategy/best_improvement_v_search_state.cpp ../data/dStrategy/best_improvement_v_search_state.h \
+		../data/dStrategy/v_search_state.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
-		../data/posl_iterator.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o best_improvement_v_search_state.o ../data/best_improvement_v_search_state.cpp
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/posl_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o best_improvement_v_search_state.o ../data/dStrategy/best_improvement_v_search_state.cpp
 
-v_search_state.o: ../data/v_search_state.cpp ../data/v_search_state.h \
+v_search_state.o: ../data/dStrategy/v_search_state.cpp ../data/dStrategy/v_search_state.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
-		../data/posl_iterator.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o v_search_state.o ../data/v_search_state.cpp
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/posl_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o v_search_state.o ../data/dStrategy/v_search_state.cpp
 
 grouped_computation.o: ../modules/grouped_computation.cpp ../modules/grouped_computation.h \
 		../operators/operator.h \
@@ -787,7 +848,9 @@ grouped_computation.o: ../modules/grouped_computation.cpp ../modules/grouped_com
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h
@@ -802,7 +865,9 @@ grouped_sequential_computation.o: ../modules/grouped_sequential_computation.cpp 
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h
@@ -817,29 +882,35 @@ grouped_parallel_computation.o: ../modules/grouped_parallel_computation.cpp ../m
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o grouped_parallel_computation.o ../modules/grouped_parallel_computation.cpp
 
-first_improvement_v_search_state.o: ../data/first_improvement_v_search_state.cpp ../data/first_improvement_v_search_state.h \
-		../data/v_search_state.h \
+first_improvement_v_search_state.o: ../data/dStrategy/first_improvement_v_search_state.cpp ../data/dStrategy/first_improvement_v_search_state.h \
+		../data/dStrategy/v_search_state.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
-		../data/posl_iterator.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o first_improvement_v_search_state.o ../data/first_improvement_v_search_state.cpp
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/posl_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o first_improvement_v_search_state.o ../data/dStrategy/first_improvement_v_search_state.cpp
 
 tester_cost_of_solution.o: ../testers/tester_cost_of_solution.cpp ../testers/tester_cost_of_solution.h \
 		../testers/tester.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../benchmarks/golfers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution.o ../testers/tester_cost_of_solution.cpp
 
@@ -848,8 +919,10 @@ tester_random_configuration_generation.o: ../testers/tester_random_configuration
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
@@ -860,8 +933,10 @@ tester_random_configuration_generation.o: ../testers/tester_random_configuration
 random_configuration_generation_strategy.o: ../computation/random_configuration_generation_strategy.cpp ../computation/random_configuration_generation_strategy.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../data/seed.h \
 		../tools/randomizer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o random_configuration_generation_strategy.o ../computation/random_configuration_generation_strategy.cpp
@@ -871,8 +946,10 @@ tester_florian_random_configuration_generation.o: ../testers/tester_florian_rand
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
@@ -885,14 +962,16 @@ tester_one_element_changed_neighborhood.o: ../testers/tester_one_element_changed
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../modules/om_one_element_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/one_element_changed_neighborhood.h \
 		../tools/randomizer.h \
 		../data/seed.h
@@ -902,9 +981,11 @@ tester.o: ../testers/tester.cpp ../testers/tester.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
-		../data/factory_n_int_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/factory_n_int_domain.h \
 		../benchmarks/golfers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester.o ../testers/tester.cpp
 
@@ -913,8 +994,10 @@ tester_first_improvement_selection.o: ../testers/tester_first_improvement_select
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/om_random_conf_generation.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
@@ -922,7 +1005,7 @@ tester_first_improvement_selection.o: ../testers/tester_first_improvement_select
 		../data/seed.h \
 		../modules/om_one_element_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../modules/om_first_improvement_selection.h \
 		../operators/operator.h \
 		../computation/sequential_computation_strategy.h \
@@ -944,7 +1027,9 @@ om_fixed_first_configuration.o: ../modules/om_fixed_first_configuration.cpp ../m
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_fixed_first_configuration.o ../modules/om_fixed_first_configuration.cpp
 
 tools.o: ../tools/tools.cpp ../tools/tools.h
@@ -955,15 +1040,17 @@ tester_best_improvement_selection.o: ../testers/tester_best_improvement_selectio
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/om_fixed_first_configuration.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../modules/om_one_element_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../modules/om_best_improvement_selection.h \
 		../operators/operator.h \
 		../computation/sequential_computation_strategy.h \
@@ -985,7 +1072,9 @@ binary_operator.o: ../operators/binary_operator.cpp ../operators/binary_operator
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h
@@ -998,7 +1087,9 @@ rho_sequential_strategy.o: ../computation/rho_sequential_strategy.cpp ../computa
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../tools/randomizer.h \
@@ -1014,7 +1105,9 @@ rho_operator.o: ../operators/rho_operator.cpp ../operators/rho_operator.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h \
@@ -1029,8 +1122,10 @@ tester_rho_operator.o: ../testers/tester_rho_operator.cpp ../testers/tester_rho_
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/om_fixed_first_configuration.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
@@ -1056,7 +1151,9 @@ unary_operator.o: ../operators/unary_operator.cpp ../operators/unary_operator.h 
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h \
@@ -1067,8 +1164,10 @@ psp.o: ../solver/psp.cpp ../solver/psp.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/computation_data.h
+		../data/dStrategy/factory_domain.h \
+		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o psp.o ../solver/psp.cpp
 
 iteretion_bound_expression.o: ../expressions/iteretion_bound_expression.cpp ../expressions/iteretion_bound_expression.h \
@@ -1077,8 +1176,10 @@ iteretion_bound_expression.o: ../expressions/iteretion_bound_expression.cpp ../e
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/computation_data.h
+		../data/dStrategy/factory_domain.h \
+		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iteretion_bound_expression.o ../expressions/iteretion_bound_expression.cpp
 
 boolean_expression.o: ../expressions/boolean_expression.cpp ../expressions/boolean_expression.h \
@@ -1086,8 +1187,10 @@ boolean_expression.o: ../expressions/boolean_expression.cpp ../expressions/boole
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/computation_data.h
+		../data/dStrategy/factory_domain.h \
+		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o boolean_expression.o ../expressions/boolean_expression.cpp
 
 cyclic_operator.o: ../operators/cyclic_operator.cpp ../operators/cyclic_operator.h \
@@ -1099,7 +1202,9 @@ cyclic_operator.o: ../operators/cyclic_operator.cpp ../operators/cyclic_operator
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h \
@@ -1115,7 +1220,9 @@ cyclic_sequential_strategy.o: ../computation/cyclic_sequential_strategy.cpp ../c
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../expressions/iteretion_bound_expression.h \
@@ -1129,8 +1236,10 @@ loop_bound_expression.o: ../expressions/loop_bound_expression.cpp ../expressions
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/computation_data.h
+		../data/dStrategy/factory_domain.h \
+		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o loop_bound_expression.o ../expressions/loop_bound_expression.cpp
 
 tester_cyclic_operator.o: ../testers/tester_cyclic_operator.cpp ../testers/tester_cyclic_operator.h \
@@ -1138,8 +1247,10 @@ tester_cyclic_operator.o: ../testers/tester_cyclic_operator.cpp ../testers/teste
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/om_fixed_first_configuration.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
@@ -1148,7 +1259,7 @@ tester_cyclic_operator.o: ../testers/tester_cyclic_operator.cpp ../testers/teste
 		../data/seed.h \
 		../modules/om_one_element_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../modules/om_multi_elements_changed_neighborhood.h \
 		../modules/om_best_improvement_selection.h \
 		../modules/om_always_improve_decition.h \
@@ -1175,7 +1286,9 @@ om_always_improve_decition.o: ../modules/om_always_improve_decition.cpp ../modul
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../data/decision_pair.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_always_improve_decition.o ../modules/om_always_improve_decition.cpp
 
@@ -1188,29 +1301,33 @@ tester_sets_index_generator.o: ../testers/tester_sets_index_generator.cpp ../tes
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../tools/rand_index_generator.h \
 		../tools/matrix.h \
 		../tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_sets_index_generator.o ../testers/tester_sets_index_generator.cpp
 
-elements_change_iterator.o: ../data/elements_change_iterator.cpp ../data/elements_change_iterator.h \
-		../data/posl_iterator.h \
+elements_change_iterator.o: ../data/dStrategy/elements_change_iterator.cpp ../data/dStrategy/elements_change_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/neighborhood.h \
 		../data/computation_data.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o elements_change_iterator.o ../data/elements_change_iterator.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o elements_change_iterator.o ../data/dStrategy/elements_change_iterator.cpp
 
 multi_elements_changed_neighborhood.o: ../data/multi_elements_changed_neighborhood.cpp ../data/multi_elements_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/computation_data.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../tools/randomizer.h \
 		../data/seed.h \
-		../data/elements_change_iterator.h \
+		../data/dStrategy/elements_change_iterator.h \
 		../tools/rand_index_generator.h \
 		../tools/matrix.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o multi_elements_changed_neighborhood.o ../data/multi_elements_changed_neighborhood.cpp
@@ -1223,9 +1340,11 @@ om_multi_elements_changed_neighborhood.o: ../modules/om_multi_elements_changed_n
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/multi_elements_changed_neighborhood.h \
 		../tools/randomizer.h \
 		../data/seed.h
@@ -1236,14 +1355,16 @@ tester_multi_elements_changed_neighborhood.o: ../testers/tester_multi_elements_c
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../modules/om_multi_elements_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/multi_elements_changed_neighborhood.h \
 		../tools/randomizer.h \
 		../data/seed.h
@@ -1254,19 +1375,19 @@ matrix.o: ../tools/matrix.cpp ../tools/matrix.h
 
 union_neighborhood.o: ../data/union_neighborhood.cpp ../data/union_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/computation_data.h \
-		../data/union_iterator.h \
+		../data/dStrategy/union_iterator.h \
 		../tools/rand_index_generator.h \
 		../tools/matrix.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o union_neighborhood.o ../data/union_neighborhood.cpp
 
-union_iterator.o: ../data/union_iterator.cpp ../data/union_iterator.h \
-		../data/posl_iterator.h \
+union_iterator.o: ../data/dStrategy/union_iterator.cpp ../data/dStrategy/union_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/union_neighborhood.h \
 		../data/neighborhood.h \
 		../data/computation_data.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o union_iterator.o ../data/union_iterator.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o union_iterator.o ../data/dStrategy/union_iterator.cpp
 
 union_operator.o: ../operators/union_operator.cpp ../operators/union_operator.h \
 		../operators/binary_operator.h \
@@ -1277,7 +1398,9 @@ union_operator.o: ../operators/union_operator.cpp ../operators/union_operator.h 
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h \
@@ -1292,11 +1415,13 @@ union_sequential_strategy.o: ../computation/union_sequential_strategy.cpp ../com
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/union_neighborhood.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o union_sequential_strategy.o ../computation/union_sequential_strategy.cpp
 
@@ -1305,14 +1430,16 @@ tester_union_operator.o: ../testers/tester_union_operator.cpp ../testers/tester_
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../modules/om_multi_elements_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../modules/om_one_element_changed_neighborhood.h \
 		../operators/union_operator.h \
 		../operators/binary_operator.h \
@@ -1336,7 +1463,9 @@ conditional_operator.o: ../operators/conditional_operator.cpp ../operators/condi
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../computation/sequential_computation_strategy.h \
 		../computation/computation_strategy.h \
 		../computation/parallel_computation_strategy.h \
@@ -1353,7 +1482,9 @@ conditional_sequential_strategy.o: ../computation/conditional_sequential_strateg
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../expressions/iteretion_bound_expression.h \
@@ -1366,8 +1497,10 @@ tester_conditional_operator.o: ../testers/tester_conditional_operator.cpp ../tes
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/om_fixed_first_configuration.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
@@ -1376,7 +1509,7 @@ tester_conditional_operator.o: ../testers/tester_conditional_operator.cpp ../tes
 		../data/seed.h \
 		../modules/om_one_element_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../modules/om_multi_elements_changed_neighborhood.h \
 		../modules/om_best_improvement_selection.h \
 		../modules/om_always_improve_decition.h \
@@ -1403,8 +1536,10 @@ reached_cost_expression.o: ../expressions/reached_cost_expression.cpp ../express
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/computation_data.h
+		../data/dStrategy/factory_domain.h \
+		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reached_cost_expression.o ../expressions/reached_cost_expression.cpp
 
 om_simulated_annealing_decition.o: ../modules/om_simulated_annealing_decition.cpp ../modules/om_simulated_annealing_decition.h \
@@ -1415,7 +1550,9 @@ om_simulated_annealing_decition.o: ../modules/om_simulated_annealing_decition.cp
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../tools/randomizer.h \
 		../data/seed.h \
 		../data/decision_pair.h
@@ -1434,30 +1571,36 @@ om_random_selection.o: ../modules/om_random_selection.cpp ../modules/om_random_s
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../tools/randomizer.h \
 		../data/seed.h \
 		../data/decision_pair.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h
+		../data/dStrategy/posl_iterator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_random_selection.o ../modules/om_random_selection.cpp
 
-best_improvement_tabu_v_search_state.o: ../data/best_improvement_tabu_v_search_state.cpp ../data/best_improvement_tabu_v_search_state.h \
-		../data/v_search_state.h \
+best_improvement_tabu_v_search_state.o: ../data/dStrategy/best_improvement_tabu_v_search_state.cpp ../data/dStrategy/best_improvement_tabu_v_search_state.h \
+		../data/dStrategy/v_search_state.h \
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/posl_iterator.h \
 		../tools/tabu_list.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o best_improvement_tabu_v_search_state.o ../data/best_improvement_tabu_v_search_state.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o best_improvement_tabu_v_search_state.o ../data/dStrategy/best_improvement_tabu_v_search_state.cpp
 
 tabu_list.o: ../tools/tabu_list.cpp ../tools/tabu_list.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
-		../data/computation_data.h
+		../data/dStrategy/factory_domain.h \
+		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tabu_list.o ../tools/tabu_list.cpp
 
 om_best_improvement_tabu_selection.o: ../modules/om_best_improvement_tabu_selection.cpp ../modules/om_best_improvement_tabu_selection.h \
@@ -1468,14 +1611,16 @@ om_best_improvement_tabu_selection.o: ../modules/om_best_improvement_tabu_select
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../tools/tabu_list.h \
-		../data/strategy_search_in_neighborhood.h \
+		../data/dStrategy/strategy_search_in_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../data/decision_pair.h \
-		../data/v_search_state.h \
-		../data/best_improvement_tabu_v_search_state.h
+		../data/dStrategy/v_search_state.h \
+		../data/dStrategy/best_improvement_tabu_v_search_state.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_best_improvement_tabu_selection.o ../modules/om_best_improvement_tabu_selection.cpp
 
 tester_random_selection.o: ../testers/tester_random_selection.cpp ../testers/tester_random_selection.h \
@@ -1483,8 +1628,10 @@ tester_random_selection.o: ../testers/tester_random_selection.cpp ../testers/tes
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/om_random_conf_generation.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
@@ -1492,7 +1639,7 @@ tester_random_selection.o: ../testers/tester_random_selection.cpp ../testers/tes
 		../data/seed.h \
 		../modules/om_one_element_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../modules/om_random_selection.h \
 		../tools/randomizer.h \
 		../operators/operator.h \
@@ -1512,8 +1659,10 @@ tester_simulated_annealing_decition.o: ../testers/tester_simulated_annealing_dec
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/om_simulated_annealing_decition.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
@@ -1529,15 +1678,17 @@ tester_best_improvement_tabu_selection.o: ../testers/tester_best_improvement_tab
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/om_fixed_first_configuration.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../modules/om_multi_elements_changed_neighborhood.h \
 		../data/neighborhood.h \
-		../data/posl_iterator.h \
+		../data/dStrategy/posl_iterator.h \
 		../modules/om_best_improvement_tabu_selection.h \
 		../tools/tabu_list.h \
 		../operators/operator.h \
@@ -1555,11 +1706,13 @@ tester_best_improvement_tabu_selection.o: ../testers/tester_best_improvement_tab
 random_permutation_by_blocks_generation_strategy.o: ../computation/random_permutation_by_blocks_generation_strategy.cpp ../computation/random_permutation_by_blocks_generation_strategy.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../data/seed.h \
 		../tools/randomizer.h \
-		../data/factory_n_int_domain.h
+		../data/dStrategy/factory_n_int_domain.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o random_permutation_by_blocks_generation_strategy.o ../computation/random_permutation_by_blocks_generation_strategy.cpp
 
 om_random_conf_permutation_by_blocks_generation.o: ../modules/om_random_conf_permutation_by_blocks_generation.cpp ../modules/om_random_conf_permutation_by_blocks_generation.h \
@@ -1570,7 +1723,9 @@ om_random_conf_permutation_by_blocks_generation.o: ../modules/om_random_conf_per
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../data/seed.h \
 		../computation/random_permutation_by_blocks_generation_strategy.h \
 		../tools/randomizer.h
@@ -1581,14 +1736,112 @@ tester_random_permutation_configuration_generation.o: ../testers/tester_random_p
 		../benchmarks/benchmark.h \
 		../data/solution.h \
 		../data/domain.h \
-		../data/factory_domain.h \
+		../data/dStrategy/factory_domain.h \
 		../data/computation_data.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
 		../modules/operation_module.h \
 		../modules/compound_module.h \
 		../solver/psp.h \
 		../modules/om_random_conf_permutation_by_blocks_generation.h \
 		../data/seed.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_random_permutation_configuration_generation.o ../testers/tester_random_permutation_configuration_generation.cpp
+
+golfers_single_swap_neighborhood.o: ../data/golfers_single_swap_neighborhood.cpp ../data/golfers_single_swap_neighborhood.h \
+		../data/neighborhood.h \
+		../data/dStrategy/posl_iterator.h \
+		../data/computation_data.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/dStrategy/elements_change_iterator.h \
+		../tools/rand_index_generator.h \
+		../tools/matrix.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o golfers_single_swap_neighborhood.o ../data/golfers_single_swap_neighborhood.cpp
+
+om_golfers_single_swap_neighborhood.o: ../modules/om_golfers_single_swap_neighborhood.cpp ../modules/om_golfers_single_swap_neighborhood.h \
+		../modules/operation_module.h \
+		../modules/compound_module.h \
+		../data/computation_data.h \
+		../solver/psp.h \
+		../benchmarks/benchmark.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/neighborhood.h \
+		../data/dStrategy/posl_iterator.h \
+		../data/golfers_single_swap_neighborhood.h \
+		../benchmarks/golfers.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_golfers_single_swap_neighborhood.o ../modules/om_golfers_single_swap_neighborhood.cpp
+
+decision_pair_packing_strategy.o: ../data/dStrategy/decision_pair_packing_strategy.cpp ../data/dStrategy/decision_pair_packing_strategy.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/decision_pair.h \
+		../data/computation_data.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o decision_pair_packing_strategy.o ../data/dStrategy/decision_pair_packing_strategy.cpp
+
+solution_packing_strategy.o: ../data/dStrategy/solution_packing_strategy.cpp ../data/dStrategy/solution_packing_strategy.h \
+		../data/dStrategy/packing_strategy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o solution_packing_strategy.o ../data/dStrategy/solution_packing_strategy.cpp
+
+neighborhood_packing_strategy.o: ../data/dStrategy/neighborhood_packing_strategy.cpp ../data/dStrategy/neighborhood_packing_strategy.h \
+		../data/dStrategy/packing_strategy.h \
+		../data/neighborhood.h \
+		../data/dStrategy/posl_iterator.h \
+		../data/computation_data.h \
+		../data/dStrategy/neighborhood_body_packing_strategy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighborhood_packing_strategy.o ../data/dStrategy/neighborhood_packing_strategy.cpp
+
+one_element_changed_body_packing_strategy.o: ../data/dStrategy/one_element_changed_body_packing_strategy.cpp ../data/dStrategy/one_element_changed_body_packing_strategy.h \
+		../data/dStrategy/neighborhood_body_packing_strategy.h \
+		../data/one_element_changed_neighborhood.h \
+		../data/neighborhood.h \
+		../data/dStrategy/posl_iterator.h \
+		../data/computation_data.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../tools/randomizer.h \
+		../data/seed.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o one_element_changed_body_packing_strategy.o ../data/dStrategy/one_element_changed_body_packing_strategy.cpp
+
+multi_elements_changed_body_packing_strategy.o: ../data/dStrategy/multi_elements_changed_body_packing_strategy.cpp ../data/dStrategy/multi_elements_changed_body_packing_strategy.h \
+		../data/dStrategy/neighborhood_body_packing_strategy.h \
+		../data/multi_elements_changed_neighborhood.h \
+		../data/neighborhood.h \
+		../data/dStrategy/posl_iterator.h \
+		../data/computation_data.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h \
+		../tools/randomizer.h \
+		../data/seed.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o multi_elements_changed_body_packing_strategy.o ../data/dStrategy/multi_elements_changed_body_packing_strategy.cpp
+
+golfers_single_swap_body_packing_strategy.o: ../data/dStrategy/golfers_single_swap_body_packing_strategy.cpp ../data/dStrategy/golfers_single_swap_body_packing_strategy.h \
+		../data/dStrategy/neighborhood_body_packing_strategy.h \
+		../data/golfers_single_swap_neighborhood.h \
+		../data/neighborhood.h \
+		../data/dStrategy/posl_iterator.h \
+		../data/computation_data.h \
+		../data/solution.h \
+		../data/domain.h \
+		../data/dStrategy/factory_domain.h \
+		../data/dStrategy/packable.h \
+		../data/dStrategy/packing_strategy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o golfers_single_swap_body_packing_strategy.o ../data/dStrategy/golfers_single_swap_body_packing_strategy.cpp
 
 ####### Install
 

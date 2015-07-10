@@ -1,13 +1,14 @@
 #include "solution.h"
 #include "tools/tools.h"
+#include "dStrategy/solution_packing_strategy.h"
 
-Solution::Solution(vector<Domain> _domains) : domains(_domains)
-{
-}
+Solution::Solution(vector<Domain> _domains)
+    : domains(_domains), packing_strategy(new SolutionPackingStrategy(configuration))
+{}
 
-Solution::Solution(vector<Domain> _domains, vector<int> conf) : domains(_domains), configuration(conf)
-{
-}
+Solution::Solution(vector<Domain> _domains, vector<int> conf)
+    : domains(_domains), configuration(conf)
+{}
 
 bool Solution::equal(Solution * other)
 {
@@ -31,4 +32,9 @@ string Solution::configurationToString()
         ++it;
     }
     return txt + " ]";
+}
+
+int * Solution::pack()
+{
+    return packing_strategy->pack();
 }

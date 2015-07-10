@@ -1,7 +1,8 @@
 #include "decision_pair.h"
+#include "dStrategy/decision_pair_packing_strategy.h"
 
 DecisionPair::DecisionPair(Solution *_current, Solution *_found)
-    : current(_current), found(_found)
+    : current(_current), found(_found), packing_strategy(new DecisionPairPackingStrategy(this))
 {}
 
 bool DecisionPair::equals()
@@ -17,4 +18,9 @@ Solution * DecisionPair::GetCurrent()
 Solution * DecisionPair::GetFound()
 {
     return found;
+}
+
+int * DecisionPair::pack()
+{
+    return packing_strategy->pack();
 }

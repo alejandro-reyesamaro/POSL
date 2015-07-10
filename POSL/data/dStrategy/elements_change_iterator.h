@@ -1,7 +1,7 @@
 #pragma once
 
 #include "posl_iterator.h"
-#include "neighborhood.h"
+#include "../neighborhood.h"
 
 class ElementsChangeIterator : public POSL_Iterator<vector<int>>
 {

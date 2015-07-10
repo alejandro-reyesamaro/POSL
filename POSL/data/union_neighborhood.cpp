@@ -1,5 +1,5 @@
 #include "union_neighborhood.h"
-#include "union_iterator.h"
+#include "dStrategy/union_iterator.h"
 #include "tools/rand_index_generator.h"
 
 #include <algorithm>

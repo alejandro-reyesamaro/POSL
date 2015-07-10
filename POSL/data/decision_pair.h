@@ -11,12 +11,14 @@
 
 #include "computation_data.h"
 #include "solution.h"
+#include "dStrategy/packable.h"
+#include "dStrategy/packing_strategy.h"
 
 /*!
  * \class DecisionPair decision_pair.h
  * \brief Class to represent a couple of solutions (current and new found)
  */
-class DecisionPair : public ComputationData
+class DecisionPair : public ComputationData, public Packable
 {
     public:
         //! Constructor
@@ -28,6 +30,9 @@ class DecisionPair : public ComputationData
         */
         bool equals();
 
+        //! From Packable
+        int * pack();
+
         //! Returns the current solution
         Solution * GetCurrent();
         //! Returns the new found solution
@@ -38,4 +43,7 @@ class DecisionPair : public ComputationData
         Solution * current;
         //! New found solution
         Solution * found;
+        //! Packing strategy
+        PackingStrategy * packing_strategy;
+
 };

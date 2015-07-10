@@ -28,6 +28,12 @@ class Golfers : public Benchmark
         */
         int solutionCost(Solution * sol);
 
+        //! Properties
+        int Groups();
+        int PlayersPerGroup();
+        int Weeks();
+        int TotalPlayers();
+
     private:
         //! [number of groups],[players per group],[weeks to play]
         int groups, players, weeks;
