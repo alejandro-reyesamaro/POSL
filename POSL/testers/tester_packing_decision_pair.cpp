@@ -72,6 +72,6 @@ string Tester_PackingDecisionPair::test()
     //cout << pack_str << endl;
 
     return  (current_str.compare(pack_current_str) == 0 && found_str.compare(pack_found_str) == 0)
-            ? "Packing DecisionPair: OK !"
+            ? "Packing DecisionPair (" + Tools::int2str(id) + ") : OK !"
             : "Packing DecisionPair: fail :/";
 }

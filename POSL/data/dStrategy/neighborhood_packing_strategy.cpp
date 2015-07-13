@@ -30,6 +30,7 @@ int * NeighborhoodPackingStrategy::pack()
     package[1] = conf_size;
     // Configuration (current)
     copy(config.begin(), config.end(), package + 2);
+    // N_SIZE
     *(package + conf_size + 2) = neighborhood_size;
 
     // BODY

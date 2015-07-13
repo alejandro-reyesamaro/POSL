@@ -7,15 +7,15 @@ MultiElementsChangedBodyPackingStrategy::MultiElementsChangedBodyPackingStrategy
 int MultiElementsChangedBodyPackingStrategy::bodySize()
 {
     // Each change * (deg, pos and value)
-    // MAL : debe calcularse por cada cambio
+    // MAL !!!!!! : debe calcularse por cada cambio
     return changes.size() * changes[0].dim * 2;
 }
 
 int * MultiElementsChangedBodyPackingStrategy::packBody()
 {
     int * body = new int[bodySize()];
-   int count = 0;
-   int k = 0;
+    int count = 0;
+    int k = 0;
     for(vector<T_Nchanges>::iterator it = changes.begin(); it != changes.end(); ++it)
     {
         int deg = changes[k].dim;

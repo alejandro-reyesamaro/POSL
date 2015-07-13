@@ -113,7 +113,9 @@ SOURCES += main.cpp \
     testers/tester_golfers_permutation_neighborhood.cpp \
     testers/tester_packing_solution.cpp \
     testers/tester_packing_decision_pair.cpp \
-    data/dStrategy/union_body_packing_strategy.cpp
+    data/dStrategy/union_body_packing_strategy.cpp \
+    testers/tester_packing_one_element_changed_neighborhood.cpp \
+    testers/tester_packing_multi_changes_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -225,4 +227,6 @@ HEADERS += \
     testers/tester_golfers_permutation_neighborhood.h \
     testers/tester_packing_solution.h \
     testers/tester_packing_decision_pair.h \
-    data/dStrategy/union_body_packing_strategy.h
+    data/dStrategy/union_body_packing_strategy.h \
+    testers/tester_packing_one_element_changed_neighborhood.h \
+    testers/tester_packing_multi_changes_neighborhood.h

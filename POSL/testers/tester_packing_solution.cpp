@@ -45,5 +45,5 @@ string Tester_PackingSolution::test()
     //cout << conf_str << endl;
     //cout << pack_str << endl;
 
-    return  (conf_str.compare(pack_str) == 0) ? "Packing Solution: OK !" : "Packing Solution: fail :/";
+    return  (conf_str.compare(pack_str) == 0) ? "Packing Solution: (" + Tools::int2str(id) + ") : OK !" : "Packing Solution: fail :/";
 }
