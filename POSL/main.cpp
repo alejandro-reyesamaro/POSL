@@ -21,6 +21,9 @@
 #include "testers/tester_simulated_annealing_decition.h"
 #include "testers/tester_best_improvement_tabu_selection.h"
 #include "testers/tester_random_permutation_configuration_generation.h"
+#include "testers/tester_golfers_permutation_neighborhood.h"
+#include "testers/tester_packing_solution.h"
+#include "testers/tester_packing_decision_pair.h"
 
 using namespace std;
 
@@ -43,6 +46,9 @@ int main(int argc, char *argv[])
     tests.push_back(new Tester_SimulatedAnnealingDecition);
     tests.push_back(new Tester_BestImprovementTabuSelection());
     tests.push_back(new Tester_RandomPermutationConfigurationGeneration());
+    tests.push_back(new Tester_GolfersPermutationNeighborhood());
+    tests.push_back(new Tester_PackingSolution());
+    tests.push_back(new Tester_PackingDecisionPair());
 
     for(unsigned int i = 0; i < tests.size(); i++)
         cout << ">> " << tests[i]->test() << endl;

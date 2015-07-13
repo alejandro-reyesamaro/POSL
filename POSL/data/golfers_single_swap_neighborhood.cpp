@@ -1,6 +1,8 @@
 #include "golfers_single_swap_neighborhood.h"
 #include "dStrategy/elements_change_iterator.h"
 #include "tools/rand_index_generator.h"
+#include "dStrategy/neighborhood_packing_strategy.h"
+#include "dStrategy/golfers_single_swap_body_packing_strategy.h"
 
 #include <algorithm>
 #include <iostream>
@@ -13,7 +15,7 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int
     vector<int> indexes;
     for(int i = 0; i < players; i++)
         indexes.push_back(i);
-    for (int w = 0; w < weeks; w++)
+    for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
     {
         random_shuffle(indexes.begin(), indexes.end());
         for (int i = 0; i < swaps; i++)
@@ -22,6 +24,7 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int
             changes.push_back(next_change);
         }
     }
+    packing_strategy = new NeighborhoodPackingStrategy(sol->configuration, size(), new GolfersSingleSwapBodyPackingStrategy(changes, sol->configuration));
 }
 
 POSL_Iterator<vector<int>> * GolfersSingleSwapNeighborhood::getIterator()
@@ -46,4 +49,19 @@ vector<int> GolfersSingleSwapNeighborhood::applyChangeAt(int index)
     if(index >= size()) return conf;
     swap(conf[changes[index].pos1],conf[changes[index].pos2]);
     return conf;
+}
+
+int * GolfersSingleSwapNeighborhood::pack()
+{
+    return packing_strategy->pack();
+}
+
+int GolfersSingleSwapNeighborhood::bodySize()
+{
+    return packing_strategy->BodySize();
+}
+
+int * GolfersSingleSwapNeighborhood::body()
+{
+    return packing_strategy->body();
 }

@@ -8,7 +8,6 @@ class OneElementChangedBodyPackingStrategy : public NeighborhoodBodyPackingStrat
     public:
         OneElementChangedBodyPackingStrategy(vector<T_change> _changes);
         int bodySize();
-        int degree();
         int * packBody();
 
     private:

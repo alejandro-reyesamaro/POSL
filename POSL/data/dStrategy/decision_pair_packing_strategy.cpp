@@ -29,3 +29,13 @@ int * DecisionPairPackingStrategy::pack()
 
     return package;
 }
+
+int DecisionPairPackingStrategy::BodySize()
+{
+    throw "Not implemented";
+}
+
+int * DecisionPairPackingStrategy::body()
+{
+    throw "Not implemented";
+}

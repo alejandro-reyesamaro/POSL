@@ -11,6 +11,9 @@
 
 #include "dStrategy/posl_iterator.h"
 #include "computation_data.h"
+#include "dStrategy/packable.h"
+#include "dStrategy/packing_strategy.h"
+
 #include <vector>
 
 using namespace std;
@@ -19,7 +22,7 @@ using namespace std;
  * \class Neighborhood neighborhood.h
  * \brief (Abstract) Class to represent a neighborhood of a configuration
  */
-class Neighborhood : public ComputationData
+class Neighborhood : public ComputationData, public Packable
 {
     public:
         //! Constructor
@@ -43,5 +46,9 @@ class Neighborhood : public ComputationData
         * \return The value (configuration) in the position index
         */
         virtual vector<int> operator[](int index) = 0;
+
+    protected:
+        //! Packing strategy
+        PackingStrategy * packing_strategy;
 };
 

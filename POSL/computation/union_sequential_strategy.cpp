@@ -12,5 +12,5 @@ ComputationData * UnionSequentialStrategy::evaluate(PSP *psp, ComputationData * 
 {
     Neighborhood * v1 = (Neighborhood *)M1->execute(psp, input);
     Neighborhood * v2 = (Neighborhood *)M2->execute(psp, input);
-    return new UnionNeighborhood(v1, v2);
+    return new UnionNeighborhood((Solution *)input, v1, v2);
 }

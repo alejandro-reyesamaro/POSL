@@ -1,12 +1,13 @@
 #pragma once
 #include "neighborhood.h"
+#include "solution.h"
 
 class UnionNeighborhood : public Neighborhood
 {
     friend class UnionIterator;
     public:
         //! Constructor (to build the structures)
-        UnionNeighborhood(Neighborhood * v1, Neighborhood * v2);
+        UnionNeighborhood(Solution * sol, Neighborhood * v1, Neighborhood * v2);
 
         //! Returns the iterator over the elements of the set
         /*!
@@ -26,6 +27,11 @@ class UnionNeighborhood : public Neighborhood
         * \return The element (configuration) at the position index
         */
         vector<int> operator[](int index);
+
+        //! From Packable
+        int * pack();
+        int bodySize();
+        int * body();
 
     private:
         Neighborhood * V1, * V2;

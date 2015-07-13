@@ -58,6 +58,11 @@ class OneElementChangedNeighborhood : public Neighborhood
         */
         vector<int> operator[](int index);
 
+        //! From Packable
+        int * pack();
+        int bodySize();
+        int * body();
+
     private:
         //! Returns a new configuration: the value at the position changes[index].pos is changed by changes[index].new_value
         /*!

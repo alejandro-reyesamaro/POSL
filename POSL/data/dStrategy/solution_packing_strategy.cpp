@@ -22,3 +22,13 @@ int * SolutionPackingStrategy::pack()
 
     return package;
 }
+
+int SolutionPackingStrategy::BodySize()
+{
+    throw "Not implemented";
+}
+
+int * SolutionPackingStrategy::body()
+{
+    throw "Not implemented";
+}

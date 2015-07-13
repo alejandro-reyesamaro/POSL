@@ -54,6 +54,8 @@ class Solution : public ComputationData, public Packable
 
         //! From Packable
         int * pack();
+        int bodySize();
+        int * body();
 
     //private:
         //! The current configuration

@@ -32,6 +32,8 @@ class DecisionPair : public ComputationData, public Packable
 
         //! From Packable
         int * pack();
+        int bodySize();
+        int * body();
 
         //! Returns the current solution
         Solution * GetCurrent();

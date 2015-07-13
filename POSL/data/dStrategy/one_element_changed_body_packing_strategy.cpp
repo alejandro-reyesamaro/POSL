@@ -6,24 +6,17 @@ OneElementChangedBodyPackingStrategy::OneElementChangedBodyPackingStrategy(vecto
 
 int OneElementChangedBodyPackingStrategy::bodySize()
 {
-    // Each change (pos and value) + deg
-    return changes.size() * 2 + 1;
-}
-
-int OneElementChangedBodyPackingStrategy::degree()
-{
-    return 1;
+    // Each change * (deg, pos and value)
+    return changes.size() * 3;
 }
 
 int * OneElementChangedBodyPackingStrategy::packBody()
 {
-    int * body = new int[bodySize()];
-    // Deg
-    body[0] = degree();
-    // ...
-    int count = 1;
+    int * body = new int[bodySize()];    
+    int count = 0;
     for(vector<T_change>::iterator it = changes.begin(); it != changes.end(); ++it)
     {
+        body[count++] = 1;
         body[count++] = (*it).pos;
         body[count++] = (*it).new_value;
     }

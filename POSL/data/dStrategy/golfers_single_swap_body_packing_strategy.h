@@ -8,7 +8,6 @@ class GolfersSingleSwapBodyPackingStrategy : public NeighborhoodBodyPackingStrat
     public:
         GolfersSingleSwapBodyPackingStrategy(vector<T_SwapChanges> _changes, vector<int> _configuration);
         int bodySize();
-        int degree();
         int * packBody();
 
     private:

@@ -8,6 +8,8 @@ class DecisionPairPackingStrategy : public PackingStrategy
     public:
         DecisionPairPackingStrategy(DecisionPair * _pair);
         int * pack();
+        int BodySize();
+        int * body();
 
     private:
         DecisionPair * pair;

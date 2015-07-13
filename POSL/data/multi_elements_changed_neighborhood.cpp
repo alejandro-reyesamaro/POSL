@@ -1,6 +1,8 @@
 #include "multi_elements_changed_neighborhood.h"
 #include "dStrategy/elements_change_iterator.h"
 #include "tools/rand_index_generator.h"
+#include "dStrategy/neighborhood_packing_strategy.h"
+#include "dStrategy/multi_elements_changed_body_packing_strategy.h"
 
 #include <algorithm>
 #include <iostream>
@@ -49,6 +51,7 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
         T_Nchanges next_changes = {new_indexes, new_values, new_values.size()};
         changes.push_back(next_changes);
     }
+    packing_strategy = new NeighborhoodPackingStrategy(sol->configuration, size(), new MultiElementsChangedBodyPackingStrategy(changes));
 }
 
 POSL_Iterator<vector<int>> * MultiElementsChangedNeighborhood::getIterator()
@@ -74,4 +77,19 @@ vector<int> MultiElementsChangedNeighborhood::applyChangeAt(int index)
     for (int i = 0;  i < changes[index].positions.size(); i++)
         conf[changes[index].positions[i]] = changes[index].new_values[i];
     return conf;
+}
+
+int * MultiElementsChangedNeighborhood::pack()
+{
+    return packing_strategy->pack();
+}
+
+int MultiElementsChangedNeighborhood::bodySize()
+{
+    return packing_strategy->BodySize();
+}
+
+int * MultiElementsChangedNeighborhood::body()
+{
+    return packing_strategy->body();
 }

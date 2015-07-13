@@ -32,4 +32,7 @@ class OM_OneElementChangedNeighborhood : public OperationModule
         * \return The Neighborhood of the input configuration
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Packable
+        int * pack();
 };

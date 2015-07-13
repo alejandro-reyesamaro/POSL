@@ -8,12 +8,14 @@ class NeighborhoodPackingStrategy : public PackingStrategy
 {
     public:
         NeighborhoodPackingStrategy(vector<int> current_config,
-                                    Neighborhood * _neighborhood,
+                                    int _neighborhood_size,
                                     NeighborhoodBodyPackingStrategy * _body_packing_strategy);
         int * pack();
+        int BodySize();
+        int * body();
 
     private:
-        Neighborhood * neighborhood;
+        int neighborhood_size;
         vector<int> config;
-        NeighborhoodBodyPackingStrategy * body;
+        NeighborhoodBodyPackingStrategy * body_strategy;
 };

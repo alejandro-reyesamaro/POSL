@@ -1,13 +1,17 @@
 #include "union_neighborhood.h"
 #include "dStrategy/union_iterator.h"
 #include "tools/rand_index_generator.h"
+#include "dStrategy/neighborhood_packing_strategy.h"
+#include "dStrategy/union_body_packing_strategy.h"
 
 #include <algorithm>
 #include <iostream>
 #include <chrono>
 
-UnionNeighborhood::UnionNeighborhood(Neighborhood * v1, Neighborhood * v2) : V1(v1), V2(v2)
-{}
+UnionNeighborhood::UnionNeighborhood(Solution * sol, Neighborhood * v1, Neighborhood * v2) : V1(v1), V2(v2)
+{
+    packing_strategy = new NeighborhoodPackingStrategy(sol->configuration, v1 ->size() + v2->size(), new UnionBodyPackingStrategy(v1, v2));
+}
 
 POSL_Iterator<vector<int>> * UnionNeighborhood::getIterator()
 {
@@ -31,4 +35,19 @@ vector<int> UnionNeighborhood::operator[](int index)
         index = index-V1->size();
         return V2->operator [](index);
     }
+}
+
+int * UnionNeighborhood::pack()
+{
+    packing_strategy->pack();
+}
+
+int UnionNeighborhood::bodySize()
+{
+    return packing_strategy->BodySize();
+}
+
+int * UnionNeighborhood::body()
+{
+    return packing_strategy->body();
 }

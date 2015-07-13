@@ -1,5 +1,7 @@
 #include "one_element_changed_neighborhood.h"
 #include "dStrategy/elements_change_iterator.h"
+#include "dStrategy/neighborhood_packing_strategy.h"
+#include "dStrategy/one_element_changed_body_packing_strategy.h"
 
 #include <algorithm>
 #include <chrono>
@@ -7,6 +9,7 @@
 #define N_NEIGHBORS 16
 
 OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : rand()
+
 {
     current_solution = sol;
     int n = sol->configuration.size();
@@ -31,6 +34,7 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : r
         T_change next_change = {indexes[i], posible_values[pos_new_value]};
         changes.push_back(next_change);
     }
+    packing_strategy = new NeighborhoodPackingStrategy(sol->configuration, size(), new OneElementChangedBodyPackingStrategy(changes));
 }
 
 POSL_Iterator<vector<int>> * OneElementChangedNeighborhood::getIterator()
@@ -58,3 +62,17 @@ vector<int> OneElementChangedNeighborhood::applyChangeAt(int index)
     return conf;
 }
 
+int * OneElementChangedNeighborhood::pack()
+{
+    return packing_strategy->pack();
+}
+
+int OneElementChangedNeighborhood::bodySize()
+{
+    return packing_strategy->BodySize();
+}
+
+int * OneElementChangedNeighborhood::body()
+{
+    return packing_strategy->body();
+}

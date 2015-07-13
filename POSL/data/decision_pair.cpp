@@ -24,3 +24,13 @@ int * DecisionPair::pack()
 {
     return packing_strategy->pack();
 }
+
+int DecisionPair::bodySize()
+{
+    return packing_strategy->BodySize();
+}
+
+int * DecisionPair::body()
+{
+    return packing_strategy->body();
+}

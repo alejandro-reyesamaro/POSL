@@ -6,25 +6,21 @@ MultiElementsChangedBodyPackingStrategy::MultiElementsChangedBodyPackingStrategy
 
 int MultiElementsChangedBodyPackingStrategy::bodySize()
 {
-    // Each change (pos and value) * number of changes + deg
-    return changes.size() * degree() * 2 + 1;
-}
-
-int MultiElementsChangedBodyPackingStrategy::degree()
-{
-    return changes[0].dim;
+    // Each change * (deg, pos and value)
+    // MAL : debe calcularse por cada cambio
+    return changes.size() * changes[0].dim * 2;
 }
 
 int * MultiElementsChangedBodyPackingStrategy::packBody()
 {
     int * body = new int[bodySize()];
-    // Deg
-    body[0] = degree();
-    // ...
-    int count = 1;
+   int count = 0;
+   int k = 0;
     for(vector<T_Nchanges>::iterator it = changes.begin(); it != changes.end(); ++it)
     {
-        for(int i = 0; i < degree(); i++)
+        int deg = changes[k].dim;
+        body[count++] = deg;
+        for(int i = 0; i < deg; i++)
         {
             body[count++] = (*it).positions[i];
             body[count++] = (*it).new_values[i];

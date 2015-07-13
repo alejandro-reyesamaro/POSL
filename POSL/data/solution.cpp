@@ -7,7 +7,9 @@ Solution::Solution(vector<Domain> _domains)
 {}
 
 Solution::Solution(vector<Domain> _domains, vector<int> conf)
-    : domains(_domains), configuration(conf)
+    : domains(_domains),
+      configuration(conf),
+      packing_strategy(new SolutionPackingStrategy(configuration))
 {}
 
 bool Solution::equal(Solution * other)
@@ -37,4 +39,14 @@ string Solution::configurationToString()
 int * Solution::pack()
 {
     return packing_strategy->pack();
+}
+
+int Solution::bodySize()
+{
+    return packing_strategy->BodySize();
+}
+
+int * Solution::body()
+{
+    return packing_strategy->body();
 }
