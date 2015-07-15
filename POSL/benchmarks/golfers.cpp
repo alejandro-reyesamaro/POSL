@@ -12,10 +12,10 @@ Golfers::Golfers(int g, int p, int w) : groups(g), players(p), weeks(w)
 {
 }
 
-int Golfers::solutionCost(Solution *sol)
+int Golfers::solutionCost(Solution * sol)
 {
     //cout << "Begin" << endl;
-    int golfers = players*groups;
+    int golfers = players * groups;
     int table_length = golfers / 32 + 1;                                        // how long must be the LongInt
     vector<LongInt> global_partners (golfers+1, LongInt(table_length, 0));         // player i in pos i
     vector<LongInt> group_partners (golfers+1, LongInt(table_length, 0));

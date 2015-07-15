@@ -26,6 +26,8 @@
 #include "testers/tester_packing_decision_pair.h"
 #include "testers/tester_packing_one_element_changed_neighborhood.h"
 #include "testers/tester_packing_multi_changes_neighborhood.h"
+#include "testers/tester_packing_golfers_permutation_neighborhood.h"
+#include "testers/tester_packing_union_neighborhood.h"
 
 using namespace std;
 
@@ -53,6 +55,8 @@ int main(int argc, char *argv[])
     tests.push_back(new Tester_PackingDecisionPair());
     tests.push_back(new Tester_PackingOneElementChangedNeighborhood());
     tests.push_back(new Tester_PackingMultiChangesNeighborhood());
+    tests.push_back(new Tester_PackingGolfersPermutationNeighborhood());
+    tests.push_back(new Tester_PackingUnionNeighborhood());
 
     for(unsigned int i = 0; i < tests.size(); i++)
         cout << ">> " << tests[i]->test() << endl;

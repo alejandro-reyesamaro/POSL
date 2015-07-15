@@ -1,14 +1,14 @@
-#include "tester_packing_one_element_changed_neighborhood.h"
+#include "tester_packing_golfers_permutation_neighborhood.h"
 #include "data/solution.h"
 #include "solver/psp.h"
-#include "modules/om_one_element_changed_neighborhood.h"
+#include "modules/om_golfers_single_swap_neighborhood.h"
 #include "packing_neighborhood_tester.h"
 
-Tester_PackingOneElementChangedNeighborhood::Tester_PackingOneElementChangedNeighborhood()
+Tester_PackingGolfersPermutationNeighborhood::Tester_PackingGolfersPermutationNeighborhood()
 {
 }
 
-string Tester_PackingOneElementChangedNeighborhood::test()
+string Tester_PackingGolfersPermutationNeighborhood::test()
 {
     vector<int> config(
     {
@@ -24,11 +24,11 @@ string Tester_PackingOneElementChangedNeighborhood::test()
     });
     PSP * psp = new PSP(bench);
     Solution * sol = new Solution(bench->GetSolution()->domains, config);
-    OperationModule * op = new OM_OneElementChangedNeighborhood();
+    OperationModule * op = new OM_GolfersSingleSwapNeighborhood();
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
     int * pack = V->pack();
     POSL_Iterator<vector<int>> * it = V ->getIterator();
 
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
-    return tester->test(bench, sol, it, pack, "Packing One Element Changed Neighborhood");
+    return tester->test(bench, sol, it, pack, "Golfers Permutation Neighborhood");
 }

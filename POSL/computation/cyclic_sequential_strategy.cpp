@@ -5,7 +5,7 @@
 CyclicSequentialStrategy::CyclicSequentialStrategy(CompoundModule * _M1, BooleanExpression *_ex) : M1(_M1), ex(_ex)
 {}
 
-ComputationData * CyclicSequentialStrategy::evaluate(PSP *psp, ComputationData * input)
+ComputationData * CyclicSequentialStrategy::evaluate(PSP * psp, ComputationData * input)
 {
     ComputationData * output = input;
 

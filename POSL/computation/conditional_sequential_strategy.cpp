@@ -7,7 +7,7 @@ ConditionalSequentialStrategy::ConditionalSequentialStrategy(CompoundModule * _M
     : M1(_M1), M2(_M2), ex(_ex)
 {}
 
-ComputationData * ConditionalSequentialStrategy::evaluate(PSP *psp, ComputationData * input)
+ComputationData * ConditionalSequentialStrategy::evaluate(PSP * psp, ComputationData * input)
 {
     ComputationData * output = (ex->evaluate(psp))
             ? M1->execute(psp, input)

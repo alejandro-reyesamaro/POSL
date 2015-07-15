@@ -1,14 +1,18 @@
+#include "tester_packing_union_neighborhood.h"
 #include "tester_packing_one_element_changed_neighborhood.h"
 #include "data/solution.h"
 #include "solver/psp.h"
 #include "modules/om_one_element_changed_neighborhood.h"
+#include "modules/om_multi_elements_changed_neighborhood.h"
 #include "packing_neighborhood_tester.h"
+#include "operators/union_operator.h"
+#include "modules/grouped_sequential_computation.h"
 
-Tester_PackingOneElementChangedNeighborhood::Tester_PackingOneElementChangedNeighborhood()
+Tester_PackingUnionNeighborhood::Tester_PackingUnionNeighborhood()
 {
 }
 
-string Tester_PackingOneElementChangedNeighborhood::test()
+string Tester_PackingUnionNeighborhood::test()
 {
     vector<int> config(
     {
@@ -24,11 +28,15 @@ string Tester_PackingOneElementChangedNeighborhood::test()
     });
     PSP * psp = new PSP(bench);
     Solution * sol = new Solution(bench->GetSolution()->domains, config);
-    OperationModule * op = new OM_OneElementChangedNeighborhood();
-    Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
+    OperationModule * m1 = new OM_OneElementChangedNeighborhood();
+    OperationModule * m2 = new OM_MultiElementsChangedNeighborhood();
+
+    Operator * op = new UnionOperator(m1, m2);
+    CompoundModule * G1 = new GroupedSequentialComputation(op);
+
+    Neighborhood * V = (Neighborhood *)G1->execute(psp, sol);
     int * pack = V->pack();
     POSL_Iterator<vector<int>> * it = V ->getIterator();
-
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
-    return tester->test(bench, sol, it, pack, "Packing One Element Changed Neighborhood");
+    return tester->test(bench, sol, it, pack, "Packing Union Neighborhood");
 }
