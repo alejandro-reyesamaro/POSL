@@ -4,6 +4,6 @@
 class Tester_CyclicOperator : public Tester
 {
     public:
-        Tester_CyclicOperator();
+        Tester_CyclicOperator(int argc, char *argv[]);
         string test();
 };

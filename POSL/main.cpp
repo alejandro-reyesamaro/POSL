@@ -31,32 +31,34 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
     vector<Tester *> tests;
-    tests.push_back(new Tester_CostOfSolution());
-    tests.push_back(new Tester_RandomConfigurationGeneration());
-    tests.push_back(new Tester_FlorianRandomConfigurationGeneration());
-    tests.push_back(new Tester_OneElementChangedNeighborhood());
-    tests.push_back(new Tester_FirstImprovementSelection());
-    tests.push_back(new Tester_BestImprovementSelection());
-    tests.push_back(new Tester_RhoOperator());
-    //tests.push_back(new Tester_CyclicOperator());
-    tests.push_back(new Tester_SetsIndexGenerator());
-    tests.push_back(new Tester_MultiElementsChangedNeighborhood());
-    tests.push_back(new Tester_UnionOperator());
-    tests.push_back(new Tester_ConditionalOperator());
-    tests.push_back(new Tester_RandomSelection());
-    tests.push_back(new Tester_SimulatedAnnealingDecition);
-    tests.push_back(new Tester_BestImprovementTabuSelection());
-    tests.push_back(new Tester_RandomPermutationConfigurationGeneration());
-    tests.push_back(new Tester_GolfersPermutationNeighborhood());
-    tests.push_back(new Tester_PackingSolution());
-    tests.push_back(new Tester_PackingDecisionPair());
-    tests.push_back(new Tester_PackingOneElementChangedNeighborhood());
-    tests.push_back(new Tester_PackingMultiChangesNeighborhood());
-    tests.push_back(new Tester_PackingGolfersPermutationNeighborhood());
-    tests.push_back(new Tester_PackingUnionNeighborhood());
+
+
+    tests.push_back(new Tester_CostOfSolution(argc, argv));
+    tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
+    tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
+    tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_FirstImprovementSelection(argc, argv));
+    tests.push_back(new Tester_BestImprovementSelection(argc, argv));
+    tests.push_back(new Tester_RhoOperator(argc, argv));
+    //tests.push_back(new Tester_CyclicOperator(argc, argv));
+    tests.push_back(new Tester_SetsIndexGenerator(argc, argv));
+    tests.push_back(new Tester_MultiElementsChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_UnionOperator(argc, argv));
+    tests.push_back(new Tester_ConditionalOperator(argc, argv));
+    tests.push_back(new Tester_RandomSelection(argc, argv));
+    tests.push_back(new Tester_SimulatedAnnealingDecition(argc, argv));
+    tests.push_back(new Tester_BestImprovementTabuSelection(argc, argv));
+    tests.push_back(new Tester_RandomPermutationConfigurationGeneration(argc, argv));
+    tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingSolution(argc, argv));
+    tests.push_back(new Tester_PackingDecisionPair(argc, argv));
+    tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
 
     for(unsigned int i = 0; i < tests.size(); i++)
         cout << ">> " << tests[i]->test() << endl;

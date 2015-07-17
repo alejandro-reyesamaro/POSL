@@ -53,9 +53,9 @@ class Solution : public ComputationData, public Packable
         string configurationToString();
 
         //! From Packable
-        int * pack();
+        vector<int> pack();
         int bodySize();
-        int * body();
+        vector<int> body();
 
     //private:
         //! The current configuration

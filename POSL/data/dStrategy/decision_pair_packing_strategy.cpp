@@ -1,32 +1,27 @@
 #include "decision_pair_packing_strategy.h"
 
-#include <vector>
+#include <algorithm>
 
 DecisionPairPackingStrategy::DecisionPairPackingStrategy(DecisionPair * _pair)
     : pair(_pair)
 {}
 
-int * DecisionPairPackingStrategy::pack()
+vector<int> DecisionPairPackingStrategy::pack()
 {
-    int conf_size = pair->GetCurrent()->configuration.size();
-    int * package = new int[conf_size * 2 + 2];
+    int conf_size = pair->GetCurrent()->configuration.size();   
+    vector<int> package(conf_size * 2 + 2);
     // ID = 1
     package[0] = 1;
     // Configuration size
     package[1] = conf_size;
 
-    int count = 2;
-
     // Configuration 1 (current)
     vector<int> current_conf = pair->GetCurrent()->configuration;
-    for(vector<int>::iterator it = current_conf.begin(); it != current_conf.end(); ++it)
-        package[count++] = *it;
+    copy(current_conf.begin(), current_conf.end(), package.begin() + 2);
 
     // Configuration 1 (current)
     vector<int> found_conf = pair->GetFound()->configuration;
-    for(vector<int>::iterator it = found_conf.begin(); it != found_conf.end(); ++it)
-        package[count++] = *it;
-
+    copy(found_conf.begin(), found_conf.end(), package.begin() + 2 + conf_size);
     return package;
 }
 
@@ -35,7 +30,7 @@ int DecisionPairPackingStrategy::BodySize()
     throw "Not implemented";
 }
 
-int * DecisionPairPackingStrategy::body()
+vector<int> DecisionPairPackingStrategy::body()
 {
     throw "Not implemented";
 }

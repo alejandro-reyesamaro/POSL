@@ -4,7 +4,8 @@
 #include "modules/om_golfers_single_swap_neighborhood.h"
 #include "packing_neighborhood_tester.h"
 
-Tester_PackingGolfersPermutationNeighborhood::Tester_PackingGolfersPermutationNeighborhood()
+Tester_PackingGolfersPermutationNeighborhood::Tester_PackingGolfersPermutationNeighborhood(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -22,13 +23,13 @@ string Tester_PackingGolfersPermutationNeighborhood::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    PSP * psp = new PSP(bench);
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    //PSP * psp = new PSP(bench);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
     OperationModule * op = new OM_GolfersSingleSwapNeighborhood();
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
-    int * pack = V->pack();
+    vector<int> pack = V->pack();
     POSL_Iterator<vector<int>> * it = V ->getIterator();
 
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
-    return tester->test(bench, sol, it, pack, "Golfers Permutation Neighborhood");
+    return tester->test(sol, it, pack, "Golfers Permutation Neighborhood");
 }

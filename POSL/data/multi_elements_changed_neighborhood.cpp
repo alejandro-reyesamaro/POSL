@@ -79,7 +79,7 @@ vector<int> MultiElementsChangedNeighborhood::applyChangeAt(int index)
     return conf;
 }
 
-int * MultiElementsChangedNeighborhood::pack()
+vector<int> MultiElementsChangedNeighborhood::pack()
 {
     return packing_strategy->pack();
 }
@@ -89,7 +89,7 @@ int MultiElementsChangedNeighborhood::bodySize()
     return packing_strategy->BodySize();
 }
 
-int * MultiElementsChangedNeighborhood::body()
+vector<int> MultiElementsChangedNeighborhood::body()
 {
     return packing_strategy->body();
 }

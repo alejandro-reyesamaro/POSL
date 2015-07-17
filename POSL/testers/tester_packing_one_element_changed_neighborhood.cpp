@@ -4,7 +4,8 @@
 #include "modules/om_one_element_changed_neighborhood.h"
 #include "packing_neighborhood_tester.h"
 
-Tester_PackingOneElementChangedNeighborhood::Tester_PackingOneElementChangedNeighborhood()
+Tester_PackingOneElementChangedNeighborhood::Tester_PackingOneElementChangedNeighborhood(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -22,13 +23,13 @@ string Tester_PackingOneElementChangedNeighborhood::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    PSP * psp = new PSP(bench);
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    //PSP * psp = new PSP(bench);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
     OperationModule * op = new OM_OneElementChangedNeighborhood();
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
-    int * pack = V->pack();
+    vector<int> pack = V->pack();
     POSL_Iterator<vector<int>> * it = V ->getIterator();
 
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
-    return tester->test(bench, sol, it, pack, "Packing One Element Changed Neighborhood");
+    return tester->test(sol, it, pack, "Packing One Element Changed Neighborhood");
 }

@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 MultiElementsChangedBodyPackingStrategy::MultiElementsChangedBodyPackingStrategy(vector<T_Nchanges> _changes)
     : changes(_changes)
 {}
@@ -11,21 +9,21 @@ MultiElementsChangedBodyPackingStrategy::MultiElementsChangedBodyPackingStrategy
 int MultiElementsChangedBodyPackingStrategy::bodySize()
 {
     // Each change * (deg, pos and value)
-    // MAL !!!!!! : debe calcularse por cada cambio
-    return changes.size() * (changes[0].dim * 2 + 1);
+    int degs = 0;
+    for(vector<T_Nchanges>::iterator it = changes.begin(); it != changes.end(); ++it)
+        degs = degs + (*it).dim * 2;
+    return degs + changes.size();
 }
 
-int * MultiElementsChangedBodyPackingStrategy::packBody()
+vector<int> MultiElementsChangedBodyPackingStrategy::packBody()
 {
-    int * body = new int[bodySize()];
+    vector<int> body(bodySize());
     int count = 0;
     int k = 0;
-    int c = 1;
     for(vector<T_Nchanges>::iterator it = changes.begin(); it != changes.end(); ++it)
     {
         int deg = changes[k].dim;
         body[count++] = deg;
-        c++;
         for(int i = 0; i < deg; i++)
         {
             int pos = (*it).positions[i];

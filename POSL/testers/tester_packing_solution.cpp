@@ -5,7 +5,8 @@
 
 #include <algorithm>
 
-Tester_PackingSolution::Tester_PackingSolution()
+Tester_PackingSolution::Tester_PackingSolution(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -23,24 +24,28 @@ string Tester_PackingSolution::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    PSP * psp = new PSP(bench);
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    //PSP * psp = new PSP(bench);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
     string conf_str = sol->configurationToString();
-    int * pack = sol->pack();
+    vector<int> pack = sol->pack();
 
     // | ID |
-    int id = * pack;
-    pack ++;
+    int id = pack[0];
 
     // | conf_size |
-    int conf_size = * pack;
-    pack ++;
+    int conf_size = pack[1];
 
     // | configuration |
     string pack_str = "[ ";
+    for(vector<int>::iterator it = pack.begin() + 2; it != pack.end() - 1; ++it)
+        pack_str += Tools::int2str(* it) + ", ";
+    pack_str += Tools::int2str(pack.back()) +" ]";
+
+    /*
     for(int i = 0; i < conf_size - 1; i++)
         pack_str += Tools::int2str(* pack ++) + ", ";
     pack_str += Tools::int2str(* pack) +" ]";
+    */
 
     //cout << conf_str << endl;
     //cout << pack_str << endl;

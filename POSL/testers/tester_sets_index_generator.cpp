@@ -2,7 +2,8 @@
 #include "tools/rand_index_generator.h"
 #include "tools/tools.h"
 
-Tester_SetsIndexGenerator::Tester_SetsIndexGenerator()
+Tester_SetsIndexGenerator::Tester_SetsIndexGenerator(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 

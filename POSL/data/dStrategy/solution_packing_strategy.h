@@ -2,17 +2,13 @@
 
 #include "packing_strategy.h"
 
-#include <vector>
-
-using namespace std;
-
 class SolutionPackingStrategy : public PackingStrategy
 {
     public:
         SolutionPackingStrategy(vector<int> _config);
-        int * pack();
+        vector<int> pack();
         int BodySize();
-        int * body();
+        vector<int> body();
 
     private:
         vector<int> configuration;

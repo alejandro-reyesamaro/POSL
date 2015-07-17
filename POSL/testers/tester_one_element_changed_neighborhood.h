@@ -5,6 +5,6 @@
 class Tester_OneElementChangedNeighborhood : public Tester
 {
     public:
-        Tester_OneElementChangedNeighborhood();
+        Tester_OneElementChangedNeighborhood(int argc, char *argv[]);
         string test();
 };

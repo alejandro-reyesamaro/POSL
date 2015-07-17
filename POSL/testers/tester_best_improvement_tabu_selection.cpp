@@ -9,7 +9,8 @@
 #include "data/decision_pair.h"
 #include "tools/tools.h"
 
-Tester_BestImprovementTabuSelection::Tester_BestImprovementTabuSelection()
+Tester_BestImprovementTabuSelection::Tester_BestImprovementTabuSelection(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -28,12 +29,12 @@ string Tester_BestImprovementTabuSelection::test()
         1,  1,  1,  1
     });
 
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
     //bench->UpdateSolution(sol);
-    PSP * psp = new PSP(bench);
+    //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol);
     psp->UpdateBestSolution(sol);
-    int initial_cost = bench->solutionCost(sol);
+    int initial_cost = psp->GetBenchmark()->solutionCost(sol);
 
 
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();
@@ -59,7 +60,7 @@ string Tester_BestImprovementTabuSelection::test()
     {
         pair = (DecisionPair *)G2->execute(psp, sol);
         sol = pair->GetFound();
-        cost = bench->solutionCost(sol);
+        cost = psp->GetBenchmark()->solutionCost(sol);
         psp->UpdateSolution(sol);
         cout << sol->configurationToString() << " - cost: " << cost << endl;
     }

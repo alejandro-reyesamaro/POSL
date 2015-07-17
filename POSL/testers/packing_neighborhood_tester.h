@@ -11,5 +11,5 @@ class PackingNeighborhoodTester
 {
     public:
         PackingNeighborhoodTester();
-        string test(Benchmark *bench, Solution *sol, POSL_Iterator<vector<int>> * neighbors, int * pack, string label);
+        string test(Solution *sol, POSL_Iterator<vector<int>> * neighbors, vector<int> pack, string label);
 };

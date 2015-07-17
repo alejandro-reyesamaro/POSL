@@ -20,7 +20,7 @@ Solution * DecisionPair::GetFound()
     return found;
 }
 
-int * DecisionPair::pack()
+vector<int> DecisionPair::pack()
 {
     return packing_strategy->pack();
 }
@@ -30,7 +30,7 @@ int DecisionPair::bodySize()
     return packing_strategy->BodySize();
 }
 
-int * DecisionPair::body()
+vector<int> DecisionPair::body()
 {
     return packing_strategy->body();
 }

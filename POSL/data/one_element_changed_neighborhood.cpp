@@ -62,7 +62,7 @@ vector<int> OneElementChangedNeighborhood::applyChangeAt(int index)
     return conf;
 }
 
-int * OneElementChangedNeighborhood::pack()
+vector<int> OneElementChangedNeighborhood::pack()
 {
     return packing_strategy->pack();
 }
@@ -72,7 +72,7 @@ int OneElementChangedNeighborhood::bodySize()
     return packing_strategy->BodySize();
 }
 
-int * OneElementChangedNeighborhood::body()
+vector<int> OneElementChangedNeighborhood::body()
 {
     return packing_strategy->body();
 }

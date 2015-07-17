@@ -1,27 +1,44 @@
-#include "mpi.h"
+/* Shows how to use probe & get_count to find the size of an */
+/* incomming message                                         */
 #include <stdio.h>
-
-using namespace std;
-
-int main(int argc, char ** argv)
+#include <stdlib.h>
+#include <mpi.h>
+#include <math.h>
+int main(int argc,char **argv)
 {
-    int numtasks, rank, rc;
-    rc = MPI_Init(&argc,&argv);
+    int myid, numprocs;
+    MPI_Status status;
+    int mytag,ierr,icount,*j,*i;
 
-    if (rc != 0)
-    {
-        printf ("Error starting MPI program. Terminating.\n");
-        MPI_Abort(MPI_COMM_WORLD, rc);
+    MPI_Init(&argc,&argv);
+    MPI_Comm_size(MPI_COMM_WORLD,&numprocs);
+    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
+    printf(" Hello from c process: %d  Numprocs is %d\n",myid,numprocs);
+
+    mytag=123;
+    if(myid == 0) {
+        j=(int*)malloc(2*sizeof(int));
+        j[0] = 4; j[1] = 8;
+        icount=2;
+        ierr=MPI_Send(j,icount,MPI_INT,1,mytag,MPI_COMM_WORLD);
     }
-
-    MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
-
-    MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-
-    //cout << "Number of tasks= " << numtasks << " My rank= " << rank << endl;
-    printf ("Number of tasks= %d My rank= %d\n", numtasks,rank);
-
-    /******* do some work *******/
-
+    if(myid == 1){
+        ierr=MPI_Probe(0,mytag,MPI_COMM_WORLD,&status);
+        ierr=MPI_Get_count(&status,MPI_INT,&icount);
+        i=(int*)malloc(icount*sizeof(int));
+        printf("getting %d\n",icount);
+        ierr = MPI_Recv(i,icount,MPI_INT,0,mytag,MPI_COMM_WORLD,&status);
+        printf("i= ");
+        for(int k=0;k<icount;k++)
+            printf("%d ",i[k]);
+        printf("\n");
+    }
     MPI_Finalize();
 }
+
+
+// Compile command line:
+// $ mpicc.mpich main.cpp -o main
+
+// Execte command line:
+// $ mpiexec.mpich -np 2 ./main

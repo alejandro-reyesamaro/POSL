@@ -4,6 +4,6 @@
 class Tester_SetsIndexGenerator : public Tester
 {
     public:
-        Tester_SetsIndexGenerator();
+        Tester_SetsIndexGenerator(int argc, char *argv[]);
         string test();
 };

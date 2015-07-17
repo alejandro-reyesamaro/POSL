@@ -1,6 +1,6 @@
 #include "psp.h"
 
-PSP::PSP(Benchmark * _bench) : bench(_bench), iterations(0)
+PSP::PSP(int _argc, char **_argv, Benchmark * _bench) : bench(_bench), iterations(0), ARGC(_argc), ARGV(_argv)
 {}
 
 void PSP::UpdateBestSolution(Solution * sol)

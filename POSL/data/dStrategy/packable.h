@@ -1,10 +1,14 @@
 #pragma once
 
+#include <vector>
+
+using namespace std;
+
 class Packable
 {
     public :
-        virtual int * pack() = 0;
+        virtual vector<int> pack() = 0;
 
         virtual int bodySize() = 0;
-        virtual int * body() = 0;
+        virtual vector<int> body() = 0;
 };

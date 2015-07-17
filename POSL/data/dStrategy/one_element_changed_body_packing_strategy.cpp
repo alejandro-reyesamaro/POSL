@@ -10,9 +10,9 @@ int OneElementChangedBodyPackingStrategy::bodySize()
     return changes.size() * 3;
 }
 
-int * OneElementChangedBodyPackingStrategy::packBody()
+vector<int> OneElementChangedBodyPackingStrategy::packBody()
 {
-    int * body = new int[bodySize()];    
+    vector<int> body(bodySize());
     int count = 0;
     for(vector<T_change>::iterator it = changes.begin(); it != changes.end(); ++it)
     {

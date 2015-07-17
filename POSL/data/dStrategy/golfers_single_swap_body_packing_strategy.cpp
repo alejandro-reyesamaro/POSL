@@ -10,9 +10,9 @@ int GolfersSingleSwapBodyPackingStrategy::bodySize()
     return changes.size() * 5;
 }
 
-int * GolfersSingleSwapBodyPackingStrategy::packBody()
+vector<int> GolfersSingleSwapBodyPackingStrategy::packBody()
 {
-    int * body = new int[bodySize()];
+    vector<int> body(bodySize());
     int count = 0;
     for(vector<T_SwapChanges>::iterator it = changes.begin(); it != changes.end(); ++it)
     {

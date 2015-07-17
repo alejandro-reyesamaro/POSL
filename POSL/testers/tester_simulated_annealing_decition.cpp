@@ -3,7 +3,8 @@
 #include "data/decision_pair.h"
 #include "tools/tools.h"
 
-Tester_SimulatedAnnealingDecition::Tester_SimulatedAnnealingDecition()
+Tester_SimulatedAnnealingDecition::Tester_SimulatedAnnealingDecition(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -35,10 +36,10 @@ string Tester_SimulatedAnnealingDecition::test()
         1,  1,  1,  1
     });
 
-    Solution * sol1 = new Solution(bench->GetSolution()->domains, config1);
-    Solution * sol2 = new Solution(bench->GetSolution()->domains, config2);
+    Solution * sol1 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config1);
+    Solution * sol2 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config2);
     //bench->UpdateSolution(sol);
-    PSP * psp = new PSP(bench);
+    //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol2);
 
     int cost1 = psp->GetBenchmark()->solutionCost(sol1);

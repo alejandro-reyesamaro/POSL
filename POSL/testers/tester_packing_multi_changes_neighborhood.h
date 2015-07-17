@@ -5,6 +5,6 @@
 class Tester_PackingMultiChangesNeighborhood : public Tester
 {
     public:
-        Tester_PackingMultiChangesNeighborhood();
+        Tester_PackingMultiChangesNeighborhood(int argc, char *argv[]);
         string test();
 };

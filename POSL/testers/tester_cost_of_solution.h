@@ -4,6 +4,6 @@
 class Tester_CostOfSolution : public Tester
 {
     public:
-        Tester_CostOfSolution();
+        Tester_CostOfSolution(int argc, char *argv[]);
         string test();
 };

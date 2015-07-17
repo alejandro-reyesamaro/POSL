@@ -12,22 +12,9 @@
 #include "neighborhood.h"
 #include "solution.h"
 #include "tools/randomizer.h"
+#include "t_nchanges.h"
 
 #include <random>
-
-/*!
- * \class T_Nchanges certain_elements_changed_neighborhood.h
- * \brief Struct to a pair (positions, values) as a change in a configuration
- */
-typedef struct
-{
-    //! Index in the configuration vector
-    vector<int> positions;
-    //! New values
-    vector<int> new_values;
-    //! Number of changes
-    int dim;
-}T_Nchanges;
 
 /*!
  * \class MultiElementsChangedNeighborhood multi_elements_changed_neighborhood.h
@@ -61,9 +48,9 @@ class MultiElementsChangedNeighborhood : public Neighborhood
         vector<int> operator[](int index);
 
         //! From Packable
-        int * pack();
+        vector<int> pack();
         int bodySize();
-        int * body();
+        vector<int> body();
 
     private:
         //! Returns a new configuration: the value at the position changes[index].pos is changed by changes[index].new_value

@@ -16,7 +16,8 @@
 #include "modules/grouped_sequential_computation.h"
 #include "tools/tools.h"
 
-Tester_ConditionalOperator::Tester_ConditionalOperator()
+Tester_ConditionalOperator::Tester_ConditionalOperator(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -61,12 +62,12 @@ string Tester_ConditionalOperator::test()
         16,  3,  6,  9
     });
 
-    PSP * psp = new PSP(bench);
-    Solution * sol1 = new Solution(bench->GetSolution()->domains, config1);
-    Solution * sol2 = new Solution(bench->GetSolution()->domains, config2);
+    //PSP * psp = new PSP(bench);
+    Solution * sol1 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config1);
+    Solution * sol2 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config2);
 
-    int c1 = bench->solutionCost(sol1);
-    int c2 = bench->solutionCost(sol2);
+    int c1 = psp->GetBenchmark()->solutionCost(sol1);
+    int c2 = psp->GetBenchmark()->solutionCost(sol2);
 
     //cout << c1 << " and " << c2 << endl;
 

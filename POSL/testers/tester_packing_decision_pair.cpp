@@ -6,7 +6,8 @@
 
 #include <algorithm>
 
-Tester_PackingDecisionPair::Tester_PackingDecisionPair()
+Tester_PackingDecisionPair::Tester_PackingDecisionPair(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -40,33 +41,43 @@ string Tester_PackingDecisionPair::test()
 
 
     //PSP * psp = new PSP(bench);
-    Solution * sol_current = new Solution(bench->GetSolution()->domains, config1);
-    Solution * sol_found = new Solution(bench->GetSolution()->domains, config2);
+    Solution * sol_current = new Solution(psp->GetBenchmark()->GetSolution()->domains, config1);
+    Solution * sol_found = new Solution(psp->GetBenchmark()->GetSolution()->domains, config2);
     DecisionPair * pair = new DecisionPair(sol_current, sol_found);
 
     string current_str = sol_current->configurationToString();
     string found_str = sol_found->configurationToString();
-    int * pack = pair->pack();
+    vector<int> pack = pair->pack();
 
     // | ID |
-    int id = * pack;
-    pack ++;
+    int id = pack[0];
 
     // | conf_size |
-    int conf_size = * pack;
-    pack ++;
+    int conf_size = pack[1];
 
     // | configuration 1|
     string pack_current_str = "[ ";
+    for(vector<int>::iterator it = pack.begin() + 2; it != pack.begin() + conf_size + 2 - 1; ++it)
+        pack_current_str += Tools::int2str(* it) + ", ";
+    pack_current_str += Tools::int2str(*(pack.begin() + conf_size + 2 - 1)) +" ]";
+
+    /*
     for(int i = 0; i < conf_size - 1; i++)
         pack_current_str += Tools::int2str(* pack ++) + ", ";
     pack_current_str += Tools::int2str(* pack ++) +" ]";
+    */
 
     // | configuration 1|
     string pack_found_str = "[ ";
+    for(vector<int>::iterator it = pack.begin() + conf_size + 2; it != pack.end() - 1; ++it)
+        pack_found_str += Tools::int2str(* it) + ", ";
+    pack_found_str += Tools::int2str(pack.back()) +" ]";
+
+    /*
     for(int i = 0; i < conf_size - 1; i++)
         pack_found_str += Tools::int2str(* pack ++) + ", ";
     pack_found_str += Tools::int2str(* pack) +" ]";
+    */
 
     //cout << conf_str << endl;
     //cout << pack_str << endl;

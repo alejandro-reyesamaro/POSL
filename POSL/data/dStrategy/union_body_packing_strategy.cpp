@@ -2,8 +2,6 @@
 
 #include <algorithm>
 
-using namespace std;
-
 UnionBodyPackingStrategy::UnionBodyPackingStrategy(Packable *_V1, Packable *_V2)
     : V1(_V1), V2(_V2)
 {}
@@ -15,12 +13,12 @@ int UnionBodyPackingStrategy::bodySize()
     return V1->bodySize() + V2->bodySize();
 }
 
-int * UnionBodyPackingStrategy::packBody()
+vector<int> UnionBodyPackingStrategy::packBody()
 {
-    int * body = new int[bodySize()];
-    int * body1 = V1->body();
-    int * body2 = V2->body();
-    copy(body1, body1 + V1->bodySize(), body);
-    copy(body2, body2 + V2->bodySize(), body + V1->bodySize());
+    vector<int> body(bodySize());
+    vector<int> body1 = V1->body();
+    vector<int> body2 = V2->body();
+    copy(body1.begin(), body1.end(), body.begin());
+    copy(body2.begin(), body2.end(), body.begin() + V1->bodySize());
     return body;
 }

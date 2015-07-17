@@ -7,7 +7,8 @@
 #include "modules/grouped_sequential_computation.h"
 #include "tools/tools.h"
 
-Tester_RhoOperator::Tester_RhoOperator()
+Tester_RhoOperator::Tester_RhoOperator(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -26,9 +27,9 @@ string Tester_RhoOperator::test()
         16,  3,  6,  9
     });
 
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
     //bench->UpdateSolution(sol);
-    PSP * psp = new PSP(bench);
+    //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol);
 
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();

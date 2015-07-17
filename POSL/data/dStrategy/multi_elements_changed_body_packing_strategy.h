@@ -8,7 +8,7 @@ class MultiElementsChangedBodyPackingStrategy : public NeighborhoodBodyPackingSt
     public:
         MultiElementsChangedBodyPackingStrategy(vector<T_Nchanges> _changes);
         int bodySize();
-        int * packBody();
+        vector<int> packBody();
 
     private:
         vector<T_Nchanges> changes;

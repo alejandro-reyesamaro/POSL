@@ -4,7 +4,8 @@
 #include "modules/om_one_element_changed_neighborhood.h"
 #include "data/one_element_changed_neighborhood.h"
 
-Tester_OneElementChangedNeighborhood::Tester_OneElementChangedNeighborhood()
+Tester_OneElementChangedNeighborhood::Tester_OneElementChangedNeighborhood(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -22,9 +23,9 @@ string Tester_OneElementChangedNeighborhood::test()
         1,  1,  1,  1,
         1,  1,  1,  1,
     });
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
     OperationModule * op = new OM_OneElementChangedNeighborhood();
-    PSP * psp = new PSP(bench);
+    //PSP * psp = new PSP(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
 
     POSL_Iterator<vector<int>> * it = V ->getIterator();

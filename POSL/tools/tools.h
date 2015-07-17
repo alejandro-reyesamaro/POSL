@@ -10,6 +10,7 @@
  */
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -26,4 +27,5 @@ class Tools
         * \return The resulting string
         */
         static string int2str(int c);
+        static string configurationToString(vector<int> config);
 };

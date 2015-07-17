@@ -4,7 +4,8 @@
 #include "modules/om_multi_elements_changed_neighborhood.h"
 #include "data/multi_elements_changed_neighborhood.h"
 
-Tester_MultiElementsChangedNeighborhood::Tester_MultiElementsChangedNeighborhood()
+Tester_MultiElementsChangedNeighborhood::Tester_MultiElementsChangedNeighborhood(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -23,10 +24,10 @@ string Tester_MultiElementsChangedNeighborhood::test()
         0,  0,  0,  0
     });
 
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
 
     OperationModule * op = new OM_MultiElementsChangedNeighborhood();
-    PSP * psp = new PSP(bench);
+    //PSP * psp = new PSP(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
 
     POSL_Iterator<vector<int>> * it = V ->getIterator();

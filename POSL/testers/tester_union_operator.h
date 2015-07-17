@@ -5,6 +5,6 @@
 class Tester_UnionOperator : public Tester
 {
     public:
-        Tester_UnionOperator();
+        Tester_UnionOperator(int argc, char *argv[]);
         string test();
 };

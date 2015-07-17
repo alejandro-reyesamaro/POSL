@@ -31,9 +31,9 @@ class DecisionPair : public ComputationData, public Packable
         bool equals();
 
         //! From Packable
-        int * pack();
+        vector<int> pack();
         int bodySize();
-        int * body();
+        vector<int> body();
 
         //! Returns the current solution
         Solution * GetCurrent();

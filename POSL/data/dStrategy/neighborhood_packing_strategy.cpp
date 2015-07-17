@@ -1,6 +1,5 @@
 #include "neighborhood_packing_strategy.h"
 
-#include <vector>
 #include <algorithm>
 
 /*
@@ -20,23 +19,22 @@ NeighborhoodPackingStrategy::NeighborhoodPackingStrategy(vector<int> current_con
     : neighborhood_size(_neighborhood_size), config(current_config), body_strategy(_body_packing_strategy)
 {}
 
-int * NeighborhoodPackingStrategy::pack()
+vector<int> NeighborhoodPackingStrategy::pack()
 {
     int conf_size = config.size();
-    int * package = new int[conf_size + 3 + body_strategy->bodySize()];
+    vector<int> package(conf_size + 3 + body_strategy->bodySize());
     // ID = 2
     package[0] = 2;
     // Configuration size
     package[1] = conf_size;
     // Configuration (current)
-    copy(config.begin(), config.end(), package + 2);
+    copy(config.begin(), config.end(), package.begin() + 2);
     // N_SIZE
-    *(package + conf_size + 2) = neighborhood_size;
+    package[conf_size + 2] = neighborhood_size;
 
     // BODY
-    int * the_body = body_strategy->packBody();
-    copy(the_body, the_body + body_strategy->bodySize(), package + conf_size + 3);
-
+    vector<int> the_body = body_strategy->packBody();
+    copy(the_body.begin(), the_body.end(), package.begin() + conf_size + 3);
     return package;
 }
 
@@ -45,7 +43,7 @@ int NeighborhoodPackingStrategy::BodySize()
     return body_strategy->bodySize();
 }
 
-int * NeighborhoodPackingStrategy::body()
+vector<int> NeighborhoodPackingStrategy::body()
 {
     return body_strategy->packBody();
 }

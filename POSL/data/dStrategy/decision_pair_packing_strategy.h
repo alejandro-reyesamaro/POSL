@@ -7,9 +7,9 @@ class DecisionPairPackingStrategy : public PackingStrategy
 {
     public:
         DecisionPairPackingStrategy(DecisionPair * _pair);
-        int * pack();
+        vector<int> pack();
         int BodySize();
-        int * body();
+        vector<int> body();
 
     private:
         DecisionPair * pair;

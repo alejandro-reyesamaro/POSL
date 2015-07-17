@@ -118,7 +118,10 @@ SOURCES += main.cpp \
     testers/tester_packing_multi_changes_neighborhood.cpp \
     testers/tester_packing_golfers_permutation_neighborhood.cpp \
     testers/packing_neighborhood_tester.cpp \
-    testers/tester_packing_union_neighborhood.cpp
+    testers/tester_packing_union_neighborhood.cpp \
+    computation/union_parallel_strategy.cpp \
+    data/dStrategy/neighborhood_packing_from_pack_strategy.cpp \
+    data/from_pack_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -235,4 +238,20 @@ HEADERS += \
     testers/tester_packing_multi_changes_neighborhood.h \
     testers/tester_packing_golfers_permutation_neighborhood.h \
     testers/packing_neighborhood_tester.h \
-    testers/tester_packing_union_neighborhood.h
+    testers/tester_packing_union_neighborhood.h \
+    computation/union_parallel_strategy.h \
+    data/dStrategy/neighborhood_packing_from_pack_strategy.h \
+    data/t_nchanges.h \
+    data/from_pack_neighborhood.h
+
+# MPI Settings
+QMAKE_CXX = mpicxx
+QMAKE_CXX_RELEASE = $$QMAKE_CXX
+QMAKE_CXX_DEBUG = $$QMAKE_CXX
+QMAKE_LINK = $$QMAKE_CXX
+QMAKE_CC = mpicc
+
+QMAKE_CFLAGS += $$system(mpicc --showme:compile)
+QMAKE_LFLAGS += $$system(mpicxx --showme:link)
+QMAKE_CXXFLAGS += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_SEEK
+QMAKE_CXXFLAGS_RELEASE += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_SEEK

@@ -5,7 +5,8 @@
 
 #include <algorithm>
 
-Tester_RandomPermutationConfigurationGeneration::Tester_RandomPermutationConfigurationGeneration()
+Tester_RandomPermutationConfigurationGeneration::Tester_RandomPermutationConfigurationGeneration(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -14,8 +15,8 @@ string Tester_RandomPermutationConfigurationGeneration::test()
     OperationModule * op1 = new OM_RandomConfPermutationByBlocksGeneration();
     bool is_random = true;
     bool is_permut = true;
-    PSP * psp = new PSP(bench);
-    Solution * current_sol = (Solution *)op1->execute(psp, bench->GetSolution());
+    //PSP * psp = new PSP(bench);
+    Solution * current_sol = (Solution *)op1->execute(psp, psp->GetBenchmark()->GetSolution());
     //return current_sol->configurationToString();
 
     vector<int> perm;
@@ -24,7 +25,7 @@ string Tester_RandomPermutationConfigurationGeneration::test()
 
     for(int i = 0; i < 10; i++)
     {
-        Solution * new_sol = (Solution *)op1->execute(psp, bench->GetSolution());
+        Solution * new_sol = (Solution *)op1->execute(psp, psp->GetBenchmark()->GetSolution());
         //cout << new_sol->configurationToString() << endl;
         is_random =  is_random && (!current_sol->equal(new_sol));
         is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->configuration.begin());

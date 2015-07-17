@@ -3,7 +3,8 @@
 #include "benchmarks/benchmark.h"
 #include "benchmarks/golfers.h"
 
-Tester_CostOfSolution::Tester_CostOfSolution()
+Tester_CostOfSolution::Tester_CostOfSolution(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -35,11 +36,11 @@ string Tester_CostOfSolution::test(){
         16,  3,  6,  9
     });
 
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
-    int c1 = bench->solutionCost(sol);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+    int c1 = psp->GetBenchmark()->solutionCost(sol);
 
     sol->configuration = config2;
-    int c2 = bench->solutionCost(sol);
+    int c2 = psp->GetBenchmark()->solutionCost(sol);
 
     return (c1 == 0 && c2 == 4) ? "CostOfSolution: OK !" : "CostOfSolution: fail :/";
 }

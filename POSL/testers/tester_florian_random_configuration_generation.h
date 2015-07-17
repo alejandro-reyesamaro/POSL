@@ -5,6 +5,6 @@
 class Tester_FlorianRandomConfigurationGeneration : public Tester
 {
     public:
-        Tester_FlorianRandomConfigurationGeneration();
+        Tester_FlorianRandomConfigurationGeneration(int argc, char *argv[]);
         string test();
 };

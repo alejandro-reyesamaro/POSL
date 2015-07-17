@@ -1,6 +1,6 @@
 #pragma once
 
-#include "benchmarks/benchmark.h"
+#include "solver/psp.h"
 
 #include <iostream>
 #include <string>
@@ -10,8 +10,8 @@ using namespace std;
 class Tester
 {
     public:
-        Tester();
+        Tester(int argc, char *argv[]);
         virtual string test() = 0;
     protected:
-        Benchmark * bench;
+        PSP * psp;
 };

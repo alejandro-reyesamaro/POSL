@@ -14,8 +14,6 @@
 #include "dStrategy/packable.h"
 #include "dStrategy/packing_strategy.h"
 
-#include <vector>
-
 using namespace std;
 
 /*!

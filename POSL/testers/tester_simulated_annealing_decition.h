@@ -4,6 +4,6 @@
 class Tester_SimulatedAnnealingDecition : public Tester
 {
     public:
-        Tester_SimulatedAnnealingDecition();
+        Tester_SimulatedAnnealingDecition(int argc, char *argv[]);
         string test();
 };

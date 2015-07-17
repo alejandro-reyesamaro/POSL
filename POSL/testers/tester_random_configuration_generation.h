@@ -5,6 +5,6 @@
 class Tester_RandomConfigurationGeneration : public Tester
 {
     public:
-        Tester_RandomConfigurationGeneration();
+        Tester_RandomConfigurationGeneration(int argc, char *argv[]);
         string test();
 };

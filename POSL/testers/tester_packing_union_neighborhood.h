@@ -5,6 +5,6 @@
 class Tester_PackingUnionNeighborhood : public Tester
 {
     public:
-        Tester_PackingUnionNeighborhood();
+        Tester_PackingUnionNeighborhood(int argc, char *argv[]);
         string test();
 };

@@ -4,6 +4,6 @@
 class Tester_BestImprovementSelection : public Tester
 {
     public:
-        Tester_BestImprovementSelection();
+        Tester_BestImprovementSelection(int argc, char *argv[]);
         string test();
 };

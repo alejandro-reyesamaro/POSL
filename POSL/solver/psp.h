@@ -6,7 +6,7 @@
 class PSP
 {
     public:
-        PSP(Benchmark * _bench);
+        PSP(int _argc, char **_argv, Benchmark * _bench);
         void UpdateBestSolution(Solution * sol);
         void UpdateSolution(Solution * sol);
 
@@ -17,7 +17,10 @@ class PSP
         int CurrentCost();
         int BestCostSoFar();
 
-    private:
+        int ARGC;
+        char **ARGV;
+
+    private:        
         Benchmark * bench;
         int iterations;
         Solution * best_found_solution;

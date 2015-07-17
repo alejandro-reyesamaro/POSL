@@ -5,6 +5,6 @@
 class Tester_PackingSolution : public Tester
 {
     public:
-        Tester_PackingSolution();
+        Tester_PackingSolution(int argc, char *argv[]);
         string test();
 };

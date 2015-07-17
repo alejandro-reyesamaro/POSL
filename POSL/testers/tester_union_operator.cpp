@@ -7,7 +7,8 @@
 #include "modules/grouped_sequential_computation.h"
 #include "data/multi_elements_changed_neighborhood.h"
 
-Tester_UnionOperator::Tester_UnionOperator()
+Tester_UnionOperator::Tester_UnionOperator(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -26,8 +27,8 @@ string Tester_UnionOperator::test()
         1,  1,  1,  1
     });
 
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
-    PSP * psp = new PSP(bench);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+    //PSP * psp = new PSP(bench);
 
 
     OperationModule * m1 = new OM_MultiElementsChangedNeighborhood();

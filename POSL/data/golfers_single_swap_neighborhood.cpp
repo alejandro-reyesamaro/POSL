@@ -51,7 +51,7 @@ vector<int> GolfersSingleSwapNeighborhood::applyChangeAt(int index)
     return conf;
 }
 
-int * GolfersSingleSwapNeighborhood::pack()
+vector<int> GolfersSingleSwapNeighborhood::pack()
 {
     return packing_strategy->pack();
 }
@@ -61,7 +61,7 @@ int GolfersSingleSwapNeighborhood::bodySize()
     return packing_strategy->BodySize();
 }
 
-int * GolfersSingleSwapNeighborhood::body()
+vector<int> GolfersSingleSwapNeighborhood::body()
 {
     return packing_strategy->body();
 }

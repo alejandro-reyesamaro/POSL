@@ -9,7 +9,8 @@
 #include "data/decision_pair.h"
 #include "tools/tools.h"
 
-Tester_BestImprovementSelection::Tester_BestImprovementSelection()
+Tester_BestImprovementSelection::Tester_BestImprovementSelection(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -28,9 +29,9 @@ string Tester_BestImprovementSelection::test()
         16,  3,  6,  9
     });
 
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
     //bench->UpdateSolution(sol);
-    PSP * psp = new PSP(bench);
+    //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol);
 
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();
@@ -50,8 +51,8 @@ string Tester_BestImprovementSelection::test()
     GroupedComputation * G2 = new GroupedSequentialComputation(op2);
 
     DecisionPair * pair = (DecisionPair *)G2->execute(psp, sol);
-    int c = bench->solutionCost(pair->GetCurrent());
-    int cc = bench->solutionCost(pair->GetFound());
+    int c = psp->GetBenchmark()->solutionCost(pair->GetCurrent());
+    int cc = psp->GetBenchmark()->solutionCost(pair->GetFound());
 
     string prefix = (pair->equals()) ? "NO better solution found" : "new cost: " + Tools::int2str(cc);
     return (cc <= c) ? prefix + " -> OM_BestImprovementSelection: OK !" : "OM_BestImprovementSelection: fail :/";

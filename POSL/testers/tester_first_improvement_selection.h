@@ -5,6 +5,6 @@
 class Tester_FirstImprovementSelection : public Tester
 {
     public:
-        Tester_FirstImprovementSelection();
+        Tester_FirstImprovementSelection(int argc, char *argv[]);
         string test();
 };

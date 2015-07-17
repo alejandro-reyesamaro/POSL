@@ -29,9 +29,9 @@ class UnionNeighborhood : public Neighborhood
         vector<int> operator[](int index);
 
         //! From Packable
-        int * pack();
+        vector<int> pack();
         int bodySize();
-        int * body();
+        vector<int> body();
 
     private:
         Neighborhood * V1, * V2;

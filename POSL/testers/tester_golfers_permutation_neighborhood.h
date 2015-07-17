@@ -5,6 +5,6 @@
 class Tester_GolfersPermutationNeighborhood : public Tester
 {
     public:
-        Tester_GolfersPermutationNeighborhood();
+        Tester_GolfersPermutationNeighborhood(int argc, char *argv[]);
         string test();
 };

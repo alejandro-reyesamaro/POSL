@@ -9,13 +9,14 @@
 #include "data/decision_pair.h"
 #include "tools/tools.h"
 
-Tester_FirstImprovementSelection::Tester_FirstImprovementSelection()
+Tester_FirstImprovementSelection::Tester_FirstImprovementSelection(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
 string Tester_FirstImprovementSelection::test()
 {
-    PSP * psp = new PSP(bench);
+    //PSP * psp = new PSP(bench);
     CompoundModule * cm1 = new OM_RandomConfGeneration();
     CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm3 = new OM_FirstImprovementSelection();

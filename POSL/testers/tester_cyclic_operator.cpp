@@ -15,13 +15,14 @@
 #include "modules/grouped_sequential_computation.h"
 #include "tools/tools.h"
 
-Tester_CyclicOperator::Tester_CyclicOperator()
+Tester_CyclicOperator::Tester_CyclicOperator(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
 string Tester_CyclicOperator::test()
 {
-    PSP * psp = new PSP(bench);
+    //PSP * psp = new PSP(bench);
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();
     CompoundModule * cm0 = new OM_RandomConfGeneration();
     //CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();

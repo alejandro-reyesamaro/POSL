@@ -4,6 +4,6 @@
 class Tester_RhoOperator : public Tester
 {
     public:
-        Tester_RhoOperator();
+        Tester_RhoOperator(int argc, char *argv[]);
         string test();
 };

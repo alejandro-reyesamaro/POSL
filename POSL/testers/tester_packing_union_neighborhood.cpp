@@ -8,7 +8,8 @@
 #include "operators/union_operator.h"
 #include "modules/grouped_sequential_computation.h"
 
-Tester_PackingUnionNeighborhood::Tester_PackingUnionNeighborhood()
+Tester_PackingUnionNeighborhood::Tester_PackingUnionNeighborhood(int argc, char *argv[])
+    : Tester(argc, argv)
 {
 }
 
@@ -26,8 +27,8 @@ string Tester_PackingUnionNeighborhood::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    PSP * psp = new PSP(bench);
-    Solution * sol = new Solution(bench->GetSolution()->domains, config);
+    //PSP * psp = new PSP(bench);
+    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
     OperationModule * m1 = new OM_OneElementChangedNeighborhood();
     OperationModule * m2 = new OM_MultiElementsChangedNeighborhood();
 
@@ -35,8 +36,8 @@ string Tester_PackingUnionNeighborhood::test()
     CompoundModule * G1 = new GroupedSequentialComputation(op);
 
     Neighborhood * V = (Neighborhood *)G1->execute(psp, sol);
-    int * pack = V->pack();
+    vector<int> pack = V->pack();
     POSL_Iterator<vector<int>> * it = V ->getIterator();
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
-    return tester->test(bench, sol, it, pack, "Packing Union Neighborhood");
+    return tester->test(sol, it, pack, "Packing Union Neighborhood");
 }

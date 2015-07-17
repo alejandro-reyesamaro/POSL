@@ -37,9 +37,9 @@ vector<int> UnionNeighborhood::operator[](int index)
     }
 }
 
-int * UnionNeighborhood::pack()
+vector<int> UnionNeighborhood::pack()
 {
-    packing_strategy->pack();
+    return packing_strategy->pack();
 }
 
 int UnionNeighborhood::bodySize()
@@ -47,7 +47,7 @@ int UnionNeighborhood::bodySize()
     return packing_strategy->BodySize();
 }
 
-int * UnionNeighborhood::body()
+vector<int> UnionNeighborhood::body()
 {
     return packing_strategy->body();
 }
