@@ -116,7 +116,11 @@ SOURCES += src/main.cpp \
     src/testers/tester_packing_union_neighborhood.cpp \
     src/computation/union_parallel_strategy.cpp \
     src/data/dStrategy/neighborhood_packing_from_pack_strategy.cpp \
-    src/data/from_pack_neighborhood.cpp
+    src/data/from_pack_neighborhood.cpp \
+    src/operators/speed_operator.cpp \
+    src/computation/speed_sequential_strategy.cpp \
+    src/tools/chronometer.cpp \
+    src/computation/speed_parallel_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -235,7 +239,11 @@ HEADERS += \
     src/computation/union_parallel_strategy.h \
     src/data/dStrategy/neighborhood_packing_from_pack_strategy.h \
     src/data/t_nchanges.h \
-    src/data/from_pack_neighborhood.h
+    src/data/from_pack_neighborhood.h \
+    src/operators/speed_operator.h \
+    src/computation/speed_sequential_strategy.h \
+    src/tools/chronometer.h \
+    src/computation/speed_parallel_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

@@ -1,5 +1,4 @@
 #include "union_operator.h"
-#include "../computation/not_implemented_parallel_strategy.h"
 #include "../computation/union_parallel_strategy.h"
 #include "../computation/union_sequential_strategy.h"
 
