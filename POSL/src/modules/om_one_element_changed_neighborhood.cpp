@@ -11,3 +11,8 @@ ComputationData * OM_OneElementChangedNeighborhood::execute(PSP *psp, Computatio
     Neighborhood * V = new OneElementChangedNeighborhood((Solution *) input);
     return V;
 }
+
+string OM_OneElementChangedNeighborhood::codeToSend()
+{
+    return "B1";
+}

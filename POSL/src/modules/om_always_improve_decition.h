@@ -27,4 +27,7 @@ class OM_AlwaysImproveDecition : public OperationModule
         * \return The selected configuration
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Codable
+        string codeToSend();
 };

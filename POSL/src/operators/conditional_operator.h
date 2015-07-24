@@ -25,5 +25,11 @@ class ConditionalOperator : public BinaryOperator
          * \param _M2 Module 2
          * \param ex Stop condition
          */
-        ConditionalOperator(CompoundModule * _M1, CompoundModule * _M2, BooleanExpression * ex);
+        ConditionalOperator(CompoundModule * _M1, CompoundModule * _M2, BooleanExpression * _ex);
+
+        //! From Codable
+        string codeToSend();
+
+    private:
+        BooleanExpression * ex;
 };

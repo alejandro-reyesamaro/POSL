@@ -19,3 +19,8 @@ ComputationData * OM_RandomConfPermutationByBlocksGeneration::execute(PSP *psp, 
     psp->UpdateBestSolution(rsolution);
     return rsolution;
 }
+
+string OM_RandomConfPermutationByBlocksGeneration::codeToSend()
+{
+    return "A4";
+}

@@ -31,4 +31,7 @@ class OM_FlorianRandomConfGeneration : public OperationModule
         * \return A random configuration, but the best after certain iterations
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Codable
+        string codeToSend();
 };

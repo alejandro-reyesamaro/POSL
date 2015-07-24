@@ -10,6 +10,26 @@ string Tools::int2str(int c)
     return s;
 }
 
+string Tools::float2str(float f)
+{
+    string s = to_string(f);
+    return s;
+}
+
+int Tools::str2int(string str)
+{
+    string::size_type sz;   // alias of size_t
+    int i_dec = std::stoi (str,&sz);
+    return i_dec;
+}
+
+float Tools::str2float(string str)
+{
+    std::string::size_type sz;
+    float f = stof(str,&sz);
+    return f;
+}
+
 string Tools::configurationToString(vector<int> config)
 {
     string txt = "[ ";

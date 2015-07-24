@@ -16,3 +16,8 @@ ComputationData * OM_RandomConfGeneration::execute(PSP *psp, ComputationData * i
     psp->UpdateBestSolution(rsolution);
     return rsolution;
 }
+
+string OM_RandomConfGeneration::codeToSend()
+{
+    return "A2";
+}

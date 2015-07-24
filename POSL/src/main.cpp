@@ -4,7 +4,6 @@
 #include <string>
 #include <fstream>
 
-/*
 #include "testers/tester.h"
 #include "testers/tester_cost_of_solution.h"
 #include "testers/tester_random_configuration_generation.h"
@@ -30,18 +29,19 @@
 #include "testers/tester_packing_golfers_permutation_neighborhood.h"
 #include "testers/tester_packing_union_neighborhood.h"
 #include "testers/tester_packing_union_neighborhood.h"
-*/
-
 #include "testers/tester_union_operator.h"
 #include "testers/tester_cost_of_solution.h"
+#include "testers/tester_speed_operator.h"
+
+#include "mpi.h"
 
 using namespace std;
 
+// Testing SEQUENTIAL
 int main(int argc, char **argv)
 {
     vector<Tester *> tests;
 
-/*
     tests.push_back(new Tester_CostOfSolution(argc, argv));
     tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
@@ -63,17 +63,41 @@ int main(int argc, char **argv)
     tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
     tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
     tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
-*/
-    tests.push_back(new Tester_UnionOperator(argc, argv));
+    tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));    
 
+    string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)
-        cout << ">> " << tests[i]->test() << endl;
+    {
+        output_str = tests[i]->test();
+        cout << ">> " << output_str << endl;
+    }
+}
+
+// Testing PARALLEL
+int mainNO(int argc, char **argv)
+{
+    vector<Tester *> tests;
+
+    //tests.push_back(new Tester_UnionOperator(argc, argv));
+    tests.push_back(new Tester_SpeedOperator(argc, argv));
+
+    int tester_id;
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &tester_id);
+
+    string output_str;
+    for(unsigned int i = 0; i < tests.size(); i++)
+    {
+        output_str = tests[i]->test();
+        cout << ">> " << output_str << endl;
+    }
+
+    MPI_Finalize();
 }
 
 // PARALLEL
 // Compile command line:
-// $ mpicc.mpich main.cpp -o main
+// $ make
 
 // Execte command line:
-// $ mpiexec.mpich -np 2 ./main
+// $ mpiexec.mpich -np 2  ./bin/POSL

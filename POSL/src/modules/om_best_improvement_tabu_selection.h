@@ -29,6 +29,9 @@ class OM_BestImprovementTabuSelection : public OperationModule
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
 
+        //! From Codable
+        string codeToSend();
+
     private:
         TabuList * tabu_list;
 };

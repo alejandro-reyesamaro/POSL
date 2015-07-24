@@ -6,11 +6,12 @@
 
 #define P_START 0.5
 #define FALL_RATE 2
+#define MAX_ITER_PER_T 5
 
 OM_SimulatedAnnealingDecition::OM_SimulatedAnnealingDecition()
     :   rand(),
         started(false),
-        M(5), m(0)
+        M(MAX_ITER_PER_T), m(0)
 {}
 
 ComputationData * OM_SimulatedAnnealingDecition::execute(PSP *psp, ComputationData * input)
@@ -43,4 +44,9 @@ ComputationData * OM_SimulatedAnnealingDecition::execute(PSP *psp, ComputationDa
         return pair->GetFound();
     else
         return pair->GetCurrent();
+}
+
+string OM_SimulatedAnnealingDecition::codeToSend()
+{
+    return "D2";
 }

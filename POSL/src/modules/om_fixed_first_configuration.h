@@ -29,4 +29,7 @@ class OM_FixedFirstConfiguration : public OperationModule
         * \return The same configuration passed in the parameters
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Codable
+        string codeToSend();
 };

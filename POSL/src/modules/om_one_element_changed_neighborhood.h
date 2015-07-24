@@ -33,6 +33,6 @@ class OM_OneElementChangedNeighborhood : public OperationModule
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
 
-        //! From Packable
-        int * pack();
+        //! From Codable
+        string codeToSend();
 };

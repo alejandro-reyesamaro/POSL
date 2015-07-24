@@ -11,12 +11,13 @@
 
 #include "../data/computation_data.h"
 #include "../solver/psp.h"
+#include "../packing/codable.h"
 
 /*!
  * \class CompoundModule compound_module.h
  * \brief Class to represent a Compound Module
  */
-class CompoundModule
+class CompoundModule : public Codable
 {
     public:
         virtual ComputationData * execute(PSP * psp, ComputationData * input) = 0;

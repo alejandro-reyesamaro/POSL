@@ -11,3 +11,8 @@ ComputationData * OM_BestImprovementSelection::execute(PSP *psp, ComputationData
     StrategySearchInNeighborhood * s = new StrategySearchInNeighborhood(new BestImprovement_VSearchState());
     return s->select(psp, (Neighborhood *)input);
 }
+
+string OM_BestImprovementSelection::codeToSend()
+{
+    return "C3";
+}

@@ -10,3 +10,8 @@ ComputationData * OM_AlwaysImproveDecition::execute(PSP *psp, ComputationData * 
     DecisionPair * pair = (DecisionPair *) input;
     return pair->GetFound();
 }
+
+string OM_AlwaysImproveDecition::codeToSend()
+{
+    return "D1";
+}

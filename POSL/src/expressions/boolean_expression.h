@@ -1,8 +1,10 @@
 #pragma once
 
+#include "../packing/codable.h"
+
 #include "../solver/psp.h"
 
-class BooleanExpression
+class BooleanExpression : public Codable
 {
     public:
         BooleanExpression();

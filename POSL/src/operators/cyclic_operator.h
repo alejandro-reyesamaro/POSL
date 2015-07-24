@@ -24,5 +24,11 @@ class CyclicOperator : public UnaryOperator
          * \param _M1 Module
          * \param ex Stop condition
          */
-        CyclicOperator(CompoundModule * _M1, BooleanExpression * ex);
+        CyclicOperator(CompoundModule * _M1, BooleanExpression * _ex);
+
+        //! From Codable
+        string codeToSend();
+
+    private:
+        BooleanExpression * ex;
 };

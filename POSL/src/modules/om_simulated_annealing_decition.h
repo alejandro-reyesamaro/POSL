@@ -31,6 +31,9 @@ class OM_SimulatedAnnealingDecition : public OperationModule
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
 
+        //! From Codable
+        string codeToSend();
+
     private:
         Randomizer rand;
         bool started;

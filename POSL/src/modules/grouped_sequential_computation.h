@@ -31,4 +31,7 @@ class GroupedSequentialComputation : public GroupedComputation
         * \return The output of the module
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Codable
+        string codeToSend();
 };

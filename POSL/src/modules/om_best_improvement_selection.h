@@ -27,4 +27,7 @@ class OM_BestImprovementSelection : public OperationModule
         * \return The configuration that improuves the best the current cost
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Codable
+        string codeToSend();
 };

@@ -24,4 +24,7 @@ class SequentialExecOperator : public BinaryOperator
          * \param _M2 Module
          */
         SequentialExecOperator(CompoundModule * _M1, CompoundModule * _M2);
+
+        //! From Codable
+        string codeToSend();
 };

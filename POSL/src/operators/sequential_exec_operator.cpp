@@ -8,3 +8,7 @@ SequentialExecOperator::SequentialExecOperator(CompoundModule *_M1, CompoundModu
     BinaryOperator(_M1, _M2, new SequentialExecutionSequentialStrategy(_M1, _M2), new NotImplementedParallelStrategy())
 {}
 
+string SequentialExecOperator::codeToSend()
+{
+    return "4 " + M1->codeToSend() + " " + M2->codeToSend();
+}

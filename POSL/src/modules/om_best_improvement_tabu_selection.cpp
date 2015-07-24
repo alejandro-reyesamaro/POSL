@@ -13,3 +13,8 @@ ComputationData * OM_BestImprovementTabuSelection::execute(PSP *psp, Computation
     StrategySearchInNeighborhood * s = new StrategySearchInNeighborhood(new BestImprovementTabu_VSearchState(tabu_list));
     return s->select(psp, (Neighborhood *)input);
 }
+
+string OM_BestImprovementTabuSelection::codeToSend()
+{
+    return "C4";
+}

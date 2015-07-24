@@ -20,3 +20,8 @@ ComputationData * OM_RandomSelection::execute(PSP *psp, ComputationData * input)
     DecisionPair * p = new DecisionPair(current_solution, new_solution);
     return p;
 }
+
+string OM_RandomSelection::codeToSend()
+{
+    return "C1";
+}

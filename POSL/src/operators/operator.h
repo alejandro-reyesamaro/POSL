@@ -12,6 +12,7 @@
 #include "../modules/compound_module.h"
 #include "../computation/sequential_computation_strategy.h"
 #include "../computation/parallel_computation_strategy.h"
+#include "../packing/codable.h"
 
 #include <vector>
 
@@ -21,7 +22,7 @@ using namespace std;
  * \class Operator operator.h
  * \brief Class to represent an operation between modules
  */
-class Operator
+class Operator : public Codable
 {
     public:
         //! Constructor

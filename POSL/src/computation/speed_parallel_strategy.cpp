@@ -18,38 +18,50 @@ ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * in
     int myid, numprocs;
     int tag;
 
-    int * buff;
-    * buff = 0;
+    int * buff = new int[1];
+    buff[0] = 0;
+
+    MPI_Request reqs[2];
+    MPI_Status status[2];
+
+    //cout << "speed strategy" << endl;
 
     ComputationData * d;
 
-    MPI_Init(&psp->ARGC, &psp->ARGV);
-    MPI_Comm_size(MPI_COMM_WORLD,&numprocs);
-    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
+    int flag;
+    MPI_Initialized(&flag);
 
-    if(myid == 0) {
-        //cout << "proc. 0 " << endl;
-        int source = myid; //int source = 0;
-        int dest   = (myid + 1) % 2; //int dest = 1;
-        int tag = (myid == 0)? TAG0 : TAG1;
-        MPI_Request reqs[2];
-        MPI_Status status[2];
-        int * flag;
+    if(flag)
+    {
+        MPI_Comm_size(MPI_COMM_WORLD,&numprocs);
+        MPI_Comm_rank(MPI_COMM_WORLD,&myid);
 
-        MPI_Irecv(buff, 1, MPI_INT, source, tag, MPI_COMM_WORLD, &reqs[0]);
-
-        ComputationData * d1 = M1->execute(psp, input);
-
-        MPI_Test(&reqs[0], flag, &status[0]);
-
-        if(!flag) // Then, no data received
+        if(myid <= 1)
         {
-            int to_sent = 1;
-            MPI_Isend(&to_sent, 1, MPI_INT, dest, tag, MPI_COMM_WORLD, &reqs[1]);
-            d = d1;
+            cout << "proc: " << myid << endl;
+
+            int source = myid; //int source = 0;
+            int dest   = (myid + 1) % 2; //int dest = 1;
+            int tag = (myid == 0)? TAG0 : TAG1;
+
+            MPI_Irecv(buff, 1, MPI_INT, source, tag, MPI_COMM_WORLD, &reqs[0]);
+
+            ComputationData * d1 = M1->execute(psp, input);
+
+            int test_flag;
+            MPI_Test(&reqs[0], &test_flag, &status[0]);
+
+            if(!test_flag) // Then, no data received
+            {
+                int to_sent = 1;
+                MPI_Isend(&to_sent, 1, MPI_INT, dest, tag, MPI_COMM_WORLD, &reqs[1]);
+                d = d1;
+            }
         }
+        if(d != NULL) return d;
+        exit(0);
+
     }
-    MPI_Finalize();
-    if(d != NULL) return d;
-    exit(0);
+    else
+        throw "Not MPI initializing....";
 }

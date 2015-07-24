@@ -13,3 +13,8 @@ ComputationData * OM_GolfersSingleSwapNeighborhood::execute(PSP *psp, Computatio
     Neighborhood * V = new GolfersSingleSwapNeighborhood((Solution *) input, s->TotalPlayers());
     return V;
 }
+
+string OM_GolfersSingleSwapNeighborhood::codeToSend()
+{
+    return "B3";
+}

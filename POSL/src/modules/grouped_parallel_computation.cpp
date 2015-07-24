@@ -9,3 +9,8 @@ ComputationData * GroupedParallelComputation::execute(PSP *psp, ComputationData 
 {
     return op->evaluateInParallel(psp, input);
 }
+
+string GroupedParallelComputation::codeToSend()
+{
+    return "[" + op->codeToSend() + "]";
+}

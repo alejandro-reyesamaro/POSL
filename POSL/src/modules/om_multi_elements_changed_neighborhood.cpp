@@ -10,3 +10,8 @@ ComputationData * OM_MultiElementsChangedNeighborhood::execute(PSP *psp, Computa
     Neighborhood * V = new MultiElementsChangedNeighborhood((Solution *) input);
     return V;
 }
+
+string OM_MultiElementsChangedNeighborhood::codeToSend()
+{
+    return "B2";
+}

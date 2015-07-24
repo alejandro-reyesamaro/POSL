@@ -28,4 +28,7 @@ class OM_FirstImprovementSelection : public OperationModule
         * \return The first configuration improuving the current cost
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Codable
+        string codeToSend();
 };

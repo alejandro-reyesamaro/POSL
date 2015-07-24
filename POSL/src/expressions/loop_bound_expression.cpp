@@ -8,3 +8,8 @@ bool LoopBoundExpression::evaluate(PSP * psp)
     loop ++;
     return loop <= max_loops;
 }
+
+string LoopBoundExpression::codeToSend()
+{
+    return "b2 " + max_loops;
+}

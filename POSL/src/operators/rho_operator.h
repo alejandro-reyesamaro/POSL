@@ -25,4 +25,10 @@ class RhoOperator : public BinaryOperator
          * \param _rho Probability
          */
         RhoOperator(CompoundModule * _M1, CompoundModule * _M2, float _rho);
+
+        //! From Codable
+        string codeToSend();
+
+    private:
+        float rho;
 };

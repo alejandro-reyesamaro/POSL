@@ -32,4 +32,7 @@ class OM_RandomConfPermutationByBlocksGeneration : public OperationModule
         * \return A random configuration/permutation-by-blocks
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Codable
+        string codeToSend();
 };

@@ -36,3 +36,8 @@ ComputationData * OM_FlorianRandomConfGeneration::execute(PSP *psp, ComputationD
     psp->UpdateBestSolution(new_solution);
     return new_solution;
 }
+
+string OM_FlorianRandomConfGeneration::codeToSend()
+{
+    return "A3";
+}

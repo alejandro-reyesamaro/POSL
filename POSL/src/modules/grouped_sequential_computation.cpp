@@ -9,3 +9,8 @@ ComputationData * GroupedSequentialComputation::execute(PSP * psp, ComputationDa
 {
     return op->evaluateSequentially(psp, input);
 }
+
+string GroupedSequentialComputation::codeToSend()
+{
+    return "|" + op->codeToSend() + "|";
+}

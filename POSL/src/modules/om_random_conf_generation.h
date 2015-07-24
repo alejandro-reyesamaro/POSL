@@ -32,4 +32,7 @@ class OM_RandomConfGeneration : public OperationModule
         * \return A random configuration
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
+
+        //! From Codable
+        string codeToSend();
 };

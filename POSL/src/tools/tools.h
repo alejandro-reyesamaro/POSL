@@ -27,5 +27,8 @@ class Tools
         * \return The resulting string
         */
         static string int2str(int c);
+        static string float2str(float f);
+        static int str2int(string str);
+        static float str2float(string str);
         static string configurationToString(vector<int> config);
 };

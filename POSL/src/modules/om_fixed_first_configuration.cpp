@@ -13,3 +13,8 @@ ComputationData * OM_FixedFirstConfiguration::execute(PSP *psp, ComputationData 
     psp->UpdateBestSolution((Solution *)input);
     return (Solution *) input;
 }
+
+string OM_FixedFirstConfiguration::codeToSend()
+{
+    return "A1";
+}

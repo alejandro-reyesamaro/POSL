@@ -120,7 +120,19 @@ SOURCES += src/main.cpp \
     src/operators/speed_operator.cpp \
     src/computation/speed_sequential_strategy.cpp \
     src/tools/chronometer.cpp \
-    src/computation/speed_parallel_strategy.cpp
+    src/computation/speed_parallel_strategy.cpp \
+    src/testers/tester_speed_operator.cpp \
+    src/modules/compound_module_generator_from_code.cpp \
+    src/packing/uncode_operator_strategy.cpp \
+    src/packing/uncode_cyclic_operator_strategy.cpp \
+    src/packing/uncode_compound_module_strategy.cpp \
+    src/packing/uncode_sequential_grouper_strategy.cpp \
+    src/packing/uncode_parallel_grouper_strategy.cpp \
+    src/packing/uncode_operation_module_strategy.cpp \
+    src/packing/uncode_bool_expression_strategy.cpp \
+    src/packing/uncode_conditional_operator_strategy.cpp \
+    src/packing/uncode_binary_operator_strategy.cpp \
+    src/packing/uncode_rho_operator_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -243,7 +255,20 @@ HEADERS += \
     src/operators/speed_operator.h \
     src/computation/speed_sequential_strategy.h \
     src/tools/chronometer.h \
-    src/computation/speed_parallel_strategy.h
+    src/computation/speed_parallel_strategy.h \
+    src/testers/tester_speed_operator.h \
+    src/modules/compound_module_generator_from_code.h \
+    src/packing/codable.h \
+    src/packing/uncode_operator_strategy.h \
+    src/packing/uncode_cyclic_operator_strategy.h \
+    src/packing/uncode_compound_module_strategy.h \
+    src/packing/uncode_sequential_grouper_strategy.h \
+    src/packing/uncode_parallel_grouper_strategy.h \
+    src/packing/uncode_operation_module_strategy.h \
+    src/packing/uncode_bool_expression_strategy.h \
+    src/packing/uncode_conditional_operator_strategy.h \
+    src/packing/uncode_binary_operator_strategy.h \
+    src/packing/uncode_rho_operator_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

@@ -8,6 +8,9 @@ class LoopBoundExpression : public BooleanExpression
         LoopBoundExpression(int _max_loops);
         bool evaluate(PSP * psp);
 
+        //! From Codable
+        string codeToSend();
+
     private:
         int loop;
         int max_loops;

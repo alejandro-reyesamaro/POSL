@@ -22,4 +22,7 @@ class SpeedOperator : public BinaryOperator
          * \param _M2 Module
          */
         SpeedOperator(CompoundModule * _M1, CompoundModule * _M2);
+
+        //! From Codable
+        string codeToSend();
 };

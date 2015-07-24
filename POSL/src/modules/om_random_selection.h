@@ -30,6 +30,9 @@ class OM_RandomSelection : public OperationModule
         */
         ComputationData * execute(PSP * psp, ComputationData * input);
 
+        //! From Codable
+        string codeToSend();
+
     private:
         Randomizer rand;
 };
