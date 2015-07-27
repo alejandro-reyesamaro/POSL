@@ -9,5 +9,5 @@ ConditionalOperator::ConditionalOperator(CompoundModule * _M1, CompoundModule * 
 
 string ConditionalOperator::codeToSend()
 {
-    return "2 (" + ex->codeToSend() + ")" + M1 ->codeToSend() + " " + M2->codeToSend();
+    return "2 (" + ex->codeToSend() + ") " + M1 ->codeToSend() + " " + M2->codeToSend();
 }

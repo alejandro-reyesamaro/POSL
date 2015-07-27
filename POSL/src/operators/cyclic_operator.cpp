@@ -8,5 +8,5 @@ CyclicOperator::CyclicOperator(CompoundModule * _M1, BooleanExpression * _ex)
 
 string CyclicOperator::codeToSend()
 {
-    return "1 (" + ex->codeToSend() + ")" + M1 ->codeToSend();
+    return "1 (" + ex->codeToSend() + ") " + M1 ->codeToSend();
 }

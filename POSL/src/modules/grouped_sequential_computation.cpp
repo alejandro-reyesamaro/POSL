@@ -12,5 +12,5 @@ ComputationData * GroupedSequentialComputation::execute(PSP * psp, ComputationDa
 
 string GroupedSequentialComputation::codeToSend()
 {
-    return "|" + op->codeToSend() + "|";
+    return "{" + op->codeToSend() + "}";
 }

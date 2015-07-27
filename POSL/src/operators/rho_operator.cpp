@@ -10,5 +10,5 @@ RhoOperator::RhoOperator(CompoundModule *_M1, CompoundModule *_M2, float _rho)
 
 string RhoOperator::codeToSend()
 {
-    return "3 (" + Tools::float2str(rho) + ")" + M1->codeToSend() + " " + M2->codeToSend();
+    return "3 (" + Tools::float2str(rho) + ") " + M1->codeToSend() + " " + M2->codeToSend();
 }

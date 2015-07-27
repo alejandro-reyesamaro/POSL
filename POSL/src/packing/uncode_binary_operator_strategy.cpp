@@ -6,9 +6,6 @@
 #include "uncode_compound_module_strategy.h"
 #include "../tools/tools.h"
 
-#include <boost/algorithm/string.hpp>
-using namespace boost;
-
 UncodeBinaryOperatorStrategy::UncodeBinaryOperatorStrategy()
 {}
 
@@ -19,19 +16,21 @@ BinaryOperator * UncodeBinaryOperatorStrategy::uncode(string code)
     size_t pos_space = code.find_first_of(" ");
     string first = code.substr(0, pos_space);
 
-    string rest = code.substr(pos_space + 1);
+    string rest = code.substr(pos_space + 1);    
     trim(rest);
-    pos_space = rest.find_first_of(" ");
-    string cm1_code = code.substr(0, pos_space);
-    string cm2_code = code.substr(pos_space + 1);
-    trim(cm2_code);
+    string cm1_code = Tools::frontModule(rest);
+    int sizefront = cm1_code.size();
+    rest = rest.substr(sizefront);
+    trim(rest);
+    string cm2_code = Tools::frontModule(rest);
 
     UncodeCompoundModuleStrategy * cm_strategy = new UncodeCompoundModuleStrategy();
 
     if (isdigit(front))
     {
         int oper = Tools::str2int(first);
-        switch(oper){
+        switch(oper)
+        {
             case 4: // Sequential execution
                 return new SequentialExecOperator(cm_strategy->uncode(cm1_code), cm_strategy->uncode(cm2_code));
             break;

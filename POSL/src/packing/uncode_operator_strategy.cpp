@@ -5,9 +5,6 @@
 #include "uncode_rho_operator_strategy.h"
 #include "../tools/tools.h"
 
-#include <boost/algorithm/string.hpp>
-using namespace boost;
-
 UncodeOperatorStrategy::UncodeOperatorStrategy()
 {}
 

@@ -11,7 +11,9 @@
 
 #include <string>
 #include <vector>
+#include <boost/algorithm/string.hpp>
 
+using namespace boost;
 using namespace std;
 
 /*!
@@ -31,4 +33,5 @@ class Tools
         static int str2int(string str);
         static float str2float(string str);
         static string configurationToString(vector<int> config);
+        static string frontModule(string code);
 };

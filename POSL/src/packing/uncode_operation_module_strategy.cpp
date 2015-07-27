@@ -18,9 +18,6 @@
 #include "../modules/om_always_improve_decition.h"
 #include "../modules/om_simulated_annealing_decition.h"
 
-#include <boost/algorithm/string.hpp>
-using namespace boost;
-
 UncodeOperationModuleStrategy::UncodeOperationModuleStrategy()
 {}
 

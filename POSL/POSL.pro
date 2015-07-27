@@ -132,7 +132,9 @@ SOURCES += src/main.cpp \
     src/packing/uncode_bool_expression_strategy.cpp \
     src/packing/uncode_conditional_operator_strategy.cpp \
     src/packing/uncode_binary_operator_strategy.cpp \
-    src/packing/uncode_rho_operator_strategy.cpp
+    src/packing/uncode_rho_operator_strategy.cpp \
+    src/testers/tester_coding_compound_modules.cpp \
+    src/testers/tester_solver.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -268,7 +270,9 @@ HEADERS += \
     src/packing/uncode_bool_expression_strategy.h \
     src/packing/uncode_conditional_operator_strategy.h \
     src/packing/uncode_binary_operator_strategy.h \
-    src/packing/uncode_rho_operator_strategy.h
+    src/packing/uncode_rho_operator_strategy.h \
+    src/testers/tester_coding_compound_modules.h \
+    src/testers/tester_solver.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

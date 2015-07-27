@@ -13,8 +13,8 @@ CompoundModule * UncodeCompoundModuleStrategy::uncode(string code)
     char back  = code.back();
     string sub_code = code.substr(1, code.size() - 2);
 
-    // GROUPERS ---- '|': sequential, '[.]': parallel
-    if (front == back && front == '|')
+    // GROUPERS ---- '{.}': sequential, '[.]': parallel
+    if (front == '{' && back == '}')
     {
         UncodeSequentialGrouperStrategy * SG_strategy = new UncodeSequentialGrouperStrategy();
         return SG_strategy->uncode(sub_code);

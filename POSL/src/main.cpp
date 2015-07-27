@@ -32,6 +32,8 @@
 #include "testers/tester_union_operator.h"
 #include "testers/tester_cost_of_solution.h"
 #include "testers/tester_speed_operator.h"
+#include "testers/tester_coding_compound_modules.h"
+#include "testers/tester_solver.h"
 
 #include "mpi.h"
 
@@ -42,6 +44,7 @@ int main(int argc, char **argv)
 {
     vector<Tester *> tests;
 
+    /*
     tests.push_back(new Tester_CostOfSolution(argc, argv));
     tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
@@ -63,7 +66,11 @@ int main(int argc, char **argv)
     tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
     tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
     tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));    
+    tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
+    tests.push_back(new Tester_CodingCompoundModules(argc, argv));
+    */
+
+    tests.push_back(new Tester_Solver(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)
