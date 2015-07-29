@@ -6,7 +6,8 @@
 
 #include "testers/tester.h"
 #include "testers/tester_cost_of_solution_golfers.h"
-#include "testers/tester_cost_of_solutions_quaring_square.h"
+#include "testers/tester_cost_of_solution_quaring_square.h"
+#include "testers/tester_cost_of_solution_golom_rules.h"
 #include "testers/tester_random_configuration_generation.h"
 #include "testers/tester_florian_random_configuration_generation.h"
 #include "testers/tester_one_element_changed_neighborhood.h"
@@ -45,8 +46,9 @@ int main(int argc, char **argv)
     vector<Tester *> tests;
 
 
-    tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
+    //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
     tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
+    tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
     /*
     tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));

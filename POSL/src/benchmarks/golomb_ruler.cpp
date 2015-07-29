@@ -18,7 +18,8 @@ vector<Domain> GolombRuler::Domains()
 
 int GolombRuler::solutionCost(Solution * sol)
 {
-    LongInt * measures = new LongInt(length);
+    int table_length = length / 32 + 1;
+    LongInt * measures = new LongInt(table_length, 0);
     vector<int> conf = sol->GetConfiguration();
 
     int cost = 0, penalty = 0;

@@ -138,7 +138,8 @@ SOURCES += src/main.cpp \
     src/benchmarks/squaring_square.cpp \
     src/benchmarks/golomb_ruler.cpp \
     src/testers/tester_cost_of_solution_golfers.cpp \
-    src/testers/tester_cost_of_solutions_quaring_square.cpp
+    src/testers/tester_cost_of_solution_golom_rules.cpp \
+    src/testers/tester_cost_of_solution_quaring_square.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -280,7 +281,8 @@ HEADERS += \
     src/benchmarks/squaring_square.h \
     src/benchmarks/golomb_ruler.h \
     src/testers/tester_cost_of_solution_golfers.h \
-    src/testers/tester_cost_of_solutions_quaring_square.h
+    src/testers/tester_cost_of_solution_golom_rules.h \
+    src/testers/tester_cost_of_solution_quaring_square.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
