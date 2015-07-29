@@ -82,3 +82,10 @@ string Tools::frontModule(string code) // code is TRIMED
     cm1_code = (pos != -1) ? code.substr(0, pos + 1) : code;
     return cm1_code;
 }
+
+int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
+{
+    int A = max(a1, a2);
+    int b = min(b1, b2);
+    return max(0, b - A);
+}

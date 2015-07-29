@@ -12,6 +12,11 @@ Tester_PackingSolution::Tester_PackingSolution(int argc, char *argv[])
 
 string Tester_PackingSolution::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config(
     {
         1,  2,   3,  4,
@@ -24,8 +29,8 @@ string Tester_PackingSolution::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    //PSP * psp = new PSP(bench);
-    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+
+    sol = new Solution(psp->GetBenchmark()->Domains(), config);
     string conf_str = sol->configurationToString();
     vector<int> pack = sol->pack();
 

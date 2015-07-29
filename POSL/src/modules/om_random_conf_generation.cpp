@@ -11,9 +11,8 @@ OM_RandomConfGeneration::OM_RandomConfGeneration()
 ComputationData * OM_RandomConfGeneration::execute(PSP *psp, ComputationData * input)
 {
     RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy(new Seed());
-    Solution * rsolution = rconf->generate(psp->GetCurrentSolution()->domains);
+    Solution * rsolution = rconf->generate(psp->GetBenchmark()->Domains());
     psp->UpdateSolution(rsolution);
-    psp->UpdateBestSolution(rsolution);
     return rsolution;
 }
 

@@ -11,6 +11,11 @@ Tester_PackingOneElementChangedNeighborhood::Tester_PackingOneElementChangedNeig
 
 string Tester_PackingOneElementChangedNeighborhood::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config(
     {
         1,  2,   3,  4,
@@ -24,7 +29,7 @@ string Tester_PackingOneElementChangedNeighborhood::test()
         16,  3,  6,  9
     });
     //PSP * psp = new PSP(bench);
-    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+    sol = new Solution(psp->GetBenchmark()->Domains(), config);
     OperationModule * op = new OM_OneElementChangedNeighborhood();
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
     vector<int> pack = V->pack();

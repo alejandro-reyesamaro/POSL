@@ -13,6 +13,11 @@ Tester_PackingDecisionPair::Tester_PackingDecisionPair(int argc, char *argv[])
 
 string Tester_PackingDecisionPair::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config1(
     {
         1,  2,   3,  4,
@@ -40,9 +45,8 @@ string Tester_PackingDecisionPair::test()
     });
 
 
-    //PSP * psp = new PSP(bench);
-    Solution * sol_current = new Solution(psp->GetBenchmark()->GetSolution()->domains, config1);
-    Solution * sol_found = new Solution(psp->GetBenchmark()->GetSolution()->domains, config2);
+    Solution * sol_current = new Solution(psp->GetBenchmark()->Domains(), config1);
+    Solution * sol_found = new Solution(psp->GetBenchmark()->Domains(), config2);
     DecisionPair * pair = new DecisionPair(sol_current, sol_found);
 
     string current_str = sol_current->configurationToString();

@@ -15,6 +15,10 @@ Tester_SpeedOperator::Tester_SpeedOperator(int argc, char *argv[])
 
 string Tester_SpeedOperator::testeInMode(Computation comp)
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
 
     vector<int> config(
     {
@@ -29,8 +33,7 @@ string Tester_SpeedOperator::testeInMode(Computation comp)
         1,  1,  1,  1
     });
 
-    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
-    //PSP * psp = new PSP(bench);
+    sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
     OperationModule * m1 = new OM_FixedFirstConfiguration();
     OperationModule * m2 = new OM_FlorianRandomConfGeneration();

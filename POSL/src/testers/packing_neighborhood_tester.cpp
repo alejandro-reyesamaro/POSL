@@ -44,7 +44,7 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
     count++;
     Solution * sol_aux, * neighbor_aux;
     vector<int> conf_aux (32);
-    vector<Domain> dom = sol->domains;
+    vector<Domain> dom = sol->GetDomains();
 
     while(neighbors->SomeNext())
     {
@@ -53,7 +53,7 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
         sol_aux = new Solution(dom, neighbor);
         //cout << sol_aux->configurationToString() << endl;
         int deg = pack[count++];
-        copy(sol->configuration.begin(), sol->configuration.end(), conf_aux.begin());        
+        copy(sol->GetConfiguration().begin(), sol->GetConfiguration().end(), conf_aux.begin());
         for(int i = 0; i < deg; i++)
         {
             int pos = pack[count++];

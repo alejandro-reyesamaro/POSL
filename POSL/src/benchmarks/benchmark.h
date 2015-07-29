@@ -44,6 +44,12 @@ class Benchmark
         */
         Solution * GetSolution();
 
+        //! Returns the Domain corresponding with the instance
+        /*!
+        * \return Domains list
+        */
+        virtual vector<Domain> Domains() = 0;
+
     protected:
         //! Current solution of the problem
         Solution * solution;

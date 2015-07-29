@@ -10,6 +10,11 @@ Tester_SimulatedAnnealingDecition::Tester_SimulatedAnnealingDecition(int argc, c
 
 string Tester_SimulatedAnnealingDecition::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config1(
     {
         1,  2,   3,  4,
@@ -36,8 +41,8 @@ string Tester_SimulatedAnnealingDecition::test()
         1,  1,  1,  1
     });
 
-    Solution * sol1 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config1);
-    Solution * sol2 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config2);
+    Solution * sol1 = new Solution(psp->GetBenchmark()->Domains(), config1);
+    Solution * sol2 = new Solution(psp->GetBenchmark()->Domains(), config2);
     //bench->UpdateSolution(sol);
     //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol2);

@@ -28,6 +28,8 @@ class Golfers : public Benchmark
         */
         int solutionCost(Solution * sol);
 
+        vector<Domain> Domains();
+
         //! Properties
         int Groups();
         int PlayersPerGroup();

@@ -7,24 +7,40 @@
 #include <algorithm>
 #include <iostream>
 
+#define SWAPS 200
+
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int _players) : players(_players)
 {
+
+    // ARREGLAR ESTO !!!!!!!
+
     current_solution = sol;
-    int weeks = sol->configuration.size() / players;
-    int swaps = players / 2;
+    int weeks = sol->GetConfiguration().size() / players;
+    int posibles = players * (players-1);
+    int swaps = min(SWAPS, posibles);
     vector<int> indexes;
     for(int i = 0; i < players; i++)
         indexes.push_back(i);
     for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
     {
+        srand(time(0));
         random_shuffle(indexes.begin(), indexes.end());
+        for (int i = 0; i < players - 1; i++)
+            for(int j = i + 1; j < players; j++)
+            {
+                if ( (i+1) * (j+1) > posibles || changes.size() >= swaps)
+                    break;
+                T_SwapChanges next_change = { (w*players) + indexes[i], (w*players) + indexes[j]};
+                changes.push_back(next_change);
+            }
+        /*
         for (int i = 0; i < swaps; i++)
         {
             T_SwapChanges next_change = { (w*players) + indexes[2*i], (w*players) + indexes[2*i+1]};
             changes.push_back(next_change);
-        }
+        }*/
     }
-    packing_strategy = new NeighborhoodPackingStrategy(sol->configuration, size(), new GolfersSingleSwapBodyPackingStrategy(changes, sol->configuration));
+    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new GolfersSingleSwapBodyPackingStrategy(changes, sol->GetConfiguration()));
 }
 
 POSL_Iterator<vector<int>> * GolfersSingleSwapNeighborhood::getIterator()
@@ -45,7 +61,7 @@ vector<int> GolfersSingleSwapNeighborhood::operator[](int index)
 
 vector<int> GolfersSingleSwapNeighborhood::applyChangeAt(int index)
 {
-    vector<int> conf = current_solution->configuration;
+    vector<int> conf = current_solution->GetConfiguration();
     if(index >= size()) return conf;
     swap(conf[changes[index].pos1],conf[changes[index].pos2]);
     return conf;

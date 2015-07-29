@@ -16,7 +16,11 @@ Tester_FirstImprovementSelection::Tester_FirstImprovementSelection(int argc, cha
 
 string Tester_FirstImprovementSelection::test()
 {
-    //PSP * psp = new PSP(bench);
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     CompoundModule * cm1 = new OM_RandomConfGeneration();
     CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm3 = new OM_FirstImprovementSelection();

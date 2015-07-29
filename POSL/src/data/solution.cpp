@@ -28,6 +28,16 @@ Solution::Solution(vector<Domain> _domains, vector<int> conf)
     packing_strategy = new SolutionPackingStrategy(conf);
 }
 
+vector<int> Solution::GetConfiguration()
+{
+    return configuration;
+}
+
+vector<Domain> Solution::GetDomains()
+{
+    return domains;
+}
+
 bool Solution::equal(Solution * other)
 {
     if (other->configuration.size() != configuration.size())

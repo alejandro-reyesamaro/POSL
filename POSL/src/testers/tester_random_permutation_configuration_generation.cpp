@@ -12,6 +12,11 @@ Tester_RandomPermutationConfigurationGeneration::Tester_RandomPermutationConfigu
 
 string Tester_RandomPermutationConfigurationGeneration::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     OperationModule * op1 = new OM_RandomConfPermutationByBlocksGeneration();
     bool is_random = true;
     bool is_permut = true;
@@ -28,8 +33,8 @@ string Tester_RandomPermutationConfigurationGeneration::test()
         Solution * new_sol = (Solution *)op1->execute(psp, psp->GetBenchmark()->GetSolution());
         //cout << new_sol->configurationToString() << endl;
         is_random =  is_random && (!current_sol->equal(new_sol));
-        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->configuration.begin());
-        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->configuration.begin()+16);
+        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->GetConfiguration().begin());
+        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->GetConfiguration().begin()+16);
     }
     return (is_random) ? "OM_RandomConfPermutationByBlocksGeneration: OK !" : "OM_RandomConfPermutationByBlocksGeneration: fail :/";
 }

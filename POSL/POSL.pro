@@ -39,14 +39,9 @@ SOURCES += src/main.cpp \
     src/modules/om_first_improvement_selection.cpp \
     src/modules/om_best_improvement_selection.cpp \
     src/data/decision_pair.cpp \
-    src/data/dStrategy/strategy_search_in_neighborhood.cpp \
-    src/data/dStrategy/best_improvement_v_search_state.cpp \
-    src/data/dStrategy/v_search_state.cpp \
     src/modules/grouped_computation.cpp \
     src/modules/grouped_sequential_computation.cpp \
     src/modules/grouped_parallel_computation.cpp \
-    src/data/dStrategy/first_improvement_v_search_state.cpp \
-    src/testers/tester_cost_of_solution.cpp \
     src/testers/tester_random_configuration_generation.cpp \
     src/computation/random_configuration_generation_strategy.cpp \
     src/testers/tester_florian_random_configuration_generation.cpp \
@@ -88,7 +83,6 @@ SOURCES += src/main.cpp \
     src/modules/om_simulated_annealing_decition.cpp \
     src/tools/randomizer.cpp \
     src/modules/om_random_selection.cpp \
-    src/data/dStrategy/best_improvement_tabu_v_search_state.cpp \
     src/tools/tabu_list.cpp \
     src/modules/om_best_improvement_tabu_selection.cpp \
     src/testers/tester_random_selection.cpp \
@@ -134,7 +128,17 @@ SOURCES += src/main.cpp \
     src/packing/uncode_binary_operator_strategy.cpp \
     src/packing/uncode_rho_operator_strategy.cpp \
     src/testers/tester_coding_compound_modules.cpp \
-    src/testers/tester_solver.cpp
+    src/testers/tester_solver.cpp \
+    src/modules/oms_time_counter.cpp \
+    src/modules/oms_iterations_counter.cpp \
+    src/data/dStrategy/neighbor_selecting_best_improvement_tabu.cpp \
+    src/data/dStrategy/neighbor_selecting_best_improvement.cpp \
+    src/data/dStrategy/neighbor_selecting_first_improvement.cpp \
+    src/data/dStrategy/neighbor_selecting_random.cpp \
+    src/benchmarks/squaring_square.cpp \
+    src/benchmarks/golomb_ruler.cpp \
+    src/testers/tester_cost_of_solution_golfers.cpp \
+    src/testers/tester_cost_of_solutions_quaring_square.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -172,15 +176,10 @@ HEADERS += \
     src/modules/om_best_improvement_selection.h \
     src/data/decision_pair.h \
     src/computation/parallel_computation_strategy.h \
-    src/data/dStrategy/strategy_search_in_neighborhood.h \
-    src/data/dStrategy/best_improvement_v_search_state.h \
-    src/data/dStrategy/v_search_state.h \
     src/modules/grouped_computation.h \
     src/modules/grouped_sequential_computation.h \
     src/modules/grouped_parallel_computation.h \
-    src/data/dStrategy/first_improvement_v_search_state.h \
     src/testers/tester.h \
-    src/testers/tester_cost_of_solution.h \
     src/testers/tester_random_configuration_generation.h \
     src/computation/random_configuration_generation_strategy.h \
     src/testers/tester_florian_random_configuration_generation.h \
@@ -221,7 +220,6 @@ HEADERS += \
     src/modules/om_simulated_annealing_decition.h \
     src/tools/randomizer.h \
     src/modules/om_random_selection.h \
-    src/data/dStrategy/best_improvement_tabu_v_search_state.h \
     src/tools/tabu_list.h \
     src/modules/om_best_improvement_tabu_selection.h \
     src/testers/tester_random_selection.h \
@@ -272,7 +270,17 @@ HEADERS += \
     src/packing/uncode_binary_operator_strategy.h \
     src/packing/uncode_rho_operator_strategy.h \
     src/testers/tester_coding_compound_modules.h \
-    src/testers/tester_solver.h
+    src/testers/tester_solver.h \
+    src/modules/oms_time_counter.h \
+    src/modules/oms_iterations_counter.h \
+    src/data/dStrategy/neighbor_selecting_best_improvement_tabu.h \
+    src/data/dStrategy/neighbor_selecting_best_improvement.h \
+    src/data/dStrategy/neighbor_selecting_first_improvement.h \
+    src/data/dStrategy/neighbor_selecting_random.h \
+    src/benchmarks/squaring_square.h \
+    src/benchmarks/golomb_ruler.h \
+    src/testers/tester_cost_of_solution_golfers.h \
+    src/testers/tester_cost_of_solutions_quaring_square.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

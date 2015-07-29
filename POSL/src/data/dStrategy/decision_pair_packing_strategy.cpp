@@ -8,7 +8,7 @@ DecisionPairPackingStrategy::DecisionPairPackingStrategy(DecisionPair * _pair)
 
 vector<int> DecisionPairPackingStrategy::pack()
 {
-    int conf_size = pair->GetCurrent()->configuration.size();   
+    int conf_size = pair->GetCurrent()->GetConfiguration().size();
     vector<int> package(conf_size * 2 + 2);
     // ID = 1
     package[0] = 1;
@@ -16,11 +16,11 @@ vector<int> DecisionPairPackingStrategy::pack()
     package[1] = conf_size;
 
     // Configuration 1 (current)
-    vector<int> current_conf = pair->GetCurrent()->configuration;
+    vector<int> current_conf = pair->GetCurrent()->GetConfiguration();
     copy(current_conf.begin(), current_conf.end(), package.begin() + 2);
 
     // Configuration 1 (current)
-    vector<int> found_conf = pair->GetFound()->configuration;
+    vector<int> found_conf = pair->GetFound()->GetConfiguration();
     copy(found_conf.begin(), found_conf.end(), package.begin() + 2 + conf_size);
     return package;
 }

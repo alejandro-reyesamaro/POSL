@@ -23,6 +23,11 @@ Tester_ConditionalOperator::Tester_ConditionalOperator(int argc, char *argv[])
 
 string Tester_ConditionalOperator::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config0(
     {
         1,  1,  1,  1,
@@ -63,8 +68,8 @@ string Tester_ConditionalOperator::test()
     });
 
     //PSP * psp = new PSP(bench);
-    Solution * sol1 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config1);
-    Solution * sol2 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config2);
+    Solution * sol1 = new Solution(psp->GetBenchmark()->Domains(), config1);
+    Solution * sol2 = new Solution(psp->GetBenchmark()->Domains(), config2);
 
     //int c1 = psp->GetBenchmark()->solutionCost(sol1);
     //int c2 = psp->GetBenchmark()->solutionCost(sol2);

@@ -22,7 +22,11 @@ Tester_CyclicOperator::Tester_CyclicOperator(int argc, char *argv[])
 
 string Tester_CyclicOperator::test()
 {
-    //PSP * psp = new PSP(bench);
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();
     CompoundModule * cm0 = new OM_RandomConfGeneration();
     //CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();

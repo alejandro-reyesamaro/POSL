@@ -57,7 +57,12 @@ class Solution : public ComputationData, public Packable
         int bodySize();
         vector<int> body();
 
-    //private:
+        //! The current configuration
+        vector<int> GetConfiguration();
+        //! The variables domains
+        vector<Domain> GetDomains();
+
+    private:
         //! The variables domains
         vector<Domain> domains;
         //! The current configuration

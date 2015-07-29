@@ -2,6 +2,7 @@
 #include "../data/solution.h"
 #include "../modules/operation_module.h"
 #include "../modules/om_florian_random_conf_generation.h"
+#include "../benchmarks/golfers.h"
 
 Tester_FlorianRandomConfigurationGeneration::Tester_FlorianRandomConfigurationGeneration(int argc, char *argv[])
     : Tester(argc, argv)
@@ -10,6 +11,11 @@ Tester_FlorianRandomConfigurationGeneration::Tester_FlorianRandomConfigurationGe
 
 string Tester_FlorianRandomConfigurationGeneration::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     OperationModule * op1 = new OM_FlorianRandomConfGeneration();
     bool is_random = true;
     //PSP * psp = new PSP(bench);

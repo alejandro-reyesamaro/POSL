@@ -34,4 +34,5 @@ class Tools
         static float str2float(string str);
         static string configurationToString(vector<int> config);
         static string frontModule(string code);
+        static int segmentIntersection(int a1, int b1, int a2, int b2);
 };

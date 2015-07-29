@@ -1,0 +1,8 @@
+#pragma once
+
+class BooleanExpresion
+{
+    public:
+        BooleanExpresion();
+        virtual bool evaluate() = 0;
+};
