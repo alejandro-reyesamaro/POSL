@@ -50,6 +50,13 @@ class Benchmark
         */
         virtual vector<Domain> Domains() = 0;
 
+        //! Shows the solution in its way
+        /*!
+        * \param solution The solution
+        * \return The solution as a string
+        */
+        virtual string ShowSolution(Solution * solution) = 0;
+
     protected:
         //! Current solution of the problem
         Solution * solution;

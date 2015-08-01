@@ -11,7 +11,7 @@ LongInt::LongInt(unsigned int _bytes, vector<int> _value) : bytes(_bytes), value
 
 LongInt::LongInt(unsigned int _bytes, int _value) : bytes(_bytes)
 {
-     vector<int> aux (bytes, 0);
+    vector<int> aux (bytes, 0);
     aux[0] = _value;
     value = aux;
 }

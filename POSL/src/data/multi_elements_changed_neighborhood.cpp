@@ -19,7 +19,7 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
     //int N = PRC_CHANGES * n;  // to have N chahges
 
     RandIndexGenerator rig(n-1);
-    vector<vector<int>> the_changes = rig.generate(ch);
+    vector<vector<int>> the_changes = rig.generate();
 
     int pos_new_value = 0;
 

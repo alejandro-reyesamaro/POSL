@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <iostream>
 
-#define SWAPS 200
+#define SWAPS 600
 
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int _players) : players(_players)
 {

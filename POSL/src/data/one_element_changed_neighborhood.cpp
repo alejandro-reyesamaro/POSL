@@ -17,7 +17,8 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : r
     vector<int> indexes;
     for (int i = 0; i < n; i++)
         indexes.push_back(i);
-    n = N_NEIGHBORS;
+    //n = N_NEIGHBORS;
+    srand(time(0));
     random_shuffle (indexes.begin(), indexes.end());
 
     int pos_new_value = 0;
@@ -26,13 +27,19 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol) : r
     {
         vector<int> posible_values = sol->GetDomains()[indexes[i]].GetValues();
         int current_value = sol->GetConfiguration()[indexes[i]];
-
-        vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
-        if(p != posible_values.end())
-            posible_values.erase(p); // BEST to do a swap with the first element
-        pos_new_value = rand.NextInt(0, posible_values.size()-1);
-        T_change next_change = {indexes[i], posible_values[pos_new_value]};
-        changes.push_back(next_change);
+        srand(time(0));
+        random_shuffle (posible_values.begin(), posible_values.end());
+        //vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
+        //if(p != posible_values.end())
+        //    posible_values.erase(p); // BEST to do a swap with the first element
+        for (int j = 0; j < posible_values.size() / 2 + 1; j++)
+        {
+            pos_new_value = rand.NextInt(0, posible_values.size()/2);
+            if(posible_values[pos_new_value] == current_value)
+                continue;
+            T_change next_change = {indexes[i], posible_values[pos_new_value]};
+            changes.push_back(next_change);
+        }
     }
     packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new OneElementChangedBodyPackingStrategy(changes));
 }

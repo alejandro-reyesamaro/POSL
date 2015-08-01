@@ -33,6 +33,10 @@ int GolombRuler::solutionCost(Solution * sol)
             measures->activate(distance);
         }
     int not_measured = length - measures->bitCount();
+    if(conf[0] != 0)
+        penalty += PENALIZATION * PENALIZATION;
+    if(conf[order - 1] != length)
+        penalty += PENALIZATION * PENALIZATION;
     cost = not_measured + penalty * PENALIZATION;
     return cost;
 }
@@ -45,4 +49,9 @@ int GolombRuler::Order()
 int GolombRuler::Length()
 {
     return length;
+}
+
+string GolombRuler::ShowSolution(Solution * solution)
+{
+    return solution->configurationToString();
 }

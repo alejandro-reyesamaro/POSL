@@ -14,7 +14,8 @@ string Tester_CostOfSolutionGolomRules::test()
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
     vector<int> config1({0, 1, 4, 10, 12, 17}); // costo 2
-    vector<int> config2({0, 1, 3, 10, 12, 17}); // costo mmmm
+    vector<int> config2({0, 1, 3, 10, 12, 17}); // costo 5
+    vector<int> config3({0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85});
 
     sol = new Solution(psp->GetBenchmark()->Domains(), config1);
     int c1 = psp->GetBenchmark()->solutionCost(sol);
@@ -22,8 +23,14 @@ string Tester_CostOfSolutionGolomRules::test()
     sol = new Solution(psp->GetBenchmark()->Domains(), config2);
     int c2 = psp->GetBenchmark()->solutionCost(sol);
 
-    cout << c1 << " - " << c2 << endl;
-    return (c1 == 0 && c2 == 27)
+    bench = new GolombRuler(12, 85);
+    sol = new Solution(psp->GetBenchmark()->Domains(), config3);
+    bench->UpdateSolution(sol);
+    psp = new PSP(ARGC, ARGV, bench);
+    int c3 = psp->GetBenchmark()->solutionCost(sol);
+
+    cout << c3 << " - " << c2 << endl;
+    return (c1 == 2 && c2 == 5)
         ? "CostOfSolution (Golom Ruler): OK !"
         : "CostOfSolution (Golom Ruler): fail :/";
 }

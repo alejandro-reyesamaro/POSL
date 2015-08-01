@@ -34,7 +34,9 @@
 #include "testers/tester_union_operator.h"
 #include "testers/tester_speed_operator.h"
 #include "testers/tester_coding_compound_modules.h"
-#include "testers/tester_solver.h"
+#include "testers/tester_solver_golfers.h"
+#include "testers/tester_solver_golomb_ruler.h"
+#include "testers/tester_solver_squaring_square.h"
 
 #include "mpi.h"
 
@@ -47,8 +49,8 @@ int main(int argc, char **argv)
 
 
     //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
-    tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
-    tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
+    //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
     /*
     tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
@@ -72,8 +74,10 @@ int main(int argc, char **argv)
     tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
     tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
     tests.push_back(new Tester_CodingCompoundModules(argc, argv));
-    tests.push_back(new Tester_Solver(argc, argv));
     */
+    tests.push_back(new Tester_Solver_Golfers(argc, argv));
+    //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
+    //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)

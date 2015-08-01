@@ -5,7 +5,8 @@ PSP::PSP(int _argc, char **_argv, Benchmark * _bench)
       ARGV(_argv),
       bench(_bench),
       iterations(0),
-      milisecs(0)
+      milisecs(0),
+      best_found_solution(NULL)
 {}
 
 void PSP::UpdateSolution(Solution * solution)
@@ -47,7 +48,9 @@ int PSP::CurrentCost()
 
 int PSP::BestCostSoFar()
 {
-    return bench->solutionCost(best_found_solution);
+    return (best_found_solution == NULL)
+        ? -1
+        : bench->solutionCost(best_found_solution);
 }
 
 void PSP::UpdateTime(int _milisecs)

@@ -6,17 +6,7 @@
 
 Solution::Solution(vector<Domain> _domains)
     : domains(_domains),
-      configuration({
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-                    0,  0,  0,  0
-                    })
+      configuration(_domains.size(), 0)
 {
     packing_strategy = new SolutionPackingStrategy(configuration);
 }

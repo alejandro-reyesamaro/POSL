@@ -50,3 +50,16 @@ int SquaringSquare::SquareAt(int pos)
 {
     return (pos >= 0 && pos < size)? squares[pos] : -1;
 }
+
+string SquaringSquare::ShowSolution(Solution * solution)
+{
+    string out = "";
+    vector<int> conf = solution->GetConfiguration();
+    int n = squares.size();
+    out += "(" + Tools::int2str(conf[0]) + ";" + Tools::int2str(conf[n]) + ")";
+    for(int i = 1; i < n; i++)
+    {
+        out += ", (" + Tools::int2str(conf[i]) + ";" + Tools::int2str(conf[i+n]) + ")";
+    }
+    return out;
+}

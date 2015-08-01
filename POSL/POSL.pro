@@ -128,7 +128,6 @@ SOURCES += src/main.cpp \
     src/packing/uncode_binary_operator_strategy.cpp \
     src/packing/uncode_rho_operator_strategy.cpp \
     src/testers/tester_coding_compound_modules.cpp \
-    src/testers/tester_solver.cpp \
     src/modules/oms_time_counter.cpp \
     src/modules/oms_iterations_counter.cpp \
     src/data/dStrategy/neighbor_selecting_best_improvement_tabu.cpp \
@@ -139,7 +138,10 @@ SOURCES += src/main.cpp \
     src/benchmarks/golomb_ruler.cpp \
     src/testers/tester_cost_of_solution_golfers.cpp \
     src/testers/tester_cost_of_solution_golom_rules.cpp \
-    src/testers/tester_cost_of_solution_quaring_square.cpp
+    src/testers/tester_cost_of_solution_quaring_square.cpp \
+    src/testers/tester_solver_golfers.cpp \
+    src/testers/tester_solver_golomb_ruler.cpp \
+    src/testers/tester_solver_squaring_square.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -271,7 +273,6 @@ HEADERS += \
     src/packing/uncode_binary_operator_strategy.h \
     src/packing/uncode_rho_operator_strategy.h \
     src/testers/tester_coding_compound_modules.h \
-    src/testers/tester_solver.h \
     src/modules/oms_time_counter.h \
     src/modules/oms_iterations_counter.h \
     src/data/dStrategy/neighbor_selecting_best_improvement_tabu.h \
@@ -282,7 +283,10 @@ HEADERS += \
     src/benchmarks/golomb_ruler.h \
     src/testers/tester_cost_of_solution_golfers.h \
     src/testers/tester_cost_of_solution_golom_rules.h \
-    src/testers/tester_cost_of_solution_quaring_square.h
+    src/testers/tester_cost_of_solution_quaring_square.h \
+    src/testers/tester_solver_golfers.h \
+    src/testers/tester_solver_golomb_ruler.h \
+    src/testers/tester_solver_squaring_square.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

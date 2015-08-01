@@ -1,5 +1,6 @@
 #include "golfers.h"
 #include "../tools/long_int.h"
+#include "../tools/tools.h"
 #include "../data/dStrategy/factory_n_int_domain.h"
 
 #include <vector>
@@ -23,7 +24,7 @@ vector<Domain> Golfers::Domains()
 
 int Golfers::solutionCost(Solution * sol)
 {
-    //cout << "Begin" << endl;
+    //cout << sol->configurationToString() << endl;
     int golfers = players * groups;
     int table_length = golfers / 32 + 1;                                        // how long must be the LongInt
     vector<LongInt> global_partners (golfers+1, LongInt(table_length, 0));         // player i in pos i
@@ -57,8 +58,9 @@ int Golfers::solutionCost(Solution * sol)
                         LongInt new_partner (table_length, 0);
                         new_partner.activate(sol->GetConfiguration()[j]);
                         //cout << new_partner.toString() << endl;
+                        //cout << i << "- " << sol->GetConfiguration()[i] << endl;
                         group_partners[sol->GetConfiguration()[i]] = group_partners[sol->GetConfiguration()[i]] | new_partner;
-                        //cout << group_partners[sol->configuration[i]].toString() << endl;
+                        //cout << group_partners[sol->GetConfiguration()[i]].toString() << endl;
                     }
                     //cout << group_partners[sol->configuration[i]].toString() << endl;
                 }
@@ -105,3 +107,24 @@ int Golfers::PlayersPerGroup(){ return players; }
 int Golfers::Weeks(){ return weeks; }
 
 int Golfers::TotalPlayers(){ return players * groups; }
+
+string Golfers::ShowSolution(Solution * solution)
+{
+    string out = "";
+    vector<int>::iterator it = solution->GetConfiguration().begin();
+    for(int w = 0; w < weeks; w ++)
+    {
+        for(int g = 0; g < groups; g ++)
+        {
+            for(int p = 0; p < players; p ++)
+            {
+                int value = *it;
+                out += Tools::int2str(value) + "\t";
+                it ++;
+            }
+            out += "\n";
+        }
+        out += "--\n";
+    }
+    return out;
+}
