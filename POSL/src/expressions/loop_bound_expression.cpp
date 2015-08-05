@@ -6,7 +6,7 @@ LoopBoundExpression::LoopBoundExpression(int _max_loops) : loop(0), max_loops(_m
 
 bool LoopBoundExpression::evaluate(PSP * psp)
 {
-    loop ++;    
+    loop ++;
     int costsofar = psp->BestCostSoFar();
     if(costsofar < 0)
         costsofar = 1; // making true the second expression

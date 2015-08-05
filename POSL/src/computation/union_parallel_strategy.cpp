@@ -32,7 +32,7 @@ ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * in
 
         mytag=TAG;
 
-        if(myid == 0) {
+        if(myid == psp->ProcessA()) {
             //cout << "proc. 0 " << endl;
             Neighborhood * v1 = (Neighborhood *)M1->execute(psp, input);
             vector<int> vec_pack = v1->pack();
@@ -40,7 +40,7 @@ ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * in
             buff = &vec_pack[0]; //j=(int*)malloc(2*sizeof(int));
             ierr = MPI_Send(buff, pack_size, MPI_INT, 1, mytag, MPI_COMM_WORLD);
         }
-        if(myid == 1){
+        if(myid == psp->ProcessB()){
             //cout << "proc. 1 " << endl;
             Neighborhood * v2 = (Neighborhood *)M2->execute(psp, input);
             ierr = MPI_Probe(0,mytag,MPI_COMM_WORLD,&status);
@@ -50,9 +50,9 @@ ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * in
             Neighborhood * v1 = new FromPackNeighborhood(pack_size, buff);
             v = new UnionNeighborhood((Solution *)input, v1, v2);
         }
-        if(myid == 1) return v;
+        if(myid == psp->ProcessB()) return v;
         exit(0);
     }
     else
-        throw "Not MPI initializing....";
+        throw "(POSL Exception) Not MPI initializing....";
 }

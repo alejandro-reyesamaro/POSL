@@ -141,7 +141,13 @@ SOURCES += src/main.cpp \
     src/testers/tester_cost_of_solution_quaring_square.cpp \
     src/testers/tester_solver_golfers.cpp \
     src/testers/tester_solver_golomb_ruler.cpp \
-    src/testers/tester_solver_squaring_square.cpp
+    src/testers/tester_solver_squaring_square.cpp \
+    src/solver/posl_solver.cpp \
+    src/solver/for_golfers_css.cpp \
+    src/solver/for_squaring_square_css.cpp \
+    src/solver/for_golomb_ruler_css.cpp \
+    src/solver/posl_meta_solver.cpp \
+    src/computation/flag_computation.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -286,7 +292,14 @@ HEADERS += \
     src/testers/tester_cost_of_solution_quaring_square.h \
     src/testers/tester_solver_golfers.h \
     src/testers/tester_solver_golomb_ruler.h \
-    src/testers/tester_solver_squaring_square.h
+    src/testers/tester_solver_squaring_square.h \
+    src/solver/posl_solver.h \
+    src/solver/create_solver_strategy.h \
+    src/solver/for_golfers_css.h \
+    src/solver/for_squaring_square_css.h \
+    src/solver/for_golomb_ruler_css.h \
+    src/solver/posl_meta_solver.h \
+    src/computation/flag_computation.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

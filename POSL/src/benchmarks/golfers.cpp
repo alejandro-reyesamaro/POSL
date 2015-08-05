@@ -110,8 +110,11 @@ int Golfers::TotalPlayers(){ return players * groups; }
 
 string Golfers::ShowSolution(Solution * solution)
 {
-    string out = "";
-    vector<int>::iterator it = solution->GetConfiguration().begin();
+    string out =  "Golfers: players-" + Tools::int2str(players);
+           out += ", groups-" + Tools::int2str(groups);
+           out += ", weeks-" + Tools::int2str(weeks) + "\n";
+    vector<int> config = solution->GetConfiguration();
+    vector<int>::iterator it = config.begin();
     for(int w = 0; w < weeks; w ++)
     {
         for(int g = 0; g < groups; g ++)

@@ -38,12 +38,14 @@
 #include "testers/tester_solver_golomb_ruler.h"
 #include "testers/tester_solver_squaring_square.h"
 
+#include "solver/posl_meta_solver.h"
+
 #include "mpi.h"
 
 using namespace std;
 
 // Testing SEQUENTIAL
-int main(int argc, char **argv)
+int mainNO(int argc, char **argv)
 {
     vector<Tester *> tests;
 
@@ -88,7 +90,7 @@ int main(int argc, char **argv)
 }
 
 // Testing PARALLEL
-int mainNO(int argc, char **argv)
+int mainNOO(int argc, char **argv)
 {
     vector<Tester *> tests;
 
@@ -108,6 +110,13 @@ int mainNO(int argc, char **argv)
 
     MPI_Finalize();
 }
+
+int main(int argc, char **argv)
+{
+    POSL_MetaSolver * s = new POSL_MetaSolver();
+    s->solve(argc, argv, new Golfers(4,4,2));
+}
+
 
 // PARALLEL
 // Compile command line:

@@ -27,6 +27,7 @@ ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * in
     //cout << "speed strategy" << endl;
 
     ComputationData * d;
+    d = NULL;
 
     int flag;
     MPI_Initialized(&flag);
@@ -36,13 +37,15 @@ ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * in
         MPI_Comm_size(MPI_COMM_WORLD,&numprocs);
         MPI_Comm_rank(MPI_COMM_WORLD,&myid);
 
-        if(myid <= 1)
+        if( myid == psp->ProcessA() || myid == psp->ProcessB() )
         {
             cout << "proc: " << myid << endl;
 
             int source = myid; //int source = 0;
-            int dest   = (myid + 1) % 2; //int dest = 1;
-            int tag = (myid == 0)? TAG0 : TAG1;
+            int dest   = (myid == psp->ProcessA()) //(myid + 1) % 2; //int dest = 1;
+                    ? psp->ProcessB()
+                    : psp->ProcessA();
+            tag = (myid == 0)? TAG0 : TAG1;
 
             MPI_Irecv(buff, 1, MPI_INT, source, tag, MPI_COMM_WORLD, &reqs[0]);
 
@@ -63,5 +66,5 @@ ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * in
 
     }
     else
-        throw "Not MPI initializing....";
+        throw "(POSL Exception) Not MPI initializing....";
 }

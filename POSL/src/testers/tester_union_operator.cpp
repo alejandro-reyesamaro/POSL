@@ -7,6 +7,7 @@
 #include "../modules/grouped_sequential_computation.h"
 #include "../modules/grouped_parallel_computation.h"
 #include "../data/multi_elements_changed_neighborhood.h"
+#include "../computation/flag_computation.h"
 
 Tester_UnionOperator::Tester_UnionOperator(int argc, char *argv[])
     : Tester(argc, argv)
