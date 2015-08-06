@@ -49,21 +49,18 @@ void POSL_MetaSolver::solve(int argc, char **argv, Benchmark * bench)
     int numsolvers = solvers.size();
     int solver_index = (int(myid / 2)) % numsolvers;
 
-    //if(myid == 3)
-    //    cout << myid<< "Solvers-" <<numsolvers<< ":"<<solver_index<< endl;
-
     Solution * sol = new Solution(bench->Domains());
     bench->UpdateSolution(sol);
 
-    cout << " DONE " << endl;
 
-    if(myid == 0)
-    {
+    //cout << " DONE " << endl;
+
+    //if(myid == 0)
+    //{
         POSL_Solver * solver = solvers[solver_index];
         solver->solve();
-        //solver->show();
-    }
-
+        cout << solver->show() << endl;
+    //}
 
     MPI_Finalize();
 }

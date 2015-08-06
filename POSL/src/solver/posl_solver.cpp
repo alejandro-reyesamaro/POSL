@@ -2,6 +2,9 @@
 #include "../tools/tools.h"
 #include "../computation/flag_computation.h"
 
+#include <iostream>
+using namespace std;
+
 POSL_Solver::POSL_Solver(int _argc, char **_argv,
                          Benchmark *_bench,
                          CreateSolverStrategy * create_strategy)

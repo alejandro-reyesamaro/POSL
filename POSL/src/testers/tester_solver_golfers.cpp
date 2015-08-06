@@ -12,12 +12,15 @@ string Tester_Solver_Golfers::test()
 {
     //Benchmark * bench = new Golfers(5,5,3);
     Benchmark * bench = new Golfers(4,4,2);
+
+    FlagComputation * flagC = new FlagParallelComputation(0, 1);
+    PSP * psp = new PSP(ARGC, ARGV, bench, flagC);
+
     Solution * sol = new Solution(bench->Domains());
     bench->UpdateSolution(sol);
 
-    POSL_Solver * solver = new POSL_Solver(ARGC, ARGV,
-                                           bench,
-                                           new ForGolfersCSS());
+    //POSL_Solver * solver = new POSL_Solver(ARGC, ARGV, bench, new ForGolfersCSS());
+    POSL_Solver * solver = new POSL_Solver(psp, new ForGolfersCSS());
     solver->solve();
     return solver->show();
 }

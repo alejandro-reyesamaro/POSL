@@ -45,7 +45,7 @@
 using namespace std;
 
 // Testing SEQUENTIAL
-int mainNO(int argc, char **argv)
+int mainno(int argc, char **argv)
 {
     vector<Tester *> tests;
 
@@ -114,7 +114,7 @@ int mainNOO(int argc, char **argv)
 int main(int argc, char **argv)
 {
     POSL_MetaSolver * s = new POSL_MetaSolver();
-    s->solve(argc, argv, new Golfers(4,4,2));
+    s->solve(argc, argv, new Golfers(5,5,3));
 }
 
 

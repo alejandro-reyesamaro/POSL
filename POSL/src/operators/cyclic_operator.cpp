@@ -1,10 +1,15 @@
 #include "cyclic_operator.h"
 #include "../computation/cyclic_sequential_strategy.h"
 
+#include <iostream>
+using namespace std;
+
 CyclicOperator::CyclicOperator(CompoundModule * _M1, BooleanExpression * _ex)
     : UnaryOperator(_M1, new CyclicSequentialStrategy(_M1, _ex)),
       ex(_ex)
-{}
+{
+    //cout << "Built CyclicOperator" << endl;
+}
 
 string CyclicOperator::codeToSend()
 {
