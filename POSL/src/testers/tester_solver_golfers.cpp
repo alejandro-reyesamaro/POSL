@@ -20,7 +20,7 @@ string Tester_Solver_Golfers::test()
     bench->UpdateSolution(sol);
 
     //POSL_Solver * solver = new POSL_Solver(ARGC, ARGV, bench, new ForGolfersCSS());
-    POSL_Solver * solver = new POSL_Solver(psp, new ForGolfersCSS());
-    solver->solve();
-    return solver->show();
+    POSL_Solver * solver = new POSL_Solver(new ForGolfersCSS());
+    solver->solve(psp);
+    return solver->show(psp->GetBenchmark());
 }

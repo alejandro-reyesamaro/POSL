@@ -14,7 +14,10 @@ string Tester_SolverSquaringSquare::test()
     Solution * sol = new Solution(bench->Domains());
     bench->UpdateSolution(sol);
 
-    POSL_Solver * solver = new POSL_Solver(ARGC, ARGV, bench, new ForSquaringSquareCSS());
-    solver->solve();
-    return solver->show();
+    FlagComputation * flagC = new FlagSequentialComputation();
+    PSP * psp = new PSP(ARGC, ARGV, bench, flagC);
+
+    POSL_Solver * solver = new POSL_Solver(new ForSquaringSquareCSS());
+    solver->solve(psp);
+    return solver->show(psp->GetBenchmark());
 }

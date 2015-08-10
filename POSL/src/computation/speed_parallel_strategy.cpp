@@ -45,7 +45,7 @@ ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * in
             int dest   = (myid == psp->ProcessA()) //(myid + 1) % 2; //int dest = 1;
                     ? psp->ProcessB()
                     : psp->ProcessA();
-            tag = (myid == 0)? TAG0 : TAG1;
+            tag = (myid == psp->ProcessA())? TAG0 : TAG1;
 
             MPI_Irecv(buff, 1, MPI_INT, source, tag, MPI_COMM_WORLD, &reqs[0]);
 
@@ -62,7 +62,7 @@ ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * in
             }
         }
         if(d != NULL) return d;
-        exit(0);
+        //exit(0);
 
     }
     else

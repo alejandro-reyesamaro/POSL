@@ -10,5 +10,6 @@ class POSL_MetaSolver
         void solve(int argc, char **argv, Benchmark *bench);
 
     private:
+        void solve_MS(int argc, char **argv, Benchmark * bench);
         vector<POSL_Solver *> solvers;        
 };

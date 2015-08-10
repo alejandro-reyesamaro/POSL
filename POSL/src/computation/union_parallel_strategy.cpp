@@ -51,7 +51,7 @@ ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * in
             v = new UnionNeighborhood((Solution *)input, v1, v2);
         }
         if(myid == psp->ProcessB()) return v;
-        exit(0);
+        //exit(0);
     }
     else
         throw "(POSL Exception) Not MPI initializing....";

@@ -5,6 +5,7 @@
 #include <iostream>
 using namespace std;
 
+/*
 POSL_Solver::POSL_Solver(int _argc, char **_argv,
                          Benchmark *_bench,
                          CreateSolverStrategy * create_strategy)
@@ -33,55 +34,68 @@ POSL_Solver::POSL_Solver(int _argc, char **_argv,
         throw "(POSL Exception) Not properly initializaction parallel solver";
     psp = new PSP(_argc, _argv, _bench, new FlagParallelComputation(procA, procB));
 }
+*/
 
-
-
-
-
-
-
-
-
-POSL_Solver::POSL_Solver(PSP * _psp, CreateSolverStrategy * create_strategy)
+POSL_Solver::POSL_Solver(CreateSolverStrategy * create_strategy)
     : final_solution(NULL),
       best_solution(NULL),
       final_cost(-1),
       best_cost(-1),
-      psp(_psp),
+      iterations(-1),
+      time(-1),
       module(create_strategy->create())
 {}
 
-bool POSL_Solver::Initialized()
+bool POSL_Solver::Initialized(PSP * psp)
 {
     return psp->computation() == SEQ
            || (psp->ProcessA() != -1 && psp->ProcessB() != -1);
 }
 
-void POSL_Solver::solve()
+void POSL_Solver::solve(PSP * psp)
 {
-    if(Initialized())
+    if(Initialized(psp))
     {
         final_solution = (Solution *)module->execute(psp, NULL);
         final_cost = psp->GetBenchmark()->solutionCost(final_solution);
         best_solution = psp->GetBestSolutionSoFar();
         best_cost = psp->GetBenchmark()->solutionCost(best_solution);
+        iterations = psp->GetIterations();
+        time = psp->GetTime();
     }
+}
+
+string POSL_Solver::showSolution(string str_finalSol, string str_bestSol)
+{
+    string out = "Final Solution:\n";
+    out += str_finalSol + "\n";
+    out += "Final cost: " + Tools::int2str(final_cost) + "\n";
+    out += "\n";
+    out += "BEST Solution:\n";
+    out += str_bestSol + "\n";
+    out += "BEST cost: " + Tools::int2str(best_cost) + "\n";
+    out += "\n";
+    out += "Iterations: " + Tools::int2str(iterations) + "\n";
+    out += "Time (milisecs): " + Tools::int2str(time);
+    return out;
+}
+
+string POSL_Solver::show(Benchmark * bench)
+{
+    if(final_solution != NULL && best_solution != NULL){
+        string str_finalSol = bench->ShowSolution(final_solution);
+        string str_bestSol = bench->ShowSolution(best_solution);
+        return showSolution(str_finalSol, str_bestSol);
+    }
+    else return "Solver not working";
 }
 
 string POSL_Solver::show()
 {
-    if(Initialized()){
-        string out = "Final Solution:\n";
-        out += psp->GetBenchmark()->ShowSolution(final_solution) + "\n";
-        out += "Final cost: " + Tools::int2str(final_cost) + "\n";
-        out += "\n";
-        out += "BEST Solution:\n";
-        out += psp->GetBenchmark()->ShowSolution(best_solution) + "\n";
-        out += "BEST cost: " + Tools::int2str(best_cost) + "\n";
-        out += "\n";
-        out += "Iterations: " + Tools::int2str(psp->GetIterations()) + "\n";
-        out += "Time (milisecs): " + Tools::int2str(psp->GetTime());
-        return out;
+    if(final_solution != NULL && best_solution != NULL){
+        string str_finalSol = final_solution->configurationToString();
+        string str_bestSol = best_solution->configurationToString();
+        return showSolution(str_finalSol, str_bestSol);
     }
     else return "Solver not working";
 }
