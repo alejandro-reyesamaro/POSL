@@ -4,7 +4,7 @@
 #include "../modules/grouped_sequential_computation.h"
 
 #include "../modules/om_florian_random_conf_generation.h"
-#include "../modules/om_random_conf_generation.h"
+#include "../modules/om_random_conf_ordered_generation.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_one_element_changed_neighborhood.h"
 #include "../modules/om_best_improvement_tabu_selection.h"
@@ -32,7 +32,7 @@ ForGolombRulerCSS::ForGolombRulerCSS()
 
 CompoundModule * ForGolombRulerCSS::create()
 {
-    CompoundModule * cm01 = new OM_RandomConfGeneration();
+    CompoundModule * cm01 = new OM_RandomConfOrderedGeneration();
     CompoundModule * cm02 = new OM_FlorianRandomConfGeneration();
     CompoundModule * cm11 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm12 = new OM_MultiElementsChangedNeighborhood();
@@ -106,13 +106,13 @@ CompoundModule * ForGolombRulerCSS::create()
     // Cyc(500 lopps){ Gsec2 } :
     //Operator * O_cyc1 = new CyclicOperator(G_sec2, new LoopBoundExpression(2000));
     //Operator * O_cyc1 = new CyclicOperator(G_sec31, new ReachedCostExpression(0));
-    Operator * O_cyc1 = new CyclicOperator(G_sec41, new LoopBoundExpression(1000));
+    Operator * O_cyc1 = new CyclicOperator(G_sec41, new LoopBoundExpression(500));
 
     // [ Cyc(500 lopps){ Gsec2 } ]:
     GroupedComputation * G_cyc1 = new GroupedSequentialComputation(O_cyc1);
 
     // cm0 |-> [ Cyc(500 lopps){ Gsec2 } ]
-    Operator* O_sec_0_Gcyc1 = new SequentialExecOperator(cm02, G_cyc1);
+    Operator* O_sec_0_Gcyc1 = new SequentialExecOperator(cm01, G_cyc1);
 
     // [ cm0 |-> [ Cyc(500 lopps){ Gsec2 } ] ]:
     GroupedComputation * G_sec3 = new GroupedSequentialComputation(O_sec_0_Gcyc1);

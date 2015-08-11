@@ -15,7 +15,7 @@ OM_FlorianRandomConfGeneration::OM_FlorianRandomConfGeneration()
 ComputationData * OM_FlorianRandomConfGeneration::execute(PSP *psp, ComputationData * input)
 {
     RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy((Seed *)input);
-    return rconf->generate(psp->GetBenchmark()->Domains());
+    //turn rconf->generate(psp->GetBenchmark()->Domains());
 
 
     vector<int> best_conf;

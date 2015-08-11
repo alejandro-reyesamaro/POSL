@@ -5,9 +5,6 @@
 #include <random>
 #include <iostream>
 
-#define BLOCK_SIZE 16
-#define N_BLOCKS 2
-
 OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGeneration()
 {
 }

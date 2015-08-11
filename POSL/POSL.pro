@@ -147,7 +147,13 @@ SOURCES += src/main.cpp \
     src/solver/for_squaring_square_css.cpp \
     src/solver/for_golomb_ruler_css.cpp \
     src/solver/posl_meta_solver.cpp \
-    src/computation/flag_computation.cpp
+    src/computation/flag_computation.cpp \
+    src/computation/random_ordered_generation_strategy.cpp \
+    src/modules/om_random_conf_ordered_generation.cpp \
+    src/testers/tester_random_ordered_confgeneration.cpp \
+    src/data/multi_sorted_changes_neighborhood.cpp \
+    src/modules/om_multi_sorted_changes_neighborhood.cpp \
+    src/testers/tester_multi_sorted_changes_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -299,7 +305,13 @@ HEADERS += \
     src/solver/for_squaring_square_css.h \
     src/solver/for_golomb_ruler_css.h \
     src/solver/posl_meta_solver.h \
-    src/computation/flag_computation.h
+    src/computation/flag_computation.h \
+    src/computation/random_ordered_generation_strategy.h \
+    src/modules/om_random_conf_ordered_generation.h \
+    src/testers/tester_random_ordered_confgeneration.h \
+    src/data/multi_sorted_changes_neighborhood.h \
+    src/modules/om_multi_sorted_changes_neighborhood.h \
+    src/testers/tester_multi_sorted_changes_neighborhood.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

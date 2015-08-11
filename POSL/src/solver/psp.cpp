@@ -17,7 +17,9 @@ PSP::PSP(int _argc, char **_argv, Benchmark * _bench)
 void PSP::UpdateSolution(Solution * solution)
 {
     bench->UpdateSolution(solution);
-    if(best_found_solution == NULL || bench->solutionCost(solution) < BestCostSoFar())
+    int cost = bench->solutionCost(solution);
+    int best_cost = BestCostSoFar();
+    if(best_found_solution == NULL || cost < best_cost)
         best_found_solution = solution;
 }
 

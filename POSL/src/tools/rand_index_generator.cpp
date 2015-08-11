@@ -10,7 +10,7 @@ RandIndexGenerator::RandIndexGenerator(int configuration_size, int _dim)
     vector<int> conf_index;
     for (int i = 0; i < configuration_size; i++)
         conf_index.push_back(i);
-
+    srand(time(0));
     random_shuffle (conf_index.begin(), conf_index.end());
 
     for(int i = 0; i < dim; i++)

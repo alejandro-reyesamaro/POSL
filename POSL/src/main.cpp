@@ -9,6 +9,7 @@
 #include "testers/tester_cost_of_solution_quaring_square.h"
 #include "testers/tester_cost_of_solution_golom_rules.h"
 #include "testers/tester_random_configuration_generation.h"
+#include "testers/tester_random_ordered_confgeneration.h"
 #include "testers/tester_florian_random_configuration_generation.h"
 #include "testers/tester_one_element_changed_neighborhood.h"
 #include "testers/tester_first_improvement_selection.h"
@@ -17,6 +18,7 @@
 #include "testers/tester_cyclic_operator.h"
 #include "testers/tester_sets_index_generator.h"
 #include "testers/tester_multi_elements_changed_neighborhood.h"
+#include "testers/tester_multi_sorted_changes_neighborhood.h"
 #include "testers/tester_union_operator.h"
 #include "testers/tester_conditional_operator.h"
 #include "testers/tester_random_selection.h"
@@ -37,6 +39,9 @@
 #include "testers/tester_solver_golfers.h"
 #include "testers/tester_solver_golomb_ruler.h"
 #include "testers/tester_solver_squaring_square.h"
+#include "solver/for_golfers_css.h"
+#include "solver/for_squaring_square_css.h"
+#include "solver/for_golomb_ruler_css.h"
 
 #include "solver/posl_meta_solver.h"
 
@@ -45,7 +50,7 @@
 using namespace std;
 
 // Testing SEQUENTIAL
-int mainno(int argc, char **argv)
+int main(int argc, char **argv)
 {
     vector<Tester *> tests;
 
@@ -53,6 +58,8 @@ int mainno(int argc, char **argv)
     //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
+    tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
     /*
     tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
@@ -77,7 +84,7 @@ int mainno(int argc, char **argv)
     tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
     tests.push_back(new Tester_CodingCompoundModules(argc, argv));
     */
-    tests.push_back(new Tester_Solver_Golfers(argc, argv));
+    //tests.push_back(new Tester_Solver_Golfers(argc, argv));
     //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
     //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
 
@@ -111,10 +118,31 @@ int mainNOO(int argc, char **argv)
     MPI_Finalize();
 }
 
-int main(int argc, char **argv)
+int mainNO(int argc, char **argv)
 {
-    POSL_MetaSolver * s = new POSL_MetaSolver();
-    s->solve(argc, argv, new Golfers(5,5,3));
+
+    vector<POSL_Solver *> solvers;
+    Benchmark * bench;
+
+    /* GOLFERS
+    bench = new Golfers(5,5,3);
+    POSL_Solver * solver_1 = new POSL_Solver(new ForGolfersCSS());
+    POSL_Solver * solver_2 = new POSL_Solver(new ForGolfersCSS());
+    */
+
+    /* SQUARING SQUARE
+    vector<int> squares({6, 4, 4, 1, 3, 3, 3});
+    bench = new SquaringSquare(10,squares);
+    POSL_Solver * solver_1 = new POSL_Solver(new ForSquaringSquareCSS());
+    */
+
+    /* GOLOMB RULER */
+    bench = new GolombRuler(12,85);
+    POSL_Solver * solver_1 = new POSL_Solver(new ForGolombRulerCSS());
+
+    solvers.push_back(solver_1);
+    POSL_MetaSolver * s = new POSL_MetaSolver(solvers);
+    s->solve(argc, argv, bench);
 }
 
 
