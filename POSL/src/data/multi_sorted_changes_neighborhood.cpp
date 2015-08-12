@@ -1,6 +1,7 @@
 #include "multi_sorted_changes_neighborhood.h"
 #include "dStrategy/elements_change_iterator.h"
 #include "../tools/rand_index_generator.h"
+#include "../tools/tools.h"
 
 #include "dStrategy/neighborhood_packing_strategy.h"
 #include "dStrategy/multi_elements_changed_body_packing_strategy.h"
@@ -8,11 +9,6 @@
 #include <algorithm>
 #include <iostream>
 #include <chrono>
-
-#define N_NEIGHBORS 10
-#define PRC_CHANGES 0.5
-
-vector<int> vector_possible_values(int index, vector<int> current_configuration);
 
 MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol) : rand()
 {
@@ -37,7 +33,7 @@ MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol) :
         for (vector<int>::iterator jt = new_indexes.begin(); jt != new_indexes.end(); ++jt)
         {
             //cout << *jt << " ";
-            vector<int> posible_values = vector_possible_values(*jt,the_configuration);
+            vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(*jt,the_configuration);
             int current_value = the_configuration[*jt];
 
             vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
@@ -58,26 +54,6 @@ MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol) :
         changes.push_back(next_changes);
     }
     packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new MultiElementsChangedBodyPackingStrategy(changes));
-}
-
-vector<int> vector_possible_values(int index, vector<int> current_configuration)
-{
-    vector<int> posible_values;
-    if(index == 0)
-    {
-        posible_values.push_back(0);
-        return posible_values;
-    }
-    else if(index == current_configuration.size() - 1)
-    {
-        posible_values.push_back(current_configuration[current_configuration.size()-1]);
-        return posible_values;
-    }
-    int a = current_configuration[index-1];
-    int b = current_configuration[index+1];
-    for(int i = a+1; i <= b-1; i++)
-        posible_values.push_back(i);
-    return posible_values;
 }
 
 POSL_Iterator<vector<int>> * MultiSortedChangesNeighborhood::getIterator()

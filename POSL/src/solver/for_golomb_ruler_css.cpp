@@ -6,7 +6,9 @@
 #include "../modules/om_florian_random_conf_generation.h"
 #include "../modules/om_random_conf_ordered_generation.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
+#include "../modules/om_multi_sorted_changes_neighborhood.h"
 #include "../modules/om_one_element_changed_neighborhood.h"
+#include "../modules/om_one_sorted_change_neighborhood.h"
 #include "../modules/om_best_improvement_tabu_selection.h"
 #include "../modules/om_best_improvement_selection.h"
 #include "../modules/om_first_improvement_selection.h"
@@ -32,10 +34,11 @@ ForGolombRulerCSS::ForGolombRulerCSS()
 
 CompoundModule * ForGolombRulerCSS::create()
 {
-    CompoundModule * cm01 = new OM_RandomConfOrderedGeneration();
-    CompoundModule * cm02 = new OM_FlorianRandomConfGeneration();
-    CompoundModule * cm11 = new OM_OneElementChangedNeighborhood();
-    CompoundModule * cm12 = new OM_MultiElementsChangedNeighborhood();
+    CompoundModule * cm01 = new OM_RandomConfOrderedGeneration();    
+    //CompoundModule * cm11 = new OM_OneElementChangedNeighborhood();
+    //CompoundModule * cm12 = new OM_MultiElementsChangedNeighborhood();
+    CompoundModule * cm11 = new OM_OneSortedChangeNeighborhood();
+    CompoundModule * cm12 = new OM_MultiSortedChangesNeighborhood();
 
     CompoundModule * cm21 = new OM_BestImprovementTabuSelection();
     CompoundModule * cm22 = new OM_FirstImprovementSelection();
@@ -80,7 +83,6 @@ CompoundModule * ForGolombRulerCSS::create()
     GroupedComputation * G_con1 = new GroupedSequentialComputation(O_con_31_32);
 
 
-
     // [ cm1 |-> [ cm21 (p) cm22 ] ] |-> [ cm31 (</ cost > 100 />) cm32 ] :
     //Operator * O_sec_Gsec1_Gcon1 = new SequentialExecOperator(G_sec1, G_con1);
     Operator * O_sec_Gsec1_Gcon1 = new SequentialExecOperator(G_sec1, cm31);
@@ -101,12 +103,10 @@ CompoundModule * ForGolombRulerCSS::create()
     GroupedComputation * G_sec41 = new GroupedSequentialComputation(O_sec_Gsec31_5);
     // <--------------------------------------------------------------------------------->
 
-
-
     // Cyc(500 lopps){ Gsec2 } :
     //Operator * O_cyc1 = new CyclicOperator(G_sec2, new LoopBoundExpression(2000));
     //Operator * O_cyc1 = new CyclicOperator(G_sec31, new ReachedCostExpression(0));
-    Operator * O_cyc1 = new CyclicOperator(G_sec41, new LoopBoundExpression(500));
+    Operator * O_cyc1 = new CyclicOperator(G_sec41, new LoopBoundExpression(2000));
 
     // [ Cyc(500 lopps){ Gsec2 } ]:
     GroupedComputation * G_cyc1 = new GroupedSequentialComputation(O_cyc1);

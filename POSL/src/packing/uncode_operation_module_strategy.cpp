@@ -11,6 +11,7 @@
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_golfers_single_swap_neighborhood.h"
 #include "../modules/om_multi_sorted_changes_neighborhood.h"
+#include "../modules/om_one_sorted_change_neighborhood.h"
 
 #include "../modules/om_best_improvement_selection.h"
 #include "../modules/om_best_improvement_tabu_selection.h"
@@ -65,8 +66,11 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code)
             case 3: // golfers neighborhood
                 return new OM_GolfersSingleSwapNeighborhood();
                 break;
-            case 4: // golom neighborhood
+            case 4: // golom neighborhood (multi)
                 return new OM_MultiSortedChangesNeighborhood();
+                break;
+            case 5: // golom neighborhood (one)
+                return new OM_OneSortedChangeNeighborhood();
                 break;
             default:
                 throw "Not well coded OperationModule (Neighborhood)";

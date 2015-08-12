@@ -1,6 +1,6 @@
 #include "neighbor_selecting_best_improvement_tabu.h"
 
-#define TABU_SIZE 5
+#define TABU_SIZE 10
 
 NeighborSelectingBestImprovementTabu::NeighborSelectingBestImprovementTabu()
     : tabu_list(new TabuList(TABU_SIZE))

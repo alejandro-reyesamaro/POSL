@@ -19,6 +19,7 @@
 #include "testers/tester_sets_index_generator.h"
 #include "testers/tester_multi_elements_changed_neighborhood.h"
 #include "testers/tester_multi_sorted_changes_neighborhood.h"
+#include "testers/tester_one_sorted_change_neighborhood.h"
 #include "testers/tester_union_operator.h"
 #include "testers/tester_conditional_operator.h"
 #include "testers/tester_random_selection.h"
@@ -57,9 +58,10 @@ int main(int argc, char **argv)
 
     //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
-    //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
     //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
-    tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
+    //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
+    //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
     /*
     tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
@@ -85,7 +87,7 @@ int main(int argc, char **argv)
     tests.push_back(new Tester_CodingCompoundModules(argc, argv));
     */
     //tests.push_back(new Tester_Solver_Golfers(argc, argv));
-    //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
+    tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
     //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
 
     string output_str;

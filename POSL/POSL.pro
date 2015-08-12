@@ -153,7 +153,10 @@ SOURCES += src/main.cpp \
     src/testers/tester_random_ordered_confgeneration.cpp \
     src/data/multi_sorted_changes_neighborhood.cpp \
     src/modules/om_multi_sorted_changes_neighborhood.cpp \
-    src/testers/tester_multi_sorted_changes_neighborhood.cpp
+    src/testers/tester_multi_sorted_changes_neighborhood.cpp \
+    src/data/one_sorted_change_neighborhood.cpp \
+    src/testers/tester_one_sorted_change_neighborhood.cpp \
+    src/modules/om_one_sorted_change_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -311,7 +314,11 @@ HEADERS += \
     src/testers/tester_random_ordered_confgeneration.h \
     src/data/multi_sorted_changes_neighborhood.h \
     src/modules/om_multi_sorted_changes_neighborhood.h \
-    src/testers/tester_multi_sorted_changes_neighborhood.h
+    src/testers/tester_multi_sorted_changes_neighborhood.h \
+    src/data/one_sorted_change_neighborhood.h \
+    src/data/t_change.h \
+    src/testers/tester_one_sorted_change_neighborhood.h \
+    src/modules/om_one_sorted_change_neighborhood.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

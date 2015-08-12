@@ -89,3 +89,32 @@ int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
     int b = min(b1, b2);
     return max(0, b - A);
 }
+
+vector<int> Tools::vector_possible_values_to_hold_sorted(int index, vector<int> current_configuration)
+{
+    vector<int> posible_values;
+    if(index == 0)
+    {
+        posible_values.push_back(0);
+        return posible_values;
+    }
+    else if(index == current_configuration.size() - 1)
+    {
+        posible_values.push_back(current_configuration[current_configuration.size()-1]);
+        return posible_values;
+    }
+    int a = current_configuration[index-1];
+    int b = current_configuration[index+1];
+    for(int i = a+1; i <= b-1; i++)
+        posible_values.push_back(i);
+    return posible_values;
+}
+
+int Tools::mismatches(vector<int> vector_1, vector<int> vector_2)
+{
+    int c = 0;
+    for(int i = 0; i < vector_1.size(); i++)
+        if(vector_1[i] != vector_2[i])
+            c++;
+    return c;
+}
