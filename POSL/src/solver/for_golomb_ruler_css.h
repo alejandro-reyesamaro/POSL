@@ -6,5 +6,5 @@ class ForGolombRulerCSS : public CreateSolverStrategy
 {
     public:
         ForGolombRulerCSS();
-        CompoundModule *create();
+        vector<POSL_Solver *> create();
 };

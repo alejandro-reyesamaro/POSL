@@ -6,5 +6,5 @@ class ForGolfersCSS : public CreateSolverStrategy
 {
     public:
         ForGolfersCSS();
-        CompoundModule *create();
+        vector<POSL_Solver *> create();
 };

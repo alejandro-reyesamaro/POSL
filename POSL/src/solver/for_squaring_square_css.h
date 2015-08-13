@@ -6,5 +6,5 @@ class ForSquaringSquareCSS : public CreateSolverStrategy
 {
     public:
         ForSquaringSquareCSS();
-        CompoundModule *create();
+        vector<POSL_Solver *> create();
 };

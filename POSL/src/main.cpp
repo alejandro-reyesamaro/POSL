@@ -140,9 +140,9 @@ int mainNO(int argc, char **argv)
 
     /* GOLOMB RULER */
     bench = new GolombRuler(12,85);
-    POSL_Solver * solver_1 = new POSL_Solver(new ForGolombRulerCSS());
+    CreateSolverStrategy * css = new ForGolombRulerCSS();
+    solvers = css->create();
 
-    solvers.push_back(solver_1);
     POSL_MetaSolver * s = new POSL_MetaSolver(solvers);
     s->solve(argc, argv, bench);
 }

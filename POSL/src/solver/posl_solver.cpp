@@ -5,45 +5,14 @@
 #include <iostream>
 using namespace std;
 
-/*
-POSL_Solver::POSL_Solver(int _argc, char **_argv,
-                         Benchmark *_bench,
-                         CreateSolverStrategy * create_strategy)
-    : final_solution(NULL),
-      best_solution(NULL),
-      final_cost(-1),
-      best_cost(-1),
-      //psp(NULL),
-      module(create_strategy->create())
-{
-    psp = new PSP(_argc, _argv, _bench, new FlagSequentialComputation());
-}
-
-POSL_Solver::POSL_Solver(int _argc, char **_argv,
-                         Benchmark *_bench,
-                         CreateSolverStrategy * create_strategy,
-                         int procA, int procB, int procID)
-    : final_solution(NULL),
-      best_solution(NULL),
-      final_cost(-1),
-      best_cost(-1),
-      //psp(NULL),
-      module(create_strategy->create())
-{
-    if(procA != procID && procB != procID)
-        throw "(POSL Exception) Not properly initializaction parallel solver";
-    psp = new PSP(_argc, _argv, _bench, new FlagParallelComputation(procA, procB));
-}
-*/
-
-POSL_Solver::POSL_Solver(CreateSolverStrategy * create_strategy)
+POSL_Solver::POSL_Solver(ComputationStrategy * _strategy)
     : final_solution(NULL),
       best_solution(NULL),
       final_cost(-1),
       best_cost(-1),
       iterations(-1),
       time(-1),
-      module(create_strategy->create())
+      strategy(_strategy)
 {}
 
 bool POSL_Solver::Initialized(PSP * psp)
@@ -56,7 +25,7 @@ void POSL_Solver::solve(PSP * psp)
 {
     if(Initialized(psp))
     {
-        final_solution = (Solution *)module->execute(psp, NULL);
+        final_solution = strategy->execute(psp);
         final_cost = psp->GetBenchmark()->solutionCost(final_solution);
         best_solution = psp->GetBestSolutionSoFar();
         best_cost = psp->GetBenchmark()->solutionCost(best_solution);

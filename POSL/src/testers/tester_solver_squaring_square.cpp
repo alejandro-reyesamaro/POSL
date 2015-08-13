@@ -17,7 +17,9 @@ string Tester_SolverSquaringSquare::test()
     FlagComputation * flagC = new FlagSequentialComputation();
     PSP * psp = new PSP(ARGC, ARGV, bench, flagC);
 
-    POSL_Solver * solver = new POSL_Solver(new ForSquaringSquareCSS());
-    solver->solve(psp);
-    return solver->show(psp->GetBenchmark());
+    CreateSolverStrategy * css = new ForSquaringSquareCSS();
+    vector<POSL_Solver *> solvers = css->create();
+
+    solvers[0]->solve(psp);
+    return solvers[0]->show(psp->GetBenchmark());
 }

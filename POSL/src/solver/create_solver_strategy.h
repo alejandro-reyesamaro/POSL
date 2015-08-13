@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../modules/operation_module.h"
+#include "posl_solver.h"
 
 class CreateSolverStrategy
 {
     public:
-        virtual CompoundModule * create() = 0;
+        virtual vector<POSL_Solver *> create() = 0;
 };
