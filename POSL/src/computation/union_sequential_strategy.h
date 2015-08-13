@@ -9,7 +9,7 @@
  * \date 2015-07-01
  */
 
-#include "sequential_computation_strategy.h"
+#include "sequential_execution_strategy.h"
 
 #include <random>
 #include <chrono>
@@ -18,7 +18,7 @@
  * \class UnionSequentialStrategy union_sequential_strategy.h
  * \brief Strategy of sequential computation for the operator Union
  */
-class UnionSequentialStrategy : public SequentialComputationStrategy
+class UnionSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
         //! Constructor

@@ -9,14 +9,14 @@
  * \date 2015-06-23
  */
 
-#include "sequential_computation_strategy.h"
+#include "sequential_execution_strategy.h"
 #include "../expressions/iteretion_bound_expression.h"
 
 /*!
  * \class CyclicSequentialStrategy cyclic_sequential_strategy.h
  * \brief Strategy of sequential computation for the operator Cyclic
  */
-class CyclicSequentialStrategy : public SequentialComputationStrategy
+class CyclicSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
         //! Constructor

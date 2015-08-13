@@ -3,8 +3,8 @@
 #include <iostream>
 using namespace std;
 
-Operator::Operator(SequentialComputationStrategy *_seq_strategy,
-                   ParallelComputationStrategy *_para_strategy):
+Operator::Operator(SequentialExecutionStrategy *_seq_strategy,
+                   ParallelExecutionStrategy *_para_strategy):
     seq_strategy(_seq_strategy),
     para_strategy(_para_strategy)
 {}

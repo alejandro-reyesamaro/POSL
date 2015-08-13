@@ -9,7 +9,7 @@
  * \date 2015-06-23
  */
 
-#include "sequential_computation_strategy.h"
+#include "sequential_execution_strategy.h"
 #include "../tools/randomizer.h"
 
 #include <random>
@@ -19,7 +19,7 @@
  * \class RhoSequentialStrategy rho_sequential_strategy.h
  * \brief Strategy of sequential computation for the operator Rho
  */
-class RhoSequentialStrategy : public SequentialComputationStrategy
+class RhoSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
         //! Constructor

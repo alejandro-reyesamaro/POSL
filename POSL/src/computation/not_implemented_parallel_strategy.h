@@ -9,13 +9,13 @@
  * \date 2015-05-28
  */
 
-#include "parallel_computation_strategy.h"
+#include "parallel_execution_strategy.h"
 
 /*!
  * \class NotImplementedParallelStrategy not_implemented_parallel_strategy.h
  * \brief Class to represent a not supported strategy (in parallel)
  */
-class NotImplementedParallelStrategy : public ParallelComputationStrategy
+class NotImplementedParallelStrategy : public ParallelExecutionStrategy
 {
     public:
         //! Constructor

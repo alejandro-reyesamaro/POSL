@@ -9,7 +9,7 @@
  * \date 2015-07-01
  */
 
-#include "parallel_computation_strategy.h"
+#include "parallel_execution_strategy.h"
 
 #include <random>
 #include <chrono>
@@ -18,7 +18,7 @@
  * \class UnionParallelStrategy union_parallel_strategy.h
  * \brief Strategy of sequential computation for the operator Union
  */
-class UnionParallelStrategy : public ParallelComputationStrategy
+class UnionParallelStrategy : public ParallelExecutionStrategy
 {
     public:
         //! Constructor

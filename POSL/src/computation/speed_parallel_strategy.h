@@ -9,13 +9,13 @@
  * \date 2015-07-21
  */
 
-#include "parallel_computation_strategy.h"
+#include "parallel_execution_strategy.h"
 
 /*!
  * \class SpeedParallelStrategy speed_parallel_strategy.h
  * \brief Strategy of parallel computation for the operator SPEED
  */
-class SpeedParallelStrategy : public ParallelComputationStrategy
+class SpeedParallelStrategy : public ParallelExecutionStrategy
 {
     public:
         //! Constructor

@@ -9,13 +9,13 @@
  * \date 2015-05-28
  */
 
-#include "sequential_computation_strategy.h"
+#include "sequential_execution_strategy.h"
 
 /*!
  * \class SequentialExecutionSequentialStrategy sequential_execution_sequential_strategy.h
  * \brief Strategy of sequential computation for the operator Sequential Execution
  */
-class SequentialExecutionSequentialStrategy : public SequentialComputationStrategy
+class SequentialExecutionSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
         //! Constructor

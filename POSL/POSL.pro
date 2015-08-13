@@ -160,7 +160,11 @@ SOURCES += src/main.cpp \
     src/modules/aom_selection_function.cpp \
     src/modules/aom_decision_function.cpp \
     src/modules/om_always_improve_decision.cpp \
-    src/modules/om_simulated_annealing_decision.cpp
+    src/modules/om_simulated_annealing_decision.cpp \
+    src/computation/computation_strategy.cpp \
+    src/computation/factory_computation_strategy_a001.cpp \
+    src/computation/factory_computation_strategy_a002.cpp \
+    src/computation/factory_computation_strategy_trivial.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -188,8 +192,6 @@ HEADERS += \
     src/data/one_element_changed_neighborhood.h \
     src/modules/om_one_element_changed_neighborhood.h \
     src/operators/sequential_exec_operator.h \
-    src/computation/sequential_computation_strategy.h \
-    src/computation/computation_strategy.h \
     src/data/computation_data.h \
     src/data/seed.h \
     src/computation/not_implemented_parallel_strategy.h \
@@ -197,7 +199,6 @@ HEADERS += \
     src/modules/om_first_improvement_selection.h \
     src/modules/om_best_improvement_selection.h \
     src/data/decision_pair.h \
-    src/computation/parallel_computation_strategy.h \
     src/modules/grouped_computation.h \
     src/modules/grouped_sequential_computation.h \
     src/modules/grouped_parallel_computation.h \
@@ -326,7 +327,15 @@ HEADERS += \
     src/modules/aom_selection_function.h \
     src/modules/aom_decision_function.h \
     src/modules/om_always_improve_decision.h \
-    src/modules/om_simulated_annealing_decision.h
+    src/modules/om_simulated_annealing_decision.h \
+    src/computation/execution_strategy.h \
+    src/computation/sequential_execution_strategy.h \
+    src/computation/parallel_execution_strategy.h \
+    src/computation/computation_strategy.h \
+    src/computation/factory_computation_strategy.h \
+    src/computation/factory_computation_strategy_a001.h \
+    src/computation/factory_computation_strategy_a002.h \
+    src/computation/factory_computation_strategy_trivial.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

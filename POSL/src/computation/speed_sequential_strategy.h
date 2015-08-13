@@ -9,13 +9,13 @@
  * \date 2015-07-21
  */
 
-#include "sequential_computation_strategy.h"
+#include "sequential_execution_strategy.h"
 
 /*!
  * \class SpeedSequentialStrategy speed_sequential_strategy.h
  * \brief Strategy of sequential computation for the operator SPEED
  */
-class SpeedSequentialStrategy : public SequentialComputationStrategy
+class SpeedSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
         //! Constructor
