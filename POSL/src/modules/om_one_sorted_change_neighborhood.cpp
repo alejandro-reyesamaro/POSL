@@ -5,9 +5,9 @@
 
 OM_OneSortedChangeNeighborhood::OM_OneSortedChangeNeighborhood(){}
 
-ComputationData * OM_OneSortedChangeNeighborhood::execute(PSP *psp, ComputationData * input)
+Neighborhood * OM_OneSortedChangeNeighborhood::spcf_execute(PSP * psp, Solution * input)
 {
-    Neighborhood * V = new OneSortedChangeNeighborhood((Solution *) input);
+    Neighborhood * V = new OneSortedChangeNeighborhood(input);
     return V;
 }
 

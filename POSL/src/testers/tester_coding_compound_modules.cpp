@@ -7,8 +7,8 @@
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_best_improvement_selection.h"
 #include "../modules/om_first_improvement_selection.h"
-#include "../modules/om_always_improve_decition.h"
-#include "../modules/om_simulated_annealing_decition.h"
+#include "../modules/om_always_improve_decision.h"
+#include "../modules/om_simulated_annealing_decision.h"
 #include "../operators/operator.h"
 #include "../operators/sequential_exec_operator.h"
 #include "../operators/union_operator.h"
@@ -40,8 +40,8 @@ string Tester_CodingCompoundModules::test()
     CompoundModule * cm2_2 = new OM_MultiElementsChangedNeighborhood();
     CompoundModule * cm3_1 = new OM_BestImprovementSelection();
     CompoundModule * cm3_2 = new OM_FirstImprovementSelection();
-    CompoundModule * cm4_1 = new OM_AlwaysImproveDecition();
-    CompoundModule * cm4_2 = new OM_SimulatedAnnealingDecition();
+    CompoundModule * cm4_1 = new OM_AlwaysImproveDecision();
+    CompoundModule * cm4_2 = new OM_SimulatedAnnealingDecision();
 
     // MAL!!! Seed!!
     Solution * first_solution = (Solution *)cm0->execute(psp, new Seed());

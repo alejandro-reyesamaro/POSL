@@ -63,7 +63,6 @@ SOURCES += src/main.cpp \
     src/computation/cyclic_sequential_strategy.cpp \
     src/expressions/loop_bound_expression.cpp \
     src/testers/tester_cyclic_operator.cpp \
-    src/modules/om_always_improve_decition.cpp \
     src/tools/rand_index_generator.cpp \
     src/testers/tester_sets_index_generator.cpp \
     src/data/dStrategy/elements_change_iterator.cpp \
@@ -80,7 +79,6 @@ SOURCES += src/main.cpp \
     src/computation/conditional_sequential_strategy.cpp \
     src/testers/tester_conditional_operator.cpp \
     src/expressions/reached_cost_expression.cpp \
-    src/modules/om_simulated_annealing_decition.cpp \
     src/tools/randomizer.cpp \
     src/modules/om_random_selection.cpp \
     src/tools/tabu_list.cpp \
@@ -156,7 +154,13 @@ SOURCES += src/main.cpp \
     src/testers/tester_multi_sorted_changes_neighborhood.cpp \
     src/data/one_sorted_change_neighborhood.cpp \
     src/testers/tester_one_sorted_change_neighborhood.cpp \
-    src/modules/om_one_sorted_change_neighborhood.cpp
+    src/modules/om_one_sorted_change_neighborhood.cpp \
+    src/modules/aom_first_configuration_generation.cpp \
+    src/modules/aom_neighborhood_function.cpp \
+    src/modules/aom_selection_function.cpp \
+    src/modules/aom_decision_function.cpp \
+    src/modules/om_always_improve_decision.cpp \
+    src/modules/om_simulated_annealing_decision.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -218,7 +222,6 @@ HEADERS += \
     src/computation/cyclic_sequential_strategy.h \
     src/expressions/loop_bound_expression.h \
     src/testers/tester_cyclic_operator.h \
-    src/modules/om_always_improve_decition.h \
     src/tools/rand_index_generator.h \
     src/testers/tester_sets_index_generator.h \
     src/data/dStrategy/elements_change_iterator.h \
@@ -235,7 +238,6 @@ HEADERS += \
     src/computation/conditional_sequential_strategy.h \
     src/testers/tester_conditional_operator.h \
     src/expressions/reached_cost_expression.h \
-    src/modules/om_simulated_annealing_decition.h \
     src/tools/randomizer.h \
     src/modules/om_random_selection.h \
     src/tools/tabu_list.h \
@@ -318,7 +320,13 @@ HEADERS += \
     src/data/one_sorted_change_neighborhood.h \
     src/data/t_change.h \
     src/testers/tester_one_sorted_change_neighborhood.h \
-    src/modules/om_one_sorted_change_neighborhood.h
+    src/modules/om_one_sorted_change_neighborhood.h \
+    src/modules/aom_first_configuration_generation.h \
+    src/modules/aom_neighborhood_function.h \
+    src/modules/aom_selection_function.h \
+    src/modules/aom_decision_function.h \
+    src/modules/om_always_improve_decision.h \
+    src/modules/om_simulated_annealing_decision.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

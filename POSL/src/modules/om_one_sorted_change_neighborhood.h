@@ -9,7 +9,7 @@
  * \date 2015-08-12
  */
 
-#include "operation_module.h"
+#include "aom_neighborhood_function.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/neighborhood.h"
@@ -18,7 +18,7 @@
  * \class OM_OneSortedChangeNeighborhood om_one_sorted_change_neighborhood.h
  * \brief Class to represent an Operation Module to generate a neighborhood of a given configuration (sorted)
  */
-class OM_OneSortedChangeNeighborhood : public OperationModule
+class OM_OneSortedChangeNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
         //! Constructor
@@ -31,7 +31,7 @@ class OM_OneSortedChangeNeighborhood : public OperationModule
         * \param input Input (configuration)
         * \return The Neighborhood of the input configuration
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        Neighborhood * spcf_execute(PSP * psp, Solution * input);
 
         //! From Codable
         string codeToSend();

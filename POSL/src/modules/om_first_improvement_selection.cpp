@@ -7,11 +7,9 @@ OM_FirstImprovementSelection::OM_FirstImprovementSelection()
     : search_strategy(new NeighborSelectingFirstImprovement())
 {}
 
-ComputationData * OM_FirstImprovementSelection::execute(PSP *psp, ComputationData * input)
+DecisionPair * OM_FirstImprovementSelection::spcf_execute(PSP * psp, Neighborhood * input)
 {
-    //cout << "Inside OM First Impro" << endl;
-    DecisionPair * result = search_strategy->select(psp, (Neighborhood *)input);
-    //cout << "Inside OM First Impro - DONE" << endl;
+    DecisionPair * result = search_strategy->select(psp, input);
     return result;
 }
 

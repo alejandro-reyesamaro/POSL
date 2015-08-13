@@ -1,5 +1,5 @@
 #include "tester_simulated_annealing_decition.h"
-#include "../modules/om_simulated_annealing_decition.h"
+#include "../modules/om_simulated_annealing_decision.h"
 #include "../data/decision_pair.h"
 #include "../tools/tools.h"
 
@@ -50,7 +50,7 @@ string Tester_SimulatedAnnealingDecition::test()
     int cost1 = psp->GetBenchmark()->solutionCost(sol1);
     //int cost2 = psp->GetBenchmark()->solutionCost(sol2);
 
-    CompoundModule * cm1 = new OM_SimulatedAnnealingDecition();
+    CompoundModule * cm1 = new OM_SimulatedAnnealingDecision();
     DecisionPair * pair = new DecisionPair(sol1, sol2);
     Solution * decision;
 

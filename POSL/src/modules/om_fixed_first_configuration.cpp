@@ -7,10 +7,10 @@ OM_FixedFirstConfiguration::OM_FixedFirstConfiguration()
 {
 }
 
-ComputationData * OM_FixedFirstConfiguration::execute(PSP *psp, ComputationData * input)
+Solution * OM_FixedFirstConfiguration::spcf_execute(PSP *psp, Solution * input)
 {
-    psp->UpdateSolution((Solution *)input);
-    return (Solution *) input;
+    psp->UpdateSolution(input);
+    return input;
 }
 
 string OM_FixedFirstConfiguration::codeToSend()

@@ -9,7 +9,7 @@
  * \date 2015-07-02
  */
 
-#include "operation_module.h"
+#include "aom_decision_function.h"
 #include "../tools/randomizer.h"
 
 #include <random>
@@ -18,10 +18,10 @@
  * \class OM_SimulatedAnnealingDecition om_simulated_annealing_decition.h
  * \brief Class to represent an Operation Module to decide if a configuration is keeped to the next iteration
  */
-class OM_SimulatedAnnealingDecition : public OperationModule
+class OM_SimulatedAnnealingDecision : public AOM_DecisionFunction
 {
     public:
-        OM_SimulatedAnnealingDecition();
+        OM_SimulatedAnnealingDecision();
 
         //! Execute the O.M.
         /*!
@@ -29,7 +29,7 @@ class OM_SimulatedAnnealingDecition : public OperationModule
         * \param input Input (a desition pair)
         * \return The selected configuration
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        Solution * spcf_execute(PSP * psp, DecisionPair * input);
 
         //! From Codable
         string codeToSend();

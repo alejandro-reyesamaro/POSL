@@ -9,7 +9,7 @@ OM_RandomConfOrderedGeneration::OM_RandomConfOrderedGeneration()
 {
 }
 
-ComputationData * OM_RandomConfOrderedGeneration::execute(PSP *psp, ComputationData * input)
+Solution * OM_RandomConfOrderedGeneration::spcf_execute(PSP *psp, Solution * input)
 {
     RandomOrderedGenerationStrategy * rconf = new RandomOrderedGenerationStrategy();
     GolombRuler * object_bench = dynamic_cast<GolombRuler *> (psp->GetBenchmark());

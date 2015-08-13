@@ -18,8 +18,8 @@
 #include "../modules/om_random_selection.h"
 #include "../modules/om_first_improvement_selection.h"
 
-#include "../modules/om_always_improve_decition.h"
-#include "../modules/om_simulated_annealing_decition.h"
+#include "../modules/om_always_improve_decision.h"
+#include "../modules/om_simulated_annealing_decision.h"
 
 UncodeOperationModuleStrategy::UncodeOperationModuleStrategy()
 {}
@@ -101,10 +101,10 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code)
         switch(N)
         {
             case 1: // always improve
-                return new OM_AlwaysImproveDecition();
+                return new OM_AlwaysImproveDecision();
                 break;
             case 2: // simulated annealing
-                return new OM_SimulatedAnnealingDecition();
+                return new OM_SimulatedAnnealingDecision();
                 break;
             default:
                 throw "Not well coded OperationModule (Decission)";

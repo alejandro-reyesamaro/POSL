@@ -1,4 +1,4 @@
-#include "om_simulated_annealing_decition.h"
+#include "om_simulated_annealing_decision.h"
 #include "../data/decision_pair.h"
 
 #include <chrono>
@@ -8,18 +8,17 @@
 #define FALL_RATE 2
 #define MAX_ITER_PER_T 5
 
-OM_SimulatedAnnealingDecition::OM_SimulatedAnnealingDecition()
+OM_SimulatedAnnealingDecision::OM_SimulatedAnnealingDecision()
     :   rand(),
         started(false),
         M(MAX_ITER_PER_T), m(0)
 {}
 
-ComputationData * OM_SimulatedAnnealingDecition::execute(PSP *psp, ComputationData * input)
+Solution * OM_SimulatedAnnealingDecision::spcf_execute(PSP * psp, DecisionPair * input)
 {
-    DecisionPair * pair = (DecisionPair *) input;
 
-    int wp = psp->GetBenchmark()->solutionCost(pair->GetFound());
-    int w = psp->GetBenchmark()->solutionCost(pair->GetCurrent());
+    int wp = psp->GetBenchmark()->solutionCost(input->GetFound());
+    int w = psp->GetBenchmark()->solutionCost(input->GetCurrent());
 
     double relative_dif = abs((double)wp - (double)w)/abs((double)wp);
 
@@ -42,17 +41,17 @@ ComputationData * OM_SimulatedAnnealingDecition::execute(PSP *psp, ComputationDa
 
     if(k < p)
     {
-        psp->UpdateSolution(pair->GetFound());
-        return pair->GetFound();
+        psp->UpdateSolution(input->GetFound());
+        return input->GetFound();
     }
     else
     {
-        psp->UpdateSolution(pair->GetCurrent());
-        return pair->GetCurrent();
+        psp->UpdateSolution(input->GetCurrent());
+        return input->GetCurrent();
     }
 }
 
-string OM_SimulatedAnnealingDecition::codeToSend()
+string OM_SimulatedAnnealingDecision::codeToSend()
 {
     return "D2";
 }

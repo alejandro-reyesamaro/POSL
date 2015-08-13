@@ -5,7 +5,7 @@
 #include "../modules/om_one_element_changed_neighborhood.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_best_improvement_selection.h"
-#include "../modules/om_always_improve_decition.h"
+#include "../modules/om_always_improve_decision.h"
 #include "../operators/operator.h"
 #include "../operators/sequential_exec_operator.h"
 #include "../operators/cyclic_operator.h"
@@ -82,7 +82,7 @@ string Tester_ConditionalOperator::test()
     CompoundModule * cm2_1 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm2_2 = new OM_MultiElementsChangedNeighborhood();
     CompoundModule * cm3 = new OM_BestImprovementSelection();
-    CompoundModule * cm4 = new OM_AlwaysImproveDecition();
+    CompoundModule * cm4 = new OM_AlwaysImproveDecision();
 
     // cm2_1 <cond> cm2_2
     Operator * op0 = new ConditionalOperator(cm2_1, cm2_2, new ReachedCostExpression(10));

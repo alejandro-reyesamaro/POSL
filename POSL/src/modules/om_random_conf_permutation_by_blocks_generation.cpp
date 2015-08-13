@@ -9,7 +9,7 @@ OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGene
 {
 }
 
-ComputationData * OM_RandomConfPermutationByBlocksGeneration::execute(PSP *psp, ComputationData * input)
+Solution * OM_RandomConfPermutationByBlocksGeneration::spcf_execute(PSP *psp, Solution * input)
 {
     RandomPermutationByBlocksGenerationStrategy * rconf = new RandomPermutationByBlocksGenerationStrategy();
     Golfers * object_bench = dynamic_cast<Golfers *> (psp->GetBenchmark());

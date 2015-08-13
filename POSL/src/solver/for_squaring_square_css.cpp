@@ -3,6 +3,8 @@
 #include "../modules/grouped_computation.h"
 #include "../modules/grouped_sequential_computation.h"
 
+#include "../modules/aom_first_configuration_generation.h"
+
 #include "../modules/om_florian_random_conf_generation.h"
 #include "../modules/om_random_conf_generation.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
@@ -10,9 +12,9 @@
 #include "../modules/om_best_improvement_tabu_selection.h"
 #include "../modules/om_best_improvement_selection.h"
 #include "../modules/om_first_improvement_selection.h"
-#include "../modules/om_always_improve_decition.h"
+#include "../modules/om_always_improve_decision.h"
 #include "../modules/om_random_selection.h"
-#include "../modules/om_simulated_annealing_decition.h"
+#include "../modules/om_simulated_annealing_decision.h"
 
 #include "../operators/operator.h"
 #include "../operators/sequential_exec_operator.h"
@@ -32,7 +34,7 @@ ForSquaringSquareCSS::ForSquaringSquareCSS()
 
 CompoundModule * ForSquaringSquareCSS::create()
 {
-    CompoundModule * cm01 = new OM_RandomConfGeneration();
+    AOM_FirstConfigurationGeneration * cm01 = new OM_RandomConfGeneration();
     CompoundModule * cm02 = new OM_FlorianRandomConfGeneration();
     CompoundModule * cm11 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm12 = new OM_MultiElementsChangedNeighborhood();
@@ -42,8 +44,8 @@ CompoundModule * ForSquaringSquareCSS::create()
     CompoundModule * cm23 = new OM_BestImprovementSelection();
     CompoundModule * cm24 = new OM_RandomSelection();
 
-    CompoundModule * cm31 = new OM_AlwaysImproveDecition();
-    CompoundModule * cm32 = new OM_SimulatedAnnealingDecition();
+    CompoundModule * cm31 = new OM_AlwaysImproveDecision();
+    CompoundModule * cm32 = new OM_SimulatedAnnealingDecision();
     CompoundModule * cm4  = new OMS_IterationsCounter();
     CompoundModule * cm5  = new OMS_TimeCounter();
 
@@ -104,7 +106,7 @@ CompoundModule * ForSquaringSquareCSS::create()
     GroupedComputation * G_cyc1 = new GroupedSequentialComputation(O_cyc1);
 
     // cm0 |-> [ Cyc(500 lopps){ Gsec2 } ]
-    Operator* O_sec_0_Gcyc1 = new SequentialExecOperator(cm02, G_cyc1);
+    Operator* O_sec_0_Gcyc1 = new SequentialExecOperator(cm01, G_cyc1);
 
     // [ cm0 |-> [ Cyc(500 lopps){ Gsec2 } ] ]:
     GroupedComputation * G_sec3 = new GroupedSequentialComputation(O_sec_0_Gcyc1);

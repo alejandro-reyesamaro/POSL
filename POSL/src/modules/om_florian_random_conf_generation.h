@@ -10,6 +10,7 @@
  */
 
 #include "operation_module.h"
+#include "aom_first_configuration_generation.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/seed.h"
@@ -18,7 +19,7 @@
  * \class OM_FlorianRandomConfGeneration om_florian_random_conf_generation.h
  * \brief Class to represent an Operation module to generate a random first configuration (flo's idea)
  */
-class OM_FlorianRandomConfGeneration : public OperationModule
+class OM_FlorianRandomConfGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
         OM_FlorianRandomConfGeneration();
@@ -30,7 +31,8 @@ class OM_FlorianRandomConfGeneration : public OperationModule
         * \param input Input (configuration)
         * \return A random configuration, but the best after certain iterations
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        //ComputationData * execute(PSP * psp, ComputationData * input);
+        Solution * spcf_execute(PSP * psp, Solution * input);
 
         //! From Codable
         string codeToSend();

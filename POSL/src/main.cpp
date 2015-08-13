@@ -58,7 +58,7 @@ int main(int argc, char **argv)
 
     //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
-    tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
     //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
     //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
     //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
@@ -87,8 +87,8 @@ int main(int argc, char **argv)
     tests.push_back(new Tester_CodingCompoundModules(argc, argv));
     */
     //tests.push_back(new Tester_Solver_Golfers(argc, argv));
-    tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
-    //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
+    //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
+    tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)

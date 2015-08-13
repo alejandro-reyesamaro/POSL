@@ -7,11 +7,9 @@ OM_BestImprovementTabuSelection::OM_BestImprovementTabuSelection()
     : search_strategy(new NeighborSelectingBestImprovementTabu())
 {}
 
-ComputationData * OM_BestImprovementTabuSelection::execute(PSP *psp, ComputationData * input)
+DecisionPair * OM_BestImprovementTabuSelection::spcf_execute(PSP * psp, Neighborhood * input)
 {
-    //cout << "Inside OM Best Impro TABU" << endl;
-    DecisionPair * result = search_strategy->select(psp, (Neighborhood *)input);
-    //cout << "Inside OM Best Impro TABU - DONE" << endl;
+    DecisionPair * result = search_strategy->select(psp, input);
     return result;
 }
 

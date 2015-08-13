@@ -3,22 +3,22 @@
 /**
  * POSL
  *
- * \file om_always_improve_decition.h
+ * \file om_always_improve_decision.h
  * \brief Class to represent an Operation Module to decide if a configuration is keeped to the next iteration
  * \author Alejandro Reyes
  * \date 2015-04-14
  */
 
-#include "operation_module.h"
+#include "aom_decision_function.h"
 
 /*!
- * \class OM_AlwaysImproveDecition om_always_improve_decition.h
+ * \class OM_AlwaysImproveDecision om_always_improve_decision.h
  * \brief Class to represent an Operation Module to decide if a configuration is keeped to the next iteration
  */
-class OM_AlwaysImproveDecition : public OperationModule
+class OM_AlwaysImproveDecision : public AOM_DecisionFunction
 {
     public:
-        OM_AlwaysImproveDecition();
+        OM_AlwaysImproveDecision();
 
         //! Execute the O.M.
         /*!
@@ -26,7 +26,7 @@ class OM_AlwaysImproveDecition : public OperationModule
         * \param input Input (a desition pair)
         * \return The selected configuration
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        Solution * spcf_execute(PSP * psp, DecisionPair * input);
 
         //! From Codable
         string codeToSend();

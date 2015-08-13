@@ -9,14 +9,14 @@
  * \date 2015-04-14
  */
 
-#include "operation_module.h"
+#include "aom_selection_function.h"
 #include "../data/dStrategy/neighbor_selecting_first_improvement.h"
 
 /*!
  * \class OM_FirstImprovementSelection om_first_improvement_selection.h
  * \brief Class to represent an Operation Module to select a configuration in a neighborhood
  */
-class OM_FirstImprovementSelection : public OperationModule
+class OM_FirstImprovementSelection : public AOM_SelectionFunction
 {
     public:
         //! Constructor
@@ -28,7 +28,7 @@ class OM_FirstImprovementSelection : public OperationModule
         * \param input Input (a neighborhood)
         * \return The first configuration improuving the current cost
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        DecisionPair * spcf_execute(PSP * psp, Neighborhood * input);
 
         //! From Codable
         string codeToSend();

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "operation_module.h"
+#include "aom_first_configuration_generation.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/seed.h"
 
 
-class OM_RandomConfOrderedGeneration : public OperationModule
+class OM_RandomConfOrderedGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
         //! Constructor
@@ -19,7 +19,7 @@ class OM_RandomConfOrderedGeneration : public OperationModule
         * \param input Input (configuration)
         * \return A random configuration/permutation-by-blocks
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        Solution * spcf_execute(PSP * psp, Solution * input);
 
         //! From Codable
         string codeToSend();

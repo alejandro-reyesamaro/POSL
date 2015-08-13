@@ -9,7 +9,7 @@
  * \date 2015-04-14
  */
 
-#include "operation_module.h"
+#include "aom_first_configuration_generation.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/seed.h"
@@ -18,7 +18,7 @@
  * \class OM_RandomConfPermutationByBlocksGeneration om_random_conf_permutation_by_blocks_generation.h
  * \brief Class to represent an Operation module to generate a random first configuration that is a permutation by blocks
  */
-class OM_RandomConfPermutationByBlocksGeneration : public OperationModule
+class OM_RandomConfPermutationByBlocksGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
         //! Constructor
@@ -31,7 +31,7 @@ class OM_RandomConfPermutationByBlocksGeneration : public OperationModule
         * \param input Input (configuration)
         * \return A random configuration/permutation-by-blocks
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        Solution * spcf_execute(PSP * psp, Solution * input);
 
         //! From Codable
         string codeToSend();

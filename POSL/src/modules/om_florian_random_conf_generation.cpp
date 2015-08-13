@@ -12,9 +12,9 @@ OM_FlorianRandomConfGeneration::OM_FlorianRandomConfGeneration()
 {
 }
 
-ComputationData * OM_FlorianRandomConfGeneration::execute(PSP *psp, ComputationData * input)
+Solution * OM_FlorianRandomConfGeneration::spcf_execute(PSP *psp, Solution * input)
 {
-    RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy((Seed *)input);
+    RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy(new Seed());
     //turn rconf->generate(psp->GetBenchmark()->Domains());
 
 
