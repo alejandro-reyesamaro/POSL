@@ -1,17 +1,30 @@
 #include "union_parallel_strategy.h"
-#include "../data/neighborhood.h"
 #include "../data/from_pack_neighborhood.h"
 #include "../data/union_neighborhood.h"
 #include "mpi.h"
 
 #include <iostream>
+#include <boost/thread.hpp>
 
 #define TAG 123
 
 UnionParallelStrategy::UnionParallelStrategy(CompoundModule *_M1, CompoundModule *_M2)
-    : M1(_M1), M2(_M2)
+    : M1(_M1), M2(_M2)//M1(new Executer(_M1)), M2(new Executer(_M2))
 {}
 
+ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * input)
+{
+    boost::function<void(PSP*, ComputationData*)> func_M2 = boost::bind(&Executer::execute, &M2, _1, _2);
+    boost::thread workerThread(func_M2, psp, input);
+    M1.execute(psp, input);
+    Neighborhood * v1 = (Neighborhood *)M1.GetOutput();
+    workerThread.join();
+    Neighborhood * v2 = (Neighborhood *)M2.GetOutput();
+    Neighborhood * v = new UnionNeighborhood((Solution *)input, v1, v2);
+    return v;
+}
+
+/*
 ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * input)
 {
     int myid, numprocs;
@@ -56,3 +69,4 @@ ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * in
     else
         throw "(POSL Exception) Not MPI initializing....";
 }
+*/

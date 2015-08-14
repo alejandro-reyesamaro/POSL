@@ -14,7 +14,6 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-
 SOURCES += src/main.cpp \
     src/modules/open_channel.cpp \
     src/data/domain.cpp \
@@ -164,7 +163,8 @@ SOURCES += src/main.cpp \
     src/computation/computation_strategy.cpp \
     src/computation/factory_computation_strategy_a001.cpp \
     src/computation/factory_computation_strategy_a002.cpp \
-    src/computation/factory_computation_strategy_trivial.cpp
+    src/computation/factory_computation_strategy_trivial.cpp \
+    src/computation/executer.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -335,7 +335,8 @@ HEADERS += \
     src/computation/factory_computation_strategy.h \
     src/computation/factory_computation_strategy_a001.h \
     src/computation/factory_computation_strategy_a002.h \
-    src/computation/factory_computation_strategy_trivial.h
+    src/computation/factory_computation_strategy_trivial.h \
+    src/computation/executer.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
