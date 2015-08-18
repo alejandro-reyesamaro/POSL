@@ -13,9 +13,7 @@ string Tester_Solver_Golfers::test()
 {
     //Benchmark * bench = new Golfers(5,5,3);
     Benchmark * bench = new Golfers(4,4,2);
-
-    FlagComputation * flagC = new FlagParallelComputation(0, 1);
-    PSP * psp = new PSP(ARGC, ARGV, bench, flagC);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
 
     Solution * sol = new Solution(bench->Domains());
     bench->UpdateSolution(sol);

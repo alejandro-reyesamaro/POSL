@@ -16,11 +16,10 @@ class POSL_Solver
         string show();
 
     private:
-        ComputationStrategy * strategy;
 
-        bool Initialized(PSP * psp);
         string showSolution(string str_finalSol, string str_bestSol);
 
+        ComputationStrategy * strategy;
         Solution * final_solution, * best_solution;
         int final_cost, best_cost, iterations, time;
 };

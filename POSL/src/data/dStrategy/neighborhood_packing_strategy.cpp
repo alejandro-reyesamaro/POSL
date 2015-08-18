@@ -24,7 +24,7 @@ vector<int> NeighborhoodPackingStrategy::pack()
     int conf_size = config.size();
     vector<int> package(conf_size + 3 + body_strategy->bodySize());
     // ID = 2
-    package[0] = 2;
+    package[0] = 658203;
     // Configuration size
     package[1] = conf_size;
     // Configuration (current)

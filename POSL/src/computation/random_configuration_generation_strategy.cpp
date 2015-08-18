@@ -1,6 +1,6 @@
 #include "random_configuration_generation_strategy.h"
 
-RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy(Seed * s) : rand()
+RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy() : rand()
 {}
 
 Solution * RandomConfigurationGenerationStrategy::generate(vector<Domain> domains)

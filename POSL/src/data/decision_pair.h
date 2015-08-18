@@ -14,6 +14,8 @@
 #include "dStrategy/packable.h"
 #include "dStrategy/packing_strategy.h"
 
+#define DECISIONPAIR_PACKING_ID 658203
+
 /*!
  * \class DecisionPair decision_pair.h
  * \brief Class to represent a couple of solutions (current and new found)

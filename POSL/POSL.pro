@@ -15,7 +15,6 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 SOURCES += src/main.cpp \
-    src/modules/open_channel.cpp \
     src/data/domain.cpp \
     src/data/dStrategy/factory_n_int_domain.cpp \
     src/data/node.cpp \
@@ -124,7 +123,6 @@ SOURCES += src/main.cpp \
     src/packing/uncode_conditional_operator_strategy.cpp \
     src/packing/uncode_binary_operator_strategy.cpp \
     src/packing/uncode_rho_operator_strategy.cpp \
-    src/testers/tester_coding_compound_modules.cpp \
     src/modules/oms_time_counter.cpp \
     src/modules/oms_iterations_counter.cpp \
     src/data/dStrategy/neighbor_selecting_best_improvement_tabu.cpp \
@@ -164,7 +162,10 @@ SOURCES += src/main.cpp \
     src/computation/factory_computation_strategy_a001.cpp \
     src/computation/factory_computation_strategy_a002.cpp \
     src/computation/factory_computation_strategy_trivial.cpp \
-    src/computation/executer.cpp
+    src/computation/executer.cpp \
+    src/solver/comunicator.cpp \
+    src/modules/data_open_channel.cpp \
+    src/modules/solution_data_open_channel.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -290,7 +291,6 @@ HEADERS += \
     src/packing/uncode_conditional_operator_strategy.h \
     src/packing/uncode_binary_operator_strategy.h \
     src/packing/uncode_rho_operator_strategy.h \
-    src/testers/tester_coding_compound_modules.h \
     src/modules/oms_time_counter.h \
     src/modules/oms_iterations_counter.h \
     src/data/dStrategy/neighbor_selecting_best_improvement_tabu.h \
@@ -336,7 +336,9 @@ HEADERS += \
     src/computation/factory_computation_strategy_a001.h \
     src/computation/factory_computation_strategy_a002.h \
     src/computation/factory_computation_strategy_trivial.h \
-    src/computation/executer.h
+    src/computation/executer.h \
+    src/solver/comunicator.h \
+    src/modules/solution_data_open_channel.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

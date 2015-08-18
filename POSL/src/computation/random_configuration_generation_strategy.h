@@ -24,7 +24,7 @@ class RandomConfigurationGenerationStrategy
 {
     public:
         //! Constructor
-        RandomConfigurationGenerationStrategy(Seed *s);
+        RandomConfigurationGenerationStrategy();
 
         //! Generates a random configuration
         /*!

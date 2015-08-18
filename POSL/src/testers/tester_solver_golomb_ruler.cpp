@@ -15,8 +15,7 @@ string Tester_Solver_GolombRuler::test()
     Solution * sol = new Solution(bench->Domains());
     bench->UpdateSolution(sol);
 
-    FlagComputation * flagC = new FlagSequentialComputation();
-    PSP * psp = new PSP(ARGC, ARGV, bench, flagC);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
 
     CreateSolverStrategy * css = new ForGolombRulerCSS();
     vector<POSL_Solver *> solvers = css->create();

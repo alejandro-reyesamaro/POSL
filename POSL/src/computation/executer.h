@@ -2,6 +2,7 @@
 
 #include "../data/computation_data.h"
 #include "../modules/compound_module.h"
+#include <thread>
 
 class Executer
 {

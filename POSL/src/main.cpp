@@ -36,7 +36,6 @@
 #include "testers/tester_packing_union_neighborhood.h"
 #include "testers/tester_union_operator.h"
 #include "testers/tester_speed_operator.h"
-#include "testers/tester_coding_compound_modules.h"
 #include "testers/tester_solver_golfers.h"
 #include "testers/tester_solver_golomb_ruler.h"
 #include "testers/tester_solver_squaring_square.h"

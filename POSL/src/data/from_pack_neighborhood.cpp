@@ -5,11 +5,11 @@
 
 #include <algorithm>
 
-FromPackNeighborhood::FromPackNeighborhood(int pack_size, int * pack)
+FromPackNeighborhood::FromPackNeighborhood(int * pack)//(int pack_size, int * pack)
 {
-    int count = 0;
+    //int count = 0;
     // ID
-    int id = *pack;
+    //int id = *pack;
     pack ++;
     // CONF_SIZE
     int conf_size = * pack;
@@ -24,7 +24,7 @@ FromPackNeighborhood::FromPackNeighborhood(int pack_size, int * pack)
     int n_size = *pack;
     pack++;
 
-    count = conf_size + 3;
+    //count = conf_size + 3;
 
     for(int i = 0; i < n_size; i++)
     {
@@ -66,7 +66,7 @@ vector<int> FromPackNeighborhood::applyChangeAt(int index)
     if(index >= size()) return configuration;
     vector<int> conf(configuration.size());
     copy(configuration.begin(), configuration.end(), conf.begin());
-    for (int i = 0;  i < changes[index].positions.size(); i++)
+    for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
         conf[changes[index].positions[i]] = changes[index].new_values[i];
     return conf;
 }

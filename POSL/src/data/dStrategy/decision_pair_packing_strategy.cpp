@@ -11,7 +11,7 @@ vector<int> DecisionPairPackingStrategy::pack()
     int conf_size = pair->GetCurrent()->GetConfiguration().size();
     vector<int> package(conf_size * 2 + 2);
     // ID = 1
-    package[0] = 1;
+    package[0] = 658202;
     // Configuration size
     package[1] = conf_size;
 

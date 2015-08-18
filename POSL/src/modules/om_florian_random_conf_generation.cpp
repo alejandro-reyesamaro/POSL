@@ -14,9 +14,7 @@ OM_FlorianRandomConfGeneration::OM_FlorianRandomConfGeneration()
 
 Solution * OM_FlorianRandomConfGeneration::spcf_execute(PSP *psp, Solution * input)
 {
-    RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy(new Seed());
-    //turn rconf->generate(psp->GetBenchmark()->Domains());
-
+    RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy();
 
     vector<int> best_conf;
     int best_cost = std::numeric_limits<int>::max();

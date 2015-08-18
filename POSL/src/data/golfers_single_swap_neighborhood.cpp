@@ -11,9 +11,6 @@
 
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int _players) : players(_players)
 {
-
-    // ARREGLAR ESTO !!!!!!!
-
     current_solution = sol;
     int weeks = sol->GetConfiguration().size() / players;
     int posibles = players * (players-1);

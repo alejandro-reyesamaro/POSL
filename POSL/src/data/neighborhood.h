@@ -16,6 +16,8 @@
 
 using namespace std;
 
+#define NEIGHBORHOOD_PACKING_ID 658203
+
 /*!
  * \class Neighborhood neighborhood.h
  * \brief (Abstract) Class to represent a neighborhood of a configuration

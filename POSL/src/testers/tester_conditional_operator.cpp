@@ -110,12 +110,12 @@ string Tester_ConditionalOperator::test()
 
     // MAL!!!!!
     Solution * after_sol1 = (Solution *)G1234->execute(psp, sol1);
-    //int cost1 = psp->GetBenchmark()->solutionCost(after_sol1);
+    int cost1 = psp->GetBenchmark()->solutionCost(after_sol1);
 
     psp->UpdateSolution(sol2);
     Solution * after_sol2 = (Solution *)G1234->execute(psp, sol2);
-    //int cost2 = psp->GetBenchmark()->solutionCost(after_sol2);
+    int cost2 = psp->GetBenchmark()->solutionCost(after_sol2);
 
-    //cout << cost1 << " and " << cost2 << endl;
+    cout << cost1 << " and " << cost2 << endl;
     return "Conditional Operator: OK ! (go to the OMs for cheking)";
 }

@@ -10,6 +10,7 @@
  */
 
 #include "parallel_execution_strategy.h"
+#include "executer.h"
 
 /*!
  * \class SpeedParallelStrategy speed_parallel_strategy.h
@@ -31,7 +32,7 @@ class SpeedParallelStrategy : public ParallelExecutionStrategy
 
     private:
         //! Left Compund Module
-        CompoundModule * M1;
+        Executer M1;
         //! Right Compund Module
-        CompoundModule * M2;
+        Executer M2;
 };

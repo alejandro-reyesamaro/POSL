@@ -1,10 +1,9 @@
 #include "speed_parallel_strategy.h"
-#include "../data/neighborhood.h"
-#include "../data/union_neighborhood.h"
 #include "../tools/chronometer.h"
 #include "mpi.h"
 
 #include <iostream>
+#include <thread>
 
 #define TAG0 123
 #define TAG1 234
@@ -13,6 +12,18 @@ SpeedParallelStrategy::SpeedParallelStrategy(CompoundModule *_M1, CompoundModule
     : M1(_M1), M2(_M2)
 {}
 
+ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * input)
+{
+    // FALTA ESTOOOOOOOO
+    thread workerThread(&Executer::execute, &M2, psp, input);
+    M1.execute(psp, input);
+    ComputationData * r1 = M1.GetOutput();
+    workerThread.join();
+    ComputationData * r2 = M2.GetOutput();
+    return r2;
+}
+
+/*
 ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * input)
 {
     int myid, numprocs;
@@ -68,3 +79,4 @@ ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * in
     else
         throw "(POSL Exception) Not MPI initializing....";
 }
+ */

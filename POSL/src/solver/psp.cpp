@@ -1,17 +1,18 @@
 #include "psp.h"
 
-PSP::PSP(int _argc, char **_argv, Benchmark * _bench, FlagComputation *_computation)
+PSP::PSP(int _argc, char **_argv, Benchmark * _bench, int _pID)
     : ARGC(_argc),
       ARGV(_argv),
       bench(_bench),
-      comp(_computation),
       iterations(0),
       milisecs(0),
-      best_found_solution(NULL)
+      best_found_solution(NULL),
+      pID(_pID),
+      comm(new Comunicator())
 {}
 
 PSP::PSP(int _argc, char **_argv, Benchmark * _bench)
-    : PSP(_argc, _argv, _bench, new FlagSequentialComputation())
+    : PSP (_argc, _argv, _bench, -1)
 {}
 
 void PSP::UpdateSolution(Solution * solution)
@@ -23,95 +24,30 @@ void PSP::UpdateSolution(Solution * solution)
         best_found_solution = solution;
 }
 
-Benchmark * PSP::GetBenchmark()
-{
-    return bench;
-}
+int PSP::GetPID(){ return pID; }
 
-int PSP::GetIterations()
-{
-    return iterations;
-}
+Benchmark * PSP::GetBenchmark(){ return bench; }
 
-int PSP::GetTime()
-{
-    return milisecs;
-}
+int PSP::GetIterations(){ return iterations; }
 
-Solution * PSP::GetBestSolutionSoFar()
-{
-    return best_found_solution;
-}
+int PSP::GetTime(){ return milisecs; }
 
-Solution * PSP::GetCurrentSolution()
-{
-    return bench->GetSolution();
-}
+Solution * PSP::GetBestSolutionSoFar(){ return best_found_solution; }
 
-int PSP::CurrentCost()
-{
-    return bench->solutionCost(bench->GetSolution());
-}
+Solution * PSP::GetCurrentSolution(){ return bench->GetSolution(); }
 
-int PSP::BestCostSoFar()
-{
-    return (best_found_solution == NULL)
-        ? -1
-        : bench->solutionCost(best_found_solution);
-}
+int PSP::CurrentCost(){ return bench->solutionCost(bench->GetSolution()); }
 
-void PSP::UpdateTime(int _milisecs)
-{
-    milisecs = _milisecs;
-}
+int PSP::BestCostSoFar(){ return (best_found_solution == NULL)? -1 : bench->solutionCost(best_found_solution); }
 
-void PSP::CountIteration()
-{
-    iterations ++;
-}
+void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 
-FlagParallelComputation * PSP::CastToParallelCOmputation()
-{
-    return (FlagParallelComputation *) comp;
-}
+void PSP::CountIteration(){ iterations ++; }
 
-Computation PSP::computation()
-{
-    return comp->computation();
-}
+void PSP::connectWith(int pID) { connections.push_back(pID); }
 
-/*
-void PSP::SetProccesA(int procID)
+void PSP::SendData(Packable * data)
 {
-    if(computation->computation() == PAR && procID >= 0)
-        CastToParallelCOmputation()->ProcessA = procID;
-}
-
-void PSP::SetProccesB(int procID)
-{
-    if(computation->computation() == PAR && procID >= 0)
-        CastToParallelCOmputation()->ProcessB = procID;
-}
-*/
-
-int PSP::ProcessA()
-{
-    if (comp->computation() == PAR)
-    {
-        if (CastToParallelCOmputation()->ProcessA == -1)
-            throw "(POSL Exception) not in parallel mode";
-        return CastToParallelCOmputation()->ProcessA;
-    }
-    else return -1;
-}
-
-int PSP::ProcessB()
-{
-    if (comp->computation() == PAR)
-    {
-        if (CastToParallelCOmputation()->ProcessB == -1)
-            throw "(POSL Exception) not in parallel mode";
-        return CastToParallelCOmputation()->ProcessB;
-    }
-    else return -1;
+    for(vector<int>::iterator it = connections.begin(); it != connections.end(); ++it)
+        comm->sendMessage(data, *it);
 }

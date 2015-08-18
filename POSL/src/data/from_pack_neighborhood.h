@@ -12,7 +12,7 @@ class FromPackNeighborhood : public Neighborhood
     friend class ElementsChangeIterator;
     public:
 
-        FromPackNeighborhood(int pack_size, int * pack);
+        FromPackNeighborhood(int * pack);
 
         POSL_Iterator<vector<int>> * getIterator();
         int size();

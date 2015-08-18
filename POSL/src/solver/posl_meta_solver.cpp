@@ -14,6 +14,7 @@ POSL_MetaSolver::POSL_MetaSolver(vector<POSL_Solver *> _solvers)
 {
 }
 
+/*
 int mainProcess(int myid)
 {
     return (myid % 2 == 0) ? myid : myid - 1;
@@ -24,12 +25,12 @@ int neighborProcess(int myid, int numprocs)
     if(myid % 2 == 0 && myid == numprocs - 1) return - 1;
     return (myid % 2 == 0) ? myid + 1 : myid;
 }
+*/
 
 void POSL_MetaSolver::solve(int argc, char **argv, Benchmark * bench)
 {    
     solve_Default(argc, argv, bench);
 }
-
 
 void POSL_MetaSolver::solve_MS(int argc, char **argv, Benchmark * bench)
 {
@@ -43,14 +44,11 @@ void POSL_MetaSolver::solve_MS(int argc, char **argv, Benchmark * bench)
     MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
     MPI_Comm_rank(MPI_COMM_WORLD,&myid);
 
-    numprocs = comm_size - 1;
-    int procA = mainProcess(myid);
-    int procB = neighborProcess(myid, numprocs);
+    numprocs = comm_size - 1;    
 
     //cout << myid << " - " << numprocs << ": " << procA << "_" << procB << endl;
 
-    FlagComputation * flagC = new FlagParallelComputation(procA, procB);
-    PSP * psp = new PSP(argc, argv, bench, flagC);
+    PSP * psp = new PSP(argc, argv, bench);
 
     int numsolvers = solvers.size();
     int solver_index = (int(myid / 2)) % numsolvers;
@@ -89,13 +87,9 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, Benchmark * bench)
     MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
     MPI_Comm_rank(MPI_COMM_WORLD,&myid);
 
-    int procA = mainProcess(myid);
-    int procB = neighborProcess(myid, comm_size);
-
     //cout << myid << " - " << numprocs << ": " << procA << "_" << procB << endl;
 
-    FlagComputation * flagC = new FlagParallelComputation(procA, procB);
-    PSP * psp = new PSP(argc, argv, bench, flagC);
+    PSP * psp = new PSP(argc, argv, bench);
 
     int numsolvers = solvers.size();
     int solver_index = (int(myid / 2)) % numsolvers;

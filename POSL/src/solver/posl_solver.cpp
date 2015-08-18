@@ -15,23 +15,15 @@ POSL_Solver::POSL_Solver(ComputationStrategy * _strategy)
       strategy(_strategy)
 {}
 
-bool POSL_Solver::Initialized(PSP * psp)
-{
-    return psp->computation() == SEQ
-           || (psp->ProcessA() != -1 && psp->ProcessB() != -1);
-}
 
 void POSL_Solver::solve(PSP * psp)
 {
-    if(Initialized(psp))
-    {
-        final_solution = strategy->execute(psp);
-        final_cost = psp->GetBenchmark()->solutionCost(final_solution);
-        best_solution = psp->GetBestSolutionSoFar();
-        best_cost = psp->GetBenchmark()->solutionCost(best_solution);
-        iterations = psp->GetIterations();
-        time = psp->GetTime();
-    }
+    final_solution = strategy->execute(psp);
+    final_cost = psp->GetBenchmark()->solutionCost(final_solution);
+    best_solution = psp->GetBestSolutionSoFar();
+    best_cost = psp->GetBenchmark()->solutionCost(best_solution);
+    iterations = psp->GetIterations();
+    time = psp->GetTime();
 }
 
 string POSL_Solver::showSolution(string str_finalSol, string str_bestSol)

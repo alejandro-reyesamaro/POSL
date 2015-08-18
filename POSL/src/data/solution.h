@@ -19,6 +19,8 @@
 
 using namespace std;
 
+#define SOLUTION_PACKING_ID 658201
+
 /*!
  * \class Solution solution.h
  * \brief Class to represent a solution (configuration)
@@ -67,8 +69,6 @@ class Solution : public ComputationData, public Packable
         vector<Domain> domains;
         //! The current configuration
         vector<int> configuration;
-
-    private:
         //! Packing strategy
         PackingStrategy * packing_strategy;
 };
