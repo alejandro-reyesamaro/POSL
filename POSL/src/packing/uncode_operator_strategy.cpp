@@ -37,6 +37,11 @@ Operator * UncodeOperatorStrategy::uncode(string code)
                 return Rho_strategy->uncode(code);
             }
             break;
+            case 4: // MIN OPERATOR
+            {
+
+            }
+            break;
             default:
             {
                 UncodeBinaryOperatorStrategy * Bin_strategy = new UncodeBinaryOperatorStrategy();

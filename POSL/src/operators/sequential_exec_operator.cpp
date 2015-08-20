@@ -1,6 +1,6 @@
 #include "sequential_exec_operator.h"
-#include "../computation/not_implemented_parallel_strategy.h"
-#include "../computation/sequential_execution_sequential_strategy.h"
+#include "strategy/not_implemented_parallel_strategy.h"
+#include "strategy/sequential_execution_sequential_strategy.h"
 
 #include <iostream>
 

@@ -1,6 +1,6 @@
 #include "om_florian_random_conf_generation.h"
 #include "om_random_conf_generation.h"
-#include "../computation/random_configuration_generation_strategy.h"
+#include "strategy/random_configuration_generation_strategy.h"
 
 #include <random>
 #include <limits>

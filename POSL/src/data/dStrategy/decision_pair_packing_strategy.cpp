@@ -25,6 +25,18 @@ vector<int> DecisionPairPackingStrategy::pack()
     return package;
 }
 
+DecisionPair * DecisionPairPackingStrategy::unpack(int * pack, vector<Domain> domains)
+{
+    int conf_size = pack[1];
+    vector<int> config1(conf_size);
+    vector<int> config2(conf_size);
+    copy(pack + 2, pack + 2 + conf_size, config1.begin());
+    copy(pack + 2 + conf_size + 1, pack + 2 * conf_size + 3, config2.begin());
+    Solution * s1 = new Solution(domains, config1);
+    Solution * s2 = new Solution(domains, config2);
+    return new DecisionPair(s1, s2);
+}
+
 int DecisionPairPackingStrategy::BodySize()
 {
     throw "Not implemented";

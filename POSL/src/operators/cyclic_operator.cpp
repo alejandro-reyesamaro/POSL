@@ -1,5 +1,5 @@
 #include "cyclic_operator.h"
-#include "../computation/cyclic_sequential_strategy.h"
+#include "strategy/cyclic_sequential_strategy.h"
 
 #include <iostream>
 using namespace std;

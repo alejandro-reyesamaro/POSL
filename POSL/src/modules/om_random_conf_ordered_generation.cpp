@@ -1,5 +1,5 @@
 #include "om_random_conf_ordered_generation.h"
-#include "../computation/random_ordered_generation_strategy.h"
+#include "strategy/random_ordered_generation_strategy.h"
 #include "../benchmarks/golomb_ruler.h"
 
 #include <random>
@@ -13,7 +13,7 @@ Solution * OM_RandomConfOrderedGeneration::spcf_execute(PSP *psp, Solution * inp
 {
     RandomOrderedGenerationStrategy * rconf = new RandomOrderedGenerationStrategy();
     GolombRuler * object_bench = dynamic_cast<GolombRuler *> (psp->GetBenchmark());
-    if(object_bench == NULL)
+    if(object_bench)
         throw "(POSL exception) Not casting allowed";
     int max = object_bench->Length();
     int size = object_bench->Order();

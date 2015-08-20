@@ -1,4 +1,5 @@
 #include "neighborhood_packing_strategy.h"
+#include "../from_pack_neighborhood.h"
 
 #include <algorithm>
 
@@ -38,6 +39,12 @@ vector<int> NeighborhoodPackingStrategy::pack()
     return package;
 }
 
+Neighborhood * NeighborhoodPackingStrategy::unpack(int * pack)
+{
+    FromPackNeighborhood * V = new FromPackNeighborhood(pack);
+    return V;
+}
+
 int NeighborhoodPackingStrategy::BodySize()
 {
     return body_strategy->bodySize();
@@ -47,3 +54,5 @@ vector<int> NeighborhoodPackingStrategy::body()
 {
     return body_strategy->packBody();
 }
+
+

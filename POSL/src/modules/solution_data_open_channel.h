@@ -6,5 +6,6 @@ class SolutionDataOpenChannel : public DataOpenChannel
 {
     public:
         SolutionDataOpenChannel();
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        int dataTag();
+        ComputationData * unpackMessage(int * buffer, PSP * psp);
 };

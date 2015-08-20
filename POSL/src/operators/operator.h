@@ -10,8 +10,8 @@
  */
 
 #include "../modules/compound_module.h"
-#include "../computation/sequential_execution_strategy.h"
-#include "../computation/parallel_execution_strategy.h"
+#include "strategy/sequential_execution_strategy.h"
+#include "strategy/parallel_execution_strategy.h"
 #include "../packing/codable.h"
 
 #include <vector>

@@ -1,6 +1,6 @@
 #include "rho_operator.h"
-#include "../computation/not_implemented_parallel_strategy.h"
-#include "../computation/rho_sequential_strategy.h"
+#include "strategy/not_implemented_parallel_strategy.h"
+#include "strategy/rho_sequential_strategy.h"
 #include "../tools/tools.h"
 
 RhoOperator::RhoOperator(CompoundModule *_M1, CompoundModule *_M2, float _rho)
