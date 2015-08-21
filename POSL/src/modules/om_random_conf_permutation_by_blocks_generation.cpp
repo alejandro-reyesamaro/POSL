@@ -13,7 +13,7 @@ Solution * OM_RandomConfPermutationByBlocksGeneration::spcf_execute(PSP *psp, So
 {
     RandomPermutationByBlocksGenerationStrategy * rconf = new RandomPermutationByBlocksGenerationStrategy();
     Golfers * object_bench = dynamic_cast<Golfers *> (psp->GetBenchmark());
-    if(object_bench)
+    if(!object_bench)
         throw "(POSL exception) Not casting allowed";
     int block_size = object_bench->Groups() * object_bench->PlayersPerGroup();
     int blocks = object_bench->Weeks();

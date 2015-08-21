@@ -1,4 +1,6 @@
 #include "packing_neighborhood_tester.h"
+#include "../data/neighborhood.h"
+#include "../data/dStrategy/neighborhood_packing_strategy.h"
 #include "../tools/tools.h"
 
 #include <algorithm>
@@ -14,6 +16,9 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
 {
     neighbors->Reset();
     string sol_str = sol->configurationToString();
+
+    Neighborhood * final = NeighborhoodPackingStrategy::unpack(&pack[0]);
+    bool succ = final->size() != 0; // No me gusta :/
 
     // | ID |
     int id = pack[0];
@@ -53,7 +58,8 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
         sol_aux = new Solution(dom, neighbor);
         //cout << sol_aux->configurationToString() << endl;
         int deg = pack[count++];
-        copy(sol->GetConfiguration().begin(), sol->GetConfiguration().end(), conf_aux.begin());
+        vector<int> sol_conf = sol->GetConfiguration();
+        copy(sol_conf.begin(), sol_conf.end(), conf_aux.begin());
         for(int i = 0; i < deg; i++)
         {
             int pos = pack[count++];
@@ -71,7 +77,7 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
     //cout << conf_str << endl;
     //cout << pack_str << endl;
 
-    return  (legal)
+    return  (succ && legal)
             ? label + ": (" + Tools::int2str(id) + ") : OK !"
             : label + ": fail :/";
 }

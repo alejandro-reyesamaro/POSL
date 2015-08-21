@@ -2,6 +2,7 @@
 #include "../data/solution.h"
 #include "../solver/psp.h"
 #include "../tools/tools.h"
+#include "../data/dStrategy/solution_packing_strategy.h"
 
 #include <algorithm>
 
@@ -34,6 +35,9 @@ string Tester_PackingSolution::test()
     string conf_str = sol->configurationToString();
     vector<int> pack = sol->pack();
 
+    Solution * final = SolutionPackingStrategy::unpack(&pack[0], psp->GetBenchmark()->Domains());
+    bool succ = final->equal(sol);
+
     // | ID |
     int id = pack[0];
 
@@ -55,5 +59,5 @@ string Tester_PackingSolution::test()
     //cout << conf_str << endl;
     //cout << pack_str << endl;
 
-    return  (conf_str.compare(pack_str) == 0) ? "Packing Solution: (" + Tools::int2str(id) + ") : OK !" : "Packing Solution: fail :/";
+    return  (succ && conf_str.compare(pack_str) == 0) ? "Packing Solution: (" + Tools::int2str(id) + ") : OK !" : "Packing Solution: fail :/";
 }

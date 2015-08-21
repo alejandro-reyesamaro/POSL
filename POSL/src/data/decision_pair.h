@@ -14,7 +14,7 @@
 #include "dStrategy/packable.h"
 #include "dStrategy/packing_strategy.h"
 
-#define DECISIONPAIR_PACKING_ID 658203
+#define DECISIONPAIR_PACKING_ID 658202
 
 /*!
  * \class DecisionPair decision_pair.h

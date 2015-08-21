@@ -10,7 +10,7 @@ OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(){}
 Neighborhood * OM_GolfersSingleSwapNeighborhood::spcf_execute(PSP * psp, Solution * input)
 {
     Golfers * s = dynamic_cast<Golfers *>(psp->GetBenchmark());
-    if (s)
+    if (!s)
         throw "(POSL esception) Not casting allowed";
     Neighborhood * V = new GolfersSingleSwapNeighborhood(input, s->TotalPlayers());
     return V;

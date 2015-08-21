@@ -87,12 +87,14 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, Benchmark * bench)
     MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
     MPI_Comm_rank(MPI_COMM_WORLD,&myid);
 
-    //cout << myid << " - " << numprocs << ": " << procA << "_" << procB << endl;
+    PSP * psp = new PSP(argc, argv, bench, myid);
+    if(myid == 0)
+        psp->connectWith(1);
 
-    PSP * psp = new PSP(argc, argv, bench);
+    int numsolvers = solvers.size();    
+    int solver_index = myid % numsolvers;
 
-    int numsolvers = solvers.size();
-    int solver_index = (int(myid / 2)) % numsolvers;
+    //cout << myid << " - solver: " << solver_index << endl;
 
     Solution * sol = new Solution(bench->Domains());
     bench->UpdateSolution(sol);

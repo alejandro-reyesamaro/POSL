@@ -15,4 +15,6 @@
  */
 class ComputationData
 {
+    public:
+        virtual ~ComputationData(){}
 };

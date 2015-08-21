@@ -50,7 +50,7 @@
 using namespace std;
 
 // Testing SEQUENTIAL
-int main(int argc, char **argv)
+int mainNO(int argc, char **argv)
 {
     vector<Tester *> tests;
 
@@ -77,22 +77,28 @@ int main(int argc, char **argv)
     tests.push_back(new Tester_BestImprovementTabuSelection(argc, argv));
     tests.push_back(new Tester_RandomPermutationConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
+    */
     tests.push_back(new Tester_PackingSolution(argc, argv));
     tests.push_back(new Tester_PackingDecisionPair(argc, argv));
     tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
     tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
     tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
     tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
-    tests.push_back(new Tester_CodingCompoundModules(argc, argv));
-    */
+
     //tests.push_back(new Tester_Solver_Golfers(argc, argv));
     //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
-    tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
+    //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)
     {
-        output_str = tests[i]->test();
+        try
+        {
+            output_str = tests[i]->test();
+        }catch (const char* msg)
+        {
+             cout << msg << endl;
+        }
         cout << ">> " << output_str << endl;
     }
 }
@@ -119,17 +125,17 @@ int mainNOO(int argc, char **argv)
     MPI_Finalize();
 }
 
-int mainNO(int argc, char **argv)
+int main(int argc, char **argv)
 {
 
     vector<POSL_Solver *> solvers;
     Benchmark * bench;
 
-    /* GOLFERS
-    bench = new Golfers(5,5,3);
-    POSL_Solver * solver_1 = new POSL_Solver(new ForGolfersCSS());
-    POSL_Solver * solver_2 = new POSL_Solver(new ForGolfersCSS());
-    */
+    /* GOLFERS */
+    bench = new Golfers(4,4,3);
+    CreateSolverStrategy * css = new ForGolfersCSS();
+    solvers = css->create();
+
 
     /* SQUARING SQUARE
     vector<int> squares({6, 4, 4, 1, 3, 3, 3});
@@ -137,13 +143,20 @@ int mainNO(int argc, char **argv)
     POSL_Solver * solver_1 = new POSL_Solver(new ForSquaringSquareCSS());
     */
 
-    /* GOLOMB RULER */
+    /* GOLOMB RULER
     bench = new GolombRuler(12,85);
     CreateSolverStrategy * css = new ForGolombRulerCSS();
     solvers = css->create();
+    */
 
-    POSL_MetaSolver * s = new POSL_MetaSolver(solvers);
-    s->solve(argc, argv, bench);
+    try
+    {
+        POSL_MetaSolver * s = new POSL_MetaSolver(solvers);
+        s->solve(argc, argv, bench);
+    }catch (const char* msg)
+    {
+         cout << msg << endl;
+    }
 }
 
 

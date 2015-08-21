@@ -3,6 +3,7 @@
 #include "../solver/psp.h"
 #include "../data/decision_pair.h"
 #include "../tools/tools.h"
+#include "../data/dStrategy/decision_pair_packing_strategy.h"
 
 #include <algorithm>
 
@@ -53,6 +54,9 @@ string Tester_PackingDecisionPair::test()
     string found_str = sol_found->configurationToString();
     vector<int> pack = pair->pack();
 
+    DecisionPair * final = DecisionPairPackingStrategy::unpack(&pack[0], psp->GetBenchmark()->Domains());
+    bool succ = final->GetCurrent()->equal(sol_current) && final->GetFound()->equal(sol_found);
+
     // | ID |
     int id = pack[0];
 
@@ -86,7 +90,7 @@ string Tester_PackingDecisionPair::test()
     //cout << conf_str << endl;
     //cout << pack_str << endl;
 
-    return  (current_str.compare(pack_current_str) == 0 && found_str.compare(pack_found_str) == 0)
+    return  (succ && current_str.compare(pack_current_str) == 0 && found_str.compare(pack_found_str) == 0)
             ? "Packing DecisionPair (" + Tools::int2str(id) + ") : OK !"
             : "Packing DecisionPair: fail :/";
 }

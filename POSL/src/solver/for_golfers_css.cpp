@@ -11,14 +11,15 @@
 #include "../modules/om_random_selection.h"
 #include "../modules/om_simulated_annealing_decision.h"
 
-#include "../computation/factory_computation_strategy_a001.h"
+#include "../computation/factory_computation_strategy_sa001.h"
+#include "../computation/factory_computation_strategy_ra001.h"
 
 ForGolfersCSS::ForGolfersCSS()
 {}
 
 vector<POSL_Solver *> ForGolfersCSS::create()
 {
-    FactoryComputationStrategy * fac_cs = new FactroryComputationStrategy_A001
+    FactoryComputationStrategy * fac_cs1 = new FactoryComputationStrategy_SA001
     (
         new OM_RandomConfPermutationByBlocksGeneration(),
         new OM_GolfersSingleSwapNeighborhood(),
@@ -28,11 +29,24 @@ vector<POSL_Solver *> ForGolfersCSS::create()
         new OM_AlwaysImproveDecision(),
         0.5, 20, 500, 10
     );
-    ComputationStrategy * cs = new ComputationStrategy(fac_cs);
-    POSL_Solver * solver_1 = new POSL_Solver(cs);
+    FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA001
+    (
+        new OM_RandomConfPermutationByBlocksGeneration(),
+        new OM_GolfersSingleSwapNeighborhood(),
+        new OM_FirstImprovementSelection(),
+        new OM_BestImprovementTabuSelection(),
+        new OM_SimulatedAnnealingDecision(),
+        new OM_AlwaysImproveDecision(),
+        0.2, 20, 500, 10
+    );
+    ComputationStrategy * cs1 = new ComputationStrategy(fac_cs1);
+    POSL_Solver * solver_1 = new POSL_Solver(cs1);
+    ComputationStrategy * cs2 = new ComputationStrategy(fac_cs2);
+    POSL_Solver * solver_2 = new POSL_Solver(cs2);
 
     vector<POSL_Solver *> solvers;
     solvers.push_back(solver_1);
+    solvers.push_back(solver_2);
 
     return solvers;
 }

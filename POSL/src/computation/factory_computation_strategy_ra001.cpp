@@ -37,7 +37,7 @@ FactoryComputationStrategy_RA001::FactoryComputationStrategy_RA001(
     CompoundModule * och_selection = new DecisionPairDataOpenChannel();
     Operator * min = new MinOperator(G_rho, och_selection);
     GroupedComputation * G_min = new GroupedSequentialComputation(min);
-    Operator * cond_1 = new ConditionalOperator(G_rho, G_min, new ReachedCostExpression(cost_op_cond_decision));
+    Operator * cond_1 = new ConditionalOperator(G_rho, G_min, new LoopBoundExpression(4));
     GroupedComputation * G_con1 = new GroupedSequentialComputation(cond_1);
 
 
