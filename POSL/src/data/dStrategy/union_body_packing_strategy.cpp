@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-UnionBodyPackingStrategy::UnionBodyPackingStrategy(Packable *_V1, Packable *_V2)
+UnionBodyPackingStrategy::UnionBodyPackingStrategy(Neighborhood *_V1, Neighborhood *_V2)
     : V1(_V1), V2(_V2)
 {}
 

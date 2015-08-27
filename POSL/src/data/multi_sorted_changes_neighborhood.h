@@ -60,6 +60,8 @@ class MultiSortedChangesNeighborhood : public Neighborhood
         */
         vector<int> applyChangeAt(int index);
 
+        void pushSetOfValues(vector<int> indexes, Solution * sol);
+
         //! The current configuration (we are computing the neighborhood of it)
         Solution * current_solution;
 

@@ -19,39 +19,12 @@ MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol) :
     RandIndexGenerator rig(n-1);
     vector<vector<int>> the_changes = rig.generate();
 
-    int pos_new_value = 0;
+    //int pos_new_value = 0;
 
     for (vector<vector<int>>::iterator it = the_changes.begin(); it != the_changes.end(); ++it)
     {
-        vector<int> new_indexes = (*it);
-        vector<int> new_values;
-
-        //cout << "[ ";
-
-        vector<int> the_configuration = sol->GetConfiguration();
-
-        for (vector<int>::iterator jt = new_indexes.begin(); jt != new_indexes.end(); ++jt)
-        {
-            //cout << *jt << " ";
-            vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(*jt,the_configuration);
-            int current_value = the_configuration[*jt];
-
-            vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
-            if(p != posible_values.end() && posible_values.size() > 1)
-                posible_values.erase(p); // BEST to do a swap with the first element
-
-            pos_new_value = rand.NextInt(0, posible_values.size()-1);
-
-            new_values.push_back(posible_values[pos_new_value]);
-
-            //apply the last change
-            the_configuration[*jt] = posible_values[pos_new_value];
-        }
-
-        //cout << "]" << endl;
-
-        T_Nchanges next_changes = {new_indexes, new_values, new_values.size()};
-        changes.push_back(next_changes);
+        vector<int> list_of_indexes = (*it);
+        pushSetOfValues(list_of_indexes, sol);
     }
     packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new MultiElementsChangedBodyPackingStrategy(changes));
 }
@@ -78,6 +51,9 @@ vector<int> MultiSortedChangesNeighborhood::applyChangeAt(int index)
     if(index >= size()) return conf;
     for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
         conf[changes[index].positions[i]] = changes[index].new_values[i];
+
+    sort(conf.begin(), conf.end());
+
     return conf;
 }
 
@@ -94,4 +70,51 @@ int MultiSortedChangesNeighborhood::bodySize()
 vector<int> MultiSortedChangesNeighborhood::body()
 {
     return packing_strategy->body();
+}
+
+
+void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes, Solution * sol)
+{
+    //changes.clear();
+    vector<int> config = sol->GetConfiguration();
+    vector<Domain> domains = sol->GetDomains();
+    int domains_size = domains[0].maximum();
+    // <= 16
+    int NCh = (domains_size <= 20) ? 1 : sqrt(domains_size);
+
+    vector<int> values_for_index;
+
+    // creating the domains
+    vector<vector<int>> vector_values;
+    srand(time(0));
+    for (vector<int>::iterator it = indexes.begin(); it != indexes.end(); ++it)
+    {
+        unsigned int index = *it;
+        if(index == 0)
+        {
+
+            vector<int> v(NCh, 0);
+            values_for_index = v;
+        }
+        else if(index == config.size()-1)
+        {
+            vector<int> v(NCh, config[config.size()-1]);
+            values_for_index = v;
+        }
+        else
+        {
+            values_for_index = domains[index].GetValues();
+            random_shuffle (values_for_index.begin(), values_for_index.end());
+        }
+        vector_values.push_back(values_for_index);
+    }
+    vector<int> the_values;
+    for (int i = 0; i < NCh; i++)
+    {
+        for (unsigned int j = 0; j < indexes.size(); j++)
+            the_values.push_back(vector_values[j][i]);
+        T_Nchanges next_changes = {indexes, the_values, the_values.size()};
+        changes.push_back(next_changes);
+        the_values.clear();
+    }
 }

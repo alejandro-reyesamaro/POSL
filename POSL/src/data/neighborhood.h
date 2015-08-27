@@ -22,7 +22,7 @@ using namespace std;
  * \class Neighborhood neighborhood.h
  * \brief (Abstract) Class to represent a neighborhood of a configuration
  */
-class Neighborhood : public ComputationData, public Packable
+class Neighborhood : public ComputationData//, public Packable
 {
     public:
         //! Constructor

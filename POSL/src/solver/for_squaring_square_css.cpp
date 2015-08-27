@@ -15,7 +15,7 @@ ForSquaringSquareCSS::ForSquaringSquareCSS()
 
 vector<POSL_Solver *> ForSquaringSquareCSS::create()
 {
-    FactoryComputationStrategy * fac_cs = new FactroryComputationStrategy_A002
+    FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A002
     (
         new OM_FlorianRandomConfGeneration(),
         new OM_OneElementChangedNeighborhood(),

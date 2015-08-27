@@ -33,7 +33,7 @@ string Tester_PackingOneElementChangedNeighborhood::test()
     OperationModule * op = new OM_OneElementChangedNeighborhood();
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
     vector<int> pack = V->pack();
-    POSL_Iterator<vector<int>> * it = V ->getIterator();
+    POSL_Iterator<vector<int>> * it = V->getIterator();
 
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
     return tester->test(sol, it, pack, "Packing One Element Changed Neighborhood");

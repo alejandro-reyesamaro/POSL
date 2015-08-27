@@ -1,6 +1,8 @@
 #include "decision_pair_packing_strategy.h"
 
 #include <algorithm>
+#include <iostream>
+using namespace std;
 
 DecisionPairPackingStrategy::DecisionPairPackingStrategy(DecisionPair * _pair)
     : pair(_pair)
@@ -8,6 +10,7 @@ DecisionPairPackingStrategy::DecisionPairPackingStrategy(DecisionPair * _pair)
 
 vector<int> DecisionPairPackingStrategy::pack()
 {
+    //cout << "packing decision pair" << endl;
     int conf_size = pair->GetCurrent()->GetConfiguration().size();
     vector<int> package(conf_size * 2 + 2);
     // ID = 1
@@ -39,10 +42,10 @@ DecisionPair * DecisionPairPackingStrategy::unpack(int * pack, vector<Domain> do
 
 int DecisionPairPackingStrategy::BodySize()
 {
-    throw "Not implemented";
+    throw "(POSL Exception) Not implemented (DecisionPair.BodySize)";
 }
 
 vector<int> DecisionPairPackingStrategy::body()
 {
-    throw "Not implemented";
+    throw "(POSL Exception) Not implemented (DecisionPair.body)";
 }

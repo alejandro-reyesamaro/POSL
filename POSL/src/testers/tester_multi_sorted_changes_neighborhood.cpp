@@ -16,14 +16,12 @@ string Tester_MultiSortedChangesNeighborhood::test()
 {
     //Benchmark * bench = new GolombRuler(5, 11);
     Benchmark * bench = new GolombRuler(12, 85);
-    Solution * sol = new Solution(bench->Domains());
-    bench->UpdateSolution(sol);
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
     //vector<int> config( { 0, 1, 4, 9, 11 } );
     vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    Solution * sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
     OperationModule * op = new OM_MultiSortedChangesNeighborhood();
     //PSP * psp = new PSP(bench);

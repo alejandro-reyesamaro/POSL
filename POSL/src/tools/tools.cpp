@@ -106,7 +106,8 @@ vector<int> Tools::vector_possible_values_to_hold_sorted(int index, vector<int> 
     int a = current_configuration[index-1];
     int b = current_configuration[index+1];
     for(int i = a+1; i <= b-1; i++)
-        posible_values.push_back(i);
+        if(i != current_configuration[index])
+            posible_values.push_back(i);
     return posible_values;
 }
 
@@ -117,4 +118,11 @@ int Tools::mismatches(vector<int> vector_1, vector<int> vector_2)
         if(vector_1[i] != vector_2[i])
             c++;
     return c;
+}
+
+int * Tools::vector2array(vector<int> vec)
+{
+    int * buff = new int[vec.size()];
+    copy(vec.begin(), vec.end(), buff);
+    return buff;
 }

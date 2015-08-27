@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../data/dStrategy/packable.h"
+#include "../data/computation_data.h"
 
 #include "mpi.h"
 
@@ -11,7 +11,7 @@ class Comunicator
     public:
         Comunicator();
 
-        void sendMessage(Packable *data, int procID);
+        void sendMessage(ComputationData *data, int procID);
 
     private:
         MPI_Request request;

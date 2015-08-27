@@ -10,13 +10,12 @@
 #define N_NEIGHBORS 16
 
 OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol) : rand()
-
 {
     current_solution = sol;
     int n = sol->GetConfiguration().size();
 
     vector<int> indexes;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < n-1; i++)
         indexes.push_back(i);
     //n = N_NEIGHBORS;
     srand(time(0));
@@ -25,7 +24,7 @@ OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol) : rand(
     int pos_new_value = 0;
     vector<int> the_configuration = sol->GetConfiguration();
 
-    for(int i = 0; i < n; ++i)
+    for(int i = 0; i < n-2; ++i)
     {
         int current_value = the_configuration[indexes[i]];
         vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i],the_configuration);
@@ -34,9 +33,10 @@ OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol) : rand(
         //vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
         //if(p != posible_values.end())
         //    posible_values.erase(p); // BEST to do a swap with the first element
-        for (int j = 0; j < posible_values.size() / 2 + 1; j++)
+        int l = posible_values.size();
+        for (int j = 0; j <  l / 2; j++)
         {
-            pos_new_value = rand.NextInt(0, posible_values.size()/2);
+            pos_new_value = j;
             if(posible_values[pos_new_value] == current_value)
                 continue;
             T_change next_change = {indexes[i], posible_values[pos_new_value]};

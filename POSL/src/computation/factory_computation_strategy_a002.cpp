@@ -11,7 +11,7 @@
 #include "../expressions/reached_cost_expression.h"
 #include "../expressions/loop_bound_expression.h"
 
-FactroryComputationStrategy_A002::FactroryComputationStrategy_A002(
+FactoryComputationStrategy_A002::FactoryComputationStrategy_A002(
         AOM_FirstConfigurationGeneration * first_conf_generation,
         AOM_NeighborhoodFunction * neighborhood_function_1,
         AOM_NeighborhoodFunction * neighborhood_function_2,
@@ -92,7 +92,7 @@ FactroryComputationStrategy_A002::FactroryComputationStrategy_A002(
     final_module = G_cyc2;
 }
 
-CompoundModule * FactroryComputationStrategy_A002::buildModule()
+CompoundModule * FactoryComputationStrategy_A002::buildModule()
 {
     return final_module;
 }

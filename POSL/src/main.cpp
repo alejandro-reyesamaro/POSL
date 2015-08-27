@@ -42,6 +42,7 @@
 #include "solver/for_golfers_css.h"
 #include "solver/for_squaring_square_css.h"
 #include "solver/for_golomb_ruler_css.h"
+#include "testers/tester_comunication.h"
 
 #include "solver/posl_meta_solver.h"
 
@@ -50,7 +51,7 @@
 using namespace std;
 
 // Testing SEQUENTIAL
-int mainNO(int argc, char **argv)
+int main(int argc, char **argv)
 {
     vector<Tester *> tests;
 
@@ -78,15 +79,19 @@ int mainNO(int argc, char **argv)
     tests.push_back(new Tester_RandomPermutationConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
     */
-    tests.push_back(new Tester_PackingSolution(argc, argv));
-    tests.push_back(new Tester_PackingDecisionPair(argc, argv));
-    tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
+    //tests.push_back(new Tester_PackingSolution(argc, argv));
+    //tests.push_back(new Tester_PackingDecisionPair(argc, argv));
+    //tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
+    //tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
+    //tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
+    //tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
+
+
+    //tests.push_back(new Tester_UnionOperator(argc, argv));
+
 
     //tests.push_back(new Tester_Solver_Golfers(argc, argv));
-    //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
+    tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
     //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
 
     string output_str;
@@ -125,7 +130,7 @@ int mainNOO(int argc, char **argv)
     MPI_Finalize();
 }
 
-int main(int argc, char **argv)
+int mainNooooooooo(int argc, char **argv)
 {
 
     vector<POSL_Solver *> solvers;
@@ -159,10 +164,22 @@ int main(int argc, char **argv)
     }
 }
 
+int mainComm(int argc, char **argv)
+{
+    try
+    {
+        Tester_Comunication * s = new Tester_Comunication(argc, argv);
+        s->test();
+    }catch (const char* msg)
+    {
+         cout << msg << endl;
+    }
+}
+
 
 // PARALLEL
 // Compile command line:
 // $ make
 
-// Execte command line:
+// Execute command line:
 // $ mpiexec.mpich -np 2  ./bin/POSL

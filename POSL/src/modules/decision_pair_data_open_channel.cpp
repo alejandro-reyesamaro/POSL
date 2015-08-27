@@ -16,6 +16,7 @@ int DecisionPairDataOpenChannel::dataTag()
 
 ComputationData * DecisionPairDataOpenChannel::unpackMessage(int * buffer, PSP * psp)
 {
+    /*
     cout << "unpacking message" << endl;
 
     // | ID |
@@ -31,8 +32,9 @@ ComputationData * DecisionPairDataOpenChannel::unpackMessage(int * buffer, PSP *
     pack_current_str += " ]";
 
     cout << pack_current_str << endl;
+    */
 
     DecisionPair * rPair = DecisionPairPackingStrategy::unpack(buffer, psp->GetBenchmark()->Domains());
-    cout << "message unpacked: " << rPair->GetCurrent()->configurationToString() << endl;
+    //cout << "message unpacked: " << rPair->GetCurrent()->configurationToString() << endl;
     return rPair;
 }

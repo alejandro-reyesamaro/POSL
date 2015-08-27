@@ -176,7 +176,10 @@ SOURCES += src/main.cpp \
     src/solver/for_golomb_ruler_css.cpp \
     src/solver/posl_meta_solver.cpp \
     src/solver/psp.cpp \
-    src/solver/comunicator.cpp
+    src/solver/comunicator.cpp \
+    src/testers/tester_comunication.cpp \
+    src/computation/factory_computation_strategy_sa002.cpp \
+    src/computation/factory_computation_strategy_ra002.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -359,7 +362,10 @@ HEADERS += \
     src/solver/for_squaring_square_css.h \
     src/solver/for_golomb_ruler_css.h \
     src/solver/posl_meta_solver.h \
-    src/solver/comunicator.h
+    src/solver/comunicator.h \
+    src/testers/tester_comunication.h \
+    src/computation/factory_computation_strategy_sa002.h \
+    src/computation/factory_computation_strategy_ra002.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

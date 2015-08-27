@@ -48,11 +48,13 @@ string Tester_PackingDecisionPair::test()
 
     Solution * sol_current = new Solution(psp->GetBenchmark()->Domains(), config1);
     Solution * sol_found = new Solution(psp->GetBenchmark()->Domains(), config2);
-    DecisionPair * pair = new DecisionPair(sol_current, sol_found);
+    ComputationData * pair = new DecisionPair(sol_current, sol_found);
 
     string current_str = sol_current->configurationToString();
     string found_str = sol_found->configurationToString();
     vector<int> pack = pair->pack();
+
+    int * buff = &pack[0];
 
     DecisionPair * final = DecisionPairPackingStrategy::unpack(&pack[0], psp->GetBenchmark()->Domains());
     bool succ = final->GetCurrent()->equal(sol_current) && final->GetFound()->equal(sol_found);

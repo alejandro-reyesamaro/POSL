@@ -16,5 +16,6 @@ ComputationData * UnionSequentialStrategy::evaluate(PSP *psp, ComputationData * 
     if (v1 == NULL) return v2;
     if (v2 == NULL) return v1;
 
-    return new UnionNeighborhood((Solution *)input, v1, v2);
+    Neighborhood * r = new UnionNeighborhood((Solution *)input, v1, v2);
+    return r;
 }

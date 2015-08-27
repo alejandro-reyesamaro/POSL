@@ -2,6 +2,8 @@
 #include "../from_pack_neighborhood.h"
 
 #include <algorithm>
+#include <iostream>
+using namespace std;
 
 /*
  * Pack :
@@ -22,6 +24,7 @@ NeighborhoodPackingStrategy::NeighborhoodPackingStrategy(vector<int> current_con
 
 vector<int> NeighborhoodPackingStrategy::pack()
 {
+    cout << "packing neighborhood" << endl;
     int conf_size = config.size();
     vector<int> package(conf_size + 3 + body_strategy->bodySize());
     // ID = 2

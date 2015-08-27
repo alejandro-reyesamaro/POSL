@@ -25,7 +25,7 @@ using namespace std;
  * \class Solution solution.h
  * \brief Class to represent a solution (configuration)
  */
-class Solution : public ComputationData, public Packable
+class Solution : public ComputationData//, public Packable
 {
     public:
         //! Constructor

@@ -32,6 +32,39 @@ void POSL_MetaSolver::solve(int argc, char **argv, Benchmark * bench)
     solve_Default(argc, argv, bench);
 }
 
+void POSL_MetaSolver::solve_Default(int argc, char **argv, Benchmark * bench)
+{
+    int myid, comm_size;
+
+    MPI_Init(&argc, &argv);
+
+    MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
+    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
+
+    PSP * psp = new PSP(argc, argv, bench, myid);
+    if(myid == 0)
+    {
+        psp->connectWith(1);
+        psp->connectWith(3);
+    }
+
+    int numsolvers = solvers.size();
+    int solver_index = myid % numsolvers;
+
+    //cout << myid << " - solver: " << solver_index << endl;
+
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+
+    POSL_Solver * solver = solvers[solver_index];
+    solver->solve(psp);
+    cout << solver->show(psp->GetBenchmark()) << endl;
+    exit(0);
+
+    MPI_Finalize();
+}
+
+
 void POSL_MetaSolver::solve_MS(int argc, char **argv, Benchmark * bench)
 {
     int myid, comm_size, numprocs, tag;
@@ -74,35 +107,6 @@ void POSL_MetaSolver::solve_MS(int argc, char **argv, Benchmark * bench)
         cout << "(Y)" << endl;
         exit(0);
     }
-
-    MPI_Finalize();
-}
-
-void POSL_MetaSolver::solve_Default(int argc, char **argv, Benchmark * bench)
-{
-    int myid, comm_size;
-
-    MPI_Init(&argc, &argv);
-
-    MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
-    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
-
-    PSP * psp = new PSP(argc, argv, bench, myid);
-    if(myid == 0)
-        psp->connectWith(1);
-
-    int numsolvers = solvers.size();    
-    int solver_index = myid % numsolvers;
-
-    //cout << myid << " - solver: " << solver_index << endl;
-
-    Solution * sol = new Solution(bench->Domains());
-    bench->UpdateSolution(sol);
-
-    POSL_Solver * solver = solvers[solver_index];
-    solver->solve(psp);
-    cout << solver->show(psp->GetBenchmark()) << endl;
-    exit(0);
 
     MPI_Finalize();
 }

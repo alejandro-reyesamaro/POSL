@@ -1,6 +1,8 @@
 #include "solution_packing_strategy.h"
 
 #include <algorithm>
+#include <iostream>
+using namespace std;
 
 SolutionPackingStrategy::SolutionPackingStrategy(vector<int> _config)
     : configuration(_config)
@@ -9,6 +11,7 @@ SolutionPackingStrategy::SolutionPackingStrategy(vector<int> _config)
 
 vector<int> SolutionPackingStrategy::pack()
 {
+    cout << "packing solution" << endl;
     int conf_size = configuration.size();    
     vector<int> package(conf_size + 2);
 

@@ -53,5 +53,13 @@ int GolombRuler::Length()
 
 string GolombRuler::ShowSolution(Solution * solution)
 {
-    return solution->configurationToString();
+
+    string output = "";
+    if(order == 6 and length == 17) output = "(6-17:2) ";
+    else if(order == 7 and length == 25) output = "(7-25:4) ";
+    else if(order == 8 and length == 34) output = "(8-34:7) ";
+    else if(order == 12 and length == 85) output = "(12-85:20) ";
+
+    return output + solution->configurationToString();
+    //return solution->configurationToString();
 }

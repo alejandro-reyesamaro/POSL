@@ -10,7 +10,7 @@
 
 UnionNeighborhood::UnionNeighborhood(Solution * sol, Neighborhood * v1, Neighborhood * v2) : V1(v1), V2(v2)
 {
-    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), v1 ->size() + v2->size(), new UnionBodyPackingStrategy(v1, v2));
+    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), v1->size() + v2->size(), new UnionBodyPackingStrategy(v1, v2));
 }
 
 POSL_Iterator<vector<int>> * UnionNeighborhood::getIterator()

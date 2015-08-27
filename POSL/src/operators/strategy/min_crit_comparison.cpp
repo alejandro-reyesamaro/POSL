@@ -21,7 +21,7 @@ DecisionPair * comparePairs(DecisionPair * p1, DecisionPair * p2, Benchmark * be
 {
     int cost1 = bench->solutionCost(p1->GetFound());
     int cost2 = bench->solutionCost(p2->GetFound());
-    cout << "comparing between " << cost1 << " and " << cost2 << endl;
+    //cout << "comparing between " << cost1 << " and " << cost2 << endl;
     return (cost1 <= cost2) ? p1 : p2;
 }
 
