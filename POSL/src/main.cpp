@@ -62,9 +62,9 @@ int main(int argc, char **argv)
     //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
     //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
     //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
-    /*
-    tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
+    /*
+    tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));    
     tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
     tests.push_back(new Tester_FirstImprovementSelection(argc, argv));
     tests.push_back(new Tester_BestImprovementSelection(argc, argv));
@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 
 
     //tests.push_back(new Tester_Solver_Golfers(argc, argv));
-    tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
+    //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
     //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
 
     string output_str;

@@ -179,7 +179,9 @@ SOURCES += src/main.cpp \
     src/solver/comunicator.cpp \
     src/testers/tester_comunication.cpp \
     src/computation/factory_computation_strategy_sa002.cpp \
-    src/computation/factory_computation_strategy_ra002.cpp
+    src/computation/factory_computation_strategy_ra002.cpp \
+    src/operators/florian_operator.cpp \
+    src/operators/strategy/florian_sequential_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -365,7 +367,9 @@ HEADERS += \
     src/solver/comunicator.h \
     src/testers/tester_comunication.h \
     src/computation/factory_computation_strategy_sa002.h \
-    src/computation/factory_computation_strategy_ra002.h
+    src/computation/factory_computation_strategy_ra002.h \
+    src/operators/florian_operator.h \
+    src/operators/strategy/florian_sequential_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
