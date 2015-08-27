@@ -16,6 +16,11 @@ Tester_BestImprovementSelection::Tester_BestImprovementSelection(int argc, char 
 
 string Tester_BestImprovementSelection::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config(
     {
         1,  2,   3,  4,
@@ -29,7 +34,7 @@ string Tester_BestImprovementSelection::test()
         16,  3,  6,  9
     });
 
-    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+    sol = new Solution(psp->GetBenchmark()->Domains(), config);
     //bench->UpdateSolution(sol);
     //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol);

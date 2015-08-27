@@ -14,11 +14,13 @@
 #include "dStrategy/packable.h"
 #include "dStrategy/packing_strategy.h"
 
+#define DECISIONPAIR_PACKING_ID 658202
+
 /*!
  * \class DecisionPair decision_pair.h
  * \brief Class to represent a couple of solutions (current and new found)
  */
-class DecisionPair : public ComputationData, public Packable
+class DecisionPair : public ComputationData//, public Packable
 {
     public:
         //! Constructor

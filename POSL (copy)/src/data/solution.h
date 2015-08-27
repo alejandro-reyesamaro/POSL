@@ -19,11 +19,13 @@
 
 using namespace std;
 
+#define SOLUTION_PACKING_ID 658201
+
 /*!
  * \class Solution solution.h
  * \brief Class to represent a solution (configuration)
  */
-class Solution : public ComputationData, public Packable
+class Solution : public ComputationData//, public Packable
 {
     public:
         //! Constructor
@@ -57,13 +59,16 @@ class Solution : public ComputationData, public Packable
         int bodySize();
         vector<int> body();
 
-    //private:
+        //! The current configuration
+        vector<int> GetConfiguration();
+        //! The variables domains
+        vector<Domain> GetDomains();
+
+    private:
         //! The variables domains
         vector<Domain> domains;
         //! The current configuration
         vector<int> configuration;
-
-    private:
         //! Packing strategy
         PackingStrategy * packing_strategy;
 };

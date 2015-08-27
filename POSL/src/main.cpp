@@ -58,11 +58,11 @@ int main(int argc, char **argv)
 
     //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
-    //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
     //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
     //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
     //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
-    tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
+    //tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
     /*
     tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));    
     tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));

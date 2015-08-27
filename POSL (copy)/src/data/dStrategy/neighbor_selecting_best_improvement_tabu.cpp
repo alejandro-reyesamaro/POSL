@@ -1,6 +1,6 @@
 #include "neighbor_selecting_best_improvement_tabu.h"
 
-#define TABU_SIZE 5
+#define TABU_SIZE 10
 
 NeighborSelectingBestImprovementTabu::NeighborSelectingBestImprovementTabu()
     : tabu_list(new TabuList(TABU_SIZE))
@@ -26,7 +26,7 @@ DecisionPair * NeighborSelectingBestImprovementTabu::select(PSP *psp, Neighborho
     while(it->SomeNext())
     {
         vector<int> config = it->GetNext();
-        sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+        sol = new Solution(psp->GetBenchmark()->Domains(), config);
         int c = psp->GetBenchmark()->solutionCost(sol);
         if(c < best_found_cost && !tabu_list->isTabu(sol))
         {

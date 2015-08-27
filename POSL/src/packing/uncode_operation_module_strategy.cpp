@@ -3,7 +3,6 @@
 
 #include "../modules/om_fixed_first_configuration.h"
 #include "../modules/om_random_conf_generation.h"
-#include "../modules/om_florian_random_conf_generation.h"
 #include "../modules/om_random_conf_permutation_by_blocks_generation.h"
 #include "../modules/om_random_conf_ordered_generation.h"
 
@@ -40,8 +39,8 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code)
             case 2: // random first configuration
                 return new OM_RandomConfGeneration();
                 break;
-            case 3: // random first configuration
-                return new OM_FlorianRandomConfGeneration();
+            case 3:
+
                 break;
             case 4: // random permutation by blocks
                 return new OM_RandomConfPermutationByBlocksGeneration();

@@ -10,14 +10,14 @@
  * \date 2015-07-06
  */
 
-#include "operation_module.h"
+#include "aom_selection_function.h"
 #include "../data/dStrategy/neighbor_selecting_random.h"
 
 /*!
  * \class OM_RandomSelection om_random_selection.h
  * \brief Class to represent an Operation Module to select a configuration in a neighborhood
  */
-class OM_RandomSelection : public OperationModule
+class OM_RandomSelection : public AOM_SelectionFunction
 {
     public:
         OM_RandomSelection();
@@ -28,7 +28,7 @@ class OM_RandomSelection : public OperationModule
         * \param input Input (a neighborhood)
         * \return A random configuration, improving or not the cost
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        DecisionPair * spcf_execute(PSP * psp, Neighborhood * input);
 
         //! From Codable
         string codeToSend();

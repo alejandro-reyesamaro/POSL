@@ -1,6 +1,9 @@
 #include "neighborhood_packing_strategy.h"
+#include "../from_pack_neighborhood.h"
 
 #include <algorithm>
+#include <iostream>
+using namespace std;
 
 /*
  * Pack :
@@ -21,10 +24,11 @@ NeighborhoodPackingStrategy::NeighborhoodPackingStrategy(vector<int> current_con
 
 vector<int> NeighborhoodPackingStrategy::pack()
 {
+    cout << "packing neighborhood" << endl;
     int conf_size = config.size();
     vector<int> package(conf_size + 3 + body_strategy->bodySize());
     // ID = 2
-    package[0] = 2;
+    package[0] = 658203;
     // Configuration size
     package[1] = conf_size;
     // Configuration (current)
@@ -38,6 +42,12 @@ vector<int> NeighborhoodPackingStrategy::pack()
     return package;
 }
 
+Neighborhood * NeighborhoodPackingStrategy::unpack(int * pack)
+{
+    FromPackNeighborhood * V = new FromPackNeighborhood(pack);
+    return V;
+}
+
 int NeighborhoodPackingStrategy::BodySize()
 {
     return body_strategy->bodySize();
@@ -47,3 +57,5 @@ vector<int> NeighborhoodPackingStrategy::body()
 {
     return body_strategy->packBody();
 }
+
+

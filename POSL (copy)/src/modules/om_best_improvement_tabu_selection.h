@@ -9,7 +9,7 @@
  * \date 2015-07-06
  */
 
-#include "operation_module.h"
+#include "aom_selection_function.h"
 #include "../tools/tabu_list.h"
 #include "../data/dStrategy/neighbor_selecting_best_improvement_tabu.h"
 
@@ -17,7 +17,7 @@
  * \class OM_BestImprovementTabuSelection om_best_improvement_tabu_selection.h
  * \brief Class to represent an Operation Module to select a configuration in a neighborhood
  */
-class OM_BestImprovementTabuSelection : public OperationModule
+class OM_BestImprovementTabuSelection : public AOM_SelectionFunction
 {
     public:
         OM_BestImprovementTabuSelection();
@@ -28,7 +28,7 @@ class OM_BestImprovementTabuSelection : public OperationModule
         * \param input Input (a neighborhood)
         * \return The configuration that improuves the best the current cost not in a tabu list
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        DecisionPair * spcf_execute(PSP * psp, Neighborhood * input);
 
         //! From Codable
         string codeToSend();

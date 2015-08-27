@@ -5,10 +5,9 @@
 
 OM_OneElementChangedNeighborhood::OM_OneElementChangedNeighborhood(){}
 
-ComputationData * OM_OneElementChangedNeighborhood::execute(PSP *psp, ComputationData * input)
+Neighborhood * OM_OneElementChangedNeighborhood::spcf_execute(PSP * psp, Solution * input)
 {
-    //cout << "OneChange..." << endl;
-    Neighborhood * V = new OneElementChangedNeighborhood((Solution *) input);
+    Neighborhood * V = new OneElementChangedNeighborhood(input);
     return V;
 }
 

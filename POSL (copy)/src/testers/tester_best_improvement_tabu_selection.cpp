@@ -16,6 +16,11 @@ Tester_BestImprovementTabuSelection::Tester_BestImprovementTabuSelection(int arg
 
 string Tester_BestImprovementTabuSelection::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config(
     {
         1,  1,  1,  1,
@@ -29,7 +34,7 @@ string Tester_BestImprovementTabuSelection::test()
         1,  1,  1,  1
     });
 
-    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+    sol = new Solution(psp->GetBenchmark()->Domains(), config);
     //bench->UpdateSolution(sol);
     //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol);

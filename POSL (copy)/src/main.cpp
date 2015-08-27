@@ -5,8 +5,11 @@
 #include <fstream>
 
 #include "testers/tester.h"
-#include "testers/tester_cost_of_solution.h"
+#include "testers/tester_cost_of_solution_golfers.h"
+#include "testers/tester_cost_of_solution_quaring_square.h"
+#include "testers/tester_cost_of_solution_golom_rules.h"
 #include "testers/tester_random_configuration_generation.h"
+#include "testers/tester_random_ordered_confgeneration.h"
 #include "testers/tester_florian_random_configuration_generation.h"
 #include "testers/tester_one_element_changed_neighborhood.h"
 #include "testers/tester_first_improvement_selection.h"
@@ -15,6 +18,8 @@
 #include "testers/tester_cyclic_operator.h"
 #include "testers/tester_sets_index_generator.h"
 #include "testers/tester_multi_elements_changed_neighborhood.h"
+#include "testers/tester_multi_sorted_changes_neighborhood.h"
+#include "testers/tester_one_sorted_change_neighborhood.h"
 #include "testers/tester_union_operator.h"
 #include "testers/tester_conditional_operator.h"
 #include "testers/tester_random_selection.h"
@@ -30,10 +35,16 @@
 #include "testers/tester_packing_union_neighborhood.h"
 #include "testers/tester_packing_union_neighborhood.h"
 #include "testers/tester_union_operator.h"
-#include "testers/tester_cost_of_solution.h"
 #include "testers/tester_speed_operator.h"
-#include "testers/tester_coding_compound_modules.h"
-#include "testers/tester_solver.h"
+#include "testers/tester_solver_golfers.h"
+#include "testers/tester_solver_golomb_ruler.h"
+#include "testers/tester_solver_squaring_square.h"
+#include "solver/for_golfers_css.h"
+#include "solver/for_squaring_square_css.h"
+#include "solver/for_golomb_ruler_css.h"
+#include "testers/tester_comunication.h"
+
+#include "solver/posl_meta_solver.h"
 
 #include "mpi.h"
 
@@ -44,10 +55,16 @@ int main(int argc, char **argv)
 {
     vector<Tester *> tests;
 
-    /*
-    tests.push_back(new Tester_CostOfSolution(argc, argv));
-    tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
+
+    //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
+    //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
+    //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
+    //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
+    //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
     tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
+    /*
+    tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));    
     tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
     tests.push_back(new Tester_FirstImprovementSelection(argc, argv));
     tests.push_back(new Tester_BestImprovementSelection(argc, argv));
@@ -61,27 +78,38 @@ int main(int argc, char **argv)
     tests.push_back(new Tester_BestImprovementTabuSelection(argc, argv));
     tests.push_back(new Tester_RandomPermutationConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingSolution(argc, argv));
-    tests.push_back(new Tester_PackingDecisionPair(argc, argv));
-    tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
-    tests.push_back(new Tester_CodingCompoundModules(argc, argv));
     */
+    //tests.push_back(new Tester_PackingSolution(argc, argv));
+    //tests.push_back(new Tester_PackingDecisionPair(argc, argv));
+    //tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
+    //tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
+    //tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
+    //tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
 
-    tests.push_back(new Tester_Solver(argc, argv));
+
+    //tests.push_back(new Tester_UnionOperator(argc, argv));
+
+
+    //tests.push_back(new Tester_Solver_Golfers(argc, argv));
+    //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
+    //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)
     {
-        output_str = tests[i]->test();
+        try
+        {
+            output_str = tests[i]->test();
+        }catch (const char* msg)
+        {
+             cout << msg << endl;
+        }
         cout << ">> " << output_str << endl;
     }
 }
 
 // Testing PARALLEL
-int mainNO(int argc, char **argv)
+int mainNOO(int argc, char **argv)
 {
     vector<Tester *> tests;
 
@@ -102,9 +130,56 @@ int mainNO(int argc, char **argv)
     MPI_Finalize();
 }
 
+int mainNooooooooo(int argc, char **argv)
+{
+
+    vector<POSL_Solver *> solvers;
+    Benchmark * bench;
+
+    /* GOLFERS */
+    bench = new Golfers(4,4,3);
+    CreateSolverStrategy * css = new ForGolfersCSS();
+    solvers = css->create();
+
+
+    /* SQUARING SQUARE
+    vector<int> squares({6, 4, 4, 1, 3, 3, 3});
+    bench = new SquaringSquare(10,squares);
+    POSL_Solver * solver_1 = new POSL_Solver(new ForSquaringSquareCSS());
+    */
+
+    /* GOLOMB RULER
+    bench = new GolombRuler(12,85);
+    CreateSolverStrategy * css = new ForGolombRulerCSS();
+    solvers = css->create();
+    */
+
+    try
+    {
+        POSL_MetaSolver * s = new POSL_MetaSolver(solvers);
+        s->solve(argc, argv, bench);
+    }catch (const char* msg)
+    {
+         cout << msg << endl;
+    }
+}
+
+int mainComm(int argc, char **argv)
+{
+    try
+    {
+        Tester_Comunication * s = new Tester_Comunication(argc, argv);
+        s->test();
+    }catch (const char* msg)
+    {
+         cout << msg << endl;
+    }
+}
+
+
 // PARALLEL
 // Compile command line:
 // $ make
 
-// Execte command line:
+// Execute command line:
 // $ mpiexec.mpich -np 2  ./bin/POSL

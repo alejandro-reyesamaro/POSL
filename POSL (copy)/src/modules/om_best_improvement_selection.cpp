@@ -4,9 +4,9 @@ OM_BestImprovementSelection::OM_BestImprovementSelection()
     : search_strategy(new NeighborSelectingBestImprovement())
 {}
 
-ComputationData * OM_BestImprovementSelection::execute(PSP *psp, ComputationData * input)
+DecisionPair * OM_BestImprovementSelection::spcf_execute(PSP * psp, Neighborhood * input)
 {
-    return search_strategy->select(psp, (Neighborhood *)input);
+    return search_strategy->select(psp, input);
 }
 
 string OM_BestImprovementSelection::codeToSend()

@@ -5,18 +5,21 @@
 #include "../modules/om_random_conf_generation.h"
 #include "../modules/om_florian_random_conf_generation.h"
 #include "../modules/om_random_conf_permutation_by_blocks_generation.h"
+#include "../modules/om_random_conf_ordered_generation.h"
 
 #include "../modules/om_one_element_changed_neighborhood.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_golfers_single_swap_neighborhood.h"
+#include "../modules/om_multi_sorted_changes_neighborhood.h"
+#include "../modules/om_one_sorted_change_neighborhood.h"
 
 #include "../modules/om_best_improvement_selection.h"
 #include "../modules/om_best_improvement_tabu_selection.h"
 #include "../modules/om_random_selection.h"
 #include "../modules/om_first_improvement_selection.h"
 
-#include "../modules/om_always_improve_decition.h"
-#include "../modules/om_simulated_annealing_decition.h"
+#include "../modules/om_always_improve_decision.h"
+#include "../modules/om_simulated_annealing_decision.h"
 
 UncodeOperationModuleStrategy::UncodeOperationModuleStrategy()
 {}
@@ -37,11 +40,14 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code)
             case 2: // random first configuration
                 return new OM_RandomConfGeneration();
                 break;
-            case 3: // random first configuration
-                return new OM_FlorianRandomConfGeneration();
+            case 3:
+
                 break;
             case 4: // random permutation by blocks
                 return new OM_RandomConfPermutationByBlocksGeneration();
+                break;
+            case 5: // random ordered permutation
+                return new OM_RandomConfOrderedGeneration();
                 break;
             default:
                 throw "Not well coded OperationModule (First Configuration)";
@@ -59,6 +65,12 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code)
                 break;
             case 3: // golfers neighborhood
                 return new OM_GolfersSingleSwapNeighborhood();
+                break;
+            case 4: // golom neighborhood (multi)
+                return new OM_MultiSortedChangesNeighborhood();
+                break;
+            case 5: // golom neighborhood (one)
+                return new OM_OneSortedChangeNeighborhood();
                 break;
             default:
                 throw "Not well coded OperationModule (Neighborhood)";
@@ -89,10 +101,10 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code)
         switch(N)
         {
             case 1: // always improve
-                return new OM_AlwaysImproveDecition();
+                return new OM_AlwaysImproveDecision();
                 break;
             case 2: // simulated annealing
-                return new OM_SimulatedAnnealingDecition();
+                return new OM_SimulatedAnnealingDecision();
                 break;
             default:
                 throw "Not well coded OperationModule (Decission)";

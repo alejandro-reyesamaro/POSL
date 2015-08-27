@@ -64,17 +64,19 @@ int main(int argc, char **argv)
     solvers = css->create();
     */
 
-    /* SQUARING SQUARE
+    /* SQUARING SQUARE */
     vector<int> squares({6, 4, 4, 1, 3, 3, 3});
     bench = new SquaringSquare(10,squares);
-    POSL_Solver * solver_1 = new POSL_Solver(new ForSquaringSquareCSS());
-    */
+    CreateSolverStrategy * css = new ForSquaringSquareCSS();
+    solvers = css->create();
 
-    /* GOLOMB RULER */
-    bench = new GolombRuler(12,85);
+    /* GOLOMB RULER 
+    //bench = new GolombRuler(12,85);
+    //bench = new GolombRuler(8,34);
+    bench = new GolombRuler(9,44);
     CreateSolverStrategy * css = new ForGolombRulerCSS();
     solvers = css->create();
-    
+    */
 
     try
     {

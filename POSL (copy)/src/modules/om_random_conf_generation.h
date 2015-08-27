@@ -10,6 +10,7 @@
  */
 
 #include "operation_module.h"
+#include "aom_first_configuration_generation.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/seed.h"
@@ -18,7 +19,7 @@
  * \class OM_RandomConfGeneration om_random_conf_generation.h
  * \brief Class to represent an Operation module to generate a random first configuration
  */
-class OM_RandomConfGeneration : public OperationModule
+class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration// public OperationModule
 {
     public:
         //! Constructor
@@ -31,7 +32,8 @@ class OM_RandomConfGeneration : public OperationModule
         * \param input Input (configuration)
         * \return A random configuration
         */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        Solution * spcf_execute(PSP * psp, Solution * input);
+
 
         //! From Codable
         string codeToSend();

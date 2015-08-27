@@ -2,6 +2,7 @@
 #include "../data/solution.h"
 #include "../solver/psp.h"
 #include "../tools/tools.h"
+#include "../data/dStrategy/solution_packing_strategy.h"
 
 #include <algorithm>
 
@@ -12,6 +13,11 @@ Tester_PackingSolution::Tester_PackingSolution(int argc, char *argv[])
 
 string Tester_PackingSolution::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config(
     {
         1,  2,   3,  4,
@@ -24,10 +30,13 @@ string Tester_PackingSolution::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    //PSP * psp = new PSP(bench);
-    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+
+    sol = new Solution(psp->GetBenchmark()->Domains(), config);
     string conf_str = sol->configurationToString();
     vector<int> pack = sol->pack();
+
+    Solution * final = SolutionPackingStrategy::unpack(&pack[0], psp->GetBenchmark()->Domains());
+    bool succ = final->equal(sol);
 
     // | ID |
     int id = pack[0];
@@ -50,5 +59,5 @@ string Tester_PackingSolution::test()
     //cout << conf_str << endl;
     //cout << pack_str << endl;
 
-    return  (conf_str.compare(pack_str) == 0) ? "Packing Solution: (" + Tools::int2str(id) + ") : OK !" : "Packing Solution: fail :/";
+    return  (succ && conf_str.compare(pack_str) == 0) ? "Packing Solution: (" + Tools::int2str(id) + ") : OK !" : "Packing Solution: fail :/";
 }

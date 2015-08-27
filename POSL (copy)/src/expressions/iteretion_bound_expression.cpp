@@ -6,7 +6,10 @@ IteretionBoundExpression::IteretionBoundExpression(int _max_iterations) : max_it
 
 bool IteretionBoundExpression::evaluate(PSP *psp)
 {
-    return psp->GetIterations() <= max_iterations;
+    int costsofar = psp->BestCostSoFar();
+    if(costsofar < 0)
+        costsofar = 1; // making true the second expression
+    return (psp->GetIterations() <= max_iterations && costsofar > 0);
 }
 
 string IteretionBoundExpression::codeToSend()

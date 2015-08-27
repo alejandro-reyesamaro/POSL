@@ -4,9 +4,11 @@
 #include "../modules/om_fixed_first_configuration.h"
 #include "../modules/om_florian_random_conf_generation.h"
 #include "../operators/speed_operator.h"
-#include "../modules/grouped_sequential_computation.h"
 #include "../modules/grouped_parallel_computation.h"
 #include "../data/multi_elements_changed_neighborhood.h"
+#include "../modules/grouped_sequential_computation.h"
+#include "../operators/florian_operator.h"
+#include "../modules/om_random_conf_generation.h"
 
 Tester_SpeedOperator::Tester_SpeedOperator(int argc, char *argv[])
     : Tester(argc, argv)
@@ -15,6 +17,10 @@ Tester_SpeedOperator::Tester_SpeedOperator(int argc, char *argv[])
 
 string Tester_SpeedOperator::testeInMode(Computation comp)
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
 
     vector<int> config(
     {
@@ -29,13 +35,14 @@ string Tester_SpeedOperator::testeInMode(Computation comp)
         1,  1,  1,  1
     });
 
-    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
-    //PSP * psp = new PSP(bench);
+    sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
     OperationModule * m1 = new OM_FixedFirstConfiguration();
-    OperationModule * m2 = new OM_FlorianRandomConfGeneration();
+    OperationModule * m2 = new OM_RandomConfGeneration();
+    Operator * _op = new FlorianOperator(m2);
+    GroupedComputation * G = new GroupedSequentialComputation(_op);
 
-    Operator * op = new SpeedOperator(m1, m2);
+    Operator * op = new SpeedOperator(m1, G);
 
     CompoundModule * G1 = (comp == SEQ)
             ? (CompoundModule *) new GroupedSequentialComputation(op)

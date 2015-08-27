@@ -6,17 +6,7 @@
 
 Solution::Solution(vector<Domain> _domains)
     : domains(_domains),
-      configuration({
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-                    0,  0,  0,  0,
-                    0,  0,  0,  0
-                    })
+      configuration(_domains.size(), 0)
 {
     packing_strategy = new SolutionPackingStrategy(configuration);
 }
@@ -28,6 +18,10 @@ Solution::Solution(vector<Domain> _domains, vector<int> conf)
     packing_strategy = new SolutionPackingStrategy(conf);
 }
 
+vector<int> Solution::GetConfiguration(){ return configuration; }
+
+vector<Domain> Solution::GetDomains(){ return domains; }
+
 bool Solution::equal(Solution * other)
 {
     if (other->configuration.size() != configuration.size())
@@ -38,22 +32,10 @@ bool Solution::equal(Solution * other)
     return true;
 }
 
-string Solution::configurationToString()
-{
-    return Tools::configurationToString(configuration);
-}
+string Solution::configurationToString(){ return Tools::configurationToString(configuration); }
 
-vector<int> Solution::pack()
-{
-    return packing_strategy->pack();
-}
+vector<int> Solution::pack(){ return packing_strategy->pack(); }
 
-int Solution::bodySize()
-{
-    return packing_strategy->BodySize();
-}
+int Solution::bodySize(){ return packing_strategy->BodySize(); }
 
-vector<int> Solution::body()
-{
-    return packing_strategy->body();
-}
+vector<int> Solution::body(){ return packing_strategy->body(); }

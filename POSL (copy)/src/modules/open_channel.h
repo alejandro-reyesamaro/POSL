@@ -9,14 +9,14 @@
  * \date 2015-04-14
  */
 
+#include "compound_module.h"
+
 /*!
  * \class OpenChannel open_channel.h
  * \brief Class to represent an Open Channel
  */
-class OpenChannel
+class OpenChannel : public CompoundModule
 {
-    public:
-        //! Constructor
-        OpenChannel();
+
 };
 

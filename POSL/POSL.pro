@@ -50,7 +50,6 @@ SOURCES += src/main.cpp \
     src/data/multi_sorted_changes_neighborhood.cpp \
     src/data/dStrategy/union_body_packing_strategy.cpp \
     src/modules/om_random_conf_generation.cpp \
-    src/modules/om_florian_random_conf_generation.cpp \
     src/modules/om_one_element_changed_neighborhood.cpp \
     src/modules/om_first_improvement_selection.cpp \
     src/modules/om_best_improvement_selection.cpp \
@@ -192,7 +191,6 @@ HEADERS += \
     src/modules/data_open_channel.h \
     src/modules/object_open_channel.h \
     src/modules/om_random_conf_generation.h \
-    src/modules/om_florian_random_conf_generation.h \
     src/modules/om_one_element_changed_neighborhood.h \
     src/modules/om_first_improvement_selection.h \
     src/modules/om_best_improvement_selection.h \

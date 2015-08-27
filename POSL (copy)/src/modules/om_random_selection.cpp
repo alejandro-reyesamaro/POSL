@@ -6,9 +6,9 @@ OM_RandomSelection::OM_RandomSelection()
     : search_strategy(new NeighborSelectingRandom())
 {}
 
-ComputationData * OM_RandomSelection::execute(PSP *psp, ComputationData * input)
+DecisionPair * OM_RandomSelection::spcf_execute(PSP * psp, Neighborhood * input)
 {
-    Neighborhood * V = (Neighborhood *) input;
+    Neighborhood * V = input;
     DecisionPair * p = search_strategy->select(psp, V);
     return p;
 }

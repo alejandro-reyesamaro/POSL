@@ -11,7 +11,7 @@ DecisionPair * NeighborSelectingRandom::select(PSP *psp, Neighborhood * V)
     int neighSize = V->size();
     int index = rand->NextInt(0, neighSize);
 
-    Solution * new_solution = new Solution(current_solution->domains, V->operator[](index));
+    Solution * new_solution = new Solution(psp->GetBenchmark()->Domains(), V->operator[](index));
     DecisionPair * p = new DecisionPair(current_solution, new_solution);
     return p;
 }

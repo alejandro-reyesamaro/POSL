@@ -3,7 +3,7 @@ EXEC=POSL
 
 # Compiler
 CXX=mpic++.mpich
-IDIR=src src/benchmarks src/computation src/data src/data/dStrategy src/expressions src/modules src/operators src/solver src/testers src/tools
+IDIR=src/main src/benchmarks src/computation src/data src/data/dStrategy src/expressions src/modules src/modules/strategy src/operators src/operators/strategy src/packing  src/solver src/testers src/tools
 IDIRFLAG=$(foreach idir, $(IDIR), -I$(idir))
 CXXFLAGS=-std=c++0x -Ofast -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter $(IDIRFLAG)
 
@@ -12,7 +12,7 @@ LINKER=mpic++.mpich -o
 LFLAGS=$(IDIRFLAG)
 
 # Directories
-SRCDIR=src src/benchmarks src/computation src/data src/data/dStrategy src/expressions src/modules src/operators src/solver src/testers src/tools
+SRCDIR=src/main src/benchmarks src/computation src/data src/data/dStrategy src/expressions src/modules src/modules/strategy src/operators src/operators/strategy src/packing  src/solver src/testers src/tools
 OBJDIR=obj
 BINDIR=bin
 

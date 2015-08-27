@@ -20,7 +20,7 @@ DecisionPair * NeighborSelectingBestImprovement::select(PSP *psp, Neighborhood *
     while(it->SomeNext())
     {
         vector<int> config = it->GetNext();
-        sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
+        sol = new Solution(psp->GetBenchmark()->Domains(), config);
         int c = psp->GetBenchmark()->solutionCost(sol);
         if(c < best_found_cost)
         {

@@ -14,6 +14,8 @@ class NeighborhoodPackingStrategy : public PackingStrategy
         int BodySize();
         vector<int> body();
 
+        static Neighborhood * unpack(int * pack);
+
     private:
         int neighborhood_size;
         vector<int> config;

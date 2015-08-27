@@ -26,4 +26,7 @@ class Seed : public ComputationData
         * \return The seed
         */
         double seed();
+        vector<int> pack();
+        int bodySize();
+        vector<int> body();
 };

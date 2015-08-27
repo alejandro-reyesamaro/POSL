@@ -26,7 +26,7 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
-        0.5, 20, 70, 30
+        0.5, 20, 70, 40
     );
     FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA002
     (
@@ -37,7 +37,7 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
-        0.2, 20, 70, 30
+        0.2, 20, 70, 40
     );
 
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A002

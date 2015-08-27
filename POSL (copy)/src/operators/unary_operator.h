@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * POSL
  *
@@ -22,7 +24,7 @@ class UnaryOperator : public Operator
         * \param _M1 The compound module
         * \param seq_strgy Strategy for the sequential evaluation
         */
-        UnaryOperator(CompoundModule * _M1, SequentialComputationStrategy * seq_strgy);
+        UnaryOperator(CompoundModule * _M1, SequentialExecutionStrategy * seq_strgy);
 
     protected:
         //! The compound module

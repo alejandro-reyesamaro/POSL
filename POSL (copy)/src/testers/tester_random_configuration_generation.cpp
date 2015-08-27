@@ -2,6 +2,7 @@
 #include "../data/solution.h"
 #include "../modules/operation_module.h"
 #include "../modules/om_random_conf_generation.h"
+#include "../benchmarks/golfers.h"
 
 Tester_RandomConfigurationGeneration::Tester_RandomConfigurationGeneration(int argc, char *argv[])
     : Tester(argc, argv)
@@ -10,6 +11,10 @@ Tester_RandomConfigurationGeneration::Tester_RandomConfigurationGeneration(int a
 
 string Tester_RandomConfigurationGeneration::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
 
     OperationModule * op1 = new OM_RandomConfGeneration();
     bool is_random = true;

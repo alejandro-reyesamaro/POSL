@@ -2,14 +2,15 @@
 
 #include "neighborhood_body_packing_strategy.h"
 #include "packable.h"
+#include "../neighborhood.h"
 
 class UnionBodyPackingStrategy : public NeighborhoodBodyPackingStrategy
 {
     public:
-        UnionBodyPackingStrategy(Packable * _V1, Packable * _V2);
+        UnionBodyPackingStrategy(Neighborhood *_V1, Neighborhood *_V2);
         int bodySize();
         vector<int> packBody();
 
     private:
-        Packable * V1, * V2;
+        Neighborhood * V1, * V2;
 };

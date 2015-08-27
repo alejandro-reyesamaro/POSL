@@ -1,6 +1,6 @@
 #include "conditional_operator.h"
-#include "../computation/not_implemented_parallel_strategy.h"
-#include "../computation/conditional_sequential_strategy.h"
+#include "strategy/not_implemented_parallel_strategy.h"
+#include "strategy/conditional_sequential_strategy.h"
 
 ConditionalOperator::ConditionalOperator(CompoundModule * _M1, CompoundModule * _M2, BooleanExpression * _ex)
     : BinaryOperator(_M1, _M2, new ConditionalSequentialStrategy(_M1, _M2, _ex), new NotImplementedParallelStrategy()),

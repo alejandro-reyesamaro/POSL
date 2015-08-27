@@ -71,7 +71,9 @@ int main(int argc, char **argv)
     */
 
     /* GOLOMB RULER */
-    bench = new GolombRuler(12,85);
+    //bench = new GolombRuler(12,85);
+    //bench = new GolombRuler(8,34);
+    bench = new GolombRuler(9,44);
     CreateSolverStrategy * css = new ForGolombRulerCSS();
     solvers = css->create();
     

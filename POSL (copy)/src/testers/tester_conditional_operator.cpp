@@ -5,7 +5,7 @@
 #include "../modules/om_one_element_changed_neighborhood.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_best_improvement_selection.h"
-#include "../modules/om_always_improve_decition.h"
+#include "../modules/om_always_improve_decision.h"
 #include "../operators/operator.h"
 #include "../operators/sequential_exec_operator.h"
 #include "../operators/cyclic_operator.h"
@@ -23,6 +23,11 @@ Tester_ConditionalOperator::Tester_ConditionalOperator(int argc, char *argv[])
 
 string Tester_ConditionalOperator::test()
 {
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     vector<int> config0(
     {
         1,  1,  1,  1,
@@ -63,8 +68,8 @@ string Tester_ConditionalOperator::test()
     });
 
     //PSP * psp = new PSP(bench);
-    Solution * sol1 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config1);
-    Solution * sol2 = new Solution(psp->GetBenchmark()->GetSolution()->domains, config2);
+    Solution * sol1 = new Solution(psp->GetBenchmark()->Domains(), config1);
+    Solution * sol2 = new Solution(psp->GetBenchmark()->Domains(), config2);
 
     //int c1 = psp->GetBenchmark()->solutionCost(sol1);
     //int c2 = psp->GetBenchmark()->solutionCost(sol2);
@@ -77,7 +82,7 @@ string Tester_ConditionalOperator::test()
     CompoundModule * cm2_1 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm2_2 = new OM_MultiElementsChangedNeighborhood();
     CompoundModule * cm3 = new OM_BestImprovementSelection();
-    CompoundModule * cm4 = new OM_AlwaysImproveDecition();
+    CompoundModule * cm4 = new OM_AlwaysImproveDecision();
 
     // cm2_1 <cond> cm2_2
     Operator * op0 = new ConditionalOperator(cm2_1, cm2_2, new ReachedCostExpression(10));
@@ -105,12 +110,12 @@ string Tester_ConditionalOperator::test()
 
     // MAL!!!!!
     Solution * after_sol1 = (Solution *)G1234->execute(psp, sol1);
-    //int cost1 = psp->GetBenchmark()->solutionCost(after_sol1);
+    int cost1 = psp->GetBenchmark()->solutionCost(after_sol1);
 
     psp->UpdateSolution(sol2);
     Solution * after_sol2 = (Solution *)G1234->execute(psp, sol2);
-    //int cost2 = psp->GetBenchmark()->solutionCost(after_sol2);
+    int cost2 = psp->GetBenchmark()->solutionCost(after_sol2);
 
-    //cout << cost1 << " and " << cost2 << endl;
+    cout << cost1 << " and " << cost2 << endl;
     return "Conditional Operator: OK ! (go to the OMs for cheking)";
 }

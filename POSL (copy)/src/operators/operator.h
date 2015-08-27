@@ -10,8 +10,8 @@
  */
 
 #include "../modules/compound_module.h"
-#include "../computation/sequential_computation_strategy.h"
-#include "../computation/parallel_computation_strategy.h"
+#include "strategy/sequential_execution_strategy.h"
+#include "strategy/parallel_execution_strategy.h"
 #include "../packing/codable.h"
 
 #include <vector>
@@ -30,8 +30,8 @@ class Operator : public Codable
         * \param _seq_strgy Strategy for the sequential evaluation
         * \param _par_strgy Strategy for the parallel evaluation
         */
-        Operator(SequentialComputationStrategy * _seq_strategy,
-                 ParallelComputationStrategy * _para_strategy);
+        Operator(SequentialExecutionStrategy * _seq_strategy,
+                 ParallelExecutionStrategy * _para_strategy);
 
         //! Method to evaluate the modules sequentially
         /*!
@@ -51,7 +51,7 @@ class Operator : public Codable
 
     protected:
         //! Sequential computation strategy
-        SequentialComputationStrategy * seq_strategy;
+        SequentialExecutionStrategy * seq_strategy;
         //! Parallel computation strategy
-        ParallelComputationStrategy * para_strategy;
+        ParallelExecutionStrategy * para_strategy;
 };

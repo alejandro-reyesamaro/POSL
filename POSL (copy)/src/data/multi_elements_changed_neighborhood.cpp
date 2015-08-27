@@ -14,12 +14,12 @@
 MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol) : rand()
 {
     current_solution = sol;
-    int n = sol->configuration.size();
+    int n = sol->GetConfiguration().size();
     int ch = N_NEIGHBORS; // to chahge ch elements
     //int N = PRC_CHANGES * n;  // to have N chahges
 
     RandIndexGenerator rig(n-1);
-    vector<vector<int>> the_changes = rig.generate(ch);
+    vector<vector<int>> the_changes = rig.generate();
 
     int pos_new_value = 0;
 
@@ -34,8 +34,8 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
         {
             //cout << *jt << " ";
 
-            vector<int> posible_values = sol->domains[*jt].GetValues();
-            int current_value = sol->configuration[*jt];
+            vector<int> posible_values = sol->GetDomains()[*jt].GetValues();
+            int current_value = sol->GetConfiguration()[*jt];
 
             vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
             if(p != posible_values.end())
@@ -51,7 +51,7 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
         T_Nchanges next_changes = {new_indexes, new_values, new_values.size()};
         changes.push_back(next_changes);
     }
-    packing_strategy = new NeighborhoodPackingStrategy(sol->configuration, size(), new MultiElementsChangedBodyPackingStrategy(changes));
+    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new MultiElementsChangedBodyPackingStrategy(changes));
 }
 
 POSL_Iterator<vector<int>> * MultiElementsChangedNeighborhood::getIterator()
@@ -72,7 +72,7 @@ vector<int> MultiElementsChangedNeighborhood::operator[](int index)
 
 vector<int> MultiElementsChangedNeighborhood::applyChangeAt(int index)
 {
-    vector<int> conf = current_solution->configuration;
+    vector<int> conf = current_solution->GetConfiguration();
     if(index >= size()) return conf;
     for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
         conf[changes[index].positions[i]] = changes[index].new_values[i];

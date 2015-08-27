@@ -3,14 +3,16 @@
 #include "../benchmarks/golfers.h"
 
 #include <iostream>
+using namespace std;
 
 OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(){}
 
-ComputationData * OM_GolfersSingleSwapNeighborhood::execute(PSP *psp, ComputationData * input)
+Neighborhood * OM_GolfersSingleSwapNeighborhood::spcf_execute(PSP * psp, Solution * input)
 {
-    // CAMBIAR ??
-    Golfers * s = (Golfers *)psp->GetBenchmark();
-    Neighborhood * V = new GolfersSingleSwapNeighborhood((Solution *) input, s->TotalPlayers());
+    Golfers * s = dynamic_cast<Golfers *>(psp->GetBenchmark());
+    if (!s)
+        throw "(POSL esception) Not casting allowed";
+    Neighborhood * V = new GolfersSingleSwapNeighborhood(input, s->TotalPlayers());
     return V;
 }
 

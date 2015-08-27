@@ -1,12 +1,15 @@
 #include "tester_union_operator.h"
 #include "../data/solution.h"
 #include "../modules/operation_module.h"
-#include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_one_element_changed_neighborhood.h"
+#include "../modules/om_multi_elements_changed_neighborhood.h"
+#include "../modules/om_one_sorted_change_neighborhood.h"
+#include "../modules/om_multi_sorted_changes_neighborhood.h"
 #include "../operators/union_operator.h"
 #include "../modules/grouped_sequential_computation.h"
 #include "../modules/grouped_parallel_computation.h"
 #include "../data/multi_elements_changed_neighborhood.h"
+#include "../computation/flag_computation.h"
 
 Tester_UnionOperator::Tester_UnionOperator(int argc, char *argv[])
     : Tester(argc, argv)
@@ -15,6 +18,8 @@ Tester_UnionOperator::Tester_UnionOperator(int argc, char *argv[])
 
 string Tester_UnionOperator::testeInMode(Computation comp)
 {
+    /*
+    Benchmark * bench = new Golfers(4,4,2);
     vector<int> config(
     {
         1,  1,  1,  1,
@@ -27,13 +32,16 @@ string Tester_UnionOperator::testeInMode(Computation comp)
         1,  1,  1,  1,
         1,  1,  1,  1
     });
+    */
 
-    Solution * sol = new Solution(psp->GetBenchmark()->GetSolution()->domains, config);
-    //PSP * psp = new PSP(bench);
+    Benchmark * bench = new GolombRuler(12, 85);
+    vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+    Solution * sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
-    OperationModule * m1 = new OM_MultiElementsChangedNeighborhood();
-    OperationModule * m2 = new OM_OneElementChangedNeighborhood();
+    OperationModule * m1 = new OM_MultiSortedChangesNeighborhood();
+    OperationModule * m2 = new OM_OneSortedChangeNeighborhood();
 
     Operator * op = new UnionOperator(m1, m2);
 
@@ -54,15 +62,15 @@ string Tester_UnionOperator::testeInMode(Computation comp)
     while(it->SomeNext())
     {
         vector<int> neighbor = it->GetNext();
-        //cout << "[ ";
+        cout << "[ ";
         for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)
         {
             if(*j != 1) changes ++;
             sum  += *j;
             prod *= *j;
-            //cout << *j << " ";
+            cout << *j << " ";
         }
-        //cout << "]" << endl;
+        cout << "]" << endl;
         if(count ++ < 10)
             the_changes = the_changes && (changes == 5);
         else

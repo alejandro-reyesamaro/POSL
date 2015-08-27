@@ -7,15 +7,12 @@
 #include <algorithm>
 #include <iostream>
 
-#define SWAPS 200
+#define SWAPS 600
 
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int _players) : players(_players)
 {
-
-    // ARREGLAR ESTO !!!!!!!
-
     current_solution = sol;
-    int weeks = sol->configuration.size() / players;
+    int weeks = sol->GetConfiguration().size() / players;
     int posibles = players * (players-1);
     int swaps = min(SWAPS, posibles);
     vector<int> indexes;
@@ -40,7 +37,7 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int
             changes.push_back(next_change);
         }*/
     }
-    packing_strategy = new NeighborhoodPackingStrategy(sol->configuration, size(), new GolfersSingleSwapBodyPackingStrategy(changes, sol->configuration));
+    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new GolfersSingleSwapBodyPackingStrategy(changes, sol->GetConfiguration()));
 }
 
 POSL_Iterator<vector<int>> * GolfersSingleSwapNeighborhood::getIterator()
@@ -61,7 +58,7 @@ vector<int> GolfersSingleSwapNeighborhood::operator[](int index)
 
 vector<int> GolfersSingleSwapNeighborhood::applyChangeAt(int index)
 {
-    vector<int> conf = current_solution->configuration;
+    vector<int> conf = current_solution->GetConfiguration();
     if(index >= size()) return conf;
     swap(conf[changes[index].pos1],conf[changes[index].pos2]);
     return conf;

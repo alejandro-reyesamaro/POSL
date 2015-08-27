@@ -1,19 +1,21 @@
 #include "reached_cost_expression.h"
 #include "../tools/tools.h"
 
-#define MAX_ITER 2000
+#define MAX_ITER 1000
 
-ReachedCostExpression::ReachedCostExpression(int _cost) : cost(_cost)
+ReachedCostExpression::ReachedCostExpression(int _cost)
+    : cost(_cost)
 {}
 
 bool ReachedCostExpression::evaluate(PSP * psp)
 {
-    int iterations = psp->GetIterations();
     int costsofar = psp->BestCostSoFar();
-    return ( iterations <= MAX_ITER && costsofar > cost );
+    if(costsofar < 0)
+        costsofar = cost + 1; // making true the expression
+    return ( costsofar > cost );//( iterations < max_iter && costsofar > cost );
 }
 
 string ReachedCostExpression::codeToSend()
 {
-    return "b3 " + Tools::int2str(cost);
+    return "b3 " + Tools::int2str(cost); // + " " + Tools::int2str(max_iter);
 }

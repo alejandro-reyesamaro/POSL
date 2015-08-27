@@ -6,7 +6,7 @@
 #include "../modules/om_one_element_changed_neighborhood.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_best_improvement_selection.h"
-#include "../modules/om_always_improve_decition.h"
+#include "../modules/om_always_improve_decision.h"
 #include "../operators/operator.h"
 #include "../operators/sequential_exec_operator.h"
 #include "../operators/cyclic_operator.h"
@@ -22,13 +22,17 @@ Tester_CyclicOperator::Tester_CyclicOperator(int argc, char *argv[])
 
 string Tester_CyclicOperator::test()
 {
-    //PSP * psp = new PSP(bench);
+    Benchmark * bench = new Golfers(4,4,2);
+    Solution * sol = new Solution(bench->Domains());
+    bench->UpdateSolution(sol);
+    PSP * psp = new PSP(ARGC, ARGV, bench);
+
     CompoundModule * cm1 = new OM_FixedFirstConfiguration();
     CompoundModule * cm0 = new OM_RandomConfGeneration();
     //CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood();
     CompoundModule * cm3 = new OM_BestImprovementSelection();
-    CompoundModule * cm4 = new OM_AlwaysImproveDecition();
+    CompoundModule * cm4 = new OM_AlwaysImproveDecision();
 
     // MAL!!! Seed!!
     Solution * first_solution = (Solution *)cm0->execute(psp, new Seed());

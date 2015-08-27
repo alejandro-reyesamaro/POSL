@@ -6,6 +6,7 @@
 #include "../operators/cyclic_operator.h"
 #include "../operators/union_operator.h"
 #include "../operators/send_data_operator.h"
+#include "../operators/florian_operator.h"
 #include "../modules/grouped_sequential_computation.h"
 #include "../modules/oms_iterations_counter.h"
 #include "../modules/oms_time_counter.h"
@@ -77,6 +78,11 @@ FactoryComputationStrategy_SA002::FactoryComputationStrategy_SA002(
     // <--------------------------------------------------------------------------------->
 
 
+    // Applying FLO
+    Operator * flo = new FlorianOperator(first_conf_generation);
+    GroupedComputation * G_flo = new GroupedSequentialComputation(flo);
+
+
     // Cyc(n lopps){ G_sec4 } :
     Operator * cyc1 = new CyclicOperator(G_sec4, new LoopBoundExpression(loops_main_cycle));
 
@@ -84,7 +90,7 @@ FactoryComputationStrategy_SA002::FactoryComputationStrategy_SA002(
     GroupedComputation * G_cyc1 = new GroupedSequentialComputation(cyc1);
 
     // first_config |-> [ Cyc(n lopps){ G_sec4 } ]
-    Operator* sec_0 = new SequentialExecOperator(first_conf_generation, G_cyc1);
+    Operator* sec_0 = new SequentialExecOperator(G_flo, G_cyc1);
 
     // [ first_config |-> [ Cyc(n lopps){ G_sec4 } ] ]:
     GroupedComputation * G_sec0 = new GroupedSequentialComputation(sec_0);

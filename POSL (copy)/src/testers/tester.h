@@ -1,19 +1,25 @@
 #pragma once
 
+#include "../benchmarks/golfers.h"
+#include  "../benchmarks/squaring_square.h"
+#include  "../benchmarks/golomb_ruler.h"
 #include "../solver/psp.h"
+#include "../computation/flag_computation.h"
 
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-enum Computation {SEQ, PAR};
+//enum Computation {SEQ, PAR};
 
 class Tester
 {
     public:
         Tester(int argc, char *argv[]);
         virtual string test() = 0;
+
     protected:
-        PSP * psp;
+        int ARGC;
+        char **ARGV;
 };

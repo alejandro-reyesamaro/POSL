@@ -34,4 +34,8 @@ class Tools
         static float str2float(string str);
         static string configurationToString(vector<int> config);
         static string frontModule(string code);
+        static int segmentIntersection(int a1, int b1, int a2, int b2);
+        static vector<int> vector_possible_values_to_hold_sorted(int index, vector<int> current_configuration);
+        static int mismatches(vector<int> vector_1, vector<int> vector_2);
+        static int * vector2array(vector<int> vec);
 };

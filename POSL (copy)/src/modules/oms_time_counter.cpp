@@ -1,5 +1,7 @@
 #include "oms_time_counter.h"
 
+#include <iostream>
+using namespace std;
 
 OMS_TimeCounter::OMS_TimeCounter() : chrono(new Chronometer())
 {
@@ -12,6 +14,8 @@ ComputationData * OMS_TimeCounter::execute(PSP *psp, ComputationData * input)
         chrono->start();
     else
         psp->UpdateTime(chrono->TimeMiliseconds());
+
+    //cout << "Time counted: " << psp->GetTime() << endl;
     return input;
 }
 

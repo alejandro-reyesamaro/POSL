@@ -25,7 +25,7 @@ class BinaryOperator : public Operator
         * \param seq_strgy Strategy for the sequential evaluation
         * \param par_strgy Strategy for the parallel evaluation
         */
-        BinaryOperator(CompoundModule * _M1, CompoundModule * _M2, SequentialComputationStrategy *seq_strgy, ParallelComputationStrategy *par_strgy);
+        BinaryOperator(CompoundModule * _M1, CompoundModule * _M2, SequentialExecutionStrategy *seq_strgy, ParallelExecutionStrategy *par_strgy);
 
     protected:
         //! Left compound module

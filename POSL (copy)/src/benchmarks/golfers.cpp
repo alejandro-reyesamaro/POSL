@@ -1,9 +1,11 @@
 #include "golfers.h"
 #include "../tools/long_int.h"
+#include "../tools/tools.h"
+#include "../data/dStrategy/factory_n_int_domain.h"
 
 #include <vector>
-
 #include <iostream>
+
 using namespace std;
 
 #define PENALIZATION 10
@@ -12,9 +14,17 @@ Golfers::Golfers(int g, int p, int w) : groups(g), players(p), weeks(w)
 {
 }
 
+vector<Domain> Golfers::Domains()
+{
+    FactoryDomain * fd_integers = new Factory_NIntDomain(1,TotalPlayers());
+    Domain D(fd_integers);
+    vector<Domain> domains (groups * players * weeks, D);
+    return domains;
+}
+
 int Golfers::solutionCost(Solution * sol)
 {
-    //cout << "Begin" << endl;
+    //cout << sol->configurationToString() << endl;
     int golfers = players * groups;
     int table_length = golfers / 32 + 1;                                        // how long must be the LongInt
     vector<LongInt> global_partners (golfers+1, LongInt(table_length, 0));         // player i in pos i
@@ -40,16 +50,17 @@ int Golfers::solutionCost(Solution * sol)
             {
                 for(int j = start_tournament; j < end_tournament; j++)
                 {
-                    alldiff.activate(sol->configuration[i]);
+                    alldiff.activate(sol->GetConfiguration()[i]);
                     if(i != j)
                     {
                         //if(i == 16) cout << sol->configuration[i] << endl;
                         //if(i == 16) cout << global_partners[sol->configuration[i]].toString() << endl;
                         LongInt new_partner (table_length, 0);
-                        new_partner.activate(sol->configuration[j]);
+                        new_partner.activate(sol->GetConfiguration()[j]);
                         //cout << new_partner.toString() << endl;
-                        group_partners[sol->configuration[i]] = group_partners[sol->configuration[i]] | new_partner;
-                        //cout << group_partners[sol->configuration[i]].toString() << endl;
+                        //cout << i << "- " << sol->GetConfiguration()[i] << endl;
+                        group_partners[sol->GetConfiguration()[i]] = group_partners[sol->GetConfiguration()[i]] | new_partner;
+                        //cout << group_partners[sol->GetConfiguration()[i]].toString() << endl;
                     }
                     //cout << group_partners[sol->configuration[i]].toString() << endl;
                 }
@@ -96,3 +107,27 @@ int Golfers::PlayersPerGroup(){ return players; }
 int Golfers::Weeks(){ return weeks; }
 
 int Golfers::TotalPlayers(){ return players * groups; }
+
+string Golfers::ShowSolution(Solution * solution)
+{
+    string out =  "Golfers: players-" + Tools::int2str(players);
+           out += ", groups-" + Tools::int2str(groups);
+           out += ", weeks-" + Tools::int2str(weeks) + "\n";
+    vector<int> config = solution->GetConfiguration();
+    vector<int>::iterator it = config.begin();
+    for(int w = 0; w < weeks; w ++)
+    {
+        for(int g = 0; g < groups; g ++)
+        {
+            for(int p = 0; p < players; p ++)
+            {
+                int value = *it;
+                out += Tools::int2str(value) + "\t";
+                it ++;
+            }
+            out += "\n";
+        }
+        out += "--\n";
+    }
+    return out;
+}
