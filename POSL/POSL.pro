@@ -180,7 +180,9 @@ SOURCES += src/main.cpp \
     src/computation/factory_computation_strategy_sa002.cpp \
     src/computation/factory_computation_strategy_ra002.cpp \
     src/operators/florian_operator.cpp \
-    src/operators/strategy/florian_sequential_strategy.cpp
+    src/operators/strategy/florian_sequential_strategy.cpp \
+    src/benchmarks/n_queens.cpp \
+    src/testers/tester_cost_of_solution_nqueens.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -367,7 +369,9 @@ HEADERS += \
     src/computation/factory_computation_strategy_sa002.h \
     src/computation/factory_computation_strategy_ra002.h \
     src/operators/florian_operator.h \
-    src/operators/strategy/florian_sequential_strategy.h
+    src/operators/strategy/florian_sequential_strategy.h \
+    src/benchmarks/n_queens.h \
+    src/testers/tester_cost_of_solution_nqueens.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

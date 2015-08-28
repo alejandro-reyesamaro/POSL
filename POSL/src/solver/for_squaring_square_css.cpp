@@ -48,7 +48,7 @@ vector<POSL_Solver *> ForSquaringSquareCSS::create()
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
-        0.5, 20, 500, 10
+        0.5, 20, 200, 10
     );
 
     ComputationStrategy * cs1 = new ComputationStrategy(fac_cs1);
@@ -59,9 +59,9 @@ vector<POSL_Solver *> ForSquaringSquareCSS::create()
     POSL_Solver * solver_3 = new POSL_Solver(cs3);
 
     vector<POSL_Solver *> solvers;
-    solvers.push_back(solver_1);
-    solvers.push_back(solver_2);
-    //solvers.push_back(solver_3);
+    //solvers.push_back(solver_1);
+    //solvers.push_back(solver_2);
+    solvers.push_back(solver_3);
 
     return solvers;
 }

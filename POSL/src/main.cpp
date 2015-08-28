@@ -43,6 +43,7 @@
 #include "solver/for_squaring_square_css.h"
 #include "solver/for_golomb_ruler_css.h"
 #include "testers/tester_comunication.h"
+#include "testers/tester_cost_of_solution_nqueens.h"
 
 #include "solver/posl_meta_solver.h"
 
@@ -58,7 +59,8 @@ int main(int argc, char **argv)
 
     //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
-    tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    tests.push_back(new Tester_CostOfSolutionNQueens(argc, argv));
     //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
     //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
     //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
