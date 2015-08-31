@@ -1,59 +1,44 @@
 #include "golomb_ruler.h"
-#include "../tools/long_int.h"
 #include "../data/dStrategy/factory_n_int_domain.h"
 
 #define PENALIZATION 10
 
 GolombRuler::GolombRuler(int _order, int _length)
-    : order(_order), length(_length)
+    : Benchmark(vector<Domain>(_order, Domain(new Factory_NIntDomain(0, _length)))),
+      order(_order),
+      length(_length),
+      measures(_length / 32 + 1, 0)
 {}
 
-vector<Domain> GolombRuler::Domains()
+int GolombRuler::solutionCost(vector<int> configuration)
 {
-    FactoryDomain * fd_integers = new Factory_NIntDomain(0, length);
-    Domain D(fd_integers);
-    vector<Domain> domains (order, D);
-    return domains;
-}
-
-int GolombRuler::solutionCost(Solution * sol)
-{
-    int table_length = length / 32 + 1;
-    LongInt * measures = new LongInt(table_length, 0);
-    vector<int> conf = sol->GetConfiguration();
-
+    measures.clearBits();// = new LongInt(table_length, 0);
+    //vector<int> conf = sol->GetConfiguration();
     int cost = 0, penalty = 0;
 
     for(int i = 0; i < order - 1; i++)
         for(int j = i + 1; j < order; j++)
         {
-            int distance = conf[j] - conf[i];
+            int distance = configuration[j] - configuration[i];
             if (distance <= 0)
                 penalty ++;
-            measures->activate(distance);
+            measures.activate(distance);
         }
-    int not_measured = length - measures->bitCount();
-    if(conf[0] != 0)
+    int not_measured = length - measures.bitCount();
+    if(configuration[0] != 0)
         penalty += PENALIZATION * PENALIZATION;
-    if(conf[order - 1] != length)
+    if(configuration[order - 1] != length)
         penalty += PENALIZATION * PENALIZATION;
     cost = not_measured + penalty * PENALIZATION;
     return cost;
 }
 
-int GolombRuler::Order()
-{
-    return order;
-}
+int GolombRuler::Order(){ return order; }
 
-int GolombRuler::Length()
-{
-    return length;
-}
+int GolombRuler::Length(){ return length; }
 
 string GolombRuler::ShowSolution(Solution * solution)
 {
-
     string output = "";
     if(order == 6 and length == 17) output = "(6-17:2) ";
     else if(order == 7 and length == 25) output = "(7-25:4) ";
@@ -62,7 +47,6 @@ string GolombRuler::ShowSolution(Solution * solution)
     else if(order == 10 and length == 55) output = "(10-55:11) ";
     else if(order == 11 and length == 72) output = "(11-72:19) ";
     else if(order == 12 and length == 85) output = "(12-85:20) ";
-
     return output + solution->configurationToString();
     //return solution->configurationToString();
 }

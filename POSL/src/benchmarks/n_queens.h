@@ -26,7 +26,7 @@ class NQueens : public Benchmark
         * \param sol Solution
         * \return The cost of the Solution sol
         */
-        int solutionCost(Solution * sol);
+        int solutionCost(vector<int> configuration);
 
         string ShowSolution(Solution * solution);
 
@@ -38,4 +38,7 @@ class NQueens : public Benchmark
     private:
         //! order
         int N;
+        vector<int> err_d1;
+        vector<int> err_d2;
+        vector<unsigned int> flags;
 };

@@ -93,9 +93,9 @@ int main(int argc, char **argv)
     //tests.push_back(new Tester_UnionOperator(argc, argv));
 
 
-    //tests.push_back(new Tester_Solver_Golfers(argc, argv));
-    //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
-    //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
+    tests.push_back(new Tester_Solver_Golfers(argc, argv));
+    tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
+    tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
     tests.push_back(new Tester_SolverNQueens(argc, argv));
 
     string output_str;

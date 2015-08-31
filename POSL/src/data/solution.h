@@ -41,6 +41,8 @@ class Solution : public ComputationData//, public Packable
         */
         Solution(vector<Domain> _domains, vector<int> conf);
 
+        void UpdateConfiguration(vector<int> new_config);
+
         //! Compare this solution with other one
         /*!
         * \param other Another solution

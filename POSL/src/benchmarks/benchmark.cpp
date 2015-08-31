@@ -1,15 +1,13 @@
 #include "benchmark.h"
 
-Benchmark::Benchmark()
-{
-}
+Benchmark::Benchmark(vector<Domain> _domains)
+    : domains(_domains)
+{}
 
-void Benchmark::UpdateSolution(Solution * sol)
-{
-    solution = sol;
-}
+int Benchmark::solutionCost(Solution * sol){ return solutionCost(sol->GetConfiguration()); }
 
-Solution * Benchmark::GetSolution()
-{
-    return solution;
-}
+void Benchmark::UpdateSolution(Solution * sol){ solution = sol; }
+
+Solution * Benchmark::GetSolution(){ return solution; }
+
+vector<Domain> Benchmark::Domains(){ return domains; }

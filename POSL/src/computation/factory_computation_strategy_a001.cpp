@@ -84,7 +84,4 @@ FactoryComputationStrategy_A001::FactoryComputationStrategy_A001(
     final_module = G_cyc2;
 }
 
-CompoundModule * FactoryComputationStrategy_A001::buildModule()
-{
-    return final_module;
-}
+CompoundModule * FactoryComputationStrategy_A001::buildModule(){ return final_module; }

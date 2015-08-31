@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -15,34 +16,31 @@ using namespace std;
 #define ErrD1(i, j)   (err_d1[D1(i, j)])
 #define ErrD2(i, j)   (err_d2[D2(i, j)])
 
-NQueens::NQueens(int n) : N(n)
+NQueens::NQueens(int n)
+    : Benchmark(vector<Domain>(n, Domain(new Factory_NIntDomain(0, n-1)))),
+      N(n),
+      err_d1(2 * n - 1, 0),
+      err_d2(2 * n - 1, 0),
+      flags(n,0)
 {}
-
-vector<Domain> NQueens::Domains()
-{
-    FactoryDomain * fd_integers = new Factory_NIntDomain(0,N-1);
-    Domain D(fd_integers);
-    vector<Domain> domains (N, D);
-    return domains;
-}
 
 int F(int x){ return (x <= 1) ? 0 : x; }
 
-int NQueens::solutionCost(Solution * sol)
+int NQueens::solutionCost(vector<int> configuration)
 {
-    vector<int> config = sol->GetConfiguration();
-
     int nb_diag = 2 * N - 1;
     //memset(err_d1, 0, nb_diag * sizeof(int));
-    vector<int> err_d1(nb_diag, 0);
+    //vector<int> err_d1(nb_diag, 0);
+    fill(err_d1.begin(), err_d1.end(), 0);
 
     //memset(err_d2, 0, nb_diag * sizeof(int));
-    vector<int> err_d2(nb_diag, 0);
+    //vector<int> err_d2(nb_diag, 0);
+    fill(err_d2.begin(), err_d2.end(), 0);
 
     int j;
     for(int i = 0; i < N; i++)
     {
-        j = config[i];
+        j = configuration[i];
         ErrD1(i, j)++;
         ErrD2(i, j)++;
     }
@@ -60,9 +58,10 @@ int NQueens::solutionCost(Solution * sol)
     int cost = r;
 
     //tener en cuenta el caso en que haya alguno repetido :P
-    vector<unsigned int> flags(N,0);
-    for(vector<int>::iterator it = config.begin(); it != config.end(); ++it)
-        if(++flags[config[*it]] > 1)
+    //vector<unsigned int> flags(N,0);
+    fill(flags.begin(), flags.end(), 0);
+    for(vector<int>::iterator it = configuration.begin(); it != configuration.end(); ++it)
+        if(++flags[configuration[*it]] > 1)
             cost += N/2;
     return cost;
 }

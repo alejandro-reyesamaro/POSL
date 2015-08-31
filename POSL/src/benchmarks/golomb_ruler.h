@@ -10,6 +10,7 @@
  */
 
 #include "benchmark.h"
+#include "../tools/long_int.h"
 
 /*!
  * \class GolombRuler golomb_ruler.h
@@ -26,7 +27,7 @@ class GolombRuler : public Benchmark
         * \param sol Solution
         * \return The cost of the Solution sol
         */
-        int solutionCost(Solution * sol);
+        int solutionCost(vector<int> configuration);
 
         string ShowSolution(Solution * solution);
 
@@ -41,4 +42,6 @@ class GolombRuler : public Benchmark
         int order;
         //! Maximum distance
         int length;
+
+        LongInt measures;
 };

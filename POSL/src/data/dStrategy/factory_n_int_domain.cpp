@@ -13,8 +13,6 @@ vector<int> Factory_NIntDomain::BuildDomain()
     vector<int> vec;
 
     for (int i = a; i <= b; i++)
-    {
         vec.push_back(i);
-    }
     return vec;
 }

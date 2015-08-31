@@ -50,7 +50,7 @@ vector<POSL_Solver *> ForNQueensCSS::create()
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
-        0.2, 20, 3000, 10
+        0.2, 20, 100, 10
     );
     //ComputationStrategy * cs1 = new ComputationStrategy(fac_cs1);
     //POSL_Solver * solver_1 = new POSL_Solver(cs1);

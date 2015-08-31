@@ -18,6 +18,13 @@ Solution::Solution(vector<Domain> _domains, vector<int> conf)
     packing_strategy = new SolutionPackingStrategy(conf);
 }
 
+void Solution::UpdateConfiguration(vector<int> new_config)
+{
+    if(new_config.size() != configuration.size())
+        throw "(POSL Exception) Configurations sizes missmatch (Solution::UpdateConfiguration)";
+    copy(new_config.begin(), new_config.end(), configurationToString().begin());
+}
+
 vector<int> Solution::GetConfiguration(){ return configuration; }
 
 vector<Domain> Solution::GetDomains(){ return domains; }
