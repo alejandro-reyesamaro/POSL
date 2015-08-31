@@ -56,7 +56,15 @@ int NQueens::solutionCost(Solution * sol)
         er = err_d2[d];
         r += F(er);
     }
-    return r;
+    //return r;
+    int cost = r;
+
+    //tener en cuenta el caso en que haya alguno repetido :P
+    vector<unsigned int> flags(N,0);
+    for(vector<int>::iterator it = config.begin(); it != config.end(); ++it)
+        if(++flags[config[*it]] > 1)
+            cost += N/2;
+    return cost;
 }
 
 int NQueens::Order(){ return N; }

@@ -6,10 +6,10 @@
 #include "../modules/aom_selection_function.h"
 #include "../modules/aom_decision_function.h"
 
-class FactroryComputationStrategy_A001 : public FactoryComputationStrategy
+class FactoryComputationStrategy_A001 : public FactoryComputationStrategy
 {
     public:
-        FactroryComputationStrategy_A001
+        FactoryComputationStrategy_A001
         (
             AOM_FirstConfigurationGeneration * first_conf_generation,
             AOM_NeighborhoodFunction * neighborhood_function,

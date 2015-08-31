@@ -182,7 +182,13 @@ SOURCES += src/main.cpp \
     src/operators/florian_operator.cpp \
     src/operators/strategy/florian_sequential_strategy.cpp \
     src/benchmarks/n_queens.cpp \
-    src/testers/tester_cost_of_solution_nqueens.cpp
+    src/testers/tester_cost_of_solution_nqueens.cpp \
+    src/solver/for_n_queens_css.cpp \
+    src/testers/tester_solver_n_queens.cpp \
+    src/modules/om_random_permutation_generation.cpp \
+    src/modules/strategy/random_permutation_configuration_strategy.cpp \
+    src/modules/om_one_permutation_neighborhood.cpp \
+    src/data/one_permutation_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -371,7 +377,13 @@ HEADERS += \
     src/operators/florian_operator.h \
     src/operators/strategy/florian_sequential_strategy.h \
     src/benchmarks/n_queens.h \
-    src/testers/tester_cost_of_solution_nqueens.h
+    src/testers/tester_cost_of_solution_nqueens.h \
+    src/solver/for_n_queens_css.h \
+    src/testers/tester_solver_n_queens.h \
+    src/modules/om_random_permutation_generation.h \
+    src/modules/strategy/random_permutation_configuration_strategy.h \
+    src/modules/om_one_permutation_neighborhood.h \
+    src/data/one_permutation_neighborhood.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

@@ -12,9 +12,6 @@ string Tester_Solver_GolombRuler::test()
     //Benchmark * bench = new GolombRuler(12,85);
     Benchmark * bench = new GolombRuler(8,34);
     //Benchmark * bench = new GolombRuler(7,25);
-    Solution * sol = new Solution(bench->Domains());
-    bench->UpdateSolution(sol);
-
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
     CreateSolverStrategy * css = new ForGolombRulerCSS();

@@ -19,7 +19,7 @@
  * \class OM_RandomConfGeneration om_random_conf_generation.h
  * \brief Class to represent an Operation module to generate a random first configuration
  */
-class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration// public OperationModule
+class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
         //! Constructor

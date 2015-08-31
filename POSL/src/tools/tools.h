@@ -38,4 +38,6 @@ class Tools
         static vector<int> vector_possible_values_to_hold_sorted(int index, vector<int> current_configuration);
         static int mismatches(vector<int> vector_1, vector<int> vector_2);
         static int * vector2array(vector<int> vec);
+        static void shuffle(vector<int> & vec);
+        static vector<int> generateMonotony(int N);
 };
