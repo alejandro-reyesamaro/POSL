@@ -36,8 +36,8 @@ string Tester_SpeedOperator::testeInMode(Computation comp)
 
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
-    OperationModule * m1 = new OM_FixedFirstConfiguration();
-    OperationModule * m2 = new OM_RandomConfGeneration();
+    OperationModule * m1 = new OM_FixedFirstConfiguration(bench);
+    OperationModule * m2 = new OM_RandomConfGeneration(bench);
     Operator * _op = new FlorianOperator(m2);
     GroupedComputation * G = new GroupedSequentialComputation(_op);
 

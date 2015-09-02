@@ -18,8 +18,7 @@
 class OM_FixedFirstConfiguration : public AOM_FirstConfigurationGeneration
 {
     public:
-        //! Constructor
-        OM_FixedFirstConfiguration();
+        OM_FixedFirstConfiguration(Benchmark * bench);
 
         //! Execute the O.M.
         /*!

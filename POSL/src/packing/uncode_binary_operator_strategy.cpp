@@ -9,7 +9,7 @@
 UncodeBinaryOperatorStrategy::UncodeBinaryOperatorStrategy()
 {}
 
-BinaryOperator * UncodeBinaryOperatorStrategy::uncode(string code)
+BinaryOperator * UncodeBinaryOperatorStrategy::uncode(string code, Benchmark * bench)
 {
     trim(code);
     char front = code.front();
@@ -32,13 +32,13 @@ BinaryOperator * UncodeBinaryOperatorStrategy::uncode(string code)
         switch(oper)
         {
             case 4: // Sequential execution
-                return new SequentialExecOperator(cm_strategy->uncode(cm1_code), cm_strategy->uncode(cm2_code));
+                return new SequentialExecOperator(cm_strategy->uncode(cm1_code, bench), cm_strategy->uncode(cm2_code, bench));
             break;
             case 5: // speed
-                return new SpeedOperator(cm_strategy->uncode(cm1_code), cm_strategy->uncode(cm2_code));
+                return new SpeedOperator(cm_strategy->uncode(cm1_code, bench), cm_strategy->uncode(cm2_code, bench));
             break;
             case 6: // Union
-                return new UnionOperator(cm_strategy->uncode(cm1_code), cm_strategy->uncode(cm2_code));
+                return new UnionOperator(cm_strategy->uncode(cm1_code, bench), cm_strategy->uncode(cm2_code, bench));
             break;
         }
     }

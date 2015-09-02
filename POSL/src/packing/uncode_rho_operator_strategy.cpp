@@ -5,7 +5,7 @@
 UncodeRhoOperatorStrategy::UncodeRhoOperatorStrategy()
 {}
 
-RhoOperator * UncodeRhoOperatorStrategy::uncode(string code)
+RhoOperator * UncodeRhoOperatorStrategy::uncode(string code, Benchmark * bench)
 {
     std::size_t pos_open = code.find_first_of("(");
     std::size_t pos_close = code.find_first_of(")");
@@ -21,5 +21,5 @@ RhoOperator * UncodeRhoOperatorStrategy::uncode(string code)
     string cm2_code = Tools::frontModule(rest);
 
     UncodeCompoundModuleStrategy * CM_strategy = new UncodeCompoundModuleStrategy();
-    return new RhoOperator(CM_strategy->uncode(cm1_code), CM_strategy->uncode(cm2_code), param);
+    return new RhoOperator(CM_strategy->uncode(cm1_code, bench), CM_strategy->uncode(cm2_code, bench), param);
 }

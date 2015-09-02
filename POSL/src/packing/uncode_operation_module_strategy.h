@@ -6,5 +6,5 @@ class UncodeOperationModuleStrategy
 {
     public:
         UncodeOperationModuleStrategy();
-        OperationModule * uncode(string code);
+        OperationModule * uncode(string code, Benchmark * bench);
 };

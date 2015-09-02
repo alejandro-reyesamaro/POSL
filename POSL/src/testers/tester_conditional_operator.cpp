@@ -78,7 +78,7 @@ string Tester_ConditionalOperator::test()
 
     psp->UpdateSolution(sol1);
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration();
+    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
     CompoundModule * cm2_1 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm2_2 = new OM_MultiElementsChangedNeighborhood();
     CompoundModule * cm3 = new OM_BestImprovementSelection();

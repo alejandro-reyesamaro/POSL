@@ -37,8 +37,8 @@ string Tester_RhoOperator::test()
     //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol);
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration();
-    CompoundModule * cm2 = new OM_RandomConfGeneration();
+    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
+    CompoundModule * cm2 = new OM_RandomConfGeneration(bench);
 
     // cm1 (rho) cm2 :
     Operator * op1 = new RhoOperator(cm1, cm2, 0.5);

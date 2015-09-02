@@ -41,7 +41,7 @@ string Tester_BestImprovementTabuSelection::test()
     int initial_cost = psp->GetBenchmark()->solutionCost(sol);
 
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration();
+    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
     CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood();
     CompoundModule * cm3 = new OM_BestImprovementTabuSelection();
 

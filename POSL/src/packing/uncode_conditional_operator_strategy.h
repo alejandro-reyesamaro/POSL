@@ -6,5 +6,5 @@ class UncodeConditionalOperatorStrategy
 {
     public:
         UncodeConditionalOperatorStrategy();
-        ConditionalOperator * uncode(string code);
+        ConditionalOperator * uncode(string code, Benchmark * bench);
 };

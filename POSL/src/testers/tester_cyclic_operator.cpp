@@ -27,8 +27,8 @@ string Tester_CyclicOperator::test()
     bench->UpdateSolution(sol);
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration();
-    CompoundModule * cm0 = new OM_RandomConfGeneration();
+    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
+    CompoundModule * cm0 = new OM_RandomConfGeneration(bench);
     //CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood();
     CompoundModule * cm3 = new OM_BestImprovementSelection();

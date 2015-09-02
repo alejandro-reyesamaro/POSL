@@ -3,9 +3,9 @@
 #include <random>
 #include <iostream>
 
-OM_FixedFirstConfiguration::OM_FixedFirstConfiguration()
-{
-}
+OM_FixedFirstConfiguration::OM_FixedFirstConfiguration(Benchmark * bench)
+    : AOM_FirstConfigurationGeneration(bench)
+{}
 
 Solution * OM_FixedFirstConfiguration::spcf_execute(PSP *psp, Solution * input)
 {

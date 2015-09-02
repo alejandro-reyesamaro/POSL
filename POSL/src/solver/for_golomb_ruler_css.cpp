@@ -12,7 +12,8 @@
 #include "../computation/factory_computation_strategy_sa002.h"
 #include "../computation/factory_computation_strategy_ra002.h"
 
-ForGolombRulerCSS::ForGolombRulerCSS()
+ForGolombRulerCSS::ForGolombRulerCSS(GolombRuler * golomb)
+    : CreateSolverStrategy(golomb)
 {}
 
 vector<POSL_Solver *> ForGolombRulerCSS::create()
@@ -20,7 +21,7 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
     /*
     FactoryComputationStrategy * fac_cs1 = new FactoryComputationStrategy_SA002
     (
-        new OM_RandomConfOrderedGeneration(),
+        new OM_RandomConfOrderedGeneration(bench),
         new OM_OneSortedChangeNeighborhood(),
         new OM_MultiSortedChangesNeighborhood(),
         new OM_FirstImprovementSelection(),
@@ -31,7 +32,7 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
     );
     FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA002
     (
-        new OM_RandomConfOrderedGeneration(),
+        new OM_RandomConfOrderedGeneration(bench),
         new OM_OneSortedChangeNeighborhood(),
         new OM_MultiSortedChangesNeighborhood(),
         new OM_FirstImprovementSelection(),
@@ -43,7 +44,7 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
     */
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A002
     (
-        new OM_RandomConfOrderedGeneration(),
+        new OM_RandomConfOrderedGeneration(bench),
         new OM_OneSortedChangeNeighborhood(),
         new OM_MultiSortedChangesNeighborhood(),
         new OM_FirstImprovementSelection(),

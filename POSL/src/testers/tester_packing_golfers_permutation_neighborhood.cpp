@@ -40,5 +40,5 @@ string Tester_PackingGolfersPermutationNeighborhood::test()
     POSL_Iterator<vector<int>> * it = V ->getIterator();
 
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
-    return tester->test(sol, it, pack, "Golfers Permutation Neighborhood");
+    return tester->test(sol, it, pack, "Packing Golfers Permutation Neighborhood");
 }

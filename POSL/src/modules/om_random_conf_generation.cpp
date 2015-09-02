@@ -3,10 +3,10 @@
 #include <random>
 #include <iostream>
 
-OM_RandomConfGeneration::OM_RandomConfGeneration(vector<Domain> _domains)
-    : AOM_FirstConfigurationGeneration(_domains),
-      rconf_strategy(new RandomConfigurationGenerationStrategy(_domains.size())),
-      rsolution(new Solution(_domains))
+OM_RandomConfGeneration::OM_RandomConfGeneration(Benchmark * bench)
+    : AOM_FirstConfigurationGeneration(bench),
+      rconf_strategy(new RandomConfigurationGenerationStrategy(bench->Domains().size())),
+      rsolution(new Solution(bench->Domains()))
 {}
 
 Solution * OM_RandomConfGeneration::spcf_execute(PSP *psp, Solution * input)

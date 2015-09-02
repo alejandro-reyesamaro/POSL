@@ -7,6 +7,6 @@ class UncodeSequentialGrouperStrategy
 {
     public:
         UncodeSequentialGrouperStrategy();
-        GroupedSequentialComputation * uncode(string code);
+        GroupedSequentialComputation * uncode(string code, Benchmark * bench);
 };
 

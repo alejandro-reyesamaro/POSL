@@ -3,14 +3,13 @@
 #include "aom_first_configuration_generation.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
-#include "../data/seed.h"
-
+#include "strategy/random_ordered_generation_strategy.h"
+#include "../benchmarks/golomb_ruler.h"
 
 class OM_RandomConfOrderedGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
-        //! Constructor
-        OM_RandomConfOrderedGeneration();
+        OM_RandomConfOrderedGeneration(Benchmark * bench);
 
         //! Execute the O.M.
         /*!
@@ -23,4 +22,9 @@ class OM_RandomConfOrderedGeneration : public AOM_FirstConfigurationGeneration
 
         //! From Codable
         string codeToSend();
+
+    private:
+        RandomOrderedGenerationStrategy * rconf_strategy;
+        Solution * rsolution;
+        GolombRuler * object_bench;
 };

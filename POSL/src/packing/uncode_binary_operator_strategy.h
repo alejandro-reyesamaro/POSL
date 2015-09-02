@@ -6,5 +6,5 @@ class UncodeBinaryOperatorStrategy
 {
     public:
         UncodeBinaryOperatorStrategy();
-        BinaryOperator * uncode(string code);
+        BinaryOperator * uncode(string code, Benchmark * bench);
 };

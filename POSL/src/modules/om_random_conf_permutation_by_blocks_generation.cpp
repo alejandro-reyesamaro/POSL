@@ -1,23 +1,22 @@
 #include "om_random_conf_permutation_by_blocks_generation.h"
-#include "strategy/random_permutation_by_blocks_generation_strategy.h"
-#include "../benchmarks/golfers.h"
+
 
 #include <random>
 #include <iostream>
 
-OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGeneration()
+OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGeneration(Benchmark * bench)
+    : AOM_FirstConfigurationGeneration(bench),
+      rsolution(new Solution(bench->Domains())),
+      object_bench(dynamic_cast<Golfers *> (bench)),
+      rconf_strategy(new RandomPermutationByBlocksGenerationStrategy(bench->Domains().size(), object_bench->TotalPlayers()))
 {
 }
 
 Solution * OM_RandomConfPermutationByBlocksGeneration::spcf_execute(PSP *psp, Solution * input)
 {
-    RandomPermutationByBlocksGenerationStrategy * rconf = new RandomPermutationByBlocksGenerationStrategy();
-    Golfers * object_bench = dynamic_cast<Golfers *> (psp->GetBenchmark());
-    if(!object_bench)
-        throw "(POSL exception) Not casting allowed";
     int block_size = object_bench->Groups() * object_bench->PlayersPerGroup();
     int blocks = object_bench->Weeks();
-    Solution * rsolution = rconf->generate(block_size, blocks);
+    rsolution->UpdateConfiguration(rconf_strategy->generate(block_size, blocks));
     psp->UpdateSolution(rsolution);
     return rsolution;
 }

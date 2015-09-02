@@ -3,8 +3,8 @@
 UncodeParallelGrouperStrategy::UncodeParallelGrouperStrategy()
 {}
 
-GroupedParallelComputation * UncodeParallelGrouperStrategy::uncode(string code)
+GroupedParallelComputation * UncodeParallelGrouperStrategy::uncode(string code, Benchmark * bench)
 {
     UncodeOperatorStrategy * build_strategy = new UncodeOperatorStrategy();
-    return new GroupedParallelComputation(build_strategy->uncode(code));
+    return new GroupedParallelComputation(build_strategy->uncode(code, bench));
 }

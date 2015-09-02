@@ -8,7 +8,7 @@
 UncodeOperatorStrategy::UncodeOperatorStrategy()
 {}
 
-Operator * UncodeOperatorStrategy::uncode(string code)
+Operator * UncodeOperatorStrategy::uncode(string code, Benchmark * bench)
 {
     trim(code);
     char front = code.front();
@@ -22,25 +22,25 @@ Operator * UncodeOperatorStrategy::uncode(string code)
             case 1: // CICLIC OPERATOR
             {
                 UncodeCyclicOperatorStrategy * Cyc_strategy = new UncodeCyclicOperatorStrategy();
-                return Cyc_strategy->uncode(code);
+                return Cyc_strategy->uncode(code, bench);
             }
                 break;
             case 2: // CONDITIONAL OPERATOR
             {
                 UncodeConditionalOperatorStrategy * Con_strategy = new UncodeConditionalOperatorStrategy();
-                return Con_strategy->uncode(code);
+                return Con_strategy->uncode(code, bench);
             }
             break;
             case 3: // RHO OPERATOR
             {
                 UncodeRhoOperatorStrategy * Rho_strategy = new UncodeRhoOperatorStrategy();
-                return Rho_strategy->uncode(code);
+                return Rho_strategy->uncode(code, bench);
             }
             break;
             default:
             {
                 UncodeBinaryOperatorStrategy * Bin_strategy = new UncodeBinaryOperatorStrategy();
-                return Bin_strategy->uncode(code);
+                return Bin_strategy->uncode(code, bench);
             }
         }
     }

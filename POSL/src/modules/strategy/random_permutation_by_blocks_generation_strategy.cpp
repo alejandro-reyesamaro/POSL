@@ -1,28 +1,23 @@
 #include "random_permutation_by_blocks_generation_strategy.h"
 #include "../../data/dStrategy/factory_n_int_domain.h"
+#include "../../tools/tools.h"
 
 #include <algorithm>
 
-RandomPermutationByBlocksGenerationStrategy::RandomPermutationByBlocksGenerationStrategy() : rand()
+RandomPermutationByBlocksGenerationStrategy::RandomPermutationByBlocksGenerationStrategy(int configuration_size, int block_size)
+    : rand(),
+      config(configuration_size),
+      permutations(block_size)
 {}
 
-Solution * RandomPermutationByBlocksGenerationStrategy::generate(int block_size, int n_blocks)
+vector<int> RandomPermutationByBlocksGenerationStrategy::generate(int block_size, int n_blocks)
 {
-    vector<int> config(block_size * n_blocks);
-
     for(int i = 0; i < n_blocks; i++)
     {
-        vector<int> perm;
         for(int j = 0; j < block_size; j++)
-            perm.push_back(j+1);
-        srand(time(0));
-        random_shuffle (perm.begin(), perm.end());
-        copy(perm.begin(), perm.end(), config.begin() + i * block_size);
+            permutations[j]= j+1;
+        Tools::shuffle(permutations);
+        copy(permutations.begin(), permutations.end(), config.begin() + i * block_size);
     }
-
-    FactoryDomain * fd_integers = new Factory_NIntDomain(1,block_size);
-    Domain D(fd_integers);
-    vector<Domain> domains (block_size * n_blocks,D);
-    Solution * new_solution = new Solution(domains, config);
-    return new_solution;
+    return config;
 }

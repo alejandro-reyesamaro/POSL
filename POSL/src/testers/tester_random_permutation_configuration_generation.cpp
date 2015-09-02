@@ -17,7 +17,7 @@ string Tester_RandomPermutationConfigurationGeneration::test()
     bench->UpdateSolution(sol);
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
-    OperationModule * op1 = new OM_RandomConfPermutationByBlocksGeneration();
+    OperationModule * op1 = new OM_RandomConfPermutationByBlocksGeneration(bench);
     bool is_random = true;
     bool is_permut = true;
     //PSP * psp = new PSP(bench);

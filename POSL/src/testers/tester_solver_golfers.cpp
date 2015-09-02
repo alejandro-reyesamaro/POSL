@@ -12,14 +12,16 @@ Tester_Solver_Golfers::Tester_Solver_Golfers(int argc, char *argv[])
 string Tester_Solver_Golfers::test()
 {
     //Benchmark * bench = new Golfers(5,5,3);
-    Benchmark * bench = new Golfers(4,4,2);
+    Golfers * g = new Golfers(4,4,2);
+    Benchmark * bench = g;
     PSP * psp = new PSP(ARGC, ARGV, bench);
+
 
     Solution * sol = new Solution(bench->Domains());
     bench->UpdateSolution(sol);
 
     //POSL_Solver * solver = new POSL_Solver(ARGC, ARGV, bench, new ForGolfersCSS());
-    CreateSolverStrategy * css = new ForGolfersCSS();
+    CreateSolverStrategy * css = new ForGolfersCSS(g);
     vector<POSL_Solver *> solvers = css->create();
 
     solvers[0]->solve(psp);

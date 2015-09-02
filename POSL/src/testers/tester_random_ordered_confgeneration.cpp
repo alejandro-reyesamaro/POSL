@@ -18,7 +18,7 @@ string Tester_RandomOrderedConfGeneration::test()
     bench->UpdateSolution(sol);
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
-    OperationModule * op1 = new OM_RandomConfOrderedGeneration();
+    OperationModule * op1 = new OM_RandomConfOrderedGeneration(bench);
     bool is_random = true;
     //PSP * psp = new PSP(bench);
     Solution * current_sol = (Solution *)op1->execute(psp, psp->GetBenchmark()->GetSolution());

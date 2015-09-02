@@ -194,7 +194,8 @@ SOURCES += src/main.cpp \
     src/solver/psp.cpp \
     src/solver/comunicator.cpp \
     src/solver/for_n_queens_css.cpp \
-    src/testers/tester_from_pack_neighborhood.cpp
+    src/testers/tester_from_pack_neighborhood.cpp \
+    src/solver/create_solver_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 

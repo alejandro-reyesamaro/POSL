@@ -8,8 +8,10 @@
 class RandomPermutationConfigurationStrategy
 {
     public:
-        //! Constructor
-        RandomPermutationConfigurationStrategy();
+        RandomPermutationConfigurationStrategy(int N);
 
-        Solution * generate(vector<Domain> domains);
+        vector<int> generate();
+
+    private:
+        vector<int> config;
 };

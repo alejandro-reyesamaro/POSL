@@ -4,13 +4,12 @@
 #include "aom_first_configuration_generation.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
-#include "../data/seed.h"
+#include "strategy/random_permutation_configuration_strategy.h"
 
 class OM_RandomPermutationGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
-        //! Constructor
-        OM_RandomPermutationGeneration();
+        OM_RandomPermutationGeneration(Benchmark * bench);
 
         //! Execute the O.M.
         /*!
@@ -24,4 +23,8 @@ class OM_RandomPermutationGeneration : public AOM_FirstConfigurationGeneration
 
         //! From Codable
         string codeToSend();
+
+    private:
+        RandomPermutationConfigurationStrategy * rconf_strategy;
+        Solution * rsolution;
 };

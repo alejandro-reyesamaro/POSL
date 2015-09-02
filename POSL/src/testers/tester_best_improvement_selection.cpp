@@ -39,7 +39,7 @@ string Tester_BestImprovementSelection::test()
     //PSP * psp = new PSP(bench);
     psp->UpdateSolution(sol);
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration();
+    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
     CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
     CompoundModule * cm3 = new OM_BestImprovementSelection();
 

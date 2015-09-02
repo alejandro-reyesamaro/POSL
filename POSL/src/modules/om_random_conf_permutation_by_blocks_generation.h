@@ -12,7 +12,8 @@
 #include "aom_first_configuration_generation.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
-#include "../data/seed.h"
+#include "strategy/random_permutation_by_blocks_generation_strategy.h"
+#include "../benchmarks/golfers.h"
 
 /*!
  * \class OM_RandomConfPermutationByBlocksGeneration om_random_conf_permutation_by_blocks_generation.h
@@ -22,7 +23,7 @@ class OM_RandomConfPermutationByBlocksGeneration : public AOM_FirstConfiguration
 {
     public:
         //! Constructor
-        OM_RandomConfPermutationByBlocksGeneration();
+        OM_RandomConfPermutationByBlocksGeneration(Benchmark * bench);
 
         //! Execute the O.M.
         /*!
@@ -35,4 +36,10 @@ class OM_RandomConfPermutationByBlocksGeneration : public AOM_FirstConfiguration
 
         //! From Codable
         string codeToSend();
+
+    private:
+        Solution * rsolution;
+        Golfers * object_bench;
+        RandomPermutationByBlocksGenerationStrategy * rconf_strategy;
+
 };

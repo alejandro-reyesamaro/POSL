@@ -23,7 +23,7 @@
 UncodeOperationModuleStrategy::UncodeOperationModuleStrategy()
 {}
 
-OperationModule * UncodeOperationModuleStrategy::uncode(string code)
+OperationModule * UncodeOperationModuleStrategy::uncode(string code, Benchmark * bench)
 {
     trim(code);
     char L = code.front();
@@ -34,19 +34,19 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code)
         switch(N)
         {
             case 1: // fixed first configuration
-                return new OM_FixedFirstConfiguration();
+                return new OM_FixedFirstConfiguration(bench);
                 break;
             case 2: // random first configuration
-                return new OM_RandomConfGeneration();
+                return new OM_RandomConfGeneration(bench);
                 break;
             case 3:
 
                 break;
             case 4: // random permutation by blocks
-                return new OM_RandomConfPermutationByBlocksGeneration();
+                return new OM_RandomConfPermutationByBlocksGeneration(bench);
                 break;
             case 5: // random ordered permutation
-                return new OM_RandomConfOrderedGeneration();
+                return new OM_RandomConfOrderedGeneration(bench);
                 break;
             default:
                 throw "Not well coded OperationModule (First Configuration)";

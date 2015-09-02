@@ -9,12 +9,10 @@ Tester_SolverNQueens::Tester_SolverNQueens(int argc, char *argv[])
 
 string Tester_SolverNQueens::test()
 {
-    //Benchmark * bench = new Golfers(5,5,3);
-    Benchmark * bench = new NQueens(8);
+    NQueens * bench = new NQueens(8);
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
-    //POSL_Solver * solver = new POSL_Solver(ARGC, ARGV, bench, new ForGolfersCSS());
-    CreateSolverStrategy * css = new ForNQueensCSS();
+    CreateSolverStrategy * css = new ForNQueensCSS(bench);
     vector<POSL_Solver *> solvers = css->create();
 
     solvers[0]->solve(psp);

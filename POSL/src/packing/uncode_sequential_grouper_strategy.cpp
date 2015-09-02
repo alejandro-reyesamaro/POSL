@@ -3,8 +3,8 @@
 UncodeSequentialGrouperStrategy::UncodeSequentialGrouperStrategy()
 {}
 
-GroupedSequentialComputation * UncodeSequentialGrouperStrategy::uncode(string code)
+GroupedSequentialComputation * UncodeSequentialGrouperStrategy::uncode(string code, Benchmark * bench)
 {
     UncodeOperatorStrategy * build_strategy = new UncodeOperatorStrategy();
-    return new GroupedSequentialComputation(build_strategy->uncode(code));
+    return new GroupedSequentialComputation(build_strategy->uncode(code, bench));
 }

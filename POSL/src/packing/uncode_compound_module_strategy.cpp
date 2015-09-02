@@ -6,7 +6,7 @@ using namespace boost;
 UncodeCompoundModuleStrategy::UncodeCompoundModuleStrategy()    
 {}
 
-CompoundModule * UncodeCompoundModuleStrategy::uncode(string code)
+CompoundModule * UncodeCompoundModuleStrategy::uncode(string code, Benchmark * bench)
 {
     trim(code);
     char front = code.front();
@@ -17,16 +17,16 @@ CompoundModule * UncodeCompoundModuleStrategy::uncode(string code)
     if (front == '{' && back == '}')
     {
         UncodeSequentialGrouperStrategy * SG_strategy = new UncodeSequentialGrouperStrategy();
-        return SG_strategy->uncode(sub_code);
+        return SG_strategy->uncode(sub_code, bench);
     }
     else if (front == '[' && back == ']')
     {
         UncodeParallelGrouperStrategy * PG_strategy = new UncodeParallelGrouperStrategy();
-        return PG_strategy->uncode(sub_code);
+        return PG_strategy->uncode(sub_code, bench);
     }
     else
     {
         UncodeOperationModuleStrategy * OM_strategy = new UncodeOperationModuleStrategy();
-        return OM_strategy->uncode(code);
+        return OM_strategy->uncode(code, bench);
     }
 }

@@ -6,7 +6,7 @@
 UncodeConditionalOperatorStrategy::UncodeConditionalOperatorStrategy()
 {}
 
-ConditionalOperator * UncodeConditionalOperatorStrategy::uncode(string code)
+ConditionalOperator * UncodeConditionalOperatorStrategy::uncode(string code, Benchmark * bench)
 {
     std::size_t pos_open = code.find_first_of("(");
     std::size_t pos_close = code.find_first_of(")");
@@ -21,5 +21,5 @@ ConditionalOperator * UncodeConditionalOperatorStrategy::uncode(string code)
 
     UncodeCompoundModuleStrategy * CM_strategy = new UncodeCompoundModuleStrategy();
     UncodeBoolExpressionStrategy * BE_strategy = new UncodeBoolExpressionStrategy();
-    return new ConditionalOperator(CM_strategy->uncode(cm1_code), CM_strategy->uncode(cm2_code), BE_strategy->uncode(be_code));
+    return new ConditionalOperator(CM_strategy->uncode(cm1_code, bench), CM_strategy->uncode(cm2_code, bench), BE_strategy->uncode(be_code));
 }

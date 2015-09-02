@@ -7,5 +7,5 @@ class UncodeParallelGrouperStrategy
 {
     public:
         UncodeParallelGrouperStrategy();
-        GroupedParallelComputation * uncode(string code);
+        GroupedParallelComputation * uncode(string code, Benchmark * bench);
 };

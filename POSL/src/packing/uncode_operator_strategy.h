@@ -6,5 +6,5 @@ class UncodeOperatorStrategy
 {
     public:
         UncodeOperatorStrategy();
-        Operator * uncode(string code);
+        Operator * uncode(string code, Benchmark * bench);
 };

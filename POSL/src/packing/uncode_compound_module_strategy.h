@@ -9,5 +9,5 @@ class UncodeCompoundModuleStrategy
 {
     public:
         UncodeCompoundModuleStrategy();
-        CompoundModule * uncode(string code);    
+        CompoundModule * uncode(string code, Benchmark * bench);
 };

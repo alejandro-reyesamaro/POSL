@@ -3,7 +3,7 @@
 UncodeCyclicOperatorStrategy::UncodeCyclicOperatorStrategy()
 {}
 
-CyclicOperator * UncodeCyclicOperatorStrategy::uncode(string code)
+CyclicOperator * UncodeCyclicOperatorStrategy::uncode(string code, Benchmark * bench)
 {
     std::size_t pos_open = code.find_first_of("(");
     std::size_t pos_close = code.find_first_of(")");
@@ -13,5 +13,5 @@ CyclicOperator * UncodeCyclicOperatorStrategy::uncode(string code)
     UncodeCompoundModuleStrategy * CM_strategy = new UncodeCompoundModuleStrategy();
     UncodeBoolExpressionStrategy * BE_strategy = new UncodeBoolExpressionStrategy();
 
-    return new CyclicOperator(CM_strategy->uncode(cm_code), BE_strategy->uncode(be_code));
+    return new CyclicOperator(CM_strategy->uncode(cm_code, bench), BE_strategy->uncode(be_code));
 }

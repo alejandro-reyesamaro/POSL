@@ -30,7 +30,7 @@ class RandomOrderedGenerationStrategy
         * \param max Maximum value
         * \return A random ordered configuration (Solution)
         */
-        vector<int> *generate(int max);
+        vector<int> generate(int max);
 
     private:        
         void place (int a, int b, int pos_1, int pos_2);

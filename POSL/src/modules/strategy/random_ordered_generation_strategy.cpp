@@ -20,12 +20,12 @@ void RandomOrderedGenerationStrategy::place (int a, int b, int pos_1, int pos_2)
     {
         int b_izq = (a+b)/2;
         int b_der = (a+b)/2 + 1;
-        place(a, b_izq, pos_1, (pos_1+pos_2)/2, config);
-        place(b_der, b, (pos_1+pos_2)/2+1, pos_2, config);
+        place(a, b_izq, pos_1, (pos_1+pos_2)/2);
+        place(b_der, b, (pos_1+pos_2)/2+1, pos_2);
     }
 }
 
-vector<int> * RandomOrderedGenerationStrategy::generate(int max)
+vector<int> RandomOrderedGenerationStrategy::generate(int max)
 {
     int size = config.size();
     switch (size)
@@ -43,8 +43,8 @@ vector<int> * RandomOrderedGenerationStrategy::generate(int max)
         default:
             config[0] = 0;
             config[size-1] = max;
-            place(1, max/2, 1, size/2, config);
-            place(max/2+1, max-1, size/2+1, size-2, config);
+            place(1, max/2, 1, size/2);
+            place(max/2+1, max-1, size/2+1, size-2);
             break;
     }
     return config;

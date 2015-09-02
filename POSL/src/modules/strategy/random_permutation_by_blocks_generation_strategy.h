@@ -22,8 +22,7 @@
 class RandomPermutationByBlocksGenerationStrategy
 {
     public:
-        //! Constructor
-        RandomPermutationByBlocksGenerationStrategy();
+        RandomPermutationByBlocksGenerationStrategy(int configuration_size, int block_size);
 
         //! Generates a random configuration
         /*!
@@ -31,8 +30,10 @@ class RandomPermutationByBlocksGenerationStrategy
         * \param seed A seed for the random generatos
         * \return A random configuration (Solution) permutation by blocks
         */
-        Solution * generate(int block_size, int n_blocks);
+        vector<int> generate(int block_size, int n_blocks);
 
     private:
         Randomizer rand;
+        vector<int> config;
+        vector<int> permutations;
 };

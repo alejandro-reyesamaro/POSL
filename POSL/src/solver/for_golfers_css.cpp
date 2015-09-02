@@ -15,7 +15,8 @@
 #include "../computation/factory_computation_strategy_sa001.h"
 #include "../computation/factory_computation_strategy_ra001.h"
 
-ForGolfersCSS::ForGolfersCSS()
+ForGolfersCSS::ForGolfersCSS(Golfers * golfers)
+    : CreateSolverStrategy(golfers)
 {}
 
 vector<POSL_Solver *> ForGolfersCSS::create()
@@ -23,7 +24,7 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     /*
     FactoryComputationStrategy * fac_cs1 = new FactoryComputationStrategy_SA001
     (
-        new OM_RandomConfPermutationByBlocksGeneration(),
+        new OM_RandomConfPermutationByBlocksGeneration(bench),
         new OM_GolfersSingleSwapNeighborhood(),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
@@ -33,7 +34,7 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     );
     FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA001
     (
-        new OM_RandomConfPermutationByBlocksGeneration(),
+        new OM_RandomConfPermutationByBlocksGeneration(bench),
         new OM_GolfersSingleSwapNeighborhood(),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
@@ -44,7 +45,7 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     */
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A001
     (
-        new OM_RandomConfPermutationByBlocksGeneration(),
+        new OM_RandomConfPermutationByBlocksGeneration(bench),
         new OM_GolfersSingleSwapNeighborhood(),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),

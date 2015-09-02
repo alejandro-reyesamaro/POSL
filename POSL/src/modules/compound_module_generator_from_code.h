@@ -9,13 +9,13 @@ using namespace std;
 class CompoundModuleGeneratorFromCode : public CompoundModule
 {
     public:
-        CompoundModuleGeneratorFromCode(string code);
+        CompoundModuleGeneratorFromCode(string code, Benchmark * bench);
         ComputationData * execute(PSP * psp, ComputationData * input);
         //! From Codable
         string codeToSend();
 
     private:
-        CompoundModule * generateFrom(string code);
+        CompoundModule * generateFrom(string code, Benchmark * bench);
         CompoundModule * module;
         string mycode;
 };

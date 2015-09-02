@@ -17,7 +17,7 @@ string Tester_FlorianRandomConfigurationGeneration::test()
     bench->UpdateSolution(sol);
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
-    OperationModule * op1 = new OM_RandomConfGeneration();
+    OperationModule * op1 = new OM_RandomConfGeneration(bench);
     Operator * op = new FlorianOperator(op1);
     GroupedComputation * G = new GroupedSequentialComputation(op);
 

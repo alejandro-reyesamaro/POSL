@@ -6,5 +6,5 @@ class UncodeRhoOperatorStrategy
 {
     public:
         UncodeRhoOperatorStrategy();
-        RhoOperator * uncode(string code);
+        RhoOperator * uncode(string code, Benchmark * bench);
 };

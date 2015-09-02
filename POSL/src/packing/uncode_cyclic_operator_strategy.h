@@ -8,5 +8,5 @@ class UncodeCyclicOperatorStrategy
 {
     public:
         UncodeCyclicOperatorStrategy();
-        CyclicOperator * uncode(string code);
+        CyclicOperator * uncode(string code, Benchmark * bench);
 };

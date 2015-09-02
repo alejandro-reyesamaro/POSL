@@ -22,7 +22,7 @@
 class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
-        OM_RandomConfGeneration(vector<Domain> _domains);
+        OM_RandomConfGeneration(Benchmark * bench);
 
         //! Execute the O.M.
         /*!
