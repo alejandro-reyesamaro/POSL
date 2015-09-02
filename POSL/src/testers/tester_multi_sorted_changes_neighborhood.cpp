@@ -37,11 +37,12 @@ string Tester_MultiSortedChangesNeighborhood::test()
         vector<int> neighbor = it->GetNext();
         ch = Tools::mismatches(neighbor, config);
 
+        /*
         cout << "[ ";
         for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)
             cout << *j << " ";
         cout << "]" << endl;
-
+        */
         v = v && (ch <= 3 || ch >= 1);
         v = v && is_sorted(neighbor.begin(), neighbor.end());
     }

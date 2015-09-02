@@ -15,5 +15,8 @@ class SolutionPackingStrategy : public PackingStrategy
         static Solution * unpack(int * pack, vector<Domain> domains);
 
     private:
+        void update(vector<int> _config);
+
         vector<int> configuration;
+        vector<int> package;
 };

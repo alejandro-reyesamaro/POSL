@@ -21,6 +21,12 @@ LongInt::LongInt(unsigned int _bytes) : bytes(_bytes)
     activateAll();
 }
 
+bool LongInt::clearBits()
+{
+    vector<int> aux (bytes, 0);
+    value = aux;
+}
+
 int LongInt::length() { return (int)bytes; }
 
 LongInt LongInt::operator|(LongInt &other)

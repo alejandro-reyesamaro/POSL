@@ -1,5 +1,6 @@
 #include "tools.h"
 #include <sstream>
+#include <algorithm>
 
 string Tools::int2str(int c)
 {
@@ -114,7 +115,7 @@ vector<int> Tools::vector_possible_values_to_hold_sorted(int index, vector<int> 
 int Tools::mismatches(vector<int> vector_1, vector<int> vector_2)
 {
     int c = 0;
-    for(int i = 0; i < vector_1.size(); i++)
+    for(unsigned int i = 0; i < vector_1.size(); i++)
         if(vector_1[i] != vector_2[i])
             c++;
     return c;
@@ -125,4 +126,18 @@ int * Tools::vector2array(vector<int> vec)
     int * buff = new int[vec.size()];
     copy(vec.begin(), vec.end(), buff);
     return buff;
+}
+
+void Tools::shuffle(vector<int> & vec)
+{
+    srand(time(0));
+    random_shuffle (vec.begin(), vec.end());
+}
+
+vector<int> Tools::generateMonotony(int N)
+{
+    vector<int> v;
+    for(int i = 0; i < N; i++)
+        v.push_back(i);
+    return v;
 }

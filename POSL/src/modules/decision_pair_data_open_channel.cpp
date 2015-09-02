@@ -1,6 +1,7 @@
 #include "decision_pair_data_open_channel.h"
-#include "../data/dStrategy/decision_pair_packing_strategy.h"
+#include "../packing/packers/decision_pair_packer.h"
 #include "../tools/tools.h"
+#include "../data/decision_pair.h"
 
 #include <iostream>
 using namespace std;
@@ -34,7 +35,7 @@ ComputationData * DecisionPairDataOpenChannel::unpackMessage(int * buffer, PSP *
     cout << pack_current_str << endl;
     */
 
-    DecisionPair * rPair = DecisionPairPackingStrategy::unpack(buffer, psp->GetBenchmark()->Domains());
+    DecisionPair * rPair = DecisionPairPacker::unpack(buffer, psp->GetBenchmark()->Domains());
     //cout << "message unpacked: " << rPair->GetCurrent()->configurationToString() << endl;
     return rPair;
 }

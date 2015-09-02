@@ -17,4 +17,9 @@ class NeighborSelectingFirstImprovement
         * \return The current and the new found configurations
         */
         DecisionPair * select(PSP * psp, Neighborhood * V);
+
+    private:
+        Solution * current_solution;
+        POSL_Iterator<vector<int>> * it;
+        vector<int> best_found;
 };

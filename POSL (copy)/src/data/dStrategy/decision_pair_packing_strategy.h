@@ -11,8 +11,12 @@ class DecisionPairPackingStrategy : public PackingStrategy
         int BodySize();
         vector<int> body();
 
-        static DecisionPair * unpack(int * pack, vector<Domain> domains);
+        static DecisionPair * unpack(int * pack, vector<Domain> domains);        
+
+        void update(vector<int> current, vector<int> found);
 
     private:
-        DecisionPair * pair;
+        vector<int> current_conf;
+        vector<int> found_conf;
+        vector<int> package;
 };

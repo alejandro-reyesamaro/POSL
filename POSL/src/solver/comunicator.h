@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../data/computation_data.h"
+//#include "../data/computation_data.h"
 
 #include "mpi.h"
 
@@ -11,7 +11,7 @@ class Comunicator
     public:
         Comunicator();
 
-        void sendMessage(ComputationData *data, int procID);
+        void sendMessage(std::vector<int> package, int procID);
 
     private:
         MPI_Request request;

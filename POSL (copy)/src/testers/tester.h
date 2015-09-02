@@ -3,6 +3,7 @@
 #include "../benchmarks/golfers.h"
 #include  "../benchmarks/squaring_square.h"
 #include  "../benchmarks/golomb_ruler.h"
+#include "../benchmarks/n_queens.h"
 #include "../solver/psp.h"
 #include "../computation/flag_computation.h"
 

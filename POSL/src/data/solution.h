@@ -11,8 +11,6 @@
 
 #include "domain.h"
 #include "computation_data.h"
-#include "dStrategy/packable.h"
-#include "dStrategy/packing_strategy.h"
 
 #include <vector>
 #include <string>
@@ -56,10 +54,7 @@ class Solution : public ComputationData//, public Packable
         */
         string configurationToString();
 
-        //! From Packable
-        vector<int> pack();
-        int bodySize();
-        vector<int> body();
+        FactoryPacker * BuildPacker();
 
         //! The current configuration
         vector<int> GetConfiguration();
@@ -71,6 +66,4 @@ class Solution : public ComputationData//, public Packable
         vector<Domain> domains;
         //! The current configuration
         vector<int> configuration;
-        //! Packing strategy
-        PackingStrategy * packing_strategy;
 };

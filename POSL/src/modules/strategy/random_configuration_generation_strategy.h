@@ -23,17 +23,17 @@
 class RandomConfigurationGenerationStrategy
 {
     public:
-        //! Constructor
-        RandomConfigurationGenerationStrategy();
+        RandomConfigurationGenerationStrategy(int configuration_size);
 
         //! Generates a random configuration
         /*!
         * \param domains The sets of posibles values for the variables
         * \param seed A seed for the random generatos
-        * \return A random configuration (Solution)
+        * \return A random configuration
         */
-        Solution * generate(vector<Domain> domains);
+        vector<int> generate(vector<Domain> domains);
 
     private:
         Randomizer rand;
+        vector<int> config;
 };

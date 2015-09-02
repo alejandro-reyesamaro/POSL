@@ -1,18 +1,15 @@
 #include "multi_sorted_changes_neighborhood.h"
-#include "dStrategy/elements_change_iterator.h"
 #include "../tools/rand_index_generator.h"
 #include "../tools/tools.h"
-
-#include "dStrategy/neighborhood_packing_strategy.h"
-#include "dStrategy/multi_elements_changed_body_packing_strategy.h"
 
 #include <algorithm>
 #include <iostream>
 #include <chrono>
 
-MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol) : rand()
+MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol)
+    : Neighborhood(sol->GetConfiguration()),
+      rand()
 {
-    current_solution = sol;
     int n = sol->GetConfiguration().size();
     //int N = PRC_CHANGES * n;  // to have N chahges
 
@@ -26,52 +23,21 @@ MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol) :
         vector<int> list_of_indexes = (*it);
         pushSetOfValues(list_of_indexes, sol);
     }
-    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new MultiElementsChangedBodyPackingStrategy(changes));
 }
 
-POSL_Iterator<vector<int>> * MultiSortedChangesNeighborhood::getIterator()
-{
-    POSL_Iterator<vector<int>> * iter = new ElementsChangeIterator(this);
-    return iter;
-}
+FactoryPacker * MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-int MultiSortedChangesNeighborhood::size()
-{
-    return changes.size();
-}
-
-vector<int> MultiSortedChangesNeighborhood::operator[](int index)
-{
-    return applyChangeAt(index);
-}
+vector<int> MultiSortedChangesNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
 
 vector<int> MultiSortedChangesNeighborhood::applyChangeAt(int index)
 {
-    vector<int> conf = current_solution->GetConfiguration();
-    if(index >= size()) return conf;
+    if(index >= size()) return current_configuration;
+    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
     for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
-        conf[changes[index].positions[i]] = changes[index].new_values[i];
-
-    sort(conf.begin(), conf.end());
-
-    return conf;
+        configuration_changed[changes[index].positions[i]] = changes[index].new_values[i];
+    sort(configuration_changed.begin(), configuration_changed.end());
+    return configuration_changed;
 }
-
-vector<int> MultiSortedChangesNeighborhood::pack()
-{
-    return packing_strategy->pack();
-}
-
-int MultiSortedChangesNeighborhood::bodySize()
-{
-    return packing_strategy->BodySize();
-}
-
-vector<int> MultiSortedChangesNeighborhood::body()
-{
-    return packing_strategy->body();
-}
-
 
 void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes, Solution * sol)
 {
@@ -86,7 +52,6 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes, Soluti
 
     // creating the domains
     vector<vector<int>> vector_values;
-    srand(time(0));
     for (vector<int>::iterator it = indexes.begin(); it != indexes.end(); ++it)
     {
         unsigned int index = *it;
@@ -104,7 +69,7 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes, Soluti
         else
         {
             values_for_index = domains[index].GetValues();
-            random_shuffle (values_for_index.begin(), values_for_index.end());
+            Tools::shuffle(values_for_index);
         }
         vector_values.push_back(values_for_index);
     }

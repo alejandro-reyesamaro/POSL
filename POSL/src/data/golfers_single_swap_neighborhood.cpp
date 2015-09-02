@@ -1,27 +1,25 @@
 #include "golfers_single_swap_neighborhood.h"
-#include "dStrategy/elements_change_iterator.h"
 #include "../tools/rand_index_generator.h"
-#include "dStrategy/neighborhood_packing_strategy.h"
-#include "dStrategy/golfers_single_swap_body_packing_strategy.h"
+#include "../packing/factory/factory_golfers_single_swap_neighborhood_packer.h"
+#include "../tools/tools.h"
 
 #include <algorithm>
 #include <iostream>
 
 #define SWAPS 600
 
-GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int _players) : players(_players)
+GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int _players)
+    : Neighborhood(sol->GetConfiguration()),
+      players(_players),
+      indexes(Tools::generateMonotony(_players))
 {
-    current_solution = sol;
     int weeks = sol->GetConfiguration().size() / players;
     int posibles = players * (players-1);
     int swaps = min(SWAPS, posibles);
-    vector<int> indexes;
-    for(int i = 0; i < players; i++)
-        indexes.push_back(i);
+
     for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
     {
-        srand(time(0));
-        random_shuffle(indexes.begin(), indexes.end());
+        Tools::shuffle(indexes);
         for (int i = 0; i < players - 1; i++)
             for(int j = i + 1; j < players; j++)
             {
@@ -37,44 +35,19 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int
             changes.push_back(next_change);
         }*/
     }
-    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new GolfersSingleSwapBodyPackingStrategy(changes, sol->GetConfiguration()));
 }
 
-POSL_Iterator<vector<int>> * GolfersSingleSwapNeighborhood::getIterator()
+FactoryPacker * GolfersSingleSwapNeighborhood::BuildPacker()
 {
-    POSL_Iterator<vector<int>> * iter = new ElementsChangeIterator(this);
-    return iter;
+    return new FactoryGolfersSingleSwapNeighborhoodPacker(current_configuration, size(), changes);
 }
 
-int GolfersSingleSwapNeighborhood::size()
-{
-    return changes.size();
-}
-
-vector<int> GolfersSingleSwapNeighborhood::operator[](int index)
-{
-    return applyChangeAt(index);
-}
+vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
 
 vector<int> GolfersSingleSwapNeighborhood::applyChangeAt(int index)
 {
-    vector<int> conf = current_solution->GetConfiguration();
-    if(index >= size()) return conf;
-    swap(conf[changes[index].pos1],conf[changes[index].pos2]);
-    return conf;
-}
-
-vector<int> GolfersSingleSwapNeighborhood::pack()
-{
-    return packing_strategy->pack();
-}
-
-int GolfersSingleSwapNeighborhood::bodySize()
-{
-    return packing_strategy->BodySize();
-}
-
-vector<int> GolfersSingleSwapNeighborhood::body()
-{
-    return packing_strategy->body();
+    if(index >= size()) return current_configuration;
+    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
+    swap(configuration_changed[changes[index].pos1],configuration_changed[changes[index].pos2]);
+    return configuration_changed;
 }

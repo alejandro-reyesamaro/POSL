@@ -19,14 +19,23 @@ using namespace std;
 NeighborhoodPackingStrategy::NeighborhoodPackingStrategy(vector<int> current_config,
                                                          int _neighborhood_size,
                                                          NeighborhoodBodyPackingStrategy *_body_packing_strategy)
-    : neighborhood_size(_neighborhood_size), config(current_config), body_strategy(_body_packing_strategy)
+    : neighborhood_size(_neighborhood_size),
+      config(current_config),
+      body_strategy(_body_packing_strategy),
+      package(current_config.size() + 3 + _body_packing_strategy->bodySize())
 {}
+
+void NeighborhoodPackingStrategy::update(vector<int> current_config, int _neighborhood_size)
+{
+    copy(current_config.begin(), current_config.end(), config.begin());
+    neighborhood_size = _neighborhood_size;
+}
 
 vector<int> NeighborhoodPackingStrategy::pack()
 {
-    cout << "packing neighborhood" << endl;
+    //cout << "packing neighborhood" << endl;
     int conf_size = config.size();
-    vector<int> package(conf_size + 3 + body_strategy->bodySize());
+    //vector<int> package(conf_size + 3 + body_strategy->bodySize());
     // ID = 2
     package[0] = 658203;
     // Configuration size
@@ -42,20 +51,10 @@ vector<int> NeighborhoodPackingStrategy::pack()
     return package;
 }
 
-Neighborhood * NeighborhoodPackingStrategy::unpack(int * pack)
-{
-    FromPackNeighborhood * V = new FromPackNeighborhood(pack);
-    return V;
-}
+Neighborhood * NeighborhoodPackingStrategy::unpack(int * pack){ return new FromPackNeighborhood(pack); }
 
-int NeighborhoodPackingStrategy::BodySize()
-{
-    return body_strategy->bodySize();
-}
+int NeighborhoodPackingStrategy::BodySize(){ return body_strategy->bodySize(); }
 
-vector<int> NeighborhoodPackingStrategy::body()
-{
-    return body_strategy->packBody();
-}
+vector<int> NeighborhoodPackingStrategy::body() { return body_strategy->packBody(); }
 
 

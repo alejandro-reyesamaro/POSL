@@ -11,5 +11,8 @@ class OneElementChangedBodyPackingStrategy : public NeighborhoodBodyPackingStrat
         vector<int> packBody();
 
     private:
+        void update(vector<T_change> _changes);
+
         vector<T_change> changes;
+        vector<int> body;
 };

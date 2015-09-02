@@ -1,18 +1,18 @@
 #include "random_configuration_generation_strategy.h"
 
-RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy() : rand()
+RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy(int configuration_size)
+    : rand(),
+      config(configuration_size)
 {}
 
-Solution * RandomConfigurationGenerationStrategy::generate(vector<Domain> domains)
+vector<int> RandomConfigurationGenerationStrategy::generate(vector<Domain> domains)
 {
-    vector<int> vec;
-
+    int k = 0;
+    int index = 0;
     for(vector<Domain>::iterator it = domains.begin(); it != domains.end(); ++it)
     {
-        int k = rand.NextInt(it->minimum(), it->maximum());
-        vec.push_back(k);
+        k = rand.NextInt(it->minimum(), it->maximum());
+        config[index++] = k;
     }
-
-    Solution * new_solution = new Solution(domains, vec);    
-    return new_solution;
+    return config;
 }

@@ -27,6 +27,7 @@ class LongInt
         int bitCount();
         bool Equal(LongInt &other);
         string toString();
+        bool clearBits();
 
     private:
         int bytes;

@@ -1,7 +1,4 @@
 #include "one_sorted_change_neighborhood.h"
-#include "dStrategy/elements_change_iterator.h"
-#include "dStrategy/neighborhood_packing_strategy.h"
-#include "dStrategy/one_element_changed_body_packing_strategy.h"
 #include "../tools/tools.h"
 
 #include <algorithm>
@@ -9,17 +6,16 @@
 
 #define N_NEIGHBORS 16
 
-OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol) : rand()
+OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol)
+    : Neighborhood(sol->GetConfiguration())
 {
-    current_solution = sol;
-    int n = sol->GetConfiguration().size();
+    int n = current_configuration.size();
 
     vector<int> indexes;
     for (int i = 1; i < n-1; i++)
         indexes.push_back(i);
     //n = N_NEIGHBORS;
-    srand(time(0));
-    random_shuffle (indexes.begin(), indexes.end());
+    Tools::shuffle(indexes);
 
     int pos_new_value = 0;
     vector<int> the_configuration = sol->GetConfiguration();
@@ -28,8 +24,7 @@ OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol) : rand(
     {
         int current_value = the_configuration[indexes[i]];
         vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i],the_configuration);
-        srand(time(0));
-        random_shuffle (posible_values.begin(), posible_values.end());
+        Tools::shuffle(posible_values);
         //vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
         //if(p != posible_values.end())
         //    posible_values.erase(p); // BEST to do a swap with the first element
@@ -43,45 +38,16 @@ OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol) : rand(
             changes.push_back(next_change);
         }
     }
-    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new OneElementChangedBodyPackingStrategy(changes));
 }
 
-POSL_Iterator<vector<int>> * OneSortedChangeNeighborhood::getIterator()
-{
-    //shared_ptr<POSL_Iterator> iter = make_shared<OneElementChangedIterator>(this);
-    POSL_Iterator<vector<int>> * iter = new ElementsChangeIterator(this);
-    return iter;
-}
+FactoryPacker * OneSortedChangeNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-int OneSortedChangeNeighborhood::size()
-{
-    return changes.size();
-}
-
-vector<int> OneSortedChangeNeighborhood::operator[](int index)
-{
-    return applyChangeAt(index);
-}
+vector<int> OneSortedChangeNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
 
 vector<int> OneSortedChangeNeighborhood::applyChangeAt(int index)
 {
-    vector<int> conf = current_solution->GetConfiguration();
-    if(index >= size()) return conf;
-    conf[changes[index].pos] = changes[index].new_value;
-    return conf;
-}
-
-vector<int> OneSortedChangeNeighborhood::pack()
-{
-    return packing_strategy->pack();
-}
-
-int OneSortedChangeNeighborhood::bodySize()
-{
-    return packing_strategy->BodySize();
-}
-
-vector<int> OneSortedChangeNeighborhood::body()
-{
-    return packing_strategy->body();
+    if(index >= size()) return current_configuration;
+    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
+    configuration_changed[changes[index].pos] = changes[index].new_value;
+    return configuration_changed;
 }

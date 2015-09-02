@@ -45,6 +45,7 @@
 #include "testers/tester_comunication.h"
 #include "testers/tester_cost_of_solution_nqueens.h"
 #include "testers/tester_solver_n_queens.h"
+#include "testers/tester_from_pack_neighborhood.h"
 
 #include "solver/posl_meta_solver.h"
 
@@ -62,35 +63,39 @@ int main(int argc, char **argv)
     //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionNQueens(argc, argv));
-    //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
-    //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
-    //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
+    tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_MultiElementsChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
+    tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
+    tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
+    tests.push_back(new Tester_FromPackNeighborhood(argc, argv));
+    tests.push_back(new Tester_UnionOperator(argc, argv));
+
+    //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));    
     //tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
     /*
-    tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));    
-    tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
     tests.push_back(new Tester_FirstImprovementSelection(argc, argv));
     tests.push_back(new Tester_BestImprovementSelection(argc, argv));
     tests.push_back(new Tester_RhoOperator(argc, argv));
     //tests.push_back(new Tester_CyclicOperator(argc, argv));
     tests.push_back(new Tester_SetsIndexGenerator(argc, argv));
-    tests.push_back(new Tester_MultiElementsChangedNeighborhood(argc, argv));    
+
     tests.push_back(new Tester_ConditionalOperator(argc, argv));
     tests.push_back(new Tester_RandomSelection(argc, argv));
     tests.push_back(new Tester_SimulatedAnnealingDecition(argc, argv));
     tests.push_back(new Tester_BestImprovementTabuSelection(argc, argv));
-    tests.push_back(new Tester_RandomPermutationConfigurationGeneration(argc, argv));
-    tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
+    tests.push_back(new Tester_RandomPermutationConfigurationGeneration(argc, argv));    
     */
-    //tests.push_back(new Tester_PackingSolution(argc, argv));
-    //tests.push_back(new Tester_PackingDecisionPair(argc, argv));
-    //tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
-    //tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
-    //tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingSolution(argc, argv));
+    tests.push_back(new Tester_PackingDecisionPair(argc, argv));
+    tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
     //tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
 
 
-    //tests.push_back(new Tester_UnionOperator(argc, argv));
+
 
 
     tests.push_back(new Tester_Solver_Golfers(argc, argv));

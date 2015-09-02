@@ -21,4 +21,7 @@ class NeighborSelectingBestImprovementTabu
 
     private:
         TabuList * tabu_list;
+        Solution * current_solution;
+        POSL_Iterator<vector<int>> * it;
+        vector<int> best_found;
 };

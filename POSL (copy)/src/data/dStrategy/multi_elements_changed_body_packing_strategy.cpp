@@ -2,35 +2,44 @@
 
 #include <iostream>
 
+int bSize(vector<T_Nchanges> _changes);
+
 MultiElementsChangedBodyPackingStrategy::MultiElementsChangedBodyPackingStrategy(vector<T_Nchanges> _changes)
-    : changes(_changes)
+    : changes(_changes),
+      body_package(bSize( _changes))
 {}
 
-int MultiElementsChangedBodyPackingStrategy::bodySize()
+void MultiElementsChangedBodyPackingStrategy::update(vector<T_Nchanges> _changes)
+{
+    copy(_changes.begin(), _changes.end(), changes.begin());
+}
+
+int bSize(vector<T_Nchanges> _changes)
 {
     // Each change * (deg, pos and value)
     int degs = 0;
-    for(vector<T_Nchanges>::iterator it = changes.begin(); it != changes.end(); ++it)
+    for(vector<T_Nchanges>::iterator it = _changes.begin(); it != _changes.end(); ++it)
         degs = degs + (*it).dim * 2;
-    return degs + changes.size();
+    return degs + _changes.size();
 }
+
+int MultiElementsChangedBodyPackingStrategy::bodySize(){ return bSize(changes); }
 
 vector<int> MultiElementsChangedBodyPackingStrategy::packBody()
 {
-    vector<int> body(bodySize());
     int count = 0;
     int k = 0;
     for(vector<T_Nchanges>::iterator it = changes.begin(); it != changes.end(); ++it)
     {
         int deg = changes[k].dim;
-        body[count++] = deg;
+        body_package[count++] = deg;
         for(int i = 0; i < deg; i++)
         {
             int pos = (*it).positions[i];
             int value = (*it).new_values[i];
-            body[count++] = pos;
-            body[count++] = value;
+            body_package[count++] = pos;
+            body_package[count++] = value;
         }
     }
-    return body;
+    return body_package;
 }

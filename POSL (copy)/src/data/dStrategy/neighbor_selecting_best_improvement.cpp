@@ -5,29 +5,27 @@ NeighborSelectingBestImprovement::NeighborSelectingBestImprovement()
 
 DecisionPair * NeighborSelectingBestImprovement::select(PSP *psp, Neighborhood * V)
 {
-    Solution * current_solution = psp->GetCurrentSolution();
+    current_solution = psp->GetCurrentSolution();
     int current_cost = psp->CurrentCost();
 
-    POSL_Iterator<vector<int>> * it = V->getIterator();
+    it = V->getIterator();
 
-    Solution * best_found = current_solution;
+    best_found = current_solution->GetConfiguration();
     int best_found_cost = current_cost;
 
-    Solution * sol;
     it->Reset();
-
 
     while(it->SomeNext())
     {
         vector<int> config = it->GetNext();
-        sol = new Solution(psp->GetBenchmark()->Domains(), config);
-        int c = psp->GetBenchmark()->solutionCost(sol);
+        //sol_2_return->UpdateConfiguration(it->GetNext());
+        int c = psp->GetBenchmark()->solutionCost(config);
         if(c < best_found_cost)
         {
             best_found_cost = c;
-            best_found      = sol;
+            best_found      = config;
         }
     }
-    DecisionPair * p = new DecisionPair(current_solution, best_found);
-    return p;
+    //DecisionPair * p = new DecisionPair(current_solution, best_found);
+    return new DecisionPair(current_solution, new Solution(psp->GetBenchmark()->Domains(), best_found));
 }

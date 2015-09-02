@@ -23,7 +23,7 @@ class PSP
         void CountIteration();
         int GetPID();
         void connectWith(int pID);
-        void SendData(ComputationData *data);
+        void SendData(vector<int> data);
 
         int ARGC;
         char **ARGV;

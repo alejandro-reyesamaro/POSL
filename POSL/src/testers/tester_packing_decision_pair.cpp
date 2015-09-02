@@ -3,7 +3,7 @@
 #include "../solver/psp.h"
 #include "../data/decision_pair.h"
 #include "../tools/tools.h"
-#include "../data/dStrategy/decision_pair_packing_strategy.h"
+#include "../packing/packers/decision_pair_packer.h"
 
 #include <algorithm>
 
@@ -48,15 +48,17 @@ string Tester_PackingDecisionPair::test()
 
     Solution * sol_current = new Solution(psp->GetBenchmark()->Domains(), config1);
     Solution * sol_found = new Solution(psp->GetBenchmark()->Domains(), config2);
-    ComputationData * pair = new DecisionPair(sol_current, sol_found);
+    ComputationData * data = new DecisionPair(sol_current, sol_found);
+    DecisionPair * pair = dynamic_cast<DecisionPair *>(data);
 
     string current_str = sol_current->configurationToString();
     string found_str = sol_found->configurationToString();
-    vector<int> pack = pair->pack();
+    DecisionPairPacker * packer = new DecisionPairPacker(pair);
+    vector<int> pack = packer->pack();// pair->pack();
 
     int * buff = &pack[0];
 
-    DecisionPair * final = DecisionPairPackingStrategy::unpack(&pack[0], psp->GetBenchmark()->Domains());
+    DecisionPair * final = DecisionPairPacker::unpack(&pack[0], psp->GetBenchmark()->Domains());
     bool succ = final->GetCurrent()->equal(sol_current) && final->GetFound()->equal(sol_found);
 
     // | ID |

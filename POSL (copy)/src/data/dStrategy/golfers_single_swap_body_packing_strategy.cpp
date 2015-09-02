@@ -1,8 +1,17 @@
 #include "golfers_single_swap_body_packing_strategy.h"
+#include <algorithm>
 
 GolfersSingleSwapBodyPackingStrategy::GolfersSingleSwapBodyPackingStrategy(vector<T_SwapChanges> _changes, vector<int> _configuration)
-    : changes(_changes), configuration(_configuration)
+    : changes(_changes),
+      configuration(_configuration),
+      body(_changes.size() * 5)
 {}
+
+void GolfersSingleSwapBodyPackingStrategy::update(vector<T_SwapChanges> _changes, vector<int> _configuration)
+{
+    copy(_changes.begin(), _changes.end(), changes.begin());
+    copy(_configuration.begin(), _configuration.end(), configuration.begin());
+}
 
 int GolfersSingleSwapBodyPackingStrategy::bodySize()
 {
@@ -12,7 +21,6 @@ int GolfersSingleSwapBodyPackingStrategy::bodySize()
 
 vector<int> GolfersSingleSwapBodyPackingStrategy::packBody()
 {
-    vector<int> body(bodySize());
     int count = 0;
     for(vector<T_SwapChanges>::iterator it = changes.begin(); it != changes.end(); ++it)
     {

@@ -2,7 +2,7 @@
 #include "../data/solution.h"
 #include "../solver/psp.h"
 #include "../tools/tools.h"
-#include "../data/dStrategy/solution_packing_strategy.h"
+#include "../packing/packers/solution_packer.h"
 
 #include <algorithm>
 
@@ -33,9 +33,10 @@ string Tester_PackingSolution::test()
 
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
     string conf_str = sol->configurationToString();
-    vector<int> pack = sol->pack();
+    SolutionPacker * p = new SolutionPacker(sol);
+    vector<int> pack = p->pack();
 
-    Solution * final = SolutionPackingStrategy::unpack(&pack[0], psp->GetBenchmark()->Domains());
+    Solution * final = SolutionPacker::unpack(&pack[0], psp->GetBenchmark()->Domains());
     bool succ = final->equal(sol);
 
     // | ID |

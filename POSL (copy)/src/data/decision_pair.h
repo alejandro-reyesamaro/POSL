@@ -33,14 +33,16 @@ class DecisionPair : public ComputationData//, public Packable
         bool equals();
 
         //! From Packable
-        vector<int> pack();
-        int bodySize();
-        vector<int> body();
+        //vector<int> pack();
+        //int bodySize();
+        //vector<int> body();
 
         //! Returns the current solution
         Solution * GetCurrent();
         //! Returns the new found solution
         Solution * GetFound();
+
+        void update(Solution * _current, Solution * _found);
 
     private :
         //! Current solution
@@ -48,6 +50,6 @@ class DecisionPair : public ComputationData//, public Packable
         //! New found solution
         Solution * found;
         //! Packing strategy
-        PackingStrategy * packing_strategy;
+        //PackingStrategy * packing_strategy;
 
 };

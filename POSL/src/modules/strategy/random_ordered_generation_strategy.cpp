@@ -3,10 +3,12 @@
 
 #include <algorithm>
 
-RandomOrderedGenerationStrategy::RandomOrderedGenerationStrategy() : rand()
+RandomOrderedGenerationStrategy::RandomOrderedGenerationStrategy(int configuration_size)
+    : config(configuration_size),
+      rand()
 {}
 
-void RandomOrderedGenerationStrategy::place (int a, int b, int pos_1, int pos_2, vector<int> & config)
+void RandomOrderedGenerationStrategy::place (int a, int b, int pos_1, int pos_2)
 {
     if(pos_1 > pos_2) return;
     if(pos_1 == pos_2)
@@ -23,13 +25,13 @@ void RandomOrderedGenerationStrategy::place (int a, int b, int pos_1, int pos_2,
     }
 }
 
-Solution * RandomOrderedGenerationStrategy::generate(int size, int max)
+vector<int> * RandomOrderedGenerationStrategy::generate(int max)
 {
-    vector<int> config(size);
+    int size = config.size();
     switch (size)
     {
         case 0:
-            throw "(POSL Exception) Bad generation parameters";
+            throw "(POSL Exception) Bad generation parameters (RandomOrderedGenerationStrategy::generate)";
         break;
         case 1:
             config[0] = 0;
@@ -45,10 +47,5 @@ Solution * RandomOrderedGenerationStrategy::generate(int size, int max)
             place(max/2+1, max-1, size/2+1, size-2, config);
             break;
     }
-
-    FactoryDomain * fd_integers = new Factory_NIntDomain(0, max);
-    Domain D(fd_integers);
-    vector<Domain> domains (size, D);
-    Solution * new_solution = new Solution(domains, config);
-    return new_solution;
+    return config;
 }

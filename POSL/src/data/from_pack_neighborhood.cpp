@@ -1,30 +1,16 @@
 #include "from_pack_neighborhood.h"
-#include "dStrategy/neighborhood_packing_strategy.h"
-#include "dStrategy/multi_elements_changed_body_packing_strategy.h"
-#include "dStrategy/elements_change_iterator.h"
 
 #include <algorithm>
 
-FromPackNeighborhood::FromPackNeighborhood(int * pack)//(int pack_size, int * pack)
-{
-    //int count = 0;
-    // ID
-    //int id = *pack;
-    pack ++;
-    // CONF_SIZE
-    int conf_size = * pack;
-    pack++;
-    // CONFIGURATION
-    for(int i = 0; i < conf_size; i++)
-    {
-        configuration.push_back(*pack);
-        pack++;
-    }
-    // N_SIZE
+vector<int> InitConfiguration(int * pack);
+
+FromPackNeighborhood::FromPackNeighborhood(int * pack)
+    : Neighborhood(InitConfiguration(pack))
+{    
+    int conf_size = pack[1];
+    pack+= conf_size + 2;
     int n_size = *pack;
     pack++;
-
-    //count = conf_size + 3;
 
     for(int i = 0; i < n_size; i++)
     {
@@ -42,46 +28,24 @@ FromPackNeighborhood::FromPackNeighborhood(int * pack)//(int pack_size, int * pa
         T_Nchanges next_changes = {new_indexes, new_values, deg};
         changes.push_back(next_changes);
     }
-    packing_strategy = new NeighborhoodPackingStrategy(configuration, size(), new MultiElementsChangedBodyPackingStrategy(changes));
 }
 
-POSL_Iterator<vector<int>> * FromPackNeighborhood::getIterator()
+vector<int> InitConfiguration(int * pack)
 {
-    POSL_Iterator<vector<int>> * iter = new ElementsChangeIterator(this);
-    return iter;
-}
-
-int FromPackNeighborhood::size()
-{
-    return changes.size();
-}
-
-vector<int> FromPackNeighborhood::operator[](int index)
-{
-    return applyChangeAt(index);
-}
-
-vector<int> FromPackNeighborhood::applyChangeAt(int index)
-{
-    if(index >= size()) return configuration;
-    vector<int> conf(configuration.size());
-    copy(configuration.begin(), configuration.end(), conf.begin());
-    for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
-        conf[changes[index].positions[i]] = changes[index].new_values[i];
+    vector<int> conf(pack[1]);
+    copy(&pack[2], &pack[2] + pack[1], conf.begin());
     return conf;
 }
 
-vector<int> FromPackNeighborhood::pack()
-{
-    return packing_strategy->pack();
-}
+FactoryPacker * FromPackNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-int FromPackNeighborhood::bodySize()
-{
-    return packing_strategy->BodySize();
-}
+vector<int> FromPackNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
 
-vector<int> FromPackNeighborhood::body()
+vector<int> FromPackNeighborhood::applyChangeAt(int index)
 {
-    return packing_strategy->body();
+    if(index >= size()) return current_configuration;
+    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
+    for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
+        configuration_changed[changes[index].positions[i]] = changes[index].new_values[i];
+    return configuration_changed;
 }

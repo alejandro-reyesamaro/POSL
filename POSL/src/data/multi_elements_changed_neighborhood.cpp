@@ -1,8 +1,6 @@
 #include "multi_elements_changed_neighborhood.h"
-#include "dStrategy/elements_change_iterator.h"
 #include "../tools/rand_index_generator.h"
-#include "dStrategy/neighborhood_packing_strategy.h"
-#include "dStrategy/multi_elements_changed_body_packing_strategy.h"
+#include "../packing/factory/factory_multi_changes_neighborhood_packer.h"
 
 #include <algorithm>
 #include <iostream>
@@ -11,9 +9,10 @@
 #define N_NEIGHBORS 10
 #define PRC_CHANGES 0.5
 
-MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol) : rand()
+MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol)
+    : Neighborhood(sol->GetConfiguration()),
+      rand()
 {
-    current_solution = sol;
     int n = sol->GetConfiguration().size();
     int ch = N_NEIGHBORS; // to chahge ch elements
     //int N = PRC_CHANGES * n;  // to have N chahges
@@ -42,7 +41,6 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
                 posible_values.erase(p); // BEST to do a swap with the first element
 
             pos_new_value = rand.NextInt(0, posible_values.size()-1);
-
             new_values.push_back(posible_values[pos_new_value]);
         }
 
@@ -51,45 +49,22 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
         T_Nchanges next_changes = {new_indexes, new_values, new_values.size()};
         changes.push_back(next_changes);
     }
-    packing_strategy = new NeighborhoodPackingStrategy(sol->GetConfiguration(), size(), new MultiElementsChangedBodyPackingStrategy(changes));
 }
 
-POSL_Iterator<vector<int>> * MultiElementsChangedNeighborhood::getIterator()
+
+
+FactoryPacker * MultiElementsChangedNeighborhood::BuildPacker()
 {
-    POSL_Iterator<vector<int>> * iter = new ElementsChangeIterator(this);
-    return iter;
+    return new FactoryMultiChangesNeighborhoodPacker(current_configuration, size(), changes);
 }
 
-int MultiElementsChangedNeighborhood::size()
-{
-    return changes.size();
-}
-
-vector<int> MultiElementsChangedNeighborhood::operator[](int index)
-{
-    return applyChangeAt(index);
-}
+vector<int> MultiElementsChangedNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
 
 vector<int> MultiElementsChangedNeighborhood::applyChangeAt(int index)
 {
-    vector<int> conf = current_solution->GetConfiguration();
-    if(index >= size()) return conf;
+    if(index >= size()) return current_configuration;
+    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
     for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
-        conf[changes[index].positions[i]] = changes[index].new_values[i];
-    return conf;
-}
-
-vector<int> MultiElementsChangedNeighborhood::pack()
-{
-    return packing_strategy->pack();
-}
-
-int MultiElementsChangedNeighborhood::bodySize()
-{
-    return packing_strategy->BodySize();
-}
-
-vector<int> MultiElementsChangedNeighborhood::body()
-{
-    return packing_strategy->body();
+        configuration_changed[changes[index].positions[i]] = changes[index].new_values[i];
+    return configuration_changed;
 }

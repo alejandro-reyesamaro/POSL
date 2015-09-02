@@ -1,6 +1,6 @@
 #include "comunicator.h"
-#include "../data/dStrategy/packable.h"
-#include "../data/decision_pair.h"
+//#include "../data/dStrategy/packable.h"
+//#include "../data/decision_pair.h"
 #include "mpi.h"
 
 #include <iostream>
@@ -10,9 +10,8 @@ Comunicator::Comunicator()
     : request(MPI_REQUEST_NULL)
 {}
 
-void Comunicator::sendMessage(ComputationData * data, int procID)
+void Comunicator::sendMessage(vector<int> package, int procID)
 {
-    vector<int> package = data->pack();
     int tag = package[0];
     int pack_size = package.size();
     int * buffer = &package[0];

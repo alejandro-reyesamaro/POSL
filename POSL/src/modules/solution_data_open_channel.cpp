@@ -1,7 +1,5 @@
 #include "solution_data_open_channel.h"
-#include "../data/dStrategy/solution_packing_strategy.h"
-
-#include "mpi.h"
+#include "../packing/packers/solution_packer.h"
 
 SolutionDataOpenChannel::SolutionDataOpenChannel()
 {
@@ -14,8 +12,6 @@ int SolutionDataOpenChannel::dataTag()
 
 ComputationData * SolutionDataOpenChannel::unpackMessage(int * buffer, PSP * psp)
 {
-    Solution * rSol = SolutionPackingStrategy::unpack(buffer, psp->GetBenchmark()->Domains());
+    Solution * rSol = SolutionPacker::unpack(buffer, psp->GetBenchmark()->Domains());
     return rSol;
 }
-
-

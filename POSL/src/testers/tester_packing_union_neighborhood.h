@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include "tester.h"
 
@@ -8,3 +8,4 @@ class Tester_PackingUnionNeighborhood : public Tester
         Tester_PackingUnionNeighborhood(int argc, char *argv[]);
         string test();
 };
+*/

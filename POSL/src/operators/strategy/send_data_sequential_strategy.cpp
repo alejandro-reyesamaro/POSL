@@ -12,6 +12,7 @@ SendDataSequentialStrategy::SendDataSequentialStrategy(CompoundModule * _M1) : M
 ComputationData * SendDataSequentialStrategy::evaluate(PSP * psp, ComputationData * input)
 {
     ComputationData * output = M1->execute(psp, input);
-    psp->SendData(output);
+    FactoryPacker * packer = output->BuildPacker();
+    psp->SendData(packer->pack());
     return output;
 }

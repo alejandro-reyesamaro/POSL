@@ -2,30 +2,34 @@
 
 #include <algorithm>
 
+int bSize(int conf_size, int package_size);
+
 NeighborhoodPackingFromPackStrategy::NeighborhoodPackingFromPackStrategy(int pack_size, int * _pack)
-    :package(pack_size)
+    : package(pack_size),
+      body_package(bSize(_pack[1], pack_size))
+{
+    update(pack_size, _pack);
+}
+
+void NeighborhoodPackingFromPackStrategy::update(int pack_size, int * _pack)
 {
     copy(_pack, _pack + pack_size, package.begin());
-    //for(int i = 0; i < pack_size; i++) package.push_back(_pack++);
 }
 
-vector<int> NeighborhoodPackingFromPackStrategy::pack()
+int bSize(int conf_size, int package_size)
 {
-    return package;
-}
-
-int NeighborhoodPackingFromPackStrategy::BodySize()
-{
-    int conf_size = package[1];
     int head_size = 3 + conf_size;
-    return package.size() - head_size;
+    return package_size - head_size;
 }
+
+vector<int> NeighborhoodPackingFromPackStrategy::pack(){ return package; }
+
+int NeighborhoodPackingFromPackStrategy::BodySize(){ return bSize(package[1], package.size()); }
 
 vector<int> NeighborhoodPackingFromPackStrategy::body()
 {
     int conf_size = package[1];
-    int head_size = 3 + conf_size;
-    vector<int> body (BodySize());
-    copy(package.begin() + head_size, package.end(), body.begin());
-    return body;
+    int head_size = 3 + conf_size;    
+    copy(package.begin() + head_size, package.end(), body_package.begin());
+    return body_package;
 }

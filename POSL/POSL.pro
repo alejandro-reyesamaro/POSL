@@ -19,6 +19,7 @@ SOURCES += src/main.cpp \
     src/benchmarks/golfers.cpp \
     src/benchmarks/squaring_square.cpp \
     src/benchmarks/golomb_ruler.cpp \
+    src/benchmarks/n_queens.cpp \
     src/data/domain.cpp \
     src/data/dStrategy/factory_n_int_domain.cpp \
     src/data/node.cpp \
@@ -33,13 +34,6 @@ SOURCES += src/main.cpp \
     src/data/union_neighborhood.cpp \
     src/data/dStrategy/union_iterator.cpp \
     src/data/golfers_single_swap_neighborhood.cpp \
-    src/data/dStrategy/decision_pair_packing_strategy.cpp \
-    src/data/dStrategy/solution_packing_strategy.cpp \
-    src/data/dStrategy/neighborhood_packing_strategy.cpp \
-    src/data/dStrategy/one_element_changed_body_packing_strategy.cpp \
-    src/data/dStrategy/multi_elements_changed_body_packing_strategy.cpp \
-    src/data/dStrategy/golfers_single_swap_body_packing_strategy.cpp \
-    src/data/dStrategy/neighborhood_packing_from_pack_strategy.cpp \
     src/data/from_pack_neighborhood.cpp \
     src/data/dStrategy/neighbor_selecting_best_improvement_tabu.cpp \
     src/data/dStrategy/neighbor_selecting_best_improvement.cpp \
@@ -48,7 +42,7 @@ SOURCES += src/main.cpp \
     src/data/computation_data.cpp \
     src/data/one_sorted_change_neighborhood.cpp \
     src/data/multi_sorted_changes_neighborhood.cpp \
-    src/data/dStrategy/union_body_packing_strategy.cpp \
+    src/data/one_permutation_neighborhood.cpp \
     src/modules/om_random_conf_generation.cpp \
     src/modules/om_one_element_changed_neighborhood.cpp \
     src/modules/om_first_improvement_selection.cpp \
@@ -79,15 +73,20 @@ SOURCES += src/main.cpp \
     src/modules/oms_time_counter.cpp \
     src/modules/oms_iterations_counter.cpp \        
     src/modules/strategy/random_configuration_generation_strategy.cpp \
+    src/modules/strategy/random_permutation_by_blocks_generation_strategy.cpp \    
+    src/modules/strategy/random_ordered_generation_strategy.cpp \
+    src/modules/om_random_permutation_generation.cpp \
+    src/modules/strategy/random_permutation_configuration_strategy.cpp \
+    src/modules/om_one_permutation_neighborhood.cpp \
     src/computation/factory_computation_strategy_ra001.cpp \
     src/computation/factory_computation_strategy_sa001.cpp \
     src/computation/computation_strategy.cpp \
     src/computation/factory_computation_strategy_a001.cpp \
     src/computation/factory_computation_strategy_a002.cpp \
     src/computation/factory_computation_strategy_trivial.cpp \
-    src/modules/strategy/random_permutation_by_blocks_generation_strategy.cpp \
     src/computation/flag_computation.cpp \
-    src/modules/strategy/random_ordered_generation_strategy.cpp \
+    src/computation/factory_computation_strategy_sa002.cpp \
+    src/computation/factory_computation_strategy_ra002.cpp \
     src/testers/tester_random_configuration_generation.cpp \
     src/testers/tester_florian_random_configuration_generation.cpp \
     src/testers/tester_one_element_changed_neighborhood.cpp \
@@ -122,6 +121,9 @@ SOURCES += src/main.cpp \
     src/testers/tester_solver_squaring_square.cpp \
     src/testers/tester_multi_sorted_changes_neighborhood.cpp \
     src/testers/tester_one_sorted_change_neighborhood.cpp \
+    src/testers/tester_comunication.cpp \
+    src/testers/tester_solver_n_queens.cpp \
+    src/testers/tester_cost_of_solution_nqueens.cpp \
     src/operators/binary_operator.cpp \
     src/operators/unary_operator.cpp \
     src/operators/rho_operator.cpp \    
@@ -147,6 +149,8 @@ SOURCES += src/main.cpp \
     src/operators/strategy/union_sequential_strategy.cpp \
     src/operators/strategy/cyclic_sequential_strategy.cpp \
     src/operators/strategy/rho_sequential_strategy.cpp \
+    src/operators/florian_operator.cpp \
+    src/operators/strategy/florian_sequential_strategy.cpp \
     src/expressions/iteretion_bound_expression.cpp \
     src/expressions/boolean_expression.cpp \
     src/expressions/loop_bound_expression.cpp \
@@ -169,6 +173,19 @@ SOURCES += src/main.cpp \
     src/packing/uncode_conditional_operator_strategy.cpp \
     src/packing/uncode_binary_operator_strategy.cpp \
     src/packing/uncode_rho_operator_strategy.cpp \
+    src/packing/packers/decision_pair_packer.cpp \
+    src/packing/packers/golfers_single_swap_packer.cpp \
+    src/packing/packers/neighborhood_packer.cpp \
+    src/packing/packers/multi_changes_neighborhood_packer.cpp \
+    src/packing/packers/one_change_neighborhood_packer.cpp \
+    src/packing/packers/solution_packer.cpp \
+    src/packing/factory/factory_packer.cpp \
+    src/packing/factory/factory_solution_packer.cpp \
+    src/packing/factory/factory_decision_pair_packer.cpp \
+    src/packing/factory/factory_one_change_neighborhood_packer.cpp \
+    src/packing/factory/factory_multi_changes_neighborhood_packer.cpp \
+    src/packing/factory/factory_golfers_single_swap_neighborhood_packer.cpp \
+    src/packing/packers/packer.cpp \
     src/solver/posl_solver.cpp \
     src/solver/for_golfers_css.cpp \
     src/solver/for_squaring_square_css.cpp \
@@ -176,19 +193,8 @@ SOURCES += src/main.cpp \
     src/solver/posl_meta_solver.cpp \
     src/solver/psp.cpp \
     src/solver/comunicator.cpp \
-    src/testers/tester_comunication.cpp \
-    src/computation/factory_computation_strategy_sa002.cpp \
-    src/computation/factory_computation_strategy_ra002.cpp \
-    src/operators/florian_operator.cpp \
-    src/operators/strategy/florian_sequential_strategy.cpp \
-    src/benchmarks/n_queens.cpp \
-    src/testers/tester_cost_of_solution_nqueens.cpp \
     src/solver/for_n_queens_css.cpp \
-    src/testers/tester_solver_n_queens.cpp \
-    src/modules/om_random_permutation_generation.cpp \
-    src/modules/strategy/random_permutation_configuration_strategy.cpp \
-    src/modules/om_one_permutation_neighborhood.cpp \
-    src/data/one_permutation_neighborhood.cpp
+    src/testers/tester_from_pack_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -226,6 +232,12 @@ HEADERS += \
     src/modules/solution_data_open_channel.h \
     src/modules/decision_pair_data_open_channel.h \
     src/modules/neighborhood_data_open_channel.h \
+    src/modules/strategy/random_ordered_generation_strategy.h \
+    src/modules/strategy/random_configuration_generation_strategy.h \
+    src/modules/strategy/random_permutation_by_blocks_generation_strategy.h \
+    src/modules/om_random_permutation_generation.h \
+    src/modules/strategy/random_permutation_configuration_strategy.h \
+    src/modules/om_one_permutation_neighborhood.h \
     src/data/domain.h \
     src/data/dStrategy/factory_domain.h \
     src/data/dStrategy/factory_n_int_domain.h \
@@ -242,16 +254,6 @@ HEADERS += \
     src/data/dStrategy/union_iterator.h \
     src/data/dStrategy/elements_change_iterator.h \
     src/data/multi_elements_changed_neighborhood.h \
-    src/data/dStrategy/packable.h \
-    src/data/dStrategy/packing_strategy.h \
-    src/data/dStrategy/decision_pair_packing_strategy.h \
-    src/data/dStrategy/solution_packing_strategy.h \
-    src/data/dStrategy/neighborhood_packing_strategy.h \
-    src/data/dStrategy/neighborhood_body_packing_strategy.h \
-    src/data/dStrategy/one_element_changed_body_packing_strategy.h \
-    src/data/dStrategy/multi_elements_changed_body_packing_strategy.h \
-    src/data/dStrategy/golfers_single_swap_body_packing_strategy.h \
-    src/data/dStrategy/union_body_packing_strategy.h \
     src/data/multi_sorted_changes_neighborhood.h \
     src/data/one_sorted_change_neighborhood.h \
     src/data/t_change.h \
@@ -260,13 +262,14 @@ HEADERS += \
     src/data/dStrategy/neighbor_selecting_first_improvement.h \
     src/data/dStrategy/neighbor_selecting_random.h \
     src/data/golfers_single_swap_neighborhood.h \
-    src/data/dStrategy/neighborhood_packing_from_pack_strategy.h \
     src/data/t_nchanges.h \
     src/data/from_pack_neighborhood.h \
+    src/data/one_permutation_neighborhood.h \
     src/benchmarks/benchmark.h \
     src/benchmarks/golfers.h \
     src/benchmarks/squaring_square.h \
     src/benchmarks/golomb_ruler.h \
+    src/benchmarks/n_queens.h \
     src/operators/operator.h \
     src/operators/binary_operator.h \
     src/operators/sequential_exec_operator.h \
@@ -295,17 +298,20 @@ HEADERS += \
     src/operators/strategy/union_parallel_strategy.h \
     src/operators/strategy/speed_parallel_strategy.h \
     src/operators/strategy/speed_sequential_strategy.h \
+    src/operators/florian_operator.h \
+    src/operators/strategy/florian_sequential_strategy.h \
     src/computation/computation_strategy.h \
     src/computation/factory_computation_strategy.h \
     src/computation/factory_computation_strategy_a001.h \
     src/computation/factory_computation_strategy_a002.h \
     src/computation/factory_computation_strategy_trivial.h \
-    src/modules/strategy/random_configuration_generation_strategy.h \
     src/computation/factory_computation_strategy_sa001.h \
     src/computation/factory_computation_strategy_ra001.h \
-    src/modules/strategy/random_permutation_by_blocks_generation_strategy.h \
+    src/computation/factory_computation_strategy_sa001.h \
+    src/computation/factory_computation_strategy_ra001.h \
     src/computation/flag_computation.h \
-    src/modules/strategy/random_ordered_generation_strategy.h \
+    src/computation/factory_computation_strategy_sa002.h \
+    src/computation/factory_computation_strategy_ra002.h \
     src/testers/tester.h \
     src/testers/tester_random_configuration_generation.h \
     src/testers/tester_florian_random_configuration_generation.h \
@@ -340,6 +346,9 @@ HEADERS += \
     src/testers/tester_random_ordered_confgeneration.h \
     src/testers/tester_one_sorted_change_neighborhood.h \
     src/testers/tester_speed_operator.h \
+    src/testers/tester_cost_of_solution_nqueens.h \
+    src/testers/tester_solver_n_queens.h \
+    src/testers/tester_comunication.h \
     src/tools/tools.h \
     src/tools/rand_index_generator.h \
     src/tools/randomizer.h \
@@ -363,6 +372,19 @@ HEADERS += \
     src/packing/uncode_conditional_operator_strategy.h \
     src/packing/uncode_binary_operator_strategy.h \
     src/packing/uncode_rho_operator_strategy.h \
+    src/packing/packers/packer.h \
+    src/packing/packers/decision_pair_packer.h \
+    src/packing/packers/golfers_single_swap_packer.h \
+    src/packing/packers/neighborhood_packer.h \
+    src/packing/packers/multi_changes_neighborhood_packer.h \
+    src/packing/packers/one_change_neighborhood_packer.h \
+    src/packing/packers/solution_packer.h \
+    src/packing/factory/factory_packer.h \
+    src/packing/factory/factory_solution_packer.h \
+    src/packing/factory/factory_decision_pair_packer.h \
+    src/packing/factory/factory_one_change_neighborhood_packer.h \
+    src/packing/factory/factory_multi_changes_neighborhood_packer.h \
+    src/packing/factory/factory_golfers_single_swap_neighborhood_packer.h \
     src/solver/psp.h \
     src/solver/posl_solver.h \
     src/solver/create_solver_strategy.h \
@@ -371,19 +393,8 @@ HEADERS += \
     src/solver/for_golomb_ruler_css.h \
     src/solver/posl_meta_solver.h \
     src/solver/comunicator.h \
-    src/testers/tester_comunication.h \
-    src/computation/factory_computation_strategy_sa002.h \
-    src/computation/factory_computation_strategy_ra002.h \
-    src/operators/florian_operator.h \
-    src/operators/strategy/florian_sequential_strategy.h \
-    src/benchmarks/n_queens.h \
-    src/testers/tester_cost_of_solution_nqueens.h \
-    src/solver/for_n_queens_css.h \
-    src/testers/tester_solver_n_queens.h \
-    src/modules/om_random_permutation_generation.h \
-    src/modules/strategy/random_permutation_configuration_strategy.h \
-    src/modules/om_one_permutation_neighborhood.h \
-    src/data/one_permutation_neighborhood.h
+    src/solver/for_n_queens_css.h \ 
+    src/testers/tester_from_pack_neighborhood.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

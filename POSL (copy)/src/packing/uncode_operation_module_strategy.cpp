@@ -3,7 +3,6 @@
 
 #include "../modules/om_fixed_first_configuration.h"
 #include "../modules/om_random_conf_generation.h"
-#include "../modules/om_florian_random_conf_generation.h"
 #include "../modules/om_random_conf_permutation_by_blocks_generation.h"
 #include "../modules/om_random_conf_ordered_generation.h"
 

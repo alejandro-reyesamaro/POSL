@@ -43,6 +43,8 @@
 #include "solver/for_squaring_square_css.h"
 #include "solver/for_golomb_ruler_css.h"
 #include "testers/tester_comunication.h"
+#include "testers/tester_cost_of_solution_nqueens.h"
+#include "testers/tester_solver_n_queens.h"
 
 #include "solver/posl_meta_solver.h"
 
@@ -59,10 +61,11 @@ int main(int argc, char **argv)
     //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
+    //tests.push_back(new Tester_CostOfSolutionNQueens(argc, argv));
     //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));
     //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
     //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
-    tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
+    //tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
     /*
     tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));    
     tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
@@ -80,19 +83,20 @@ int main(int argc, char **argv)
     tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
     */
     //tests.push_back(new Tester_PackingSolution(argc, argv));
-    //tests.push_back(new Tester_PackingDecisionPair(argc, argv));
-    //tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
-    //tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
-    //tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
-    //tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingDecisionPair(argc, argv));
+    tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
+    tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
 
 
     //tests.push_back(new Tester_UnionOperator(argc, argv));
 
 
-    //tests.push_back(new Tester_Solver_Golfers(argc, argv));
-    //tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
-    //tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
+    tests.push_back(new Tester_Solver_Golfers(argc, argv));
+    tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
+    tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
+    tests.push_back(new Tester_SolverNQueens(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)

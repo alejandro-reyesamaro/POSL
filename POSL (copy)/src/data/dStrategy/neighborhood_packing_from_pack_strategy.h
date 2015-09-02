@@ -11,5 +11,8 @@ class NeighborhoodPackingFromPackStrategy : public PackingStrategy
         vector<int> body();
 
     private:
+        void update(int pack_size, int * _pack);
+
         vector<int> package;
+        vector<int> body_package;
 };

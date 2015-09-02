@@ -19,9 +19,11 @@ using namespace std;
  */
 class ComputationData
 {
+    /*
     public:
         //virtual ~ComputationData(){}
         virtual vector<int> pack() = 0;
         virtual int bodySize() = 0;
         virtual vector<int> body() = 0;
+        */
 };

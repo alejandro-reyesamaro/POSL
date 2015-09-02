@@ -5,7 +5,7 @@ UnionIterator::UnionIterator(UnionNeighborhood * _n) : neighborhood(_n), current
 
 vector<int> UnionIterator::GetNext()
 {
-    return neighborhood->operator [](current ++);
+    return neighborhood->neighborAt(current ++);
 }
 
 bool UnionIterator::SomeNext()

@@ -50,7 +50,6 @@ SOURCES += src/main.cpp \
     src/data/multi_sorted_changes_neighborhood.cpp \
     src/data/dStrategy/union_body_packing_strategy.cpp \
     src/modules/om_random_conf_generation.cpp \
-    src/modules/om_florian_random_conf_generation.cpp \
     src/modules/om_one_element_changed_neighborhood.cpp \
     src/modules/om_first_improvement_selection.cpp \
     src/modules/om_best_improvement_selection.cpp \
@@ -181,7 +180,16 @@ SOURCES += src/main.cpp \
     src/computation/factory_computation_strategy_sa002.cpp \
     src/computation/factory_computation_strategy_ra002.cpp \
     src/operators/florian_operator.cpp \
-    src/operators/strategy/florian_sequential_strategy.cpp
+    src/operators/strategy/florian_sequential_strategy.cpp \
+    src/benchmarks/n_queens.cpp \
+    src/testers/tester_cost_of_solution_nqueens.cpp \
+    src/solver/for_n_queens_css.cpp \
+    src/testers/tester_solver_n_queens.cpp \
+    src/modules/om_random_permutation_generation.cpp \
+    src/modules/strategy/random_permutation_configuration_strategy.cpp \
+    src/modules/om_one_permutation_neighborhood.cpp \
+    src/data/one_permutation_neighborhood.cpp \
+    src/packing/decision_pair_packer.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -192,7 +200,6 @@ HEADERS += \
     src/modules/data_open_channel.h \
     src/modules/object_open_channel.h \
     src/modules/om_random_conf_generation.h \
-    src/modules/om_florian_random_conf_generation.h \
     src/modules/om_one_element_changed_neighborhood.h \
     src/modules/om_first_improvement_selection.h \
     src/modules/om_best_improvement_selection.h \
@@ -369,7 +376,17 @@ HEADERS += \
     src/computation/factory_computation_strategy_sa002.h \
     src/computation/factory_computation_strategy_ra002.h \
     src/operators/florian_operator.h \
-    src/operators/strategy/florian_sequential_strategy.h
+    src/operators/strategy/florian_sequential_strategy.h \
+    src/benchmarks/n_queens.h \
+    src/testers/tester_cost_of_solution_nqueens.h \
+    src/solver/for_n_queens_css.h \
+    src/testers/tester_solver_n_queens.h \
+    src/modules/om_random_permutation_generation.h \
+    src/modules/strategy/random_permutation_configuration_strategy.h \
+    src/modules/om_one_permutation_neighborhood.h \
+    src/data/one_permutation_neighborhood.h \
+    src/packing/packer.h \
+    src/packing/decision_pair_packer.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

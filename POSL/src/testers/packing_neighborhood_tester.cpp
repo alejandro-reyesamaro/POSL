@@ -1,7 +1,7 @@
 #include "packing_neighborhood_tester.h"
 #include "../data/neighborhood.h"
-#include "../data/dStrategy/neighborhood_packing_strategy.h"
 #include "../tools/tools.h"
+#include "../packing/packers/neighborhood_packer.h"
 
 #include <algorithm>
 #include <iostream>
@@ -17,7 +17,7 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
     neighbors->Reset();
     string sol_str = sol->configurationToString();
 
-    Neighborhood * final = NeighborhoodPackingStrategy::unpack(&pack[0]);
+    Neighborhood * final = NeighborhoodPacker::unpack(&pack[0]);
     bool succ = final->size() != 0; // No me gusta :/
 
     // | ID |

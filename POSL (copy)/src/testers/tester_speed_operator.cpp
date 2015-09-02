@@ -2,7 +2,6 @@
 #include "../data/solution.h"
 #include "../modules/operation_module.h"
 #include "../modules/om_fixed_first_configuration.h"
-#include "../modules/om_florian_random_conf_generation.h"
 #include "../operators/speed_operator.h"
 #include "../modules/grouped_parallel_computation.h"
 #include "../data/multi_elements_changed_neighborhood.h"

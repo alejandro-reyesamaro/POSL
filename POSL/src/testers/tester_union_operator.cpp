@@ -18,7 +18,7 @@ Tester_UnionOperator::Tester_UnionOperator(int argc, char *argv[])
 
 string Tester_UnionOperator::testeInMode(Computation comp)
 {
-    /*
+
     Benchmark * bench = new Golfers(4,4,2);
     vector<int> config(
     {
@@ -32,16 +32,16 @@ string Tester_UnionOperator::testeInMode(Computation comp)
         1,  1,  1,  1,
         1,  1,  1,  1
     });
-    */
 
-    Benchmark * bench = new GolombRuler(12, 85);
-    vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
+
+    //Benchmark * bench = new GolombRuler(12, 85);
+    //vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
     PSP * psp = new PSP(ARGC, ARGV, bench);
     Solution * sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
-    OperationModule * m1 = new OM_MultiSortedChangesNeighborhood();
-    OperationModule * m2 = new OM_OneSortedChangeNeighborhood();
+    OperationModule * m1 = new OM_MultiElementsChangedNeighborhood();
+    OperationModule * m2 = new OM_OneElementChangedNeighborhood();
 
     Operator * op = new UnionOperator(m1, m2);
 
@@ -54,29 +54,19 @@ string Tester_UnionOperator::testeInMode(Computation comp)
     POSL_Iterator<vector<int>> * it = V ->getIterator();
     it->Reset();
     int changes = 0;
-    int sum  = 0;
-    int prod = 1;
-    int count = 0;
     bool the_changes = true;
 
     while(it->SomeNext())
     {
         vector<int> neighbor = it->GetNext();
-        cout << "[ ";
+        //cout << "[ ";
         for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)
         {
             if(*j != 1) changes ++;
-            sum  += *j;
-            prod *= *j;
-            cout << *j << " ";
+            //cout << *j << " ";
         }
-        cout << "]" << endl;
-        if(count ++ < 10)
-            the_changes = the_changes && (changes == 5);
-        else
-            the_changes = the_changes && (prod == sum - 31);
-        sum  = 0;
-        prod = 1;
+        //cout << "]" << endl;
+        the_changes = the_changes && (changes == 5 || changes == 1);
         changes = 0;
     }
     string mode_str = (comp == SEQ) ? "Operator_Union (Sequential)" : "Operator_Union (Parallel)";

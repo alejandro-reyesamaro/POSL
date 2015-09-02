@@ -1,42 +1,23 @@
 #include "decision_pair.h"
-#include "dStrategy/decision_pair_packing_strategy.h"
+#include "../packing/factory/factory_decision_pair_packer.h"
 
 #include <iostream>
 using namespace std;
 
 DecisionPair::DecisionPair(Solution *_current, Solution *_found)
-    : current(_current), found(_found), packing_strategy(new DecisionPairPackingStrategy(this))
+    : current(_current), found(_found)
 {}
 
-bool DecisionPair::equals()
+void DecisionPair::update(Solution * _current, Solution * _found)
 {
-    return current->equal(found);
+    current = _current;
+    found = _found;
 }
 
-Solution * DecisionPair::GetCurrent()
-{
-    return current;
-}
+bool DecisionPair::equals(){ return current->equal(found); }
 
-Solution * DecisionPair::GetFound()
-{
-    return found;
-}
+Solution * DecisionPair::GetCurrent(){ return current; }
 
-vector<int> DecisionPair::pack()
-{
-    //cout << "pack" << endl;
-    return packing_strategy->pack();
-}
+Solution * DecisionPair::GetFound(){ return found; }
 
-int DecisionPair::bodySize()
-{
-    //cout << "size" << endl;
-    return packing_strategy->BodySize();
-}
-
-vector<int> DecisionPair::body()
-{
-    //cout << "body" << endl;
-    return packing_strategy->body();
-}
+FactoryPacker * DecisionPair::BuildPacker(){ return new FactoryDecisionPairPacker(this); }

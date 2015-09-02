@@ -6,7 +6,7 @@
 #include "../operators/sequential_exec_operator.h"
 #include "../modules/grouped_computation.h"
 #include "../modules/grouped_sequential_computation.h"
-#include "../data/dStrategy/decision_pair_packing_strategy.h"
+#include "../packing/packers/decision_pair_packer.h"
 #include "../tools/tools.h"
 
 #include "mpi.h"
@@ -64,8 +64,8 @@ void Tester_Comunication::test()
     {
         //ComputationData * pair = new DecisionPair(sol1, sol2);
         DecisionPair * pair = new DecisionPair(sol1, sol2);
-        vector<int> package = pair->pack();
-        //vector<int> package = pair->pack();
+        DecisionPairPacker * p = new DecisionPairPacker(pair);
+        vector<int> package = p->pack();
         tag = package[0];
         pack_size = package.size();
         int dest = 1;
@@ -86,7 +86,7 @@ void Tester_Comunication::test()
         //MPI_Test(&request, &test_flag, &status);
 
         //cout << buffer[0] << endl;
-        DecisionPair * rPair = DecisionPairPackingStrategy::unpack(buffer, bench->Domains());
+        DecisionPair * rPair = DecisionPairPacker::unpack(buffer, bench->Domains());
         cout << rPair->GetFound()->configurationToString() << endl;
     }
 

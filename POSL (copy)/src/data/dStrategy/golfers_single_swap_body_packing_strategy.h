@@ -11,6 +11,9 @@ class GolfersSingleSwapBodyPackingStrategy : public NeighborhoodBodyPackingStrat
         vector<int> packBody();
 
     private:
+        void update(vector<T_SwapChanges> _changes, vector<int> _configuration);
+
         vector<T_SwapChanges> changes;
         vector<int> configuration;
+        vector<int> body;
 };

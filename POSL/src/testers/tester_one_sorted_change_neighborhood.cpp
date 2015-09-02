@@ -33,14 +33,14 @@ string Tester_OneSortedChangeNeighborhood::test()
     {
         vector<int> neighbor = it->GetNext();
         ch = Tools::mismatches(neighbor, config);
-
+        /*
         cout << "[ ";
         for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)
             cout << *j << " ";
         cout << "]" << endl;
-
+        */
         v = v && (ch <= 3 || ch >= 1);
         v = v && is_sorted(neighbor.begin(), neighbor.end());
     }
-    return (v) ? "OM_OneElementChangedNeighborhood: OK !" : "OM_OneElementChangedNeighborhood: fail :/";
+    return (v) ? "OM_OneSortedChangedNeighborhood: OK !" : "OM_OneSortedChangedNeighborhood: fail :/";
 }

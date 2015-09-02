@@ -10,6 +10,5 @@ ComputationStrategy::ComputationStrategy(FactoryComputationStrategy * builder)
 
 Solution * ComputationStrategy::execute(PSP * psp)
 {
-    ComputationData * result = module->execute(psp, new Seed());
-    return (Solution *)result;
+    return (Solution *)module->execute(psp, new Seed());
 }

@@ -23,14 +23,15 @@ class Benchmark
 {
     public:
         //! Constructor
-        Benchmark();
+        Benchmark(vector<Domain> _domains);
 
         //! The cost of a given Solution
         /*!
         * \param sol Solution
         * \return The cost of the Solution sol
         */
-        virtual int solutionCost(Solution * sol) = 0;
+        int solutionCost(Solution * sol);
+        virtual int solutionCost(vector<int> configuration) = 0;
 
         //! Updates the problem configuration (Solution)
         /*!
@@ -48,7 +49,7 @@ class Benchmark
         /*!
         * \return Domains list
         */
-        virtual vector<Domain> Domains() = 0;
+        vector<Domain> Domains();
 
         //! Shows the solution in its way
         /*!
@@ -60,4 +61,5 @@ class Benchmark
     protected:
         //! Current solution of the problem
         Solution * solution;
+        vector<Domain> domains;
 };

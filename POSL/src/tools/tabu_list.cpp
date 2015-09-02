@@ -6,22 +6,35 @@ TabuList::TabuList(int _size) : count(0), size(_size)
 {
 }
 
-void TabuList::push(Solution * conf)
+void TabuList::push(vector<int> conf)
 {
     if(count >= size)
     {
-        vector<Solution *> aux(tabu_list.size() - 1);
-        copy ( tabu_list.begin()+1, tabu_list.end(), aux.begin() );
-        tabu_list = aux;
-    } else count ++;
+        //vector<vector<int>> aux(tabu_list.size() - 1);
+        //copy ( tabu_list.begin()+1, tabu_list.end(), aux.begin() );
+        //tabu_list = aux;
+        tabu_list.pop_front();
+    } else
+        count ++;
 
     tabu_list.push_back(conf);
 }
 
-bool TabuList::isTabu(Solution * conf)
+/*
+bool areEquals(vector<int> v1, vector<int> v2)
 {
-    for(int i = 0; i < count; i++)
-        if(tabu_list[i]->equal(conf))
+    return equal(v1.begin(), v1.end(), v2);
+}
+*/
+
+bool TabuList::isTabu(vector<int> conf)
+{
+    /*for(int i = 0; i < count; i++)
+        if(areEquals(tabu_list[i], conf))
             return true;
     return false;
+    */
+    list<vector<int>>::iterator it;
+    it = find (tabu_list.begin(), tabu_list.end(), conf);
+    return it == tabu_list.end();
 }

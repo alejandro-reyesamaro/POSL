@@ -15,7 +15,6 @@ DecisionPair * NeighborSelectingBestImprovement::select(PSP *psp, Neighborhood *
 
     it->Reset();
 
-
     while(it->SomeNext())
     {
         vector<int> config = it->GetNext();

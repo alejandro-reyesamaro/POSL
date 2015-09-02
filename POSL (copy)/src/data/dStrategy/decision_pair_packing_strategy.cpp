@@ -5,26 +5,31 @@
 using namespace std;
 
 DecisionPairPackingStrategy::DecisionPairPackingStrategy(DecisionPair * _pair)
-    : pair(_pair)
+    : current_conf (_pair->GetCurrent()->GetConfiguration()),
+      found_conf (_pair->GetFound()->GetConfiguration()),
+      package(_pair->GetCurrent()->GetConfiguration().size() * 2 + 2)
 {}
+
+void DecisionPairPackingStrategy::update(vector<int> current, vector<int> found)
+{
+    copy(current.begin(), current.end(), current_conf.begin());
+    copy(found.begin(), found.end(), found_conf.begin());
+}
 
 vector<int> DecisionPairPackingStrategy::pack()
 {
-    //cout << "packing decision pair" << endl;
-    int conf_size = pair->GetCurrent()->GetConfiguration().size();
-    vector<int> package(conf_size * 2 + 2);
     // ID = 1
     package[0] = DECISIONPAIR_PACKING_ID;
     // Configuration size
-    package[1] = conf_size;
+    package[1] = current_conf.size();
 
     // Configuration 1 (current)
-    vector<int> current_conf = pair->GetCurrent()->GetConfiguration();
+    //vector<int> current_conf = pair->GetCurrent()->GetConfiguration();
     copy(current_conf.begin(), current_conf.end(), package.begin() + 2);
 
     // Configuration 1 (current)
-    vector<int> found_conf = pair->GetFound()->GetConfiguration();
-    copy(found_conf.begin(), found_conf.end(), package.begin() + 2 + conf_size);
+    //vector<int> found_conf = pair->GetFound()->GetConfiguration();
+    copy(found_conf.begin(), found_conf.end(), package.begin() + 2 + current_conf.size());
     return package;
 }
 

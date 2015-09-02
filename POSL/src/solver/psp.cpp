@@ -46,7 +46,7 @@ void PSP::CountIteration(){ iterations ++; }
 
 void PSP::connectWith(int pID) { connections.push_back(pID); }
 
-void PSP::SendData(ComputationData * data)
+void PSP::SendData(vector<int> data)
 {
     for(vector<int>::iterator it = connections.begin(); it != connections.end(); ++it)
         comm->sendMessage(data, *it);

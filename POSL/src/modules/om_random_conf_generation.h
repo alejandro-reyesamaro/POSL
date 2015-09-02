@@ -13,7 +13,7 @@
 #include "aom_first_configuration_generation.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
-#include "../data/seed.h"
+#include "strategy/random_configuration_generation_strategy.h"
 
 /*!
  * \class OM_RandomConfGeneration om_random_conf_generation.h
@@ -22,8 +22,7 @@
 class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
-        //! Constructor
-        OM_RandomConfGeneration();
+        OM_RandomConfGeneration(vector<Domain> _domains);
 
         //! Execute the O.M.
         /*!
@@ -34,7 +33,10 @@ class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration
         */
         Solution * spcf_execute(PSP * psp, Solution * input);
 
-
         //! From Codable
         string codeToSend();
+
+    private:
+        RandomConfigurationGenerationStrategy * rconf_strategy;
+        Solution * rsolution;
 };

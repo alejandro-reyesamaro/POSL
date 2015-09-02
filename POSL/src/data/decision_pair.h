@@ -11,8 +11,6 @@
 
 #include "computation_data.h"
 #include "solution.h"
-#include "dStrategy/packable.h"
-#include "dStrategy/packing_strategy.h"
 
 #define DECISIONPAIR_PACKING_ID 658202
 
@@ -20,7 +18,7 @@
  * \class DecisionPair decision_pair.h
  * \brief Class to represent a couple of solutions (current and new found)
  */
-class DecisionPair : public ComputationData//, public Packable
+class DecisionPair : public ComputationData
 {
     public:
         //! Constructor
@@ -32,22 +30,18 @@ class DecisionPair : public ComputationData//, public Packable
         */
         bool equals();
 
-        //! From Packable
-        vector<int> pack();
-        int bodySize();
-        vector<int> body();
+        FactoryPacker * BuildPacker();
 
         //! Returns the current solution
         Solution * GetCurrent();
         //! Returns the new found solution
         Solution * GetFound();
 
+        void update(Solution * _current, Solution * _found);
+
     private :
         //! Current solution
         Solution * current;
         //! New found solution
         Solution * found;
-        //! Packing strategy
-        PackingStrategy * packing_strategy;
-
 };

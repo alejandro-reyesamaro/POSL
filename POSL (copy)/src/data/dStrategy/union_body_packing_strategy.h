@@ -13,4 +13,5 @@ class UnionBodyPackingStrategy : public NeighborhoodBodyPackingStrategy
 
     private:
         Neighborhood * V1, * V2;
+        vector<int> body;
 };

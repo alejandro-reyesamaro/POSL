@@ -10,5 +10,5 @@ SendDataOperator::SendDataOperator(CompoundModule * _M1)
 
 string SendDataOperator::codeToSend()
 {
-    return M1 ->codeToSend();
+    return M1->codeToSend();
 }

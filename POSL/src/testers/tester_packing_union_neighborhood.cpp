@@ -1,3 +1,4 @@
+/*
 #include "tester_packing_union_neighborhood.h"
 #include "tester_packing_one_element_changed_neighborhood.h"
 #include "../data/solution.h"
@@ -46,3 +47,4 @@ string Tester_PackingUnionNeighborhood::test()
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
     return tester->test(sol, it, pack, "Packing Union Neighborhood");
 }
+*/

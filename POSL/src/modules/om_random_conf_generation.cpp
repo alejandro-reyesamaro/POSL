@@ -1,18 +1,17 @@
 #include "om_random_conf_generation.h"
-#include "strategy/random_configuration_generation_strategy.h"
 
 #include <random>
 #include <iostream>
 
-OM_RandomConfGeneration::OM_RandomConfGeneration()
-{
-}
+OM_RandomConfGeneration::OM_RandomConfGeneration(vector<Domain> _domains)
+    : AOM_FirstConfigurationGeneration(_domains),
+      rconf_strategy(new RandomConfigurationGenerationStrategy(_domains.size())),
+      rsolution(new Solution(_domains))
+{}
 
-//ComputationData * OM_RandomConfGeneration::execute(PSP *psp, ComputationData * input)
 Solution * OM_RandomConfGeneration::spcf_execute(PSP *psp, Solution * input)
 {
-    RandomConfigurationGenerationStrategy * rconf = new RandomConfigurationGenerationStrategy();
-    Solution * rsolution = rconf->generate(psp->GetBenchmark()->Domains());
+    rsolution->UpdateConfiguration(rconf_strategy->generate(domains));
     psp->UpdateSolution(rsolution);
     return rsolution;
 }

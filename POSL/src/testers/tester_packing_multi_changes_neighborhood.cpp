@@ -3,6 +3,7 @@
 #include "../solver/psp.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "packing_neighborhood_tester.h"
+#include "../packing/packers/multi_changes_neighborhood_packer.h"
 
 Tester_PackingMultiChangesNeighborhood::Tester_PackingMultiChangesNeighborhood(int argc, char *argv[])
     : Tester(argc, argv)
@@ -32,7 +33,9 @@ string Tester_PackingMultiChangesNeighborhood::test()
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
     OperationModule * op = new OM_MultiElementsChangedNeighborhood();
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
-    vector<int> pack = V->pack();
+    MultiElementsChangedNeighborhood * N = dynamic_cast<MultiElementsChangedNeighborhood *>(V);
+    MultiChangesNeighborhoodPacker * p = new MultiChangesNeighborhoodPacker(config, N->size(), N->GetChanges());
+    vector<int> pack = p->pack();
     POSL_Iterator<vector<int>> * it = V ->getIterator();
 
     PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();

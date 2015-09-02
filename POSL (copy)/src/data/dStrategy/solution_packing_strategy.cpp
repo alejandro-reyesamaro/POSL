@@ -5,15 +5,21 @@
 using namespace std;
 
 SolutionPackingStrategy::SolutionPackingStrategy(vector<int> _config)
-    : configuration(_config)
+    : configuration(_config),
+      package(_config.size() + 2)
 {
+}
+
+void SolutionPackingStrategy::update(vector<int> _config)
+{
+    copy(_config.begin(), _config.end(), configuration.begin());
 }
 
 vector<int> SolutionPackingStrategy::pack()
 {
     cout << "packing solution" << endl;
     int conf_size = configuration.size();    
-    vector<int> package(conf_size + 2);
+    //vector<int> package(conf_size + 2);
 
     // ID = 0
     package[0] = SOLUTION_PACKING_ID;

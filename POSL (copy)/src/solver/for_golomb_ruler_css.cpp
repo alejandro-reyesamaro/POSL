@@ -17,6 +17,7 @@ ForGolombRulerCSS::ForGolombRulerCSS()
 
 vector<POSL_Solver *> ForGolombRulerCSS::create()
 {
+    /*
     FactoryComputationStrategy * fac_cs1 = new FactoryComputationStrategy_SA002
     (
         new OM_RandomConfOrderedGeneration(),
@@ -26,7 +27,7 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
-        0.5, 20, 70, 30
+        0.5, 20, 70, 40
     );
     FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA002
     (
@@ -37,9 +38,9 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
-        0.2, 20, 70, 30
+        0.2, 20, 70, 40
     );
-
+    */
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A002
     (
         new OM_RandomConfOrderedGeneration(),
@@ -49,20 +50,20 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
-        0.2, 20, 200, 10
+        0.2, 20, 100, 10
     );
 
-    ComputationStrategy * cs1 = new ComputationStrategy(fac_cs1);
-    POSL_Solver * solver_1 = new POSL_Solver(cs1);
-    ComputationStrategy * cs2 = new ComputationStrategy(fac_cs2);
-    POSL_Solver * solver_2 = new POSL_Solver(cs2);
+    //ComputationStrategy * cs1 = new ComputationStrategy(fac_cs1);
+    //POSL_Solver * solver_1 = new POSL_Solver(cs1);
+    //ComputationStrategy * cs2 = new ComputationStrategy(fac_cs2);
+    //POSL_Solver * solver_2 = new POSL_Solver(cs2);
     ComputationStrategy * cs3 = new ComputationStrategy(fac_cs);
     POSL_Solver * solver_3 = new POSL_Solver(cs3);
 
     vector<POSL_Solver *> solvers;
-    solvers.push_back(solver_1);
-    solvers.push_back(solver_2);
-    //solvers.push_back(solver_3);
+    //solvers.push_back(solver_1);
+    //solvers.push_back(solver_2);
+    solvers.push_back(solver_3);
 
     return solvers;
 }

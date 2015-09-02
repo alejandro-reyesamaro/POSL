@@ -10,6 +10,7 @@
  */
 
 #include "benchmark.h"
+#include "../tools/long_int.h"
 
 /*!
  * \class Golfers golfers.h
@@ -26,7 +27,7 @@ class Golfers : public Benchmark
         * \param sol Solution
         * \return The cost of the Solution sol
         */
-        int solutionCost(Solution * sol);
+        int solutionCost(vector<int> configuration);
 
         string ShowSolution(Solution * solution);
 
@@ -41,4 +42,11 @@ class Golfers : public Benchmark
     private:
         //! [number of groups],[players per group],[weeks to play]
         int groups, players, weeks;
+
+        // for CostOfSolution
+        LongInt alldiff;
+        LongInt new_partner;
+        LongInt global_partnership;
+        vector<LongInt> global_partners;
+        vector<LongInt> group_partners;
 };

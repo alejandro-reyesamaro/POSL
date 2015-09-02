@@ -22,8 +22,7 @@
 class RandomOrderedGenerationStrategy
 {
     public:
-        //! Constructor
-        RandomOrderedGenerationStrategy();
+        RandomOrderedGenerationStrategy(int configuration_size);
 
         //! Generates a random configuration
         /*!
@@ -31,9 +30,12 @@ class RandomOrderedGenerationStrategy
         * \param max Maximum value
         * \return A random ordered configuration (Solution)
         */
-        Solution * generate(int size, int max);
+        vector<int> *generate(int max);
 
-    private:
+    private:        
+        void place (int a, int b, int pos_1, int pos_2);
+
+        vector<int> config;
         Randomizer rand;
-        void place (int a, int b, int pos_1, int pos_2, vector<int> &config);
+        vector<Domain> domains;
 };

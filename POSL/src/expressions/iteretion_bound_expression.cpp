@@ -1,7 +1,8 @@
 #include "iteretion_bound_expression.h"
 #include "../tools/tools.h"
 
-IteretionBoundExpression::IteretionBoundExpression(int _max_iterations) : max_iterations(_max_iterations)
+IteretionBoundExpression::IteretionBoundExpression(int _max_iterations)
+    : max_iterations(_max_iterations)
 {}
 
 bool IteretionBoundExpression::evaluate(PSP *psp)

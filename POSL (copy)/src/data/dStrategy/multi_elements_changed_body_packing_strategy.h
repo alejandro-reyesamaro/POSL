@@ -11,5 +11,8 @@ class MultiElementsChangedBodyPackingStrategy : public NeighborhoodBodyPackingSt
         vector<int> packBody();
 
     private:
+        void update(vector<T_Nchanges> _changes);
+
         vector<T_Nchanges> changes;
+        vector<int> body_package;
 };
