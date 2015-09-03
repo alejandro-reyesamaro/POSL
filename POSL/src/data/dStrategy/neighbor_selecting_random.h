@@ -9,7 +9,7 @@
 class NeighborSelectingRandom
 {
     public:
-        NeighborSelectingRandom();
+        NeighborSelectingRandom(vector<Domain> domains);
 
         //! Select the the current and the selected configurations when the search state indicates to stop
         /*!
@@ -21,4 +21,6 @@ class NeighborSelectingRandom
 
     private:
         Randomizer * rand;
+        DecisionPair * rPair;
+        vector<int> best_found_config;
 };

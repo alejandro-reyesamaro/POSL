@@ -19,7 +19,7 @@
 class OM_BestImprovementSelection : public AOM_SelectionFunction
 {
     public:
-        OM_BestImprovementSelection();
+        OM_BestImprovementSelection(Benchmark * bench);
 
         //! Execute the O.M.
         /*!

@@ -20,7 +20,7 @@ class OM_FirstImprovementSelection : public AOM_SelectionFunction
 {
     public:
         //! Constructor
-        OM_FirstImprovementSelection();
+        OM_FirstImprovementSelection(Benchmark * bench);
 
         //! Execute the O.M.
         /*!

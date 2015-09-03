@@ -1,7 +1,7 @@
 #include "om_best_improvement_selection.h"
 
-OM_BestImprovementSelection::OM_BestImprovementSelection()
-    : search_strategy(new NeighborSelectingBestImprovement())
+OM_BestImprovementSelection::OM_BestImprovementSelection(Benchmark * bench)
+    : search_strategy(new NeighborSelectingBestImprovement(bench->Domains()))
 {}
 
 DecisionPair * OM_BestImprovementSelection::spcf_execute(PSP * psp, Neighborhood * input)

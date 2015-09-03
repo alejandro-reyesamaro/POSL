@@ -41,7 +41,7 @@ string Tester_BestImprovementSelection::test()
 
     CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
     CompoundModule * cm2 = new OM_OneElementChangedNeighborhood(bench);
-    CompoundModule * cm3 = new OM_BestImprovementSelection();
+    CompoundModule * cm3 = new OM_BestImprovementSelection(bench);
 
     // cm1 |-> cm2 :
     Operator * op1 = new SequentialExecOperator(cm1, cm2);

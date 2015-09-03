@@ -26,8 +26,8 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     (
         new OM_RandomConfPermutationByBlocksGeneration(bench),
         new OM_GolfersSingleSwapNeighborhood(bench),
-        new OM_FirstImprovementSelection(),
-        new OM_BestImprovementTabuSelection(),
+        new OM_FirstImprovementSelection(bench),
+        new OM_BestImprovementTabuSelection(bench),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
         0.5, 20, 500, 10
@@ -36,8 +36,8 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     (
         new OM_RandomConfPermutationByBlocksGeneration(bench),
         new OM_GolfersSingleSwapNeighborhood(bench),
-        new OM_FirstImprovementSelection(),
-        new OM_BestImprovementTabuSelection(),
+        new OM_FirstImprovementSelection(bench),
+        new OM_BestImprovementTabuSelection(bench),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
         0.2, 20, 500, 10
@@ -47,8 +47,8 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     (
         new OM_RandomConfPermutationByBlocksGeneration(bench),
         new OM_GolfersSingleSwapNeighborhood(bench),
-        new OM_FirstImprovementSelection(),
-        new OM_BestImprovementTabuSelection(),
+        new OM_FirstImprovementSelection(bench),
+        new OM_BestImprovementTabuSelection(bench),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
         0.2, 20, 100, 10

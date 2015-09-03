@@ -20,7 +20,7 @@
 class OM_RandomSelection : public AOM_SelectionFunction
 {
     public:
-        OM_RandomSelection();
+        OM_RandomSelection(Benchmark * bench);
 
         //! Execute the O.M.
         /*!

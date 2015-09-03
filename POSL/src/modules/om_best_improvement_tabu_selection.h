@@ -20,7 +20,7 @@
 class OM_BestImprovementTabuSelection : public AOM_SelectionFunction
 {
     public:
-        OM_BestImprovementTabuSelection();
+        OM_BestImprovementTabuSelection(Benchmark * bench);
 
         //! Execute the O.M.
         /*!

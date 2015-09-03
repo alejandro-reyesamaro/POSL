@@ -24,8 +24,8 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
         new OM_RandomConfOrderedGeneration(bench),
         new OM_OneSortedChangeNeighborhood(bench),
         new OM_MultiSortedChangesNeighborhood(bench),
-        new OM_FirstImprovementSelection(),
-        new OM_BestImprovementTabuSelection(),
+        new OM_FirstImprovementSelection(bench),
+        new OM_BestImprovementTabuSelection(bench),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
         0.5, 20, 70, 40
@@ -35,8 +35,8 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
         new OM_RandomConfOrderedGeneration(bench),
         new OM_OneSortedChangeNeighborhood(bench),
         new OM_MultiSortedChangesNeighborhood(bench),
-        new OM_FirstImprovementSelection(),
-        new OM_BestImprovementTabuSelection(),
+        new OM_FirstImprovementSelection(bench),
+        new OM_BestImprovementTabuSelection(bench),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
         0.2, 20, 70, 40
@@ -47,8 +47,8 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
         new OM_RandomConfOrderedGeneration(bench),
         new OM_OneSortedChangeNeighborhood(bench),
         new OM_MultiSortedChangesNeighborhood(bench),
-        new OM_FirstImprovementSelection(),
-        new OM_BestImprovementTabuSelection(),
+        new OM_FirstImprovementSelection(bench),
+        new OM_BestImprovementTabuSelection(bench),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
         0.2, 20, 100, 10

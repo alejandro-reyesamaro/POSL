@@ -47,8 +47,8 @@ vector<POSL_Solver *> ForNQueensCSS::create()
     (
         new OM_RandomPermutationGeneration(bench),
         new OM_OnePermutationNeighborhood(bench),
-        new OM_FirstImprovementSelection(),
-        new OM_BestImprovementTabuSelection(),
+        new OM_FirstImprovementSelection(bench),
+        new OM_BestImprovementTabuSelection(bench),
         new OM_SimulatedAnnealingDecision(),
         new OM_AlwaysImproveDecision(),
         0.2, 20, 100, 10

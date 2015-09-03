@@ -80,16 +80,16 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code, Benchmark *
         switch(N)
         {
             case 1: // random selection
-                return new OM_RandomSelection();
+                return new OM_RandomSelection(bench);
                 break;
             case 2: // First Improvement selection
-                return new OM_FirstImprovementSelection();
+                return new OM_FirstImprovementSelection(bench);
                 break;
             case 3: // Best Improvement selection
-                return new OM_BestImprovementSelection();
+                return new OM_BestImprovementSelection(bench);
                 break;
             case 4: // Best Improvement TABU selection
-                return new OM_BestImprovementTabuSelection();
+                return new OM_BestImprovementTabuSelection(bench);
                 break;
             default:
                 throw "Not well coded OperationModule (Selection)";

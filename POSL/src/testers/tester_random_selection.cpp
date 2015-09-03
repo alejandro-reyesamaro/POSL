@@ -23,7 +23,7 @@ string Tester_RandomSelection::test()
 
     CompoundModule * cm1 = new OM_RandomConfGeneration(bench);
     CompoundModule * cm2 = new OM_OneElementChangedNeighborhood(bench);
-    CompoundModule * cm3 = new OM_RandomSelection();
+    CompoundModule * cm3 = new OM_RandomSelection(bench);
 
     // cm1 |-> cm2 :
     Operator * op1 = new SequentialExecOperator(cm1, cm2);

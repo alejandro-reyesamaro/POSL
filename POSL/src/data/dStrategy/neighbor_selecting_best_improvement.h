@@ -8,7 +8,7 @@
 class NeighborSelectingBestImprovement
 {
     public:
-        NeighborSelectingBestImprovement();
+        NeighborSelectingBestImprovement(vector<Domain> domains);
 
         //! Select the the current and the selected configurations when the search state indicates to stop
         /*!
@@ -19,7 +19,8 @@ class NeighborSelectingBestImprovement
         DecisionPair * select(PSP * psp, Neighborhood * V);
 
     private:
-        Solution * current_solution;
+        DecisionPair * rPair;
         POSL_Iterator<vector<int>> * it;
-        vector<int> best_found;
+        vector<int> current_config;
+        vector<int> best_found_config;
 };

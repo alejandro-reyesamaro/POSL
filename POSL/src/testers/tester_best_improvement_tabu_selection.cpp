@@ -43,7 +43,7 @@ string Tester_BestImprovementTabuSelection::test()
 
     CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
     CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood(bench);
-    CompoundModule * cm3 = new OM_BestImprovementTabuSelection();
+    CompoundModule * cm3 = new OM_BestImprovementTabuSelection(bench);
 
     // cm1 |-> cm2 :
     Operator * op1 = new SequentialExecOperator(cm1, cm2);

@@ -3,14 +3,13 @@
 #include <iostream>
 using namespace std;
 
-OM_BestImprovementTabuSelection::OM_BestImprovementTabuSelection()
-    : search_strategy(new NeighborSelectingBestImprovementTabu())
+OM_BestImprovementTabuSelection::OM_BestImprovementTabuSelection(Benchmark * bench)
+    : search_strategy(new NeighborSelectingBestImprovementTabu(bench->Domains()))
 {}
 
 DecisionPair * OM_BestImprovementTabuSelection::spcf_execute(PSP * psp, Neighborhood * input)
 {
-    DecisionPair * result = search_strategy->select(psp, input);
-    return result;
+    return search_strategy->select(psp, input);
 }
 
 string OM_BestImprovementTabuSelection::codeToSend()
