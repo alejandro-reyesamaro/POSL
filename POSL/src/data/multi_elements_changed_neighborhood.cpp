@@ -1,6 +1,7 @@
 #include "multi_elements_changed_neighborhood.h"
 #include "../tools/rand_index_generator.h"
 #include "../packing/factory/factory_multi_changes_neighborhood_packer.h"
+#include "dStrategy/standard_apply_change_behavior.h"
 
 #include <algorithm>
 #include <iostream>
@@ -11,6 +12,7 @@
 
 MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol)
     : Neighborhood(sol->GetConfiguration()),
+      changeAtBhv(new StandardApplyChangeBehavior(sol->GetConfiguration().size())),
       domains(sol->GetDomains()),
       rand()
 {
@@ -68,13 +70,7 @@ FactoryPacker * MultiElementsChangedNeighborhood::BuildPacker()
     return new FactoryMultiChangesNeighborhoodPacker(current_configuration, size(), changes);
 }
 
-vector<int> MultiElementsChangedNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
-
-vector<int> MultiElementsChangedNeighborhood::applyChangeAt(int index)
+vector<int> MultiElementsChangedNeighborhood::neighborAt(int index)
 {
-    if(index >= size()) return current_configuration;
-    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
-    for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
-        configuration_changed[changes[index].positions[i]] = changes[index].new_values[i];
-    return configuration_changed;
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// applyChangeAt(index);
 }

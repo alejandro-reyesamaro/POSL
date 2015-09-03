@@ -141,3 +141,8 @@ vector<int> Tools::generateMonotony(int N)
         v.push_back(i);
     return v;
 }
+
+void Tools::sortAscendent(vector<int> & v)
+{
+    sort(v.begin(), v.end());
+}

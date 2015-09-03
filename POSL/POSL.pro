@@ -197,7 +197,10 @@ SOURCES += src/main.cpp \
     src/testers/tester_from_pack_neighborhood.cpp \
     src/solver/create_solver_strategy.cpp \
     src/data/dynamic_neighborhood.cpp \
-    src/data/dStrategy/apply_change_behavior.cpp
+    src/data/dStrategy/apply_change_behavior.cpp \
+    src/data/dStrategy/single_swap_apply_change_behavior.cpp \
+    src/data/dStrategy/standard_apply_change_behavior.cpp \
+    src/data/dStrategy/sorted_apply_change_behavior.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -259,7 +262,6 @@ HEADERS += \
     src/data/multi_elements_changed_neighborhood.h \
     src/data/multi_sorted_changes_neighborhood.h \
     src/data/one_sorted_change_neighborhood.h \
-    src/data/t_change.h \
     src/data/dStrategy/neighbor_selecting_best_improvement_tabu.h \
     src/data/dStrategy/neighbor_selecting_best_improvement.h \
     src/data/dStrategy/neighbor_selecting_first_improvement.h \
@@ -399,7 +401,10 @@ HEADERS += \
     src/testers/tester_from_pack_neighborhood.h \
     src/data/dynamic_neighborhood.h \
     src/data/dStrategy/apply_change_behavior.h \
-    src/data/t_changes.h
+    src/data/t_changes.h \
+    src/data/dStrategy/single_swap_apply_change_behavior.h \
+    src/data/dStrategy/standard_apply_change_behavior.h \
+    src/data/dStrategy/sorted_apply_change_behavior.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

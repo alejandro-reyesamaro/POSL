@@ -2,6 +2,7 @@
 #include "../tools/rand_index_generator.h"
 #include "../packing/factory/factory_golfers_single_swap_neighborhood_packer.h"
 #include "../tools/tools.h"
+#include "dStrategy/single_swap_apply_change_behavior.h"
 
 #include <algorithm>
 #include <iostream>
@@ -10,6 +11,7 @@
 
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int _players)
     : Neighborhood(sol->GetConfiguration()),
+      changeAtBhv(new SingleSwapApplyChangeBehavior(sol->GetConfiguration().size())),
       players(_players),
       indexes(Tools::generateMonotony(_players))
 {
@@ -49,12 +51,7 @@ FactoryPacker * GolfersSingleSwapNeighborhood::BuildPacker()
     return new FactoryGolfersSingleSwapNeighborhoodPacker(current_configuration, size(), changes);
 }
 
-vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
-
-vector<int> GolfersSingleSwapNeighborhood::applyChangeAt(int index)
+vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index)
 {
-    if(index >= size()) return current_configuration;
-    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
-    swap(configuration_changed[changes[index].positions[0]],configuration_changed[changes[index].positions[1]]);
-    return configuration_changed;
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes); //applyChangeAt(index);
 }

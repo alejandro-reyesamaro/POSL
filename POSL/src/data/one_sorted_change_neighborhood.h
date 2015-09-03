@@ -13,6 +13,7 @@
 #include "t_changes.h"
 #include "dStrategy/elements_change_iterator.h"
 #include "dynamic_neighborhood.h"
+#include "dStrategy/apply_change_behavior.h"
 
 #include <random>
 
@@ -35,9 +36,8 @@ class OneSortedChangeNeighborhood : public Neighborhood, public DynamicNeighborh
         void update(vector<int> _configuration);
 
     private:
-        vector<int> applyChangeAt(int index);
         void updateChanges();
 
+        ApplyChangeBehavior * changeAtBhv;
         vector<T_Changes> changes;
-        //Randomizer rand;
 };

@@ -1,6 +1,7 @@
 #include "multi_sorted_changes_neighborhood.h"
 #include "../tools/rand_index_generator.h"
 #include "../tools/tools.h"
+#include "dStrategy/sorted_apply_change_behavior.h"
 
 #include <algorithm>
 #include <iostream>
@@ -8,6 +9,7 @@
 
 MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol)
     : Neighborhood(sol->GetConfiguration()),
+      changeAtBhv(new SortedApplyChangeBehavior(sol->GetConfiguration().size())),
       domains(sol->GetDomains()),
       rand()
 {
@@ -39,16 +41,9 @@ void MultiSortedChangesNeighborhood::update(std::vector<int> _configuration)
 
 FactoryPacker * MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-vector<int> MultiSortedChangesNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
-
-vector<int> MultiSortedChangesNeighborhood::applyChangeAt(int index)
+vector<int> MultiSortedChangesNeighborhood::neighborAt(int index)
 {
-    if(index >= size()) return current_configuration;
-    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
-    for (unsigned int i = 0;  i < changes[index].positions.size(); i++)
-        configuration_changed[changes[index].positions[i]] = changes[index].new_values[i];
-    sort(configuration_changed.begin(), configuration_changed.end());
-    return configuration_changed;
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// applyChangeAt(index);
 }
 
 void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes)
@@ -86,7 +81,7 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes)
     {
         for (unsigned int j = 0; j < indexes.size(); j++)
             the_values.push_back(vector_values[j][i]);
-        T_Nchanges next_changes = {indexes, the_values, the_values.size()};
+        T_Changes next_changes = {indexes, the_values, the_values.size()};
         changes.push_back(next_changes);
         the_values.clear();
     }

@@ -1,5 +1,6 @@
 #include "one_sorted_change_neighborhood.h"
 #include "../tools/tools.h"
+#include "dStrategy/sorted_apply_change_behavior.h"
 
 #include <algorithm>
 #include <chrono>
@@ -7,7 +8,8 @@
 #define N_NEIGHBORS 16
 
 OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol)
-    : Neighborhood(sol->GetConfiguration())
+    : Neighborhood(sol->GetConfiguration()),
+      changeAtBhv(new SortedApplyChangeBehavior(sol->GetConfiguration().size()))
 {
     updateChanges();
 }
@@ -50,12 +52,7 @@ void OneSortedChangeNeighborhood::updateChanges()
 
 FactoryPacker * OneSortedChangeNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-vector<int> OneSortedChangeNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
-
-vector<int> OneSortedChangeNeighborhood::applyChangeAt(int index)
+vector<int> OneSortedChangeNeighborhood::neighborAt(int index)
 {
-    if(index >= size()) return current_configuration;
-    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
-    configuration_changed[changes[index].positions[0]] = changes[index].new_values[0];
-    return configuration_changed;
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// return applyChangeAt(index);
 }

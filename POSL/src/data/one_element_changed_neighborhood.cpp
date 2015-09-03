@@ -1,6 +1,7 @@
 #include "one_element_changed_neighborhood.h"
 #include "../packing/factory/factory_one_change_neighborhood_packer.h"
 #include "../tools/tools.h"
+#include "dStrategy/standard_apply_change_behavior.h"
 
 #include <algorithm>
 #include <chrono>
@@ -9,6 +10,7 @@
 
 OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
     : Neighborhood(sol->GetConfiguration()),
+      changeAtBhv(new StandardApplyChangeBehavior(sol->GetConfiguration().size())),
       domains(sol->GetDomains()),
       rand(),
       indexes(Tools::generateMonotony(sol->GetConfiguration().size()))
@@ -51,12 +53,7 @@ FactoryPacker * OneElementChangedNeighborhood::BuildPacker()
     return new FactoryOneChangeNeighborhoodPacker(current_configuration, size(), changes);
 }
 
-vector<int> OneElementChangedNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
-
-vector<int> OneElementChangedNeighborhood::applyChangeAt(int index)
+vector<int> OneElementChangedNeighborhood::neighborAt(int index)
 {
-    if(index >= size()) return current_configuration;
-    copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
-    configuration_changed[changes[index].positions[0]] = changes[index].new_values[0];
-    return configuration_changed;
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// return applyChangeAt(index);
 }

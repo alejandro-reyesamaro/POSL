@@ -11,6 +11,7 @@
 
 #include "dStrategy/posl_iterator.h"
 #include "computation_data.h"
+
 using namespace std;
 
 #define NEIGHBORHOOD_PACKING_ID 658203
@@ -28,7 +29,7 @@ class Neighborhood : public ComputationData
         virtual int size() = 0;
         virtual vector<int> neighborAt(int index) = 0;
 
-    protected:
+    protected:        
         vector<int> current_configuration;
         vector<int> configuration_changed;
 };

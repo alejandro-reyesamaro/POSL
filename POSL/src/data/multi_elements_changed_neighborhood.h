@@ -15,6 +15,7 @@
 #include "t_changes.h"
 #include "dStrategy/elements_change_iterator.h"
 #include "dynamic_neighborhood.h"
+#include "dStrategy/apply_change_behavior.h"
 
 #include <random>
 
@@ -37,9 +38,9 @@ class MultiElementsChangedNeighborhood : public Neighborhood, public DynamicNeig
         void update(vector<int> _configuration);
 
     private:
-        vector<int> applyChangeAt(int index);
         void updateChanges();
 
+        ApplyChangeBehavior * changeAtBhv;
         vector<Domain> domains;
         vector<T_Changes> changes;
         Randomizer rand;

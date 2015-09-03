@@ -12,9 +12,10 @@
 #include "neighborhood.h"
 #include "solution.h"
 #include "../tools/randomizer.h"
-#include "t_nchanges.h"
+#include "t_changes.h"
 #include "dStrategy/elements_change_iterator.h"
 #include "dynamic_neighborhood.h"
+#include "dStrategy/apply_change_behavior.h"
 
 #include <random>
 
@@ -30,18 +31,18 @@ class MultiSortedChangesNeighborhood : public Neighborhood, public DynamicNeighb
 
         POSL_Iterator<vector<int>> * getIterator(){ new ElementsChangeIterator(this); }
         int size(){ return changes.size(); }
-        vector<T_Nchanges> GetChanges(){ return changes; }
+        vector<T_Changes> GetChanges(){ return changes; }
 
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
         void update(vector<int> _configuration);
 
     private:
-        vector<int> applyChangeAt(int index);
         void pushSetOfValues(vector<int> indexes);
         void updateChanges();
 
+        ApplyChangeBehavior * changeAtBhv;
         vector<Domain> domains;
-        vector<T_Nchanges> changes;
+        vector<T_Changes> changes;
         Randomizer rand;
 };

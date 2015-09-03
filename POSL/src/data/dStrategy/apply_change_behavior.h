@@ -1,9 +1,17 @@
 #pragma once
 
+#include "../t_changes.h"
+
+#include <vector>
+
+using namespace std;
+
 class ApplyChangeBehavior
 {
     public:
-        void spplyChangeAt();
-};
+        ApplyChangeBehavior(int config_size);
+        virtual vector<int> applyChangeAt(int index, vector<int> config, vector<T_Changes> changes) = 0;
 
-#endif // APPLY_CHANGE_BEHAVIOR_H
+    protected:
+        vector<int> configuration_changed;
+};

@@ -40,4 +40,5 @@ class Tools
         static int * vector2array(vector<int> vec);
         static void shuffle(vector<int> & vec);
         static vector<int> generateMonotony(int N);
+        static void sortAscendent(vector<int> & v);
 };
