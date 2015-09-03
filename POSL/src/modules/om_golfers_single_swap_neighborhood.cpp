@@ -1,18 +1,16 @@
 #include "om_golfers_single_swap_neighborhood.h"
-#include "../data/golfers_single_swap_neighborhood.h"
-#include "../benchmarks/golfers.h"
 
 #include <iostream>
 using namespace std;
 
-OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(){}
+OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(Benchmark * bench)
+    : object_bench(dynamic_cast<Golfers *> (bench)),
+      V(new GolfersSingleSwapNeighborhood(bench->Domains().size(), object_bench->TotalPlayers()))
+{}
 
 Neighborhood * OM_GolfersSingleSwapNeighborhood::spcf_execute(PSP * psp, Solution * input)
 {
-    Golfers * s = dynamic_cast<Golfers *>(psp->GetBenchmark());
-    if (!s)
-        throw "(POSL esception) Not casting allowed";
-    Neighborhood * V = new GolfersSingleSwapNeighborhood(input, s->TotalPlayers());
+    V->Init(input->GetConfiguration());
     return V;
 }
 

@@ -32,7 +32,7 @@ string Tester_PackingGolfersPermutationNeighborhood::test()
     });
     //PSP * psp = new PSP(bench);
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
-    OperationModule * op = new OM_GolfersSingleSwapNeighborhood();
+    OperationModule * op = new OM_GolfersSingleSwapNeighborhood(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
     GolfersSingleSwapNeighborhood * N = dynamic_cast<GolfersSingleSwapNeighborhood *>(V);
     GolfersSingleSwapPacker * p = new GolfersSingleSwapPacker(config, N->size(), N->GetChanges());

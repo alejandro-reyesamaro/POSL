@@ -13,6 +13,7 @@
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/neighborhood.h"
+#include "../data/one_element_changed_neighborhood.h"
 
 /*!
  * \class OM_OneElementChangedNeighborhood om_one_element_changed_neighborhood.h
@@ -21,8 +22,7 @@
 class OM_OneElementChangedNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
-        //! Constructor
-        OM_OneElementChangedNeighborhood();
+        OM_OneElementChangedNeighborhood(Benchmark * bench);
 
         //! Execute the O.M.
         /*!
@@ -35,4 +35,7 @@ class OM_OneElementChangedNeighborhood : public AOM_NeighborhoodFunction
 
         //! From Codable
         string codeToSend();
+
+    private:
+        OneElementChangedNeighborhood * V;
 };

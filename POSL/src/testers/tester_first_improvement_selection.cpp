@@ -22,7 +22,7 @@ string Tester_FirstImprovementSelection::test()
     PSP * psp = new PSP(ARGC, ARGV, bench);
 
     CompoundModule * cm1 = new OM_RandomConfGeneration(bench);
-    CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
+    CompoundModule * cm2 = new OM_OneElementChangedNeighborhood(bench);
     CompoundModule * cm3 = new OM_FirstImprovementSelection();
 
     // cm1 |-> cm2 :

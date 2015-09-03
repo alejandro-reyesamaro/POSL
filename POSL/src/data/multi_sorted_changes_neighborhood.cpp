@@ -7,10 +7,10 @@
 #include <iostream>
 #include <chrono>
 
-MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol)
-    : Neighborhood(sol->GetConfiguration()),
-      changeAtBhv(new SortedApplyChangeBehavior(sol->GetConfiguration().size())),
-      domains(sol->GetDomains()),
+MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(int _config_size, vector<Domain> _domains)
+    : Neighborhood(_config_size),
+      changeAtBhv(new SortedApplyChangeBehavior(_config_size)),
+      domains(_domains),
       rand()
 {
     updateChanges();
@@ -18,6 +18,7 @@ MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol)
 
 void MultiSortedChangesNeighborhood::updateChanges()
 {
+    changes.clear();
     int n = current_configuration.size();
     //int N = PRC_CHANGES * n;  // to have N chahges
 
@@ -33,7 +34,7 @@ void MultiSortedChangesNeighborhood::updateChanges()
     }
 }
 
-void MultiSortedChangesNeighborhood::update(std::vector<int> _configuration)
+void MultiSortedChangesNeighborhood::Init(std::vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
@@ -43,7 +44,7 @@ FactoryPacker * MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implem
 
 vector<int> MultiSortedChangesNeighborhood::neighborAt(int index)
 {
-    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// applyChangeAt(index);
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }
 
 void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes)

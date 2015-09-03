@@ -30,7 +30,7 @@ string Tester_CyclicOperator::test()
     CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
     CompoundModule * cm0 = new OM_RandomConfGeneration(bench);
     //CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
-    CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood();
+    CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood(bench);
     CompoundModule * cm3 = new OM_BestImprovementSelection();
     CompoundModule * cm4 = new OM_AlwaysImproveDecision();
 

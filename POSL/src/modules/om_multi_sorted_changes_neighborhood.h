@@ -13,6 +13,7 @@
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/neighborhood.h"
+#include "../data/multi_sorted_changes_neighborhood.h"
 
 /*!
  * \class OM_MultiSortedChangesNeighborhood om_multi_sorted_changes_neighborhood.h
@@ -22,7 +23,7 @@ class OM_MultiSortedChangesNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
         //! Constructor
-        OM_MultiSortedChangesNeighborhood();
+        OM_MultiSortedChangesNeighborhood(Benchmark * bench);
 
         //! Execute the O.M.
         /*!
@@ -35,4 +36,7 @@ class OM_MultiSortedChangesNeighborhood : public AOM_NeighborhoodFunction
 
         //! From Codable
         string codeToSend();
+
+    private:
+        MultiSortedChangesNeighborhood * V;
 };

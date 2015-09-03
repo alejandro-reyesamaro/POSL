@@ -22,8 +22,8 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
     FactoryComputationStrategy * fac_cs1 = new FactoryComputationStrategy_SA002
     (
         new OM_RandomConfOrderedGeneration(bench),
-        new OM_OneSortedChangeNeighborhood(),
-        new OM_MultiSortedChangesNeighborhood(),
+        new OM_OneSortedChangeNeighborhood(bench),
+        new OM_MultiSortedChangesNeighborhood(bench),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
@@ -33,8 +33,8 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
     FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA002
     (
         new OM_RandomConfOrderedGeneration(bench),
-        new OM_OneSortedChangeNeighborhood(),
-        new OM_MultiSortedChangesNeighborhood(),
+        new OM_OneSortedChangeNeighborhood(bench),
+        new OM_MultiSortedChangesNeighborhood(bench),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
@@ -45,8 +45,8 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A002
     (
         new OM_RandomConfOrderedGeneration(bench),
-        new OM_OneSortedChangeNeighborhood(),
-        new OM_MultiSortedChangesNeighborhood(),
+        new OM_OneSortedChangeNeighborhood(bench),
+        new OM_MultiSortedChangesNeighborhood(bench),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),

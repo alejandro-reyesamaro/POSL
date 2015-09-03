@@ -13,6 +13,8 @@
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/neighborhood.h"
+#include "../benchmarks/golfers.h"
+#include "../data/golfers_single_swap_neighborhood.h"
 
 /*!
  * \class OM_GolfersSingleSwapNeighborhood om_golfers_single_swap_neighborhood.h
@@ -22,7 +24,7 @@ class OM_GolfersSingleSwapNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
         //! Constructor
-        OM_GolfersSingleSwapNeighborhood();
+        OM_GolfersSingleSwapNeighborhood(Benchmark *bench);
 
         //! Execute the O.M.
         /*!
@@ -35,4 +37,8 @@ class OM_GolfersSingleSwapNeighborhood : public AOM_NeighborhoodFunction
 
         //! From Codable
         string codeToSend();
+
+    private:
+        Golfers * object_bench;
+        GolfersSingleSwapNeighborhood * V;
 };

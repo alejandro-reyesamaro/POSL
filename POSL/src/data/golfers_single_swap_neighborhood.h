@@ -26,7 +26,7 @@ class GolfersSingleSwapNeighborhood : public Neighborhood, public DynamicNeighbo
 {
     friend class ElementsChangeIterator;
     public:
-        GolfersSingleSwapNeighborhood(Solution * sol, int _players);
+        GolfersSingleSwapNeighborhood(int _config_size, int _players);
 
         POSL_Iterator<vector<int>> * getIterator() { return new ElementsChangeIterator(this); }
         int size() {return changes.size(); }
@@ -35,7 +35,7 @@ class GolfersSingleSwapNeighborhood : public Neighborhood, public DynamicNeighbo
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
 
-        void update(std::vector<int> _configuration);
+        void Init(std::vector<int> _configuration);
 
     private:
         void updateChanges();

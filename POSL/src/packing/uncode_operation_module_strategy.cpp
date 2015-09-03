@@ -57,19 +57,19 @@ OperationModule * UncodeOperationModuleStrategy::uncode(string code, Benchmark *
         switch(N)
         {
             case 1: // one element change neighborhood
-                return new OM_OneElementChangedNeighborhood();
+                return new OM_OneElementChangedNeighborhood(bench);
                 break;
             case 2: // multi elements change neighborhood
-                return new OM_MultiElementsChangedNeighborhood();
+                return new OM_MultiElementsChangedNeighborhood(bench);
                 break;
             case 3: // golfers neighborhood
-                return new OM_GolfersSingleSwapNeighborhood();
+                return new OM_GolfersSingleSwapNeighborhood(bench);
                 break;
             case 4: // golom neighborhood (multi)
-                return new OM_MultiSortedChangesNeighborhood();
+                return new OM_MultiSortedChangesNeighborhood(bench);
                 break;
             case 5: // golom neighborhood (one)
-                return new OM_OneSortedChangeNeighborhood();
+                return new OM_OneSortedChangeNeighborhood(bench);
                 break;
             default:
                 throw "Not well coded OperationModule (Neighborhood)";

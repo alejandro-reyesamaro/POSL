@@ -19,7 +19,7 @@ string Tester_OneSortedChangeNeighborhood::test()
     vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
-    OperationModule * op = new OM_OneSortedChangeNeighborhood();
+    OperationModule * op = new OM_OneSortedChangeNeighborhood(bench);
     //PSP * psp = new PSP(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
 

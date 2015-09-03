@@ -31,7 +31,7 @@ string Tester_PackingOneElementChangedNeighborhood::test()
     });
     //PSP * psp = new PSP(bench);
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
-    OperationModule * op = new OM_OneElementChangedNeighborhood();
+    OperationModule * op = new OM_OneElementChangedNeighborhood(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
     OneElementChangedNeighborhood * N = dynamic_cast<OneElementChangedNeighborhood *>(V);
     OneChangeNeighborhoodPacker * p = new OneChangeNeighborhoodPacker(config, N->size(), N->GetChanges());

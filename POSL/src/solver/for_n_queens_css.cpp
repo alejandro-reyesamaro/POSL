@@ -46,7 +46,7 @@ vector<POSL_Solver *> ForNQueensCSS::create()
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A001
     (
         new OM_RandomPermutationGeneration(bench),
-        new OM_OnePermutationNeighborhood(),
+        new OM_OnePermutationNeighborhood(bench),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),

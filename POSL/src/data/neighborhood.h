@@ -24,6 +24,7 @@ class Neighborhood : public ComputationData
 {
     public:
         Neighborhood(vector<int> _current_configuration);
+        Neighborhood(int _config_size);
 
         virtual POSL_Iterator<vector<int>> * getIterator() = 0;
         virtual int size() = 0;

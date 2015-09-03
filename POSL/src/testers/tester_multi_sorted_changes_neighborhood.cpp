@@ -23,7 +23,7 @@ string Tester_MultiSortedChangesNeighborhood::test()
 
     Solution * sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
-    OperationModule * op = new OM_MultiSortedChangesNeighborhood();
+    OperationModule * op = new OM_MultiSortedChangesNeighborhood(bench);
     //PSP * psp = new PSP(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
 

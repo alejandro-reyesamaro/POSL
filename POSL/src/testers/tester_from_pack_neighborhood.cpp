@@ -45,7 +45,7 @@ string Tester_FromPackNeighborhood::test()
 
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
-    OperationModule * op = new OM_GolfersSingleSwapNeighborhood();
+    OperationModule * op = new OM_GolfersSingleSwapNeighborhood(bench);
     //PSP * psp = new PSP(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
     GolfersSingleSwapNeighborhood * N = dynamic_cast<GolfersSingleSwapNeighborhood *>(V);

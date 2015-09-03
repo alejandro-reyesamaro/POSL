@@ -1,13 +1,14 @@
 #include "om_multi_elements_changed_neighborhood.h"
-#include "../data/multi_elements_changed_neighborhood.h"
 
 #include <iostream>
 
-OM_MultiElementsChangedNeighborhood::OM_MultiElementsChangedNeighborhood(){}
+OM_MultiElementsChangedNeighborhood::OM_MultiElementsChangedNeighborhood(Benchmark * bench)
+    : V(new MultiElementsChangedNeighborhood(bench->Domains().size(), bench->Domains()))
+{}
 
 Neighborhood * OM_MultiElementsChangedNeighborhood::spcf_execute(PSP * psp, Solution * input)
 {
-    Neighborhood * V = new MultiElementsChangedNeighborhood(input);
+    V->Init(input->GetConfiguration());
     return V;
 }
 

@@ -31,7 +31,7 @@ string Tester_MultiElementsChangedNeighborhood::test()
 
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
-    OperationModule * op = new OM_MultiElementsChangedNeighborhood();
+    OperationModule * op = new OM_MultiElementsChangedNeighborhood(bench);
     //PSP * psp = new PSP(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
 

@@ -8,17 +8,17 @@
 
 #define N_NEIGHBORS 16
 
-OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
-    : Neighborhood(sol->GetConfiguration()),
-      changeAtBhv(new StandardApplyChangeBehavior(sol->GetConfiguration().size())),
-      domains(sol->GetDomains()),
+OneElementChangedNeighborhood::OneElementChangedNeighborhood(int _config_size, vector<Domain> _domains)
+    : Neighborhood(_config_size),
+      changeAtBhv(new StandardApplyChangeBehavior(_config_size)),
+      domains(_domains),
       rand(),
-      indexes(Tools::generateMonotony(sol->GetConfiguration().size()))
+      indexes(Tools::generateMonotony(_config_size))
 {
     updateChanges();
 }
 
-void OneElementChangedNeighborhood::update(vector<int> _configuration)
+void OneElementChangedNeighborhood::Init(vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
@@ -26,6 +26,7 @@ void OneElementChangedNeighborhood::update(vector<int> _configuration)
 
 void OneElementChangedNeighborhood::updateChanges()
 {
+    changes.clear();
     int n = current_configuration.size();
 
     //n = N_NEIGHBORS;
@@ -55,5 +56,5 @@ FactoryPacker * OneElementChangedNeighborhood::BuildPacker()
 
 vector<int> OneElementChangedNeighborhood::neighborAt(int index)
 {
-    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// return applyChangeAt(index);
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

@@ -25,7 +25,7 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     FactoryComputationStrategy * fac_cs1 = new FactoryComputationStrategy_SA001
     (
         new OM_RandomConfPermutationByBlocksGeneration(bench),
-        new OM_GolfersSingleSwapNeighborhood(),
+        new OM_GolfersSingleSwapNeighborhood(bench),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
@@ -35,7 +35,7 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA001
     (
         new OM_RandomConfPermutationByBlocksGeneration(bench),
-        new OM_GolfersSingleSwapNeighborhood(),
+        new OM_GolfersSingleSwapNeighborhood(bench),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
@@ -46,7 +46,7 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A001
     (
         new OM_RandomConfPermutationByBlocksGeneration(bench),
-        new OM_GolfersSingleSwapNeighborhood(),
+        new OM_GolfersSingleSwapNeighborhood(bench),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),

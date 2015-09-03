@@ -40,8 +40,8 @@ string Tester_UnionOperator::testeInMode(Computation comp)
     PSP * psp = new PSP(ARGC, ARGV, bench);
     Solution * sol = new Solution(psp->GetBenchmark()->Domains(), config);
 
-    OperationModule * m1 = new OM_MultiElementsChangedNeighborhood();
-    OperationModule * m2 = new OM_OneElementChangedNeighborhood();
+    OperationModule * m1 = new OM_MultiElementsChangedNeighborhood(bench);
+    OperationModule * m2 = new OM_OneElementChangedNeighborhood(bench);
 
     Operator * op = new UnionOperator(m1, m2);
 

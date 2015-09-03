@@ -13,6 +13,7 @@
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../data/neighborhood.h"
+#include "../data/one_permutation_neighborhood.h"
 
 /*!
  * \class OM_OnePermutationNeighborhood om_one_permutation_neighborhood.h
@@ -22,7 +23,7 @@ class OM_OnePermutationNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
         //! Constructor
-        OM_OnePermutationNeighborhood();
+        OM_OnePermutationNeighborhood(Benchmark * bench);
 
         //! Execute the O.M.
         /*!
@@ -35,4 +36,7 @@ class OM_OnePermutationNeighborhood : public AOM_NeighborhoodFunction
 
         //! From Codable
         string codeToSend();
+
+    private:
+        OnePermutationNeighborhood * V;
 };

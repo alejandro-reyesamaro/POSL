@@ -1,13 +1,14 @@
 #include "om_one_sorted_change_neighborhood.h"
-#include "../data/one_sorted_change_neighborhood.h"
 
 #include <iostream>
 
-OM_OneSortedChangeNeighborhood::OM_OneSortedChangeNeighborhood(){}
+OM_OneSortedChangeNeighborhood::OM_OneSortedChangeNeighborhood(Benchmark * bench)
+    : V(new OneSortedChangeNeighborhood(bench->Domains().size()))
+{}
 
 Neighborhood * OM_OneSortedChangeNeighborhood::spcf_execute(PSP * psp, Solution * input)
 {
-    Neighborhood * V = new OneSortedChangeNeighborhood(input);
+    V->Init(input->GetConfiguration());
     return V;
 }
 

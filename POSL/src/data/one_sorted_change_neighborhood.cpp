@@ -7,14 +7,14 @@
 
 #define N_NEIGHBORS 16
 
-OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol)
-    : Neighborhood(sol->GetConfiguration()),
-      changeAtBhv(new SortedApplyChangeBehavior(sol->GetConfiguration().size()))
+OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(int _config_size)
+    : Neighborhood(_config_size),
+      changeAtBhv(new SortedApplyChangeBehavior(_config_size))
 {
     updateChanges();
 }
 
-void OneSortedChangeNeighborhood::update(vector<int> _configuration)
+void OneSortedChangeNeighborhood::Init(vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
@@ -22,6 +22,7 @@ void OneSortedChangeNeighborhood::update(vector<int> _configuration)
 
 void OneSortedChangeNeighborhood::updateChanges()
 {
+    changes.clear();
     int n = current_configuration.size();
 
     vector<int> indexes;
@@ -54,5 +55,5 @@ FactoryPacker * OneSortedChangeNeighborhood::BuildPacker(){ throw "Not implement
 
 vector<int> OneSortedChangeNeighborhood::neighborAt(int index)
 {
-    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// return applyChangeAt(index);
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

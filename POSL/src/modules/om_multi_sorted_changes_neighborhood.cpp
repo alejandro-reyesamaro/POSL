@@ -1,13 +1,14 @@
 #include "om_multi_sorted_changes_neighborhood.h"
-#include "../data/multi_sorted_changes_neighborhood.h"
 
 #include <iostream>
 
-OM_MultiSortedChangesNeighborhood::OM_MultiSortedChangesNeighborhood(){}
+OM_MultiSortedChangesNeighborhood::OM_MultiSortedChangesNeighborhood(Benchmark * bench)
+    : V(new MultiSortedChangesNeighborhood(bench->Domains().size(), bench->Domains()))
+{}
 
 Neighborhood * OM_MultiSortedChangesNeighborhood::spcf_execute(PSP * psp, Solution * input)
 {
-    Neighborhood * V = new MultiSortedChangesNeighborhood(input);
+    V->Init(input->GetConfiguration());
     return V;
 }
 

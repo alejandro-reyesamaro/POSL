@@ -27,7 +27,7 @@ class OneElementChangedNeighborhood : public Neighborhood, public DynamicNeighbo
 {
     friend class ElementsChangeIterator;
     public:
-        OneElementChangedNeighborhood(Solution * sol);
+        OneElementChangedNeighborhood(int _config_size, vector<Domain> _domains);
 
         POSL_Iterator<vector<int>> * getIterator(){ return new ElementsChangeIterator(this); }
         int size(){ return changes.size(); }
@@ -35,7 +35,7 @@ class OneElementChangedNeighborhood : public Neighborhood, public DynamicNeighbo
 
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
-        void update(vector<int> _configuration);
+        void Init(vector<int> _configuration);
 
     private:
         void updateChanges();

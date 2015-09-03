@@ -7,15 +7,15 @@
 #include <iostream>
 #include <chrono>
 
-OnePermutationNeighborhood::OnePermutationNeighborhood(Solution * sol)
-    : Neighborhood(sol->GetConfiguration()),
-      changeAtBhv(new SingleSwapApplyChangeBehavior(sol->GetConfiguration().size())),
-      monotony(Tools::generateMonotony(sol->GetConfiguration().size()))
+OnePermutationNeighborhood::OnePermutationNeighborhood(int _config_size)
+    : Neighborhood(_config_size),
+      changeAtBhv(new SingleSwapApplyChangeBehavior(_config_size)),
+      monotony(Tools::generateMonotony(_config_size))
 {
     updateChanges();
 }
 
-void OnePermutationNeighborhood::update(vector<int> _configuration)
+void OnePermutationNeighborhood::Init(vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
@@ -23,6 +23,7 @@ void OnePermutationNeighborhood::update(vector<int> _configuration)
 
 void OnePermutationNeighborhood::updateChanges()
 {
+    changes.clear();
     int n = current_configuration.size();
     int n_changes = n/2;
 
@@ -42,5 +43,5 @@ FactoryPacker * OnePermutationNeighborhood::BuildPacker(){ throw "Not implemente
 
 vector<int> OnePermutationNeighborhood::neighborAt(int index)
 {
-    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// return applyChangeAt(index);
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

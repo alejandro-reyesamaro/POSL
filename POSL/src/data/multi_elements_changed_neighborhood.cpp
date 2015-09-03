@@ -10,10 +10,10 @@
 #define N_NEIGHBORS 10
 #define PRC_CHANGES 0.5
 
-MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol)
-    : Neighborhood(sol->GetConfiguration()),
-      changeAtBhv(new StandardApplyChangeBehavior(sol->GetConfiguration().size())),
-      domains(sol->GetDomains()),
+MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(int _config_size, vector<Domain> _domains)
+    : Neighborhood(_config_size),
+      changeAtBhv(new StandardApplyChangeBehavior(_config_size)),
+      domains(_domains),
       rand()
 {
     updateChanges();
@@ -21,6 +21,7 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
 
 void MultiElementsChangedNeighborhood::updateChanges()
 {
+    changes.clear();
     int n = current_configuration.size();
     int ch = N_NEIGHBORS; // to chahge ch elements
     //int N = PRC_CHANGES * n;  // to have N chahges
@@ -59,7 +60,7 @@ void MultiElementsChangedNeighborhood::updateChanges()
     }
 }
 
-void MultiElementsChangedNeighborhood::update(vector<int> _configuration)
+void MultiElementsChangedNeighborhood::Init(vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
@@ -72,5 +73,5 @@ FactoryPacker * MultiElementsChangedNeighborhood::BuildPacker()
 
 vector<int> MultiElementsChangedNeighborhood::neighborAt(int index)
 {
-    return changeAtBhv->applyChangeAt(index, current_configuration, changes);// applyChangeAt(index);
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

@@ -9,9 +9,9 @@
 
 #define SWAPS 600
 
-GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int _players)
-    : Neighborhood(sol->GetConfiguration()),
-      changeAtBhv(new SingleSwapApplyChangeBehavior(sol->GetConfiguration().size())),
+GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, int _players)
+    : Neighborhood(_config_size),
+      changeAtBhv(new SingleSwapApplyChangeBehavior(_config_size)),
       players(_players),
       indexes(Tools::generateMonotony(_players))
 {
@@ -20,6 +20,7 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int
 
 void GolfersSingleSwapNeighborhood::updateChanges()
 {
+    changes.clear();
     int weeks = current_configuration.size() / players;
     int posibles = players * (players-1);
     int swaps = min(SWAPS, posibles);
@@ -40,7 +41,7 @@ void GolfersSingleSwapNeighborhood::updateChanges()
     }
 }
 
-void GolfersSingleSwapNeighborhood::update(std::vector<int> _configuration)
+void GolfersSingleSwapNeighborhood::Init(std::vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
@@ -53,5 +54,5 @@ FactoryPacker * GolfersSingleSwapNeighborhood::BuildPacker()
 
 vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index)
 {
-    return changeAtBhv->applyChangeAt(index, current_configuration, changes); //applyChangeAt(index);
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

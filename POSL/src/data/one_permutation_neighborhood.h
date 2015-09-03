@@ -27,7 +27,7 @@ class OnePermutationNeighborhood : public Neighborhood, public DynamicNeighborho
 {
     friend class ElementsChangeIterator;
     public:
-        OnePermutationNeighborhood(Solution * sol);
+        OnePermutationNeighborhood(int _config_size);
 
         POSL_Iterator<vector<int>> * getIterator(){ return new ElementsChangeIterator(this); }
         int size(){ return changes.size(); }
@@ -35,7 +35,7 @@ class OnePermutationNeighborhood : public Neighborhood, public DynamicNeighborho
 
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
-        void update(vector<int> _configuration);
+        void Init(vector<int> _configuration);
 
     private:
         void updateChanges();

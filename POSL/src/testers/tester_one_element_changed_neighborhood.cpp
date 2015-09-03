@@ -29,7 +29,7 @@ string Tester_OneElementChangedNeighborhood::test()
         1,  1,  1,  1,
     });
     sol = new Solution(psp->GetBenchmark()->Domains(), config);
-    OperationModule * op = new OM_OneElementChangedNeighborhood();
+    OperationModule * op = new OM_OneElementChangedNeighborhood(bench);
     //PSP * psp = new PSP(bench);
     Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
 

@@ -27,7 +27,7 @@ class MultiSortedChangesNeighborhood : public Neighborhood, public DynamicNeighb
 {
     friend class ElementsChangeIterator;
     public:
-        MultiSortedChangesNeighborhood(Solution * sol);
+        MultiSortedChangesNeighborhood(int _config_size, vector<Domain> _domains);
 
         POSL_Iterator<vector<int>> * getIterator(){ new ElementsChangeIterator(this); }
         int size(){ return changes.size(); }
@@ -35,7 +35,7 @@ class MultiSortedChangesNeighborhood : public Neighborhood, public DynamicNeighb
 
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
-        void update(vector<int> _configuration);
+        void Init(vector<int> _configuration);
 
     private:
         void pushSetOfValues(vector<int> indexes);

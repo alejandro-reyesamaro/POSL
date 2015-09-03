@@ -22,7 +22,7 @@ vector<POSL_Solver *> ForSquaringSquareCSS::create()
     FactoryComputationStrategy * fac_cs1 = new FactoryComputationStrategy_SA002
     (
         new OM_RandomConfGeneration(bench),
-        new OM_OneElementChangedNeighborhood(),
+        new OM_OneElementChangedNeighborhood(bench),
         new OM_MultiElementsChangedNeighborhood(),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
@@ -33,7 +33,7 @@ vector<POSL_Solver *> ForSquaringSquareCSS::create()
     FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA002
     (
         new OM_RandomConfGeneration(bench),
-        new OM_OneElementChangedNeighborhood(),
+        new OM_OneElementChangedNeighborhood(bench),
         new OM_MultiElementsChangedNeighborhood(),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
@@ -45,8 +45,8 @@ vector<POSL_Solver *> ForSquaringSquareCSS::create()
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A002
     (
         new OM_RandomConfGeneration(bench),
-        new OM_OneElementChangedNeighborhood(),
-        new OM_MultiElementsChangedNeighborhood(),
+        new OM_OneElementChangedNeighborhood(bench),
+        new OM_MultiElementsChangedNeighborhood(bench),
         new OM_FirstImprovementSelection(),
         new OM_BestImprovementTabuSelection(),
         new OM_SimulatedAnnealingDecision(),
