@@ -11,9 +11,15 @@
 
 MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * sol)
     : Neighborhood(sol->GetConfiguration()),
+      domains(sol->GetDomains()),
       rand()
 {
-    int n = sol->GetConfiguration().size();
+    updateChanges();
+}
+
+void MultiElementsChangedNeighborhood::updateChanges()
+{
+    int n = current_configuration.size();
     int ch = N_NEIGHBORS; // to chahge ch elements
     //int N = PRC_CHANGES * n;  // to have N chahges
 
@@ -33,8 +39,8 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
         {
             //cout << *jt << " ";
 
-            vector<int> posible_values = sol->GetDomains()[*jt].GetValues();
-            int current_value = sol->GetConfiguration()[*jt];
+            vector<int> posible_values =domains[*jt].GetValues();
+            int current_value = current_configuration[*jt];
 
             vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
             if(p != posible_values.end())
@@ -51,7 +57,11 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(Solution * so
     }
 }
 
-
+void MultiElementsChangedNeighborhood::update(vector<int> _configuration)
+{
+    copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
+    updateChanges();
+}
 
 FactoryPacker * MultiElementsChangedNeighborhood::BuildPacker()
 {

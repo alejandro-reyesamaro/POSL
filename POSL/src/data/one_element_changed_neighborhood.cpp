@@ -9,10 +9,22 @@
 
 OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
     : Neighborhood(sol->GetConfiguration()),
+      domains(sol->GetDomains()),
       rand(),
       indexes(Tools::generateMonotony(sol->GetConfiguration().size()))
 {
-    int n = sol->GetConfiguration().size();
+    updateChanges();
+}
+
+void OneElementChangedNeighborhood::update(vector<int> _configuration)
+{
+    copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
+    updateChanges();
+}
+
+void OneElementChangedNeighborhood::updateChanges()
+{
+    int n = current_configuration.size();
 
     //n = N_NEIGHBORS;
     Tools::shuffle(indexes);
@@ -20,12 +32,9 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(Solution * sol)
 
     for(int i = 0; i < n; ++i)
     {
-        vector<int> posible_values = sol->GetDomains()[indexes[i]].GetValues();
-        int current_value = sol->GetConfiguration()[indexes[i]];
+        vector<int> posible_values = domains[indexes[i]].GetValues();
+        int current_value = current_configuration[indexes[i]];
         Tools::shuffle(posible_values);
-        //vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
-        //if(p != posible_values.end())
-        //    posible_values.erase(p); // BEST to do a swap with the first element
         for (int j = 0; j < posible_values.size() / 2 + 1; j++)
         {
             pos_new_value = rand.NextInt(0, posible_values.size()/2);

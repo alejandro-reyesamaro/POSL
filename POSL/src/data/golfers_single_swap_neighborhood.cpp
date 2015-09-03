@@ -13,7 +13,12 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int
       players(_players),
       indexes(Tools::generateMonotony(_players))
 {
-    int weeks = sol->GetConfiguration().size() / players;
+    updateChanges();
+}
+
+void GolfersSingleSwapNeighborhood::updateChanges()
+{
+    int weeks = current_configuration.size() / players;
     int posibles = players * (players-1);
     int swaps = min(SWAPS, posibles);
 
@@ -28,13 +33,13 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(Solution * sol, int
                 T_SwapChanges next_change = { (w*players) + indexes[i], (w*players) + indexes[j]};
                 changes.push_back(next_change);
             }
-        /*
-        for (int i = 0; i < swaps; i++)
-        {
-            T_SwapChanges next_change = { (w*players) + indexes[2*i], (w*players) + indexes[2*i+1]};
-            changes.push_back(next_change);
-        }*/
     }
+}
+
+void GolfersSingleSwapNeighborhood::update(std::vector<int> _configuration)
+{
+    copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
+    updateChanges();
 }
 
 FactoryPacker * GolfersSingleSwapNeighborhood::BuildPacker()

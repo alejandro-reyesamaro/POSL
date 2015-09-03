@@ -63,11 +63,11 @@ int main(int argc, char **argv)
     //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
     //tests.push_back(new Tester_CostOfSolutionNQueens(argc, argv));
-    //tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
-    //tests.push_back(new Tester_MultiElementsChangedNeighborhood(argc, argv));
-    //tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
-    //tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
-    //tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
+    tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_MultiElementsChangedNeighborhood(argc, argv));
+    tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
+    tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
+    tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
     //tests.push_back(new Tester_FromPackNeighborhood(argc, argv));
     //tests.push_back(new Tester_UnionOperator(argc, argv));
 

@@ -11,7 +11,6 @@ class FromPackNeighborhood : public Neighborhood
 {
     friend class ElementsChangeIterator;
     public:
-
         FromPackNeighborhood(int * pack);
 
         POSL_Iterator<vector<int>> * getIterator(){ return new ElementsChangeIterator(this); }

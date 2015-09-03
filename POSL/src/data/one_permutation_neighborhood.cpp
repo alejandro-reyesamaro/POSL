@@ -10,6 +10,17 @@ OnePermutationNeighborhood::OnePermutationNeighborhood(Solution * sol)
     : Neighborhood(sol->GetConfiguration()),
       monotony(Tools::generateMonotony(sol->GetConfiguration().size()))
 {
+    updateChanges();
+}
+
+void OnePermutationNeighborhood::update(vector<int> _configuration)
+{
+    copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
+    updateChanges();
+}
+
+void OnePermutationNeighborhood::updateChanges()
+{
     int n = current_configuration.size();
     int n_changes = n/2;
 

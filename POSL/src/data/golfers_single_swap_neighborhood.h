@@ -12,6 +12,7 @@
 #include "neighborhood.h"
 #include "solution.h"
 #include "dStrategy/elements_change_iterator.h"
+#include "dynamic_neighborhood.h"
 
 #include <random>
 
@@ -31,7 +32,7 @@ typedef struct
  * \class GolfersSingleSwapNeighborhood golfers_single_swap_neighborhood.h
  * \brief Class to represent a neighborhood, swaping elements, but not in the first part
  */
-class GolfersSingleSwapNeighborhood : public Neighborhood
+class GolfersSingleSwapNeighborhood : public Neighborhood, public DynamicNeighborhood
 {
     friend class ElementsChangeIterator;
     public:
@@ -44,9 +45,12 @@ class GolfersSingleSwapNeighborhood : public Neighborhood
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
 
+        void update(std::vector<int> _configuration);
 
     private:
         vector<int> applyChangeAt(int index);
+        void updateChanges();
+
         vector<T_SwapChanges> changes;
         int players;
         vector<int> indexes;

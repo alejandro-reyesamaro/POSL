@@ -12,6 +12,7 @@
 #include "../tools/randomizer.h"
 #include "t_change.h"
 #include "dStrategy/elements_change_iterator.h"
+#include "dynamic_neighborhood.h"
 
 #include <random>
 
@@ -19,7 +20,7 @@
  * \class OneSortedChangeNeighborhood one_sorted_change_neighborhood.h
  * \brief Class to represent a neighborhood, changing one value randomly at the time (sorted)
  */
-class OneSortedChangeNeighborhood : public Neighborhood
+class OneSortedChangeNeighborhood : public Neighborhood, public DynamicNeighborhood
 {
     friend class ElementsChangeIterator;
     public:
@@ -30,11 +31,12 @@ class OneSortedChangeNeighborhood : public Neighborhood
         vector<T_change> GetChanges(){ return changes; }
 
         vector<int> neighborAt(int index);
-
         FactoryPacker * BuildPacker();
+        void update(vector<int> _configuration);
 
     private:
         vector<int> applyChangeAt(int index);
+        void updateChanges();
 
         vector<T_change> changes;
         //Randomizer rand;

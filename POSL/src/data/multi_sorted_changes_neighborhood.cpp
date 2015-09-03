@@ -8,9 +8,15 @@
 
 MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol)
     : Neighborhood(sol->GetConfiguration()),
+      domains(sol->GetDomains()),
       rand()
 {
-    int n = sol->GetConfiguration().size();
+    updateChanges();
+}
+
+void MultiSortedChangesNeighborhood::updateChanges()
+{
+    int n = current_configuration.size();
     //int N = PRC_CHANGES * n;  // to have N chahges
 
     RandIndexGenerator rig(n-1);
@@ -21,8 +27,14 @@ MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(Solution * sol)
     for (vector<vector<int>>::iterator it = the_changes.begin(); it != the_changes.end(); ++it)
     {
         vector<int> list_of_indexes = (*it);
-        pushSetOfValues(list_of_indexes, sol);
+        pushSetOfValues(list_of_indexes);
     }
+}
+
+void MultiSortedChangesNeighborhood::update(std::vector<int> _configuration)
+{
+    copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
+    updateChanges();
 }
 
 FactoryPacker * MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
@@ -39,11 +51,8 @@ vector<int> MultiSortedChangesNeighborhood::applyChangeAt(int index)
     return configuration_changed;
 }
 
-void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes, Solution * sol)
+void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes)
 {
-    //changes.clear();
-    vector<int> config = sol->GetConfiguration();
-    vector<Domain> domains = sol->GetDomains();
     int domains_size = domains[0].maximum();
     // <= 16
     int NCh = (domains_size <= 20) ? 1 : sqrt(domains_size);
@@ -57,13 +66,12 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes, Soluti
         unsigned int index = *it;
         if(index == 0)
         {
-
             vector<int> v(NCh, 0);
             values_for_index = v;
         }
-        else if(index == config.size()-1)
+        else if(index == current_configuration.size()-1)
         {
-            vector<int> v(NCh, config[config.size()-1]);
+            vector<int> v(NCh, current_configuration[current_configuration.size()-1]);
             values_for_index = v;
         }
         else

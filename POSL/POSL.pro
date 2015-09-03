@@ -195,7 +195,8 @@ SOURCES += src/main.cpp \
     src/solver/comunicator.cpp \
     src/solver/for_n_queens_css.cpp \
     src/testers/tester_from_pack_neighborhood.cpp \
-    src/solver/create_solver_strategy.cpp
+    src/solver/create_solver_strategy.cpp \
+    src/data/dynamic_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -395,7 +396,8 @@ HEADERS += \
     src/solver/posl_meta_solver.h \
     src/solver/comunicator.h \
     src/solver/for_n_queens_css.h \ 
-    src/testers/tester_from_pack_neighborhood.h
+    src/testers/tester_from_pack_neighborhood.h \
+    src/data/dynamic_neighborhood.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

@@ -9,6 +9,17 @@
 OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol)
     : Neighborhood(sol->GetConfiguration())
 {
+    updateChanges();
+}
+
+void OneSortedChangeNeighborhood::update(vector<int> _configuration)
+{
+    copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
+    updateChanges();
+}
+
+void OneSortedChangeNeighborhood::updateChanges()
+{
     int n = current_configuration.size();
 
     vector<int> indexes;
@@ -18,16 +29,13 @@ OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(Solution * sol)
     Tools::shuffle(indexes);
 
     int pos_new_value = 0;
-    vector<int> the_configuration = sol->GetConfiguration();
+    //vector<int> the_configuration = sol->GetConfiguration();
 
     for(int i = 0; i < n-2; ++i)
     {
-        int current_value = the_configuration[indexes[i]];
-        vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i],the_configuration);
+        int current_value = current_configuration[indexes[i]];
+        vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i],current_configuration);
         Tools::shuffle(posible_values);
-        //vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);
-        //if(p != posible_values.end())
-        //    posible_values.erase(p); // BEST to do a swap with the first element
         int l = posible_values.size();
         for (int j = 0; j <  l / 2; j++)
         {

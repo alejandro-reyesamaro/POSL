@@ -8,16 +8,12 @@ DecisionPair::DecisionPair(Solution *_current, Solution *_found)
     : current(_current), found(_found)
 {}
 
-void DecisionPair::update(Solution * _current, Solution * _found)
+void DecisionPair::update(vector<int> _current, vector<int> _found)
 {
-    current = _current;
-    found = _found;
+    current->UpdateConfiguration(_current);
+    found->UpdateConfiguration(_found);
 }
 
 bool DecisionPair::equals(){ return current->equal(found); }
-
-Solution * DecisionPair::GetCurrent(){ return current; }
-
-Solution * DecisionPair::GetFound(){ return found; }
 
 FactoryPacker * DecisionPair::BuildPacker(){ return new FactoryDecisionPairPacker(this); }

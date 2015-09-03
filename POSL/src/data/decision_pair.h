@@ -21,27 +21,17 @@
 class DecisionPair : public ComputationData
 {
     public:
-        //! Constructor
         DecisionPair(Solution * _current, Solution * _found);
 
-        //! Returns whether the solutions are equals or not
-        /*!
-        * \return True if the solutions are equals, false otherwise
-        */
         bool equals();
-
         FactoryPacker * BuildPacker();
 
-        //! Returns the current solution
-        Solution * GetCurrent();
-        //! Returns the new found solution
-        Solution * GetFound();
+        Solution * GetCurrent(){ return current; }
+        Solution * GetFound(){ return found; }
 
-        void update(Solution * _current, Solution * _found);
+        void update(vector<int> _current, vector<int> _found);
 
     private :
-        //! Current solution
         Solution * current;
-        //! New found solution
         Solution * found;
 };
