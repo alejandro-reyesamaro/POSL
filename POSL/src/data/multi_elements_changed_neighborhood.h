@@ -12,7 +12,7 @@
 #include "neighborhood.h"
 #include "solution.h"
 #include "../tools/randomizer.h"
-#include "t_nchanges.h"
+#include "t_changes.h"
 #include "dStrategy/elements_change_iterator.h"
 #include "dynamic_neighborhood.h"
 
@@ -30,7 +30,7 @@ class MultiElementsChangedNeighborhood : public Neighborhood, public DynamicNeig
 
         POSL_Iterator<vector<int>> * getIterator() {return new ElementsChangeIterator(this); }
         int size() { return changes.size(); }
-        vector<T_Nchanges> GetChanges(){ return changes; }
+        vector<T_Changes> GetChanges(){ return changes; }
 
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
@@ -41,6 +41,6 @@ class MultiElementsChangedNeighborhood : public Neighborhood, public DynamicNeig
         void updateChanges();
 
         vector<Domain> domains;
-        vector<T_Nchanges> changes;
+        vector<T_Changes> changes;
         Randomizer rand;
 };

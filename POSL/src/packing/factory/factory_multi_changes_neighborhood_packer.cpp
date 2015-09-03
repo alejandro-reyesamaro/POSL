@@ -2,6 +2,6 @@
 
 FactoryMultiChangesNeighborhoodPacker::FactoryMultiChangesNeighborhoodPacker(vector<int> config,
                                                                              int neighborhood_size,
-                                                                             vector<T_Nchanges> _changes)
+                                                                             vector<T_Changes> _changes)
     : FactoryPacker(new MultiChangesNeighborhoodPacker(config, neighborhood_size, _changes))
 {}

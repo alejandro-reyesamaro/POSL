@@ -52,7 +52,7 @@ void MultiElementsChangedNeighborhood::updateChanges()
 
         //cout << "]" << endl;
 
-        T_Nchanges next_changes = {new_indexes, new_values, new_values.size()};
+        T_Changes next_changes = {new_indexes, new_values, new_values.size()};
         changes.push_back(next_changes);
     }
 }

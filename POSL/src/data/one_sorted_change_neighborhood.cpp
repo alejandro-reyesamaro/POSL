@@ -42,7 +42,7 @@ void OneSortedChangeNeighborhood::updateChanges()
             pos_new_value = j;
             if(posible_values[pos_new_value] == current_value)
                 continue;
-            T_change next_change = {indexes[i], posible_values[pos_new_value]};
+            T_Changes next_change = {{indexes[i]}, {posible_values[pos_new_value]}, 1};
             changes.push_back(next_change);
         }
     }
@@ -56,6 +56,6 @@ vector<int> OneSortedChangeNeighborhood::applyChangeAt(int index)
 {
     if(index >= size()) return current_configuration;
     copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
-    configuration_changed[changes[index].pos] = changes[index].new_value;
+    configuration_changed[changes[index].positions[0]] = changes[index].new_values[0];
     return configuration_changed;
 }

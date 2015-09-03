@@ -8,5 +8,5 @@ class FactoryOneChangeNeighborhoodPacker : public FactoryPacker
     public:
         FactoryOneChangeNeighborhoodPacker(vector<int> config,
                                            int neighborhood_size,
-                                           vector<T_change> _changes);
+                                           vector<T_Changes> _changes);
 };

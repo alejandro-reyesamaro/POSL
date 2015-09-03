@@ -6,5 +6,5 @@
 class FactoryMultiChangesNeighborhoodPacker : public FactoryPacker
 {
     public:
-        FactoryMultiChangesNeighborhoodPacker(vector<int> config, int neighborhood_size, vector<T_Nchanges> _changes);
+        FactoryMultiChangesNeighborhoodPacker(vector<int> config, int neighborhood_size, vector<T_Changes> _changes);
 };

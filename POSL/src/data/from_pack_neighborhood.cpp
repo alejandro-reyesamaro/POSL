@@ -25,7 +25,7 @@ FromPackNeighborhood::FromPackNeighborhood(int * pack)
             new_values.push_back(*pack);
             pack++;
         }
-        T_Nchanges next_changes = {new_indexes, new_values, deg};
+        T_Changes next_changes = {new_indexes, new_values, deg};
         changes.push_back(next_changes);
     }
 }

@@ -8,10 +8,10 @@ class GolfersSingleSwapPacker : public NeighborhoodPacker
     public:
         GolfersSingleSwapPacker(vector<int> current_config,
                                 int _neighborhood_size,
-                                vector<T_SwapChanges> _changes);
+                                vector<T_Changes> _changes);
 
     protected:
         void packBody();
 
-        vector<T_SwapChanges> changes;
+        vector<T_Changes> changes;
 };

@@ -30,7 +30,9 @@ void GolfersSingleSwapNeighborhood::updateChanges()
             {
                 if ( (i+1) * (j+1) > posibles || changes.size() >= swaps)
                     break;
-                T_SwapChanges next_change = { (w*players) + indexes[i], (w*players) + indexes[j]};
+                int pos1 = (w*players) + indexes[i];
+                int pos2 = (w*players) + indexes[j];
+                T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
                 changes.push_back(next_change);
             }
     }
@@ -53,6 +55,6 @@ vector<int> GolfersSingleSwapNeighborhood::applyChangeAt(int index)
 {
     if(index >= size()) return current_configuration;
     copy(current_configuration.begin(), current_configuration.end(), configuration_changed.begin());
-    swap(configuration_changed[changes[index].pos1],configuration_changed[changes[index].pos2]);
+    swap(configuration_changed[changes[index].positions[0]],configuration_changed[changes[index].positions[1]]);
     return configuration_changed;
 }

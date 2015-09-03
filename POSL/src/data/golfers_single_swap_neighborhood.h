@@ -13,20 +13,9 @@
 #include "solution.h"
 #include "dStrategy/elements_change_iterator.h"
 #include "dynamic_neighborhood.h"
+#include "t_changes.h"
 
 #include <random>
-
-/*!
- * \class T_Nchanges certain_elements_changed_neighborhood.h
- * \brief Struct to a pair (positions, values) as a change in a configuration
- */
-typedef struct
-{
-    //! Index of the first value
-    int pos1;
-    //! Index of the second value
-    int pos2;
-}T_SwapChanges;
 
 /*!
  * \class GolfersSingleSwapNeighborhood golfers_single_swap_neighborhood.h
@@ -40,7 +29,7 @@ class GolfersSingleSwapNeighborhood : public Neighborhood, public DynamicNeighbo
 
         POSL_Iterator<vector<int>> * getIterator() { return new ElementsChangeIterator(this); }
         int size() {return changes.size(); }
-        vector<T_SwapChanges> GetChanges() { return changes; }
+        vector<T_Changes> GetChanges() { return changes; }
 
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
@@ -51,7 +40,7 @@ class GolfersSingleSwapNeighborhood : public Neighborhood, public DynamicNeighbo
         vector<int> applyChangeAt(int index);
         void updateChanges();
 
-        vector<T_SwapChanges> changes;
+        vector<T_Changes> changes;
         int players;
         vector<int> indexes;
 };

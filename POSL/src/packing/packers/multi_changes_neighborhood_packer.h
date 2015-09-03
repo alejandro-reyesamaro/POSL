@@ -8,10 +8,10 @@ class MultiChangesNeighborhoodPacker : public NeighborhoodPacker
     public:
         MultiChangesNeighborhoodPacker(vector<int> current_config,
                                        int _neighborhood_size,
-                                       vector<T_Nchanges> _changes);
+                                       vector<T_Changes> _changes);
 
     protected:
         void packBody();
 
-        vector<T_Nchanges> changes;
+        vector<T_Changes> changes;
 };

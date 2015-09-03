@@ -3,7 +3,7 @@
 #include "neighborhood.h"
 #include "solution.h"
 #include "dStrategy/elements_change_iterator.h"
-#include "t_nchanges.h"
+#include "t_changes.h"
 
 #include <random>
 
@@ -15,7 +15,7 @@ class FromPackNeighborhood : public Neighborhood
 
         POSL_Iterator<vector<int>> * getIterator(){ return new ElementsChangeIterator(this); }
         int size(){ return changes.size(); }
-        vector<T_Nchanges> GetChanges() { return changes; }
+        vector<T_Changes> GetChanges() { return changes; }
 
         vector<int> neighborAt(int index);
         FactoryPacker * BuildPacker();
@@ -23,5 +23,5 @@ class FromPackNeighborhood : public Neighborhood
     private:
         vector<int> applyChangeAt(int index);
 
-        vector<T_Nchanges> changes;
+        vector<T_Changes> changes;
 };

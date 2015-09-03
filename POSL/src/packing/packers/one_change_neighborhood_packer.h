@@ -8,9 +8,9 @@ class OneChangeNeighborhoodPacker : public NeighborhoodPacker
     public:
         OneChangeNeighborhoodPacker(vector<int> current_config,
                                     int _neighborhood_size,
-                                    vector<T_change> _changes);
+                                    vector<T_Changes> _changes);
 
     protected:
         void packBody();
-        vector<T_change> changes;
+        vector<T_Changes> changes;
 };

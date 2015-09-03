@@ -196,7 +196,8 @@ SOURCES += src/main.cpp \
     src/solver/for_n_queens_css.cpp \
     src/testers/tester_from_pack_neighborhood.cpp \
     src/solver/create_solver_strategy.cpp \
-    src/data/dynamic_neighborhood.cpp
+    src/data/dynamic_neighborhood.cpp \
+    src/data/dStrategy/apply_change_behavior.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -264,7 +265,6 @@ HEADERS += \
     src/data/dStrategy/neighbor_selecting_first_improvement.h \
     src/data/dStrategy/neighbor_selecting_random.h \
     src/data/golfers_single_swap_neighborhood.h \
-    src/data/t_nchanges.h \
     src/data/from_pack_neighborhood.h \
     src/data/one_permutation_neighborhood.h \
     src/benchmarks/benchmark.h \
@@ -397,7 +397,9 @@ HEADERS += \
     src/solver/comunicator.h \
     src/solver/for_n_queens_css.h \ 
     src/testers/tester_from_pack_neighborhood.h \
-    src/data/dynamic_neighborhood.h
+    src/data/dynamic_neighborhood.h \
+    src/data/dStrategy/apply_change_behavior.h \
+    src/data/t_changes.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
