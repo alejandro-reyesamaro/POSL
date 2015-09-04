@@ -11,7 +11,6 @@ Operator::Operator(SequentialExecutionStrategy *_seq_strategy,
 
 ComputationData * Operator::evaluateSequentially(PSP *psp, ComputationData * input)
 {
-    //cout << "Inside Operator (abstract)" << endl;
     return seq_strategy->evaluate(psp, input);
 }
 ComputationData * Operator::evaluateInParallel(PSP *psp, ComputationData * input)
