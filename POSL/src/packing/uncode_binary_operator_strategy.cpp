@@ -3,10 +3,11 @@
 #include "../operators/sequential_exec_operator.h"
 #include "../operators/speed_operator.h"
 #include "../operators/union_operator.h"
-#include "uncode_compound_module_strategy.h"
+
 #include "../tools/tools.h"
 
 UncodeBinaryOperatorStrategy::UncodeBinaryOperatorStrategy()
+    : cm_strategy(new UncodeCompoundModuleStrategy())
 {}
 
 BinaryOperator * UncodeBinaryOperatorStrategy::uncode(string code, Benchmark * bench)
@@ -23,8 +24,6 @@ BinaryOperator * UncodeBinaryOperatorStrategy::uncode(string code, Benchmark * b
     rest = rest.substr(sizefront);
     trim(rest);
     string cm2_code = Tools::frontModule(rest);
-
-    UncodeCompoundModuleStrategy * cm_strategy = new UncodeCompoundModuleStrategy();
 
     if (isdigit(front))
     {

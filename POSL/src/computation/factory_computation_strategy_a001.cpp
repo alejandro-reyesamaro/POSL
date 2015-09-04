@@ -10,7 +10,7 @@
 #include "../expressions/reached_cost_expression.h"
 #include "../expressions/loop_bound_expression.h"
 
-FactoryComputationStrategy_A001::FactoryComputationStrategy_A001(
+FactoryComputationStrategy_A001::FactoryComputationStrategy_A001(Benchmark * _bench,
         AOM_FirstConfigurationGeneration * first_conf_generation,
         AOM_NeighborhoodFunction * neighborhood_function,
         AOM_SelectionFunction * selection_function_1,
@@ -21,6 +21,7 @@ FactoryComputationStrategy_A001::FactoryComputationStrategy_A001(
         int cost_op_cond_decision,
         int loops_main_cycle,
         int loops_restart_cycle)
+    : FactoryComputationStrategy(_bench)
 {
     CompoundModule * cm_iter  = new OMS_IterationsCounter();
     CompoundModule * cm_time  = new OMS_TimeCounter();

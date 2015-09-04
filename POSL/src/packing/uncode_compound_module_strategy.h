@@ -10,4 +10,9 @@ class UncodeCompoundModuleStrategy
     public:
         UncodeCompoundModuleStrategy();
         CompoundModule * uncode(string code, Benchmark * bench);
+
+    private:
+        UncodeSequentialGrouperStrategy * SG_strategy;
+        UncodeParallelGrouperStrategy * PG_strategy;
+        UncodeOperationModuleStrategy * OM_strategy;
 };

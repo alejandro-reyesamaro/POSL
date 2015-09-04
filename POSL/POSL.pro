@@ -200,7 +200,8 @@ SOURCES += src/main.cpp \
     src/data/dStrategy/apply_change_behavior.cpp \
     src/data/dStrategy/single_swap_apply_change_behavior.cpp \
     src/data/dStrategy/standard_apply_change_behavior.cpp \
-    src/data/dStrategy/sorted_apply_change_behavior.cpp
+    src/data/dStrategy/sorted_apply_change_behavior.cpp \
+    src/computation/factory_computation_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 

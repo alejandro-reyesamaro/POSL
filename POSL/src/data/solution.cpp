@@ -23,6 +23,11 @@ void Solution::UpdateConfiguration(vector<int> new_config)
     copy(new_config.begin(), new_config.end(), configuration.begin());
 }
 
+void Solution::UpdateConfigurationFromPack(int * pack)
+{
+    copy(pack + 2, pack + 2 + configuration.size(), configuration.begin());
+}
+
 bool Solution::equal(Solution * other)
 {
     if (other->configuration.size() != configuration.size())

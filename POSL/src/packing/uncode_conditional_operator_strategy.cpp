@@ -1,9 +1,9 @@
 #include "uncode_conditional_operator_strategy.h"
-#include "uncode_compound_module_strategy.h"
-#include "uncode_bool_expression_strategy.h"
 #include "../tools/tools.h"
 
 UncodeConditionalOperatorStrategy::UncodeConditionalOperatorStrategy()
+    : CM_strategy(new UncodeCompoundModuleStrategy()),
+      BE_strategy(new UncodeBoolExpressionStrategy())
 {}
 
 ConditionalOperator * UncodeConditionalOperatorStrategy::uncode(string code, Benchmark * bench)
@@ -19,7 +19,5 @@ ConditionalOperator * UncodeConditionalOperatorStrategy::uncode(string code, Ben
     trim(rest);
     string cm2_code = Tools::frontModule(rest);
 
-    UncodeCompoundModuleStrategy * CM_strategy = new UncodeCompoundModuleStrategy();
-    UncodeBoolExpressionStrategy * BE_strategy = new UncodeBoolExpressionStrategy();
     return new ConditionalOperator(CM_strategy->uncode(cm1_code, bench), CM_strategy->uncode(cm2_code, bench), BE_strategy->uncode(be_code));
 }

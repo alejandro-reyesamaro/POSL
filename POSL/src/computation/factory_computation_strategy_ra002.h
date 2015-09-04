@@ -11,6 +11,7 @@ class FactoryComputationStrategy_RA002 : public FactoryComputationStrategy
     public:
         FactoryComputationStrategy_RA002
         (
+            Benchmark *_bench,
             AOM_FirstConfigurationGeneration * first_conf_generation,
             AOM_NeighborhoodFunction * neighborhood_function_1,
             AOM_NeighborhoodFunction * neighborhood_function_2,

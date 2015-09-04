@@ -1,11 +1,11 @@
 #include "uncode_operator_strategy.h"
-#include "uncode_cyclic_operator_strategy.h"
-#include "uncode_conditional_operator_strategy.h"
-#include "uncode_binary_operator_strategy.h"
-#include "uncode_rho_operator_strategy.h"
 #include "../tools/tools.h"
 
 UncodeOperatorStrategy::UncodeOperatorStrategy()
+    : Cyc_strategy(new UncodeCyclicOperatorStrategy()),
+      Con_strategy(new UncodeConditionalOperatorStrategy()),
+      Rho_strategy(new UncodeRhoOperatorStrategy()),
+      Bin_strategy(new UncodeBinaryOperatorStrategy())
 {}
 
 Operator * UncodeOperatorStrategy::uncode(string code, Benchmark * bench)

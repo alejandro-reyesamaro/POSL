@@ -9,7 +9,7 @@ class DecisionPairPacker : public Packer
         DecisionPairPacker(DecisionPair * pair);
 
         vector<int> pack();
-        static DecisionPair * unpack(int * pack, vector<Domain> domains);
+        //static DecisionPair * unpack(int * pack, vector<Domain> domains);
 
         void update(vector<int> current, vector<int> found);
 

@@ -21,9 +21,6 @@ NeighborhoodPacker::NeighborhoodPacker(vector<int> _config, int _neighborhood_si
       body(size_body)
 {}
 
-
-Neighborhood * NeighborhoodPacker::unpack(int * pack){ return new FromPackNeighborhood(pack); }
-
 vector<int> NeighborhoodPacker::pack()
 {
     //cout << "packing neighborhood" << endl;

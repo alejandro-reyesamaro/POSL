@@ -9,8 +9,7 @@ class SolutionPacker : public Packer
         SolutionPacker(Solution * solution);
 
         vector<int> pack();
-        static Solution * unpack(int * pack, vector<Domain> domains);
-
+        //static Solution * unpack(int * pack, vector<Domain> domains);
         void update(vector<int> _configuration);
 
     private:

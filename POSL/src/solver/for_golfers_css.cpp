@@ -45,6 +45,7 @@ vector<POSL_Solver *> ForGolfersCSS::create()
     */
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A001
     (
+        bench,
         new OM_RandomConfPermutationByBlocksGeneration(bench),
         new OM_GolfersSingleSwapNeighborhood(bench),
         new OM_FirstImprovementSelection(bench),

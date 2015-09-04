@@ -14,7 +14,7 @@
 #include "../expressions/reached_cost_expression.h"
 #include "../expressions/loop_bound_expression.h"
 
-FactoryComputationStrategy_RA002::FactoryComputationStrategy_RA002(
+FactoryComputationStrategy_RA002::FactoryComputationStrategy_RA002(Benchmark * _bench,
         AOM_FirstConfigurationGeneration * first_conf_generation,
         AOM_NeighborhoodFunction * neighborhood_function_1,
         AOM_NeighborhoodFunction * neighborhood_function_2,
@@ -26,6 +26,7 @@ FactoryComputationStrategy_RA002::FactoryComputationStrategy_RA002(
         int cost_op_cond_decision,
         int loops_main_cycle,
         int loops_restart_cycle)
+    : FactoryComputationStrategy(_bench)
 {
     CompoundModule * cm_iter  = new OMS_IterationsCounter();
     CompoundModule * cm_time  = new OMS_TimeCounter();
@@ -37,7 +38,7 @@ FactoryComputationStrategy_RA002::FactoryComputationStrategy_RA002(
     GroupedComputation * G_rho = new GroupedSequentialComputation(rho);
 
     // OPEN CHANNEL to receive the selecton from other solvers
-    CompoundModule * och_selection = new DecisionPairDataOpenChannel();
+    CompoundModule * och_selection = new DecisionPairDataOpenChannel(_bench);
     Operator * min = new MinOperator(G_rho, och_selection);
     GroupedComputation * G_min = new GroupedSequentialComputation(min);
     Operator * cond_1 = new ConditionalOperator(G_rho, G_min, new LoopBoundExpression(4));

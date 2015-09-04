@@ -2,6 +2,7 @@
 #include "../data/neighborhood.h"
 #include "../tools/tools.h"
 #include "../packing/packers/neighborhood_packer.h"
+#include "../data/from_pack_neighborhood.h"
 
 #include <algorithm>
 #include <iostream>
@@ -17,7 +18,7 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
     neighbors->Reset();
     string sol_str = sol->configurationToString();
 
-    Neighborhood * final = NeighborhoodPacker::unpack(&pack[0]);
+    Neighborhood * final = new FromPackNeighborhood(&pack[0]);
     bool succ = final->size() != 0; // No me gusta :/
 
     // | ID |
@@ -37,11 +38,6 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
     conf_str += Tools::int2str(*(pack.begin() + conf_size + 2 - 1)) +" ]";
     count ++;
 
-    /*
-    for(int i = 0; i < conf_size - 1; i++)
-        conf_str += Tools::int2str(* pack ++) + ", ";
-    conf_str += Tools::int2str(* pack ++) +" ]";
-    */
     bool legal = conf_str.compare(sol_str) == 0;
 
     // | n_size |
@@ -68,16 +64,16 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
             conf_aux[pos] = value;
         }                
         neighbor_aux = new Solution(dom, conf_aux);
+        //string sol_aux_str = sol_aux->configurationToString();
+        //string neighbor_aux_str = neighbor_aux->configurationToString();
         legal = legal && sol_aux->configurationToString().compare(neighbor_aux->configurationToString()) == 0;
-
-        //delete (sol_aux);
-        //delete (neighbor_aux);
+        //if(!legal) return "fail";
     }
 
     //cout << conf_str << endl;
     //cout << pack_str << endl;
 
     return  (succ && legal)
-            ? label + ": (" + Tools::int2str(id) + ") : OK !"
+            ? label + ": (" + Tools::int2str(id) + ") OK !"
             : label + ": fail :/";
 }

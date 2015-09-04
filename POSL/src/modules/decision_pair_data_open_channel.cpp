@@ -1,14 +1,14 @@
 #include "decision_pair_data_open_channel.h"
 #include "../packing/packers/decision_pair_packer.h"
 #include "../tools/tools.h"
-#include "../data/decision_pair.h"
 
 #include <iostream>
 using namespace std;
 
-DecisionPairDataOpenChannel::DecisionPairDataOpenChannel()
-{
-}
+DecisionPairDataOpenChannel::DecisionPairDataOpenChannel(Benchmark * _bench)
+    : DataOpenChannel(_bench),
+      pair_data(new DecisionPair(new Solution(_bench->Domains()), new Solution(_bench->Domains())))
+{}
 
 int DecisionPairDataOpenChannel::dataTag()
 {
@@ -34,8 +34,6 @@ ComputationData * DecisionPairDataOpenChannel::unpackMessage(int * buffer, PSP *
 
     cout << pack_current_str << endl;
     */
-
-    DecisionPair * rPair = DecisionPairPacker::unpack(buffer, psp->GetBenchmark()->Domains());
-    //cout << "message unpacked: " << rPair->GetCurrent()->configurationToString() << endl;
-    return rPair;
+    pair_data->updateFromPack(buffer);
+    return pair_data;
 }

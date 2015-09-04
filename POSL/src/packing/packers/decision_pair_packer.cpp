@@ -31,6 +31,7 @@ vector<int> DecisionPairPacker::pack()
     return package;
 }
 
+/*
 DecisionPair * DecisionPairPacker::unpack(int * pack, vector<Domain> domains)
 {
     int conf_size = pack[1];
@@ -42,3 +43,4 @@ DecisionPair * DecisionPairPacker::unpack(int * pack, vector<Domain> domains)
     Solution * s2 = new Solution(domains, config2);
     return new DecisionPair(s1, s2);
 }
+*/

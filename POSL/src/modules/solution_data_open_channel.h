@@ -5,7 +5,10 @@
 class SolutionDataOpenChannel : public DataOpenChannel
 {
     public:
-        SolutionDataOpenChannel();
+        SolutionDataOpenChannel(Benchmark * _bench);
         int dataTag();
         ComputationData * unpackMessage(int * buffer, PSP * psp);
+
+    private:
+        Solution * solution_data;
 };

@@ -44,6 +44,7 @@ vector<POSL_Solver *> ForGolombRulerCSS::create()
     */
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A002
     (
+        bench,
         new OM_RandomConfOrderedGeneration(bench),
         new OM_OneSortedChangeNeighborhood(bench),
         new OM_MultiSortedChangesNeighborhood(bench),

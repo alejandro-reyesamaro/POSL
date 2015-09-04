@@ -1,6 +1,9 @@
 #include "uncode_cyclic_operator_strategy.h"
+#include "uncode_compound_module_strategy.h"
 
 UncodeCyclicOperatorStrategy::UncodeCyclicOperatorStrategy()
+    : //CM_strategy(new UncodeCompoundModuleStrategy()),
+      BE_strategy(new UncodeBoolExpressionStrategy())
 {}
 
 CyclicOperator * UncodeCyclicOperatorStrategy::uncode(string code, Benchmark * bench)
@@ -11,7 +14,5 @@ CyclicOperator * UncodeCyclicOperatorStrategy::uncode(string code, Benchmark * b
     string cm_code = code.substr(pos_close + 1);
 
     UncodeCompoundModuleStrategy * CM_strategy = new UncodeCompoundModuleStrategy();
-    UncodeBoolExpressionStrategy * BE_strategy = new UncodeBoolExpressionStrategy();
-
     return new CyclicOperator(CM_strategy->uncode(cm_code, bench), BE_strategy->uncode(be_code));
 }

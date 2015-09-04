@@ -7,8 +7,6 @@ class NeighborhoodPacker : public Packer
 {
     public:
         NeighborhoodPacker(vector<int> _config, int _neighborhood_size, int size_package, int size_body);
-
-        static Neighborhood * unpack(int * pack);
         vector<int> pack();
 
     protected:

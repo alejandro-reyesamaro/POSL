@@ -5,6 +5,7 @@ ElementsChangeIterator::ElementsChangeIterator(Neighborhood * _n) : neighborhood
 
 vector<int> ElementsChangeIterator::GetNext()
 {
+    //vector<int> r = neighborhood->neighborAt(current);
     return neighborhood->neighborAt(current ++);
 }
 

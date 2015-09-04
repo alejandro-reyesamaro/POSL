@@ -86,7 +86,8 @@ void Tester_Comunication::test()
         //MPI_Test(&request, &test_flag, &status);
 
         //cout << buffer[0] << endl;
-        DecisionPair * rPair = DecisionPairPacker::unpack(buffer, bench->Domains());
+        DecisionPair * rPair = new DecisionPair(new Solution(bench->Domains()), new Solution(bench->Domains()));
+        rPair->updateFromPack(buffer);
         cout << rPair->GetFound()->configurationToString() << endl;
     }
 

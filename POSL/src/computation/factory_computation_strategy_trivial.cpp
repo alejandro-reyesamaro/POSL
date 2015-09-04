@@ -8,11 +8,13 @@
 #include "../expressions/loop_bound_expression.h"
 
 FactoryComputationStrategy_Trivial::FactoryComputationStrategy_Trivial(
+        Benchmark * _bench,
         AOM_FirstConfigurationGeneration * first_conf_generation,
         AOM_NeighborhoodFunction * neighborhood_function,
         AOM_SelectionFunction * selection_function,
         AOM_DecisionFunction * decision_fucntion,
         int loops_main_cycle)
+    : FactoryComputationStrategy(_bench)
 {
     CompoundModule * cm_iter  = new OMS_IterationsCounter();
     CompoundModule * cm_time  = new OMS_TimeCounter();

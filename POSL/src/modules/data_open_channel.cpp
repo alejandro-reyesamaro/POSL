@@ -3,7 +3,8 @@
 #include <iostream>
 using namespace std;
 
-DataOpenChannel::DataOpenChannel()
+DataOpenChannel::DataOpenChannel(Benchmark * _bench)
+    : bench(_bench)
 {}
 
 ComputationData * DataOpenChannel::execute(PSP * psp, ComputationData * input)

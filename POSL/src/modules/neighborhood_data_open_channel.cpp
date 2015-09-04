@@ -1,8 +1,10 @@
 #include "neighborhood_data_open_channel.h"
 #include "../packing/packers/neighborhood_packer.h"
 #include "../data/neighborhood.h"
+#include "../data/from_pack_neighborhood.h"
 
-NeighborhoodDataOpenChannel::NeighborhoodDataOpenChannel()
+NeighborhoodDataOpenChannel::NeighborhoodDataOpenChannel(Benchmark * _bench)
+    : DataOpenChannel(_bench)
 {
 }
 
@@ -13,6 +15,5 @@ int NeighborhoodDataOpenChannel::dataTag()
 
 ComputationData * NeighborhoodDataOpenChannel::unpackMessage(int * buffer, PSP * psp)
 {
-    Neighborhood * rV = NeighborhoodPacker::unpack(buffer);
-    return rV;
+    return new FromPackNeighborhood(buffer);
 }

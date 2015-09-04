@@ -46,8 +46,8 @@ string Tester_PackingDecisionPair::test()
     });
 
 
-    Solution * sol_current = new Solution(psp->GetBenchmark()->Domains(), config1);
-    Solution * sol_found = new Solution(psp->GetBenchmark()->Domains(), config2);
+    Solution * sol_current = new Solution(bench->Domains(), config1);
+    Solution * sol_found = new Solution(bench->Domains(), config2);
     ComputationData * data = new DecisionPair(sol_current, sol_found);
     DecisionPair * pair = dynamic_cast<DecisionPair *>(data);
 
@@ -58,7 +58,8 @@ string Tester_PackingDecisionPair::test()
 
     int * buff = &pack[0];
 
-    DecisionPair * final = DecisionPairPacker::unpack(&pack[0], psp->GetBenchmark()->Domains());
+    DecisionPair * final = new DecisionPair(new Solution(bench->Domains()), new Solution(bench->Domains()));
+    final->updateFromPack(&pack[0]);
     bool succ = final->GetCurrent()->equal(sol_current) && final->GetFound()->equal(sol_found);
 
     // | ID |

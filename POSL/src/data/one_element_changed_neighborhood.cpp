@@ -14,9 +14,7 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(int _config_size, v
       domains(_domains),
       rand(),
       indexes(Tools::generateMonotony(_config_size))
-{
-    updateChanges();
-}
+{}
 
 void OneElementChangedNeighborhood::Init(vector<int> _configuration)
 {
@@ -27,23 +25,25 @@ void OneElementChangedNeighborhood::Init(vector<int> _configuration)
 void OneElementChangedNeighborhood::updateChanges()
 {
     changes.clear();
-    int n = current_configuration.size();
+    int n = current_configuration.size()/2;
 
     //n = N_NEIGHBORS;
     Tools::shuffle(indexes);
     int pos_new_value = 0;
+    int new_value = 0;
 
     for(int i = 0; i < n; ++i)
     {
         vector<int> posible_values = domains[indexes[i]].GetValues();
         int current_value = current_configuration[indexes[i]];
-        Tools::shuffle(posible_values);
+        pos_new_value = indexes[i];
+        Tools::shuffle(posible_values);        
         for (int j = 0; j < posible_values.size() / 2 + 1; j++)
-        {
-            pos_new_value = rand.NextInt(0, posible_values.size()/2);
-            if(posible_values[pos_new_value] == current_value)
+        {            
+            new_value = posible_values[j];
+            if(new_value == current_value)
                 continue;
-            T_Changes next_change = {{indexes[i]}, {posible_values[pos_new_value]}, 1};
+            T_Changes next_change = {{indexes[i]}, {new_value}, 1};
             changes.push_back(next_change);
         }
     }

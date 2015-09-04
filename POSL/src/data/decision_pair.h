@@ -30,6 +30,7 @@ class DecisionPair : public ComputationData
         Solution * GetFound(){ return found; }
 
         void update(vector<int> _current, vector<int> _found);
+        void updateFromPack(int * pack);
 
     private :
         Solution * current;

@@ -30,6 +30,7 @@ class Solution : public ComputationData//, public Packable
         Solution(vector<Domain> _domains, vector<int> conf);
 
         void UpdateConfiguration(vector<int> new_config);
+        void UpdateConfigurationFromPack(int * pack);
         bool equal(Solution * other);
         string configurationToString();
         FactoryPacker * BuildPacker();

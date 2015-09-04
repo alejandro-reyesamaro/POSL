@@ -5,7 +5,7 @@
 class NeighborhoodDataOpenChannel : public DataOpenChannel
 {
     public:
-        NeighborhoodDataOpenChannel();
+        NeighborhoodDataOpenChannel(Benchmark * _bench);
         int dataTag();
         ComputationData * unpackMessage(int * buffer, PSP * psp);
 };

@@ -5,5 +5,10 @@
 class FactoryComputationStrategy
 {
     public:
+        FactoryComputationStrategy(Benchmark * _bench);
+
         virtual CompoundModule * buildModule() = 0;
+
+    protected:
+        Benchmark * bench;
 };

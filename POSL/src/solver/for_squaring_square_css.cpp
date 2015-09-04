@@ -44,6 +44,7 @@ vector<POSL_Solver *> ForSquaringSquareCSS::create()
     */
     FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A002
     (
+        bench,
         new OM_RandomConfGeneration(bench),
         new OM_OneElementChangedNeighborhood(bench),
         new OM_MultiElementsChangedNeighborhood(bench),

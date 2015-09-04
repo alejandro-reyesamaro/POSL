@@ -36,7 +36,8 @@ string Tester_PackingSolution::test()
     SolutionPacker * p = new SolutionPacker(sol);
     vector<int> pack = p->pack();
 
-    Solution * final = SolutionPacker::unpack(&pack[0], psp->GetBenchmark()->Domains());
+    Solution * final = new Solution(psp->GetBenchmark()->Domains());
+    final->UpdateConfigurationFromPack(&pack[0]);
     bool succ = final->equal(sol);
 
     // | ID |

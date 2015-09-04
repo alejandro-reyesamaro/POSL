@@ -45,11 +45,15 @@ string Tester_OneElementChangedNeighborhood::test()
 
         for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)
         {
-            sum  += *j;
-            prod *= *j;
+            int k = *j;
+            sum  += k;
+            prod *= k;
         }
+        //Solution * aux = new Solution(bench->Domains(), neighbor);
+        //cout << aux->configurationToString() << endl;
 
-        only_change_one = only_change_one && (prod == sum - 31);
+
+        only_change_one = only_change_one && (prod == sum - 31) && (prod != 1);
         sum  = 0;
         prod = 1;
     }

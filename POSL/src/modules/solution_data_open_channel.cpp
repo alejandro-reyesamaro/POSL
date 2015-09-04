@@ -1,9 +1,10 @@
 #include "solution_data_open_channel.h"
 #include "../packing/packers/solution_packer.h"
 
-SolutionDataOpenChannel::SolutionDataOpenChannel()
-{
-}
+SolutionDataOpenChannel::SolutionDataOpenChannel(Benchmark * _bench)
+    : DataOpenChannel(_bench),
+      solution_data(new Solution(_bench->Domains()))
+{}
 
 int SolutionDataOpenChannel::dataTag()
 {
@@ -12,6 +13,6 @@ int SolutionDataOpenChannel::dataTag()
 
 ComputationData * SolutionDataOpenChannel::unpackMessage(int * buffer, PSP * psp)
 {
-    Solution * rSol = SolutionPacker::unpack(buffer, psp->GetBenchmark()->Domains());
-    return rSol;
+    solution_data->UpdateConfigurationFromPack(buffer);
+    return solution_data;
 }

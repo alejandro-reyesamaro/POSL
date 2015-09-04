@@ -11,6 +11,7 @@ class FactoryComputationStrategy_SA001 : public FactoryComputationStrategy
     public:
         FactoryComputationStrategy_SA001
         (
+            Benchmark *_bench,
             AOM_FirstConfigurationGeneration * first_conf_generation,
             AOM_NeighborhoodFunction * neighborhood_function,
             AOM_SelectionFunction * selection_function_1,

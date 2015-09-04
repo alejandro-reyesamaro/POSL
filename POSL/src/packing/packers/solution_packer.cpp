@@ -26,6 +26,7 @@ vector<int> SolutionPacker::pack()
     return package;
 }
 
+/*
 Solution * SolutionPacker::unpack(int * pack, vector<Domain> domains)
 {
     int conf_size = pack[1];
@@ -34,3 +35,4 @@ Solution * SolutionPacker::unpack(int * pack, vector<Domain> domains)
     Solution * s = new Solution(domains, config);
     return s;
 }
+*/
