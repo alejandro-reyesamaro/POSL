@@ -34,12 +34,11 @@ class RhoSequentialStrategy : public SequentialExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
-        //! Left Compund Module
         CompoundModule * M1;
-        //! Right Compund Module
         CompoundModule * M2;
-        //! Probability
         float rho;
-
         Randomizer rand;
+
+        ComputationData * output1;
+        ComputationData * output2;
 };

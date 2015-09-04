@@ -11,6 +11,7 @@
 
 #include "parallel_execution_strategy.h"
 #include "executer.h"
+#include "../../data/union_neighborhood.h"
 
 /*!
  * \class UnionParallelStrategy union_parallel_strategy.h
@@ -19,7 +20,6 @@
 class UnionParallelStrategy : public ParallelExecutionStrategy
 {
     public:
-        //! Constructor
         UnionParallelStrategy(CompoundModule * _M1, CompoundModule * _M2);
 
         //! (override) The result of evaluating a Compound Module (parallel)
@@ -31,8 +31,9 @@ class UnionParallelStrategy : public ParallelExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:        
-        //! Left Compund Module
         Executer M1;
-        //! Right Compund Module
         Executer M2;
+
+        Neighborhood * v1;
+        Neighborhood * v2;
 };

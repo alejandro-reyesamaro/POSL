@@ -7,25 +7,27 @@
 #include <iostream>
 #include <limits>
 
-FlorianSequentialStrategy::FlorianSequentialStrategy(CompoundModule * _M1) : M1(_M1)
+FlorianSequentialStrategy::FlorianSequentialStrategy(CompoundModule * _M1)
+    : M1(_M1),
+      temp_solution(nullptr),
+      best_solution(nullptr)
 {}
 
 ComputationData * FlorianSequentialStrategy::evaluate(PSP * psp, ComputationData * input)
-{
-    Solution * best;
+{    
     int best_cost = std::numeric_limits<int>::max();
 
     for(int i = 0; i < N_ATTEMPTS; i++)
     {
-        Solution * sol = (Solution *)M1->execute(psp, input);
-        int cost = psp->GetBenchmark()->solutionCost(sol);
+        temp_solution = (Solution *)M1->execute(psp, input);
+        int cost = psp->GetBenchmark()->solutionCost(temp_solution);
         if(cost < best_cost)
         {
-            best = sol;
+            best_solution = temp_solution;
             best_cost = cost;
         }
     }
 
-    psp->UpdateSolution(best);
-    return best;
+    psp->UpdateSolution(best_solution);
+    return best_solution;
 }

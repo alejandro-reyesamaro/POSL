@@ -19,7 +19,6 @@
 class CyclicSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        //! Constructor
         CyclicSequentialStrategy(CompoundModule * _M1, BooleanExpression * _ex);
 
         //! (override) The result of evaluating a Compound Module (Sequentially)
@@ -31,8 +30,8 @@ class CyclicSequentialStrategy : public SequentialExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
-        //! The Module
         CompoundModule * M1;
-        //! The stop condition
         BooleanExpression * ex;
+
+        ComputationData * output;
 };

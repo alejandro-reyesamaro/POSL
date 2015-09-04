@@ -10,6 +10,7 @@
  */
 
 #include "sequential_execution_strategy.h"
+#include "../../tools/chronometer.h"
 
 /*!
  * \class SpeedSequentialStrategy speed_sequential_strategy.h
@@ -18,7 +19,6 @@
 class SpeedSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        //! Constructor
         SpeedSequentialStrategy(CompoundModule * _M1, CompoundModule * _M2);
 
         //! (override) The result of evaluating a Compound Module (sequential)
@@ -30,8 +30,10 @@ class SpeedSequentialStrategy : public SequentialExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
-        //! Left Compund Module
         CompoundModule * M1;
-        //! Right Compund Module
         CompoundModule * M2;
+
+        Chronometer * chro;
+        ComputationData * result1;
+        ComputationData * result2;
 };

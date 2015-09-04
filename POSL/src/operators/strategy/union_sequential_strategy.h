@@ -10,6 +10,7 @@
  */
 
 #include "sequential_execution_strategy.h"
+#include "../../data/union_neighborhood.h"
 
 #include <random>
 #include <chrono>
@@ -21,7 +22,6 @@
 class UnionSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        //! Constructor
         UnionSequentialStrategy(CompoundModule * _M1, CompoundModule * _M2);
 
         //! (override) The result of evaluating a Compound Module (sequential)
@@ -33,8 +33,9 @@ class UnionSequentialStrategy : public SequentialExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
-        //! Left Compund Module
         CompoundModule * M1;
-        //! Right Compund Module
         CompoundModule * M2;
+
+        Neighborhood * v1;
+        Neighborhood * v2;
 };

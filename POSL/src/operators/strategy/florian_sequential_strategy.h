@@ -18,7 +18,6 @@
 class FlorianSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        //! Constructor
         FlorianSequentialStrategy(CompoundModule * _M1);
 
         //! (override) The result of evaluating a Compound Module (Sequentially)
@@ -30,6 +29,8 @@ class FlorianSequentialStrategy : public SequentialExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
-        //! The Module
         CompoundModule * M1;
+
+        Solution * best_solution;
+        Solution * temp_solution;
 };

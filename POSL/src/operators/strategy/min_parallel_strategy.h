@@ -11,6 +11,7 @@
 
 #include "parallel_execution_strategy.h"
 #include "executer.h"
+#include "min_crit_comparison.h"
 
 /*!
  * \class MinParallelStrategy min_parallel_strategy.h
@@ -19,7 +20,6 @@
 class MinParallelStrategy : public ParallelExecutionStrategy
 {
     public:
-        //! Constructor
         MinParallelStrategy(CompoundModule * _M1, CompoundModule * _M2);
 
         //! (override) The result of evaluating a Compound Module (parallel)
@@ -31,8 +31,10 @@ class MinParallelStrategy : public ParallelExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
-        //! Left Compund Module
         Executer M1;
-        //! Right Compund Module
         Executer M2;
+
+        ComputationData * result1;
+        ComputationData * result2;
+        MinCritComparison * mincrit;
 };

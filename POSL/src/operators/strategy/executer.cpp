@@ -1,7 +1,7 @@
 #include "executer.h"
 
 Executer::Executer(CompoundModule * _M)
-    : output(NULL),
+    : output(nullptr),
       M(_M)
 {}
 

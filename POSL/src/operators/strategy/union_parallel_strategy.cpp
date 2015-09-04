@@ -9,22 +9,23 @@
 #define TAG 123
 
 UnionParallelStrategy::UnionParallelStrategy(CompoundModule *_M1, CompoundModule *_M2)
-    : M1(_M1), M2(_M2)//M1(new Executer(_M1)), M2(new Executer(_M2))
+    : M1(_M1), M2(_M2),
+      v1(nullptr),
+      v2(nullptr)
 {}
 
 ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * input)
 {
     thread workerThread(&Executer::execute, &M2, psp, input);
     M1.execute(psp, input);
-    Neighborhood * v1 = (Neighborhood *)M1.GetOutput();
+    v1 = (Neighborhood *)M1.GetOutput();
     workerThread.join();
-    Neighborhood * v2 = (Neighborhood *)M2.GetOutput();
+    v2 = (Neighborhood *)M2.GetOutput();
 
-    if (v1 == NULL) return v2;
-    if (v2 == NULL) return v1;
+    if (v1 == nullptr) return v2;
+    if (v2 == nullptr) return v1;
 
-    Neighborhood * v = new UnionNeighborhood((Solution *)input, v1, v2);
-    return v;
+    return new UnionNeighborhood((Solution *)input, v1, v2);
 }
 
 /*

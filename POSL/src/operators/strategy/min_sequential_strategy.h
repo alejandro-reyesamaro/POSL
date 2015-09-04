@@ -8,6 +8,7 @@
  */
 
 #include "sequential_execution_strategy.h"
+#include "min_crit_comparison.h"
 
 /*!
  * \class MinSequentialStrategy min_sequential_strategy.h
@@ -16,7 +17,6 @@
 class MinSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        //! Constructor
         MinSequentialStrategy(CompoundModule * _M1, CompoundModule * _M2);
 
         //! (override) The result of evaluating a Compound Module (Sequentially)
@@ -28,8 +28,10 @@ class MinSequentialStrategy : public SequentialExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
-        //! Left Compund Module
         CompoundModule * M1;
-        //! Right Compund Module
         CompoundModule * M2;
+
+        ComputationData * result1;
+        ComputationData * result2;
+        MinCritComparison * mincrit;
 };

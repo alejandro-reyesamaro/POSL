@@ -6,13 +6,14 @@
 
 using namespace std;
 
-SendDataSequentialStrategy::SendDataSequentialStrategy(CompoundModule * _M1) : M1(_M1)
+SendDataSequentialStrategy::SendDataSequentialStrategy(CompoundModule * _M1)
+    : M1(_M1),
+      output(nullptr)
 {}
 
 ComputationData * SendDataSequentialStrategy::evaluate(PSP * psp, ComputationData * input)
 {
-    ComputationData * output = M1->execute(psp, input);
-    FactoryPacker * packer = output->BuildPacker();
-    psp->SendData(packer->pack());
+    output = M1->execute(psp, input);
+    psp->SendData(output->BuildPacker()->pack());
     return output;
 }

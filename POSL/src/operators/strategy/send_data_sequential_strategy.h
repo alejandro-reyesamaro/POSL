@@ -17,7 +17,6 @@
 class SendDataSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        //! Constructor
         SendDataSequentialStrategy(CompoundModule * _M1);
 
         //! (override) The result of evaluating a Compound Module (Sequentially)
@@ -29,6 +28,6 @@ class SendDataSequentialStrategy : public SequentialExecutionStrategy
         ComputationData * evaluate(PSP * psp, ComputationData * input);
 
     private:
-        //! The Module
-        CompoundModule * M1;
+        CompoundModule * M1;        
+        ComputationData * output;
 };
