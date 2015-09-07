@@ -3,7 +3,7 @@
 #include "compound_module.h"
 #include "../operators/operator.h"
 #include "../expressions/boolean_expression.h"
-#include "../packing/uncode_compound_module_strategy.h"
+#include "../packing/module_uncoder.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ class CompoundModuleGeneratorFromCode : public CompoundModule
     private:
         CompoundModule * generateFrom(string code, Benchmark * bench);
 
-        UncodeCompoundModuleStrategy * cm_strategy;
+        ModuleUncoder * m_uncoder;
         CompoundModule * module;
         string mycode;        
 };

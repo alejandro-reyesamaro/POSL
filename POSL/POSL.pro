@@ -163,16 +163,6 @@ SOURCES += src/main.cpp \
     src/tools/merged_longint.cpp \
     src/tools/matrix.cpp \
     src/tools/tools.cpp \
-    src/packing/uncode_operator_strategy.cpp \
-    src/packing/uncode_cyclic_operator_strategy.cpp \
-    src/packing/uncode_compound_module_strategy.cpp \
-    src/packing/uncode_sequential_grouper_strategy.cpp \
-    src/packing/uncode_parallel_grouper_strategy.cpp \
-    src/packing/uncode_operation_module_strategy.cpp \
-    src/packing/uncode_bool_expression_strategy.cpp \
-    src/packing/uncode_conditional_operator_strategy.cpp \
-    src/packing/uncode_binary_operator_strategy.cpp \
-    src/packing/uncode_rho_operator_strategy.cpp \
     src/packing/packers/decision_pair_packer.cpp \
     src/packing/packers/golfers_single_swap_packer.cpp \
     src/packing/packers/neighborhood_packer.cpp \
@@ -201,7 +191,8 @@ SOURCES += src/main.cpp \
     src/data/dStrategy/single_swap_apply_change_behavior.cpp \
     src/data/dStrategy/standard_apply_change_behavior.cpp \
     src/data/dStrategy/sorted_apply_change_behavior.cpp \
-    src/computation/factory_computation_strategy.cpp
+    src/computation/factory_computation_strategy.cpp \
+    src/packing/module_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -367,16 +358,6 @@ HEADERS += \
     src/expressions/boolean_expression.h \
     src/expressions/reached_cost_expression.h \
     src/packing/codable.h \
-    src/packing/uncode_operator_strategy.h \
-    src/packing/uncode_cyclic_operator_strategy.h \
-    src/packing/uncode_compound_module_strategy.h \
-    src/packing/uncode_sequential_grouper_strategy.h \
-    src/packing/uncode_parallel_grouper_strategy.h \
-    src/packing/uncode_operation_module_strategy.h \
-    src/packing/uncode_bool_expression_strategy.h \
-    src/packing/uncode_conditional_operator_strategy.h \
-    src/packing/uncode_binary_operator_strategy.h \
-    src/packing/uncode_rho_operator_strategy.h \
     src/packing/packers/packer.h \
     src/packing/packers/decision_pair_packer.h \
     src/packing/packers/golfers_single_swap_packer.h \
@@ -405,7 +386,8 @@ HEADERS += \
     src/data/t_changes.h \
     src/data/dStrategy/single_swap_apply_change_behavior.h \
     src/data/dStrategy/standard_apply_change_behavior.h \
-    src/data/dStrategy/sorted_apply_change_behavior.h
+    src/data/dStrategy/sorted_apply_change_behavior.h \
+    src/packing/module_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
