@@ -18,27 +18,17 @@
 class SquaringSquare : public Benchmark
 {
     public:
-        //! Constructor
         SquaringSquare(int _size, vector<int> _squares);
 
-        //! (override) The cost of a given Solution
-        /*!
-        * \param sol Solution
-        * \return The cost of the Solution sol
-        */
         int solutionCost(vector<int> configuration);
+        string ShowSolution(shared_ptr<Solution> solution);
 
-        string ShowSolution(Solution * solution);
-
-        vector<Domain> Domains();
-
-        //! Properties
-        int Size();
-        int SquareAt(int pos);
+        int Size(){ return size; }
+        int SquareAt(int pos){ return (pos >= 0 && pos < size)? squares[pos] : -1; }
 
     private:
-        //! Size of the big square
+        //! [Size of the big square]
         int size;
-        //! Sizes of the squares to put into the big one
+        //! [Sizes of the squares to put into the big one]
         vector<int> squares;
 };

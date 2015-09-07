@@ -4,6 +4,6 @@ Benchmark::Benchmark(vector<Domain> _domains)
     : domains(_domains)
 {}
 
-int Benchmark::solutionCost(Solution * sol){ return solutionCost(sol->GetConfiguration()); }
+int Benchmark::solutionCost(shared_ptr<Solution> sol){ return solutionCost(sol->GetConfiguration()); }
 
-void Benchmark::UpdateSolution(Solution * sol){ solution = sol; }
+void Benchmark::UpdateSolution(shared_ptr<Solution> sol){ solution = sol; }

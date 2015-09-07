@@ -12,7 +12,7 @@ using namespace std;
 #define TL p * g / 32 + 1
 
 Golfers::Golfers(int g, int p, int w)
-    : Benchmark(vector<Domain>(g * p * w, Domain(new Factory_NIntDomain(1,p * g)))),
+    : Benchmark(vector<Domain>(g * p * w, Domain(make_shared<Factory_NIntDomain>(1,p * g)))),
       groups(g),
       players(p),
       weeks(w),
@@ -32,7 +32,6 @@ int Golfers::solutionCost(vector<int> configuration)
     fill(global_partners.begin(), global_partners.end(), LongInt(table_length, 0));
     //vector<LongInt> group_partners (golfers+1, LongInt(table_length, 0));
     fill(group_partners.begin(), group_partners.end(), LongInt(table_length, 0));
-
 
     alldiff.deactivateAll(); //alldiff.clearBits(); // LongInt alldiff (table_length, 0);
 
@@ -74,7 +73,6 @@ int Golfers::solutionCost(vector<int> configuration)
         }        
         //actual cost
 
-
         //cout << "Computing current cost" << endl;
         for(vector<LongInt>::iterator it_global = global_partners.begin(), it_group = group_partners.begin(); it_global != global_partners.end(); ++it_global, ++it_group)
         {
@@ -106,15 +104,9 @@ int Golfers::solutionCost(vector<int> configuration)
     return cost;
 }
 
-int Golfers::Groups(){ return groups; }
 
-int Golfers::PlayersPerGroup(){ return players; }
 
-int Golfers::Weeks(){ return weeks; }
-
-int Golfers::TotalPlayers(){ return players * groups; }
-
-string Golfers::ShowSolution(Solution * solution)
+string Golfers::ShowSolution(shared_ptr<Solution> solution)
 {
     string out =  "Golfers: players-" + Tools::int2str(players);
            out += ", groups-" + Tools::int2str(groups);

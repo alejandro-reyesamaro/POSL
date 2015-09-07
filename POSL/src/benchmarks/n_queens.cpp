@@ -17,7 +17,7 @@ using namespace std;
 #define ErrD2(i, j)   (err_d2[D2(i, j)])
 
 NQueens::NQueens(int n)
-    : Benchmark(vector<Domain>(n, Domain(new Factory_NIntDomain(0, n-1)))),
+    : Benchmark(vector<Domain>(n, Domain(make_shared<Factory_NIntDomain>(0, n-1)))),
       N(n),
       err_d1(2 * n - 1, 0),
       err_d2(2 * n - 1, 0),
@@ -68,7 +68,7 @@ int NQueens::solutionCost(vector<int> configuration)
 
 int NQueens::Order(){ return N; }
 
-string NQueens::ShowSolution(Solution * solution)
+string NQueens::ShowSolution(shared_ptr<Solution> solution)
 {
     if(N > 20)
         return Tools::int2str(N) +"-Queens: " + solution->configurationToString();

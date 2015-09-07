@@ -19,25 +19,15 @@
 class Golfers : public Benchmark
 {
     public:
-        //! Constructor
         Golfers(int g, int p, int w);
 
-        //! (override) The cost of a given Solution
-        /*!
-        * \param sol Solution
-        * \return The cost of the Solution sol
-        */
         int solutionCost(vector<int> configuration);
+        string ShowSolution(shared_ptr<Solution> solution);
 
-        string ShowSolution(Solution * solution);
-
-        vector<Domain> Domains();
-
-        //! Properties
-        int Groups();
-        int PlayersPerGroup();
-        int Weeks();
-        int TotalPlayers();
+        int Groups(){ return groups; }
+        int PlayersPerGroup(){ return players; }
+        int Weeks(){ return weeks; }
+        int TotalPlayers(){ return players * groups; }
 
     private:
         //! [number of groups],[players per group],[weeks to play]

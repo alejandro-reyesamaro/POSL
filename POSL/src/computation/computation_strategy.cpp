@@ -4,11 +4,12 @@
 #include <iostream>
 using namespace std;
 
-ComputationStrategy::ComputationStrategy(FactoryComputationStrategy * builder)
+ComputationStrategy::ComputationStrategy(shared_ptr<FactoryComputationStrategy> builder)
     : module(builder->buildModule())
 {}
 
-Solution * ComputationStrategy::execute(PSP * psp)
+shared_ptr<Solution> ComputationStrategy::execute(shared_ptr<PSP> psp)
 {
-    return (Solution *)module->execute(psp, new Seed());
+    //return (Solution *)module->execute(psp, new Seed());
+    return static_pointer_cast<Solution>(module->execute(psp, new Seed()));
 }

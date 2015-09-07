@@ -4,7 +4,7 @@
 #define PENALIZATION 10
 
 GolombRuler::GolombRuler(int _order, int _length)
-    : Benchmark(vector<Domain>(_order, Domain(new Factory_NIntDomain(0, _length)))),
+    : Benchmark(vector<Domain>(_order, Domain(make_shared<Factory_NIntDomain>(0, _length)))),
       order(_order),
       length(_length),
       measures(_length / 32 + 1, 0)
@@ -33,11 +33,7 @@ int GolombRuler::solutionCost(vector<int> configuration)
     return cost;
 }
 
-int GolombRuler::Order(){ return order; }
-
-int GolombRuler::Length(){ return length; }
-
-string GolombRuler::ShowSolution(Solution * solution)
+string GolombRuler::ShowSolution(shared_ptr<Solution> solution)
 {
     string output = "";
     if(order == 6 and length == 17) output = "(6-17:2) ";

@@ -19,29 +19,17 @@
 class GolombRuler : public Benchmark
 {
     public:
-        //! Constructor
         GolombRuler(int _order, int _length);
 
-        //! (override) The cost of a given Solution
-        /*!
-        * \param sol Solution
-        * \return The cost of the Solution sol
-        */
         int solutionCost(vector<int> configuration);
+        string ShowSolution(shared_ptr<Solution> solution);
 
-        string ShowSolution(Solution * solution);
-
-        vector<Domain> Domains();
-
-        //! Properties
-        int Order();
-        int Length();
+        int Order(){ return order; }
+        int Length(){ return length; }
 
     private:
-        //! Number of marcs
-        int order;
-        //! Maximum distance
-        int length;
+        //! [Number of marcs], [Maximum distance]
+        int order, length;
 
         LongInt measures;
 };

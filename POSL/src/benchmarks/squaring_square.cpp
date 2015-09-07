@@ -3,7 +3,7 @@
 #include "../tools/tools.h"
 
 SquaringSquare::SquaringSquare(int _size, vector<int> _squares)
-    : Benchmark(vector<Domain>(_squares.size() * 2, Domain(new Factory_NIntDomain(0,_size - 1)))),
+    : Benchmark(vector<Domain>(_squares.size() * 2, Domain(make_shared<Factory_NIntDomain>(0,_size - 1)))),
       size(_size),
       squares(_squares)
 {}
@@ -34,11 +34,7 @@ int SquaringSquare::solutionCost(vector<int> configuration)
     return cost;
 }
 
-int SquaringSquare::Size(){ return size; }
-
-int SquaringSquare::SquareAt(int pos){ return (pos >= 0 && pos < size)? squares[pos] : -1; }
-
-string SquaringSquare::ShowSolution(Solution * solution)
+string SquaringSquare::ShowSolution(shared_ptr<Solution> solution)
 {
     string out = "";
     vector<int> conf = solution->GetConfiguration();

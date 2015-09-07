@@ -8,9 +8,9 @@
 class ComputationStrategy
 {
     public:
-        ComputationStrategy(FactoryComputationStrategy * builder);
-        Solution * execute(PSP * psp);
+        ComputationStrategy(shared_ptr<FactoryComputationStrategy> builder);
+        shared_ptr<Solution> execute(shared_ptr<PSP> psp);
 
     private:
-        CompoundModule * module;
+        shared_ptr<CompoundModule> module;
 };

@@ -6,14 +6,15 @@
 #include "../modules/aom_selection_function.h"
 #include "../modules/aom_decision_function.h"
 
-class FactoryComputationStrategy_A001 : public FactoryComputationStrategy
+class FactoryComputationStrategy_A002 : public FactoryComputationStrategy
 {
     public:
-        FactoryComputationStrategy_A001
+        FactoryComputationStrategy_A002
         (
-            shared_ptr<Benchmark>_bench,
+            shared_ptr<Benchmark> _bench,
             shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
-            shared_ptr<AOM_NeighborhoodFunction> neighborhood_function,
+            shared_ptr<AOM_NeighborhoodFunction> neighborhood_function_1,
+            shared_ptr<AOM_NeighborhoodFunction> neighborhood_function_2,
             shared_ptr<AOM_SelectionFunction> selection_function_1,
             shared_ptr<AOM_SelectionFunction> selection_function_2,
             shared_ptr<AOM_DecisionFunction> decision_fucntion_1,

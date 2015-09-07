@@ -18,19 +18,10 @@
 class NQueens : public Benchmark
 {
     public:
-        //! Constructor
         NQueens(int n);
 
-        //! (override) The cost of a given Solution
-        /*!
-        * \param sol Solution
-        * \return The cost of the Solution sol
-        */
         int solutionCost(vector<int> configuration);
-
-        string ShowSolution(Solution * solution);
-
-        vector<Domain> Domains();
+        string ShowSolution(shared_ptr<Solution> solution);
 
         //! Properties
         int Order();

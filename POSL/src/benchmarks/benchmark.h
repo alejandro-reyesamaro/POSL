@@ -12,6 +12,7 @@
 #include "../data/solution.h"
 
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -24,16 +25,16 @@ class Benchmark
     public:
         Benchmark(vector<Domain> _domains);
 
-        int solutionCost(Solution * sol);        
-        void UpdateSolution(Solution * sol);
+        int solutionCost(shared_ptr<Solution> sol);
+        void UpdateSolution(shared_ptr<Solution> sol);
 
-        Solution * GetSolution(){ return solution; }
+        shared_ptr<Solution> GetSolution(){ return solution; }
         vector<Domain> Domains(){ return domains; }
 
-        virtual string ShowSolution(Solution * solution) = 0;
+        virtual string ShowSolution(shared_ptr<Solution> solution) = 0;
         virtual int solutionCost(vector<int> configuration) = 0;
 
     protected:
-        Solution * solution;
+        shared_ptr<Solution> solution;
         vector<Domain> domains;
 };
