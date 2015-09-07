@@ -12,7 +12,7 @@ GolombRuler::GolombRuler(int _order, int _length)
 
 int GolombRuler::solutionCost(vector<int> configuration)
 {
-    measures.clearBits();// = new LongInt(table_length, 0);
+    measures.deactivateAll(); //measures.clearBits();// = new LongInt(table_length, 0);
     //vector<int> conf = sol->GetConfiguration();
     int cost = 0, penalty = 0;
 

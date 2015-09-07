@@ -16,55 +16,47 @@
 #include "../computation/factory_computation_strategy_ra001.h"
 
 ForGolfersCSS::ForGolfersCSS(Golfers * golfers)
-    : CreateSolverStrategy(golfers)
+    : CreateSolverStrategy(golfers),
+      sender_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_SA001
+        (
+            bench,
+            new OM_RandomConfPermutationByBlocksGeneration(bench),
+            new OM_GolfersSingleSwapNeighborhood(bench),
+            new OM_FirstImprovementSelection(bench),
+            new OM_BestImprovementTabuSelection(bench),
+            new OM_SimulatedAnnealingDecision(),
+            new OM_AlwaysImproveDecision(),
+            0.5, 20, 500, 10
+        )))),
+      receiver_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_RA001
+        (
+            bench,
+            new OM_RandomConfPermutationByBlocksGeneration(bench),
+            new OM_GolfersSingleSwapNeighborhood(bench),
+            new OM_FirstImprovementSelection(bench),
+            new OM_BestImprovementTabuSelection(bench),
+            new OM_SimulatedAnnealingDecision(),
+            new OM_AlwaysImproveDecision(),
+            0.2, 20, 500, 10
+        )))),
+      single_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_A001
+        (
+            bench,
+            new OM_RandomConfPermutationByBlocksGeneration(bench),
+            new OM_GolfersSingleSwapNeighborhood(bench),
+            new OM_FirstImprovementSelection(bench),
+            new OM_BestImprovementTabuSelection(bench),
+            new OM_SimulatedAnnealingDecision(),
+            new OM_AlwaysImproveDecision(),
+            0.2, 20, 100, 10
+        ))))
 {}
 
 vector<POSL_Solver *> ForGolfersCSS::create()
 {
-    /*
-    FactoryComputationStrategy * fac_cs1 = new FactoryComputationStrategy_SA001
-    (
-        new OM_RandomConfPermutationByBlocksGeneration(bench),
-        new OM_GolfersSingleSwapNeighborhood(bench),
-        new OM_FirstImprovementSelection(bench),
-        new OM_BestImprovementTabuSelection(bench),
-        new OM_SimulatedAnnealingDecision(),
-        new OM_AlwaysImproveDecision(),
-        0.5, 20, 500, 10
-    );
-    FactoryComputationStrategy * fac_cs2 = new FactoryComputationStrategy_RA001
-    (
-        new OM_RandomConfPermutationByBlocksGeneration(bench),
-        new OM_GolfersSingleSwapNeighborhood(bench),
-        new OM_FirstImprovementSelection(bench),
-        new OM_BestImprovementTabuSelection(bench),
-        new OM_SimulatedAnnealingDecision(),
-        new OM_AlwaysImproveDecision(),
-        0.2, 20, 500, 10
-    );
-    */
-    FactoryComputationStrategy * fac_cs = new FactoryComputationStrategy_A001
-    (
-        bench,
-        new OM_RandomConfPermutationByBlocksGeneration(bench),
-        new OM_GolfersSingleSwapNeighborhood(bench),
-        new OM_FirstImprovementSelection(bench),
-        new OM_BestImprovementTabuSelection(bench),
-        new OM_SimulatedAnnealingDecision(),
-        new OM_AlwaysImproveDecision(),
-        0.2, 20, 100, 10
-    );
-    //ComputationStrategy * cs1 = new ComputationStrategy(fac_cs1);
-    //POSL_Solver * solver_1 = new POSL_Solver(cs1);
-    //ComputationStrategy * cs2 = new ComputationStrategy(fac_cs2);
-    //POSL_Solver * solver_2 = new POSL_Solver(cs2);
-    ComputationStrategy * cs3 = new ComputationStrategy(fac_cs);
-    POSL_Solver * solver_3 = new POSL_Solver(cs3);
-
-    vector<POSL_Solver *> solvers;
     //solvers.push_back(solver_1);
     //solvers.push_back(solver_2);
-    solvers.push_back(solver_3);
+    solvers.push_back(single_solver);
 
     return solvers;
 }

@@ -4,16 +4,22 @@
 #include <iostream>
 #include <math.h>
 #include <limits>
+#include <algorithm>
+
 using namespace std;
 
 LongInt::LongInt(unsigned int _bytes, vector<int> _value) : bytes(_bytes), value(_value)
 {}
 
-LongInt::LongInt(unsigned int _bytes, int _value) : bytes(_bytes)
-{
-    vector<int> aux (bytes, 0);
-    aux[0] = _value;
-    value = aux;
+LongInt::LongInt(unsigned int _bytes, int _value)
+    : bytes(_bytes),
+      value(_bytes)
+{    
+    fill(value.begin(), value.end(), 0);
+    value[0] = _value;
+    //vector<int> aux (bytes, 0);
+    //aux[0] = _value;
+    //value = aux;
 }
 
 LongInt::LongInt(unsigned int _bytes) : bytes(_bytes)
@@ -21,11 +27,14 @@ LongInt::LongInt(unsigned int _bytes) : bytes(_bytes)
     activateAll();
 }
 
+/*
 bool LongInt::clearBits()
 {
-    vector<int> aux (bytes, 0);
-    value = aux;
+    fill(value.begin(), value.end(), 0);
+    //vector<int> aux (bytes, 0);
+    //value = aux;
 }
+*/
 
 int LongInt::length() { return (int)bytes; }
 
@@ -59,13 +68,15 @@ void LongInt::activate(unsigned int bit)
 
 void LongInt::activateAll()
 {
-    vector<int> aux (bytes, std::numeric_limits<unsigned int>::max());
-    value = aux;
+    fill(value.begin(), value.end(), std::numeric_limits<unsigned int>::max());
+    //vector<int> aux (bytes, std::numeric_limits<unsigned int>::max());
+    //value = aux;
 }
 void LongInt::deactivateAll()
 {
-    vector<int> aux (bytes, 0);
-    value = aux;
+    fill(value.begin(), value.end(), 0);
+    //vector<int> aux (bytes, 0);
+    //value = aux;
 }
 
 int LongInt::bitCount()
@@ -101,6 +112,5 @@ string LongInt::toString()
     string bin = "";
     for(vector<int>::iterator it = value.begin(); it != value.end(); ++it)
         bin = binary(*it, 32) + bin;
-
     return bin;
 }

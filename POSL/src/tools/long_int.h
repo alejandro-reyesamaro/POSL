@@ -27,9 +27,10 @@ class LongInt
         int bitCount();
         bool Equal(LongInt &other);
         string toString();
-        bool clearBits();
+        //bool clearBits();
 
     private:
         int bytes;
         vector<int> value;
+        //vector<int> aux;
 };

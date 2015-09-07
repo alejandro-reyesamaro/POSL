@@ -10,4 +10,5 @@ class CreateSolverStrategy
 
     protected:
         Benchmark * bench;
+        vector<POSL_Solver *> solvers;
 };

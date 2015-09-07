@@ -28,7 +28,6 @@ vector<int> Matrix::column(int index)
 
     for(int i = 0; i < N; i++)
         col.push_back(elementAt(i,index));
-
     return col;
 }
 
@@ -48,6 +47,5 @@ vector<int> Matrix::diagonalLeft(int shift)
     shift = shift % N;
     for(int i = 0; i < N; i++)
         diag.push_back(elementAt( i, (i + (shift))%N ) );
-
     return diag;
 }

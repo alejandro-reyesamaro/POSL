@@ -8,4 +8,9 @@ class ForGolfersCSS : public CreateSolverStrategy
     public:
         ForGolfersCSS(Golfers * golfers);
         vector<POSL_Solver *> create();
+
+    private:
+        POSL_Solver * single_solver;
+        POSL_Solver * receiver_solver;
+        POSL_Solver * sender_solver;
 };

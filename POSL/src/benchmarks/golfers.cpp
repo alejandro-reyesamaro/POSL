@@ -34,7 +34,7 @@ int Golfers::solutionCost(vector<int> configuration)
     fill(group_partners.begin(), group_partners.end(), LongInt(table_length, 0));
 
 
-    alldiff.clearBits(); // LongInt alldiff (table_length, 0);
+    alldiff.deactivateAll(); //alldiff.clearBits(); // LongInt alldiff (table_length, 0);
 
     int cost = 0;
 
@@ -59,7 +59,7 @@ int Golfers::solutionCost(vector<int> configuration)
                     {
                         //if(i == 16) cout << sol->configuration[i] << endl;
                         //if(i == 16) cout << global_partners[sol->configuration[i]].toString() << endl;
-                        new_partner.clearBits();// LongInt new_partner (table_length, 0);
+                        new_partner.deactivateAll(); //new_partner.clearBits();// LongInt new_partner (table_length, 0);
                         new_partner.activate(configuration[j]);
                         //cout << new_partner.toString() << endl;
                         //cout << i << "- " << sol->GetConfiguration()[i] << endl;
@@ -79,7 +79,7 @@ int Golfers::solutionCost(vector<int> configuration)
         for(vector<LongInt>::iterator it_global = global_partners.begin(), it_group = group_partners.begin(); it_global != global_partners.end(); ++it_global, ++it_group)
         {
             //cout << it_group->toString() << endl;
-            global_partnership.clearBits();
+            global_partnership.deactivateAll(); //global_partnership.clearBits();
             global_partnership = *it_global & *it_group;
             cost += global_partnership.bitCount();
             *it_global = *it_global | *it_group;

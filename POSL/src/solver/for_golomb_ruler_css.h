@@ -8,4 +8,9 @@ class ForGolombRulerCSS : public CreateSolverStrategy
     public:
         ForGolombRulerCSS(GolombRuler * golomb);
         vector<POSL_Solver *> create();
+
+    private:
+        POSL_Solver * single_solver;
+        POSL_Solver * receiver_solver;
+        POSL_Solver * sender_solver;
 };
