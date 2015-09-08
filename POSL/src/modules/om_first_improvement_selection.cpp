@@ -3,11 +3,11 @@
 #include <iostream>
 using namespace std;
 
-OM_FirstImprovementSelection::OM_FirstImprovementSelection(Benchmark * bench)
-    : search_strategy(new NeighborSelectingFirstImprovement(bench->Domains()))
+OM_FirstImprovementSelection::OM_FirstImprovementSelection(shared_ptr<Benchmark> bench)
+    : search_strategy(make_shared<NeighborSelectingFirstImprovement>(bench->Domains()))
 {}
 
-DecisionPair * OM_FirstImprovementSelection::spcf_execute(PSP * psp, Neighborhood * input)
+shared_ptr<DecisionPair> OM_FirstImprovementSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)
 {
     return search_strategy->select(psp, input);
 }

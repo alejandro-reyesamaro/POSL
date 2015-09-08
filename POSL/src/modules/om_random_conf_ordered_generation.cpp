@@ -2,15 +2,15 @@
 #include <random>
 #include <iostream>
 
-OM_RandomConfOrderedGeneration::OM_RandomConfOrderedGeneration(Benchmark * bench)
+OM_RandomConfOrderedGeneration::OM_RandomConfOrderedGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
-      rconf_strategy(new RandomOrderedGenerationStrategy(bench->Domains().size())),
-      rsolution(new Solution(bench->Domains())),
-      object_bench(dynamic_cast<GolombRuler *> (bench))
+      rconf_strategy(make_shared<RandomOrderedGenerationStrategy>(bench->Domains().size())),
+      rsolution(make_shared<Solution>(bench->Domains())),
+      object_bench(dynamic_pointer_cast<GolombRuler> (bench))
 {
 }
 
-Solution * OM_RandomConfOrderedGeneration::spcf_execute(PSP *psp, Solution * input)
+shared_ptr<Solution> OM_RandomConfOrderedGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
     if(!object_bench)
         throw "(POSL exception) Not casting allowed (OM_RandomConfOrderedGeneration.spfc_execute)";

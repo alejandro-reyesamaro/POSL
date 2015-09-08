@@ -11,14 +11,14 @@ class CompoundModuleGeneratorFromCode : public CompoundModule
 {
     public:
         CompoundModuleGeneratorFromCode(string code, Benchmark * bench);
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
         //! From Codable
         string codeToSend();
 
     private:
-        CompoundModule * generateFrom(string code, Benchmark * bench);
+        shared_ptr<CompoundModule> generateFrom(string code, shared_ptr<Benchmark> bench);
 
-        ModuleUncoder * m_uncoder;
-        CompoundModule * module;
+        shared_ptr<ModuleUncoder> m_uncoder;
+        shared_ptr<CompoundModule> module;
         string mycode;        
 };

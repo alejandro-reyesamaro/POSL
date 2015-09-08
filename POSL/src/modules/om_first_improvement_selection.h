@@ -20,19 +20,13 @@ class OM_FirstImprovementSelection : public AOM_SelectionFunction
 {
     public:
         //! Constructor
-        OM_FirstImprovementSelection(Benchmark * bench);
+        OM_FirstImprovementSelection(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \param psp The Problem Search Process
-        * \param input Input (a neighborhood)
-        * \return The first configuration improuving the current cost
-        */
-        DecisionPair * spcf_execute(PSP * psp, Neighborhood * input);
+        shared_ptr<DecisionPair> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        NeighborSelectingFirstImprovement * search_strategy;
+        shared_ptr<NeighborSelectingFirstImprovement> search_strategy;
 };

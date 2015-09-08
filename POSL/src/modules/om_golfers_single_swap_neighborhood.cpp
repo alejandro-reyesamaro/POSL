@@ -3,12 +3,12 @@
 #include <iostream>
 using namespace std;
 
-OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(Benchmark * bench)
-    : object_bench(dynamic_cast<Golfers *> (bench)),
-      V(new GolfersSingleSwapNeighborhood(bench->Domains().size(), object_bench->TotalPlayers()))
+OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(shared_ptr<Benchmark> bench)
+    : object_bench(static_pointer_cast<Golfers> (bench)),
+      V(make_shared<GolfersSingleSwapNeighborhood>(bench->Domains().size(), object_bench->TotalPlayers()))
 {}
 
-Neighborhood * OM_GolfersSingleSwapNeighborhood::spcf_execute(PSP * psp, Solution * input)
+shared_ptr<Neighborhood> OM_GolfersSingleSwapNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
     V->Init(input->GetConfiguration());
     return V;

@@ -5,9 +5,9 @@
 #include <iostream>
 using namespace std;
 
-DecisionPairDataOpenChannel::DecisionPairDataOpenChannel(Benchmark * _bench)
+DecisionPairDataOpenChannel::DecisionPairDataOpenChannel(shared_ptr<Benchmark> _bench)
     : DataOpenChannel(_bench),
-      pair_data(new DecisionPair(new Solution(_bench->Domains()), new Solution(_bench->Domains())))
+      pair_data(make_shared<DecisionPair>(make_shared<Solution>(_bench->Domains()), make_shared<Solution>(_bench->Domains())))
 {}
 
 int DecisionPairDataOpenChannel::dataTag()
@@ -15,7 +15,7 @@ int DecisionPairDataOpenChannel::dataTag()
     return DECISIONPAIR_PACKING_ID;
 }
 
-ComputationData * DecisionPairDataOpenChannel::unpackMessage(int * buffer, PSP * psp)
+shared_ptr<ComputationData> DecisionPairDataOpenChannel::unpackMessage(int * buffer, shared_ptr<PSP> psp)
 {
     /*
     cout << "unpacking message" << endl;

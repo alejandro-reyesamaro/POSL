@@ -6,10 +6,10 @@
 class DecisionPairDataOpenChannel : public DataOpenChannel
 {
     public:
-        DecisionPairDataOpenChannel(Benchmark *_bench);
+        DecisionPairDataOpenChannel(shared_ptr<Benchmark>_bench);
         int dataTag();
-        ComputationData * unpackMessage(int * buffer, PSP * psp);
+        shared_ptr<ComputationData> unpackMessage(int * buffer, shared_ptr<PSP> psp);
 
     private:
-        DecisionPair * pair_data;
+        shared_ptr<DecisionPair> pair_data;
 };

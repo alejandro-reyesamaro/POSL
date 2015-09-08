@@ -23,23 +23,16 @@ class OM_RandomConfPermutationByBlocksGeneration : public AOM_FirstConfiguration
 {
     public:
         //! Constructor
-        OM_RandomConfPermutationByBlocksGeneration(Benchmark * bench);
+        OM_RandomConfPermutationByBlocksGeneration(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \brief The input is a configuration, but in this case is not tacken into account
-        * \param psp The Problem Search Process
-        * \param input Input (configuration)
-        * \return A random configuration/permutation-by-blocks
-        */
-        Solution * spcf_execute(PSP * psp, Solution * input);
+        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        Solution * rsolution;
-        Golfers * object_bench;
-        RandomPermutationByBlocksGenerationStrategy * rconf_strategy;
+        shared_ptr<Solution> rsolution;
+        shared_ptr<Golfers> object_bench;
+        shared_ptr<RandomPermutationByBlocksGenerationStrategy> rconf_strategy;
 
 };

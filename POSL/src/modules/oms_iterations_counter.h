@@ -20,13 +20,7 @@ class OMS_IterationsCounter : public OperationModule
     public:
         OMS_IterationsCounter();
 
-        //! Execute the O.M.
-        /*!
-        * \param psp The Problem Search Process
-        * \param input Input (a neighborhood)
-        * \return A random configuration, improving or not the cost
-        */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
         //! From Codable
         string codeToSend();

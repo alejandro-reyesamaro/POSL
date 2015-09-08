@@ -8,7 +8,7 @@ OM_AlwaysImproveDecision::OM_AlwaysImproveDecision()
 {
 }
 
-Solution * OM_AlwaysImproveDecision::spcf_execute(PSP * psp, DecisionPair * input)
+shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input)
 {
     psp->UpdateSolution(input->GetFound());
     return input->GetFound();

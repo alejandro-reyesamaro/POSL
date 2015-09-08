@@ -33,7 +33,7 @@ class RandomPermutationByBlocksGenerationStrategy
         vector<int> generate(int block_size, int n_blocks);
 
     private:
-        Randomizer rand;
+        //Randomizer rand;
         vector<int> config;
         vector<int> permutations;
 };

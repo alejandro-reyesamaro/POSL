@@ -3,11 +3,11 @@
 #include <iostream>
 using namespace std;
 
-OM_BestImprovementTabuSelection::OM_BestImprovementTabuSelection(Benchmark * bench)
-    : search_strategy(new NeighborSelectingBestImprovementTabu(bench->Domains()))
+OM_BestImprovementTabuSelection::OM_BestImprovementTabuSelection(shared_ptr<Benchmark> bench)
+    : search_strategy(make_shared<NeighborSelectingBestImprovementTabu>(bench->Domains()))
 {}
 
-DecisionPair * OM_BestImprovementTabuSelection::spcf_execute(PSP * psp, Neighborhood * input)
+shared_ptr<DecisionPair> OM_BestImprovementTabuSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)
 {
     return search_strategy->select(psp, input);
 }

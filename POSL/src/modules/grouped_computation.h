@@ -5,8 +5,8 @@
 class GroupedComputation : public CompoundModule
 {
     public:
-        GroupedComputation(Operator * _op);
+        GroupedComputation(shared_ptr<Operator> _op);
 
     protected:
-        Operator * op;
+        shared_ptr<Operator> op;
 };

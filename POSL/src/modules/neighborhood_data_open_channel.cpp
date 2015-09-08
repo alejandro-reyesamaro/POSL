@@ -3,7 +3,7 @@
 #include "../data/neighborhood.h"
 #include "../data/from_pack_neighborhood.h"
 
-NeighborhoodDataOpenChannel::NeighborhoodDataOpenChannel(Benchmark * _bench)
+NeighborhoodDataOpenChannel::NeighborhoodDataOpenChannel(shared_ptr<Benchmark> _bench)
     : DataOpenChannel(_bench)
 {
 }
@@ -13,7 +13,7 @@ int NeighborhoodDataOpenChannel::dataTag()
     return NEIGHBORHOOD_PACKING_ID;
 }
 
-ComputationData * NeighborhoodDataOpenChannel::unpackMessage(int * buffer, PSP * psp)
+shared_ptr<ComputationData> NeighborhoodDataOpenChannel::unpackMessage(int * buffer, shared_ptr<PSP> psp)
 {
-    return new FromPackNeighborhood(buffer);
+    return make_shared<FromPackNeighborhood>(buffer);
 }

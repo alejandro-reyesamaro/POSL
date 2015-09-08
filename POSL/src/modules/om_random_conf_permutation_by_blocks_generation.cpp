@@ -4,15 +4,15 @@
 #include <random>
 #include <iostream>
 
-OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGeneration(Benchmark * bench)
+OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
-      rsolution(new Solution(bench->Domains())),
-      object_bench(dynamic_cast<Golfers *> (bench)),
-      rconf_strategy(new RandomPermutationByBlocksGenerationStrategy(bench->Domains().size(), object_bench->TotalPlayers()))
+      rsolution(make_shared<Solution>(bench->Domains())),
+      object_bench(dynamic_pointer_cast<Golfers> (bench)),
+      rconf_strategy(make_shared<RandomPermutationByBlocksGenerationStrategy>(bench->Domains().size(), object_bench->TotalPlayers()))
 {
 }
 
-Solution * OM_RandomConfPermutationByBlocksGeneration::spcf_execute(PSP *psp, Solution * input)
+shared_ptr<Solution> OM_RandomConfPermutationByBlocksGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
     int block_size = object_bench->Groups() * object_bench->PlayersPerGroup();
     int blocks = object_bench->Weeks();

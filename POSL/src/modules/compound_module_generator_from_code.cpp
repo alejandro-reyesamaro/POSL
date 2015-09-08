@@ -6,12 +6,12 @@ CompoundModuleGeneratorFromCode::CompoundModuleGeneratorFromCode(string code, Be
       mycode(code)
 {}
 
-ComputationData * CompoundModuleGeneratorFromCode::execute(PSP * psp, ComputationData * input)
+shared_ptr<ComputationData> CompoundModuleGeneratorFromCode::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     return module->execute(psp, input);
 }
 
-CompoundModule * CompoundModuleGeneratorFromCode::generateFrom(string code, Benchmark * bench)
+shared_ptr<CompoundModule> CompoundModuleGeneratorFromCode::generateFrom(string code, shared_ptr<Benchmark> bench)
 {
     return m_uncoder->uncodeCompoundModule(code, bench);
 }

@@ -19,19 +19,13 @@
 class OM_BestImprovementSelection : public AOM_SelectionFunction
 {
     public:
-        OM_BestImprovementSelection(Benchmark * bench);
+        OM_BestImprovementSelection(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \param psp The Problem Search Process
-        * \param input Input (a neighborhood)
-        * \return The configuration that improuves the best the current cost
-        */
-        DecisionPair * spcf_execute(PSP * psp, Neighborhood * input);
+        shared_ptr<DecisionPair> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        NeighborSelectingBestImprovement * search_strategy;
+        shared_ptr<NeighborSelectingBestImprovement> search_strategy;
 };

@@ -20,19 +20,13 @@
 class OM_RandomSelection : public AOM_SelectionFunction
 {
     public:
-        OM_RandomSelection(Benchmark * bench);
+        OM_RandomSelection(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \param psp The Problem Search Process
-        * \param input Input (a neighborhood)
-        * \return A random configuration, improving or not the cost
-        */
-        DecisionPair * spcf_execute(PSP * psp, Neighborhood * input);
+        shared_ptr<DecisionPair> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        NeighborSelectingRandom * search_strategy;
+        shared_ptr<NeighborSelectingRandom> search_strategy;
 };

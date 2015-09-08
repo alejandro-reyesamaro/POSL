@@ -23,20 +23,13 @@ class OM_MultiSortedChangesNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
         //! Constructor
-        OM_MultiSortedChangesNeighborhood(Benchmark * bench);
+        OM_MultiSortedChangesNeighborhood(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \brief The input is a configuration
-        * \param psp The Problem Search Process
-        * \param input Input (configuration)
-        * \return The Neighborhood of the input configuration
-        */
-        Neighborhood * spcf_execute(PSP * psp, Solution * input);
+        shared_ptr<Neighborhood> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        MultiSortedChangesNeighborhood * V;
+        shared_ptr<MultiSortedChangesNeighborhood> V;
 };

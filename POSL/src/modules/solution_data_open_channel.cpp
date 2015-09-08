@@ -1,9 +1,9 @@
 #include "solution_data_open_channel.h"
 #include "../packing/packers/solution_packer.h"
 
-SolutionDataOpenChannel::SolutionDataOpenChannel(Benchmark * _bench)
+SolutionDataOpenChannel::SolutionDataOpenChannel(shared_ptr<Benchmark> _bench)
     : DataOpenChannel(_bench),
-      solution_data(new Solution(_bench->Domains()))
+      solution_data(make_shared<Solution>(_bench->Domains()))
 {}
 
 int SolutionDataOpenChannel::dataTag()
@@ -11,7 +11,7 @@ int SolutionDataOpenChannel::dataTag()
     return SOLUTION_PACKING_ID;
 }
 
-ComputationData * SolutionDataOpenChannel::unpackMessage(int * buffer, PSP * psp)
+shared_ptr<ComputationData> SolutionDataOpenChannel::unpackMessage(int * buffer, shared_ptr<PSP> psp)
 {
     solution_data->UpdateConfigurationFromPack(buffer);
     return solution_data;

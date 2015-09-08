@@ -18,19 +18,9 @@
 class GroupedParallelComputation : public GroupedComputation
 {
     public:
-        //! Constructor
-        /*!
-        * \param _op The operator to be grouped
-        */
-        GroupedParallelComputation(Operator * _op);
+        GroupedParallelComputation(shared_ptr<Operator> _op);
 
-        //! Execute the O.M.
-        /*!
-        * \param psp The Problem Search Process
-        * \param input Input
-        * \return The output of the module
-        */
-        ComputationData * execute(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
         //! From Codable
         string codeToSend();

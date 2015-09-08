@@ -20,5 +20,5 @@
 class CompoundModule : public Codable
 {
     public:
-        virtual ComputationData * execute(PSP * psp, ComputationData * input) = 0;
+        virtual shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input) = 0;
 };

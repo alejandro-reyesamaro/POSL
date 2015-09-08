@@ -20,19 +20,13 @@
 class OM_BestImprovementTabuSelection : public AOM_SelectionFunction
 {
     public:
-        OM_BestImprovementTabuSelection(Benchmark * bench);
+        OM_BestImprovementTabuSelection(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \param psp The Problem Search Process
-        * \param input Input (a neighborhood)
-        * \return The configuration that improuves the best the current cost not in a tabu list
-        */
-        DecisionPair * spcf_execute(PSP * psp, Neighborhood * input);
+        shared_ptr<DecisionPair> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        NeighborSelectingBestImprovementTabu * search_strategy;
+        shared_ptr<NeighborSelectingBestImprovementTabu> search_strategy;
 };

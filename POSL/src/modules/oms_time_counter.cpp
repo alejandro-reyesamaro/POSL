@@ -3,12 +3,12 @@
 #include <iostream>
 using namespace std;
 
-OMS_TimeCounter::OMS_TimeCounter() : chrono(new Chronometer())
+OMS_TimeCounter::OMS_TimeCounter() : chrono(make_shared<Chronometer>())
 {
     chrono->reset();
 }
 
-ComputationData * OMS_TimeCounter::execute(PSP *psp, ComputationData * input)
+shared_ptr<ComputationData> OMS_TimeCounter::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     if(!chrono->isRunning())
         chrono->start();

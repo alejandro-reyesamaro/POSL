@@ -20,13 +20,7 @@ class OM_AlwaysImproveDecision : public AOM_DecisionFunction
     public:
         OM_AlwaysImproveDecision();
 
-        //! Execute the O.M.
-        /*!
-        * \param psp The Problem Search Process
-        * \param input Input (a desition pair)
-        * \return The selected configuration
-        */
-        Solution * spcf_execute(PSP * psp, DecisionPair * input);
+        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input);
 
         //! From Codable
         string codeToSend();

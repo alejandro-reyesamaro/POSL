@@ -3,13 +3,13 @@
 #include <random>
 #include <iostream>
 
-OM_RandomConfGeneration::OM_RandomConfGeneration(Benchmark * bench)
+OM_RandomConfGeneration::OM_RandomConfGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
       rconf_strategy(new RandomConfigurationGenerationStrategy(bench->Domains().size())),
       rsolution(new Solution(bench->Domains()))
 {}
 
-Solution * OM_RandomConfGeneration::spcf_execute(PSP *psp, Solution * input)
+shared_ptr<Solution> OM_RandomConfGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
     rsolution->UpdateConfiguration(rconf_strategy->generate(domains));
     psp->UpdateSolution(rsolution);

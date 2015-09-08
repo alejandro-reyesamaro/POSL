@@ -22,21 +22,14 @@
 class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
-        OM_RandomConfGeneration(Benchmark * bench);
+        OM_RandomConfGeneration(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \brief The input is a configuration, but in this case is not tacken into account
-        * \param psp The Problem Search Process
-        * \param input Input (configuration)
-        * \return A random configuration
-        */
-        Solution * spcf_execute(PSP * psp, Solution * input);
+        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        RandomConfigurationGenerationStrategy * rconf_strategy;
-        Solution * rsolution;
+        shared_ptr<RandomConfigurationGenerationStrategy> rconf_strategy;
+        shared_ptr<Solution> rsolution;
 };

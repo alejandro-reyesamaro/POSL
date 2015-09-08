@@ -24,21 +24,14 @@ class OM_GolfersSingleSwapNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
         //! Constructor
-        OM_GolfersSingleSwapNeighborhood(Benchmark *bench);
+        OM_GolfersSingleSwapNeighborhood(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \brief The input is a configuration
-        * \param psp The Problem Search Process
-        * \param input Input (configuration)
-        * \return The Neighborhood of the input configuration
-        */
-        Neighborhood * spcf_execute(PSP * psp, Solution * input);
+        shared_ptr<Neighborhood> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        Golfers * object_bench;
-        GolfersSingleSwapNeighborhood * V;
+        shared_ptr<Golfers> object_bench;
+        shared_ptr<GolfersSingleSwapNeighborhood> V;
 };

@@ -2,11 +2,11 @@
 
 #include <iostream>
 
-OM_MultiSortedChangesNeighborhood::OM_MultiSortedChangesNeighborhood(Benchmark * bench)
-    : V(new MultiSortedChangesNeighborhood(bench->Domains().size(), bench->Domains()))
+OM_MultiSortedChangesNeighborhood::OM_MultiSortedChangesNeighborhood(shared_ptr<Benchmark> bench)
+    : V(make_shared<MultiSortedChangesNeighborhood>(bench->Domains().size(), bench->Domains()))
 {}
 
-Neighborhood * OM_MultiSortedChangesNeighborhood::spcf_execute(PSP * psp, Solution * input)
+shared_ptr<Neighborhood> OM_MultiSortedChangesNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
     V->Init(input->GetConfiguration());
     return V;

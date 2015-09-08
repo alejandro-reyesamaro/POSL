@@ -5,8 +5,7 @@
 #include <algorithm>
 
 RandomPermutationByBlocksGenerationStrategy::RandomPermutationByBlocksGenerationStrategy(int configuration_size, int block_size)
-    : rand(),
-      config(configuration_size),
+    :config(configuration_size),
       permutations(block_size)
 {}
 

@@ -2,11 +2,11 @@
 
 #include <iostream>
 
-OM_OneSortedChangeNeighborhood::OM_OneSortedChangeNeighborhood(Benchmark * bench)
-    : V(new OneSortedChangeNeighborhood(bench->Domains().size()))
+OM_OneSortedChangeNeighborhood::OM_OneSortedChangeNeighborhood(shared_ptr<Benchmark> bench)
+    : V(make_shared<OneSortedChangeNeighborhood>(bench->Domains().size()))
 {}
 
-Neighborhood * OM_OneSortedChangeNeighborhood::spcf_execute(PSP * psp, Solution * input)
+shared_ptr<Neighborhood> OM_OneSortedChangeNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
     V->Init(input->GetConfiguration());
     return V;

@@ -9,22 +9,15 @@
 class OM_RandomConfOrderedGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
-        OM_RandomConfOrderedGeneration(Benchmark * bench);
+        OM_RandomConfOrderedGeneration(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \brief The input is a configuration, but in this case is not tacken into account
-        * \param psp The Problem Search Process
-        * \param input Input (configuration)
-        * \return A random configuration/permutation-by-blocks
-        */
-        Solution * spcf_execute(PSP * psp, Solution * input);
+        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
 
         //! From Codable
         string codeToSend();
 
     private:
-        RandomOrderedGenerationStrategy * rconf_strategy;
-        Solution * rsolution;
-        GolombRuler * object_bench;
+        shared_ptr<RandomOrderedGenerationStrategy> rconf_strategy;
+        shared_ptr<Solution> rsolution;
+        shared_ptr<GolombRuler> object_bench;
 };

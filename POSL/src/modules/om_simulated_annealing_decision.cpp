@@ -14,7 +14,7 @@ OM_SimulatedAnnealingDecision::OM_SimulatedAnnealingDecision()
         M(MAX_ITER_PER_T), m(0)
 {}
 
-Solution * OM_SimulatedAnnealingDecision::spcf_execute(PSP * psp, DecisionPair * input)
+shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input)
 {
 
     int wp = psp->GetBenchmark()->solutionCost(input->GetFound());

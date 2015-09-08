@@ -5,7 +5,7 @@
 class NeighborhoodDataOpenChannel : public DataOpenChannel
 {
     public:
-        NeighborhoodDataOpenChannel(Benchmark * _bench);
+        NeighborhoodDataOpenChannel(shared_ptr<Benchmark> _bench);
         int dataTag();
-        ComputationData * unpackMessage(int * buffer, PSP * psp);
+        shared_ptr<ComputationData> unpackMessage(int * buffer, shared_ptr<PSP> psp);
 };

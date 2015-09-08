@@ -1,6 +1,6 @@
 #include "grouped_computation.h"
 
-GroupedComputation::GroupedComputation(Operator * _op)
+GroupedComputation::GroupedComputation(shared_ptr<Operator> _op)
     :op(_op)
 {
 }

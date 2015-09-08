@@ -18,16 +18,9 @@
 class OM_FixedFirstConfiguration : public AOM_FirstConfigurationGeneration
 {
     public:
-        OM_FixedFirstConfiguration(Benchmark * bench);
+        OM_FixedFirstConfiguration(shared_ptr<Benchmark> bench);
 
-        //! Execute the O.M.
-        /*!
-        * \brief The input is a configuration, it will be tacken into account
-        * \param psp The Problem Search Process
-        * \param input Input (configuration)
-        * \return The same configuration passed in the parameters
-        */
-        Solution * spcf_execute(PSP * psp, Solution * input);
+        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
 
         //! From Codable
         string codeToSend();

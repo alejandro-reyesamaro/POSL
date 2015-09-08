@@ -3,12 +3,12 @@
 #include <iostream>
 using namespace std;
 
-GroupedSequentialComputation::GroupedSequentialComputation(Operator * _op)
+GroupedSequentialComputation::GroupedSequentialComputation(shared_ptr<Operator> _op)
     : GroupedComputation(_op)
 {
 }
 
-ComputationData * GroupedSequentialComputation::execute(PSP * psp, ComputationData * input)
+shared_ptr<ComputationData> GroupedSequentialComputation::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     //cout << "Inside GroupedSequentialComputation" << endl;
     return op->evaluateSequentially(psp, input);

@@ -6,7 +6,7 @@ using namespace std;
 OMS_IterationsCounter::OMS_IterationsCounter()
 {}
 
-ComputationData * OMS_IterationsCounter::execute(PSP *psp, ComputationData * input)
+shared_ptr<ComputationData> OMS_IterationsCounter::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     psp->CountIteration();
     //cout << "Iteration counted: " << psp->GetIterations() << endl;

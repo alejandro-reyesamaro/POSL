@@ -2,11 +2,11 @@
 
 #include <iostream>
 
-OM_OnePermutationNeighborhood::OM_OnePermutationNeighborhood(Benchmark * bench)
-    : V(new OnePermutationNeighborhood(bench->Domains().size()))
+OM_OnePermutationNeighborhood::OM_OnePermutationNeighborhood(shared_ptr<Benchmark> bench)
+    : V(make_shared<OnePermutationNeighborhood>(bench->Domains().size()))
 {}
 
-Neighborhood * OM_OnePermutationNeighborhood::spcf_execute(PSP * psp, Solution * input)
+shared_ptr<Neighborhood> OM_OnePermutationNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
     V->Init(input->GetConfiguration());
     return V;

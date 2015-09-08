@@ -6,6 +6,6 @@
 class AOM_NeighborhoodFunction : public OperationModule
 {
     public:
-        ComputationData * execute(PSP * psp, ComputationData * input);
-        virtual Neighborhood * spcf_execute(PSP * psp, Solution * input) = 0;
+        shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        virtual shared_ptr<Neighborhood> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input) = 0;
 };
