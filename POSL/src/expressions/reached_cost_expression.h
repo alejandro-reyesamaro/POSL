@@ -6,7 +6,7 @@ class ReachedCostExpression : public BooleanExpression
 {
     public:
         ReachedCostExpression(int _cost);
-        bool evaluate(PSP * psp);
+        bool evaluate(shared_ptr<PSP> psp);
 
         //! From Codable
         string codeToSend();

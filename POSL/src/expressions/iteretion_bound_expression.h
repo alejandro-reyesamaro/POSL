@@ -6,7 +6,7 @@ class IteretionBoundExpression : public BooleanExpression
 {
     public:
         IteretionBoundExpression(int _max_iterations);
-        bool evaluate(PSP *psp);
+        bool evaluate(shared_ptr<PSP> psp);
 
         //! From Codable
         string codeToSend();

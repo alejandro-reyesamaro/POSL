@@ -7,7 +7,7 @@ ReachedCostExpression::ReachedCostExpression(int _cost)
     : cost(_cost)
 {}
 
-bool ReachedCostExpression::evaluate(PSP * psp)
+bool ReachedCostExpression::evaluate(shared_ptr<PSP> psp)
 {
     int costsofar = psp->BestCostSoFar();
     if(costsofar < 0)

@@ -5,7 +5,7 @@ IteretionBoundExpression::IteretionBoundExpression(int _max_iterations)
     : max_iterations(_max_iterations)
 {}
 
-bool IteretionBoundExpression::evaluate(PSP *psp)
+bool IteretionBoundExpression::evaluate(shared_ptr<PSP> psp)
 {
     int costsofar = psp->BestCostSoFar();
     if(costsofar < 0)
