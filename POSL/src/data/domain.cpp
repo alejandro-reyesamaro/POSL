@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-Domain::Domain(FactoryDomain * fd) : D(fd->BuildDomain())
+Domain::Domain(shared_ptr<FactoryDomain> fd) : D(fd->BuildDomain())
 {}
 
 vector<int> Domain::GetValues(){ return D; }

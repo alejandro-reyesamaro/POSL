@@ -21,18 +21,18 @@
 class DecisionPair : public ComputationData
 {
     public:
-        DecisionPair(Solution * _current, Solution * _found);
+        DecisionPair(shared_ptr<Solution> _current, shared_ptr<Solution> _found);
 
         bool equals();
-        FactoryPacker * BuildPacker();
+        shared_ptr<FactoryPacker> BuildPacker();
 
-        Solution * GetCurrent(){ return current; }
-        Solution * GetFound(){ return found; }
+        shared_ptr<Solution> GetCurrent(){ return current; }
+        shared_ptr<Solution> GetFound(){ return found; }
 
         void update(vector<int> _current, vector<int> _found);
         void updateFromPack(int * pack);
 
     private :
-        Solution * current;
-        Solution * found;
+        shared_ptr<Solution> current;
+        shared_ptr<Solution> found;
 };

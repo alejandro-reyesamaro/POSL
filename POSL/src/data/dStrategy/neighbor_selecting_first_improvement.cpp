@@ -1,10 +1,10 @@
 #include "neighbor_selecting_first_improvement.h"
 
 NeighborSelectingFirstImprovement::NeighborSelectingFirstImprovement(vector<Domain> domains)
-    : rPair(new DecisionPair(new Solution(domains), new Solution(domains)))
+    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains)))
 {}
 
-DecisionPair * NeighborSelectingFirstImprovement::select(PSP *psp, Neighborhood * V)
+shared_ptr<DecisionPair> NeighborSelectingFirstImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
 {
     current_config = psp->GetCurrentSolution()->GetConfiguration();
     int current_cost = psp->CurrentCost();
@@ -17,7 +17,7 @@ DecisionPair * NeighborSelectingFirstImprovement::select(PSP *psp, Neighborhood 
     while(it->SomeNext())
     {
         vector<int> config = it->GetNext();
-        //sol = new Solution(psp->GetBenchmark()->Domains(), config);
+        //sol = make_shared<Solution(psp->GetBenchmark()->Domains(), config);
         int c = psp->GetBenchmark()->solutionCost(config);
         if(c < best_found_cost)
         {
@@ -26,7 +26,7 @@ DecisionPair * NeighborSelectingFirstImprovement::select(PSP *psp, Neighborhood 
             break;
         }
     }
-    //DecisionPair * p = new DecisionPair(current_solution, new Solution(psp->GetBenchmark()->Domains(), best_found));
+    //DecisionPair * p = make_shared<DecisionPair(current_solution, make_shared<Solution(psp->GetBenchmark()->Domains(), best_found));
     rPair->update(current_config, best_found_config);
     return rPair;
 }

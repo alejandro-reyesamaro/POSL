@@ -1,11 +1,13 @@
 #include "from_pack_neighborhood.h"
+#include "dStrategy/standard_apply_change_behavior.h"
 
 #include <algorithm>
 
 vector<int> InitConfiguration(int * pack);
 
 FromPackNeighborhood::FromPackNeighborhood(int * pack)
-    : Neighborhood(InitConfiguration(pack))
+    : Neighborhood(InitConfiguration(pack)),
+      changeAtBhv(make_shared<StandardApplyChangeBehavior>(_config_size))
 {    
     int conf_size = pack[1];
     pack+= conf_size + 2;
@@ -37,10 +39,15 @@ vector<int> InitConfiguration(int * pack)
     return conf;
 }
 
-FactoryPacker * FromPackNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
+shared_ptr<FactoryPacker> FromPackNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-vector<int> FromPackNeighborhood::neighborAt(int index){ return applyChangeAt(index); }
+vector<int> FromPackNeighborhood::neighborAt(int index)
+{
+    return changeAtBhv->applyChangeAt(index, current_configuration, changes);
+    //return applyChangeAt(index);
+}
 
+/*
 vector<int> FromPackNeighborhood::applyChangeAt(int index)
 {
     if(index >= size()) return current_configuration;
@@ -49,3 +56,4 @@ vector<int> FromPackNeighborhood::applyChangeAt(int index)
         configuration_changed[changes[index].positions[i]] = changes[index].new_values[i];
     return configuration_changed;
 }
+*/

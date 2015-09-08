@@ -12,6 +12,7 @@
 #include "../packing/factory/factory_packer.h"
 
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -21,13 +22,6 @@ using namespace std;
  */
 class ComputationData
 {
-
     public:
-        //virtual ~ComputationData(){}
-        virtual FactoryPacker * BuildPacker() = 0;
-        /*
-        virtual vector<int> pack() = 0;
-        virtual int bodySize() = 0;
-        virtual vector<int> body() = 0;
-        */
+        virtual shared_ptr<FactoryPacker> BuildPacker() = 0;
 };

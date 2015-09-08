@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-DecisionPair::DecisionPair(Solution *_current, Solution *_found)
+DecisionPair::DecisionPair(shared_ptr<Solution> _current, shared_ptr<Solution> _found)
     : current(_current), found(_found)
 {}
 
@@ -27,4 +27,4 @@ void DecisionPair::updateFromPack(int * pack)
 
 bool DecisionPair::equals(){ return current->equal(found); }
 
-FactoryPacker * DecisionPair::BuildPacker(){ return new FactoryDecisionPairPacker(this); }
+shared_ptr<FactoryPacker> DecisionPair::BuildPacker(){ return make_shared<FactoryDecisionPairPacker>(this); }

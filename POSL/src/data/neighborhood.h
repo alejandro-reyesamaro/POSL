@@ -32,6 +32,5 @@ class Neighborhood : public ComputationData
 
     protected:        
         vector<int> current_configuration;
-        vector<int> configuration_changed;
 };
 

@@ -3,7 +3,7 @@
 #include <algorithm>
 
 NeighborSelectingBestImprovement::NeighborSelectingBestImprovement(vector<Domain> domains)
-    : rPair(new DecisionPair(new Solution(domains), new Solution(domains)))
+    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains)))
 {}
 
 shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
@@ -28,6 +28,6 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP
         }
     }
     rPair->update(current_config, best_found_config);
-    //return new DecisionPair(current_solution, new Solution(psp->GetBenchmark()->Domains(), best_found));
+    //return make_shared<DecisionPair(current_solution, make_shared<Solution(psp->GetBenchmark()->Domains(), best_found));
     return rPair;
 }

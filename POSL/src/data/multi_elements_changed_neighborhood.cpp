@@ -12,7 +12,7 @@
 
 MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(int _config_size, vector<Domain> _domains)
     : Neighborhood(_config_size),
-      changeAtBhv(new StandardApplyChangeBehavior(_config_size)),
+      changeAtBhv(make_shared<StandardApplyChangeBehavior>(_config_size)),
       domains(_domains),
       rand()
 {
@@ -66,9 +66,9 @@ void MultiElementsChangedNeighborhood::Init(vector<int> _configuration)
     updateChanges();
 }
 
-FactoryPacker * MultiElementsChangedNeighborhood::BuildPacker()
+shared_ptr<FactoryPacker> MultiElementsChangedNeighborhood::BuildPacker()
 {
-    return new FactoryMultiChangesNeighborhoodPacker(current_configuration, size(), changes);
+    return make_shared<FactoryMultiChangesNeighborhoodPacker>(current_configuration, size(), changes);
 }
 
 vector<int> MultiElementsChangedNeighborhood::neighborAt(int index)

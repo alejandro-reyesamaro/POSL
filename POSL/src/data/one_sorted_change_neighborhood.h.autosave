@@ -1,12 +1,10 @@
-#pragma once
-
 /**
  * POSL
  *
- * \file multi_elements_changed_neighborhood.h
- * \brief Class to represent a neighborhood, changing some values randomly at the time
+ * \file one_sorted_change_neighborhood.h
+ * \brief Class to represent a neighborhood, changing one value randomly at the time (sorted)
  * \author Alejandro Reyes
- * \date 2015-05-30
+ * \date 2015-05-28
  */
 
 #include "neighborhood.h"
@@ -20,16 +18,16 @@
 #include <random>
 
 /*!
- * \class MultiElementsChangedNeighborhood multi_elements_changed_neighborhood.h
- * \brief Class to represent a neighborhood, changing some values randomly at the time
+ * \class OneSortedChangeNeighborhood one_sorted_change_neighborhood.h
+ * \brief Class to represent a neighborhood, changing one value randomly at the time (sorted)
  */
-class MultiElementsChangedNeighborhood : public Neighborhood, public DynamicNeighborhood
+class OneSortedChangeNeighborhood : public Neighborhood, public DynamicNeighborhood
 {
     friend class ElementsChangeIterator;
     public:
-        MultiElementsChangedNeighborhood(int _config_size, vector<Domain> _domainsl);
+        OneSortedChangeNeighborhood(int _config_size);
 
-        shared_ptr<POSL_Iterator<vector<int>>> getIterator() {return make_shared<ElementsChangeIterator>(this); }
+        shared_ptr<POSL_Iterator<vector<int>>> getIterator(){ return make_shared<ElementsChangeIterator>(this); }
         int size() { return changes.size(); }
         vector<T_Changes> GetChanges(){ return changes; }
 
@@ -41,7 +39,5 @@ class MultiElementsChangedNeighborhood : public Neighborhood, public DynamicNeig
         void updateChanges();
 
         shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        vector<Domain> domains;
         vector<T_Changes> changes;
-        Randomizer rand;
 };

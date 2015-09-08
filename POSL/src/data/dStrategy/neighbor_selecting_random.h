@@ -17,10 +17,10 @@ class NeighborSelectingRandom
         * \param V The set (a Neighborhood)
         * \return The current and the new found configurations
         */
-        DecisionPair * select(PSP * psp, Neighborhood * V);
+        shared_ptr<DecisionPair> select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V);
 
     private:
-        Randomizer * rand;
-        DecisionPair * rPair;
+        shared_ptr<Randomizer> rand;
+        shared_ptr<DecisionPair> rPair;
         vector<int> best_found_config;
 };

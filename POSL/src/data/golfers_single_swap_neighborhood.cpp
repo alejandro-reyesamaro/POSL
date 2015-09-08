@@ -11,7 +11,7 @@
 
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, int _players)
     : Neighborhood(_config_size),
-      changeAtBhv(new SingleSwapApplyChangeBehavior(_config_size)),
+      changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       players(_players),
       indexes(Tools::generateMonotony(_players))
 {
@@ -47,9 +47,9 @@ void GolfersSingleSwapNeighborhood::Init(std::vector<int> _configuration)
     updateChanges();
 }
 
-FactoryPacker * GolfersSingleSwapNeighborhood::BuildPacker()
+shared_ptr<FactoryPacker> GolfersSingleSwapNeighborhood::BuildPacker()
 {
-    return new FactoryGolfersSingleSwapNeighborhoodPacker(current_configuration, size(), changes);
+    return make_shared<FactoryGolfersSingleSwapNeighborhoodPacker>(current_configuration, size(), changes);
 }
 
 vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index)

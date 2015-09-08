@@ -3,19 +3,19 @@
 #include "posl_iterator.h"
 #include "../union_neighborhood.h"
 
+#include <memory>
+
 class UnionIterator : public POSL_Iterator<vector<int>>
 {
     public:
 
-        UnionIterator(UnionNeighborhood * _n);
+        UnionIterator(shared_ptr<UnionNeighborhood> _n);
 
         vector<int> GetNext();
-
         bool SomeNext();
-
         void Reset();
 
     private:
-        UnionNeighborhood * neighborhood;
+        shared_ptr<UnionNeighborhood> neighborhood;
         int current;
 };
