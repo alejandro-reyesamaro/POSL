@@ -9,18 +9,18 @@ Tester_CostOfSolutionSquaringSquare::Tester_CostOfSolutionSquaringSquare(int arg
 string Tester_CostOfSolutionSquaringSquare::test()
 {
     vector<int> squares({6, 4, 4, 1, 3, 3, 3});
-    Benchmark * bench = new SquaringSquare(10,squares);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<SquaringSquare>(10,squares));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config1({0, 6, 0, 6, 7, 4, 7, 0, 0, 6, 6, 4, 7, 7}); // costo 0
     vector<int> config2({2, 0, 6, 1, 5, 7, 0, 2, 1, 6, 8, 2, 0, 4}); // costo 27
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config1);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
     int c1 = psp->GetBenchmark()->solutionCost(sol);
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config2);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
     int c2 = psp->GetBenchmark()->solutionCost(sol);
 
     //cout << c1 << " - " << c2 << endl;

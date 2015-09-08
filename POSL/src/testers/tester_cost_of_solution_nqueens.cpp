@@ -13,20 +13,20 @@ string Tester_CostOfSolutionNQueens::test()
     vector<int> config3({1, 2, 3, 4, 5, 6, 7, 8, 9, 0}); // costo 11
     vector<int> config4({4, 8, 3, 8, 2, 7, 1, 6, 0, 5}); // costo 0
 
-    Benchmark * bench = new NQueens(10);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
-    Solution * sol = new Solution(psp->GetBenchmark()->Domains(), config1);
+    shared_ptr<Benchmark> bench(make_shared<NQueens>(10));
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
     int c1 = psp->GetBenchmark()->solutionCost(sol);
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config2);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
     int c2 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c2 << endl;
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config3);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config3));
     int c3 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c3 << endl;
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config4);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config4));
     int c4 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c4 << endl;
 

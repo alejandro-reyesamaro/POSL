@@ -13,10 +13,10 @@ Tester_PackingGolfersPermutationNeighborhood::Tester_PackingGolfersPermutationNe
 
 string Tester_PackingGolfersPermutationNeighborhood::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -30,15 +30,15 @@ string Tester_PackingGolfersPermutationNeighborhood::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    //PSP * psp = new PSP(bench);
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
-    OperationModule * op = new OM_GolfersSingleSwapNeighborhood(bench);
-    Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
-    GolfersSingleSwapNeighborhood * N = dynamic_cast<GolfersSingleSwapNeighborhood *>(V);
-    GolfersSingleSwapPacker * p = new GolfersSingleSwapPacker(config, N->size(), N->GetChanges());
+    //PSP> psp(make_shared<PSP(bench);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    shared_ptr<OperationModule> op(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));
+    shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
+    shared_ptr<GolfersSingleSwapNeighborhood> N = static_pointer_cast<GolfersSingleSwapNeighborhood>(V);
+    shared_ptr<GolfersSingleSwapPacker> p(make_shared<GolfersSingleSwapPacker>(config, N->size(), N->GetChanges()));
     vector<int> pack = p->pack();
-    POSL_Iterator<vector<int>> * it = V ->getIterator();
+    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
 
-    PackingNeighborhoodTester * tester = new PackingNeighborhoodTester();
+    shared_ptr<PackingNeighborhoodTester> tester(make_shared<PackingNeighborhoodTester();
     return tester->test(sol, it, pack, "Packing Golfers Permutation Neighborhood");
 }

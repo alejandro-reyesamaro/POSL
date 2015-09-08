@@ -8,10 +8,10 @@ Tester_CostOfSolutionGolfers::Tester_CostOfSolutionGolfers(int argc, char *argv[
 
 string Tester_CostOfSolutionGolfers::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solutio> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -60,16 +60,16 @@ string Tester_CostOfSolutionGolfers::test()
         25, 4, 8, 12, 16
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
     int c1 = psp->GetBenchmark()->solutionCost(sol);
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config2);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
     int c2 = psp->GetBenchmark()->solutionCost(sol);
 
-    bench = new Golfers(5,5,3);
-    sol = new Solution(psp->GetBenchmark()->Domains(), config3);
+    bench(make_shared<Golfers>(5,5,3));
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config3));
     bench->UpdateSolution(sol);
-    psp = new PSP(ARGC, ARGV, bench);
+    psp(make_shared<PSP>(ARGC, ARGV, bench));
     int c3 = psp->GetBenchmark()->solutionCost(sol);
 
     return (c3 == 0 && c1 == 0 && c2 == 4)

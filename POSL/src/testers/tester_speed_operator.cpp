@@ -16,10 +16,10 @@ Tester_SpeedOperator::Tester_SpeedOperator(int argc, char *argv[])
 
 string Tester_SpeedOperator::testeInMode(Computation comp)
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench =(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol =(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp =(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -34,21 +34,21 @@ string Tester_SpeedOperator::testeInMode(Computation comp)
         1,  1,  1,  1
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol =(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
 
-    OperationModule * m1 = new OM_FixedFirstConfiguration(bench);
-    OperationModule * m2 = new OM_RandomConfGeneration(bench);
-    Operator * _op = new FlorianOperator(m2);
-    GroupedComputation * G = new GroupedSequentialComputation(_op);
+    shared_ptr<OperationModule> m1 =(make_shared<OM_FixedFirstConfiguration>(bench));
+    shared_ptr<OperationModule> m2 =(make_shared<OM_RandomConfGeneration>(bench));
+    shared_ptr<Operator> _op =(make_shared<FlorianOperator>(m2));
+    shared_ptr<GroupedComputation> G =(make_shared<GroupedSequentialComputation>(_op));
 
-    Operator * op = new SpeedOperator(m1, G);
+    shared_ptr<Operator> op =(make_shared<SpeedOperator>(m1, G));
 
-    CompoundModule * G1 = (comp == SEQ)
-            ? (CompoundModule *) new GroupedSequentialComputation(op)
-            : (CompoundModule *) new GroupedParallelComputation(op);
+    shared_ptr<CompoundModule> G1 = (comp == SEQ)
+            ? static_pointer_cast<CompoundModule>(make_shared<GroupedSequentialComputation>(op))
+            : static_pointer_cast<CompoundModule>(make_shared<GroupedParallelComputation>(op));
 
     //cout << "Testing speed operator...... " << endl;
-    Solution * S = (Solution *)G1->execute(psp, sol);
+    shared_ptr<Solution> S = static_pointer_cast<Solution>(G1->execute(psp, sol));
 
     string mode_str = (comp == SEQ) ? "Operator_Speed (Sequential)" : "Operator_Speed (Parallel)";
     return (S->equal(sol)) ? mode_str + ": OK !" : mode_str + ": fail :/";

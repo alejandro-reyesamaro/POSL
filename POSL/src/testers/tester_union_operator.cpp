@@ -19,7 +19,7 @@ Tester_UnionOperator::Tester_UnionOperator(int argc, char *argv[])
 string Tester_UnionOperator::testeInMode(Computation comp)
 {
 
-    Benchmark * bench = new Golfers(4,4,2);
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     vector<int> config(
     {
         1,  1,  1,  1,
@@ -34,24 +34,24 @@ string Tester_UnionOperator::testeInMode(Computation comp)
     });
 
 
-    //Benchmark * bench = new GolombRuler(12, 85);
+    //Benchmark> bench(make_shared<GolombRuler(12, 85);
     //vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
-    PSP * psp = new PSP(ARGC, ARGV, bench);
-    Solution * sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
 
-    OperationModule * m1 = new OM_MultiElementsChangedNeighborhood(bench);
-    OperationModule * m2 = new OM_OneElementChangedNeighborhood(bench);
+    shared_ptr<OperationModule> m1(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
+    shared_ptr<OperationModule> m2(make_shared<OM_OneElementChangedNeighborhood>(bench));
 
-    Operator * op = new UnionOperator(m1, m2);
+    shared_ptr<Operator> op(make_shared<UnionOperator>(m1, m2));
 
-    CompoundModule * G1 = (comp == SEQ)
-            ? (CompoundModule *) new GroupedSequentialComputation(op)
-            : (CompoundModule *) new GroupedParallelComputation(op);
+    shared_ptr<CompoundModule> G1 = (comp == SEQ)
+            ? static_pointer_cast<CompoundModule>(make_shared<GroupedSequentialComputation>(op))
+            : static_pointer_cast<CompoundModule>(make_shared<GroupedParallelComputation>(op));
 
-    Neighborhood * V = (Neighborhood *)G1->execute(psp, sol);
+    shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(G1->execute(psp, sol));
 
-    POSL_Iterator<vector<int>> * it = V ->getIterator();
+    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
     it->Reset();
     int changes = 0;
     bool the_changes = true;

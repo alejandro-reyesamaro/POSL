@@ -16,31 +16,31 @@ Tester_RandomSelection::Tester_RandomSelection(int argc, char *argv[])
 
 string Tester_RandomSelection::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    CompoundModule * cm1 = new OM_RandomConfGeneration(bench);
-    CompoundModule * cm2 = new OM_OneElementChangedNeighborhood(bench);
-    CompoundModule * cm3 = new OM_RandomSelection(bench);
+    shared_ptr<CompoundModule> cm1(make_shared<OM_RandomConfGeneration>(bench));
+    shared_ptr<CompoundModule> cm2(make_shared<OM_OneElementChangedNeighborhood>(bench));
+    shared_ptr<CompoundModule> cm3(make_shared<OM_RandomSelection>(bench));
 
     // cm1 |-> cm2 :
-    Operator * op1 = new SequentialExecOperator(cm1, cm2);
+    shared_ptr<Operator> op1(make_shared<SequentialExecOperator>(cm1, cm2));
 
     // [cm1 |-> cm2] :
-    GroupedComputation * G1 = new GroupedSequentialComputation(op1);
+    shared_ptr<GroupedComputation> G1(make_shared<GroupedSequentialComputation>(op1));
 
     // [cm1 |-> cm2] |-> cm3 :
-    Operator * op2 = new SequentialExecOperator(G1, cm3);
+    shared_ptr<Operator> op2(make_shared<SequentialExecOperator>(G1, cm3));
 
     // [ [cm1 |-> cm2] |-> cm3 ] :
-    GroupedComputation * G2 = new GroupedSequentialComputation(op2);
+    shared_ptr<GroupedComputation> G2(make_shared<GroupedSequentialComputation>(op2));
 
     //cout << "Modules created" << endl;
 
     // MAL !!!! poner una solucion donde esta seed
-    DecisionPair * pair = (DecisionPair *)G2->execute(psp, new Seed());
+    shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(G2->execute(psp, new Seed()));
 
     //cout << "Module executed" << endl;
 

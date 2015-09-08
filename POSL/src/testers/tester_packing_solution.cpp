@@ -13,10 +13,10 @@ Tester_PackingSolution::Tester_PackingSolution(int argc, char *argv[])
 
 string Tester_PackingSolution::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -31,12 +31,12 @@ string Tester_PackingSolution::test()
         16,  3,  6,  9
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
     string conf_str = sol->configurationToString();
-    SolutionPacker * p = new SolutionPacker(sol);
+    shared_ptr<SolutionPacker> p(make_shared<SolutionPacker>(sol));
     vector<int> pack = p->pack();
 
-    Solution * final = new Solution(psp->GetBenchmark()->Domains());
+    shared_ptr<Solution> final(make_shared<Solution>(psp->GetBenchmark()->Domains()));
     final->UpdateConfigurationFromPack(&pack[0]);
     bool succ = final->equal(sol);
 

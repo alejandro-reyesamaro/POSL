@@ -17,10 +17,10 @@ Tester_FromPackNeighborhood::Tester_FromPackNeighborhood(int argc, char *argv[])
 
 string Tester_FromPackNeighborhood::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP(ARGC, ARGV, bench);
 
     vector<int> config(
     {
@@ -43,18 +43,18 @@ string Tester_FromPackNeighborhood::test()
         13, 14, 15, 16
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
 
-    OperationModule * op = new OM_GolfersSingleSwapNeighborhood(bench);
-    //PSP * psp = new PSP(bench);
-    Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
-    GolfersSingleSwapNeighborhood * N = dynamic_cast<GolfersSingleSwapNeighborhood *>(V);
-    GolfersSingleSwapPacker * p = new GolfersSingleSwapPacker(config, N->size(), N->GetChanges());
+    shared_ptr<OperationModule> op(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));
+    //PSP * psp(make_shared<PSP(bench);
+    //shared_ptr<Neighborhood> V = (Neighborhood *)op->execute(psp, sol);
+    shared_ptr<GolfersSingleSwapNeighborhood> N = static_pointer_cast<GolfersSingleSwapNeighborhood>(op->execute(psp, sol));
+    shared_ptr<GolfersSingleSwapPacker> p(make_shared<GolfersSingleSwapPacker>(config, N->size(), N->GetChanges()));
     vector<int> pack = p->pack();
 
-    V = new FromPackNeighborhood(&pack[0]);
+    V(make_shared<FromPackNeighborhood>(&pack[0]));
 
-    POSL_Iterator<vector<int>> * it = V ->getIterator();
+    shared_ptr<POSL_Iterator<vector<int>>> it = V->getIterator();
     it->Reset();
     bool is_permut = true;
 

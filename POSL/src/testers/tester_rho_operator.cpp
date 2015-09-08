@@ -14,10 +14,10 @@ Tester_RhoOperator::Tester_RhoOperator(int argc, char *argv[])
 
 string Tester_RhoOperator::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -32,24 +32,24 @@ string Tester_RhoOperator::test()
         16,  3,  6,  9
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
     //bench->UpdateSolution(sol);
-    //PSP * psp = new PSP(bench);
+    //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol);
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
-    CompoundModule * cm2 = new OM_RandomConfGeneration(bench);
+    shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
+    shared_ptr<CompoundModule> cm2(make_shared<OM_RandomConfGeneration>(bench));
 
     // cm1 (rho) cm2 :
-    Operator * op1 = new RhoOperator(cm1, cm2, 0.5);
+    shared_ptr<Operator> op1(make_shared<RhoOperator>(cm1, cm2, 0.5));
 
     // [cm1 (rho) cm2] :
-    GroupedComputation * G1 = new GroupedSequentialComputation(op1);
+    shared_ptr<GroupedComputation> G1(make_shared<GroupedSequentialComputation>(op1));
 
     int c = 0, cc = 0, i = 0;
     for(i = 0; i < 1000; i++)
     {
-        Solution * solution = (Solution *)G1->execute(psp, sol);
+        shared_ptr<Solution> solution = static_pointer_cast<Solution>(G1->execute(psp, sol));
         if(solution->equal(sol)) c++; else cc++;
     }
 

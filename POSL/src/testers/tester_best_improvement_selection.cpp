@@ -9,17 +9,17 @@
 #include "../data/decision_pair.h"
 #include "../tools/tools.h"
 
-Tester_BestImprovementSelection::Tester_BestImprovementSelection(int argc, char *argv[])
+Tester_BestImprovementSelection::Tester_BestImprovementSelection(int argc, char>argv[])
     : Tester(argc, argv)
 {
 }
 
 string Tester_BestImprovementSelection::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -34,28 +34,28 @@ string Tester_BestImprovementSelection::test()
         16,  3,  6,  9
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
     //bench->UpdateSolution(sol);
-    //PSP * psp = new PSP(bench);
+    //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol);
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
-    CompoundModule * cm2 = new OM_OneElementChangedNeighborhood(bench);
-    CompoundModule * cm3 = new OM_BestImprovementSelection(bench);
+    shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
+    shared_ptr<CompoundModule> cm2(make_shared<OM_OneElementChangedNeighborhood>(bench));
+    shared_ptr<CompoundModule> cm3(make_shared<OM_BestImprovementSelection>(bench));
 
     // cm1 |-> cm2 :
-    Operator * op1 = new SequentialExecOperator(cm1, cm2);
+    shared_ptr<Operator> op1(make_shared<SequentialExecOperator>(cm1, cm2));
 
     // [cm1 |-> cm2] :
-    GroupedComputation * G1 = new GroupedSequentialComputation(op1);
+    shared_ptr<GroupedComputation> G1(make_shared<GroupedSequentialComputation>(op1));
 
     // [cm1 |-> cm2] |-> cm3 :
-    Operator * op2 = new SequentialExecOperator(G1, cm3);
+    shared_ptr<Operator> op2(make_shared<SequentialExecOperator>(G1, cm3));
 
     // [ [cm1 |-> cm2] |-> cm3 ] :
-    GroupedComputation * G2 = new GroupedSequentialComputation(op2);
+    shared_ptr<GroupedComputation> G2(make_shared<GroupedSequentialComputation>(op2));
 
-    DecisionPair * pair = (DecisionPair *)G2->execute(psp, sol);
+    shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(G2->execute(psp, sol));
     int c = psp->GetBenchmark()->solutionCost(pair->GetCurrent());
     int cc = psp->GetBenchmark()->solutionCost(pair->GetFound());
 

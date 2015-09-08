@@ -11,19 +11,19 @@ Tester_OneSortedChangeNeighborhood::Tester_OneSortedChangeNeighborhood(int argc,
 
 string Tester_OneSortedChangeNeighborhood::test()
 {
-    Benchmark * bench = new GolombRuler(12,85);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<GolombRuler>(12,85));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
-    OperationModule * op = new OM_OneSortedChangeNeighborhood(bench);
-    //PSP * psp = new PSP(bench);
-    Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    shared_ptr<OperationModule> op(make_shared<OM_OneSortedChangeNeighborhood>(bench));
+    //PSP> psp(make_shared<PSP(bench);
+    shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    POSL_Iterator<vector<int>> * it = V ->getIterator();
+    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
     it->Reset();
 
     int ch = 0;

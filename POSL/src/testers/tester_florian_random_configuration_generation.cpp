@@ -12,20 +12,20 @@ Tester_FlorianRandomConfigurationGeneration::Tester_FlorianRandomConfigurationGe
 
 string Tester_FlorianRandomConfigurationGeneration::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    OperationModule * op1 = new OM_RandomConfGeneration(bench);
-    Operator * op = new FlorianOperator(op1);
-    GroupedComputation * G = new GroupedSequentialComputation(op);
+    shared_ptr<OperationModule> op1(make_shared<OM_RandomConfGeneration>(bench));
+    shared_ptr<Operator> op(make_shared<FlorianOperator>(op1));
+    shared_ptr<GroupedComputation> G(make_shared<GroupedSequentialComputation>(op));
 
     bool is_random = true;
-    //PSP * psp = new PSP(bench);
+    //PSP * psp(make_shared<PSP(bench);
     for(int i = 0; i < 10; i++)
     {
-        Solution * new_sol = (Solution *)G->execute(psp, sol);
+        shared_ptr<Solution> new_sol = static_pointer_cast<Solution>(G->execute(psp, sol));
         is_random = is_random && (!new_sol->equal(sol));
         sol = new_sol;
     }

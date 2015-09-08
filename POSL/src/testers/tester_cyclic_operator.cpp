@@ -22,48 +22,48 @@ Tester_CyclicOperator::Tester_CyclicOperator(int argc, char *argv[])
 
 string Tester_CyclicOperator::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Operator> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
-    CompoundModule * cm0 = new OM_RandomConfGeneration(bench);
-    //CompoundModule * cm2 = new OM_OneElementChangedNeighborhood();
-    CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood(bench);
-    CompoundModule * cm3 = new OM_BestImprovementSelection(bench);
-    CompoundModule * cm4 = new OM_AlwaysImproveDecision();
+    shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
+    shared_ptr<CompoundModule> cm0(make_shared<OM_RandomConfGeneration>(bench));
+    //shared_ptr<CompoundModule> cm2(make_shared<OM_OneElementChangedNeighborhood();
+    shared_ptr<CompoundModule> cm2(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
+    shared_ptr<CompoundModule> cm3(make_shared<OM_BestImprovementSelection>(bench));
+    shared_ptr<CompoundModule> cm4(make_shared<OM_AlwaysImproveDecision>());
 
     // MAL!!! Seed!!
-    Solution * first_solution = (Solution *)cm0->execute(psp, new Seed());
+    shared_ptr<Operator> first_solution = static_pointer_cast<Operator>(cm0->execute(psp, new Seed()));
     int first_cost = psp->GetBenchmark()->solutionCost(first_solution);
 
     // cm2 |-> cm3 :
-    Operator * op0 = new SequentialExecOperator(cm2, cm3);
+    shared_ptr<Operator> op0(make_shared<SequentialExecOperator>(cm2, cm3));
 
     // [ cm2 |-> cm3 ]:
-    GroupedComputation * G23 = new GroupedSequentialComputation(op0);
+    shared_ptr<GroupedComputation> G23(make_shared<GroupedSequentialComputation>(op0));
 
     // [ cm2 |-> cm3 ] |-> cm4 :
-    Operator * op1 = new SequentialExecOperator(G23, cm4);
+    shared_ptr<Operator> op1(make_shared<SequentialExecOperator>(G23, cm4));
 
     // [ [ cm2 |-> cm3 ] |-> cm4] ] :
-    GroupedComputation * G234 = new GroupedSequentialComputation(op1);
+    shared_ptr<GroupedComputation> G234(make_shared<GroupedSequentialComputation>(op1));
 
     // Cyc(100 lopps){ [ [ cm2 |-> cm3 ] |-> cm4] ] } :
-    Operator * op2 = new CyclicOperator(G234, new LoopBoundExpression(1000));
+    shared_ptr<Operator> op2(make_shared<CyclicOperator>(G234, make_shared<LoopBoundExpression>(1000)));
 
     // [ Cyc(100 lopps){ [ [ cm2 |-> cm3 ] |-> cm4] ] } ] :
-    GroupedComputation * Gcyc = new GroupedSequentialComputation(op2);
+    shared_ptr<GroupedComputation> Gcyc(make_shared<GroupedSequentialComputation>(op2));
 
     // cm1 |-> [ Cyc(100 lopps){ [ [ cm2 |-> cm3 ] |-> cm4] ] } ]
-    Operator * op3 = new SequentialExecOperator(cm1, Gcyc);
+    shared_ptr<Operator> op3(make_shared<SequentialExecOperator>(cm1, Gcyc));
 
     // [ cm1 |-> [ Cyc(100 lopps){ [ [ cm2 |-> cm3 ] |-> cm4] ] } ] ]
-    GroupedComputation * G3 = new GroupedSequentialComputation(op3);
+    shared_ptr<GroupedComputation> G3(make_shared<GroupedSequentialComputation>(op3));
 
     // MAL!!!!!
-    Solution * best_solution = (Solution *)G3->execute(psp, first_solution);
+    shared_ptr<Operator> best_solution = static_pointer_cast<Operator>(G3->execute(psp, first_solution));
 
 
     int cost = psp->GetBenchmark()->solutionCost(best_solution);

@@ -27,7 +27,7 @@ void Tester_Comunication::test()
     MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);
 
-    Benchmark * bench = new Golfers(4,4,2);
+    shared_ptr<Benchmark> bench(make_shared<Golfers(4,4,2);
     vector<int> config1(
     {
         1,  1,  1,  1,
@@ -53,18 +53,18 @@ void Tester_Comunication::test()
         16,  3,  6,  9
     });
 
-    Solution * sol1 = new Solution(bench->Domains(), config1);
-    Solution * sol2 = new Solution(bench->Domains(), config2);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<Solution> sol1(make_shared<Solution>(bench->Domains(), config1));
+    shared_ptr<Solution> sol2(make_shared<Solution>(bench->Domains(), config2));
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
     //bench->UpdateSolution(sol);
 
-    int * buffer;
+    int> buffer;
 
     if(myid == 0)
     {
-        //ComputationData * pair = new DecisionPair(sol1, sol2);
-        DecisionPair * pair = new DecisionPair(sol1, sol2);
-        DecisionPairPacker * p = new DecisionPairPacker(pair);
+        //ComputationData> pair(make_shared<DecisionPair(sol1, sol2);
+        shared_ptr<DecisionPair> pair(make_shared<DecisionPair>(sol1, sol2));
+        shared_ptr<DecisionPairPacker> p(make_shared<DecisionPairPacker>(pair));
         vector<int> package = p->pack();
         tag = package[0];
         pack_size = package.size();
@@ -86,9 +86,10 @@ void Tester_Comunication::test()
         //MPI_Test(&request, &test_flag, &status);
 
         //cout << buffer[0] << endl;
-        DecisionPair * rPair = new DecisionPair(new Solution(bench->Domains()), new Solution(bench->Domains()));
+        shared_ptr<DecisionPair> rPair(make_shared<DecisionPair>(make_shared<Solution>(bench->Domains()), make_shared<Solution>(bench->Domains())));
         rPair->updateFromPack(buffer);
         cout << rPair->GetFound()->configurationToString() << endl;
+        delete buffer;
     }
 
     MPI_Finalize();
@@ -100,23 +101,23 @@ void Tester_Comunication::test()
     int initial_cost = psp->GetBenchmark()->solutionCost(sol);
 
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration();
-    CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood();
-    CompoundModule * cm3 = new OM_BestImprovementTabuSelection();
+    CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration();
+    CompoundModule> cm2(make_shared<OM_MultiElementsChangedNeighborhood();
+    CompoundModule> cm3(make_shared<OM_BestImprovementTabuSelection();
 
     // cm1 |-> cm2 :
-    Operator * op1 = new SequentialExecOperator(cm1, cm2);
+    Operator> op1(make_shared<SequentialExecOperator(cm1, cm2);
 
     // [cm1 |-> cm2] :
-    GroupedComputation * G1 = new GroupedSequentialComputation(op1);
+    GroupedComputation> G1(make_shared<GroupedSequentialComputation(op1);
 
     // [cm1 |-> cm2] |-> cm3 :
-    Operator * op2 = new SequentialExecOperator(G1, cm3);
+    Operator> op2(make_shared<SequentialExecOperator(G1, cm3);
 
     // [ [cm1 |-> cm2] |-> cm3 ] :
-    GroupedComputation * G2 = new GroupedSequentialComputation(op2);
+    GroupedComputation> G2(make_shared<GroupedSequentialComputation(op2);
 
-    DecisionPair * pair;
+    DecisionPair> pair;
     int cost = 0;
 
     for(int i = 0; i < 5; i++)

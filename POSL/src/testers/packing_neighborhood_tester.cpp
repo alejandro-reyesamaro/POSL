@@ -13,12 +13,12 @@ PackingNeighborhoodTester::PackingNeighborhoodTester()
 {
 }
 
-string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>> * neighbors, vector<int> pack, string label)
+string PackingNeighborhoodTester::test(shared_ptr<Solution> sol, shared_ptr<POSL_Iterator<vector<int>>> neighbors, vector<int> pack, string label)
 {
     neighbors->Reset();
     string sol_str = sol->configurationToString();
 
-    Neighborhood * final = new FromPackNeighborhood(&pack[0]);
+    shared_ptr<Neighborhood> final(make_shared<FromPackNeighborhood>(&pack[0]));
     bool succ = final->size() != 0; // No me gusta :/
 
     // | ID |
@@ -43,7 +43,8 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
     // | n_size |
     //int n_size = pack[count];
     count++;
-    Solution * sol_aux, * neighbor_aux;
+    shared_ptr<Solution> sol_aux;
+    shared_ptr<Solution> neighbor_aux;
     vector<int> conf_aux (32);
     vector<Domain> dom = sol->GetDomains();
 
@@ -51,7 +52,7 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
     {
         vector<int> neighbor = neighbors->GetNext();
         //cout << "new config... " << Tools::configurationToString(neighbor) << endl;
-        sol_aux = new Solution(dom, neighbor);
+        sol_aux(make_shared<Solution>(dom, neighbor));
         //cout << sol_aux->configurationToString() << endl;
         int deg = pack[count++];
         vector<int> sol_conf = sol->GetConfiguration();
@@ -63,7 +64,7 @@ string PackingNeighborhoodTester::test(Solution * sol, POSL_Iterator<vector<int>
             //cout << pos << " - " << value << endl;
             conf_aux[pos] = value;
         }                
-        neighbor_aux = new Solution(dom, conf_aux);
+        neighbor_aux(make_shared<Solution>(dom, conf_aux));
         //string sol_aux_str = sol_aux->configurationToString();
         //string neighbor_aux_str = neighbor_aux->configurationToString();
         legal = legal && sol_aux->configurationToString().compare(neighbor_aux->configurationToString()) == 0;

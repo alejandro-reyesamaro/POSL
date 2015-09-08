@@ -11,18 +11,18 @@ Tester_Solver_Golfers::Tester_Solver_Golfers(int argc, char *argv[])
 
 string Tester_Solver_Golfers::test()
 {
-    //Benchmark * bench = new Golfers(5,5,3);
-    Golfers * g = new Golfers(4,4,2);
-    Benchmark * bench = g;
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    //Benchmark> bench(make_shared<Golfers(5,5,3);
+    shared_ptr<Golfers> g(make_shared<Golfers>(4,4,2));
+    shared_ptr<Benchmark> bench = g;
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
 
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
 
-    //POSL_Solver * solver = new POSL_Solver(ARGC, ARGV, bench, new ForGolfersCSS());
-    CreateSolverStrategy * css = new ForGolfersCSS(g);
-    vector<POSL_Solver *> solvers = css->create();
+    //POSL_Solver> solver(make_shared<POSL_Solver(ARGC, ARGV, bench, new ForGolfersCSS());
+    shared_ptr<CreateSolverStrategy> css(make_shared<ForGolfersCSS>(g));
+    vector<shared_ptr<POSL_Solver>> solvers = css->create();
 
     solvers[0]->solve(psp);
     return solvers[0]->show(psp->GetBenchmark());

@@ -23,10 +23,10 @@ Tester_ConditionalOperator::Tester_ConditionalOperator(int argc, char *argv[])
 
 string Tester_ConditionalOperator::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config0(
     {
@@ -67,9 +67,9 @@ string Tester_ConditionalOperator::test()
         16,  3,  6,  9
     });
 
-    //PSP * psp = new PSP(bench);
-    Solution * sol1 = new Solution(psp->GetBenchmark()->Domains(), config1);
-    Solution * sol2 = new Solution(psp->GetBenchmark()->Domains(), config2);
+    //PSP * psp(make_shared<PSP(bench);
+    shared_ptr<Solution> sol1(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
+    shared_ptr<Solution> sol2(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
 
     //int c1 = psp->GetBenchmark()->solutionCost(sol1);
     //int c2 = psp->GetBenchmark()->solutionCost(sol2);
@@ -78,42 +78,42 @@ string Tester_ConditionalOperator::test()
 
     psp->UpdateSolution(sol1);
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
-    CompoundModule * cm2_1 = new OM_OneElementChangedNeighborhood(bench);
-    CompoundModule * cm2_2 = new OM_MultiElementsChangedNeighborhood(bench);
-    CompoundModule * cm3 = new OM_BestImprovementSelection(bench);
-    CompoundModule * cm4 = new OM_AlwaysImproveDecision();
+    shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
+    shared_ptr<CompoundModule> cm2_1(make_shared<OM_OneElementChangedNeighborhood>(bench));
+    shared_ptr<CompoundModule> cm2_2(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
+    shared_ptr<CompoundModule> cm3(make_shared<OM_BestImprovementSelection>(bench));
+    shared_ptr<CompoundModule> cm4(make_shared<OM_AlwaysImproveDecision>());
 
     // cm2_1 <cond> cm2_2
-    Operator * op0 = new ConditionalOperator(cm2_1, cm2_2, new ReachedCostExpression(10));
+    shared_ptr<Operator> op0(make_shared<ConditionalOperator>(cm2_1, cm2_2, make_shared<ReachedCostExpression>(10)));
 
     // [ cm2_1 <cond> cm2_2 ]:
-    GroupedComputation * G22 = new GroupedSequentialComputation(op0);
+    shared_ptr<GroupedComputation> G22(make_shared<GroupedSequentialComputation>(op0));
 
     // cm1 |-> [ cm2_1 <cond> cm2_2 ] :
-    Operator * op1 = new SequentialExecOperator(cm1, G22);
+    shared_ptr<Operator> op1(make_shared<SequentialExecOperator>(cm1, G22));
 
     // [ cm1 |-> [ cm2_1 <cond> cm2_2 ] ]:
-    GroupedComputation * G12 = new GroupedSequentialComputation(op1);
+    shared_ptr<GroupedComputation> G12(make_shared<GroupedSequentialComputation>(op1));
 
     // [ cm1 |-> [ cm2_1 <cond> cm2_2 ] ] |-> cm3 :
-    Operator * op2 = new SequentialExecOperator(G12, cm3);
+    shared_ptr<Operator> op2(make_shared<SequentialExecOperator>(G12, cm3));
 
     // [ [ cm1 |-> [ cm2_1 <cond> cm2_2 ] ] |-> cm3] ] :
-    GroupedComputation * G123 = new GroupedSequentialComputation(op2);
+    shared_ptr<GroupedComputation> G123(make_shared<GroupedSequentialComputation>(op2));
 
     // [ [ cm1 |-> [ cm2_1 <cond> cm2_2 ] ] |-> cm3] ] |-> cm4 :
-    Operator * op3 = new SequentialExecOperator(G123, cm4);
+    shared_ptr<Operator> op3(make_shared<SequentialExecOperator>(G123, cm4));
 
     // [ [ [ cm1 |-> [ cm2_1 <cond> cm2_2 ] ] |-> cm3] ] |-> cm4 ] :
-    GroupedComputation * G1234 = new GroupedSequentialComputation(op3);
+    shared_ptr<GroupedComputation> G1234(make_shared<GroupedSequentialComputation>(op3));
 
     // MAL!!!!!
-    Solution * after_sol1 = (Solution *)G1234->execute(psp, sol1);
+    shared_ptr<Solution> after_sol1 = static_pointer_cast<Solution>(G1234->execute(psp, sol1));
     int cost1 = psp->GetBenchmark()->solutionCost(after_sol1);
 
     psp->UpdateSolution(sol2);
-    Solution * after_sol2 = (Solution *)G1234->execute(psp, sol2);
+    shared_ptr<Solution> after_sol2 = static_pointer_cast<Solution>(G1234->execute(psp, sol2));
     int cost2 = psp->GetBenchmark()->solutionCost(after_sol2);
 
     cout << cost1 << " and " << cost2 << endl;

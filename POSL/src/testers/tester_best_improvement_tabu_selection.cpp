@@ -16,10 +16,10 @@ Tester_BestImprovementTabuSelection::Tester_BestImprovementTabuSelection(int arg
 
 string Tester_BestImprovementTabuSelection::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -34,42 +34,42 @@ string Tester_BestImprovementTabuSelection::test()
         1,  1,  1,  1
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
     //bench->UpdateSolution(sol);
-    //PSP * psp = new PSP(bench);
+    //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol);
     int initial_cost = psp->GetBenchmark()->solutionCost(sol);
 
 
-    CompoundModule * cm1 = new OM_FixedFirstConfiguration(bench);
-    CompoundModule * cm2 = new OM_MultiElementsChangedNeighborhood(bench);
-    CompoundModule * cm3 = new OM_BestImprovementTabuSelection(bench);
+    shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
+    shared_ptr<CompoundModule> cm2(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
+    shared_ptr<CompoundModule> cm3(make_shared<OM_BestImprovementTabuSelection>(bench));
 
     // cm1 |-> cm2 :
-    Operator * op1 = new SequentialExecOperator(cm1, cm2);
+    shared_ptr<Operator> op1(make_shared<SequentialExecOperator>(cm1, cm2));
 
     // [cm1 |-> cm2] :
-    GroupedComputation * G1 = new GroupedSequentialComputation(op1);
+    shared_ptr<GroupedComputation> G1(make_shared<GroupedSequentialComputation>(op1));
 
     // [cm1 |-> cm2] |-> cm3 :
-    Operator * op2 = new SequentialExecOperator(G1, cm3);
+    shared_ptr<Operator> op2(make_shared<SequentialExecOperator>(G1, cm3));
 
     // [ [cm1 |-> cm2] |-> cm3 ] :
-    GroupedComputation * G2 = new GroupedSequentialComputation(op2);
+    shared_ptr<GroupedComputation> G2(make_shared<GroupedSequentialComputation>(op2));
 
-    DecisionPair * pair;
+    shared_ptr<DecisionPair> pair;
     int cost = 0;
 
     for(int i = 0; i < 5; i++)
     {
-        pair = (DecisionPair *)G2->execute(psp, sol);
+        pair = static_pointer_cast<DecisionPair>(G2->execute(psp, sol));
         sol = pair->GetFound();
         cost = psp->GetBenchmark()->solutionCost(sol);
         psp->UpdateSolution(sol);
         cout << sol->configurationToString() << " - cost: " << cost << endl;
     }
     cout << endl;
-    pair = (DecisionPair *)G2->execute(psp, sol);
+    pair = static_pointer_cast<DecisionPair>(G2->execute(psp, sol));
     cout << pair->GetFound()->configurationToString() << endl;
 
     //string prefix = (pair->equals()) ? "NO better solution found" : "new cost: " + Tools::int2str(cc);

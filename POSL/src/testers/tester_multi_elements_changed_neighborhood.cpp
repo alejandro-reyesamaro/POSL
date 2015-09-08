@@ -11,10 +11,10 @@ Tester_MultiElementsChangedNeighborhood::Tester_MultiElementsChangedNeighborhood
 
 string Tester_MultiElementsChangedNeighborhood::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -29,12 +29,12 @@ string Tester_MultiElementsChangedNeighborhood::test()
         0,  0,  0,  0
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
 
-    OperationModule * op = new OM_MultiElementsChangedNeighborhood(bench);
-    Neighborhood * V = (Neighborhood *)op->execute(psp, sol);
+    shared_ptr<OperationModule> op(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
+    shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    POSL_Iterator<vector<int>> * it = V ->getIterator();
+    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
     it->Reset();
     int sum  = 0;
     bool changes = true;

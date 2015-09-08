@@ -9,13 +9,13 @@ Tester_Solver_GolombRuler::Tester_Solver_GolombRuler(int argc, char *argv[])
 
 string Tester_Solver_GolombRuler::test()
 {
-    //GolombRuler * bench = new GolombRuler(12,85);
-    //GolombRuler * bench = new GolombRuler(8,34);
-    GolombRuler * bench = new GolombRuler(7,25);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    //GolombRuler * bench(make_shared<GolombRuler(12,85);
+    //GolombRuler * bench(make_shared<GolombRuler(8,34);
+    shared_ptr<GolombRuler> bench(make_shared<GolombRuler>(7,25));
+    shared_ptr<PS> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    CreateSolverStrategy * css = new ForGolombRulerCSS(bench);
-    vector<POSL_Solver *> solvers = css->create();
+    shared_ptr<CreateSolverStrategy> css(make_shared<ForGolombRulerCSS>(bench));
+    vector<vPOSL_Solver> solvers = css->create();
 
     solvers[0]->solve(psp);
     return solvers[0]->show(psp->GetBenchmark());

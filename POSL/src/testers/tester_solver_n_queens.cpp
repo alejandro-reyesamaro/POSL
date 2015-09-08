@@ -9,11 +9,11 @@ Tester_SolverNQueens::Tester_SolverNQueens(int argc, char *argv[])
 
 string Tester_SolverNQueens::test()
 {
-    NQueens * bench = new NQueens(8);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<NQueens> bench(make_shared<NQueens>(8));
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    CreateSolverStrategy * css = new ForNQueensCSS(bench);
-    vector<POSL_Solver *> solvers = css->create();
+    shared_ptr<CreateSolverStrategy> css(make_shared<ForNQueensCSS>(bench));
+    vector<shared_ptr<POSL_Solver> solvers = css->create();
 
     solvers[0]->solve(psp);
     return solvers[0]->show(psp->GetBenchmark());

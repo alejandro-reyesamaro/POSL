@@ -14,10 +14,10 @@ Tester_PackingDecisionPair::Tester_PackingDecisionPair(int argc, char *argv[])
 
 string Tester_PackingDecisionPair::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config1(
     {
@@ -46,19 +46,19 @@ string Tester_PackingDecisionPair::test()
     });
 
 
-    Solution * sol_current = new Solution(bench->Domains(), config1);
-    Solution * sol_found = new Solution(bench->Domains(), config2);
-    ComputationData * data = new DecisionPair(sol_current, sol_found);
-    DecisionPair * pair = dynamic_cast<DecisionPair *>(data);
+    shared_ptr<Solution> sol_current(make_shared<Solution>(bench->Domains(), config1));
+    shared_ptr<Solution> sol_found(make_shared<Solution>(bench->Domains(), config2));
+    shared_ptr<ComputationData> data(make_shared<DecisionPair>(sol_current, sol_found));
+    shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(data);
 
     string current_str = sol_current->configurationToString();
     string found_str = sol_found->configurationToString();
-    DecisionPairPacker * packer = new DecisionPairPacker(pair);
+    shared_ptr<DecisionPairPacker> packer(make_shared<DecisionPairPacker>(pair));
     vector<int> pack = packer->pack();// pair->pack();
 
     int * buff = &pack[0];
 
-    DecisionPair * final = new DecisionPair(new Solution(bench->Domains()), new Solution(bench->Domains()));
+    shared_ptr<DecisionPair> final(make_shared<DecisionPair>(make_shared<Solution>(bench->Domains()), make_shared<Solution>(bench->Domains())));
     final->updateFromPack(&pack[0]);
     bool succ = final->GetCurrent()->equal(sol_current) && final->GetFound()->equal(sol_found);
 

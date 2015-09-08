@@ -12,16 +12,16 @@ Tester_RandomPermutationConfigurationGeneration::Tester_RandomPermutationConfigu
 
 string Tester_RandomPermutationConfigurationGeneration::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+        Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    OperationModule * op1 = new OM_RandomConfPermutationByBlocksGeneration(bench);
+    shared_ptr<OperationModule> op1(make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench));
     bool is_random = true;
     bool is_permut = true;
-    //PSP * psp = new PSP(bench);
-    Solution * current_sol = (Solution *)op1->execute(psp, psp->GetBenchmark()->GetSolution());
+    //PSP> psp(make_shared<PSP(bench);
+    shared_ptr<Solution> current_sol = static_pointer_cast<Solution>(op1->execute(psp, psp->GetBenchmark()->GetSolution()));
     //return current_sol->configurationToString();
 
     vector<int> perm;
@@ -30,7 +30,7 @@ string Tester_RandomPermutationConfigurationGeneration::test()
 
     for(int i = 0; i < 10; i++)
     {
-        Solution * new_sol = (Solution *)op1->execute(psp, psp->GetBenchmark()->GetSolution());
+        shared_ptr<Solution> new_sol = current_sol = static_pointer_cast<Solution>(op1->execute(psp, psp->GetBenchmark()->GetSolution()));
         //cout << new_sol->configurationToString() << endl;
         is_random =  is_random && (!current_sol->equal(new_sol));
         is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->GetConfiguration().begin());

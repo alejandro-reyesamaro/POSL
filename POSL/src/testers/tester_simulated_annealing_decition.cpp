@@ -10,10 +10,10 @@ Tester_SimulatedAnnealingDecition::Tester_SimulatedAnnealingDecition(int argc, c
 
 string Tester_SimulatedAnnealingDecition::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config1(
     {
@@ -41,25 +41,25 @@ string Tester_SimulatedAnnealingDecition::test()
         1,  1,  1,  1
     });
 
-    Solution * sol1 = new Solution(psp->GetBenchmark()->Domains(), config1);
-    Solution * sol2 = new Solution(psp->GetBenchmark()->Domains(), config2);
+    shared_ptr<Solution> sol1(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
+    shared_ptr<Solution> sol2(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
     //bench->UpdateSolution(sol);
-    //PSP * psp = new PSP(bench);
+    //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol2);
 
     int cost1 = psp->GetBenchmark()->solutionCost(sol1);
     //int cost2 = psp->GetBenchmark()->solutionCost(sol2);
 
-    CompoundModule * cm1 = new OM_SimulatedAnnealingDecision();
-    DecisionPair * pair = new DecisionPair(sol1, sol2);
-    Solution * decision;
+    shared_ptr<CompoundModule> cm1(make_shared<OM_SimulatedAnnealingDecision>());
+    shared_ptr<DecisionPair> pair(make_shared<DecisionPair>(sol1, sol2));
+    shared_ptr<Solution> decision;
 
     int final_cost = 0;
     int c = 0, cc = 0;
 
     for(int i = 0; i < 1000; i++)
     {
-        decision = (Solution *)cm1->execute(psp, pair);
+        decision = static_pointer_cast<Solution>(cm1->execute(psp, pair));
         final_cost = psp->GetBenchmark()->solutionCost(decision);
         if(cost1 == final_cost) c++; else cc++;
     }

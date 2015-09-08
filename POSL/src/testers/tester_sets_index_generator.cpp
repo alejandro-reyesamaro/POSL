@@ -9,10 +9,10 @@ Tester_SetsIndexGenerator::Tester_SetsIndexGenerator(int argc, char *argv[])
 
 string Tester_SetsIndexGenerator::test()
 {
-    Benchmark * bench = new Golfers(4,4,2);
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP * psp = new PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench);
 
     RandIndexGenerator it(20 , 3);
     //  return Tools::int2str( it.indexes[0]->value);
