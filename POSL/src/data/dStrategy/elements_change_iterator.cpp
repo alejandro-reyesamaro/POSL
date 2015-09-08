@@ -1,6 +1,6 @@
 #include "elements_change_iterator.h"
 
-ElementsChangeIterator::ElementsChangeIterator(Neighborhood * _n) : neighborhood(_n), current(0)
+ElementsChangeIterator::ElementsChangeIterator(shared_ptr<Neighborhood> _n) : neighborhood(_n), current(0)
 {}
 
 vector<int> ElementsChangeIterator::GetNext()

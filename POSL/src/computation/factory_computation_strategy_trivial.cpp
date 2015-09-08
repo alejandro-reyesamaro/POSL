@@ -7,60 +7,59 @@
 #include "../modules/oms_time_counter.h"
 #include "../expressions/loop_bound_expression.h"
 
-FactoryComputationStrategy_Trivial::FactoryComputationStrategy_Trivial(
-        Benchmark * _bench,
-        AOM_FirstConfigurationGeneration * first_conf_generation,
-        AOM_NeighborhoodFunction * neighborhood_function,
-        AOM_SelectionFunction * selection_function,
-        AOM_DecisionFunction * decision_fucntion,
+FactoryComputationStrategy_Trivial::FactoryComputationStrategy_Trivial(shared_ptr<Benchmark> _bench,
+        shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
+        shared_ptr<AOM_NeighborhoodFunction> neighborhood_function,
+        shared_ptr<AOM_SelectionFunction> selection_function,
+        shared_ptr<AOM_DecisionFunction> decision_fucntion,
         int loops_main_cycle)
     : FactoryComputationStrategy(_bench)
 {
-    CompoundModule * cm_iter  = new OMS_IterationsCounter();
-    CompoundModule * cm_time  = new OMS_TimeCounter();
+    shared_ptr<CompoundModule> cm_iter (make_shared<OMS_IterationsCounter>());
+    shared_ptr<CompoundModule> cm_time (make_shared<OMS_TimeCounter>());
 
     // neighborhood |-> selection :
-    Operator * sec_1 = new SequentialExecOperator(neighborhood_function, selection_function);
+    shared_ptr<Operator> sec_1(make_shared<SequentialExecOperator>(neighborhood_function, selection_function));
 
     // [ neighborhood |-> selection ] :
-    GroupedComputation * G_sec1 = new GroupedSequentialComputation(sec_1);
+    shared_ptr<GroupedComputation> G_sec1(make_shared<GroupedSequentialComputation>(sec_1));
 
     // [ neighborhood |-> selection ]  |-> decision :
-    Operator * sec_2 = new SequentialExecOperator(G_sec1, decision_fucntion);
+    shared_ptr<Operator> sec_2(make_shared<SequentialExecOperator>(G_sec1, decision_fucntion));
 
     // [ [ neighborhood |-> selection ]  |-> decision ]:
-    GroupedComputation * G_sec2 = new GroupedSequentialComputation(sec_2);
+    shared_ptr<GroupedComputation> G_sec2(make_shared<GroupedSequentialComputation>(sec_2));
 
 
     // Adding an iterations counter :
     // <--------------------------------------------------------------------------------->
-    Operator * sec_3 = new SequentialExecOperator(G_sec2, cm_iter);
-    GroupedComputation * G_sec3 = new GroupedSequentialComputation(sec_3);
+    shared_ptr<Operator> sec_3(make_shared<SequentialExecOperator>(G_sec2, cm_iter));
+    shared_ptr<GroupedComputation> G_sec3(make_shared<GroupedSequentialComputation>(sec_3));
     // <--------------------------------------------------------------------------------->
 
     // Adding a time measurer :
     // <--------------------------------------------------------------------------------->
-    Operator * sec_4 = new SequentialExecOperator(G_sec3, cm_time);
-    GroupedComputation * G_sec4 = new GroupedSequentialComputation(sec_4);
+    shared_ptr<Operator> sec_4(make_shared<SequentialExecOperator>(G_sec3, cm_time));
+    shared_ptr<GroupedComputation> G_sec4(make_shared<GroupedSequentialComputation>(sec_4));
     // <--------------------------------------------------------------------------------->
 
 
     // Cyc(n lopps){ G_sec4 } :
-    Operator * cyc1 = new CyclicOperator(G_sec4, new LoopBoundExpression(loops_main_cycle));
+    shared_ptr<Operator> cyc1(make_shared<CyclicOperator>(G_sec4, make_shared<LoopBoundExpression>(loops_main_cycle)));
 
     // [ Cyc(n lopps){ G_sec4 } ]:
-    GroupedComputation * G_cyc1 = new GroupedSequentialComputation(cyc1);
+    shared_ptr<GroupedComputation> G_cyc1(make_shared<GroupedSequentialComputation>(cyc1));
 
     // first_config |-> [ Cyc(n lopps){ G_sec4 } ]
-    Operator* sec_0 = new SequentialExecOperator(first_conf_generation, G_cyc1);
+    shared_ptr<Operator> sec_0(make_shared<SequentialExecOperator>(first_conf_generation, G_cyc1));
 
     // [ first_config |-> [ Cyc(n lopps){ G_sec4 } ] ]:
-    GroupedComputation * G_sec0 = new GroupedSequentialComputation(sec_0);
+    shared_ptr<GroupedComputation> G_sec0(make_shared<GroupedSequentialComputation>(sec_0));
 
     final_module = G_sec0;
 }
 
-CompoundModule * FactoryComputationStrategy_Trivial::buildModule()
+shared_ptr<CompoundModule> FactoryComputationStrategy_Trivial::buildModule()
 {
     return final_module;
 }

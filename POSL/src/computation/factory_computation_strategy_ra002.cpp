@@ -14,100 +14,99 @@
 #include "../expressions/reached_cost_expression.h"
 #include "../expressions/loop_bound_expression.h"
 
-FactoryComputationStrategy_RA002::FactoryComputationStrategy_RA002(Benchmark * _bench,
-        AOM_FirstConfigurationGeneration * first_conf_generation,
-        AOM_NeighborhoodFunction * neighborhood_function_1,
-        AOM_NeighborhoodFunction * neighborhood_function_2,
-        AOM_SelectionFunction * selection_function_1,
-        AOM_SelectionFunction * selection_function_2,
-        AOM_DecisionFunction * decision_fucntion_1,
-        AOM_DecisionFunction * decision_fucntion_2,
+FactoryComputationStrategy_RA002::FactoryComputationStrategy_RA002(shared_ptr<Benchmark> _bench,
+        shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
+        shared_ptr<AOM_NeighborhoodFunction> neighborhood_function_1,
+        shared_ptr<AOM_NeighborhoodFunction> neighborhood_function_2,
+        shared_ptr<AOM_SelectionFunction> selection_function_1,
+        shared_ptr<AOM_SelectionFunction> selection_function_2,
+        shared_ptr<AOM_DecisionFunction> decision_fucntion_1,
+        shared_ptr<AOM_DecisionFunction> decision_fucntion_2,
         float prob_op_rho_selection,
         int cost_op_cond_decision,
         int loops_main_cycle,
         int loops_restart_cycle)
     : FactoryComputationStrategy(_bench)
 {
-    CompoundModule * cm_iter  = new OMS_IterationsCounter();
-    CompoundModule * cm_time  = new OMS_TimeCounter();
+    shared_ptr<CompoundModule> cm_iter(make_shared<OMS_IterationsCounter>());
+    shared_ptr<CompoundModule> cm_time(make_shared<OMS_TimeCounter>());
 
     // selection1 (p) selection2
-    Operator * rho = new RhoOperator(selection_function_1, selection_function_2, prob_op_rho_selection);
+    shared_ptr<Operator> rho(make_shared<RhoOperator>(selection_function_1, selection_function_2, prob_op_rho_selection));
 
     // [ selection1 (p) selection2 ] :
-    GroupedComputation * G_rho = new GroupedSequentialComputation(rho);
+    shared_ptr<GroupedComputation> G_rho(make_shared<GroupedSequentialComputation>(rho));
 
     // OPEN CHANNEL to receive the selecton from other solvers
-    CompoundModule * och_selection = new DecisionPairDataOpenChannel(_bench);
-    Operator * min = new MinOperator(G_rho, och_selection);
-    GroupedComputation * G_min = new GroupedSequentialComputation(min);
-    Operator * cond_1 = new ConditionalOperator(G_rho, G_min, new LoopBoundExpression(4));
-    GroupedComputation * G_con1 = new GroupedSequentialComputation(cond_1);
+    shared_ptr<CompoundModule> och_selection(make_shared<DecisionPairDataOpenChannel>(_bench));
+    shared_ptr<Operator> min(make_shared<MinOperator>(G_rho, och_selection));
+    shared_ptr<GroupedComputation> G_min(make_shared<GroupedSequentialComputation>(min));
+    shared_ptr<Operator> cond_1(make_shared<ConditionalOperator>(G_rho, G_min, make_shared<LoopBoundExpression>(4)));
+    shared_ptr<GroupedComputation> G_con1(make_shared<GroupedSequentialComputation>(cond_1));
 
     // neighborhood1 (U) neighborhood1
-    Operator * uni = new UnionOperator(neighborhood_function_1, neighborhood_function_2);
+    shared_ptr<Operator> uni(make_shared<UnionOperator>(neighborhood_function_1, neighborhood_function_2));
 
     // [ neighborhood1 (U) neighborhood1 ] :
-    GroupedComputation * G_uni = new GroupedSequentialComputation(uni);
+    shared_ptr<GroupedComputation> G_uni(make_shared<GroupedSequentialComputation>(uni));
 
     // [ neighborhood1 (U) neighborhood1 ] |-> [ selection1 (p) selection2 ] :
-    Operator * sec_1 = new SequentialExecOperator(G_uni, G_con1);//G_rho);
+    shared_ptr<Operator> sec_1(make_shared<SequentialExecOperator>(G_uni, G_con1));//G_rho);
 
     // [ [ neighborhood1 (U) neighborhood1 ] |-> [ selection1 (p) selection2 ] ] :
-    GroupedComputation * G_sec1 = new GroupedSequentialComputation(sec_1);
+    shared_ptr<GroupedComputation> G_sec1(make_shared<GroupedSequentialComputation>(sec_1));
 
     // decision1 (</ cost />) decision2
-    Operator * cond_2 = new ConditionalOperator(decision_fucntion_1, decision_fucntion_2, new ReachedCostExpression(cost_op_cond_decision));
+    shared_ptr<Operator> cond_2(make_shared<ConditionalOperator>(decision_fucntion_1, decision_fucntion_2, make_shared<ReachedCostExpression>(cost_op_cond_decision)));
 
     // [ decision1 (</ cost />) decision2 ] :
-    GroupedComputation * G_cond2 = new GroupedSequentialComputation(cond_2);
+    shared_ptr<GroupedComputation> G_cond2(make_shared<GroupedSequentialComputation>(cond_2));
 
     // [ neighborhood |-> [ selection1 (p) selection2 ] ] |-> [ decision1 (</ cost />) decision2 ] :
-    Operator * sec_2 = new SequentialExecOperator(G_sec1, G_cond2);
+    shared_ptr<Operator> sec_2(make_shared<SequentialExecOperator>(G_sec1, G_cond2));
 
     // [ [ neighborhood |-> [ selection1 (p) selection2 ] ] |-> [ decision1 (</ cost />) decision2 ] ]:
-    GroupedComputation * G_sec2 = new GroupedSequentialComputation(sec_2);
+    shared_ptr<GroupedComputation> G_sec2(make_shared<GroupedSequentialComputation>(sec_2));
 
 
     // Adding an iterations counter :
     // <--------------------------------------------------------------------------------->
-    Operator * sec_3 = new SequentialExecOperator(G_sec2, cm_iter);
-    GroupedComputation * G_sec3 = new GroupedSequentialComputation(sec_3);
+    shared_ptr<Operator> sec_3(make_shared<SequentialExecOperator>(G_sec2, cm_iter));
+    shared_ptr<GroupedComputation> G_sec3(make_shared<GroupedSequentialComputation>(sec_3));
     // <--------------------------------------------------------------------------------->
 
     // Adding a time measurer :
     // <--------------------------------------------------------------------------------->
-    Operator * sec_4 = new SequentialExecOperator(G_sec3, cm_time);
-    GroupedComputation * G_sec4 = new GroupedSequentialComputation(sec_4);
+    shared_ptr<Operator> sec_4(make_shared<SequentialExecOperator>(G_sec3, cm_time));
+    shared_ptr<GroupedComputation> G_sec4(make_shared<GroupedSequentialComputation>(sec_4));
     // <--------------------------------------------------------------------------------->
 
-
     // Applying FLO
-    Operator * flo = new FlorianOperator(first_conf_generation);
-    GroupedComputation * G_flo = new GroupedSequentialComputation(flo);
+    shared_ptr<Operator> flo(make_shared<FlorianOperator>(first_conf_generation));
+    shared_ptr<GroupedComputation> G_flo(make_shared<GroupedSequentialComputation>(flo));
 
     // Cyc(n lopps){ G_sec4 } :
-    Operator * cyc1 = new CyclicOperator(G_sec4, new LoopBoundExpression(loops_main_cycle));
+    shared_ptr<Operator> cyc1(make_shared<CyclicOperator>(G_sec4, make_shared<LoopBoundExpression>(loops_main_cycle)));
 
     // [ Cyc(n lopps){ G_sec4 } ]:
-    GroupedComputation * G_cyc1 = new GroupedSequentialComputation(cyc1);
+    shared_ptr<GroupedComputation> G_cyc1(make_shared<GroupedSequentialComputation>(cyc1));
 
     // first_config |-> [ Cyc(n lopps){ G_sec4 } ]
-    Operator* sec_0 = new SequentialExecOperator(G_flo, G_cyc1);
+    shared_ptr<Operator> sec_0(make_shared<SequentialExecOperator>(G_flo, G_cyc1));
 
     // [ first_config |-> [ Cyc(n lopps){ G_sec4 } ] ]:
-    GroupedComputation * G_sec0 = new GroupedSequentialComputation(sec_0);
+    shared_ptr<GroupedComputation> G_sec0(make_shared<GroupedSequentialComputation>(sec_0));
 
     // Cyc(N lopps){ [ first_config |-> [ Cyc(n lopps){ G_sec4 } ] ] }:
-    Operator * cyc2 = new CyclicOperator(G_sec0, new LoopBoundExpression(loops_restart_cycle));
+    shared_ptr<Operator> cyc2(make_shared<CyclicOperator>(G_sec0, make_shared<LoopBoundExpression>(loops_restart_cycle)));
 
     // [ Cyc(N lopps){ [ first_config |-> [ Cyc(n lopps){ G_sec4 } ] ] } ]:
-    GroupedComputation * G_cyc2 = new GroupedSequentialComputation(cyc2);
+    shared_ptr<GroupedComputation> G_cyc2(make_shared<GroupedSequentialComputation>(cyc2));
 
     final_module = G_cyc2;
 }
 
-CompoundModule * FactoryComputationStrategy_RA002::buildModule()
+shared_ptr<CompoundModule> FactoryComputationStrategy_RA002::buildModule()
 {
     return final_module;
 }

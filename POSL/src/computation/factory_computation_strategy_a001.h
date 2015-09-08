@@ -11,7 +11,7 @@ class FactoryComputationStrategy_A001 : public FactoryComputationStrategy
     public:
         FactoryComputationStrategy_A001
         (
-            shared_ptr<Benchmark>_bench,
+            shared_ptr<Benchmark> _bench,
             shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
             shared_ptr<AOM_NeighborhoodFunction> neighborhood_function,
             shared_ptr<AOM_SelectionFunction> selection_function_1,

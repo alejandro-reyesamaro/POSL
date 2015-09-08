@@ -11,21 +11,21 @@ class FactoryComputationStrategy_SA001 : public FactoryComputationStrategy
     public:
         FactoryComputationStrategy_SA001
         (
-            Benchmark *_bench,
-            AOM_FirstConfigurationGeneration * first_conf_generation,
-            AOM_NeighborhoodFunction * neighborhood_function,
-            AOM_SelectionFunction * selection_function_1,
-            AOM_SelectionFunction * selection_function_2,
-            AOM_DecisionFunction * decision_fucntion_1,
-            AOM_DecisionFunction * decision_fucntion_2,
+            shared_ptr<Benchmark>_bench,
+            shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
+            shared_ptr<AOM_NeighborhoodFunction> neighborhood_function,
+            shared_ptr<AOM_SelectionFunction> selection_function_1,
+            shared_ptr<AOM_SelectionFunction> selection_function_2,
+            shared_ptr<AOM_DecisionFunction> decision_fucntion_1,
+            shared_ptr<AOM_DecisionFunction> decision_fucntion_2,
             float prob_op_rho_selection,
             int cost_op_cond_decision,
             int loops_main_cycle,
             int loops_restart_cycle
         );
 
-        CompoundModule * buildModule();
+        shared_ptr<CompoundModule> buildModule();
 
     private:
-        CompoundModule * final_module;
+        shared_ptr<CompoundModule> final_module;
 };

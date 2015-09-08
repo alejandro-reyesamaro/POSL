@@ -6,7 +6,7 @@ NeighborSelectingBestImprovement::NeighborSelectingBestImprovement(vector<Domain
     : rPair(new DecisionPair(new Solution(domains), new Solution(domains)))
 {}
 
-DecisionPair * NeighborSelectingBestImprovement::select(PSP *psp, Neighborhood * V)
+shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
 {
     current_config = psp->GetCurrentSolution()->GetConfiguration();
     int current_cost = psp->CurrentCost();

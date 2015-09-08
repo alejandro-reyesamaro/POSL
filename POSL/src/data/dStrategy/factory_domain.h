@@ -20,9 +20,5 @@ using namespace std;
 class FactoryDomain
 {
     public:
-        //! Virtual method to build the domain
-        /*!
-        * \return Vector of values
-        */
         virtual vector<int> BuildDomain() = 0;
 };

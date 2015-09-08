@@ -3,10 +3,8 @@
 #include <iostream>
 
 Factory_NIntDomain::Factory_NIntDomain(int min, int max)
-{
-    a = min;
-    b = max;
-}
+    : a(min), b(max)
+{}
 
 vector<int> Factory_NIntDomain::BuildDomain()
 {

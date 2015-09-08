@@ -20,17 +20,7 @@ using namespace std;
 class Factory_NIntDomain : public FactoryDomain
 {
     public:
-        //! Constructor
-        /*!
-        * \param min Minimum value
-        * \param max Maximum value
-        */
         Factory_NIntDomain(int min, int max);
-
-        //! Overriding the method from the father class
-        /*!
-        * \return Vector of values
-        */
         vector<int> BuildDomain();
 
     private:
