@@ -1,7 +1,7 @@
 #include "factory_solution_packer.h"
 
-FactorySolutionPacker::FactorySolutionPacker(Solution * solution)
-    : FactoryPacker(new SolutionPacker(solution))
+FactorySolutionPacker::FactorySolutionPacker(shared_ptr<Solution> solution)
+    : FactoryPacker(make_shared<SolutionPacker>(solution))
 {}
 
 

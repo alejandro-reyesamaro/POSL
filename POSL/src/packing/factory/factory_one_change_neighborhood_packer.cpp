@@ -3,5 +3,5 @@
 FactoryOneChangeNeighborhoodPacker::FactoryOneChangeNeighborhoodPacker(vector<int> config,
                                                                        int neighborhood_size,
                                                                        vector<T_Changes> _changes)
-    : FactoryPacker(new OneChangeNeighborhoodPacker(config, neighborhood_size, _changes))
+    : FactoryPacker(make_shared<OneChangeNeighborhoodPacker>(config, neighborhood_size, _changes))
 {}

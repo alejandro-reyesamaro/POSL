@@ -6,7 +6,7 @@
 class DecisionPairPacker : public Packer
 {
     public:
-        DecisionPairPacker(DecisionPair * pair);
+        DecisionPairPacker(shared_ptr<DecisionPair> pair);
 
         vector<int> pack();
         //static DecisionPair * unpack(int * pack, vector<Domain> domains);

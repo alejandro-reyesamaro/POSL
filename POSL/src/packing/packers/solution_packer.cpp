@@ -1,6 +1,6 @@
 #include "solution_packer.h"
 
-SolutionPacker::SolutionPacker(Solution * solution)
+SolutionPacker::SolutionPacker(shared_ptr<Solution> solution)
     : Packer(solution->GetConfiguration().size() + 2),
       configuration(solution->GetConfiguration())
 {

@@ -6,7 +6,7 @@
 class SolutionPacker : public Packer
 {
     public:
-        SolutionPacker(Solution * solution);
+        SolutionPacker(shared_ptr<Solution> solution);
 
         vector<int> pack();
         //static Solution * unpack(int * pack, vector<Domain> domains);

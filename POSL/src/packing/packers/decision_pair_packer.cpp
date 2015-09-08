@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-DecisionPairPacker::DecisionPairPacker(DecisionPair * pair)
+DecisionPairPacker::DecisionPairPacker(shared_ptr<DecisionPair> pair)
     : Packer(pair->GetCurrent()->GetConfiguration().size() * 2 + 2),
       current_configuration(pair->GetCurrent()->GetConfiguration()),
       found_configuration(pair->GetFound()->GetConfiguration())

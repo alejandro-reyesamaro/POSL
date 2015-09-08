@@ -1,6 +1,6 @@
 #include "factory_packer.h"
 
-FactoryPacker::FactoryPacker(Packer * _packer)
+FactoryPacker::FactoryPacker(shared_ptr<Packer> _packer)
     : packer(_packer)
 {}
 

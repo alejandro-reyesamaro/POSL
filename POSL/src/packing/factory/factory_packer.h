@@ -5,9 +5,9 @@
 class FactoryPacker
 {
     public:
-        FactoryPacker(Packer * _packer);
+        FactoryPacker(shared_ptr<Packer> _packer);
         vector<int> pack();
 
     protected:
-        Packer * packer;
+        shared_ptr<Packer> packer;
 };

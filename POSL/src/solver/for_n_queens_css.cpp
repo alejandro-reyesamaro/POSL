@@ -15,44 +15,44 @@
 #include "../computation/factory_computation_strategy_sa001.h"
 #include "../computation/factory_computation_strategy_ra001.h"
 
-ForNQueensCSS::ForNQueensCSS(NQueens * nq)
+ForNQueensCSS::ForNQueensCSS(shared_ptr<NQueens> nq)
     : CreateSolverStrategy(nq),
-      sender_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_SA001
+      sender_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA001>
         (
             bench,
-            new OM_RandomPermutationGeneration(bench),
-            new OM_OnePermutationNeighborhood(bench),
-            new OM_FirstImprovementSelection(bench),
-            new OM_BestImprovementTabuSelection(bench),
-            new OM_SimulatedAnnealingDecision(),
-            new OM_AlwaysImproveDecision(),
+            make_shared<OM_RandomPermutationGeneration>(bench),
+            make_shared<OM_OnePermutationNeighborhood>(bench),
+            make_shared<OM_FirstImprovementSelection>(bench),
+            make_shared<OM_BestImprovementTabuSelection>(bench),
+            make_shared<OM_SimulatedAnnealingDecision>(),
+            make_shared<OM_AlwaysImproveDecision>(),
             0.5, 20, 500, 10
         )))),
-      receiver_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_RA001
+      receiver_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA001>
         (
             bench,
-            new OM_RandomPermutationGeneration(bench),
-            new OM_OnePermutationNeighborhood(bench),
-            new OM_FirstImprovementSelection(bench),
-            new OM_BestImprovementTabuSelection(bench),
-            new OM_SimulatedAnnealingDecision(),
-            new OM_AlwaysImproveDecision(),
+            make_shared<OM_RandomPermutationGeneration>(bench),
+            make_shared<OM_OnePermutationNeighborhood>(bench),
+            make_shared<OM_FirstImprovementSelection>(bench),
+            make_shared<OM_BestImprovementTabuSelection>(bench),
+            make_shared<OM_SimulatedAnnealingDecision>(),
+            make_shared<OM_AlwaysImproveDecision>(),
             0.2, 20, 500, 10
         )))),
-      single_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_A001
+      single_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A001>
         (
             bench,
-            new OM_RandomPermutationGeneration(bench),
-            new OM_OnePermutationNeighborhood(bench),
-            new OM_FirstImprovementSelection(bench),
-            new OM_BestImprovementTabuSelection(bench),
-            new OM_SimulatedAnnealingDecision(),
-            new OM_AlwaysImproveDecision(),
+            make_shared<OM_RandomPermutationGeneration>(bench),
+            make_shared<OM_OnePermutationNeighborhood>(bench),
+            make_shared<OM_FirstImprovementSelection>(bench),
+            make_shared<OM_BestImprovementTabuSelection>(bench),
+            make_shared<OM_SimulatedAnnealingDecision>(),
+            make_shared<OM_AlwaysImproveDecision>(),
             0.2, 20, 100, 10
         ))))
 {}
 
-vector<POSL_Solver *> ForNQueensCSS::create()
+vector<shared_ptr<POSL_Solver> > ForNQueensCSS::create()
 {    
     //solvers.push_back(solver_1);
     //solvers.push_back(solver_2);

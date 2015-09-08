@@ -1,5 +1,5 @@
 #include "create_solver_strategy.h"
 
-CreateSolverStrategy::CreateSolverStrategy(Benchmark * _bench)
+CreateSolverStrategy::CreateSolverStrategy(shared_ptr<Benchmark> _bench)
     : bench(_bench)
 {}

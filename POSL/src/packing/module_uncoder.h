@@ -14,16 +14,16 @@ class ModuleUncoder
 {
     public:
         ModuleUncoder();
-        CompoundModule * uncodeCompoundModule(string code, Benchmark * bench);
+        shared_ptr<CompoundModule> uncodeCompoundModule(string code, shared_ptr<Benchmark> bench);
 
     private:
-        CyclicOperator * uncodeCyclicOperator(string code, Benchmark * bench);
-        ConditionalOperator * uncodeConditionalOperator(string code, Benchmark * bench);
-        RhoOperator * uncodeRhoOperator(string code, Benchmark * bench);
-        BinaryOperator * uncodeBinaryOperator(string code, Benchmark * bench);
-        Operator * uncodeOperator(string code, Benchmark * bench);
-        GroupedSequentialComputation * uncodeGroupedSequentialComputation(string code, Benchmark * bench);
-        GroupedParallelComputation * uncodeGroupedParallelComputation(string code, Benchmark * bench);
-        OperationModule * uncodeOperationModule(string code, Benchmark * bench);
-        BooleanExpression * uncodeBoolExpression(string code);
+        shared_ptr<CyclicOperator> uncodeCyclicOperator(string code, shared_ptr<Benchmark> bench);
+        shared_ptr<ConditionalOperator> uncodeConditionalOperator(string code, shared_ptr<Benchmark> bench);
+        shared_ptr<RhoOperator> uncodeRhoOperator(string code, shared_ptr<Benchmark> bench);
+        shared_ptr<BinaryOperator> uncodeBinaryOperator(string code, shared_ptr<Benchmark> bench);
+        shared_ptr<Operator> uncodeOperator(string code, shared_ptr<Benchmark> bench);
+        shared_ptr<GroupedSequentialComputation> uncodeGroupedSequentialComputation(string code, shared_ptr<Benchmark> bench);
+        shared_ptr<GroupedParallelComputation> uncodeGroupedParallelComputation(string code, shared_ptr<Benchmark> bench);
+        shared_ptr<OperationModule> uncodeOperationModule(string code, shared_ptr<Benchmark> bench);
+        shared_ptr<BooleanExpression> uncodeBoolExpression(string code);
 };

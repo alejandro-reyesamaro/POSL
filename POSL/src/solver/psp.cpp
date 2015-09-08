@@ -1,44 +1,28 @@
 #include "psp.h"
 
-PSP::PSP(int _argc, char **_argv, Benchmark * _bench, int _pID)
+PSP::PSP(int _argc, char **_argv, shared_ptr<Benchmark> _bench, int _pID)
     : ARGC(_argc),
       ARGV(_argv),
       bench(_bench),
       iterations(0),
       milisecs(0),
-      best_found_solution(NULL),
+      best_found_solution(nullptr),
       pID(_pID),
-      comm(new Comunicator())
+      comm(make_shared<Comunicator>())
 {}
 
-PSP::PSP(int _argc, char **_argv, Benchmark * _bench)
+PSP::PSP(int _argc, char **_argv, shared_ptr<Benchmark> _bench)
     : PSP (_argc, _argv, _bench, -1)
 {}
 
-void PSP::UpdateSolution(Solution * solution)
+void PSP::UpdateSolution(shared_ptr<Solution> solution)
 {
     bench->UpdateSolution(solution);
     int cost = bench->solutionCost(solution);
     int best_cost = BestCostSoFar();
-    if(best_found_solution == NULL || cost < best_cost)
+    if(best_found_solution == nullptr || cost < best_cost)
         best_found_solution = solution;
 }
-
-int PSP::GetPID(){ return pID; }
-
-Benchmark * PSP::GetBenchmark(){ return bench; }
-
-int PSP::GetIterations(){ return iterations; }
-
-int PSP::GetTime(){ return milisecs; }
-
-Solution * PSP::GetBestSolutionSoFar(){ return best_found_solution; }
-
-Solution * PSP::GetCurrentSolution(){ return bench->GetSolution(); }
-
-int PSP::CurrentCost(){ return bench->solutionCost(bench->GetSolution()); }
-
-int PSP::BestCostSoFar(){ return (best_found_solution == NULL)? -1 : bench->solutionCost(best_found_solution); }
 
 void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 

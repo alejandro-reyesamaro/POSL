@@ -37,7 +37,7 @@ using namespace boost;
 ModuleUncoder::ModuleUncoder()
 {}
 
-BooleanExpression * ModuleUncoder::uncodeBoolExpression(string code)
+shared_ptr<BooleanExpression> ModuleUncoder::uncodeBoolExpression(string code)
 {
     trim(code);
     std::size_t pos_space = code.find_first_of(" ");
@@ -54,13 +54,13 @@ BooleanExpression * ModuleUncoder::uncodeBoolExpression(string code)
         switch(N)
         {
             case 1: // iteration bound
-                return new IteretionBoundExpression(param);
+                return make_shared<IteretionBoundExpression>(param);
             break;
             case 2: // loob bound
-                return new LoopBoundExpression(param);
+                returnmake_shared<LoopBoundExpression(param);
             break;
             case 3: // reached cost
-                return new ReachedCostExpression(param);
+                returnmake_shared<ReachedCostExpression(param);
             break;
             default:
                 throw "(POSL Exception) Not well coded BooleanExpression";
@@ -70,16 +70,16 @@ BooleanExpression * ModuleUncoder::uncodeBoolExpression(string code)
         throw "(POSL Exception) Not well coded BooleanExpression (ID)";
 }
 
-CyclicOperator * ModuleUncoder::uncodeCyclicOperator(string code, Benchmark * bench)
+shared_ptr<CyclicOperator> ModuleUncoder::uncodeCyclicOperator(string code, shared_ptr<Benchmark> bench)
 {
     std::size_t pos_open = code.find_first_of("(");
     std::size_t pos_close = code.find_first_of(")");
     string be_code = code.substr(pos_open + 1, pos_close - pos_open - 1);
     string cm_code = code.substr(pos_close + 1);
-    return new CyclicOperator(uncodeCompoundModule(cm_code, bench), uncodeBoolExpression(be_code));
+    returnmake_shared<CyclicOperator>(uncodeCompoundModule(cm_code, bench), uncodeBoolExpression(be_code));
 }
 
-ConditionalOperator * ModuleUncoder::uncodeConditionalOperator(string code, Benchmark * bench)
+shared_ptr<ConditionalOperator> ModuleUncoder::uncodeConditionalOperator(string code, shared_ptr<Benchmark> bench)
 {
     std::size_t pos_open = code.find_first_of("(");
     std::size_t pos_close = code.find_first_of(")");
@@ -92,12 +92,12 @@ ConditionalOperator * ModuleUncoder::uncodeConditionalOperator(string code, Benc
     trim(rest);
     string cm2_code = Tools::frontModule(rest);
 
-    return new ConditionalOperator(uncodeCompoundModule(cm1_code, bench),
+    return make_shared<ConditionalOperator>(uncodeCompoundModule(cm1_code, bench),
                                    uncodeCompoundModule(cm2_code, bench),
                                    uncodeBoolExpression(be_code));
 }
 
-RhoOperator * ModuleUncoder::uncodeRhoOperator(string code, Benchmark * bench)
+shared_ptr<RhoOperator> ModuleUncoder::uncodeRhoOperator(string code, shared_ptr<Benchmark> bench)
 {
     std::size_t pos_open = code.find_first_of("(");
     std::size_t pos_close = code.find_first_of(")");
@@ -112,10 +112,10 @@ RhoOperator * ModuleUncoder::uncodeRhoOperator(string code, Benchmark * bench)
     trim(rest);
     string cm2_code = Tools::frontModule(rest);
 
-    return new RhoOperator(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench), param);
+    return make_shared<RhoOperator>(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench), param);
 }
 
-BinaryOperator * ModuleUncoder::uncodeBinaryOperator(string code, Benchmark * bench)
+shared_ptr<BinaryOperator> ModuleUncoder::uncodeBinaryOperator(string code, shared_ptr<Benchmark> bench)
 {
     trim(code);
     char front = code.front();
@@ -136,13 +136,13 @@ BinaryOperator * ModuleUncoder::uncodeBinaryOperator(string code, Benchmark * be
         switch(oper)
         {
             case 4: // Sequential execution
-                return new SequentialExecOperator(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench));
+                return make_shared<SequentialExecOperator>(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench));
             break;
             case 5: // speed
-                return new SpeedOperator(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench));
+                return make_shared<SpeedOperator>(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench));
             break;
             case 6: // Union
-                return new UnionOperator(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench));
+                return make_shared<UnionOperator>(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench));
             break;
         }
     }
@@ -150,7 +150,7 @@ BinaryOperator * ModuleUncoder::uncodeBinaryOperator(string code, Benchmark * be
         throw "Not well coded Binary Operator";
 }
 
-Operator * ModuleUncoder::uncodeOperator(string code, Benchmark * bench)
+shared_ptr<Operator> ModuleUncoder::uncodeOperator(string code, shared_ptr<Benchmark> bench)
 {
     trim(code);
     char front = code.front();
@@ -178,17 +178,17 @@ Operator * ModuleUncoder::uncodeOperator(string code, Benchmark * bench)
         throw "Not well coded Operator";
 }
 
-GroupedSequentialComputation * ModuleUncoder::uncodeGroupedSequentialComputation(string code, Benchmark * bench)
+shared_ptr<GroupedSequentialComputation> ModuleUncoder::uncodeGroupedSequentialComputation(string code, shared_ptr<Benchmark> bench)
 {
-    return new GroupedSequentialComputation(uncodeOperator(code, bench));
+    return make_shared<GroupedSequentialComputation>(uncodeOperator(code, bench));
 }
 
-GroupedParallelComputation * ModuleUncoder::uncodeGroupedParallelComputation(string code, Benchmark * bench)
+GroupedParallelComputation * ModuleUncoder::uncodeGroupedParallelComputation(string code, shared_ptr<Benchmark> bench)
 {
-    return new GroupedParallelComputation(uncodeOperator(code, bench));
+    return make_shared<GroupedParallelComputation>(uncodeOperator(code, bench));
 }
 
-OperationModule * ModuleUncoder::uncodeOperationModule(string code, Benchmark * bench)
+shared_ptr<OperationModule> ModuleUncoder::uncodeOperationModule(string code, shared_ptr<Benchmark> bench)
 {
     trim(code);
     char L = code.front();
@@ -199,19 +199,19 @@ OperationModule * ModuleUncoder::uncodeOperationModule(string code, Benchmark * 
         switch(N)
         {
             case 1: // fixed first configuration
-                return new OM_FixedFirstConfiguration(bench);
+                return make_shared<OM_FixedFirstConfiguration>(bench);
                 break;
             case 2: // random first configuration
-                return new OM_RandomConfGeneration(bench);
+                return make_shared<OM_RandomConfGeneration>(bench);
                 break;
             case 3:
 
                 break;
             case 4: // random permutation by blocks
-                return new OM_RandomConfPermutationByBlocksGeneration(bench);
+                return make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench);
                 break;
             case 5: // random ordered permutation
-                return new OM_RandomConfOrderedGeneration(bench);
+                return make_shared<OM_RandomConfOrderedGeneration>(bench);
                 break;
             default:
                 throw "Not well coded OperationModule (First Configuration)";
@@ -222,19 +222,19 @@ OperationModule * ModuleUncoder::uncodeOperationModule(string code, Benchmark * 
         switch(N)
         {
             case 1: // one element change neighborhood
-                return new OM_OneElementChangedNeighborhood(bench);
+                return make_shared<OM_OneElementChangedNeighborhood>(bench);
                 break;
             case 2: // multi elements change neighborhood
-                return new OM_MultiElementsChangedNeighborhood(bench);
+                return make_shared<OM_MultiElementsChangedNeighborhood>(bench);
                 break;
             case 3: // golfers neighborhood
-                return new OM_GolfersSingleSwapNeighborhood(bench);
+                return make_shared<OM_GolfersSingleSwapNeighborhood>(bench);
                 break;
             case 4: // golom neighborhood (multi)
-                return new OM_MultiSortedChangesNeighborhood(bench);
+                return make_shared<OM_MultiSortedChangesNeighborhood>(bench);
                 break;
             case 5: // golom neighborhood (one)
-                return new OM_OneSortedChangeNeighborhood(bench);
+                return make_shared<OM_OneSortedChangeNeighborhood>(bench);
                 break;
             default:
                 throw "Not well coded OperationModule (Neighborhood)";
@@ -245,16 +245,16 @@ OperationModule * ModuleUncoder::uncodeOperationModule(string code, Benchmark * 
         switch(N)
         {
             case 1: // random selection
-                return new OM_RandomSelection(bench);
+                return make_shared<OM_RandomSelection>(bench);
                 break;
             case 2: // First Improvement selection
-                return new OM_FirstImprovementSelection(bench);
+                return make_shared<OM_FirstImprovementSelection>(bench);
                 break;
             case 3: // Best Improvement selection
-                return new OM_BestImprovementSelection(bench);
+                return make_shared<OM_BestImprovementSelection>(bench);
                 break;
             case 4: // Best Improvement TABU selection
-                return new OM_BestImprovementTabuSelection(bench);
+                return make_shared<OM_BestImprovementTabuSelection>(bench);
                 break;
             default:
                 throw "Not well coded OperationModule (Selection)";
@@ -265,10 +265,10 @@ OperationModule * ModuleUncoder::uncodeOperationModule(string code, Benchmark * 
         switch(N)
         {
             case 1: // always improve
-                return new OM_AlwaysImproveDecision();
+                return make_shared<OM_AlwaysImproveDecision>();
                 break;
             case 2: // simulated annealing
-                return new OM_SimulatedAnnealingDecision();
+                return make_shared<OM_SimulatedAnnealingDecision>();
                 break;
             default:
                 throw "Not well coded OperationModule (Decission)";
@@ -278,7 +278,7 @@ OperationModule * ModuleUncoder::uncodeOperationModule(string code, Benchmark * 
         throw "Not well coded OperationModule";
 }
 
-CompoundModule * ModuleUncoder::uncodeCompoundModule(string code, Benchmark * bench)
+shared_ptr<CompoundModule> ModuleUncoder::uncodeCompoundModule(string code, shared_ptr<Benchmark> bench)
 {
     trim(code);
     char front = code.front();

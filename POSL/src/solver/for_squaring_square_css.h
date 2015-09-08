@@ -6,11 +6,11 @@
 class ForSquaringSquareCSS : public CreateSolverStrategy
 {
     public:
-        ForSquaringSquareCSS(SquaringSquare * ssq);
-        vector<POSL_Solver *> create();
+        ForSquaringSquareCSS(shared_ptr<SquaringSquare> ssq);
+        vector<shared_ptr<POSL_Solver>> create();
 
     private:
-        POSL_Solver * single_solver;
-        POSL_Solver * receiver_solver;
-        POSL_Solver * sender_solver;
+        shared_ptr<POSL_Solver> single_solver;
+        shared_ptr<POSL_Solver> receiver_solver;
+        shared_ptr<POSL_Solver> sender_solver;
 };

@@ -9,10 +9,9 @@ using namespace std;
 
 #define TAG 1001
 
-POSL_MetaSolver::POSL_MetaSolver(vector<POSL_Solver *> _solvers)
+POSL_MetaSolver::POSL_MetaSolver(vector<shared_ptr<POSL_Solver> > _solvers)
     : solvers(_solvers)
-{
-}
+{}
 
 /*
 int mainProcess(int myid)
@@ -27,12 +26,12 @@ int neighborProcess(int myid, int numprocs)
 }
 */
 
-void POSL_MetaSolver::solve(int argc, char **argv, Benchmark * bench)
+void POSL_MetaSolver::solve(int argc, char **argv, shared_ptr<Benchmark> bench)
 {    
     solve_Default(argc, argv, bench);
 }
 
-void POSL_MetaSolver::solve_Default(int argc, char **argv, Benchmark * bench)
+void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark> bench)
 {
     int myid, comm_size;
 
@@ -41,7 +40,7 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, Benchmark * bench)
     MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
     MPI_Comm_rank(MPI_COMM_WORLD,&myid);
 
-    PSP * psp = new PSP(argc, argv, bench, myid);
+    shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench, myid));
     if(myid == 0)
     {
         psp->connectWith(1);
@@ -53,10 +52,10 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, Benchmark * bench)
 
     //cout << myid << " - solver: " << solver_index << endl;
 
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
 
-    POSL_Solver * solver = solvers[solver_index];
+    shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);
     cout << solver->show(psp->GetBenchmark()) << endl;
     exit(0);
@@ -65,7 +64,7 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, Benchmark * bench)
 }
 
 
-void POSL_MetaSolver::solve_MS(int argc, char **argv, Benchmark * bench)
+void POSL_MetaSolver::solve_MS(int argc, char **argv, shared_ptr<Benchmark> bench)
 {
     int myid, comm_size, numprocs, tag;
     int * buff = new int[1];
@@ -81,12 +80,12 @@ void POSL_MetaSolver::solve_MS(int argc, char **argv, Benchmark * bench)
 
     //cout << myid << " - " << numprocs << ": " << procA << "_" << procB << endl;
 
-    PSP * psp = new PSP(argc, argv, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench));
 
     int numsolvers = solvers.size();
     int solver_index = (int(myid / 2)) % numsolvers;
 
-    Solution * sol = new Solution(bench->Domains());
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
 
     int master_proc =  numprocs;
@@ -94,7 +93,7 @@ void POSL_MetaSolver::solve_MS(int argc, char **argv, Benchmark * bench)
 
     if(myid != numprocs) // SLAVE
     {
-        POSL_Solver * solver = solvers[solver_index];
+        shared_ptr<POSL_Solver> solver = solvers[solver_index];
         solver->solve(psp);
         cout << solver->show(psp->GetBenchmark()) << endl;
 

@@ -12,47 +12,47 @@
 #include "../computation/factory_computation_strategy_sa002.h"
 #include "../computation/factory_computation_strategy_ra002.h"
 
-ForSquaringSquareCSS::ForSquaringSquareCSS(SquaringSquare * ssq)
+ForSquaringSquareCSS::ForSquaringSquareCSS(shared_ptr<SquaringSquare> ssq)
     : CreateSolverStrategy(ssq),
-      sender_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_SA002
+      sender_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA002>
         (
             bench,
-            new OM_RandomConfGeneration(bench),
-            new OM_OneElementChangedNeighborhood(bench),
-            new OM_MultiElementsChangedNeighborhood(bench),
-            new OM_FirstImprovementSelection(bench),
-            new OM_BestImprovementTabuSelection(bench),
-            new OM_SimulatedAnnealingDecision(),
-            new OM_AlwaysImproveDecision(),
+            make_shared<OM_RandomConfGeneration>(bench),
+            make_shared<OM_OneElementChangedNeighborhood>(bench),
+            make_shared<OM_MultiElementsChangedNeighborhood>(bench),
+            make_shared<OM_FirstImprovementSelection>(bench),
+            make_shared<OM_BestImprovementTabuSelection>(bench),
+            make_shared<OM_SimulatedAnnealingDecision>(),
+            make_shared<OM_AlwaysImproveDecision>(),
             0.5, 20, 500, 10
         )))),
-      receiver_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_RA002
+      receiver_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA002>
         (
             bench,
-            new OM_RandomConfGeneration(bench),
-            new OM_OneElementChangedNeighborhood(bench),
-            new OM_MultiElementsChangedNeighborhood(bench),
-            new OM_FirstImprovementSelection(bench),
-            new OM_BestImprovementTabuSelection(bench),
-            new OM_SimulatedAnnealingDecision(),
-            new OM_AlwaysImproveDecision(),
+            make_shared<OM_RandomConfGeneration>(bench),
+            make_shared<OM_OneElementChangedNeighborhood>(bench),
+            make_shared<OM_MultiElementsChangedNeighborhood>(bench),
+            make_shared<OM_FirstImprovementSelection>(bench),
+            make_shared<OM_BestImprovementTabuSelection>(bench),
+            make_shared<OM_SimulatedAnnealingDecision>(),
+            make_shared<OM_AlwaysImproveDecision>(),
             0.2, 20, 500, 10
         )))),
-      single_solver(new POSL_Solver(new ComputationStrategy(new FactoryComputationStrategy_A002
+      single_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A002>
         (
             bench,
-            new OM_RandomConfGeneration(bench),
-            new OM_OneElementChangedNeighborhood(bench),
-            new OM_MultiElementsChangedNeighborhood(bench),
-            new OM_FirstImprovementSelection(bench),
-            new OM_BestImprovementTabuSelection(bench),
-            new OM_SimulatedAnnealingDecision(),
-            new OM_AlwaysImproveDecision(),
+            make_shared<OM_RandomConfGeneration>(bench),
+            make_shared<OM_OneElementChangedNeighborhood>(bench),
+            make_shared<OM_MultiElementsChangedNeighborhood>(bench),
+            make_shared<OM_FirstImprovementSelection>(bench),
+            make_shared<OM_BestImprovementTabuSelection>(bench),
+            make_shared<OM_SimulatedAnnealingDecision>(),
+            make_shared<OM_AlwaysImproveDecision>(),
             0.2, 20, 100, 10
         ))))
 {}
 
-vector<POSL_Solver *> ForSquaringSquareCSS::create()
+vector<shared_ptr<POSL_Solver> > ForSquaringSquareCSS::create()
 {
     //solvers.push_back(solver_1);
     //solvers.push_back(solver_2);
