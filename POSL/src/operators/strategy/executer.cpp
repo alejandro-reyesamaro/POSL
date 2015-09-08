@@ -1,16 +1,16 @@
 #include "executer.h"
 
-Executer::Executer(CompoundModule * _M)
+Executer::Executer(shared_ptr<CompoundModule> _M)
     : output(nullptr),
       M(_M)
 {}
 
-void Executer::execute(PSP *psp, ComputationData * input)
+void Executer::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     output = M->execute(psp, input);
 }
 
-ComputationData * Executer::GetOutput()
+shared_ptr<ComputationData> Executer::GetOutput()
 {
     return output;
 }

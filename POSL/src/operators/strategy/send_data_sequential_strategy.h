@@ -17,17 +17,11 @@
 class SendDataSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        SendDataSequentialStrategy(CompoundModule * _M1);
+        SendDataSequentialStrategy(shared_ptr<CompoundModule> _M1);
 
-        //! (override) The result of evaluating a Compound Module (Sequentially)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return <ps> Returns Execute( M1 ) and send the result </pc>
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:
-        CompoundModule * M1;        
-        ComputationData * output;
+        shared_ptr<CompoundModule> M1;
+        shared_ptr<ComputationData> output;
 };

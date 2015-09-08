@@ -18,12 +18,7 @@
 class SequentialExecOperator : public BinaryOperator
 {
     public:
-        //! Contructor
-        /*!
-         * \param _M1 Module
-         * \param _M2 Module
-         */
-        SequentialExecOperator(CompoundModule * _M1, CompoundModule * _M2);
+        SequentialExecOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
 
         //! From Codable
         string codeToSend();

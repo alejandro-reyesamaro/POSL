@@ -3,11 +3,11 @@
 #include <iostream>
 using namespace std;
 
-SequentialExecutionSequentialStrategy::SequentialExecutionSequentialStrategy(CompoundModule *_M1, CompoundModule *_M2)
+SequentialExecutionSequentialStrategy::SequentialExecutionSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
     : M1(_M1), M2(_M2)
 {}
 
-ComputationData * SequentialExecutionSequentialStrategy::evaluate(PSP *psp, ComputationData * input)
+shared_ptr<ComputationData> SequentialExecutionSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     return M2->execute(psp, M1->execute(psp, input));
 }

@@ -4,8 +4,8 @@
 #include <iostream>
 using namespace std;
 
-FlorianOperator::FlorianOperator(CompoundModule * _M1)
-    : UnaryOperator(_M1, new FlorianSequentialStrategy(_M1))
+FlorianOperator::FlorianOperator(shared_ptr<CompoundModule> _M1)
+    : UnaryOperator(_M1, make_shared<FlorianSequentialStrategy>(_M1))
 {}
 
 string FlorianOperator::codeToSend()

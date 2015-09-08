@@ -22,23 +22,16 @@
 class RhoSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        //! Constructor
-        RhoSequentialStrategy(CompoundModule * _M1, CompoundModule * _M2, float _rho);
+        RhoSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2, float _rho);
 
-        //! (override) The result of evaluating a Compound Module (Sequentially)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return <ps> Returns Execute( M1 ) or Execute( M2 ) </pc> (depending on rho)
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:
-        CompoundModule * M1;
-        CompoundModule * M2;
+        shared_ptr<CompoundModule> M1;
+        shared_ptr<CompoundModule> M2;
         float rho;
         Randomizer rand;
 
-        ComputationData * output1;
-        ComputationData * output2;
+        shared_ptr<ComputationData> output1;
+        shared_ptr<ComputationData> output2;
 };

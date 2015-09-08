@@ -20,19 +20,11 @@ class SpeedParallelStrategy : public ParallelExecutionStrategy
 {
     public:
         //! Constructor
-        SpeedParallelStrategy(CompoundModule * _M1, CompoundModule * _M2);
+        SpeedParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
 
-        //! (override) The result of evaluating a Compound Module (parallel)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return The fastest module
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:
-        //! Left Compund Module
         Executer M1;
-        //! Right Compund Module
         Executer M2;
 };

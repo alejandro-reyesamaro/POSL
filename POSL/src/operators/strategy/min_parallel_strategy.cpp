@@ -5,14 +5,14 @@
 
 #define TAG 123
 
-MinParallelStrategy::MinParallelStrategy(CompoundModule *_M1, CompoundModule *_M2)
+MinParallelStrategy::MinParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
     : M1(_M1), M2(_M2),
       result1(nullptr),
       result2(nullptr),
-      mincrit(new MinCritComparison())
+      mincrit(make_shared<MinCritComparison>())
 {}
 
-ComputationData * MinParallelStrategy::evaluate(PSP *psp, ComputationData * input)
+shared_ptr<ComputationData> MinParallelStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     thread workerThread(&Executer::execute, &M2, psp, input);
     M1.execute(psp, input);

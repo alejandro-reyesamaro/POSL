@@ -6,12 +6,12 @@
 
 using namespace std;
 
-SendDataSequentialStrategy::SendDataSequentialStrategy(CompoundModule * _M1)
+SendDataSequentialStrategy::SendDataSequentialStrategy(shared_ptr<CompoundModule> _M1)
     : M1(_M1),
       output(nullptr)
 {}
 
-ComputationData * SendDataSequentialStrategy::evaluate(PSP * psp, ComputationData * input)
+shared_ptr<ComputationData> SendDataSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     output = M1->execute(psp, input);
     psp->SendData(output->BuildPacker()->pack());

@@ -7,13 +7,13 @@
 #include <iostream>
 #include <limits>
 
-FlorianSequentialStrategy::FlorianSequentialStrategy(CompoundModule * _M1)
+FlorianSequentialStrategy::FlorianSequentialStrategy(shared_ptr<CompoundModule> _M1)
     : M1(_M1),
       temp_solution(nullptr),
       best_solution(nullptr)
 {}
 
-ComputationData * FlorianSequentialStrategy::evaluate(PSP * psp, ComputationData * input)
+shared_ptr<ComputationData> FlorianSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {    
     int best_cost = std::numeric_limits<int>::max();
 

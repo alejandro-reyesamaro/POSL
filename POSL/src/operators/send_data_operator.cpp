@@ -4,8 +4,8 @@
 #include <iostream>
 using namespace std;
 
-SendDataOperator::SendDataOperator(CompoundModule * _M1)
-    : UnaryOperator(_M1, new SendDataSequentialStrategy(_M1))
+SendDataOperator::SendDataOperator(shared_ptr<CompoundModule> _M1)
+    : UnaryOperator(_M1, make_shared<SendDataSequentialStrategy>(_M1))
 {}
 
 string SendDataOperator::codeToSend()

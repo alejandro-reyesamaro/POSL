@@ -18,13 +18,7 @@
 class RhoOperator : public BinaryOperator
 {
     public:
-        //! Contructor
-        /*!
-         * \param _M1 Module
-         * \param _M2 Module
-         * \param _rho Probability
-         */
-        RhoOperator(CompoundModule * _M1, CompoundModule * _M2, float _rho);
+        RhoOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2, float _rho);
 
         //! From Codable
         string codeToSend();

@@ -19,21 +19,15 @@
 class ConditionalSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        ConditionalSequentialStrategy(CompoundModule * _M1, CompoundModule * _M2, BooleanExpression * _ex);
+        ConditionalSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2, shared_ptr<BooleanExpression> _ex);
 
-        //! (override) The result of evaluating a Compound Module (Sequentially)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return <ps> Returns Execute( M1 ) if ex remains true, Execute( M2 ) othervise</pc>
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:
-        CompoundModule * M1;
-        CompoundModule * M2;
-        BooleanExpression * ex;
+        shared_ptr<CompoundModule> M1;
+        shared_ptr<CompoundModule> M2;
+        shared_ptr<BooleanExpression> ex;
 
-        ComputationData * output1;
-        ComputationData * output2;
+        shared_ptr<ComputationData> output1;
+        shared_ptr<ComputationData> output2;
 };

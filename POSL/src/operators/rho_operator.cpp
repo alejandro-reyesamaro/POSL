@@ -3,8 +3,8 @@
 #include "strategy/rho_sequential_strategy.h"
 #include "../tools/tools.h"
 
-RhoOperator::RhoOperator(CompoundModule *_M1, CompoundModule *_M2, float _rho)
-    : BinaryOperator(_M1, _M2, new RhoSequentialStrategy(_M1, _M2, _rho), new NotImplementedParallelStrategy()),
+RhoOperator::RhoOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2, float _rho)
+    : BinaryOperator(_M1, _M2, make_shared<RhoSequentialStrategy>(_M1, _M2, _rho), make_shared<NotImplementedParallelStrategy>()),
       rho(_rho)
 {}
 

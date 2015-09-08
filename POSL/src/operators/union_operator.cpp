@@ -2,8 +2,8 @@
 #include "strategy/union_parallel_strategy.h"
 #include "strategy/union_sequential_strategy.h"
 
-UnionOperator::UnionOperator(CompoundModule *_M1, CompoundModule *_M2) :
-    BinaryOperator(_M1, _M2, new UnionSequentialStrategy(_M1, _M2), new UnionParallelStrategy(_M1, _M2))
+UnionOperator::UnionOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2) :
+    BinaryOperator(_M1, _M2, make_shared<UnionSequentialStrategy>(_M1, _M2), make_shared<UnionParallelStrategy>(_M1, _M2))
 {}
 
 string UnionOperator::codeToSend()

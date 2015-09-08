@@ -3,14 +3,14 @@
 #include <iostream>
 using namespace std;
 
-MinSequentialStrategy::MinSequentialStrategy(CompoundModule *_M1, CompoundModule *_M2)
+MinSequentialStrategy::MinSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
     : M1(_M1), M2(_M2),
       result1(nullptr),
       result2(nullptr),
       mincrit(new MinCritComparison())
 {}
 
-ComputationData * MinSequentialStrategy::evaluate(PSP *psp, ComputationData * input)
+shared_ptr<ComputationData> MinSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     result1 = M1->execute(psp, input);
     result2 = M2->execute(psp, input);

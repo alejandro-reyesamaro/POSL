@@ -20,21 +20,15 @@
 class MinParallelStrategy : public ParallelExecutionStrategy
 {
     public:
-        MinParallelStrategy(CompoundModule * _M1, CompoundModule * _M2);
+        MinParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
 
-        //! (override) The result of evaluating a Compound Module (parallel)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return <ps> Returns Execute( M1 ) or Execute( M2 ) </pc> (depending on some minimun criteria)
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:
         Executer M1;
         Executer M2;
 
-        ComputationData * result1;
-        ComputationData * result2;
-        MinCritComparison * mincrit;
+        shared_ptr<ComputationData> result1;
+        shared_ptr<ComputationData> result2;
+        shared_ptr<MinCritComparison> mincrit;
 };

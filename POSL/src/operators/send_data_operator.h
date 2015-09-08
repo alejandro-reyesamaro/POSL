@@ -18,11 +18,7 @@
 class SendDataOperator : public UnaryOperator
 {
     public:
-        //! Contructor
-        /*!
-         * \param _M1 Module
-         */
-        SendDataOperator(CompoundModule * _M1);
+        SendDataOperator(shared_ptr<CompoundModule> _M1);
 
         //! From Codable
         string codeToSend();

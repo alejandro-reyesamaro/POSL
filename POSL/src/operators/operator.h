@@ -25,21 +25,10 @@ using namespace std;
 class Operator : public Codable
 {
     public:
-        //! Constructor
-        /*!
-        * \param _seq_strgy Strategy for the sequential evaluation
-        * \param _par_strgy Strategy for the parallel evaluation
-        */
-        Operator(SequentialExecutionStrategy * _seq_strategy,
-                 ParallelExecutionStrategy * _para_strategy);
+        Operator(shared_ptr<SequentialExecutionStrategy> _seq_strategy,
+                 shared_ptr<ParallelExecutionStrategy> _para_strategy);
 
-        //! Method to evaluate the modules sequentially
-        /*!
-        * \param bench The Benchmark
-        * \param input The operator input
-        * \return The operator output
-        */
-        ComputationData * evaluateSequentially(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluateSequentially(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
         //! Method to evaluate the modules in parallel
         /*!
@@ -47,11 +36,9 @@ class Operator : public Codable
         * \param input The operator input
         * \return The operator output
         */
-        ComputationData * evaluateInParallel(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluateInParallel(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     protected:
-        //! Sequential computation strategy
-        SequentialExecutionStrategy * seq_strategy;
-        //! Parallel computation strategy
-        ParallelExecutionStrategy * para_strategy;
+        shared_ptr<SequentialExecutionStrategy> seq_strategy;
+        shared_ptr<ParallelExecutionStrategy> para_strategy;
 };

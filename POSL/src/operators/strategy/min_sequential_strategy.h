@@ -17,21 +17,15 @@
 class MinSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        MinSequentialStrategy(CompoundModule * _M1, CompoundModule * _M2);
+        MinSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
 
-        //! (override) The result of evaluating a Compound Module (Sequentially)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return <ps> Returns Execute( M1 ) or Execute( M2 ) </pc> (some minimum criteria)
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:
-        CompoundModule * M1;
-        CompoundModule * M2;
+        shared_ptr<CompoundModule> M1;
+        shared_ptr<CompoundModule> M2;
 
-        ComputationData * result1;
-        ComputationData * result2;
-        MinCritComparison * mincrit;
+        shared_ptr<ComputationData> result1;
+        shared_ptr<ComputationData> result2;
+        shared_ptr<MinCritComparison> mincrit;
 };

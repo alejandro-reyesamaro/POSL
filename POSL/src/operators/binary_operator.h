@@ -25,11 +25,12 @@ class BinaryOperator : public Operator
         * \param seq_strgy Strategy for the sequential evaluation
         * \param par_strgy Strategy for the parallel evaluation
         */
-        BinaryOperator(CompoundModule * _M1, CompoundModule * _M2, SequentialExecutionStrategy *seq_strgy, ParallelExecutionStrategy *par_strgy);
+        BinaryOperator(shared_ptr<CompoundModule> _M1,
+                       shared_ptr<CompoundModule> _M2,
+                       shared_ptr<SequentialExecutionStrategy> seq_strgy,
+                       shared_ptr<ParallelExecutionStrategy> par_strgy);
 
     protected:
-        //! Left compound module
-        CompoundModule * M1;
-        //! Right compound module
-        CompoundModule * M2;
+        shared_ptr<CompoundModule> M1;
+        shared_ptr<CompoundModule> M2;
 };

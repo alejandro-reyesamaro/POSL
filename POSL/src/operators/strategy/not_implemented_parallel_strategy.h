@@ -18,14 +18,7 @@
 class NotImplementedParallelStrategy : public ParallelExecutionStrategy
 {
     public:
-        //! Constructor
         NotImplementedParallelStrategy();
 
-        //! (override) The result of evaluating a Compound Module (in parallel)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return Throws an exception
-        */
-        ComputationData * evaluate(PSP *psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 };

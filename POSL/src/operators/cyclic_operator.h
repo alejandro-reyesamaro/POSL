@@ -19,16 +19,11 @@
 class CyclicOperator : public UnaryOperator
 {
     public:
-        //! Contructor
-        /*!
-         * \param _M1 Module
-         * \param ex Stop condition
-         */
-        CyclicOperator(CompoundModule * _M1, BooleanExpression * _ex);
+        CyclicOperator(shared_ptr<CompoundModule> _M1, shared_ptr<BooleanExpression> _ex);
 
         //! From Codable
         string codeToSend();
 
     private:
-        BooleanExpression * ex;
+        shared_ptr<BooleanExpression> ex;
 };

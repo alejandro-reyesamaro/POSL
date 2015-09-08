@@ -16,12 +16,7 @@
 class UnionOperator : public BinaryOperator
 {
     public:
-        //! Contructor
-        /*!
-         * \param _M1 Module
-         * \param _M2 Module
-         */
-        UnionOperator(CompoundModule * _M1, CompoundModule * _M2);
+        UnionOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
 
         //! From Codable
         string codeToSend();

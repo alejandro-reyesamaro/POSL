@@ -9,11 +9,11 @@
 #define TAG0 123
 #define TAG1 234
 
-SpeedParallelStrategy::SpeedParallelStrategy(CompoundModule *_M1, CompoundModule *_M2)
+SpeedParallelStrategy::SpeedParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
     : M1(_M1), M2(_M2)
 {}
 
-ComputationData * SpeedParallelStrategy::evaluate(PSP *psp, ComputationData * input)
+shared_ptr<ComputationData> SpeedParallelStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     // FALTA ESTOOOOOOOO
     thread workerThread(&Executer::execute, &M2, psp, input);

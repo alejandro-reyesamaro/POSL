@@ -18,19 +18,13 @@
 class FlorianSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        FlorianSequentialStrategy(CompoundModule * _M1);
+        FlorianSequentialStrategy(shared_ptr<CompoundModule> _M1);
 
-        //! (override) The result of evaluating a Compound Module (Sequentially)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return returns the best Execute( M1 )
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:
-        CompoundModule * M1;
+        shared_ptr<CompoundModule> M1;
 
-        Solution * best_solution;
-        Solution * temp_solution;
+        shared_ptr<Solution> best_solution;
+        shared_ptr<Solution> temp_solution;
 };

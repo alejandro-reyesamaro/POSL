@@ -7,11 +7,12 @@
 class Executer
 {
     public:
-        Executer(CompoundModule * _M);
-        void execute(PSP *psp, ComputationData * input);
-        ComputationData * GetOutput();
+        Executer(shared_ptr<CompoundModule> _M);
+
+        void execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        shared_ptr<ComputationData> GetOutput();
 
     private:
-        ComputationData * output;
-        CompoundModule * M;
+        shared_ptr<ComputationData> output;
+        shared_ptr<CompoundModule> M;
 };

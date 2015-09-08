@@ -20,20 +20,14 @@
 class UnionParallelStrategy : public ParallelExecutionStrategy
 {
     public:
-        UnionParallelStrategy(CompoundModule * _M1, CompoundModule * _M2);
+        UnionParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
 
-        //! (override) The result of evaluating a Compound Module (parallel)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return <ps> Returns Execute( M1 ) U Execute( M2 ) </pc> (not yet optimized)
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:        
         Executer M1;
         Executer M2;
 
-        Neighborhood * v1;
-        Neighborhood * v2;
+        shared_ptr<Neighborhood> v1;
+        shared_ptr<Neighborhood> v2;
 };

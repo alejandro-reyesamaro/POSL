@@ -18,15 +18,8 @@
 class UnaryOperator : public Operator
 {
     public:
-        //! Constructor
-        /*!
-        * \brief No parallel strategy will be implemented
-        * \param _M1 The compound module
-        * \param seq_strgy Strategy for the sequential evaluation
-        */
-        UnaryOperator(CompoundModule * _M1, SequentialExecutionStrategy * seq_strgy);
+        UnaryOperator(shared_ptr<CompoundModule> _M1, shared_ptr<SequentialExecutionStrategy> seq_strgy);
 
     protected:
-        //! The compound module
-        CompoundModule * M1;
+        shared_ptr<CompoundModule> M1;
 };

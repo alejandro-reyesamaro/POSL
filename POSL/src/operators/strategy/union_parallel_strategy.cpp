@@ -8,24 +8,24 @@
 
 #define TAG 123
 
-UnionParallelStrategy::UnionParallelStrategy(CompoundModule *_M1, CompoundModule *_M2)
+UnionParallelStrategy::UnionParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
     : M1(_M1), M2(_M2),
       v1(nullptr),
       v2(nullptr)
 {}
 
-ComputationData * UnionParallelStrategy::evaluate(PSP *psp, ComputationData * input)
+shared_ptr<ComputationData> UnionParallelStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     thread workerThread(&Executer::execute, &M2, psp, input);
     M1.execute(psp, input);
-    v1 = (Neighborhood *)M1.GetOutput();
+    v1 = static_pointer_cast<Neighborhood>(M1.GetOutput());
     workerThread.join();
-    v2 = (Neighborhood *)M2.GetOutput();
+    v2 = static_pointer_cast<Neighborhood>(M2.GetOutput());
 
     if (v1 == nullptr) return v2;
     if (v2 == nullptr) return v1;
 
-    return new UnionNeighborhood((Solution *)input, v1, v2);
+    return make_shared<UnionNeighborhood>((Solution *)input, v1, v2);
 }
 
 /*

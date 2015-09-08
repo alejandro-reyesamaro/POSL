@@ -3,12 +3,12 @@
 #include <iostream>
 using namespace std;
 
-CyclicSequentialStrategy::CyclicSequentialStrategy(CompoundModule * _M1, BooleanExpression *_ex)
+CyclicSequentialStrategy::CyclicSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<BooleanExpression> _ex)
     : M1(_M1), ex(_ex),
       output(nullptr)
 {}
 
-ComputationData * CyclicSequentialStrategy::evaluate(PSP * psp, ComputationData * input)
+shared_ptr<ComputationData> CyclicSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     output = input;
     while(ex->evaluate(psp))

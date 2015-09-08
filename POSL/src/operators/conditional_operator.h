@@ -19,17 +19,11 @@
 class ConditionalOperator : public BinaryOperator
 {
     public:
-        //! Contructor
-        /*!
-         * \param _M1 Module 1
-         * \param _M2 Module 2
-         * \param ex Stop condition
-         */
-        ConditionalOperator(CompoundModule * _M1, CompoundModule * _M2, BooleanExpression * _ex);
+        ConditionalOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2, shared_ptr<BooleanExpression> _ex);
 
         //! From Codable
         string codeToSend();
 
     private:
-        BooleanExpression * ex;
+        shared_ptr<BooleanExpression> ex;
 };

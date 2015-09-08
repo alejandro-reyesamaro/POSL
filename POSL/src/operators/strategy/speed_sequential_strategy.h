@@ -19,21 +19,15 @@
 class SpeedSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        SpeedSequentialStrategy(CompoundModule * _M1, CompoundModule * _M2);
+        SpeedSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
 
-        //! (override) The result of evaluating a Compound Module (sequential)
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return The fastest module
-        */
-        ComputationData * evaluate(PSP * psp, ComputationData * input);
+        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
 
     private:
-        CompoundModule * M1;
-        CompoundModule * M2;
+        shared_ptr<CompoundModule> M1;
+        shared_ptr<CompoundModule> M2;
 
-        Chronometer * chro;
-        ComputationData * result1;
-        ComputationData * result2;
+        shared_ptr<Chronometer> chro;
+        shared_ptr<ComputationData> result1;
+        shared_ptr<ComputationData> result2;
 };

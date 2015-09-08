@@ -20,11 +20,5 @@
 class ExecutionStrategy
 {
     public:
-        //! The result of evaluating a Compound Module
-        /*!
-        * \param bench A Benchmark
-        * \param input The input of the Compound Module
-        * \return The output of the Compound Module
-        */
-        virtual ComputationData * evaluate(PSP * psp, ComputationData * input) = 0;
+        virtual shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input) = 0;
 };

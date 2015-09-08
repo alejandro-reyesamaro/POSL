@@ -3,8 +3,8 @@
 #include "strategy/min_parallel_strategy.h"
 #include "../tools/tools.h"
 
-MinOperator::MinOperator(CompoundModule *_M1, CompoundModule *_M2)
-    : BinaryOperator(_M1, _M2, new MinSequentialStrategy(_M1, _M2), new MinParallelStrategy(_M1, _M2))
+MinOperator::MinOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
+    : BinaryOperator(_M1, _M2, make_shared<MinSequentialStrategy>(_M1, _M2), make_shared<MinParallelStrategy>(_M1, _M2))
 {}
 
 string MinOperator::codeToSend()
