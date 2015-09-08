@@ -27,11 +27,5 @@ class Seed : public ComputationData
         */
         double seed();
 
-        FactoryPacker * BuildPacker();
-
-        /*
-        vector<int> pack();
-        int bodySize();
-        vector<int> body();
-        */
+        shared_ptr<FactoryPacker> BuildPacker();
 };

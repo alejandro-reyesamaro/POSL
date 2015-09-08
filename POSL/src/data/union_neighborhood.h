@@ -6,14 +6,14 @@ class UnionNeighborhood : public Neighborhood
 {
     friend class UnionIterator;
     public:
-        UnionNeighborhood(Solution * sol, Neighborhood * v1, Neighborhood * v2);
+        UnionNeighborhood(shared_ptr<Solution> sol, shared_ptr<Neighborhood> v1, shared_ptr<Neighborhood> v2);
 
-        POSL_Iterator<vector<int>> * getIterator();
+        shared_ptr<POSL_Iterator<vector<int>>> getIterator(){ return make_shared<UnionIterator>(this); }
         // OPTIMIZAR : calcular bien la cantidad
         int size(){ return V1->size() + V2->size(); }
 
         vector<int> neighborAt(int index);
-        FactoryPacker * BuildPacker();
+        shared_ptr<FactoryPacker> BuildPacker();
 
     private:
         Neighborhood * V1, * V2;

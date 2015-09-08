@@ -29,19 +29,18 @@ class OnePermutationNeighborhood : public Neighborhood, public DynamicNeighborho
     public:
         OnePermutationNeighborhood(int _config_size);
 
-        POSL_Iterator<vector<int>> * getIterator(){ return new ElementsChangeIterator(this); }
+        shared_ptr<POSL_Iterator<vector<int>>> getIterator(){ return make_shared<ElementsChangeIterator>(this); }
         int size(){ return changes.size(); }
         vector<T_Changes> GetChanges(){ return changes; }
 
         vector<int> neighborAt(int index);
-        FactoryPacker * BuildPacker();
+        shared_ptr<FactoryPacker> BuildPacker();
         void Init(vector<int> _configuration);
 
     private:
         void updateChanges();
 
-        ApplyChangeBehavior * changeAtBhv;
+        shared_ptr<ApplyChangeBehavior> changeAtBhv;
         vector<T_Changes> changes;
-        Randomizer rand;
         vector<int> monotony;
 };

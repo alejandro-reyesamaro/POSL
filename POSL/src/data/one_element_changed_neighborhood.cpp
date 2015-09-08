@@ -10,7 +10,7 @@
 
 OneElementChangedNeighborhood::OneElementChangedNeighborhood(int _config_size, vector<Domain> _domains)
     : Neighborhood(_config_size),
-      changeAtBhv(new StandardApplyChangeBehavior(_config_size)),
+      changeAtBhv(make_shared<StandardApplyChangeBehavior>(_config_size)),
       domains(_domains),
       rand(),
       indexes(Tools::generateMonotony(_config_size))
@@ -49,9 +49,9 @@ void OneElementChangedNeighborhood::updateChanges()
     }
 }
 
-FactoryPacker * OneElementChangedNeighborhood::BuildPacker()
+shared_ptr<FactoryPacker> OneElementChangedNeighborhood::BuildPacker()
 {
-    return new FactoryOneChangeNeighborhoodPacker(current_configuration, size(), changes);
+    return make_shared<FactoryOneChangeNeighborhoodPacker>(current_configuration, size(), changes);
 }
 
 vector<int> OneElementChangedNeighborhood::neighborAt(int index)

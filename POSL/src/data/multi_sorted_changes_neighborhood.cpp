@@ -9,7 +9,7 @@
 
 MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(int _config_size, vector<Domain> _domains)
     : Neighborhood(_config_size),
-      changeAtBhv(new SortedApplyChangeBehavior(_config_size)),
+      changeAtBhv(make_shared<SortedApplyChangeBehavior>(_config_size)),
       domains(_domains),
       rand()
 {
@@ -40,7 +40,7 @@ void MultiSortedChangesNeighborhood::Init(std::vector<int> _configuration)
     updateChanges();
 }
 
-FactoryPacker * MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
+shared_ptr<FactoryPacker> MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
 vector<int> MultiSortedChangesNeighborhood::neighborAt(int index)
 {

@@ -9,7 +9,7 @@
 
 OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(int _config_size)
     : Neighborhood(_config_size),
-      changeAtBhv(new SortedApplyChangeBehavior(_config_size))
+      changeAtBhv(make_shared<SortedApplyChangeBehavior>(_config_size))
 {
     updateChanges();
 }
@@ -51,7 +51,7 @@ void OneSortedChangeNeighborhood::updateChanges()
     }
 }
 
-FactoryPacker * OneSortedChangeNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
+shared_ptr<FactoryPacker> OneSortedChangeNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
 vector<int> OneSortedChangeNeighborhood::neighborAt(int index)
 {

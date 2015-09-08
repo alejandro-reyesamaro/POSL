@@ -7,14 +7,12 @@
 Solution::Solution(vector<Domain> _domains)
     : domains(_domains),
       configuration(_domains.size(), 0)
-{
-}
+{}
 
 Solution::Solution(vector<Domain> _domains, vector<int> conf)
     : domains(_domains),
       configuration(conf)
-{
-}
+{}
 
 void Solution::UpdateConfiguration(vector<int> new_config)
 {
@@ -28,7 +26,7 @@ void Solution::UpdateConfigurationFromPack(int * pack)
     copy(pack + 2, pack + 2 + configuration.size(), configuration.begin());
 }
 
-bool Solution::equal(Solution * other)
+bool Solution::equal(shared_ptr<Solution> other)
 {
     if (other->configuration.size() != configuration.size())
         return false;
@@ -40,4 +38,4 @@ bool Solution::equal(Solution * other)
 
 string Solution::configurationToString(){ return Tools::configurationToString(configuration); }
 
-FactoryPacker * Solution::BuildPacker(){ return new FactorySolutionPacker(this); }
+shared_ptr<FactoryPacker> Solution::BuildPacker(){ return make_shared<FactorySolutionPacker>(this); }

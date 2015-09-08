@@ -31,9 +31,9 @@ class Solution : public ComputationData//, public Packable
 
         void UpdateConfiguration(vector<int> new_config);
         void UpdateConfigurationFromPack(int * pack);
-        bool equal(Solution * other);
+        bool equal(shared_ptr<Solution> other);
         string configurationToString();
-        FactoryPacker * BuildPacker();
+        shared_ptr<FactoryPacker> BuildPacker();
 
         vector<int> GetConfiguration(){ return configuration; }
         vector<Domain> GetDomains(){ return domains; }

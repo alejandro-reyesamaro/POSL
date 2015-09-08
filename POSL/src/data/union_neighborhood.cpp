@@ -5,14 +5,12 @@
 #include <iostream>
 #include <chrono>
 
-UnionNeighborhood::UnionNeighborhood(Solution * sol, Neighborhood * v1, Neighborhood * v2)
+UnionNeighborhood::UnionNeighborhood(shared_ptr<Solution> sol, shared_ptr<Neighborhood> v1, shared_ptr<Neighborhood> v2)
     : Neighborhood(sol->GetConfiguration()),
       V1(v1), V2(v2)
 {}
 
-FactoryPacker * UnionNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
-
-POSL_Iterator<vector<int>> * UnionNeighborhood::getIterator(){ return new UnionIterator(this); }
+shared_ptr<FactoryPacker> UnionNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
 // OPTIMIZAR : Calcular bien el elemento
 vector<int> UnionNeighborhood::neighborAt(int index)

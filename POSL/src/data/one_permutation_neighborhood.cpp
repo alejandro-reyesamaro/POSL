@@ -9,7 +9,7 @@
 
 OnePermutationNeighborhood::OnePermutationNeighborhood(int _config_size)
     : Neighborhood(_config_size),
-      changeAtBhv(new SingleSwapApplyChangeBehavior(_config_size)),
+      changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       monotony(Tools::generateMonotony(_config_size))
 {
     updateChanges();
@@ -39,7 +39,7 @@ void OnePermutationNeighborhood::updateChanges()
     }
 }
 
-FactoryPacker * OnePermutationNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
+shared_ptr<FactoryPacker> OnePermutationNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
 vector<int> OnePermutationNeighborhood::neighborAt(int index)
 {
