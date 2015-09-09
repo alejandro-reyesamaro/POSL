@@ -20,6 +20,8 @@ std::shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(std::share
     int wp = psp->GetBenchmark()->solutionCost(input->GetFound());
     int w = psp->GetBenchmark()->solutionCost(input->GetCurrent());
 
+    if(wp == 0) return input->GetFound();
+
     double relative_dif = abs((double)wp - (double)w)/abs((double)wp);
 
     // Calcular T por primera vez, dependeiendo de la diferencia de los costos

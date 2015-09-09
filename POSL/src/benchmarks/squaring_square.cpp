@@ -2,6 +2,8 @@
 #include "../data/dStrategy/factory_n_int_domain.h"
 #include "../tools/tools.h"
 
+using namespace std;
+
 SquaringSquare::SquaringSquare(int _size, std::vector<int> _squares)
     : Benchmark(std::vector<Domain>(_squares.size() * 2, Domain(std::make_shared<Factory_NIntDomain>(0,_size - 1)))),
       size(_size),

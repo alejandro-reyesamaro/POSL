@@ -56,52 +56,48 @@ using namespace std;
 // Testing SEQUENTIAL
 int main(int argc, char **argv)
 {
-    vector<Tester *> tests;
+    vector<shared_ptr<Tester>> tests;
 
 
-    //tests.push_back(new Tester_CostOfSolutionGolfers(argc, argv));
-    //tests.push_back(new Tester_CostOfSolutionSquaringSquare(argc, argv));
-    //tests.push_back(new Tester_CostOfSolutionGolomRules(argc, argv));
-    //tests.push_back(new Tester_CostOfSolutionNQueens(argc, argv));
-    tests.push_back(new Tester_OneElementChangedNeighborhood(argc, argv));
-    tests.push_back(new Tester_MultiElementsChangedNeighborhood(argc, argv));
-    tests.push_back(new Tester_GolfersPermutationNeighborhood(argc, argv));
-    tests.push_back(new Tester_MultiSortedChangesNeighborhood(argc, argv));
-    tests.push_back(new Tester_OneSortedChangeNeighborhood(argc, argv));
-    tests.push_back(new Tester_FromPackNeighborhood(argc, argv));
-    tests.push_back(new Tester_UnionOperator(argc, argv));
+    //tests.push_back(make_shared<Tester_CostOfSolutionGolfers>(argc, argv));
+    //tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
+    //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
+    //tests.push_back(make_shared<Tester_CostOfSolutionNQueens>(argc, argv));
+    tests.push_back(make_shared<Tester_OneElementChangedNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_MultiElementsChangedNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_GolfersPermutationNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_MultiSortedChangesNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_FromPackNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_UnionOperator>(argc, argv));
 
-    //tests.push_back(new Tester_RandomOrderedConfGeneration(argc, argv));    
-    //tests.push_back(new Tester_FlorianRandomConfigurationGeneration(argc, argv));
+    //tests.push_back(make_shared<Tester_RandomOrderedConfGeneration>(argc, argv));
+    //tests.push_back(make_shared<Tester_FlorianRandomConfigurationGeneration>(argc, argv));
     /*
-    tests.push_back(new Tester_RandomConfigurationGeneration(argc, argv));
-    tests.push_back(new Tester_FirstImprovementSelection(argc, argv));
-    tests.push_back(new Tester_BestImprovementSelection(argc, argv));
-    tests.push_back(new Tester_RhoOperator(argc, argv));
-    //tests.push_back(new Tester_CyclicOperator(argc, argv));
-    tests.push_back(new Tester_SetsIndexGenerator(argc, argv));
+    tests.push_back(make_shared<Tester_RandomConfigurationGeneration>(argc, argv));
+    tests.push_back(make_shared<Tester_FirstImprovementSelection>(argc, argv));
+    tests.push_back(make_shared<Tester_BestImprovementSelection>(argc, argv));
+    tests.push_back(make_shared<Tester_RhoOperator>(argc, argv));
+    //tests.push_back(make_shared<Tester_CyclicOperator>(argc, argv));
+    tests.push_back(make_shared<Tester_SetsIndexGenerator>(argc, argv));
 
-    tests.push_back(new Tester_ConditionalOperator(argc, argv));
-    tests.push_back(new Tester_RandomSelection(argc, argv));
-    tests.push_back(new Tester_SimulatedAnnealingDecition(argc, argv));
-    tests.push_back(new Tester_BestImprovementTabuSelection(argc, argv));
-    tests.push_back(new Tester_RandomPermutationConfigurationGeneration(argc, argv));    
+    tests.push_back(make_shared<Tester_ConditionalOperator>(argc, argv));
+    tests.push_back(make_shared<Tester_RandomSelection>(argc, argv));
+    tests.push_back(make_shared<Tester_SimulatedAnnealingDecition>(argc, argv));
+    tests.push_back(make_shared<Tester_BestImprovementTabuSelection>(argc, argv));
+    tests.push_back(make_shared<Tester_RandomPermutationConfigurationGeneration>(argc, argv));
     */
-    tests.push_back(new Tester_PackingSolution(argc, argv));
-    tests.push_back(new Tester_PackingDecisionPair(argc, argv));
-    tests.push_back(new Tester_PackingOneElementChangedNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingMultiChangesNeighborhood(argc, argv));
-    tests.push_back(new Tester_PackingGolfersPermutationNeighborhood(argc, argv));
-    //tests.push_back(new Tester_PackingUnionNeighborhood(argc, argv));
+    tests.push_back(make_shared<Tester_PackingSolution>(argc, argv));
+    tests.push_back(make_shared<Tester_PackingDecisionPair>(argc, argv));
+    tests.push_back(make_shared<Tester_PackingOneElementChangedNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_PackingMultiChangesNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_PackingGolfersPermutationNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_PackingUnionNeighborhood>(argc, argv));
 
-
-
-
-
-    tests.push_back(new Tester_Solver_Golfers(argc, argv));
-    tests.push_back(new Tester_Solver_GolombRuler(argc, argv));
-    tests.push_back(new Tester_SolverSquaringSquare(argc, argv));
-    tests.push_back(new Tester_SolverNQueens(argc, argv));
+    tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
+    tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
+    tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
+    tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)
@@ -120,10 +116,10 @@ int main(int argc, char **argv)
 // Testing PARALLEL
 int mainNOO(int argc, char **argv)
 {
-    vector<Tester *> tests;
+    vector<shared_ptr<Tester>> tests;
 
-    //tests.push_back(new Tester_UnionOperator(argc, argv));
-    tests.push_back(new Tester_SpeedOperator(argc, argv));
+    //tests.push_back(make_shared<Tester_UnionOperator>(argc, argv));
+    tests.push_back(make_shared<Tester_SpeedOperator>(argc, argv));
 
     int tester_id;
     MPI_Init(&argc, &argv);
@@ -137,51 +133,6 @@ int mainNOO(int argc, char **argv)
     }
 
     MPI_Finalize();
-}
-
-int mainNooooooooo(int argc, char **argv)
-{
-
-    vector<shared_ptr<POSL_Solver>> solvers;
-
-    /* GOLFERS */
-    shared_ptr<Golfers> bench(make_shared<Golfers>(4,4,3));
-    shared_ptr<CreateSolverStrategy> css(make_shared<ForGolfersCSS>(bench));
-    solvers = css->create();
-
-
-    /* SQUARING SQUARE
-    vector<int> squares({6, 4, 4, 1, 3, 3, 3});
-    bench(make_shared< SquaringSquare(10,squares);
-    POSL_Solver> solver_1(make_shared< POSL_Solver(new ForSquaringSquareCSS());
-    */
-
-    /* GOLOMB RULER
-    bench(make_shared< GolombRuler(12,85);
-    CreateSolverStrategy> css(make_shared< ForGolombRulerCSS();
-    solvers = css->create();
-    */
-
-    try
-    {
-        shared_ptr<POSL_MetaSolver> s(make_shared<POSL_MetaSolver>(solvers));
-        s->solve(argc, argv, bench);
-    }catch (const char* msg)
-    {
-         cout << msg << endl;
-    }
-}
-
-int mainComm(int argc, char **argv)
-{
-    try
-    {
-        shared_ptr<Tester_Comunication> s(make_shared<Tester_Comunication>(argc, argv));
-        s->test();
-    }catch (const char* msg)
-    {
-         cout << msg << endl;
-    }
 }
 
 
