@@ -13,7 +13,7 @@ PackingNeighborhoodTester::PackingNeighborhoodTester()
 {
 }
 
-string PackingNeighborhoodTester::test(shared_ptr<Solution> sol, shared_ptr<POSL_Iterator<vector<int>>> neighbors, vector<int> pack, string label)
+string PackingNeighborhoodTester::test(shared_ptr<Solution> sol, shared_ptr<POSL_Iterator> neighbors, vector<int> pack, string label)
 {
     neighbors->Reset();
     string sol_str = sol->configurationToString();
@@ -52,7 +52,7 @@ string PackingNeighborhoodTester::test(shared_ptr<Solution> sol, shared_ptr<POSL
     {
         vector<int> neighbor = neighbors->GetNext();
         //cout << "new config... " << Tools::configurationToString(neighbor) << endl;
-        sol_aux(make_shared<Solution>(dom, neighbor));
+        sol_aux = make_shared<Solution>(dom, neighbor);
         //cout << sol_aux->configurationToString() << endl;
         int deg = pack[count++];
         vector<int> sol_conf = sol->GetConfiguration();
@@ -64,7 +64,7 @@ string PackingNeighborhoodTester::test(shared_ptr<Solution> sol, shared_ptr<POSL
             //cout << pos << " - " << value << endl;
             conf_aux[pos] = value;
         }                
-        neighbor_aux(make_shared<Solution>(dom, conf_aux));
+        neighbor_aux = make_shared<Solution>(dom, conf_aux);
         //string sol_aux_str = sol_aux->configurationToString();
         //string neighbor_aux_str = neighbor_aux->configurationToString();
         legal = legal && sol_aux->configurationToString().compare(neighbor_aux->configurationToString()) == 0;

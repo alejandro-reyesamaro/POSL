@@ -2,11 +2,11 @@
 
 #include <algorithm>
 
-NeighborSelectingBestImprovement::NeighborSelectingBestImprovement(vector<Domain> domains)
-    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains)))
+NeighborSelectingBestImprovement::NeighborSelectingBestImprovement(std::vector<Domain> domains)
+    : rPair(std::make_shared<DecisionPair>(std::make_shared<Solution>(domains), std::make_shared<Solution>(domains)))
 {}
 
-shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
+std::shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> V)
 {
     current_config = psp->GetCurrentSolution()->GetConfiguration();
     int current_cost = psp->CurrentCost();
@@ -18,7 +18,7 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP
 
     while(it->SomeNext())
     {
-        vector<int> config = it->GetNext();
+        std::vector<int> config = it->GetNext();
         //sol_2_return->UpdateConfiguration(it->GetNext());
         int c = psp->GetBenchmark()->solutionCost(config);
         if(c < best_found_cost)

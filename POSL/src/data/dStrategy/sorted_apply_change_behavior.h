@@ -1,12 +1,13 @@
 #pragma once
 
 #include "apply_change_behavior.h"
+#include <memory>
 
 class SortedApplyChangeBehavior : public ApplyChangeBehavior
 {
     public:
         SortedApplyChangeBehavior(int config_size);
-        vector<int> applyChangeAt(int index, vector<int> config, vector<T_Changes> changes);
+        std::vector<int> applyChangeAt(int index, std::vector<int> config, std::vector<T_Changes> changes);
     private:
-        ApplyChangeBehavior * pb;
+        std::shared_ptr<ApplyChangeBehavior> pb;
 };

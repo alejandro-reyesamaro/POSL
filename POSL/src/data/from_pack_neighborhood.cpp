@@ -1,13 +1,14 @@
 #include "from_pack_neighborhood.h"
 #include "dStrategy/standard_apply_change_behavior.h"
+#include "dStrategy/elements_change_iterator.h"
 
 #include <algorithm>
 
-vector<int> InitConfiguration(int * pack);
+std::vector<int> InitConfiguration(int * pack);
 
 FromPackNeighborhood::FromPackNeighborhood(int * pack)
     : Neighborhood(InitConfiguration(pack)),
-      changeAtBhv(make_shared<StandardApplyChangeBehavior>(_config_size))
+      changeAtBhv(std::make_shared<StandardApplyChangeBehavior>(pack[1]))
 {    
     int conf_size = pack[1];
     pack+= conf_size + 2;
@@ -18,8 +19,8 @@ FromPackNeighborhood::FromPackNeighborhood(int * pack)
     {
         int deg = *pack;
         pack++;
-        vector<int> new_indexes;
-        vector<int> new_values;
+        std::vector<int> new_indexes;
+        std::vector<int> new_values;
         for (int j = 0; j < deg; j++)
         {
             new_indexes.push_back(*pack);
@@ -32,16 +33,21 @@ FromPackNeighborhood::FromPackNeighborhood(int * pack)
     }
 }
 
-vector<int> InitConfiguration(int * pack)
+std::shared_ptr<POSL_Iterator> FromPackNeighborhood::getIterator()
 {
-    vector<int> conf(pack[1]);
+    return std::make_shared<ElementsChangeIterator>(shared_from_this());
+}
+
+std::vector<int> InitConfiguration(int * pack)
+{
+    std::vector<int> conf(pack[1]);
     copy(&pack[2], &pack[2] + pack[1], conf.begin());
     return conf;
 }
 
-shared_ptr<FactoryPacker> FromPackNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
+std::shared_ptr<FactoryPacker> FromPackNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-vector<int> FromPackNeighborhood::neighborAt(int index)
+std::vector<int> FromPackNeighborhood::neighborAt(int index)
 {
     return changeAtBhv->applyChangeAt(index, current_configuration, changes);
     //return applyChangeAt(index);

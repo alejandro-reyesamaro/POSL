@@ -23,7 +23,7 @@ Tester_CyclicOperator::Tester_CyclicOperator(int argc, char *argv[])
 string Tester_CyclicOperator::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    shared_ptr<Operator> sol(make_shared<Solution>(bench->Domains()));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
@@ -35,7 +35,7 @@ string Tester_CyclicOperator::test()
     shared_ptr<CompoundModule> cm4(make_shared<OM_AlwaysImproveDecision>());
 
     // MAL!!! Seed!!
-    shared_ptr<Operator> first_solution = static_pointer_cast<Operator>(cm0->execute(psp, new Seed()));
+    shared_ptr<Solution> first_solution = static_pointer_cast<Solution>(cm0->execute(psp, make_shared<Seed>()));
     int first_cost = psp->GetBenchmark()->solutionCost(first_solution);
 
     // cm2 |-> cm3 :
@@ -63,7 +63,7 @@ string Tester_CyclicOperator::test()
     shared_ptr<GroupedComputation> G3(make_shared<GroupedSequentialComputation>(op3));
 
     // MAL!!!!!
-    shared_ptr<Operator> best_solution = static_pointer_cast<Operator>(G3->execute(psp, first_solution));
+    shared_ptr<Solution> best_solution = static_pointer_cast<Solution>(G3->execute(psp, first_solution));
 
 
     int cost = psp->GetBenchmark()->solutionCost(best_solution);

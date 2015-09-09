@@ -9,7 +9,7 @@ RandomPermutationByBlocksGenerationStrategy::RandomPermutationByBlocksGeneration
       permutations(block_size)
 {}
 
-vector<int> RandomPermutationByBlocksGenerationStrategy::generate(int block_size, int n_blocks)
+std::vector<int> RandomPermutationByBlocksGenerationStrategy::generate(int block_size, int n_blocks)
 {
     for(int i = 0; i < n_blocks; i++)
     {

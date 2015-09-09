@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+using namespace std;
+
 SingleSwapApplyChangeBehavior::SingleSwapApplyChangeBehavior(int config_size)
     : ApplyChangeBehavior(config_size)
 {}

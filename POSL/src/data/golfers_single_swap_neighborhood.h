@@ -11,36 +11,38 @@
 
 #include "neighborhood.h"
 #include "solution.h"
-#include "dStrategy/elements_change_iterator.h"
 #include "dynamic_neighborhood.h"
 #include "t_changes.h"
 #include "dStrategy/apply_change_behavior.h"
 
-#include <random>
+//#include <random>
 
 /*!
  * \class GolfersSingleSwapNeighborhood golfers_single_swap_neighborhood.h
  * \brief Class to represent a neighborhood, swaping elements, but not in the first part
  */
-class GolfersSingleSwapNeighborhood : public Neighborhood, public DynamicNeighborhood
+class GolfersSingleSwapNeighborhood
+        : public Neighborhood,
+          public DynamicNeighborhood,
+          public std::enable_shared_from_this<Neighborhood>
 {
     friend class ElementsChangeIterator;
     public:
         GolfersSingleSwapNeighborhood(int _config_size, int _players);
 
-        shared_ptr<POSL_Iterator<vector<int>>> getIterator() { return make_shared<ElementsChangeIterator>(this); }
+        std::shared_ptr<POSL_Iterator> getIterator();
         int size() {return changes.size(); }
-        vector<T_Changes> GetChanges() { return changes; }
+        std::vector<T_Changes> GetChanges() { return changes; }
 
-        vector<int> neighborAt(int index);
-        shared_ptr<FactoryPacker> BuildPacker();
+        std::vector<int> neighborAt(int index);
+        std::shared_ptr<FactoryPacker> BuildPacker();
         void Init(std::vector<int> _configuration);
 
     private:
         void updateChanges();
 
-        shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        vector<T_Changes> changes;
+        std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
+        std::vector<T_Changes> changes;
         int players;
-        vector<int> indexes;
+        std::vector<int> indexes;
 };

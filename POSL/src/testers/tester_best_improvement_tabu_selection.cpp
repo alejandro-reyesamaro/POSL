@@ -34,7 +34,7 @@ string Tester_BestImprovementTabuSelection::test()
         1,  1,  1,  1
     });
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol);

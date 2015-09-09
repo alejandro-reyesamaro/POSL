@@ -6,5 +6,5 @@ class SingleSwapApplyChangeBehavior : public ApplyChangeBehavior
 {
     public:
         SingleSwapApplyChangeBehavior(int config_size);
-        vector<int> applyChangeAt(int index, vector<int> config, vector<T_Changes> changes);
+        std::vector<int> applyChangeAt(int index, std::vector<int> config, std::vector<T_Changes> changes);
 };

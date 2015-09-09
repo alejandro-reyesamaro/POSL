@@ -3,6 +3,8 @@
 #include <iostream>
 #include <thread>
 
+using namespace std;
+
 #define TAG 123
 
 MinParallelStrategy::MinParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)

@@ -5,20 +5,19 @@
 #include "../expressions/boolean_expression.h"
 #include "../packing/module_uncoder.h"
 
-using namespace std;
-
 class CompoundModuleGeneratorFromCode : public CompoundModule
 {
     public:
-        CompoundModuleGeneratorFromCode(string code, Benchmark * bench);
-        shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        CompoundModuleGeneratorFromCode(std::string code, std::shared_ptr<Benchmark> bench);
+
+        std::shared_ptr<ComputationData> execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<CompoundModule> generateFrom(string code, shared_ptr<Benchmark> bench);
+        std::shared_ptr<CompoundModule> generateFrom(std::string code, std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<ModuleUncoder> m_uncoder;
-        shared_ptr<CompoundModule> module;
-        string mycode;        
+        std::shared_ptr<ModuleUncoder> m_uncoder;
+        std::shared_ptr<CompoundModule> module;
+        std::string mycode;
 };

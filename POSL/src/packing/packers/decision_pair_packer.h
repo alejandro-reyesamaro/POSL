@@ -6,14 +6,14 @@
 class DecisionPairPacker : public Packer
 {
     public:
-        DecisionPairPacker(shared_ptr<DecisionPair> pair);
+        DecisionPairPacker(std::shared_ptr<DecisionPair> pair);
 
-        vector<int> pack();
+        std::vector<int> pack();
         //static DecisionPair * unpack(int * pack, vector<Domain> domains);
 
-        void update(vector<int> current, vector<int> found);
+        void update(std::vector<int> current, std::vector<int> found);
 
     private:
-        vector<int> current_configuration;
-        vector<int> found_configuration;        
+        std::vector<int> current_configuration;
+        std::vector<int> found_configuration;
 };

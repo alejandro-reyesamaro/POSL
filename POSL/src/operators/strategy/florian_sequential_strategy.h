@@ -18,13 +18,13 @@
 class FlorianSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        FlorianSequentialStrategy(shared_ptr<CompoundModule> _M1);
+        FlorianSequentialStrategy(std::shared_ptr<CompoundModule> _M1);
 
-        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
 
     private:
-        shared_ptr<CompoundModule> M1;
+        std::shared_ptr<CompoundModule> M1;
 
-        shared_ptr<Solution> best_solution;
-        shared_ptr<Solution> temp_solution;
+        std::shared_ptr<Solution> best_solution;
+        std::shared_ptr<Solution> temp_solution;
 };

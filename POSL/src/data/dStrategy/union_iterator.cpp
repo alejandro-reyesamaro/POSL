@@ -1,10 +1,10 @@
 #include "union_iterator.h"
 
-UnionIterator::UnionIterator(shared_ptr<UnionNeighborhood> _n)
+UnionIterator::UnionIterator(std::shared_ptr<UnionNeighborhood> _n)
     : neighborhood(_n), current(0)
 {}
 
-vector<int> UnionIterator::GetNext()
+std::vector<int> UnionIterator::GetNext()
 {
     return neighborhood->neighborAt(current ++);
 }

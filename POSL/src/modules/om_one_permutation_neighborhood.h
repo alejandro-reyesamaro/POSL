@@ -23,13 +23,13 @@ class OM_OnePermutationNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
         //! Constructor
-        OM_OnePermutationNeighborhood(shared_ptr<Benchmark> bench);
+        OM_OnePermutationNeighborhood(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<Neighborhood> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
+        std::shared_ptr<Neighborhood> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<OnePermutationNeighborhood> V;
+        std::shared_ptr<OnePermutationNeighborhood> V;
 };

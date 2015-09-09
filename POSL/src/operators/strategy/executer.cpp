@@ -1,5 +1,7 @@
 #include "executer.h"
 
+using namespace std;
+
 Executer::Executer(shared_ptr<CompoundModule> _M)
     : output(nullptr),
       M(_M)

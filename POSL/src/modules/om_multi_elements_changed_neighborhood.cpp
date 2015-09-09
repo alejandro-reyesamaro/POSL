@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 OM_MultiElementsChangedNeighborhood::OM_MultiElementsChangedNeighborhood(shared_ptr<Benchmark> bench)
     : V(make_shared<MultiElementsChangedNeighborhood>(bench->Domains().size(), bench->Domains()))
 {}

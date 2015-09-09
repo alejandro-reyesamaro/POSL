@@ -6,5 +6,5 @@
 class FactoryDecisionPairPacker : public FactoryPacker
 {
     public:
-        FactoryDecisionPairPacker(shared_ptr<DecisionPair> pair);
+        FactoryDecisionPairPacker(std::shared_ptr<DecisionPair> pair);
 };

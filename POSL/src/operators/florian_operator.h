@@ -19,8 +19,8 @@
 class FlorianOperator : public UnaryOperator
 {
     public:
-        FlorianOperator(shared_ptr<CompoundModule> _M1);
+        FlorianOperator(std::shared_ptr<CompoundModule> _M1);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 };

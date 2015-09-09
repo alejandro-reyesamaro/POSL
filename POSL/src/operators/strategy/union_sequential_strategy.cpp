@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 UnionSequentialStrategy::UnionSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
     : M1(_M1), M2(_M2),
       v1(nullptr),

@@ -31,19 +31,16 @@
 #include "../expressions/loop_bound_expression.h"
 #include "../expressions/reached_cost_expression.h"
 
-#include <boost/algorithm/string.hpp>
-using namespace boost;
-
 ModuleUncoder::ModuleUncoder()
 {}
 
 shared_ptr<BooleanExpression> ModuleUncoder::uncodeBoolExpression(string code)
 {
-    trim(code);
+    Tools::trim(code);
     std::size_t pos_space = code.find_first_of(" ");
     string be_code = code.substr(0, pos_space);
     string rest = code.substr(pos_space);
-    trim(rest);
+    Tools::trim(rest);
 
     int param = Tools::str2int(rest);
     char L = be_code.front();
@@ -57,10 +54,10 @@ shared_ptr<BooleanExpression> ModuleUncoder::uncodeBoolExpression(string code)
                 return make_shared<IteretionBoundExpression>(param);
             break;
             case 2: // loob bound
-                returnmake_shared<LoopBoundExpression(param);
+                return make_shared<LoopBoundExpression>(param);
             break;
             case 3: // reached cost
-                returnmake_shared<ReachedCostExpression(param);
+                return make_shared<ReachedCostExpression>(param);
             break;
             default:
                 throw "(POSL Exception) Not well coded BooleanExpression";
@@ -76,7 +73,7 @@ shared_ptr<CyclicOperator> ModuleUncoder::uncodeCyclicOperator(string code, shar
     std::size_t pos_close = code.find_first_of(")");
     string be_code = code.substr(pos_open + 1, pos_close - pos_open - 1);
     string cm_code = code.substr(pos_close + 1);
-    returnmake_shared<CyclicOperator>(uncodeCompoundModule(cm_code, bench), uncodeBoolExpression(be_code));
+    return make_shared<CyclicOperator>(uncodeCompoundModule(cm_code, bench), uncodeBoolExpression(be_code));
 }
 
 shared_ptr<ConditionalOperator> ModuleUncoder::uncodeConditionalOperator(string code, shared_ptr<Benchmark> bench)
@@ -85,11 +82,11 @@ shared_ptr<ConditionalOperator> ModuleUncoder::uncodeConditionalOperator(string 
     std::size_t pos_close = code.find_first_of(")");
     string be_code = code.substr(pos_open + 1, pos_close - pos_open - 1);
     string rest = code.substr(pos_close + 1);
-    trim(rest);
+    Tools::trim(rest);
     string cm1_code = Tools::frontModule(rest);
     int sizefront = cm1_code.size();
     rest = rest.substr(sizefront);
-    trim(rest);
+    Tools::trim(rest);
     string cm2_code = Tools::frontModule(rest);
 
     return make_shared<ConditionalOperator>(uncodeCompoundModule(cm1_code, bench),
@@ -102,14 +99,14 @@ shared_ptr<RhoOperator> ModuleUncoder::uncodeRhoOperator(string code, shared_ptr
     std::size_t pos_open = code.find_first_of("(");
     std::size_t pos_close = code.find_first_of(")");
     string str_param = code.substr(pos_open + 1, pos_close - pos_open - 1);
-    trim(str_param);
+    Tools::trim(str_param);
     float param = Tools::str2float(str_param);
     string rest = code.substr(pos_close + 1);
-    trim(rest);
+    Tools::trim(rest);
     string cm1_code = Tools::frontModule(rest);
     int sizefront = cm1_code.size();
     rest = rest.substr(sizefront);
-    trim(rest);
+    Tools::trim(rest);
     string cm2_code = Tools::frontModule(rest);
 
     return make_shared<RhoOperator>(uncodeCompoundModule(cm1_code, bench), uncodeCompoundModule(cm2_code, bench), param);
@@ -117,17 +114,17 @@ shared_ptr<RhoOperator> ModuleUncoder::uncodeRhoOperator(string code, shared_ptr
 
 shared_ptr<BinaryOperator> ModuleUncoder::uncodeBinaryOperator(string code, shared_ptr<Benchmark> bench)
 {
-    trim(code);
+    Tools::trim(code);
     char front = code.front();
     size_t pos_space = code.find_first_of(" ");
     string first = code.substr(0, pos_space);
 
     string rest = code.substr(pos_space + 1);
-    trim(rest);
+    Tools::trim(rest);
     string cm1_code = Tools::frontModule(rest);
     int sizefront = cm1_code.size();
     rest = rest.substr(sizefront);
-    trim(rest);
+    Tools::trim(rest);
     string cm2_code = Tools::frontModule(rest);
 
     if (isdigit(front))
@@ -152,7 +149,7 @@ shared_ptr<BinaryOperator> ModuleUncoder::uncodeBinaryOperator(string code, shar
 
 shared_ptr<Operator> ModuleUncoder::uncodeOperator(string code, shared_ptr<Benchmark> bench)
 {
-    trim(code);
+    Tools::trim(code);
     char front = code.front();
     std::size_t pos_space = code.find_first_of(" ");
     string first = code.substr(0, pos_space);
@@ -183,14 +180,14 @@ shared_ptr<GroupedSequentialComputation> ModuleUncoder::uncodeGroupedSequentialC
     return make_shared<GroupedSequentialComputation>(uncodeOperator(code, bench));
 }
 
-GroupedParallelComputation * ModuleUncoder::uncodeGroupedParallelComputation(string code, shared_ptr<Benchmark> bench)
+shared_ptr<GroupedParallelComputation> ModuleUncoder::uncodeGroupedParallelComputation(string code, shared_ptr<Benchmark> bench)
 {
     return make_shared<GroupedParallelComputation>(uncodeOperator(code, bench));
 }
 
 shared_ptr<OperationModule> ModuleUncoder::uncodeOperationModule(string code, shared_ptr<Benchmark> bench)
 {
-    trim(code);
+    Tools::trim(code);
     char L = code.front();
     int  N = Tools::str2int(code.substr(1));
 
@@ -280,7 +277,7 @@ shared_ptr<OperationModule> ModuleUncoder::uncodeOperationModule(string code, sh
 
 shared_ptr<CompoundModule> ModuleUncoder::uncodeCompoundModule(string code, shared_ptr<Benchmark> bench)
 {
-    trim(code);
+    Tools::trim(code);
     char front = code.front();
     char back  = code.back();
     string sub_code = code.substr(1, code.size() - 2);

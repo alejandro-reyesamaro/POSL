@@ -6,11 +6,11 @@
 class ForGolombRulerCSS : public CreateSolverStrategy
 {
     public:
-        ForGolombRulerCSS(shared_ptr<GolombRuler> golomb);
-        vector<shared_ptr<POSL_Solver>> create();
+        ForGolombRulerCSS(std::shared_ptr<GolombRuler> golomb);
+        std::vector<std::shared_ptr<POSL_Solver>> create();
 
     private:
-        shared_ptr<POSL_Solver> single_solver;
-        shared_ptr<POSL_Solver> receiver_solver;
-        shared_ptr<POSL_Solver> sender_solver;
+        std::shared_ptr<POSL_Solver> single_solver;
+        std::shared_ptr<POSL_Solver> receiver_solver;
+        std::shared_ptr<POSL_Solver> sender_solver;
 };

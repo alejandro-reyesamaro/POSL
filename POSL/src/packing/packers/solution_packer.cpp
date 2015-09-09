@@ -1,17 +1,17 @@
 #include "solution_packer.h"
 
-SolutionPacker::SolutionPacker(shared_ptr<Solution> solution)
+SolutionPacker::SolutionPacker(std::shared_ptr<Solution> solution)
     : Packer(solution->GetConfiguration().size() + 2),
       configuration(solution->GetConfiguration())
 {
 }
 
-void SolutionPacker::update(vector<int> _configuration)
+void SolutionPacker::update(std::vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), configuration.begin());
 }
 
-vector<int> SolutionPacker::pack()
+std::vector<int> SolutionPacker::pack()
 {
     //cout << "packing solution" << endl;
     int conf_size = configuration.size();
@@ -22,7 +22,7 @@ vector<int> SolutionPacker::pack()
     // Configuration size
     package[1] = conf_size;
     // Configuration
-    copy(configuration.begin(), configuration.end(), package.begin() + 2);
+    std::copy(configuration.begin(), configuration.end(), package.begin() + 2);
     return package;
 }
 

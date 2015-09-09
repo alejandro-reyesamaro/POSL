@@ -6,11 +6,11 @@
 class ForSquaringSquareCSS : public CreateSolverStrategy
 {
     public:
-        ForSquaringSquareCSS(shared_ptr<SquaringSquare> ssq);
-        vector<shared_ptr<POSL_Solver>> create();
+        ForSquaringSquareCSS(std::shared_ptr<SquaringSquare> ssq);
+        std::vector<std::shared_ptr<POSL_Solver>> create();
 
     private:
-        shared_ptr<POSL_Solver> single_solver;
-        shared_ptr<POSL_Solver> receiver_solver;
-        shared_ptr<POSL_Solver> sender_solver;
+        std::shared_ptr<POSL_Solver> single_solver;
+        std::shared_ptr<POSL_Solver> receiver_solver;
+        std::shared_ptr<POSL_Solver> sender_solver;
 };

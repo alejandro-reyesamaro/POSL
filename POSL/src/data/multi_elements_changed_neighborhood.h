@@ -13,35 +13,37 @@
 #include "solution.h"
 #include "../tools/randomizer.h"
 #include "t_changes.h"
-#include "dStrategy/elements_change_iterator.h"
 #include "dynamic_neighborhood.h"
 #include "dStrategy/apply_change_behavior.h"
 
-#include <random>
+//#include <random>
 
 /*!
  * \class MultiElementsChangedNeighborhood multi_elements_changed_neighborhood.h
  * \brief Class to represent a neighborhood, changing some values randomly at the time
  */
-class MultiElementsChangedNeighborhood : public Neighborhood, public DynamicNeighborhood
+class MultiElementsChangedNeighborhood
+        : public Neighborhood,
+          public DynamicNeighborhood,
+          public std::enable_shared_from_this<Neighborhood>
 {
     friend class ElementsChangeIterator;
     public:
-        MultiElementsChangedNeighborhood(int _config_size, vector<Domain> _domainsl);
+        MultiElementsChangedNeighborhood(int _config_size, std::vector<Domain> _domainsl);
 
-        shared_ptr<POSL_Iterator<vector<int>>> getIterator() {return make_shared<ElementsChangeIterator>(this); }
+        std::shared_ptr<POSL_Iterator> getIterator();
         int size() { return changes.size(); }
-        vector<T_Changes> GetChanges(){ return changes; }
+        std::vector<T_Changes> GetChanges(){ return changes; }
 
-        vector<int> neighborAt(int index);
-        shared_ptr<FactoryPacker> BuildPacker();
-        void Init(vector<int> _configuration);
+        std::vector<int> neighborAt(int index);
+        std::shared_ptr<FactoryPacker> BuildPacker();
+        void Init(std::vector<int> _configuration);
 
     private:
         void updateChanges();
 
-        shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        vector<Domain> domains;
-        vector<T_Changes> changes;
+        std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
+        std::vector<Domain> domains;
+        std::vector<T_Changes> changes;
         Randomizer rand;
 };

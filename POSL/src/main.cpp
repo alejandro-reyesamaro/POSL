@@ -142,29 +142,29 @@ int mainNOO(int argc, char **argv)
 int mainNooooooooo(int argc, char **argv)
 {
 
-    vector<POSL_Solver *> solvers;
+    vector<shared_ptr<POSL_Solver>> solvers;
 
     /* GOLFERS */
-    Golfers * bench = new Golfers(4,4,3);
-    CreateSolverStrategy * css = new ForGolfersCSS(bench);
+    shared_ptr<Golfers> bench(make_shared<Golfers>(4,4,3));
+    shared_ptr<CreateSolverStrategy> css(make_shared<ForGolfersCSS>(bench));
     solvers = css->create();
 
 
     /* SQUARING SQUARE
     vector<int> squares({6, 4, 4, 1, 3, 3, 3});
-    bench = new SquaringSquare(10,squares);
-    POSL_Solver * solver_1 = new POSL_Solver(new ForSquaringSquareCSS());
+    bench(make_shared< SquaringSquare(10,squares);
+    POSL_Solver> solver_1(make_shared< POSL_Solver(new ForSquaringSquareCSS());
     */
 
     /* GOLOMB RULER
-    bench = new GolombRuler(12,85);
-    CreateSolverStrategy * css = new ForGolombRulerCSS();
+    bench(make_shared< GolombRuler(12,85);
+    CreateSolverStrategy> css(make_shared< ForGolombRulerCSS();
     solvers = css->create();
     */
 
     try
     {
-        POSL_MetaSolver * s = new POSL_MetaSolver(solvers);
+        shared_ptr<POSL_MetaSolver> s(make_shared<POSL_MetaSolver>(solvers));
         s->solve(argc, argv, bench);
     }catch (const char* msg)
     {
@@ -176,7 +176,7 @@ int mainComm(int argc, char **argv)
 {
     try
     {
-        Tester_Comunication * s = new Tester_Comunication(argc, argv);
+        shared_ptr<Tester_Comunication> s(make_shared<Tester_Comunication>(argc, argv));
         s->test();
     }catch (const char* msg)
     {

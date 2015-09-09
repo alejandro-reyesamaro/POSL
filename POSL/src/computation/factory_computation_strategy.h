@@ -5,10 +5,10 @@
 class FactoryComputationStrategy
 {
     public:
-        FactoryComputationStrategy(shared_ptr<Benchmark> _bench);
+        FactoryComputationStrategy(std::shared_ptr<Benchmark> _bench);
 
-        virtual shared_ptr<CompoundModule> buildModule() = 0;
+        virtual std::shared_ptr<CompoundModule> buildModule() = 0;
 
     protected:
-        shared_ptr<Benchmark> bench;
+        std::shared_ptr<Benchmark> bench;
 };

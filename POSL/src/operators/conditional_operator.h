@@ -19,11 +19,11 @@
 class ConditionalOperator : public BinaryOperator
 {
     public:
-        ConditionalOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2, shared_ptr<BooleanExpression> _ex);
+        ConditionalOperator(std::shared_ptr<CompoundModule> _M1, std::shared_ptr<CompoundModule> _M2, std::shared_ptr<BooleanExpression> _ex);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<BooleanExpression> ex;
+        std::shared_ptr<BooleanExpression> ex;
 };

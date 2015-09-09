@@ -14,7 +14,7 @@ string Tester_OneElementChangedNeighborhood::test()
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    shared_ptr<PSP> psp(make_shared<PSP(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -28,12 +28,12 @@ string Tester_OneElementChangedNeighborhood::test()
         1,  1,  1,  1,
         1,  1,  1,  1,
     });
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     shared_ptr<OperationModule> op(make_shared<OM_OneElementChangedNeighborhood>(bench));
     //PSP> psp(make_shared<PSP(bench);
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
+    shared_ptr<POSL_Iterator> it = V ->getIterator();
     it->Reset();
     int sum  = 0;
     int prod = 1;

@@ -18,12 +18,12 @@ string Tester_OneSortedChangeNeighborhood::test()
 
     vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     shared_ptr<OperationModule> op(make_shared<OM_OneSortedChangeNeighborhood>(bench));
     //PSP> psp(make_shared<PSP(bench);
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
+    shared_ptr<POSL_Iterator> it = V ->getIterator();
     it->Reset();
 
     int ch = 0;

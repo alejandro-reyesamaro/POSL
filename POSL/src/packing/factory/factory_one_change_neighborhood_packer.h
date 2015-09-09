@@ -6,7 +6,7 @@
 class FactoryOneChangeNeighborhoodPacker : public FactoryPacker
 {
     public:
-        FactoryOneChangeNeighborhoodPacker(vector<int> config,
+        FactoryOneChangeNeighborhoodPacker(std::vector<int> config,
                                            int neighborhood_size,
-                                           vector<T_Changes> _changes);
+                                           std::vector<T_Changes> _changes);
 };

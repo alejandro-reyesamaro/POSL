@@ -12,10 +12,7 @@
 #include "domain.h"
 #include "computation_data.h"
 
-#include <vector>
 #include <string>
-
-using namespace std;
 
 #define SOLUTION_PACKING_ID 658201
 
@@ -23,22 +20,22 @@ using namespace std;
  * \class Solution solution.h
  * \brief Class to represent a solution (configuration)
  */
-class Solution : public ComputationData//, public Packable
+class Solution : public ComputationData, public std::enable_shared_from_this<Solution>
 {
     public:
-        Solution(vector<Domain> _domains);
-        Solution(vector<Domain> _domains, vector<int> conf);
+        Solution(std::vector<Domain> _domains);
+        Solution(std::vector<Domain> _domains, std::vector<int> conf);
 
-        void UpdateConfiguration(vector<int> new_config);
+        void UpdateConfiguration(std::vector<int> new_config);
         void UpdateConfigurationFromPack(int * pack);
-        bool equal(shared_ptr<Solution> other);
-        string configurationToString();
-        shared_ptr<FactoryPacker> BuildPacker();
+        bool equal(std::shared_ptr<Solution> other);
+        std::string configurationToString();
+        std::shared_ptr<FactoryPacker> BuildPacker();
 
-        vector<int> GetConfiguration(){ return configuration; }
-        vector<Domain> GetDomains(){ return domains; }
+        std::vector<int> GetConfiguration(){ return configuration; }
+        std::vector<Domain> GetDomains(){ return domains; }
 
     private:
-        vector<Domain> domains;
-        vector<int> configuration;
+        std::vector<Domain> domains;
+        std::vector<int> configuration;
 };

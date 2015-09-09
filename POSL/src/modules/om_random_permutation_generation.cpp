@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 OM_RandomPermutationGeneration::OM_RandomPermutationGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
       rconf_strategy(make_shared<RandomPermutationConfigurationStrategy>(bench->Domains().size())),

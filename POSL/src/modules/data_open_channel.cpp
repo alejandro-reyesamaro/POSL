@@ -29,9 +29,12 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
         //MPI_Test(&request, &test_flag, &status);
 
         //cout << "PID = "<< id <<". Receiving from " << status.MPI_SOURCE << endl;
-        return unpackMessage(buffer, psp);
+        shared_ptr<ComputationData> r = unpackMessage(buffer, psp);
+        delete[] buffer;
+        return r;
+        //return unpackMessage(buffer, psp);
     }
-    else return NULL;
+    else return nullptr;
 }
 
 string DataOpenChannel::codeToSend()

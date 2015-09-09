@@ -3,6 +3,7 @@
 #include "../packing/factory/factory_golfers_single_swap_neighborhood_packer.h"
 #include "../tools/tools.h"
 #include "dStrategy/single_swap_apply_change_behavior.h"
+#include "dStrategy/elements_change_iterator.h"
 
 #include <algorithm>
 #include <iostream>
@@ -11,7 +12,7 @@
 
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, int _players)
     : Neighborhood(_config_size),
-      changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
+      changeAtBhv(std::make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       players(_players),
       indexes(Tools::generateMonotony(_players))
 {
@@ -41,18 +42,23 @@ void GolfersSingleSwapNeighborhood::updateChanges()
     }
 }
 
+std::shared_ptr<POSL_Iterator> GolfersSingleSwapNeighborhood::getIterator()
+{
+    return std::make_shared<ElementsChangeIterator>(shared_from_this());
+}
+
 void GolfersSingleSwapNeighborhood::Init(std::vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
 }
 
-shared_ptr<FactoryPacker> GolfersSingleSwapNeighborhood::BuildPacker()
+std::shared_ptr<FactoryPacker> GolfersSingleSwapNeighborhood::BuildPacker()
 {
     return make_shared<FactoryGolfersSingleSwapNeighborhoodPacker>(current_configuration, size(), changes);
 }
 
-vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index)
+std::vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index)
 {
     return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

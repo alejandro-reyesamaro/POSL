@@ -25,8 +25,8 @@ FactoryComputationStrategy_A002::FactoryComputationStrategy_A002(shared_ptr<Benc
         int loops_restart_cycle)
     : FactoryComputationStrategy(_bench)
 {
-    shared_ptr<CompoundModule> cm_iter  = new OMS_IterationsCounter();
-    shared_ptr<CompoundModule> cm_time  = new OMS_TimeCounter();
+    shared_ptr<CompoundModule> cm_iter (make_shared<OMS_IterationsCounter>());
+    shared_ptr<CompoundModule> cm_time (make_shared<OMS_TimeCounter>());
 
     // selection1 (p) selection2
     shared_ptr<Operator> rho(make_shared<RhoOperator>(selection_function_1, selection_function_2, prob_op_rho_selection));
@@ -47,16 +47,16 @@ FactoryComputationStrategy_A002::FactoryComputationStrategy_A002(shared_ptr<Benc
     shared_ptr<GroupedComputation> G_sec1(make_shared<GroupedSequentialComputation>(sec_1));
 
     // decision1 (</ cost />) decision2
-    shared_ptr<Operator> cond(make_shared<ConditionalOperato>(decision_fucntion_1, decision_fucntion_2, make_shared<ReachedCostExpression>(cost_op_cond_decision)));
+    shared_ptr<Operator> cond(make_shared<ConditionalOperator>(decision_fucntion_1, decision_fucntion_2, make_shared<ReachedCostExpression>(cost_op_cond_decision)));
 
     // [ decision1 (</ cost />) decision2 ] :
     shared_ptr<GroupedComputation> G_cond(make_shared<GroupedSequentialComputation>(cond));
 
     // [ [ neighborhood1 (U) neighborhood1 ] |-> [ selection1 (p) selection2 ] ] |-> [ decision1 (</ cost />) decision2 ] :
-    shared_ptr<Operator> sec_2(make_shared<SequentialExecOperator(G_sec1, G_cond));
+    shared_ptr<Operator> sec_2(make_shared<SequentialExecOperator>(G_sec1, G_cond));
 
     // [ [ [ neighborhood1 (U) neighborhood1 ] |-> [ selection1 (p) selection2 ] ] |-> [ decision1 (</ cost />) decision2 ] ]:
-    shared_ptr<GroupedComputation> G_sec2(make_shared<GroupedSequentialComputation(sec_2));
+    shared_ptr<GroupedComputation> G_sec2(make_shared<GroupedSequentialComputation>(sec_2));
 
 
     // Adding an iterations counter :
@@ -76,7 +76,7 @@ FactoryComputationStrategy_A002::FactoryComputationStrategy_A002(shared_ptr<Benc
     shared_ptr<Operator> cyc1(make_shared<CyclicOperator>(G_sec4, make_shared<LoopBoundExpression>(loops_main_cycle)));
 
     // [ Cyc(n lopps){ G_sec4 } ]:
-    shared_ptr<GroupedComputation> G_cyc1(make_shared<GroupedSequentialComputation(cyc1));
+    shared_ptr<GroupedComputation> G_cyc1(make_shared<GroupedSequentialComputation>(cyc1));
 
     // first_config |-> [ Cyc(n lopps){ G_sec4 } ]
     shared_ptr<Operator> sec_0(make_shared<SequentialExecOperator>(first_conf_generation, G_cyc1));

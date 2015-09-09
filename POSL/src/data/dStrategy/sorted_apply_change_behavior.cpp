@@ -5,13 +5,13 @@
 
 SortedApplyChangeBehavior::SortedApplyChangeBehavior(int config_size)
     : ApplyChangeBehavior(config_size),
-      pb(new StandardApplyChangeBehavior(config_size))
+      pb(std::make_shared<StandardApplyChangeBehavior>(config_size))
 {}
 
-vector<int> SortedApplyChangeBehavior::applyChangeAt(int index, vector<int> config, vector<T_Changes> changes)
+std::vector<int> SortedApplyChangeBehavior::applyChangeAt(int index, std::vector<int> config, std::vector<T_Changes> changes)
 {
-    vector<int> config_changed = pb->applyChangeAt(index, config, changes);
-    sort(config_changed.begin(), config_changed.end());
+    std::vector<int> config_changed = pb->applyChangeAt(index, config, changes);
+    std::sort(config_changed.begin(), config_changed.end());
     return config_changed;
 }
 

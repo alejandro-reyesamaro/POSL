@@ -22,39 +22,39 @@ string Tester_CostOfSolutionGolomRules::test()
     int c1 = psp->GetBenchmark()->solutionCost(sol);
     cout << "Best cost for 6-17: " << c1 << endl;
 
-    bench(make_shared<GolombRuler>(7, 25));
-    psp(make_shared<PSP>(ARGC, ARGV, bench));
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    bench = make_shared<GolombRuler>(7, 25);
+    psp = make_shared<PSP>(ARGC, ARGV, bench);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config2);
     int c2 = psp->GetBenchmark()->solutionCost(sol);
     cout << "Best cost for 7-5: " << c2 << endl;
 
-    bench(make_shared<GolombRuler>(8, 34));
-    psp(make_shared<PSP>(ARGC, ARGV, bench));
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    bench = make_shared<GolombRuler>(8, 34);
+    psp = make_shared<PSP>(ARGC, ARGV, bench);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config3);
     int c3 = psp->GetBenchmark()->solutionCost(sol);
     cout << "Best cost for 8-34: " << c3 << endl;
 
-    bench(make_shared<GolombRuler>(9, 44));
-    psp(make_shared<PSP>(ARGC, ARGV, bench));
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    bench = make_shared<GolombRuler>(9, 44);
+    psp = make_shared<PSP>(ARGC, ARGV, bench);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config4);
     int c4 = psp->GetBenchmark()->solutionCost(sol);
     cout << "Best cost for 9-44: " << c4 << endl;
 
-    bench(make_shared<GolombRuler>(10, 55));
-    psp(make_shared<PSP>(ARGC, ARGV, bench));
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    bench = make_shared<GolombRuler>(10, 55);
+    psp = make_shared<PSP>(ARGC, ARGV, bench);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config5);
     int c5 = psp->GetBenchmark()->solutionCost(sol);
     cout << "Best cost for 10-55: " << c5 << endl;
 
-    bench(make_shared<GolombRuler>(11, 72));
-    psp(make_shared<PSP>(ARGC, ARGV, bench));
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    bench = make_shared<GolombRuler>(11, 72);
+    psp = make_shared<PSP>(ARGC, ARGV, bench);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config6);
     int c6 = psp->GetBenchmark()->solutionCost(sol);
     cout << "Best cost for 11-72: " << c6 << endl;
 
-    bench(make_shared<GolombRuler>(12, 85));
-    psp(make_shared<PSP>(ARGC, ARGV, bench));
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    bench = make_shared<GolombRuler>(12, 85);
+    psp = make_shared<PSP>(ARGC, ARGV, bench);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config7);
     int c7 = psp->GetBenchmark()->solutionCost(sol);
     cout << "Best cost for 12-85: " << c7 << endl;
 

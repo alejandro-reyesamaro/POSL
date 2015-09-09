@@ -21,8 +21,8 @@ class Golfers : public Benchmark
     public:
         Golfers(int g, int p, int w);
 
-        int solutionCost(vector<int> configuration);
-        string ShowSolution(shared_ptr<Solution> solution);
+        int solutionCost(std::vector<int> configuration);
+        std::string ShowSolution(std::shared_ptr<Solution> solution);
 
         int Groups(){ return groups; }
         int PlayersPerGroup(){ return players; }
@@ -37,6 +37,6 @@ class Golfers : public Benchmark
         LongInt alldiff;
         LongInt new_partner;
         LongInt global_partnership;
-        vector<LongInt> global_partners;
-        vector<LongInt> group_partners;
+        std::vector<LongInt> global_partners;
+        std::vector<LongInt> group_partners;
 };

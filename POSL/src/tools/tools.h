@@ -11,10 +11,6 @@
 
 #include <string>
 #include <vector>
-#include <boost/algorithm/string.hpp>
-
-using namespace boost;
-using namespace std;
 
 /*!
  * \class Tools tools.h
@@ -28,17 +24,19 @@ class Tools
         * \param c A given integer
         * \return The resulting string
         */
-        static string int2str(int c);
-        static string float2str(float f);
-        static int str2int(string str);
-        static float str2float(string str);
-        static string configurationToString(vector<int> config);
-        static string frontModule(string code);
+        static std::string int2str(int c);
+        static std::string float2str(float f);
+        static int str2int(std::string str);
+        static float str2float(std::string str);
+        static std::string configurationToString(std::vector<int> config);
+        static std::string frontModule(std::string code);
         static int segmentIntersection(int a1, int b1, int a2, int b2);
-        static vector<int> vector_possible_values_to_hold_sorted(int index, vector<int> current_configuration);
-        static int mismatches(vector<int> vector_1, vector<int> vector_2);
-        static int * vector2array(vector<int> vec);
-        static void shuffle(vector<int> & vec);
-        static vector<int> generateMonotony(int N);
-        static void sortAscendent(vector<int> & v);
+        static std::vector<int> vector_possible_values_to_hold_sorted(int index, std::vector<int> current_configuration);
+        static int mismatches(std::vector<int> vector_1, std::vector<int> vector_2);
+        static int * vector2array(std::vector<int> vec);
+        static void shuffle(std::vector<int> & vec);
+        static std::vector<int> generateMonotony(int N);
+        static std::vector<int> generateMonotony(int a, int b);
+        static void sortAscendent(std::vector<int> & v);
+        static void trim(std::string & code);
 };

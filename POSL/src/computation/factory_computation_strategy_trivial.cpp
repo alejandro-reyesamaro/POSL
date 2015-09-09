@@ -43,7 +43,6 @@ FactoryComputationStrategy_Trivial::FactoryComputationStrategy_Trivial(shared_pt
     shared_ptr<GroupedComputation> G_sec4(make_shared<GroupedSequentialComputation>(sec_4));
     // <--------------------------------------------------------------------------------->
 
-
     // Cyc(n lopps){ G_sec4 } :
     shared_ptr<Operator> cyc1(make_shared<CyclicOperator>(G_sec4, make_shared<LoopBoundExpression>(loops_main_cycle)));
 

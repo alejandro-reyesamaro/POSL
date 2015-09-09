@@ -4,29 +4,29 @@
 
 #include <iostream>
 
-Solution::Solution(vector<Domain> _domains)
+Solution::Solution(std::vector<Domain> _domains)
     : domains(_domains),
       configuration(_domains.size(), 0)
 {}
 
-Solution::Solution(vector<Domain> _domains, vector<int> conf)
+Solution::Solution(std::vector<Domain> _domains, std::vector<int> conf)
     : domains(_domains),
       configuration(conf)
 {}
 
-void Solution::UpdateConfiguration(vector<int> new_config)
+void Solution::UpdateConfiguration(std::vector<int> new_config)
 {
     if(new_config.size() != configuration.size())
         throw "(POSL Exception) Configurations sizes missmatch (Solution::UpdateConfiguration)";
-    copy(new_config.begin(), new_config.end(), configuration.begin());
+    std::copy(new_config.begin(), new_config.end(), configuration.begin());
 }
 
 void Solution::UpdateConfigurationFromPack(int * pack)
 {
-    copy(pack + 2, pack + 2 + configuration.size(), configuration.begin());
+    std::copy(pack + 2, pack + 2 + configuration.size(), configuration.begin());
 }
 
-bool Solution::equal(shared_ptr<Solution> other)
+bool Solution::equal(std::shared_ptr<Solution> other)
 {
     if (other->configuration.size() != configuration.size())
         return false;
@@ -36,6 +36,6 @@ bool Solution::equal(shared_ptr<Solution> other)
     return true;
 }
 
-string Solution::configurationToString(){ return Tools::configurationToString(configuration); }
+std::string Solution::configurationToString(){ return Tools::configurationToString(configuration); }
 
-shared_ptr<FactoryPacker> Solution::BuildPacker(){ return make_shared<FactorySolutionPacker>(this); }
+std::shared_ptr<FactoryPacker> Solution::BuildPacker(){ return std::make_shared<FactorySolutionPacker>(shared_from_this()); }

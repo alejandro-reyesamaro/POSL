@@ -1,6 +1,8 @@
 #include "iteretion_bound_expression.h"
 #include "../tools/tools.h"
 
+using namespace std;
+
 IteretionBoundExpression::IteretionBoundExpression(int _max_iterations)
     : max_iterations(_max_iterations)
 {}

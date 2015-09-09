@@ -51,7 +51,7 @@ string Tester_UnionOperator::testeInMode(Computation comp)
 
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(G1->execute(psp, sol));
 
-    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
+    shared_ptr<POSL_Iterator> it = V ->getIterator();
     it->Reset();
     int changes = 0;
     bool the_changes = true;

@@ -31,7 +31,7 @@ string Tester_PackingSolution::test()
         16,  3,  6,  9
     });
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     string conf_str = sol->configurationToString();
     shared_ptr<SolutionPacker> p(make_shared<SolutionPacker>(sol));
     vector<int> pack = p->pack();

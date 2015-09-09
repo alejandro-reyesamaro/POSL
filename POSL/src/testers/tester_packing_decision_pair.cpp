@@ -95,6 +95,8 @@ string Tester_PackingDecisionPair::test()
     //cout << conf_str << endl;
     //cout << pack_str << endl;
 
+    //delete buff;
+
     return  (succ && current_str.compare(pack_current_str) == 0 && found_str.compare(pack_found_str) == 0)
             ? "Packing DecisionPair (" + Tools::int2str(id) + ") : OK !"
             : "Packing DecisionPair: fail :/";

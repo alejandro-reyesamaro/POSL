@@ -16,8 +16,6 @@
 
 #include <vector>
 
-using namespace std;
-
 /*!
  * \class Operator operator.h
  * \brief Class to represent an operation between modules
@@ -25,20 +23,13 @@ using namespace std;
 class Operator : public Codable
 {
     public:
-        Operator(shared_ptr<SequentialExecutionStrategy> _seq_strategy,
-                 shared_ptr<ParallelExecutionStrategy> _para_strategy);
+        Operator(std::shared_ptr<SequentialExecutionStrategy> _seq_strategy,
+                 std::shared_ptr<ParallelExecutionStrategy> _para_strategy);
 
-        shared_ptr<ComputationData> evaluateSequentially(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
-
-        //! Method to evaluate the modules in parallel
-        /*!
-        * \param bench The Benchmark
-        * \param input The operator input
-        * \return The operator output
-        */
-        shared_ptr<ComputationData> evaluateInParallel(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluateSequentially(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluateInParallel(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
 
     protected:
-        shared_ptr<SequentialExecutionStrategy> seq_strategy;
-        shared_ptr<ParallelExecutionStrategy> para_strategy;
+        std::shared_ptr<SequentialExecutionStrategy> seq_strategy;
+        std::shared_ptr<ParallelExecutionStrategy> para_strategy;
 };

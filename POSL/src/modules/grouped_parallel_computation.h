@@ -18,10 +18,10 @@
 class GroupedParallelComputation : public GroupedComputation
 {
     public:
-        GroupedParallelComputation(shared_ptr<Operator> _op);
+        GroupedParallelComputation(std::shared_ptr<Operator> _op);
 
-        shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 };

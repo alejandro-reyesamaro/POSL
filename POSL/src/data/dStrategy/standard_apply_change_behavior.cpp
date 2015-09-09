@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+using namespace std;
+
 StandardApplyChangeBehavior::StandardApplyChangeBehavior(int config_size)
     : ApplyChangeBehavior(config_size)
 {}

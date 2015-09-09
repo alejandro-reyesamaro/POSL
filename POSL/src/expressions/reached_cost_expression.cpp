@@ -1,6 +1,8 @@
 #include "reached_cost_expression.h"
 #include "../tools/tools.h"
 
+using namespace std;
+
 #define MAX_ITER 1000
 
 ReachedCostExpression::ReachedCostExpression(int _cost)

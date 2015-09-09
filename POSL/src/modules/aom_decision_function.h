@@ -7,6 +7,6 @@
 class AOM_DecisionFunction : public OperationModule
 {
     public:
-        shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
-        virtual shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input) = 0;
+        std::shared_ptr<ComputationData> execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
+        virtual std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<DecisionPair> input) = 0;
 };

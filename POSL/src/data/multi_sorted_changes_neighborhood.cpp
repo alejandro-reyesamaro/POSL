@@ -2,14 +2,15 @@
 #include "../tools/rand_index_generator.h"
 #include "../tools/tools.h"
 #include "dStrategy/sorted_apply_change_behavior.h"
+#include "dStrategy/elements_change_iterator.h"
 
 #include <algorithm>
 #include <iostream>
 #include <chrono>
 
-MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(int _config_size, vector<Domain> _domains)
+MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(int _config_size, std::vector<Domain> _domains)
     : Neighborhood(_config_size),
-      changeAtBhv(make_shared<SortedApplyChangeBehavior>(_config_size)),
+      changeAtBhv(std::make_shared<SortedApplyChangeBehavior>(_config_size)),
       domains(_domains),
       rand()
 {
@@ -23,26 +24,31 @@ void MultiSortedChangesNeighborhood::updateChanges()
     //int N = PRC_CHANGES * n;  // to have N chahges
 
     RandIndexGenerator rig(n-1);
-    vector<vector<int>> the_changes = rig.generate();
+    std::vector<vector<int>> the_changes = rig.generate();
 
     //int pos_new_value = 0;
 
-    for (vector<vector<int>>::iterator it = the_changes.begin(); it != the_changes.end(); ++it)
+    for (std::vector<std::vector<int>>::iterator it = the_changes.begin(); it != the_changes.end(); ++it)
     {
-        vector<int> list_of_indexes = (*it);
+        std::vector<int> list_of_indexes = (*it);
         pushSetOfValues(list_of_indexes);
     }
 }
 
+std::shared_ptr<POSL_Iterator> MultiSortedChangesNeighborhood::getIterator()
+{
+    return std::make_shared<ElementsChangeIterator>(shared_from_this());
+}
+
 void MultiSortedChangesNeighborhood::Init(std::vector<int> _configuration)
 {
-    copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
+    std::copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
 }
 
-shared_ptr<FactoryPacker> MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
+std::shared_ptr<FactoryPacker> MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-vector<int> MultiSortedChangesNeighborhood::neighborAt(int index)
+std::vector<int> MultiSortedChangesNeighborhood::neighborAt(int index)
 {
     return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }
@@ -53,21 +59,21 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes)
     // <= 16
     int NCh = (domains_size <= 20) ? 1 : sqrt(domains_size);
 
-    vector<int> values_for_index;
+    std::vector<int> values_for_index;
 
     // creating the domains
-    vector<vector<int>> vector_values;
-    for (vector<int>::iterator it = indexes.begin(); it != indexes.end(); ++it)
+    std::vector<vector<int>> vector_values;
+    for (std::vector<int>::iterator it = indexes.begin(); it != indexes.end(); ++it)
     {
         unsigned int index = *it;
         if(index == 0)
         {
-            vector<int> v(NCh, 0);
+            std::vector<int> v(NCh, 0);
             values_for_index = v;
         }
         else if(index == current_configuration.size()-1)
         {
-            vector<int> v(NCh, current_configuration[current_configuration.size()-1]);
+            std::vector<int> v(NCh, current_configuration[current_configuration.size()-1]);
             values_for_index = v;
         }
         else
@@ -77,7 +83,7 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes)
         }
         vector_values.push_back(values_for_index);
     }
-    vector<int> the_values;
+    std::vector<int> the_values;
     for (int i = 0; i < NCh; i++)
     {
         for (unsigned int j = 0; j < indexes.size(); j++)

@@ -2,6 +2,8 @@
 #include <random>
 #include <iostream>
 
+using namespace std;
+
 OM_RandomConfOrderedGeneration::OM_RandomConfOrderedGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
       rconf_strategy(make_shared<RandomOrderedGenerationStrategy>(bench->Domains().size())),

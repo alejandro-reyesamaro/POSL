@@ -14,8 +14,6 @@
 #include <vector>
 #include <memory>
 
-using namespace std;
-
 /*!
  * \class Domain domain.h
  * \brief Class to represent the domain of a variable
@@ -23,12 +21,12 @@ using namespace std;
 class Domain
 {
     public:
-        Domain(shared_ptr<FactoryDomain> fd);
+        Domain(std::shared_ptr<FactoryDomain> fd);
 
-        vector<int> GetValues();
+        std::vector<int> GetValues();
         int minimum();
         int maximum();
 
     private:
-        vector<int> D;
+        std::vector<int> D;
 };

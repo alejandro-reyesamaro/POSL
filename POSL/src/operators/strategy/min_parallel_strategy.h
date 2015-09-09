@@ -20,15 +20,15 @@
 class MinParallelStrategy : public ParallelExecutionStrategy
 {
     public:
-        MinParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
+        MinParallelStrategy(std::shared_ptr<CompoundModule> _M1, std::shared_ptr<CompoundModule> _M2);
 
-        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
 
     private:
         Executer M1;
         Executer M2;
 
-        shared_ptr<ComputationData> result1;
-        shared_ptr<ComputationData> result2;
-        shared_ptr<MinCritComparison> mincrit;
+        std::shared_ptr<ComputationData> result1;
+        std::shared_ptr<ComputationData> result2;
+        std::shared_ptr<MinCritComparison> mincrit;
 };

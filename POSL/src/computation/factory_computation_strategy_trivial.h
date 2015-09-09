@@ -11,16 +11,16 @@ class FactoryComputationStrategy_Trivial : public FactoryComputationStrategy
     public:
         FactoryComputationStrategy_Trivial
         (
-            shared_ptr<Benchmark>_bench,
-            shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
-            shared_ptr<AOM_NeighborhoodFunction> neighborhood_function,
-            shared_ptr<AOM_SelectionFunction> selection_function,
-            shared_ptr<AOM_DecisionFunction> decision_fucntion,
+            std::shared_ptr<Benchmark>_bench,
+            std::shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
+            std::shared_ptr<AOM_NeighborhoodFunction> neighborhood_function,
+            std::shared_ptr<AOM_SelectionFunction> selection_function,
+            std::shared_ptr<AOM_DecisionFunction> decision_fucntion,
             int loops_main_cycle
         );
 
-        shared_ptr<CompoundModule> buildModule();
+        std::shared_ptr<CompoundModule> buildModule();
 
     private:
-        shared_ptr<CompoundModule> final_module;
+        std::shared_ptr<CompoundModule> final_module;
 };

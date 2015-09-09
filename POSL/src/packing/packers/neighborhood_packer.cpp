@@ -3,6 +3,8 @@
 
 #include <algorithm>
 
+using namespace std;
+
 /*
  * Pack :
  * | ID | conf_size | conf | n_size | BODY |
@@ -14,7 +16,7 @@
  * | pos_1 | value_1 | pos_2 | value_2 | ... | pos_l_i | value_l_i | (l_i = deg_i)
  * */
 
-NeighborhoodPacker::NeighborhoodPacker(vector<int> _config, int _neighborhood_size, int size_package, int size_body)
+NeighborhoodPacker::NeighborhoodPacker(std::vector<int> _config, int _neighborhood_size, int size_package, int size_body)
     : Packer(size_package),
       configuration(_config),
       neighborhood_size(_neighborhood_size),

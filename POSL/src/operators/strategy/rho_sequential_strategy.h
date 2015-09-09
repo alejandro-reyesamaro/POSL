@@ -22,16 +22,16 @@
 class RhoSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        RhoSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2, float _rho);
+        RhoSequentialStrategy(std::shared_ptr<CompoundModule> _M1, std::shared_ptr<CompoundModule> _M2, float _rho);
 
-        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
 
     private:
-        shared_ptr<CompoundModule> M1;
-        shared_ptr<CompoundModule> M2;
+        std::shared_ptr<CompoundModule> M1;
+        std::shared_ptr<CompoundModule> M2;
         float rho;
         Randomizer rand;
 
-        shared_ptr<ComputationData> output1;
-        shared_ptr<ComputationData> output2;
+        std::shared_ptr<ComputationData> output1;
+        std::shared_ptr<ComputationData> output2;
 };

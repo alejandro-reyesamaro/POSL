@@ -10,22 +10,23 @@ class FactoryComputationStrategy_RA002 : public FactoryComputationStrategy
 {
     public:
         FactoryComputationStrategy_RA002
-        (shared_ptr<Benchmark> _bench,
-            shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
-            shared_ptr<AOM_NeighborhoodFunction> neighborhood_function_1,
-            shared_ptr<AOM_NeighborhoodFunction> neighborhood_function_2,
-            shared_ptr<AOM_SelectionFunction> selection_function_1,
-            shared_ptr<AOM_SelectionFunction> selection_function_2,
-            shared_ptr<AOM_DecisionFunction> decision_fucntion_1,
-            shared_ptr<AOM_DecisionFunction> decision_fucntion_2,
+        (
+            std::shared_ptr<Benchmark> _bench,
+            std::shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
+            std::shared_ptr<AOM_NeighborhoodFunction> neighborhood_function_1,
+            std::shared_ptr<AOM_NeighborhoodFunction> neighborhood_function_2,
+            std::shared_ptr<AOM_SelectionFunction> selection_function_1,
+            std::shared_ptr<AOM_SelectionFunction> selection_function_2,
+            std::shared_ptr<AOM_DecisionFunction> decision_fucntion_1,
+            std::shared_ptr<AOM_DecisionFunction> decision_fucntion_2,
             float prob_op_rho_selection,
             int cost_op_cond_decision,
             int loops_main_cycle,
             int loops_restart_cycle
         );
 
-        shared_ptr<CompoundModule> buildModule();
+        std::shared_ptr<CompoundModule> buildModule();
 
     private:
-        shared_ptr<CompoundModule> final_module;
+        std::shared_ptr<CompoundModule> final_module;
 };

@@ -20,5 +20,5 @@
 class ExecutionStrategy
 {
     public:
-        virtual shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input) = 0;
+        virtual std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input) = 0;
 };

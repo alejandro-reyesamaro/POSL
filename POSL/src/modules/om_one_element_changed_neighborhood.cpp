@@ -2,17 +2,17 @@
 
 #include <iostream>
 
-OM_OneElementChangedNeighborhood::OM_OneElementChangedNeighborhood(shared_ptr<Benchmark> bench)
-    : V(make_shared<OneElementChangedNeighborhood>(bench->Domains().size(), bench->Domains()))
+OM_OneElementChangedNeighborhood::OM_OneElementChangedNeighborhood(std::shared_ptr<Benchmark> bench)
+    : V(std::make_shared<OneElementChangedNeighborhood>(bench->Domains().size(), bench->Domains()))
 {}
 
-shared_ptr<Neighborhood> OM_OneElementChangedNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
+std::shared_ptr<Neighborhood> OM_OneElementChangedNeighborhood::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input)
 {
     V->Init(input->GetConfiguration());
     return V;
 }
 
-string OM_OneElementChangedNeighborhood::codeToSend()
+std::string OM_OneElementChangedNeighborhood::codeToSend()
 {
     return "B1";
 }

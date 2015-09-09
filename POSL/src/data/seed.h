@@ -18,14 +18,8 @@
 class Seed : public ComputationData
 {
     public:
-        //! Constructor
         Seed();
 
-        //! Returns a seed
-        /*!
-        * \return The seed
-        */
         double seed();
-
-        shared_ptr<FactoryPacker> BuildPacker();
+        std::shared_ptr<FactoryPacker> BuildPacker();
 };

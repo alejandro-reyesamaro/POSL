@@ -5,11 +5,11 @@ RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy(int
       config(configuration_size)
 {}
 
-vector<int> RandomConfigurationGenerationStrategy::generate(vector<Domain> domains)
+std::vector<int> RandomConfigurationGenerationStrategy::generate(std::vector<Domain> domains)
 {
     int k = 0;
     int index = 0;
-    for(vector<Domain>::iterator it = domains.begin(); it != domains.end(); ++it)
+    for(std::vector<Domain>::iterator it = domains.begin(); it != domains.end(); ++it)
     {
         k = rand.NextInt(it->minimum(), it->maximum());
         config[index++] = k;

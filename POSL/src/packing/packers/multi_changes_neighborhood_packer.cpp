@@ -1,5 +1,7 @@
 #include "multi_changes_neighborhood_packer.h"
 
+using namespace std;
+
 int MbSize(vector<T_Changes> _changes);
 
 MultiChangesNeighborhoodPacker::MultiChangesNeighborhoodPacker(vector<int> current_config,

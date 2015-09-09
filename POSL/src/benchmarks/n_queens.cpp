@@ -17,7 +17,7 @@ using namespace std;
 #define ErrD2(i, j)   (err_d2[D2(i, j)])
 
 NQueens::NQueens(int n)
-    : Benchmark(vector<Domain>(n, Domain(make_shared<Factory_NIntDomain>(0, n-1)))),
+    : Benchmark(vector<Domain>(n, Domain(std::make_shared<Factory_NIntDomain>(0, n-1)))),
       N(n),
       err_d1(2 * n - 1, 0),
       err_d2(2 * n - 1, 0),
@@ -26,7 +26,7 @@ NQueens::NQueens(int n)
 
 int F(int x){ return (x <= 1) ? 0 : x; }
 
-int NQueens::solutionCost(vector<int> configuration)
+int NQueens::solutionCost(std::vector<int> configuration)
 {
     int nb_diag = 2 * N - 1;
     //memset(err_d1, 0, nb_diag * sizeof(int));
@@ -66,23 +66,21 @@ int NQueens::solutionCost(vector<int> configuration)
     return cost;
 }
 
-int NQueens::Order(){ return N; }
-
-string NQueens::ShowSolution(shared_ptr<Solution> solution)
+std::string NQueens::ShowSolution(std::shared_ptr<Solution> solution)
 {
     if(N > 20)
         return Tools::int2str(N) +"-Queens: " + solution->configurationToString();
 
-    string out = "";
-    vector<int> config = solution->GetConfiguration();
+    std::string out = "";
+    std::vector<int> config = solution->GetConfiguration();
 
     // TRANSPOSING
-    vector<int> T(N,0);
-    for(vector<int>::iterator it = config.begin(); it != config.end(); ++it)
+    std::vector<int> T(N,0);
+    for(std::vector<int>::iterator it = config.begin(); it != config.end(); ++it)
         T[*it] = *it;
     //------------
 
-    for(vector<int>::iterator it = config.begin(); it != config.end(); ++it)
+    for(std::vector<int>::iterator it = config.begin(); it != config.end(); ++it)
     {
         int pos = *it;
         for(int i = 0; i < N; i ++)

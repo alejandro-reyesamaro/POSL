@@ -23,15 +23,14 @@
 class OM_GolfersSingleSwapNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
-        //! Constructor
-        OM_GolfersSingleSwapNeighborhood(shared_ptr<Benchmark> bench);
+        OM_GolfersSingleSwapNeighborhood(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<Neighborhood> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
+        std::shared_ptr<Neighborhood> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<Golfers> object_bench;
-        shared_ptr<GolfersSingleSwapNeighborhood> V;
+        std::shared_ptr<Golfers> object_bench;
+        std::shared_ptr<GolfersSingleSwapNeighborhood> V;
 };

@@ -3,20 +3,20 @@
 #include <random>
 #include <iostream>
 
-OM_RandomConfGeneration::OM_RandomConfGeneration(shared_ptr<Benchmark> bench)
+OM_RandomConfGeneration::OM_RandomConfGeneration(std::shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
-      rconf_strategy(new RandomConfigurationGenerationStrategy(bench->Domains().size())),
-      rsolution(new Solution(bench->Domains()))
+      rconf_strategy(std::make_shared<RandomConfigurationGenerationStrategy>(bench->Domains().size())),
+      rsolution(std::make_shared<Solution>(bench->Domains()))
 {}
 
-shared_ptr<Solution> OM_RandomConfGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
+std::shared_ptr<Solution> OM_RandomConfGeneration::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input)
 {
     rsolution->UpdateConfiguration(rconf_strategy->generate(domains));
     psp->UpdateSolution(rsolution);
     return rsolution;
 }
 
-string OM_RandomConfGeneration::codeToSend()
+std::string OM_RandomConfGeneration::codeToSend()
 {
     return "A2";
 }

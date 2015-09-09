@@ -1,6 +1,8 @@
 #include "psp.h"
 
-PSP::PSP(int _argc, char **_argv, shared_ptr<Benchmark> _bench, int _pID)
+using namespace std;
+
+PSP::PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench, int _pID)
     : ARGC(_argc),
       ARGV(_argv),
       bench(_bench),
@@ -8,14 +10,14 @@ PSP::PSP(int _argc, char **_argv, shared_ptr<Benchmark> _bench, int _pID)
       milisecs(0),
       best_found_solution(nullptr),
       pID(_pID),
-      comm(make_shared<Comunicator>())
+      comm(std::make_shared<Comunicator>())
 {}
 
-PSP::PSP(int _argc, char **_argv, shared_ptr<Benchmark> _bench)
+PSP::PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench)
     : PSP (_argc, _argv, _bench, -1)
 {}
 
-void PSP::UpdateSolution(shared_ptr<Solution> solution)
+void PSP::UpdateSolution(std::shared_ptr<Solution> solution)
 {
     bench->UpdateSolution(solution);
     int cost = bench->solutionCost(solution);
@@ -32,6 +34,6 @@ void PSP::connectWith(int pID) { connections.push_back(pID); }
 
 void PSP::SendData(vector<int> data)
 {
-    for(vector<int>::iterator it = connections.begin(); it != connections.end(); ++it)
+    for(std::vector<int>::iterator it = connections.begin(); it != connections.end(); ++it)
         comm->sendMessage(data, *it);
 }

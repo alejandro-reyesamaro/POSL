@@ -19,12 +19,12 @@ class DataOpenChannel : public OpenChannel
 {
     public:
         //! Constructor
-        DataOpenChannel(shared_ptr<Benchmark> _bench);
-        shared_ptr<ComputationData> execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
-        string codeToSend();
+        DataOpenChannel(std::shared_ptr<Benchmark> _bench);
+        std::shared_ptr<ComputationData> execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
+        std::string codeToSend();
         virtual int dataTag() = 0;
-        virtual shared_ptr<ComputationData> unpackMessage(int * buffer, shared_ptr<PSP> psp) = 0;
+        virtual std::shared_ptr<ComputationData> unpackMessage(int * buffer, std::shared_ptr<PSP> psp) = 0;
 
     protected:
-        shared_ptr<Benchmark> bench;
+        std::shared_ptr<Benchmark> bench;
 };

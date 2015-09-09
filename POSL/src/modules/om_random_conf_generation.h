@@ -22,14 +22,14 @@
 class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
-        OM_RandomConfGeneration(shared_ptr<Benchmark> bench);
+        OM_RandomConfGeneration(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<RandomConfigurationGenerationStrategy> rconf_strategy;
-        shared_ptr<Solution> rsolution;
+        std::shared_ptr<RandomConfigurationGenerationStrategy> rconf_strategy;
+        std::shared_ptr<Solution> rsolution;
 };

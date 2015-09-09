@@ -13,7 +13,7 @@
 #include "../../data/domain.h"
 #include "../../tools/randomizer.h"
 
-#include <random>
+//#include <random>
 
 /*!
  * \class RandomOrderedGenerationStrategy random_ordered_generation_strategy.h
@@ -24,18 +24,12 @@ class RandomOrderedGenerationStrategy
     public:
         RandomOrderedGenerationStrategy(int configuration_size);
 
-        //! Generates a random configuration
-        /*!
-        * \param size Configuration size
-        * \param max Maximum value
-        * \return A random ordered configuration (Solution)
-        */
-        vector<int> generate(int max);
+        std::vector<int> generate(int max);
 
     private:        
         void place (int a, int b, int pos_1, int pos_2);
 
-        vector<int> config;
+        std::vector<int> config;
         Randomizer rand;
-        vector<Domain> domains;
+        std::vector<Domain> domains;
 };

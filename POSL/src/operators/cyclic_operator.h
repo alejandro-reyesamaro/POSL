@@ -19,11 +19,11 @@
 class CyclicOperator : public UnaryOperator
 {
     public:
-        CyclicOperator(shared_ptr<CompoundModule> _M1, shared_ptr<BooleanExpression> _ex);
+        CyclicOperator(std::shared_ptr<CompoundModule> _M1, std::shared_ptr<BooleanExpression> _ex);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<BooleanExpression> ex;
+        std::shared_ptr<BooleanExpression> ex;
 };

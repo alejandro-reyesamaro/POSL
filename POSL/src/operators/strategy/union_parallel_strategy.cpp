@@ -6,6 +6,8 @@
 #include <iostream>
 #include <thread>
 
+using namespace std;
+
 #define TAG 123
 
 UnionParallelStrategy::UnionParallelStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
@@ -25,7 +27,7 @@ shared_ptr<ComputationData> UnionParallelStrategy::evaluate(shared_ptr<PSP> psp,
     if (v1 == nullptr) return v2;
     if (v2 == nullptr) return v1;
 
-    return make_shared<UnionNeighborhood>((Solution *)input, v1, v2);
+    return make_shared<UnionNeighborhood>(static_pointer_cast<Solution>(input), v1, v2);
 }
 
 /*

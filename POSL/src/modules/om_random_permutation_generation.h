@@ -9,15 +9,14 @@
 class OM_RandomPermutationGeneration : public AOM_FirstConfigurationGeneration
 {
     public:
-        OM_RandomPermutationGeneration(shared_ptr<Benchmark> bench);
+        OM_RandomPermutationGeneration(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
-
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<RandomPermutationConfigurationStrategy> rconf_strategy;
-        shared_ptr<Solution> rsolution;
+        std::shared_ptr<RandomPermutationConfigurationStrategy> rconf_strategy;
+        std::shared_ptr<Solution> rsolution;
 };

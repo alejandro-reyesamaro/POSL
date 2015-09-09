@@ -18,9 +18,9 @@ shared_ptr<ComputationData> SpeedParallelStrategy::evaluate(shared_ptr<PSP> psp,
     // FALTA ESTOOOOOOOO
     thread workerThread(&Executer::execute, &M2, psp, input);
     M1.execute(psp, input);
-    ComputationData * r1 = M1.GetOutput();
+    shared_ptr<ComputationData> r1 = M1.GetOutput();
     workerThread.join();
-    ComputationData * r2 = M2.GetOutput();
+    shared_ptr<ComputationData> r2 = M2.GetOutput();
     return r2;
 }
 

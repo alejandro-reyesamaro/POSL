@@ -1,5 +1,7 @@
 #include "one_change_neighborhood_packer.h"
 
+using namespace std;
+
 int ObSize(vector<T_Changes> _changes);
 
 OneChangeNeighborhoodPacker::OneChangeNeighborhoodPacker(vector<int> current_config,

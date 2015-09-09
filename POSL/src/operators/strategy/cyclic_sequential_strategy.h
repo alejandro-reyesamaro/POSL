@@ -19,13 +19,13 @@
 class CyclicSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        CyclicSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<BooleanExpression> _ex);
+        CyclicSequentialStrategy(std::shared_ptr<CompoundModule> _M1, std::shared_ptr<BooleanExpression> _ex);
 
-        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
 
     private:
-        shared_ptr<CompoundModule> M1;
-        shared_ptr<BooleanExpression> ex;
+        std::shared_ptr<CompoundModule> M1;
+        std::shared_ptr<BooleanExpression> ex;
 
-        shared_ptr<ComputationData> output;
+        std::shared_ptr<ComputationData> output;
 };

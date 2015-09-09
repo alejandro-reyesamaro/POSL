@@ -5,7 +5,7 @@ RandomPermutationConfigurationStrategy::RandomPermutationConfigurationStrategy(i
     : config(Tools::generateMonotony(N))
 {}
 
-vector<int> RandomPermutationConfigurationStrategy::generate()
+std::vector<int> RandomPermutationConfigurationStrategy::generate()
 {
     Tools::shuffle(config);
     return config;

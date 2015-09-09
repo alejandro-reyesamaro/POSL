@@ -12,6 +12,11 @@ UnionNeighborhood::UnionNeighborhood(shared_ptr<Solution> sol, shared_ptr<Neighb
 
 shared_ptr<FactoryPacker> UnionNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
+std::shared_ptr<POSL_Iterator> UnionNeighborhood::getIterator()
+{
+    return make_shared<UnionIterator>(shared_from_this());
+}
+
 // OPTIMIZAR : Calcular bien el elemento
 vector<int> UnionNeighborhood::neighborAt(int index)
 {

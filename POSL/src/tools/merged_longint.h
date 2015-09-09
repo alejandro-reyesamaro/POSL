@@ -12,7 +12,7 @@ class MergedLongInt
         LongInt long_and();
         bool equal();
 
-        vector<int>::iterator it_upper;
-        vector<int>::iterator it_lower;
+        std::vector<int>::iterator it_upper;
+        std::vector<int>::iterator it_lower;
         int _max, _min;
 };

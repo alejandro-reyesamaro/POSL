@@ -18,10 +18,10 @@
 class SquaringSquare : public Benchmark
 {
     public:
-        SquaringSquare(int _size, vector<int> _squares);
+        SquaringSquare(int _size, std::vector<int> _squares);
 
-        int solutionCost(vector<int> configuration);
-        string ShowSolution(shared_ptr<Solution> solution);
+        int solutionCost(std::vector<int> configuration);
+        std::string ShowSolution(std::shared_ptr<Solution> solution);
 
         int Size(){ return size; }
         int SquareAt(int pos){ return (pos >= 0 && pos < size)? squares[pos] : -1; }
@@ -30,5 +30,5 @@ class SquaringSquare : public Benchmark
         //! [Size of the big square]
         int size;
         //! [Sizes of the squares to put into the big one]
-        vector<int> squares;
+        std::vector<int> squares;
 };

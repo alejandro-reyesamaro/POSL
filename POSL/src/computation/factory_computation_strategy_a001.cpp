@@ -23,8 +23,8 @@ FactoryComputationStrategy_A001::FactoryComputationStrategy_A001(shared_ptr<Benc
         int loops_restart_cycle)
     : FactoryComputationStrategy(_bench)
 {
-    shared_ptr<CompoundModule> cm_iter  = new OMS_IterationsCounter();
-    shared_ptr<CompoundModule> cm_time  = new OMS_TimeCounter();
+    shared_ptr<CompoundModule> cm_iter(make_shared<OMS_IterationsCounter>());
+    shared_ptr<CompoundModule> cm_time(make_shared<OMS_TimeCounter>());
 
     // selection1 (p) selection2
     shared_ptr<Operator> rho(make_shared<RhoOperator>(selection_function_1, selection_function_2, prob_op_rho_selection));

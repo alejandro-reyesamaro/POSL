@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 OM_OneSortedChangeNeighborhood::OM_OneSortedChangeNeighborhood(shared_ptr<Benchmark> bench)
     : V(make_shared<OneSortedChangeNeighborhood>(bench->Domains().size()))
 {}

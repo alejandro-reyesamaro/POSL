@@ -11,5 +11,5 @@ class PackingNeighborhoodTester
 {
     public:
         PackingNeighborhoodTester();
-        string test(shared_ptr<Solution> sol, shared_ptr<POSL_Iterator<vector<int>>> neighbors, vector<int> pack, string label);
+        string test(shared_ptr<Solution> sol, shared_ptr<POSL_Iterator> neighbors, vector<int> pack, string label);
 };

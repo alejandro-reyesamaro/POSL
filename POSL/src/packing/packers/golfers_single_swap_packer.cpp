@@ -1,5 +1,7 @@
 #include "golfers_single_swap_packer.h"
 
+using namespace std;
+
 int GbSize(vector<T_Changes> _changes);
 
 GolfersSingleSwapPacker::GolfersSingleSwapPacker(vector<int> current_config,

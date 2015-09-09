@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 OM_OnePermutationNeighborhood::OM_OnePermutationNeighborhood(shared_ptr<Benchmark> bench)
     : V(make_shared<OnePermutationNeighborhood>(bench->Domains().size()))
 {}

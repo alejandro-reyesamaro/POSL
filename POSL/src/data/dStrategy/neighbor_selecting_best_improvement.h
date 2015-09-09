@@ -8,7 +8,7 @@
 class NeighborSelectingBestImprovement
 {
     public:
-        NeighborSelectingBestImprovement(vector<Domain> domains);
+        NeighborSelectingBestImprovement(std::vector<Domain> domains);
 
         //! Select the the current and the selected configurations when the search state indicates to stop
         /*!
@@ -16,11 +16,11 @@ class NeighborSelectingBestImprovement
         * \param V The set (a Neighborhood)
         * \return The current and the new found configurations
         */
-        shared_ptr<DecisionPair> select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V);
+        std::shared_ptr<DecisionPair> select(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> V);
 
     private:
-        shared_ptr<DecisionPair> rPair;
-        shared_ptr<POSL_Iterator<vector<int>>> it;
-        vector<int> current_config;
-        vector<int> best_found_config;
+        std::shared_ptr<DecisionPair> rPair;
+        std::shared_ptr<POSL_Iterator> it;
+        std::vector<int> current_config;
+        std::vector<int> best_found_config;
 };

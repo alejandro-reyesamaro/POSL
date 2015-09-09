@@ -63,7 +63,7 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     MPI_Finalize();
 }
 
-
+/*
 void POSL_MetaSolver::solve_MS(int argc, char **argv, shared_ptr<Benchmark> bench)
 {
     int myid, comm_size, numprocs, tag;
@@ -109,3 +109,4 @@ void POSL_MetaSolver::solve_MS(int argc, char **argv, shared_ptr<Benchmark> benc
 
     MPI_Finalize();
 }
+*/

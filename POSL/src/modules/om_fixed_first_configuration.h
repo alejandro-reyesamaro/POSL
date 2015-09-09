@@ -18,10 +18,10 @@
 class OM_FixedFirstConfiguration : public AOM_FirstConfigurationGeneration
 {
     public:
-        OM_FixedFirstConfiguration(shared_ptr<Benchmark> bench);
+        OM_FixedFirstConfiguration(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 };

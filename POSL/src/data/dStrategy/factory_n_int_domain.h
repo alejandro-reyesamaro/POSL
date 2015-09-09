@@ -11,8 +11,6 @@
 
 #include "factory_domain.h"
 
-using namespace std;
-
 /*!
  * \class Factory_NIntDomain factory_n_int_domain.h
  * \brief Factory class to build an integer domain
@@ -21,7 +19,7 @@ class Factory_NIntDomain : public FactoryDomain
 {
     public:
         Factory_NIntDomain(int min, int max);
-        vector<int> BuildDomain();
+        std::vector<int> BuildDomain();
 
     private:
         //! Minimum and maximum values

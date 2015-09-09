@@ -1,6 +1,6 @@
 #include "neighborhood.h"
 
-Neighborhood::Neighborhood(vector<int> _current_configuration)
+Neighborhood::Neighborhood(std::vector<int> _current_configuration)
     : current_configuration(_current_configuration)
 {}
 

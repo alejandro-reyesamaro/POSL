@@ -18,15 +18,15 @@ string Tester_CostOfSolutionNQueens::test()
     shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
     int c1 = psp->GetBenchmark()->solutionCost(sol);
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config2);
     int c2 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c2 << endl;
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config3));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config3);
     int c3 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c3 << endl;
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config4));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config4);
     int c4 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c4 << endl;
 

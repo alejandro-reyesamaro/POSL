@@ -5,17 +5,17 @@
 
 #include <memory>
 
-class UnionIterator : public POSL_Iterator<vector<int>>
+class UnionIterator : public POSL_Iterator//<std::vector<int>>
 {
     public:
 
-        UnionIterator(shared_ptr<UnionNeighborhood> _n);
+        UnionIterator(std::shared_ptr<UnionNeighborhood> _n);
 
-        vector<int> GetNext();
+        std::vector<int> GetNext();
         bool SomeNext();
         void Reset();
 
     private:
-        shared_ptr<UnionNeighborhood> neighborhood;
+        std::shared_ptr<UnionNeighborhood> neighborhood;
         int current;
 };

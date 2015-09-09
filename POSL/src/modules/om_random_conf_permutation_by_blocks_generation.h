@@ -23,16 +23,16 @@ class OM_RandomConfPermutationByBlocksGeneration : public AOM_FirstConfiguration
 {
     public:
         //! Constructor
-        OM_RandomConfPermutationByBlocksGeneration(shared_ptr<Benchmark> bench);
+        OM_RandomConfPermutationByBlocksGeneration(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<Solution> rsolution;
-        shared_ptr<Golfers> object_bench;
-        shared_ptr<RandomPermutationByBlocksGenerationStrategy> rconf_strategy;
+        std::shared_ptr<Solution> rsolution;
+        std::shared_ptr<Golfers> object_bench;
+        std::shared_ptr<RandomPermutationByBlocksGenerationStrategy> rconf_strategy;
 
 };

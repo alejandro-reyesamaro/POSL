@@ -5,16 +5,16 @@
 
 #include <memory>
 
-class ElementsChangeIterator : public POSL_Iterator<vector<int>>
+class ElementsChangeIterator : public POSL_Iterator//<std::vector<int>>
 {
     public:
-        ElementsChangeIterator(shared_ptr<Neighborhood> _n);
+        ElementsChangeIterator(std::shared_ptr<Neighborhood> _n);
 
-        vector<int> GetNext();
+        std::vector<int> GetNext();
         bool SomeNext();
         void Reset();
 
     private:
-        shared_ptr<Neighborhood> neighborhood;
+        std::shared_ptr<Neighborhood> neighborhood;
         int current;
 };

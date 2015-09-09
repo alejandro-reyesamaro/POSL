@@ -5,9 +5,9 @@
 #include <iostream>
 using namespace std;
 
-POSL_Solver::POSL_Solver(ComputationStrategy * _strategy)
-    : final_solution(NULL),
-      best_solution(NULL),
+POSL_Solver::POSL_Solver(shared_ptr<ComputationStrategy> _strategy)
+    : final_solution(nullptr),
+      best_solution(nullptr),
       final_cost(-1),
       best_cost(-1),
       iterations(-1),
@@ -16,7 +16,7 @@ POSL_Solver::POSL_Solver(ComputationStrategy * _strategy)
 {}
 
 
-void POSL_Solver::solve(PSP * psp)
+void POSL_Solver::solve(shared_ptr<PSP> psp)
 {    
     final_solution = strategy->execute(psp);
     final_cost = psp->GetBenchmark()->solutionCost(final_solution);
@@ -41,9 +41,9 @@ string POSL_Solver::showSolution(string str_finalSol, string str_bestSol)
     return out;
 }
 
-string POSL_Solver::show(Benchmark * bench)
+string POSL_Solver::show(shared_ptr<Benchmark> bench)
 {
-    if(final_solution != NULL && best_solution != NULL){
+    if(final_solution != nullptr && best_solution != nullptr){
         string str_finalSol = bench->ShowSolution(final_solution);
         string str_bestSol = bench->ShowSolution(best_solution);
         return showSolution(str_finalSol, str_bestSol);
@@ -53,7 +53,7 @@ string POSL_Solver::show(Benchmark * bench)
 
 string POSL_Solver::show()
 {
-    if(final_solution != NULL && best_solution != NULL){
+    if(final_solution != nullptr && best_solution != nullptr){
         string str_finalSol = final_solution->configurationToString();
         string str_bestSol = best_solution->configurationToString();
         return showSolution(str_finalSol, str_bestSol);

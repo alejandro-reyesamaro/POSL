@@ -12,6 +12,8 @@
 #include "../expressions/reached_cost_expression.h"
 #include "../expressions/loop_bound_expression.h"
 
+using namespace std;
+
 FactoryComputationStrategy_RA001::FactoryComputationStrategy_RA001(shared_ptr<Benchmark> _bench,
         shared_ptr<AOM_FirstConfigurationGeneration> first_conf_generation,
         shared_ptr<AOM_NeighborhoodFunction> neighborhood_function,

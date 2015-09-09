@@ -39,13 +39,13 @@ string Tester_GolfersPermutationNeighborhood::test()
         13, 14, 15, 16
     });
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
 
     shared_ptr<OperationModule> op(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));
     //PSP * psp(make_shared<PSP(bench);
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
+    shared_ptr<POSL_Iterator> it = V->getIterator();
     it->Reset();
     bool is_permut = true;
 

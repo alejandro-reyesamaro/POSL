@@ -12,7 +12,7 @@
 #include "aom_decision_function.h"
 #include "../tools/randomizer.h"
 
-#include <random>
+//#include <random>
 
 /*!
  * \class OM_SimulatedAnnealingDecition om_simulated_annealing_decition.h
@@ -23,10 +23,10 @@ class OM_SimulatedAnnealingDecision : public AOM_DecisionFunction
     public:
         OM_SimulatedAnnealingDecision();
 
-        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<DecisionPair> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
         Randomizer rand;

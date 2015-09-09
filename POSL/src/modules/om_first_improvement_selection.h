@@ -20,13 +20,13 @@ class OM_FirstImprovementSelection : public AOM_SelectionFunction
 {
     public:
         //! Constructor
-        OM_FirstImprovementSelection(shared_ptr<Benchmark> bench);
+        OM_FirstImprovementSelection(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<DecisionPair> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input);
+        std::shared_ptr<DecisionPair> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<NeighborSelectingFirstImprovement> search_strategy;
+        std::shared_ptr<NeighborSelectingFirstImprovement> search_strategy;
 };

@@ -7,5 +7,5 @@ class BooleanExpression : public Codable
 {
     public:
         BooleanExpression();
-        virtual bool evaluate(shared_ptr<PSP> psp) = 0;
+        virtual bool evaluate(std::shared_ptr<PSP> psp) = 0;
 };

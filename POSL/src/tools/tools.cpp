@@ -1,25 +1,28 @@
 #include "tools.h"
 #include <sstream>
 #include <algorithm>
+#include <boost/algorithm/string.hpp>
 
-string Tools::int2str(int c)
+using namespace std;
+
+std::string Tools::int2str(int c)
 {
-    string s = to_string(c);
+    std::string s = to_string(c);
     //ostringstream ss;
     //ss << c;
     //std::string s(ss.str());
     return s;
 }
 
-string Tools::float2str(float f)
+std::string Tools::float2str(float f)
 {
-    string s = to_string(f);
+    std::string s = to_string(f);
     return s;
 }
 
 int Tools::str2int(string str)
 {
-    string::size_type sz;   // alias of size_t
+    std::string::size_type sz;   // alias of size_t
     int i_dec = std::stoi (str,&sz);
     return i_dec;
 }
@@ -31,10 +34,10 @@ float Tools::str2float(string str)
     return f;
 }
 
-string Tools::configurationToString(vector<int> config)
+std::string Tools::configurationToString(vector<int> config)
 {
-    string txt = "[ ";
-    vector<int>::iterator it = config.begin();
+    std::string txt = "[ ";
+    std::vector<int>::iterator it = config.begin();
     txt += Tools::int2str(*it);
     it++;
     while ( it != config.end())
@@ -45,10 +48,10 @@ string Tools::configurationToString(vector<int> config)
     return txt + " ]";
 }
 
-int find_closed_char(string code, char open, char close)
+int find_closed_char(std::string code, char open, char close)
 {
     int count = 0;
-    string::iterator it = code.begin();
+    std::string::iterator it = code.begin();
     // *it == 'open' -> assumption
     count ++;
     it ++;
@@ -63,10 +66,10 @@ int find_closed_char(string code, char open, char close)
     return (count == 0) ? pos : -1;
 }
 
-string Tools::frontModule(string code) // code is TRIMED
+std::string Tools::frontModule(std::string code) // code is TRIMED
 {
     char front = code.front();
-    string cm1_code = "";
+    std::string cm1_code = "";
     int pos = 0;
     switch(front)
     {
@@ -91,9 +94,9 @@ int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
     return max(0, b - A);
 }
 
-vector<int> Tools::vector_possible_values_to_hold_sorted(int index, vector<int> current_configuration)
+std::vector<int> Tools::vector_possible_values_to_hold_sorted(int index, std::vector<int> current_configuration)
 {
-    vector<int> posible_values;
+    std::vector<int> posible_values;
     if(index == 0)
     {
         posible_values.push_back(0);
@@ -112,7 +115,7 @@ vector<int> Tools::vector_possible_values_to_hold_sorted(int index, vector<int> 
     return posible_values;
 }
 
-int Tools::mismatches(vector<int> vector_1, vector<int> vector_2)
+int Tools::mismatches(std::vector<int> vector_1, std::vector<int> vector_2)
 {
     int c = 0;
     for(unsigned int i = 0; i < vector_1.size(); i++)
@@ -124,25 +127,39 @@ int Tools::mismatches(vector<int> vector_1, vector<int> vector_2)
 int * Tools::vector2array(vector<int> vec)
 {
     int * buff = new int[vec.size()];
-    copy(vec.begin(), vec.end(), buff);
+    std::copy(vec.begin(), vec.end(), buff);
     return buff;
 }
 
-void Tools::shuffle(vector<int> & vec)
+void Tools::shuffle(std::vector<int> & vec)
 {
-    srand(time(0));
-    random_shuffle (vec.begin(), vec.end());
+    std::srand(time(0));
+    std::random_shuffle (vec.begin(), vec.end());
 }
 
-vector<int> Tools::generateMonotony(int N)
+std::vector<int> Tools::generateMonotony(int N)
 {
-    vector<int> v;
+    std::vector<int> v;
     for(int i = 0; i < N; i++)
+        v.push_back(i);
+    return v;
+}
+
+std::vector<int> Tools::generateMonotony(int a, int b)
+{
+    std::vector<int> v;
+    if(a > b) return v;
+    for (int i = a; i <= b; i++)
         v.push_back(i);
     return v;
 }
 
 void Tools::sortAscendent(vector<int> & v)
 {
-    sort(v.begin(), v.end());
+    std::sort(v.begin(), v.end());
+}
+
+void Tools::trim(std::string & code)
+{
+    boost::trim(code);
 }

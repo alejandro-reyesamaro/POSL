@@ -11,9 +11,6 @@
 
 #include "dStrategy/posl_iterator.h"
 #include "computation_data.h"
-
-using namespace std;
-
 #define NEIGHBORHOOD_PACKING_ID 658203
 
 /*!
@@ -23,14 +20,14 @@ using namespace std;
 class Neighborhood : public ComputationData
 {
     public:
-        Neighborhood(vector<int> _current_configuration);
+        Neighborhood(std::vector<int> _current_configuration);
         Neighborhood(int _config_size);
 
-        virtual POSL_Iterator<vector<int>> * getIterator() = 0;
+        virtual std::shared_ptr<POSL_Iterator> getIterator() = 0;
         virtual int size() = 0;
-        virtual vector<int> neighborAt(int index) = 0;
+        virtual std::vector<int> neighborAt(int index) = 0;
 
     protected:        
-        vector<int> current_configuration;
+        std::vector<int> current_configuration;
 };
 

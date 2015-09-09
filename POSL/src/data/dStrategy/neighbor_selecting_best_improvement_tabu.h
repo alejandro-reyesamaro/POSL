@@ -22,7 +22,7 @@ class NeighborSelectingBestImprovementTabu
     private:
         shared_ptr<TabuList> tabu_list;
         shared_ptr<DecisionPair> rPair;
-        shared_ptr<POSL_Iterator<vector<int>>> it;
+        shared_ptr<POSL_Iterator> it;
         vector<int> current_config;
         vector<int> best_found_config;
 };

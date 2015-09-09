@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 SequentialExecOperator::SequentialExecOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2) :
     BinaryOperator(_M1, _M2, make_shared<SequentialExecutionSequentialStrategy>(_M1, _M2), make_shared<NotImplementedParallelStrategy>())
 {}

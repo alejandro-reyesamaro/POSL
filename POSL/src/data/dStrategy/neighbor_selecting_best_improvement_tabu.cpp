@@ -4,7 +4,7 @@
 
 NeighborSelectingBestImprovementTabu::NeighborSelectingBestImprovementTabu(vector<Domain> domains)
     : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains))),
-      tabu_list(make_shared<TabuList(TABU_SIZE))
+      tabu_list(make_shared<TabuList>(TABU_SIZE))
 {}
 
 shared_ptr<DecisionPair> NeighborSelectingBestImprovementTabu::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)

@@ -27,7 +27,7 @@ void Tester_Comunication::test()
     MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);
 
-    shared_ptr<Benchmark> bench(make_shared<Golfers(4,4,2);
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     vector<int> config1(
     {
         1,  1,  1,  1,
@@ -58,7 +58,7 @@ void Tester_Comunication::test()
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
     //bench->UpdateSolution(sol);
 
-    int> buffer;
+    int * buffer;
 
     if(myid == 0)
     {
@@ -89,7 +89,7 @@ void Tester_Comunication::test()
         shared_ptr<DecisionPair> rPair(make_shared<DecisionPair>(make_shared<Solution>(bench->Domains()), make_shared<Solution>(bench->Domains())));
         rPair->updateFromPack(buffer);
         cout << rPair->GetFound()->configurationToString() << endl;
-        delete buffer;
+        delete[] buffer;
     }
 
     MPI_Finalize();

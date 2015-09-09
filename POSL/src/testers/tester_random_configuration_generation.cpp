@@ -12,11 +12,11 @@ Tester_RandomConfigurationGeneration::Tester_RandomConfigurationGeneration(int a
 string Tester_RandomConfigurationGeneration::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    Solution> sol(make_shared<Solution>(bench->Domains()));
+    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    OperationModule> op1(make_shared<OM_RandomConfGeneration>(bench));
+    shared_ptr<OperationModule> op1(make_shared<OM_RandomConfGeneration>(bench));
     bool is_random = true;
     //PSP> psp(make_shared<PSP(bench);
     shared_ptr<Solution> current_sol = static_pointer_cast<Solution>(op1->execute(psp, psp->GetBenchmark()->GetSolution()));

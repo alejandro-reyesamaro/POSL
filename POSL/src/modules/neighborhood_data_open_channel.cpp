@@ -3,6 +3,8 @@
 #include "../data/neighborhood.h"
 #include "../data/from_pack_neighborhood.h"
 
+using namespace std;
+
 NeighborhoodDataOpenChannel::NeighborhoodDataOpenChannel(shared_ptr<Benchmark> _bench)
     : DataOpenChannel(_bench)
 {

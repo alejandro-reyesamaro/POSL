@@ -9,17 +9,18 @@
 class POSL_Solver
 {
     public:
-        POSL_Solver(ComputationStrategy * _strategy);
+        POSL_Solver(std::shared_ptr<ComputationStrategy> _strategy);
 
-        void solve(PSP * psp);
-        string show(Benchmark * bench);
-        string show();
+        void solve(std::shared_ptr<PSP> psp);
+        std::string show(std::shared_ptr<Benchmark> bench);
+        std::string show();
 
     private:
 
-        string showSolution(string str_finalSol, string str_bestSol);
+        std::string showSolution(std::string str_finalSol, std::string str_bestSol);
 
-        ComputationStrategy * strategy;
-        Solution * final_solution, * best_solution;
+        std::shared_ptr<ComputationStrategy> strategy;
+        std::shared_ptr<Solution> final_solution;
+        std::shared_ptr<Solution> best_solution;
         int final_cost, best_cost, iterations, time;
 };

@@ -16,8 +16,8 @@
 class SpeedOperator : public BinaryOperator
 {
     public:
-        SpeedOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2);
+        SpeedOperator(std::shared_ptr<CompoundModule> _M1, std::shared_ptr<CompoundModule> _M2);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 };

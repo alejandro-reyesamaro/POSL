@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 OM_MultiSortedChangesNeighborhood::OM_MultiSortedChangesNeighborhood(shared_ptr<Benchmark> bench)
     : V(make_shared<MultiSortedChangesNeighborhood>(bench->Domains().size(), bench->Domains()))
 {}

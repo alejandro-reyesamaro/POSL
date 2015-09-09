@@ -6,5 +6,5 @@
 class FactorySolutionPacker : public FactoryPacker
 {
     public:
-        FactorySolutionPacker(shared_ptr<Solution> solution);
+        FactorySolutionPacker(std::shared_ptr<Solution> solution);
 };

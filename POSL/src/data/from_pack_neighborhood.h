@@ -2,26 +2,25 @@
 
 #include "neighborhood.h"
 #include "solution.h"
-#include "dStrategy/elements_change_iterator.h"
 #include "t_changes.h"
 #include "dStrategy/apply_change_behavior.h"
 
 #include <random>
 
-class FromPackNeighborhood : public Neighborhood
+class FromPackNeighborhood : public Neighborhood, public std::enable_shared_from_this<Neighborhood>
 {
     friend class ElementsChangeIterator;
     public:
         FromPackNeighborhood(int * pack);
 
-        shared_ptr<POSL_Iterator<vector<int>>> getIterator(){ return make_shared<ElementsChangeIterator>(this); }
+        std::shared_ptr<POSL_Iterator> getIterator();
         int size(){ return changes.size(); }
-        vector<T_Changes> GetChanges() { return changes; }
+        std::vector<T_Changes> GetChanges() { return changes; }
 
-        vector<int> neighborAt(int index);
-        shared_ptr<FactoryPacker> BuildPacker();
+        std::vector<int> neighborAt(int index);
+        std::shared_ptr<FactoryPacker> BuildPacker();
 
     private:
-        vector<T_Changes> changes;
-        shared_ptr<ApplyChangeBehavior> changeAtBhv;
+        std::vector<T_Changes> changes;
+        std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
 };

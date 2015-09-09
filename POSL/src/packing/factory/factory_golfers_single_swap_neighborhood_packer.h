@@ -6,5 +6,5 @@
 class FactoryGolfersSingleSwapNeighborhoodPacker : public FactoryPacker
 {
     public:
-        FactoryGolfersSingleSwapNeighborhoodPacker(vector<int> config, int neighborhood_size, vector<T_Changes> _changes);
+        FactoryGolfersSingleSwapNeighborhoodPacker(std::vector<int> config, int neighborhood_size, std::vector<T_Changes> _changes);
 };

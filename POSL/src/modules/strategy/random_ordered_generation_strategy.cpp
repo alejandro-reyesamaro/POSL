@@ -25,7 +25,7 @@ void RandomOrderedGenerationStrategy::place (int a, int b, int pos_1, int pos_2)
     }
 }
 
-vector<int> RandomOrderedGenerationStrategy::generate(int max)
+std::vector<int> RandomOrderedGenerationStrategy::generate(int max)
 {
     int size = config.size();
     switch (size)

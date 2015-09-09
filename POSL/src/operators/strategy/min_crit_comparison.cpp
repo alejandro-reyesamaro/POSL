@@ -33,7 +33,7 @@ shared_ptr<ComputationData> MinCritComparison::getMin(shared_ptr<ComputationData
 {
     // Asking for solution
     if(static_pointer_cast<Solution>(d1) && static_pointer_cast<Solution>(d2))
-        return compareSolutions(pointer_cast<Solution>(d1), pointer_cast<Solution>(d2), psp->GetBenchmark());
+        return compareSolutions(static_pointer_cast<Solution>(d1), static_pointer_cast<Solution>(d2), psp->GetBenchmark());
     // Asking for DecisionPair
     else if(static_pointer_cast<DecisionPair>(d1) && static_pointer_cast<DecisionPair>(d2))
         return comparePairs(static_pointer_cast<DecisionPair>(d1), static_pointer_cast<DecisionPair>(d2), psp->GetBenchmark());

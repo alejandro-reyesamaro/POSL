@@ -27,8 +27,8 @@ FactoryComputationStrategy_SA002::FactoryComputationStrategy_SA002(shared_ptr<Be
         int loops_restart_cycle)
     : FactoryComputationStrategy(_bench)
 {
-    shared_ptr<CompoundModule> cm_iter (make_shared<OMS_IterationsCounter();
-    shared_ptr<CompoundModule> cm_time (make_shared<OMS_TimeCounter();
+    shared_ptr<CompoundModule> cm_iter (make_shared<OMS_IterationsCounter>());
+    shared_ptr<CompoundModule> cm_time (make_shared<OMS_TimeCounter>());
 
     // selection1 (p) selection2
     shared_ptr<Operator> rho(make_shared<RhoOperator>(selection_function_1, selection_function_2, prob_op_rho_selection));

@@ -18,8 +18,8 @@
 class SendDataOperator : public UnaryOperator
 {
     public:
-        SendDataOperator(shared_ptr<CompoundModule> _M1);
+        SendDataOperator(std::shared_ptr<CompoundModule> _M1);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 };

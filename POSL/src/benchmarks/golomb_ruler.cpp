@@ -3,6 +3,8 @@
 
 #define PENALIZATION 10
 
+using namespace std;
+
 GolombRuler::GolombRuler(int _order, int _length)
     : Benchmark(vector<Domain>(_order, Domain(make_shared<Factory_NIntDomain>(0, _length)))),
       order(_order),

@@ -2,12 +2,14 @@
 
 #include "../packers/packer.h"
 
+#include <memory>
+
 class FactoryPacker
 {
     public:
-        FactoryPacker(shared_ptr<Packer> _packer);
-        vector<int> pack();
+        FactoryPacker(std::shared_ptr<Packer> _packer);
+        std::vector<int> pack();
 
     protected:
-        shared_ptr<Packer> packer;
+        std::shared_ptr<Packer> packer;
 };

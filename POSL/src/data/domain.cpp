@@ -2,10 +2,10 @@
 
 #include <algorithm>
 
-Domain::Domain(shared_ptr<FactoryDomain> fd) : D(fd->BuildDomain())
+Domain::Domain(std::shared_ptr<FactoryDomain> fd) : D(fd->BuildDomain())
 {}
 
-vector<int> Domain::GetValues(){ return D; }
+std::vector<int> Domain::GetValues(){ return D; }
 
 int Domain::minimum(){ return *min_element(D.begin(), D.end()); }
 

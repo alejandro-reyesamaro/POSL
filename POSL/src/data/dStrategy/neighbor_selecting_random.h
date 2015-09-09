@@ -9,7 +9,7 @@
 class NeighborSelectingRandom
 {
     public:
-        NeighborSelectingRandom(vector<Domain> domains);
+        NeighborSelectingRandom(std::vector<Domain> domains);
 
         //! Select the the current and the selected configurations when the search state indicates to stop
         /*!
@@ -17,10 +17,10 @@ class NeighborSelectingRandom
         * \param V The set (a Neighborhood)
         * \return The current and the new found configurations
         */
-        shared_ptr<DecisionPair> select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V);
+        std::shared_ptr<DecisionPair> select(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> V);
 
     private:
-        shared_ptr<Randomizer> rand;
-        shared_ptr<DecisionPair> rPair;
-        vector<int> best_found_config;
+        Randomizer rand;
+        std::shared_ptr<DecisionPair> rPair;
+        std::vector<int> best_found_config;
 };

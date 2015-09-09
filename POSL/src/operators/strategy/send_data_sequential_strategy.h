@@ -17,11 +17,11 @@
 class SendDataSequentialStrategy : public SequentialExecutionStrategy
 {
     public:
-        SendDataSequentialStrategy(shared_ptr<CompoundModule> _M1);
+        SendDataSequentialStrategy(std::shared_ptr<CompoundModule> _M1);
 
-        shared_ptr<ComputationData> evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
 
     private:
-        shared_ptr<CompoundModule> M1;
-        shared_ptr<ComputationData> output;
+        std::shared_ptr<CompoundModule> M1;
+        std::shared_ptr<ComputationData> output;
 };

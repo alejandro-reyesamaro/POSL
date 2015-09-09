@@ -9,7 +9,7 @@
 #include "../data/decision_pair.h"
 #include "../tools/tools.h"
 
-Tester_BestImprovementSelection::Tester_BestImprovementSelection(int argc, char>argv[])
+Tester_BestImprovementSelection::Tester_BestImprovementSelection(int argc, char * argv[])
     : Tester(argc, argv)
 {
 }
@@ -19,7 +19,7 @@ string Tester_BestImprovementSelection::test()
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
     {
@@ -34,7 +34,7 @@ string Tester_BestImprovementSelection::test()
         16,  3,  6,  9
     });
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol);

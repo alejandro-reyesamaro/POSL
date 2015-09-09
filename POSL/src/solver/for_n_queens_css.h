@@ -6,11 +6,11 @@
 class ForNQueensCSS : public CreateSolverStrategy
 {
     public:
-        ForNQueensCSS(shared_ptr<NQueens> nq);
-        vector<shared_ptr<POSL_Solver>> create();
+        ForNQueensCSS(std::shared_ptr<NQueens> nq);
+        std::vector<std::shared_ptr<POSL_Solver>> create();
 
     private:
-        shared_ptr<POSL_Solver> single_solver;
-        shared_ptr<POSL_Solver> receiver_solver;
-        shared_ptr<POSL_Solver> sender_solver;
+        std::shared_ptr<POSL_Solver> single_solver;
+        std::shared_ptr<POSL_Solver> receiver_solver;
+        std::shared_ptr<POSL_Solver> sender_solver;
 };

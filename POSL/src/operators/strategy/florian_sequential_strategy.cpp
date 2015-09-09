@@ -4,6 +4,8 @@
 #define N_ATTEMPTS 100
 #endif
 
+using namespace std;
+
 #include <iostream>
 #include <limits>
 
@@ -19,7 +21,7 @@ shared_ptr<ComputationData> FlorianSequentialStrategy::evaluate(shared_ptr<PSP> 
 
     for(int i = 0; i < N_ATTEMPTS; i++)
     {
-        temp_solution = (Solution *)M1->execute(psp, input);
+        temp_solution = static_pointer_cast<Solution>(M1->execute(psp, input));
         int cost = psp->GetBenchmark()->solutionCost(temp_solution);
         if(cost < best_cost)
         {

@@ -18,8 +18,8 @@
 class UnaryOperator : public Operator
 {
     public:
-        UnaryOperator(shared_ptr<CompoundModule> _M1, shared_ptr<SequentialExecutionStrategy> seq_strgy);
+        UnaryOperator(std::shared_ptr<CompoundModule> _M1, std::shared_ptr<SequentialExecutionStrategy> seq_strgy);
 
     protected:
-        shared_ptr<CompoundModule> M1;
+        std::shared_ptr<CompoundModule> M1;
 };

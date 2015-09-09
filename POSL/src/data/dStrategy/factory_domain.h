@@ -11,8 +11,6 @@
 
 #include <vector>
 
-using namespace std;
-
 /*!
  * \class Factory_Domain factory_domain.h
  * \brief Interface for factory domain
@@ -20,5 +18,5 @@ using namespace std;
 class FactoryDomain
 {
     public:
-        virtual vector<int> BuildDomain() = 0;
+        virtual std::vector<int> BuildDomain() = 0;
 };

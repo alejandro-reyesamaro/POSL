@@ -2,19 +2,20 @@
 #include "neighborhood.h"
 #include "solution.h"
 
-class UnionNeighborhood : public Neighborhood
+class UnionNeighborhood : public Neighborhood, public std::enable_shared_from_this<UnionNeighborhood>
 {
     friend class UnionIterator;
     public:
-        UnionNeighborhood(shared_ptr<Solution> sol, shared_ptr<Neighborhood> v1, shared_ptr<Neighborhood> v2);
+        UnionNeighborhood(std::shared_ptr<Solution> sol, std::shared_ptr<Neighborhood> v1, std::shared_ptr<Neighborhood> v2);
 
-        shared_ptr<POSL_Iterator<vector<int>>> getIterator(){ return make_shared<UnionIterator>(this); }
+        std::shared_ptr<POSL_Iterator> getIterator();
         // OPTIMIZAR : calcular bien la cantidad
         int size(){ return V1->size() + V2->size(); }
 
-        vector<int> neighborAt(int index);
-        shared_ptr<FactoryPacker> BuildPacker();
+        std::vector<int> neighborAt(int index);
+        std::shared_ptr<FactoryPacker> BuildPacker();
 
     private:
-        Neighborhood * V1, * V2;
+        std::shared_ptr<Neighborhood> V1;
+        std::shared_ptr<Neighborhood> V2;
 };

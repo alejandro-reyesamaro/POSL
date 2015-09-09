@@ -22,13 +22,13 @@
 class OM_OneElementChangedNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
-        OM_OneElementChangedNeighborhood(shared_ptr<Benchmark> bench);
+        OM_OneElementChangedNeighborhood(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<Neighborhood> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input);
+        std::shared_ptr<Neighborhood> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        OneElementChangedNeighborhood * V;
+        std::shared_ptr<OneElementChangedNeighborhood> V;
 };

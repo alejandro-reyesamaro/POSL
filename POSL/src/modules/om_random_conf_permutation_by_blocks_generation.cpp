@@ -1,8 +1,9 @@
 #include "om_random_conf_permutation_by_blocks_generation.h"
 
-
 #include <random>
 #include <iostream>
+
+using namespace std;
 
 OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),

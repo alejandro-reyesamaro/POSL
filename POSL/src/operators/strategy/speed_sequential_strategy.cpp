@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 SpeedSequentialStrategy::SpeedSequentialStrategy(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
     : M1(_M1), M2(_M2),
       chro(new Chronometer()),
@@ -11,7 +13,7 @@ SpeedSequentialStrategy::SpeedSequentialStrategy(shared_ptr<CompoundModule> _M1,
       result2(nullptr)
 {}
 
-ComputationData * SpeedSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
+shared_ptr<ComputationData> SpeedSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     chro->reset();
     chro->start();

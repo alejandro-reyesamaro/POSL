@@ -6,11 +6,11 @@
 class OneChangeNeighborhoodPacker : public NeighborhoodPacker
 {
     public:
-        OneChangeNeighborhoodPacker(vector<int> current_config,
+        OneChangeNeighborhoodPacker(std::vector<int> current_config,
                                     int _neighborhood_size,
-                                    vector<T_Changes> _changes);
+                                    std::vector<T_Changes> _changes);
 
     protected:
         void packBody();
-        vector<T_Changes> changes;
+        std::vector<T_Changes> changes;
 };

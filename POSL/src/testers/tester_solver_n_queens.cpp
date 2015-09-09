@@ -13,7 +13,7 @@ string Tester_SolverNQueens::test()
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     shared_ptr<CreateSolverStrategy> css(make_shared<ForNQueensCSS>(bench));
-    vector<shared_ptr<POSL_Solver> solvers = css->create();
+    vector<shared_ptr<POSL_Solver>> solvers = css->create();
 
     solvers[0]->solve(psp);
     return solvers[0]->show(psp->GetBenchmark());

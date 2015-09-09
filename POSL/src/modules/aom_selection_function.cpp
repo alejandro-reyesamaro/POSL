@@ -1,6 +1,6 @@
 #include "aom_selection_function.h"
 
-shared_ptr<ComputationData> AOM_SelectionFunction::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
+std::shared_ptr<ComputationData> AOM_SelectionFunction::execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input)
 {
-    return spcf_execute(psp, static_pointer_cast<Neighborhood>(input));
+    return spcf_execute(psp, std::static_pointer_cast<Neighborhood>(input));
 }

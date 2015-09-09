@@ -14,7 +14,7 @@
 #include "../../data/seed.h"
 #include "../../tools/randomizer.h"
 
-#include <random>
+//#include <random>
 
 /*!
  * \class RandomConfigurationGenerationStrategy random_configuration_generation_strategy.h
@@ -25,15 +25,9 @@ class RandomConfigurationGenerationStrategy
     public:
         RandomConfigurationGenerationStrategy(int configuration_size);
 
-        //! Generates a random configuration
-        /*!
-        * \param domains The sets of posibles values for the variables
-        * \param seed A seed for the random generatos
-        * \return A random configuration
-        */
-        vector<int> generate(vector<Domain> domains);
+        std::vector<int> generate(std::vector<Domain> domains);
 
     private:
         Randomizer rand;
-        vector<int> config;
+        std::vector<int> config;
 };

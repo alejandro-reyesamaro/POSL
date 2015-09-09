@@ -27,7 +27,7 @@ string Tester_MultiSortedChangesNeighborhood::test()
     //PSP * psp(make_shared<PSP(bench);
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
+    shared_ptr<POSL_Iterator> it = V ->getIterator();
     it->Reset();
     int ch  = 0;
     bool v  = true;

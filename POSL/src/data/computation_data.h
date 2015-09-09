@@ -14,8 +14,6 @@
 #include <vector>
 #include <memory>
 
-using namespace std;
-
 /*!
  * \class ComputationData computation_data.h
  * \brief (Abstract) Class to represent all types of I/O in POSL
@@ -23,5 +21,5 @@ using namespace std;
 class ComputationData
 {
     public:
-        virtual shared_ptr<FactoryPacker> BuildPacker() = 0;
+        virtual std::shared_ptr<FactoryPacker> BuildPacker() = 0;
 };

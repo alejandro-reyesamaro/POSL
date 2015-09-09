@@ -4,14 +4,11 @@
 #include <vector>
 #include <string>
 
-
-using namespace std;
-
 class LongInt
 {
     friend class MergedLongInt;
     public:
-        LongInt(unsigned int _bytes, vector<int> _value);
+        LongInt(unsigned int _bytes, std::vector<int> _value);
         LongInt(unsigned int _bytes);
         LongInt(unsigned int _bytes, int _value);
 
@@ -26,11 +23,11 @@ class LongInt
         void deactivateAll();
         int bitCount();
         bool Equal(LongInt &other);
-        string toString();
+        std::string toString();
         //bool clearBits();
 
     private:
         int bytes;
-        vector<int> value;
+        std::vector<int> value;
         //vector<int> aux;
 };

@@ -1,5 +1,7 @@
 #include "binary_operator.h"
 
+using namespace std;
+
 BinaryOperator::BinaryOperator(shared_ptr<CompoundModule> _M1,
                                shared_ptr<CompoundModule> _M2,
                                shared_ptr<SequentialExecutionStrategy> seq_strgy,

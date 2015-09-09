@@ -1,5 +1,7 @@
 #include "not_implemented_parallel_strategy.h"
 
+using namespace std;
+
 NotImplementedParallelStrategy::NotImplementedParallelStrategy()
 {
 }

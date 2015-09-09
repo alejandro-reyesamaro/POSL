@@ -18,21 +18,21 @@
  * \class DecisionPair decision_pair.h
  * \brief Class to represent a couple of solutions (current and new found)
  */
-class DecisionPair : public ComputationData
+class DecisionPair : public ComputationData, public std::enable_shared_from_this<DecisionPair>
 {
     public:
-        DecisionPair(shared_ptr<Solution> _current, shared_ptr<Solution> _found);
+        DecisionPair(std::shared_ptr<Solution> _current, std::shared_ptr<Solution> _found);
 
         bool equals();
-        shared_ptr<FactoryPacker> BuildPacker();
+        std::shared_ptr<FactoryPacker> BuildPacker();
 
-        shared_ptr<Solution> GetCurrent(){ return current; }
-        shared_ptr<Solution> GetFound(){ return found; }
+        std::shared_ptr<Solution> GetCurrent(){ return current; }
+        std::shared_ptr<Solution> GetFound(){ return found; }
 
-        void update(vector<int> _current, vector<int> _found);
+        void update(std::vector<int> _current, std::vector<int> _found);
         void updateFromPack(int * pack);
 
     private :
-        shared_ptr<Solution> current;
-        shared_ptr<Solution> found;
+        std::shared_ptr<Solution> current;
+        std::shared_ptr<Solution> found;
 };

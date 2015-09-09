@@ -20,13 +20,13 @@
 class OM_RandomSelection : public AOM_SelectionFunction
 {
     public:
-        OM_RandomSelection(shared_ptr<Benchmark> bench);
+        OM_RandomSelection(std::shared_ptr<Benchmark> bench);
 
-        shared_ptr<DecisionPair> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input);
+        std::shared_ptr<DecisionPair> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 
     private:
-        shared_ptr<NeighborSelectingRandom> search_strategy;
+        std::shared_ptr<NeighborSelectingRandom> search_strategy;
 };

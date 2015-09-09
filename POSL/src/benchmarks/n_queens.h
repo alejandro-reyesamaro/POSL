@@ -20,16 +20,15 @@ class NQueens : public Benchmark
     public:
         NQueens(int n);
 
-        int solutionCost(vector<int> configuration);
-        string ShowSolution(shared_ptr<Solution> solution);
+        int Order(){ return N; }
 
-        //! Properties
-        int Order();
+        int solutionCost(std::vector<int> configuration);
+        std::string ShowSolution(std::shared_ptr<Solution> solution);
 
     private:
         //! order
         int N;
-        vector<int> err_d1;
-        vector<int> err_d2;
-        vector<unsigned int> flags;
+        std::vector<int> err_d1;
+        std::vector<int> err_d2;
+        std::vector<unsigned int> flags;
 };

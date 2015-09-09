@@ -17,10 +17,10 @@ string Tester_CostOfSolutionSquaringSquare::test()
     vector<int> config1({0, 6, 0, 6, 7, 4, 7, 0, 0, 6, 6, 4, 7, 7}); // costo 0
     vector<int> config2({2, 0, 6, 1, 5, 7, 0, 2, 1, 6, 8, 2, 0, 4}); // costo 27
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config1);
     int c1 = psp->GetBenchmark()->solutionCost(sol);
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config2);
     int c2 = psp->GetBenchmark()->solutionCost(sol);
 
     //cout << c1 << " - " << c2 << endl;

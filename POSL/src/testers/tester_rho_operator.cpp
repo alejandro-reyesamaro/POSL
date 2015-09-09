@@ -32,7 +32,7 @@ string Tester_RhoOperator::test()
         16,  3,  6,  9
     });
 
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol);

@@ -11,5 +11,5 @@ ComputationStrategy::ComputationStrategy(shared_ptr<FactoryComputationStrategy> 
 shared_ptr<Solution> ComputationStrategy::execute(shared_ptr<PSP> psp)
 {
     //return (Solution *)module->execute(psp, new Seed());
-    return static_pointer_cast<Solution>(module->execute(psp, new Seed()));
+    return static_pointer_cast<Solution>(module->execute(psp, make_shared<Seed>()));
 }

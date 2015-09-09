@@ -11,8 +11,6 @@
 
 #include <memory>
 
-using namespace std;
-
 /*!
  * \class Node node.h
  * \brief Template-class to represent a node (linked lists)
@@ -26,7 +24,7 @@ class Node
         * \param _value The node value
         * \param _next A pointer to the next node in the linked list
         */
-        Node(T _value, shared_ptr<Node<T>> _next):value(_value), next(_next){}
+        Node(T _value, std::shared_ptr<Node<T>> _next):value(_value), next(_next){}
 
         //! Constructor (next node dull)
         /*!
@@ -38,5 +36,5 @@ class Node
         T value;
 
         //! A pointer to the next value
-        shared_ptr<Node<T>> next;
+        std::shared_ptr<Node<T>> next;
 };

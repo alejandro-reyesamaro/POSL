@@ -104,8 +104,6 @@ int Golfers::solutionCost(vector<int> configuration)
     return cost;
 }
 
-
-
 string Golfers::ShowSolution(shared_ptr<Solution> solution)
 {
     string out =  "Golfers: players-" + Tools::int2str(players);

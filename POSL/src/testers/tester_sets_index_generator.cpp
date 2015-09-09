@@ -12,7 +12,7 @@ string Tester_SetsIndexGenerator::test()
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     bench->UpdateSolution(sol);
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench);
+    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     RandIndexGenerator it(20 , 3);
     //  return Tools::int2str( it.indexes[0]->value);

@@ -30,13 +30,13 @@ string Tester_PackingMultiChangesNeighborhood::test()
         16,  3,  6,  9
     });
     //PSP> psp(make_shared<PSP(bench);
-    sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     shared_ptr<OperationModule> op(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
     shared_ptr<MultiElementsChangedNeighborhood> N = static_pointer_cast<MultiElementsChangedNeighborhood >(V);
     shared_ptr<MultiChangesNeighborhoodPacker> p(make_shared<MultiChangesNeighborhoodPacker>(config, N->size(), N->GetChanges()));
     vector<int> pack = p->pack();
-    shared_ptr<POSL_Iterator<vector<int>>> it = V ->getIterator();
+    shared_ptr<POSL_Iterator> it = V ->getIterator();
 
     shared_ptr<PackingNeighborhoodTester> tester(make_shared<PackingNeighborhoodTester>());
     return tester->test(sol, it, pack, "Packing Multi Changes Neighborhood");

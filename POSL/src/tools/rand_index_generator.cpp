@@ -1,4 +1,5 @@
 #include "rand_index_generator.h"
+#include "tools.h"
 
 #include <iostream>
 #include <math.h>
@@ -7,11 +8,12 @@
 RandIndexGenerator::RandIndexGenerator(int configuration_size, int _dim)
     : dim(min((int)sqrt(configuration_size),_dim)), indexes(min((int)sqrt(configuration_size),_dim))
 {
-    vector<int> conf_index;
-    for (int i = 0; i < configuration_size; i++)
-        conf_index.push_back(i);
-    srand(time(0));
-    random_shuffle (conf_index.begin(), conf_index.end());
+    vector<int> conf_index = Tools::generateMonotony(configuration_size);
+    //for (int i = 0; i < configuration_size; i++)
+    //    conf_index.push_back(i);
+    //srand(time(0));
+    //random_shuffle (conf_index.begin(), conf_index.end());
+    Tools::shuffle(conf_index);
 
     for(int i = 0; i < dim; i++)
         for(int j = 0; j < dim; j++)

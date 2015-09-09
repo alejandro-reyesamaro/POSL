@@ -6,12 +6,11 @@
 class SolutionPacker : public Packer
 {
     public:
-        SolutionPacker(shared_ptr<Solution> solution);
+        SolutionPacker(std::shared_ptr<Solution> solution);
 
-        vector<int> pack();
-        //static Solution * unpack(int * pack, vector<Domain> domains);
-        void update(vector<int> _configuration);
+        std::vector<int> pack();
+        void update(std::vector<int> _configuration);
 
     private:
-        vector<int> configuration;
+        std::vector<int> configuration;
 };

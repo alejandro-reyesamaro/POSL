@@ -1,5 +1,5 @@
 #include "factory_decision_pair_packer.h"
 
-FactoryDecisionPairPacker::FactoryDecisionPairPacker(shared_ptr<DecisionPair> pair)
-    : FactoryPacker(make_shared<DecisionPairPacker>(pair))
+FactoryDecisionPairPacker::FactoryDecisionPairPacker(std::shared_ptr<DecisionPair> pair)
+    : FactoryPacker(std::make_shared<DecisionPairPacker>(pair))
 {}

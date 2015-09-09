@@ -20,8 +20,8 @@ class OM_AlwaysImproveDecision : public AOM_DecisionFunction
     public:
         OM_AlwaysImproveDecision();
 
-        shared_ptr<Solution> spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<DecisionPair> input);
 
         //! From Codable
-        string codeToSend();
+        std::string codeToSend();
 };
