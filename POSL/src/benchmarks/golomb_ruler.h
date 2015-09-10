@@ -10,7 +10,7 @@
  */
 
 #include "benchmark.h"
-#include "../tools/long_int.h"
+//#include "../tools/long_int.h"
 
 /*!
  * \class GolombRuler golomb_ruler.h
@@ -30,6 +30,4 @@ class GolombRuler : public Benchmark
     private:
         //! [Number of marcs], [Maximum distance]
         int order, length;
-
-        LongInt measures;
 };

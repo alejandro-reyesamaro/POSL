@@ -1,10 +1,13 @@
 #include "benchmark.h"
 
-Benchmark::Benchmark(std::vector<Domain> _domains)
+using namespace std;
+
+Benchmark::Benchmark(vector<Domain> _domains, shared_ptr<SolutionCostStrategy> _cost_strategy)
     : domains(_domains),
-      solution(std::make_shared<Solution>(_domains))
+      solution(make_shared<Solution>(_domains)),
+      cost_strategy(_cost_strategy)
 {}
 
-int Benchmark::solutionCost(std::shared_ptr<Solution> sol){ return solutionCost(sol->GetConfiguration()); }
+int Benchmark::solutionCost(shared_ptr<Solution> sol){ return solutionCost(sol->GetConfiguration()); }
 
-void Benchmark::UpdateSolution(std::shared_ptr<Solution> sol){ solution = sol; }
+void Benchmark::UpdateSolution(shared_ptr<Solution> sol){ solution = sol; }

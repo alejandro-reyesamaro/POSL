@@ -28,7 +28,4 @@ class NQueens : public Benchmark
     private:
         //! order
         int N;
-        std::vector<int> err_d1;
-        std::vector<int> err_d2;
-        std::vector<unsigned int> flags;
 };

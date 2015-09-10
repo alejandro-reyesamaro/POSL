@@ -59,17 +59,17 @@ int main(int argc, char **argv)
     vector<shared_ptr<Tester>> tests;
 
 
-    //tests.push_back(make_shared<Tester_CostOfSolutionGolfers>(argc, argv));
-    //tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
-    //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
-    //tests.push_back(make_shared<Tester_CostOfSolutionNQueens>(argc, argv));
-    tests.push_back(make_shared<Tester_OneElementChangedNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_MultiElementsChangedNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_GolfersPermutationNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_MultiSortedChangesNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_FromPackNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_UnionOperator>(argc, argv));
+    tests.push_back(make_shared<Tester_CostOfSolutionGolfers>(argc, argv));
+    tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
+    tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
+    tests.push_back(make_shared<Tester_CostOfSolutionNQueens>(argc, argv));
+    //tests.push_back(make_shared<Tester_OneElementChangedNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_MultiElementsChangedNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_GolfersPermutationNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_MultiSortedChangesNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_FromPackNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_UnionOperator>(argc, argv));
 
     //tests.push_back(make_shared<Tester_RandomOrderedConfGeneration>(argc, argv));
     //tests.push_back(make_shared<Tester_FlorianRandomConfigurationGeneration>(argc, argv));
@@ -87,17 +87,17 @@ int main(int argc, char **argv)
     tests.push_back(make_shared<Tester_BestImprovementTabuSelection>(argc, argv));
     tests.push_back(make_shared<Tester_RandomPermutationConfigurationGeneration>(argc, argv));
     */
-    tests.push_back(make_shared<Tester_PackingSolution>(argc, argv));
-    tests.push_back(make_shared<Tester_PackingDecisionPair>(argc, argv));
-    tests.push_back(make_shared<Tester_PackingOneElementChangedNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_PackingMultiChangesNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_PackingGolfersPermutationNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_PackingSolution>(argc, argv));
+    //tests.push_back(make_shared<Tester_PackingDecisionPair>(argc, argv));
+    //tests.push_back(make_shared<Tester_PackingOneElementChangedNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_PackingMultiChangesNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_PackingGolfersPermutationNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_PackingUnionNeighborhood>(argc, argv));
 
-    tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
-    tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
-    tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
-    tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)

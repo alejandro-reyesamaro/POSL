@@ -4,6 +4,8 @@
 #include "../modules/om_one_sorted_change_neighborhood.h"
 #include "../tools/tools.h"
 
+#include <algorithm>
+
 Tester_OneSortedChangeNeighborhood::Tester_OneSortedChangeNeighborhood(int argc, char *argv[])
     : Tester(argc, argv)
 {

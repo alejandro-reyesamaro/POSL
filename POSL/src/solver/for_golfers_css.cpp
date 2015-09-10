@@ -48,7 +48,7 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             make_shared<OM_BestImprovementTabuSelection>(bench),
             make_shared<OM_SimulatedAnnealingDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
-            0.2, 20, 100, 10
+            0.2, 20, 10, 10
         ))))
 {}
 

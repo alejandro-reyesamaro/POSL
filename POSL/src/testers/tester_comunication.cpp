@@ -28,33 +28,9 @@ void Tester_Comunication::test()
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);
 
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    vector<int> config1(
-    {
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
 
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1
-    });
-    vector<int> config2(
-    {
-        1,  2,   3,  4,
-        5,  6,   7,  8,
-        9,  10, 11, 12,
-        13, 14, 15, 16,
-
-        13, 10,  7,  4,
-        14, 11,  8,  1,
-        15, 12,  2,  5,
-        16,  3,  6,  9
-    });
-
-    shared_ptr<Solution> sol1(make_shared<Solution>(bench->Domains(), config1));
-    shared_ptr<Solution> sol2(make_shared<Solution>(bench->Domains(), config2));
+    shared_ptr<Solution> sol1(make_shared<Solution>(bench->Domains(), Tester::Golfers_442_1s()));
+    shared_ptr<Solution> sol2(make_shared<Solution>(bench->Domains(), Tester::Golfers_442_c0()));
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
     //bench->UpdateSolution(sol);
 

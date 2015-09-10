@@ -10,6 +10,7 @@
  */
 
 #include "../data/solution.h"
+#include "cost_strategy/solution_cost_strategy.h"
 
 /*!
  * \class Benchmark benchmark.h
@@ -17,8 +18,8 @@
  */
 class Benchmark
 {
-    public:
-        Benchmark(std::vector<Domain> _domains);
+    public:        
+        Benchmark(std::vector<Domain> _domains, std::shared_ptr<SolutionCostStrategy> _cost_strategy);
 
         int solutionCost(std::shared_ptr<Solution> sol);
         void UpdateSolution(std::shared_ptr<Solution> sol);
@@ -32,4 +33,5 @@ class Benchmark
     protected:
         std::vector<Domain> domains;
         std::shared_ptr<Solution> solution;
+        std::shared_ptr<SolutionCostStrategy> cost_strategy;
 };

@@ -1,17 +1,21 @@
 #include "squaring_square.h"
 #include "../data/dStrategy/factory_n_int_domain.h"
 #include "../tools/tools.h"
+#include "cost_strategy/squaring_square_superposition_cost_strategy.h"
 
 using namespace std;
 
 SquaringSquare::SquaringSquare(int _size, std::vector<int> _squares)
-    : Benchmark(std::vector<Domain>(_squares.size() * 2, Domain(std::make_shared<Factory_NIntDomain>(0,_size - 1)))),
+    : Benchmark(std::vector<Domain>(_squares.size() * 2, Domain(std::make_shared<Factory_NIntDomain>(0,_size - 1))),
+                make_shared<SquaringSquareSuperpositionCostStrategy>(_size, _squares)),
       size(_size),
       squares(_squares)
 {}
 
 int SquaringSquare::solutionCost(std::vector<int> configuration)
 {
+    return cost_strategy->solutionCost(configuration);
+    /*
     int sqrs = squares.size();
     if (configuration.size() > sqrs * 2)
         return size * size * size;
@@ -34,6 +38,7 @@ int SquaringSquare::solutionCost(std::vector<int> configuration)
             cost += intersecX * intersecY + penaltyX + penaltyY;
         }
     return cost;
+    */
 }
 
 std::string SquaringSquare::ShowSolution(std::shared_ptr<Solution> solution)

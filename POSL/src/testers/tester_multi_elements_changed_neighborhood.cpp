@@ -16,20 +16,7 @@ string Tester_MultiElementsChangedNeighborhood::test()
     bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    vector<int> config(
-    {
-        0,  0,  0,  0,
-        0,  0,  0,  0,
-        0,  0,  0,  0,
-        0,  0,  0,  0,
-
-        0,  0,  0,  0,
-        0,  0,  0,  0,
-        0,  0,  0,  0,
-        0,  0,  0,  0
-    });
-
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_0s());
 
     shared_ptr<OperationModule> op(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));

@@ -21,20 +21,7 @@ string Tester_BestImprovementTabuSelection::test()
     bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    vector<int> config(
-    {
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1
-    });
-
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_1s());
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol);

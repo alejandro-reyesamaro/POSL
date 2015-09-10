@@ -28,48 +28,8 @@ string Tester_ConditionalOperator::test()
     bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    vector<int> config0(
-    {
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1,
-        1,  1,  1,  1
-    });
-
-    vector<int> config1( // pas trop mal
-    {
-        1,  2,   3,  4,
-        5,  6,   7,  8,
-        9,  10, 11, 12,
-        13, 14, 15, 16,
-
-        13, 10,  7,  8,
-        14, 11,  4,  1,
-        15, 12,  2,  5,
-        16,  3,  6,  9
-    });
-
-    vector<int> config2( // mal
-    {
-        1,  4,   3,  4,
-        4,  4,   7,  8,
-        9,  4, 11, 12,
-        4, 4, 15, 16,
-
-        13, 10,  7,  8,
-        14, 11,  4,  1,
-        15, 12,  2,  5,
-        16,  3,  6,  9
-    });
-
-    //PSP * psp(make_shared<PSP(bench);
-    shared_ptr<Solution> sol1(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
-    shared_ptr<Solution> sol2(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
+    shared_ptr<Solution> sol1(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_c4()));
+    shared_ptr<Solution> sol2(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_mal()));
 
     //int c1 = psp->GetBenchmark()->solutionCost(sol1);
     //int c2 = psp->GetBenchmark()->solutionCost(sol2);

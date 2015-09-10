@@ -10,7 +10,7 @@
  */
 
 #include "benchmark.h"
-#include "../tools/long_int.h"
+//#include "../tools/long_int.h"
 
 /*!
  * \class Golfers golfers.h
@@ -32,11 +32,4 @@ class Golfers : public Benchmark
     private:
         //! [number of groups],[players per group],[weeks to play]
         int groups, players, weeks;
-
-        // for CostOfSolution
-        LongInt alldiff;
-        LongInt new_partner;
-        LongInt global_partnership;
-        std::vector<LongInt> global_partners;
-        std::vector<LongInt> group_partners;
 };

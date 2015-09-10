@@ -192,7 +192,13 @@ SOURCES += src/main.cpp \
     src/data/dStrategy/standard_apply_change_behavior.cpp \
     src/data/dStrategy/sorted_apply_change_behavior.cpp \
     src/computation/factory_computation_strategy.cpp \
-    src/packing/module_uncoder.cpp
+    src/packing/module_uncoder.cpp \
+    src/benchmarks/cost_strategy/golfers_intersections_costs_trategy.cpp \
+    src/benchmarks/cost_strategy/solution_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/golfers_long_int_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/golomb_ruler_distances_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/n_queens_daniel_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/squaring_square_superposition_cost_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -387,7 +393,13 @@ HEADERS += \
     src/data/dStrategy/single_swap_apply_change_behavior.h \
     src/data/dStrategy/standard_apply_change_behavior.h \
     src/data/dStrategy/sorted_apply_change_behavior.h \
-    src/packing/module_uncoder.h
+    src/packing/module_uncoder.h \
+    src/benchmarks/cost_strategy/golfers_intersections_costs_trategy.h \
+    src/benchmarks/cost_strategy/solution_cost_strategy.h \
+    src/benchmarks/cost_strategy/golfers_long_int_cost_strategy.h \
+    src/benchmarks/cost_strategy/golomb_ruler_distances_cost_strategy.h \
+    src/benchmarks/cost_strategy/n_queens_daniel_cost_strategy.h \
+    src/benchmarks/cost_strategy/squaring_square_superposition_cost_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

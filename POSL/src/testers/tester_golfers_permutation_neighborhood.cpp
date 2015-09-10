@@ -18,19 +18,6 @@ string Tester_GolfersPermutationNeighborhood::test()
     bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
-    vector<int> config(
-    {
-        1,  2,   3,  4,
-        5,  6,   7,  8,
-        9,  10, 11, 12,
-        13, 14, 15, 16,
-
-        13, 10,  7,  8,
-        14, 11,  4,  1,
-        15, 12,  2,  5,
-        16,  3,  6,  9
-    });
-
     vector<int> perm(
     {
         1,  2,   3,  4,
@@ -39,7 +26,7 @@ string Tester_GolfersPermutationNeighborhood::test()
         13, 14, 15, 16
     });
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_c0());
 
     shared_ptr<OperationModule> op(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));
     //PSP * psp(make_shared<PSP(bench);

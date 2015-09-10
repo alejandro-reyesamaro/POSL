@@ -18,9 +18,24 @@ class Tester
 {
     public:
         Tester(int argc, char *argv[]);
-        virtual string test() = 0;
+        virtual string test() = 0;        
 
-    protected:
         int ARGC;
         char **ARGV;
+
+        static vector<int> Golfers_442_c0();
+        static vector<int> Golfers_442_c4();
+        static vector<int> Golfers_442_1s();
+        static vector<int> Golfers_442_0s();
+        static vector<int> Golfers_442_mal();
+        static vector<int> Golfers_553_c0();
+        static vector<int> Golfers_553_c1();
+
+        static vector<int> Golomb_6_17_c2();
+        static vector<int> Golomb_7_25_c4();
+        static vector<int> Golomb_8_34_c7();
+        static vector<int> Golomb_9_44_c9();
+        static vector<int> Golomb_10_55_c11();
+        static vector<int> Golomb_11_72_c19();
+        static vector<int> Golomb_12_85_c19();
 };

@@ -1,7 +1,7 @@
 #include "n_queens.h"
-#include "../tools/long_int.h"
 #include "../tools/tools.h"
 #include "../data/dStrategy/factory_n_int_domain.h"
+#include "cost_strategy/n_queens_daniel_cost_strategy.h"
 
 #include <vector>
 #include <iostream>
@@ -9,61 +9,14 @@
 
 using namespace std;
 
-#define PENALIZATION 10
-
-#define D1(i, j)      (i + N-1 - j)
-#define D2(i, j)      (i + j)
-#define ErrD1(i, j)   (err_d1[D1(i, j)])
-#define ErrD2(i, j)   (err_d2[D2(i, j)])
-
 NQueens::NQueens(int n)
-    : Benchmark(vector<Domain>(n, Domain(std::make_shared<Factory_NIntDomain>(0, n-1)))),
-      N(n),
-      err_d1(2 * n - 1, 0),
-      err_d2(2 * n - 1, 0),
-      flags(n,0)
+    : Benchmark(vector<Domain>(n, Domain(std::make_shared<Factory_NIntDomain>(0, n-1))), make_shared<NQueensDanielCostStrategy>(n)),
+      N(n)
 {}
-
-int F(int x){ return (x <= 1) ? 0 : x; }
 
 int NQueens::solutionCost(std::vector<int> configuration)
 {
-    int nb_diag = 2 * N - 1;
-    //memset(err_d1, 0, nb_diag * sizeof(int));
-    //vector<int> err_d1(nb_diag, 0);
-    fill(err_d1.begin(), err_d1.end(), 0);
-
-    //memset(err_d2, 0, nb_diag * sizeof(int));
-    //vector<int> err_d2(nb_diag, 0);
-    fill(err_d2.begin(), err_d2.end(), 0);
-
-    int j;
-    for(int i = 0; i < N; i++)
-    {
-        j = configuration[i];
-        ErrD1(i, j)++;
-        ErrD2(i, j)++;
-    }
-
-    int er, r = 0;
-    for (int d = 1; d < nb_diag - 1; d++)
-    {
-        er = err_d1[d];
-        r += F(er);
-
-        er = err_d2[d];
-        r += F(er);
-    }
-    //return r;
-    int cost = r;
-
-    //tener en cuenta el caso en que haya alguno repetido :P
-    //vector<unsigned int> flags(N,0);
-    fill(flags.begin(), flags.end(), 0);
-    for(vector<int>::iterator it = configuration.begin(); it != configuration.end(); ++it)
-        if(++flags[configuration[*it]] > 1)
-            cost += N/2;
-    return cost;
+    return cost_strategy->solutionCost(configuration);
 }
 
 std::string NQueens::ShowSolution(std::shared_ptr<Solution> solution)
