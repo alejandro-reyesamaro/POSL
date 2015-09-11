@@ -27,6 +27,8 @@ class Neighborhood : public ComputationData
         virtual int size() = 0;
         virtual std::vector<int> neighborAt(int index) = 0;
 
+        std::vector<int> CurrentConfiguration(){ return current_configuration; }
+
     protected:        
         std::vector<int> current_configuration;
 };

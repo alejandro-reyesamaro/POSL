@@ -8,13 +8,19 @@
 #include <algorithm>
 #include <iostream>
 
-#define SWAPS 600
+using namespace std;
 
-GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, int _players)
+#define SWAPS 600
+#define TP players * groups
+
+GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, int _players, int _groups)
     : Neighborhood(_config_size),
-      changeAtBhv(std::make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
+      changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       players(_players),
-      indexes(Tools::generateMonotony(_players))
+      groups(_groups),
+      indexes(Tools::generateMonotony(TP))
+      //indexes_IG(Tools::generateMonotony(_players)),
+      //indexes_IP(Tools::generateMonotony(_players))
 {
     updateChanges();
 }
@@ -22,10 +28,11 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, i
 void GolfersSingleSwapNeighborhood::updateChanges()
 {
     changes.clear();
-    int weeks = current_configuration.size() / players;
-    int posibles = players * (players-1);
-    int swaps = min(SWAPS, posibles);
+    int weeks = current_configuration.size() / (players*groups);
+    //int posibles = players * (players-1);
+    //int swaps = min(SWAPS, posibles);
 
+    /*
     for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
     {
         Tools::shuffle(indexes);
@@ -40,25 +47,66 @@ void GolfersSingleSwapNeighborhood::updateChanges()
                 changes.push_back(next_change);
             }
     }
+    */
+    /*
+    for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
+    {
+        for (int i = 0; i < players - 1; i++)
+        {
+            Tools::shuffle(indexes_IG);
+            for(int j = 0; j < players - 1; j++)
+            {
+                Tools::shuffle(indexes_IP);
+                int subgroup1 = indexes_IG[i];
+                int subgroup2 = indexes_IG[i+1];
+                int subplayer1 = indexes_IP[j];
+                int subplayer2 = indexes_IP[j+1];
+                int pos1 = (TP * w) + subgroup1 * players + subplayer1;
+                int pos2 = (TP * w) + subgroup2 * players + subplayer2;
+
+                T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
+                changes.push_back(next_change);
+            }
+        }
+    }
+    */
+
+    for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
+    {
+        srand(time(0));
+        for(int i = 0; i < groups; i++)
+            random_shuffle(indexes.begin() + i * players, indexes.begin() + (i+1) * players);
+
+        for (int i = 0; i < TP - 1; i++)
+            for(int j = i + 1; j < TP; j++)
+            {
+                if (i/players == j/players)
+                    continue;
+                int pos1 = (w * TP) + indexes[i];
+                int pos2 = (w * TP) + indexes[j];
+                T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
+                changes.push_back(next_change);
+            }
+    }
 }
 
-std::shared_ptr<POSL_Iterator> GolfersSingleSwapNeighborhood::getIterator()
+shared_ptr<POSL_Iterator> GolfersSingleSwapNeighborhood::getIterator()
 {
-    return std::make_shared<ElementsChangeIterator>(shared_from_this());
+    return make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void GolfersSingleSwapNeighborhood::Init(std::vector<int> _configuration)
+void GolfersSingleSwapNeighborhood::Init(vector<int> _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();
 }
 
-std::shared_ptr<FactoryPacker> GolfersSingleSwapNeighborhood::BuildPacker()
+shared_ptr<FactoryPacker> GolfersSingleSwapNeighborhood::BuildPacker()
 {
     return make_shared<FactoryGolfersSingleSwapNeighborhoodPacker>(current_configuration, size(), changes);
 }
 
-std::vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index)
+vector<int> GolfersSingleSwapNeighborhood::neighborAt(int index)
 {
     return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

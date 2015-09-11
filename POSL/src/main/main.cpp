@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <fstream>
+#include <memory>
 
 #include "../solver/for_golfers_css.h"
 #include "../solver/for_squaring_square_css.h"
@@ -18,22 +19,24 @@ using namespace std;
 int main(int argc, char **argv)
 {
 
-    vector<POSL_Solver *> solvers;
-    Benchmark * bench;
+    vector<shared_ptr<POSL_Solver>> solvers;
 
-    /* GOLFERS 
-    bench = new Golfers(5,5,3);
-    CreateSolverStrategy * css = new ForGolfersCSS();
+
+    /* GOLFERS */
+    shared_ptr<Golfers> g(make_shared<Golfers>(6,6,3));
+    shared_ptr<Benchmark> bench = g;
+    shared_ptr<CreateSolverStrategy> css(make_shared<ForGolfersCSS>(g));
     solvers = css->create();
-    */
 
-    /* SQUARING SQUARE */
+
+    /* SQUARING SQUARE
     //vector<int> squares({6, 4, 4, 1, 3, 3, 3});
     //bench = new SquaringSquare(10, squares);
     vector<int> squares({2, 3, 4, 6, 7, 8, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 26, 27, 28, 50, 60});
     bench = new SquaringSquare(110, squares);
     CreateSolverStrategy * css = new ForSquaringSquareCSS();
     solvers = css->create();
+    */
 
     /* GOLOMB RULER 
     //bench = new GolombRuler(12,85);
@@ -45,7 +48,7 @@ int main(int argc, char **argv)
 
     try
     {
-        POSL_MetaSolver * s = new POSL_MetaSolver(solvers);
+        shared_ptr<POSL_MetaSolver> s(make_shared<POSL_MetaSolver>(solvers));
         s->solve(argc, argv, bench);
     }catch (const char* msg)
     {

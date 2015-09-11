@@ -12,7 +12,7 @@ class Executer
         void execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
         std::shared_ptr<ComputationData> GetOutput();
 
-    private:
-        std::shared_ptr<ComputationData> output;
+    private:        
         std::shared_ptr<CompoundModule> M;
+        std::shared_ptr<ComputationData> output;
 };

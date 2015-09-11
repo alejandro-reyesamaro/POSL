@@ -1,6 +1,10 @@
 #include "tabu_list.h"
+#include "tools.h"
 
 #include <algorithm>
+#include <iostream>
+
+using namespace std;
 
 TabuList::TabuList(int _size) : count(0), size(_size)
 {
@@ -18,6 +22,7 @@ void TabuList::push(vector<int> conf)
         count ++;
 
     tabu_list.push_back(conf);
+    //cout << Tools::configurationToString(conf) << endl;
 }
 
 /*

@@ -42,6 +42,6 @@ class MultiSortedChangesNeighborhood : public Neighborhood, public DynamicNeighb
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
         std::vector<Domain> domains;
-        std::vector<T_Changes> changes;
         Randomizer rand;
+        std::vector<T_Changes> changes;        
 };

@@ -19,9 +19,9 @@ class NeighborSelectingBestImprovementTabu
         */
         shared_ptr<DecisionPair> select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V);
 
-    private:
-        shared_ptr<TabuList> tabu_list;
+    private:        
         shared_ptr<DecisionPair> rPair;
+        shared_ptr<TabuList> tabu_list;
         shared_ptr<POSL_Iterator> it;
         vector<int> current_config;
         vector<int> best_found_config;

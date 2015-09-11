@@ -4,7 +4,8 @@
 using namespace std;
 
 LoopBoundExpression::LoopBoundExpression(int _max_loops)
-    : loop(0), max_loops(_max_loops)
+    : loop(0),
+      max_loops(_max_loops)
 {}
 
 bool LoopBoundExpression::evaluate(shared_ptr<PSP> psp)

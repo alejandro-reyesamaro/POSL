@@ -17,6 +17,19 @@
 
 ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
     : CreateSolverStrategy(golfers),
+      single_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A001>
+        (
+            bench,
+            make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),
+            make_shared<OM_GolfersSingleSwapNeighborhood>(bench),
+            make_shared<OM_FirstImprovementSelection>(bench),
+            make_shared<OM_FirstImprovementSelection>(bench),
+            //make_shared<OM_BestImprovementTabuSelection>(bench),
+            //make_shared<OM_SimulatedAnnealingDecision>(),
+            make_shared<OM_AlwaysImproveDecision>(),
+            make_shared<OM_AlwaysImproveDecision>(),
+            0.2, 20, 100, 50
+        )))),
       sender_solver( make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA001>
         (
             bench,
@@ -38,25 +51,15 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             make_shared<OM_SimulatedAnnealingDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
             0.2, 20, 500, 10
-        )))),
-      single_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A001>
-        (
-            bench,
-            make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),
-            make_shared<OM_GolfersSingleSwapNeighborhood>(bench),
-            make_shared<OM_FirstImprovementSelection>(bench),
-            make_shared<OM_BestImprovementTabuSelection>(bench),
-            make_shared<OM_SimulatedAnnealingDecision>(),
-            make_shared<OM_AlwaysImproveDecision>(),
-            0.2, 20, 10, 10
         ))))
+
 {}
 
 vector<shared_ptr<POSL_Solver> > ForGolfersCSS::create()
 {
-    //solvers.push_back(solver_1);
-    //solvers.push_back(solver_2);
-    solvers.push_back(single_solver);
+    solvers.push_back(receiver_solver);
+    solvers.push_back(sender_solver);
+    //solvers.push_back(single_solver);
 
     return solvers;
 }

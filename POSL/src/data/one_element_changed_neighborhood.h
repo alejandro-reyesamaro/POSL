@@ -40,8 +40,8 @@ class OneElementChangedNeighborhood : public Neighborhood, public DynamicNeighbo
         void updateChanges();
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        std::vector<Domain> domains;
-        std::vector<T_Changes> changes;
+        std::vector<Domain> domains;        
         Randomizer rand;
         std::vector<int> indexes;
+        std::vector<T_Changes> changes;
 };

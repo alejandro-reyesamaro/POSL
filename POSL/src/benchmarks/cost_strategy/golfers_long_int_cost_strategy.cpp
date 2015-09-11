@@ -13,7 +13,8 @@ using namespace std;
 GolfersLongIntCostStrategy::GolfersLongIntCostStrategy(int _groups, int _players, int _weeks)
     : groups(_groups),
       players(_players),
-      weeks(_weeks),alldiff (TL, 0),
+      weeks(_weeks),
+      alldiff (TL, 0),
       new_partner (TL, 0),
       global_partnership (TL, 0),
       global_partners (TP + 1, LongInt(TL, 0)),

@@ -19,8 +19,8 @@ class NeighborSelectingRandom
         */
         std::shared_ptr<DecisionPair> select(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> V);
 
-    private:
-        Randomizer rand;
+    private:        
         std::shared_ptr<DecisionPair> rPair;
+        Randomizer rand;
         std::vector<int> best_found_config;
 };

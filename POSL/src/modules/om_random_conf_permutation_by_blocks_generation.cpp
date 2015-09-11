@@ -10,8 +10,7 @@ OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGene
       rsolution(make_shared<Solution>(bench->Domains())),
       object_bench(dynamic_pointer_cast<Golfers> (bench)),
       rconf_strategy(make_shared<RandomPermutationByBlocksGenerationStrategy>(bench->Domains().size(), object_bench->TotalPlayers()))
-{
-}
+{}
 
 shared_ptr<Solution> OM_RandomConfPermutationByBlocksGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {

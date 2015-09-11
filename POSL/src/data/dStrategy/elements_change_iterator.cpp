@@ -1,7 +1,8 @@
 #include "elements_change_iterator.h"
 
 ElementsChangeIterator::ElementsChangeIterator(std::shared_ptr<Neighborhood> _n)
-    : neighborhood(_n), current(0)
+    : neighborhood(_n),
+      current(0)
 {}
 
 std::vector<int> ElementsChangeIterator::GetNext()

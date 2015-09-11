@@ -11,7 +11,8 @@
 OM_SimulatedAnnealingDecision::OM_SimulatedAnnealingDecision()
     :   rand(),
         started(false),
-        M(MAX_ITER_PER_T), m(0)
+        M(MAX_ITER_PER_T),
+        m(0)
 {}
 
 std::shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<DecisionPair> input)

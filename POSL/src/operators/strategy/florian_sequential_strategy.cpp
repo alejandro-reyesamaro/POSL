@@ -11,8 +11,8 @@ using namespace std;
 
 FlorianSequentialStrategy::FlorianSequentialStrategy(shared_ptr<CompoundModule> _M1)
     : M1(_M1),
-      temp_solution(nullptr),
-      best_solution(nullptr)
+      best_solution(nullptr),
+      temp_solution(nullptr)
 {}
 
 shared_ptr<ComputationData> FlorianSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)

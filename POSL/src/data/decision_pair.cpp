@@ -4,7 +4,8 @@
 #include <iostream>
 
 DecisionPair::DecisionPair(std::shared_ptr<Solution> _current, std::shared_ptr<Solution> _found)
-    : current(_current), found(_found)
+    : current(_current),
+      found(_found)
 {}
 
 void DecisionPair::update(std::vector<int> _current, std::vector<int> _found)

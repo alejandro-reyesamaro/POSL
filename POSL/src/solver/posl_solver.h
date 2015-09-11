@@ -16,11 +16,10 @@ class POSL_Solver
         std::string show();
 
     private:
-
         std::string showSolution(std::string str_finalSol, std::string str_bestSol);
 
-        std::shared_ptr<ComputationStrategy> strategy;
         std::shared_ptr<Solution> final_solution;
         std::shared_ptr<Solution> best_solution;
         int final_cost, best_cost, iterations, time;
+        std::shared_ptr<ComputationStrategy> strategy;
 };

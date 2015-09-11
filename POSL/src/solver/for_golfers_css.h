@@ -11,6 +11,6 @@ class ForGolfersCSS : public CreateSolverStrategy
 
     private:
         std::shared_ptr<POSL_Solver> single_solver;
-        std::shared_ptr<POSL_Solver> receiver_solver;
         std::shared_ptr<POSL_Solver> sender_solver;
+        std::shared_ptr<POSL_Solver> receiver_solver;        
 };

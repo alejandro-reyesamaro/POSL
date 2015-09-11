@@ -39,7 +39,7 @@ class OnePermutationNeighborhood : public Neighborhood, public DynamicNeighborho
     private:
         void updateChanges();
 
-        std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        std::vector<T_Changes> changes;
+        std::shared_ptr<ApplyChangeBehavior> changeAtBhv;        
         std::vector<int> monotony;
+        std::vector<T_Changes> changes;
 };

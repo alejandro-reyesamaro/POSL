@@ -28,7 +28,7 @@ class GolfersSingleSwapNeighborhood
 {
     friend class ElementsChangeIterator;
     public:
-        GolfersSingleSwapNeighborhood(int _config_size, int _players);
+        GolfersSingleSwapNeighborhood(int _config_size, int _players, int _groups);
 
         std::shared_ptr<POSL_Iterator> getIterator();
         int size() {return changes.size(); }
@@ -41,8 +41,12 @@ class GolfersSingleSwapNeighborhood
     private:
         void updateChanges();
 
-        std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        std::vector<T_Changes> changes;
-        int players;
+        std::shared_ptr<ApplyChangeBehavior> changeAtBhv;        
+        int players, groups;
+
         std::vector<int> indexes;
+        //std::vector<int> indexes_IG;
+        //std::vector<int> indexes_IP;
+
+        std::vector<T_Changes> changes;
 };

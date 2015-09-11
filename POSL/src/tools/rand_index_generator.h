@@ -18,6 +18,6 @@ class RandIndexGenerator
 
 
     private:
-        Matrix indexes;
         int dim;
+        Matrix indexes;        
 };

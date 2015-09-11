@@ -1,12 +1,25 @@
 #include "neighbor_selecting_first_improvement.h"
+#include "../../tools/tools.h"
 
-NeighborSelectingFirstImprovement::NeighborSelectingFirstImprovement(std::vector<Domain> domains)
-    : rPair(std::make_shared<DecisionPair>(std::make_shared<Solution>(domains), std::make_shared<Solution>(domains)))
+#include <iostream>
+
+using namespace std;
+
+NeighborSelectingFirstImprovement::NeighborSelectingFirstImprovement(vector<Domain> domains)
+    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains)))
 {}
 
-std::shared_ptr<DecisionPair> NeighborSelectingFirstImprovement::select(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> V)
+shared_ptr<DecisionPair> NeighborSelectingFirstImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
 {
+    //vector<int> cfg = V->CurrentConfiguration();
+    //cout << "Neighborhood of:    " << Tools::configurationToString(cfg) << endl;
+    //cout << " with cost :" << psp->GetBenchmark()->solutionCost(cfg) << "-- : " << endl;
+
+
     current_config = psp->GetCurrentSolution()->GetConfiguration();
+    //cout << "()" << Tools::configurationToString(current_config) << endl;
+    //cout << endl;
+
     int current_cost = psp->CurrentCost();
     best_found_config = psp->GetCurrentSolution()->GetConfiguration();
     int best_found_cost = current_cost;
@@ -16,7 +29,8 @@ std::shared_ptr<DecisionPair> NeighborSelectingFirstImprovement::select(std::sha
 
     while(it->SomeNext())
     {
-        std::vector<int> config = it->GetNext();
+        vector<int> config = it->GetNext();
+        //cout << "(" << psp->GetBenchmark()->solutionCost(cfg) << ")- " << Tools::configurationToString(config) << endl;
         //sol = make_shared<Solution(psp->GetBenchmark()->Domains(), config);
         int c = psp->GetBenchmark()->solutionCost(config);
         if(c < best_found_cost)
