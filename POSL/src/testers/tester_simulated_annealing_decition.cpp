@@ -12,7 +12,7 @@ string Tester_SimulatedAnnealingDecition::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config1(
@@ -45,7 +45,7 @@ string Tester_SimulatedAnnealingDecition::test()
     shared_ptr<Solution> sol2(make_shared<Solution>(psp->GetBenchmark()->Domains(), config2));
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
-    psp->UpdateSolution(sol2);
+    psp->UpdateSolution(sol2->GetConfiguration());
 
     int cost1 = psp->GetBenchmark()->solutionCost(sol1);
     //int cost2 = psp->GetBenchmark()->solutionCost(sol2);

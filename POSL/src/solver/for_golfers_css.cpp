@@ -23,12 +23,12 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),
             make_shared<OM_GolfersSingleSwapNeighborhood>(bench),
             make_shared<OM_FirstImprovementSelection>(bench),
-            make_shared<OM_FirstImprovementSelection>(bench),
-            //make_shared<OM_BestImprovementTabuSelection>(bench),
+            //make_shared<OM_FirstImprovementSelection>(bench),
+            make_shared<OM_BestImprovementTabuSelection>(bench),
             //make_shared<OM_SimulatedAnnealingDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
-            0.2, 20, 100, 50
+            0.2, 20, 100, 30
         )))),
       sender_solver( make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA001>
         (
@@ -39,7 +39,7 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             make_shared<OM_BestImprovementTabuSelection>(bench),
             make_shared<OM_SimulatedAnnealingDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
-            0.5, 20, 500, 10
+            0.5, 20, 100, 30
         )))),
       receiver_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA001>
         (
@@ -50,7 +50,7 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             make_shared<OM_BestImprovementTabuSelection>(bench),
             make_shared<OM_SimulatedAnnealingDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
-            0.2, 20, 500, 10
+            0.2, 20, 100, 30
         ))))
 
 {}

@@ -11,6 +11,9 @@
 #include "../modules/decision_pair_data_open_channel.h"
 #include "../expressions/reached_cost_expression.h"
 #include "../expressions/loop_bound_expression.h"
+#include "../expressions/same_cost_iterations_bound_expression.h"
+#include "../expressions/or_expression.h"
+#include "../expressions/and_expression.h"
 
 using namespace std;
 
@@ -51,7 +54,8 @@ FactoryComputationStrategy_RA001::FactoryComputationStrategy_RA001(shared_ptr<Be
     shared_ptr<GroupedComputation> G_sec1(make_shared<GroupedSequentialComputation>(sec_1));
 
     // decision1 (</ cost />) decision2
-    shared_ptr<Operator> cond_2(make_shared<ConditionalOperator>(decision_fucntion_1, decision_fucntion_2, make_shared<ReachedCostExpression>(cost_op_cond_decision)));
+    shared_ptr<Operator> cond_2(make_shared<ConditionalOperator>(decision_fucntion_1, decision_fucntion_2,
+                                make_shared<ReachedCostExpression>(cost_op_cond_decision)));
 
     // [ decision1 (</ cost />) decision2 ] :
     shared_ptr<GroupedComputation> G_cond2(make_shared<GroupedSequentialComputation>(cond_2));
@@ -75,9 +79,13 @@ FactoryComputationStrategy_RA001::FactoryComputationStrategy_RA001(shared_ptr<Be
     shared_ptr<GroupedComputation> G_sec4(make_shared<GroupedSequentialComputation>(sec_4));
     // <--------------------------------------------------------------------------------->
 
+    shared_ptr<LoopBoundExpression> loop_b1 = make_shared<LoopBoundExpression>(loops_main_cycle);
+    shared_ptr<SameCostIterationsBoundExpression> sc_ex = make_shared<SameCostIterationsBoundExpression>(10);
+    //shared_ptr<OrExpression> ex = make_shared<OrExpression>(loop_b1, sc_ex);
+    shared_ptr<AndExpression> ex = make_shared<AndExpression>(loop_b1, sc_ex);
 
     // Cyc(n lopps){ G_sec4 } :
-    shared_ptr<Operator> cyc1(make_shared<CyclicOperator>(G_sec4, make_shared<LoopBoundExpression>(loops_main_cycle)));
+    shared_ptr<Operator> cyc1(make_shared<CyclicOperator>(G_sec4, loop_b1));
 
     // [ Cyc(n lopps){ G_sec4 } ]:
     shared_ptr<GroupedComputation> G_cyc1(make_shared<GroupedSequentialComputation>(cyc1));

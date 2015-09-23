@@ -18,13 +18,13 @@ string Tester_BestImprovementTabuSelection::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_1s());
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
-    psp->UpdateSolution(sol);
+    psp->UpdateSolution(sol->GetConfiguration());
     int initial_cost = psp->GetBenchmark()->solutionCost(sol);
 
 
@@ -52,7 +52,7 @@ string Tester_BestImprovementTabuSelection::test()
         pair = static_pointer_cast<DecisionPair>(G2->execute(psp, sol));
         sol = pair->GetFound();
         cost = psp->GetBenchmark()->solutionCost(sol);
-        psp->UpdateSolution(sol);
+        psp->UpdateSolution(sol->GetConfiguration());
         cout << sol->configurationToString() << " - cost: " << cost << endl;
     }
     cout << endl;

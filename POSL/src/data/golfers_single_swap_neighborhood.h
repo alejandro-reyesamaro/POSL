@@ -40,11 +40,13 @@ class GolfersSingleSwapNeighborhood
 
     private:
         void updateChanges();
+        void save_changes(int g1, int g2, int week);
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;        
         int players, groups;
 
         std::vector<int> indexes;
+        std::vector<int> walk_indexes;
         //std::vector<int> indexes_IG;
         //std::vector<int> indexes_IP;
 

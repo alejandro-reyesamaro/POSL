@@ -53,7 +53,7 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     //cout << myid << " - solver: " << solver_index << endl;
 
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
 
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);

@@ -17,7 +17,7 @@ string Tester_Solver_Golfers::test()
 
 
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
 
     //POSL_Solver> solver(make_shared<POSL_Solver(ARGC, ARGV, bench, new ForGolfersCSS());
     shared_ptr<CreateSolverStrategy> css(make_shared<ForGolfersCSS>(g));

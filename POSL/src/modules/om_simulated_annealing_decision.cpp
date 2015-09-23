@@ -44,12 +44,12 @@ std::shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(std::share
 
     if(k < p)
     {
-        psp->UpdateSolution(input->GetFound());
+        psp->UpdateSolution(input->GetFound()->GetConfiguration());
         return input->GetFound();
     }
     else
     {
-        psp->UpdateSolution(input->GetCurrent());
+        psp->UpdateSolution(input->GetCurrent()->GetConfiguration());
         return input->GetCurrent();
     }
 }

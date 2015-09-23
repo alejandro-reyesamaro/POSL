@@ -41,5 +41,6 @@ bool TabuList::isTabu(vector<int> conf)
     */
     list<vector<int>>::iterator it;
     it = find (tabu_list.begin(), tabu_list.end(), conf);
-    return it == tabu_list.end();
+
+    return it != tabu_list.end();
 }

@@ -25,7 +25,7 @@ string Tester_ConditionalOperator::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     shared_ptr<Solution> sol1(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_c4()));
@@ -36,7 +36,7 @@ string Tester_ConditionalOperator::test()
 
     //cout << c1 << " and " << c2 << endl;
 
-    psp->UpdateSolution(sol1);
+    psp->UpdateSolution(sol1->GetConfiguration());
 
     shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<CompoundModule> cm2_1(make_shared<OM_OneElementChangedNeighborhood>(bench));
@@ -72,7 +72,7 @@ string Tester_ConditionalOperator::test()
     shared_ptr<Solution> after_sol1 = static_pointer_cast<Solution>(G1234->execute(psp, sol1));
     int cost1 = psp->GetBenchmark()->solutionCost(after_sol1);
 
-    psp->UpdateSolution(sol2);
+    psp->UpdateSolution(sol2->GetConfiguration());
     shared_ptr<Solution> after_sol2 = static_pointer_cast<Solution>(G1234->execute(psp, sol2));
     int cost2 = psp->GetBenchmark()->solutionCost(after_sol2);
 

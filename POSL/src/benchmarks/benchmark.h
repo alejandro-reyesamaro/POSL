@@ -18,20 +18,22 @@
  */
 class Benchmark
 {
+    friend class PSP;
     public:        
         Benchmark(std::vector<Domain> _domains, std::shared_ptr<SolutionCostStrategy> _cost_strategy);
 
         int solutionCost(std::shared_ptr<Solution> sol);
-        void UpdateSolution(std::shared_ptr<Solution> sol);
 
-        std::shared_ptr<Solution> GetSolution(){ return solution; }
+
+        std::shared_ptr<Solution> GetSolution();
         std::vector<Domain> Domains(){ return domains; }
 
         virtual std::string ShowSolution(std::shared_ptr<Solution> solution) = 0;
         virtual int solutionCost(std::vector<int> configuration) = 0;
 
     protected:
+        void UpdateSolution(std::vector<int> config);
         std::vector<Domain> domains;
-        std::shared_ptr<Solution> solution;
+        std::vector<int> configuration;
         std::shared_ptr<SolutionCostStrategy> cost_strategy;
 };

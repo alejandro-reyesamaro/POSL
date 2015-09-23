@@ -12,7 +12,7 @@ OM_RandomConfGeneration::OM_RandomConfGeneration(std::shared_ptr<Benchmark> benc
 std::shared_ptr<Solution> OM_RandomConfGeneration::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input)
 {
     rsolution->UpdateConfiguration(rconf_strategy->generate(domains));
-    psp->UpdateSolution(rsolution);
+    psp->UpdateSolution(rsolution->GetConfiguration());
     return rsolution;
 }
 

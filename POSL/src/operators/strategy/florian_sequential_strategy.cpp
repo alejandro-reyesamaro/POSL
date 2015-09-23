@@ -29,7 +29,6 @@ shared_ptr<ComputationData> FlorianSequentialStrategy::evaluate(shared_ptr<PSP> 
             best_cost = cost;
         }
     }
-
-    psp->UpdateSolution(best_solution);
+    //psp->UpdateSolution(best_solution);
     return best_solution;
 }

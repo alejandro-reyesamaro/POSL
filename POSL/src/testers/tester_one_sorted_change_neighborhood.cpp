@@ -15,7 +15,7 @@ string Tester_OneSortedChangeNeighborhood::test()
 {
     shared_ptr<Benchmark> bench(make_shared<GolombRuler>(12,85));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );

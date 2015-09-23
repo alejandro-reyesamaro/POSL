@@ -18,7 +18,8 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, i
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       players(_players),
       groups(_groups),
-      indexes(Tools::generateMonotony(TP))
+      indexes(Tools::generateMonotony(TP)),
+      walk_indexes(Tools::generateMonotony(TP))
       //indexes_IG(Tools::generateMonotony(_players)),
       //indexes_IP(Tools::generateMonotony(_players))
 {
@@ -76,7 +77,9 @@ void GolfersSingleSwapNeighborhood::updateChanges()
         srand(time(0));
         for(int i = 0; i < groups; i++)
             random_shuffle(indexes.begin() + i * players, indexes.begin() + (i+1) * players);
+        //Tools::shuffle(walk_indexes);
 
+        /*
         for (int i = 0; i < TP - 1; i++)
             for(int j = i + 1; j < TP; j++)
             {
@@ -87,7 +90,25 @@ void GolfersSingleSwapNeighborhood::updateChanges()
                 T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
                 changes.push_back(next_change);
             }
+         */
+        for (int i = 0; i < groups - 1; i++)
+            for(int j = i + 1; j < groups; j++)
+            {
+                save_changes(i,j,w);
+            }
     }
+}
+
+void GolfersSingleSwapNeighborhood::save_changes(int g1, int g2, int week)
+{
+    for (int i = 0; i < players/2; i++)
+        for (int j = 0; j < players/2; j++)
+        {
+            int pos1 = (week * TP) + indexes[g1 * players + i];
+            int pos2 = (week * TP) + indexes[g2 * players + j];
+            T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
+            changes.push_back(next_change);
+        }
 }
 
 shared_ptr<POSL_Iterator> GolfersSingleSwapNeighborhood::getIterator()

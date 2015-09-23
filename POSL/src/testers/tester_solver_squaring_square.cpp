@@ -17,7 +17,7 @@ string Tester_SolverSquaringSquare::test()
     //vector<int> squares({1, 1, 1, 1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 6, 6, 10, 10});
     //SquaringSquare> bench(make_shared<SquaringSquare(20, squares);
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
 
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 

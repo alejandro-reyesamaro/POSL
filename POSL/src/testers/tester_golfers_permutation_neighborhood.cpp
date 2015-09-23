@@ -14,28 +14,28 @@ Tester_GolfersPermutationNeighborhood::Tester_GolfersPermutationNeighborhood(int
 
 string Tester_GolfersPermutationNeighborhood::test()
 {
-    shared_ptr<Benchmark> bench(make_shared<Golfers>(5,5,3));
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> perm(
     {
-        1,  2,   3,  4, 17,
-        5,  6,   7,  8, 18,
-        9,  10, 11, 12, 19,
-        13, 14, 15, 16, 20,
-        21, 22, 23, 24, 25
+        1,  2,   3,  4, //17,
+        5,  6,   7,  8, //18,
+        9,  10, 11, 12, //19,
+        13, 14, 15, 16//, 20,
+        //21, 22, 23, 24, 25
     });
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_553_c0());
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_c0());
 
     shared_ptr<OperationModule> op(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));
     //PSP * psp(make_shared<PSP(bench);
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    //cout << Tools::configurationToString(Tester::Golfers_442_c0()) << endl;
-    //cout << "--"<<endl;
+    cout << Tools::configurationToString(Tester::Golfers_442_c0()) << endl;
+    cout << "--"<<endl;
 
     shared_ptr<POSL_Iterator> it = V->getIterator();
     it->Reset();
@@ -44,15 +44,15 @@ string Tester_GolfersPermutationNeighborhood::test()
     while(it->SomeNext())
     {
         vector<int> neighbor = it->GetNext();
-        /*
+
         cout << "[ ";
         for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)
         {
             cout << *j << ", ";
         }
         cout << "]" << endl;
-        */
-        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), neighbor.begin()+25);
+
+        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), neighbor.begin()+16);
     }
     return (is_permut) ? "OM_GolfersSingleSwapNeighborhood: OK !" : "OM_GolfersSingleSwapNeighborhood: fail :/";
 }

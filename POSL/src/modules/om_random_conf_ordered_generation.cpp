@@ -19,7 +19,7 @@ shared_ptr<Solution> OM_RandomConfOrderedGeneration::spcf_execute(shared_ptr<PSP
     int max = object_bench->Length();
     //int size = object_bench->Order();
     rsolution->UpdateConfiguration(rconf_strategy->generate(max));
-    psp->UpdateSolution(rsolution);
+    psp->UpdateSolution(rsolution->GetConfiguration());
     return rsolution;
 }
 

@@ -1,5 +1,7 @@
 #include "psp.h"
 
+#include <algorithm>
+
 using namespace std;
 
 PSP::PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench, int _pID)
@@ -8,7 +10,7 @@ PSP::PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench, int _pID)
       bench(_bench),
       iterations(0),
       milisecs(0),
-      best_found_solution(nullptr),
+      best_found_configuration(_bench->Domains().size(),1),
       pID(_pID),
       comm(std::make_shared<Comunicator>())
 {}
@@ -17,13 +19,24 @@ PSP::PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench)
     : PSP (_argc, _argv, _bench, -1)
 {}
 
-void PSP::UpdateSolution(std::shared_ptr<Solution> solution)
+int PSP::BestCostSoFar()
 {
-    bench->UpdateSolution(solution);
-    int cost = bench->solutionCost(solution);
+    return bench->solutionCost(best_found_configuration);
+}
+
+shared_ptr<Solution> PSP::GetBestSolutionSoFar()
+{
+    return make_shared<Solution>(bench->Domains(), best_found_configuration);
+}
+
+void PSP::UpdateSolution(vector<int> config)
+{
+    bench->UpdateSolution(config);
+    int cost = bench->solutionCost(config);
     int best_cost = BestCostSoFar();
-    if(best_found_solution == nullptr || cost < best_cost)
-        best_found_solution = solution;
+    if(cost < best_cost)
+        copy(config.begin(), config.end(), best_found_configuration.begin());
+        //best_found_solution = solution;
 }
 
 void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }

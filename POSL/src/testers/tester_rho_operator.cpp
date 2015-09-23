@@ -16,7 +16,7 @@ string Tester_RhoOperator::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     vector<int> config(
@@ -35,7 +35,7 @@ string Tester_RhoOperator::test()
     sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
-    psp->UpdateSolution(sol);
+    psp->UpdateSolution(sol->GetConfiguration());
 
     shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<CompoundModule> cm2(make_shared<OM_RandomConfGeneration>(bench));

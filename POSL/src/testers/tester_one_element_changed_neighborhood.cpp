@@ -13,7 +13,7 @@ string Tester_OneElementChangedNeighborhood::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_1s());

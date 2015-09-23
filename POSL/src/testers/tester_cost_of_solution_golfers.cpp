@@ -11,7 +11,7 @@ string Tester_CostOfSolutionGolfers::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_c0());
@@ -22,7 +22,7 @@ string Tester_CostOfSolutionGolfers::test()
 
     bench = make_shared<Golfers>(5,5,3);
     sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_553_c0());
-    bench->UpdateSolution(sol);
+    //bench->UpdateSolution(sol);
     psp = make_shared<PSP>(ARGC, ARGV, bench);
     int c3 = psp->GetBenchmark()->solutionCost(sol);
 
@@ -31,7 +31,7 @@ string Tester_CostOfSolutionGolfers::test()
     //int co = gi.solutionCost(Tester::Golfers_553_c1());
     //cout << co << endl;
 
-    return (c3 == 0 && c1 == 0 && c2 == 2)
+    return (c3 == 0 && c1 == 0 && c2 == 4)
             ? "CostOfSolution (Golfers): OK !"
             : "CostOfSolution (Golfers): fail :/";
 }
