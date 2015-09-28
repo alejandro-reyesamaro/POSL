@@ -202,7 +202,9 @@ SOURCES += src/main.cpp \
     src/testers/tester_tabuselection.cpp \
     src/expressions/same_cost_iterations_bound_expression.cpp \
     src/expressions/or_expression.cpp \
-    src/expressions/and_expression.cpp
+    src/expressions/and_expression.cpp \
+    src/benchmarks/cost_strategy/golfers_3pn_cost_strategy.cpp \
+    src/testers/tester_longint.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -407,7 +409,9 @@ HEADERS += \
     src/testers/tester_tabuselection.h \
     src/expressions/or_expression.h \
     src/expressions/same_cost_iterations_bound_expression.h \
-    src/expressions/and_expression.h
+    src/expressions/and_expression.h \
+    src/benchmarks/cost_strategy/golfers_3pn_cost_strategy.h \
+    src/testers/tester_longint.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

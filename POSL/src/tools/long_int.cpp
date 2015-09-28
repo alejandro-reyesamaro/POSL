@@ -22,7 +22,9 @@ LongInt::LongInt(unsigned int _bytes, int _value)
     //value = aux;
 }
 
-LongInt::LongInt(unsigned int _bytes) : bytes(_bytes)
+LongInt::LongInt(unsigned int _bytes)
+    : bytes(_bytes),
+      value(_bytes)
 {
     activateAll();
 }
@@ -60,7 +62,9 @@ bool LongInt::activated()
 
 void LongInt::activate(unsigned int bit)
 {
-    int act = (bit % 32) - 1;
+    //int act = max(0,int((bit % 32) - 1));
+    //int act = (bit % 32) - 1;
+    int act = (bit % 32);
     int byte = bit / 32;
     if (byte < length())
         value[byte] = value[byte] | (int)pow(2,act);
@@ -68,7 +72,8 @@ void LongInt::activate(unsigned int bit)
 
 void LongInt::activateAll()
 {
-    fill(value.begin(), value.end(), std::numeric_limits<unsigned int>::max());
+    int l = numeric_limits<int>::max();
+    fill(value.begin(), value.end(), l);
     //vector<int> aux (bytes, std::numeric_limits<unsigned int>::max());
     //value = aux;
 }

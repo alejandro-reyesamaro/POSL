@@ -3,6 +3,7 @@
 #include "../data/dStrategy/factory_n_int_domain.h"
 #include "cost_strategy/golfers_intersections_costs_trategy.h"
 #include "cost_strategy/golfers_long_int_cost_strategy.h"
+#include "cost_strategy/golfers_3pn_cost_strategy.h"
 
 #include <vector>
 #include <iostream>
@@ -14,7 +15,7 @@ using namespace std;
 #define TL p * g / 32 + 1
 
 Golfers::Golfers(int g, int p, int w)
-    : Benchmark(vector<Domain>(g * p * w, Domain(make_shared<Factory_NIntDomain>(1,p * g))), make_shared<GolfersLongIntCostStrategy >(g,p,w)),
+    : Benchmark(vector<Domain>(g * p * w, Domain(make_shared<Factory_NIntDomain>(1,p * g))), make_shared<GolfersLongIntCostStrategy>(g,p,w)),
       groups(g),
       players(p),
       weeks(w)

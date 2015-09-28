@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 
 
     /* GOLFERS */
-    shared_ptr<Golfers> g(make_shared<Golfers>(5,5,3));
+    shared_ptr<Golfers> g(make_shared<Golfers>(7,7,3));
     shared_ptr<Benchmark> bench = g;
     shared_ptr<CreateSolverStrategy> css(make_shared<ForGolfersCSS>(g));
     solvers = css->create();

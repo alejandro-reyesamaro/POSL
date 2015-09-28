@@ -47,7 +47,7 @@
 #include "testers/tester_solver_n_queens.h"
 #include "testers/tester_from_pack_neighborhood.h"
 #include "testers/tester_tabuselection.h"
-
+#include "testers/tester_longint.h"
 #include "solver/posl_meta_solver.h"
 
 #include "mpi.h"
@@ -60,6 +60,7 @@ int main(int argc, char **argv)
     vector<shared_ptr<Tester>> tests;
 
 
+    //tests.push_back(make_shared<Tester_LongInt>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOfSolutionGolfers>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
@@ -143,4 +144,4 @@ int mainNOO(int argc, char **argv)
 // $ make
 
 // Execute command line:
-// $ mpiexec.mpich -np 2  ./bin/POSL
+// $ mpiexec.mpich -np 2 ./bin/POSL

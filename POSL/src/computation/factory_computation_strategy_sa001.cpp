@@ -75,7 +75,7 @@ FactoryComputationStrategy_SA001::FactoryComputationStrategy_SA001(shared_ptr<Be
     // <--------------------------------------------------------------------------------->
 
     shared_ptr<LoopBoundExpression> loop_b1 = make_shared<LoopBoundExpression>(loops_main_cycle);
-    shared_ptr<SameCostIterationsBoundExpression> sc_ex = make_shared<SameCostIterationsBoundExpression>(10);
+    shared_ptr<SameCostIterationsBoundExpression> sc_ex = make_shared<SameCostIterationsBoundExpression>(15);
     //shared_ptr<OrExpression> ex = make_shared<OrExpression>(loop_b1, sc_ex);
     shared_ptr<AndExpression> ex = make_shared<AndExpression>(loop_b1, sc_ex);
 
