@@ -41,18 +41,33 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     MPI_Comm_rank(MPI_COMM_WORLD,&myid);
 
     shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench, myid));
-    if(myid == 0)
+
+    /*if(myid == 0)
     {
         psp->connectWith(1);
         psp->connectWith(3);
     }
+    */
 
-    int numsolvers = solvers.size();
-    int solver_index = myid % numsolvers;
+    int solver_index;
+    if(myid < comm_size/4)
+    {
+        psp->connectWith(comm_size/4 + myid);
+        solver_index = 0;
+        cout << "Core " << myid << " conected with core " << comm_size/4 + myid << endl;
+    }
+    else if((myid >= comm_size/4) && myid < comm_size/2)
+        solver_index = 1;
+    else
+        solver_index = 2;
+
+    //int numsolvers = solvers.size();
+    //solver_index = myid % numsolvers;
+
 
     //cout << myid << " - solver: " << solver_index << endl;
 
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
+    //shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
 
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
