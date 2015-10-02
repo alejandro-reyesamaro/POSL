@@ -204,7 +204,18 @@ SOURCES += src/main.cpp \
     src/expressions/or_expression.cpp \
     src/expressions/and_expression.cpp \
     src/benchmarks/cost_strategy/golfers_3pn_cost_strategy.cpp \
-    src/testers/tester_longint.cpp
+    src/testers/tester_longint.cpp \
+    src/benchmarks/show_strategy/golfers_default_show_strategy.cpp \
+    src/benchmarks/show_strategy/show_strategy.cpp \
+    src/benchmarks/show_strategy/golomb_ruler_default_show_strategy.cpp \
+    src/benchmarks/show_strategy/n_queens_default_show_strategy.cpp \
+    src/benchmarks/show_strategy/squaring_square_default_show_strategy.cpp \
+    src/benchmarks/relative_cost_strategy/relative_cost_strategy.cpp \
+    src/benchmarks/relative_cost_strategy/golfers_relative_cost_strategy.cpp \
+    src/benchmarks/relative_cost_strategy/squaring_square_relative_cost_strategy.cpp \
+    src/benchmarks/relative_cost_strategy/golomb_ruler_relative_cost_strategy.cpp \
+    src/benchmarks/relative_cost_strategy/nqueens_relative_cost_strategy.cpp \
+    src/testers/tester_iteration_golfers.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -395,7 +406,6 @@ HEADERS += \
     src/testers/tester_from_pack_neighborhood.h \
     src/data/dynamic_neighborhood.h \
     src/data/dStrategy/apply_change_behavior.h \
-    src/data/t_changes.h \
     src/data/dStrategy/single_swap_apply_change_behavior.h \
     src/data/dStrategy/standard_apply_change_behavior.h \
     src/data/dStrategy/sorted_apply_change_behavior.h \
@@ -411,7 +421,19 @@ HEADERS += \
     src/expressions/same_cost_iterations_bound_expression.h \
     src/expressions/and_expression.h \
     src/benchmarks/cost_strategy/golfers_3pn_cost_strategy.h \
-    src/testers/tester_longint.h
+    src/testers/tester_longint.h \
+    src/benchmarks/show_strategy/golfers_default_show_strategy.h \
+    src/benchmarks/show_strategy/show_strategy.h \
+    src/benchmarks/show_strategy/golomb_ruler_default_show_strategy.h \
+    src/benchmarks/show_strategy/n_queens_default_show_strategy.h \
+    src/benchmarks/show_strategy/squaring_square_default_show_strategy.h \
+    src/benchmarks/relative_cost_strategy/relative_cost_strategy.h \
+    src/benchmarks/relative_cost_strategy/golfers_relative_cost_strategy.h \
+    src/benchmarks/relative_cost_strategy/squaring_square_relative_cost_strategy.h \
+    src/benchmarks/relative_cost_strategy/golomb_ruler_relative_cost_strategy.h \
+    src/benchmarks/relative_cost_strategy/nqueens_relative_cost_strategy.h \
+    src/tools/t_changes.h \
+    src/testers/tester_iteration_golfers.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

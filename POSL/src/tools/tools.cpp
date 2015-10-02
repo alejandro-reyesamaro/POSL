@@ -163,3 +163,30 @@ void Tools::trim(std::string & code)
 {
     boost::trim(code);
 }
+
+T_Changes Tools::GetChanges(std::vector<int> config_before, std::vector<int> config_after)
+{
+    vector<int> ch_possitions;
+    vector<int> ch_values;
+    pair<vector<int>::iterator,vector<int>::iterator> p;
+    vector<int>::iterator pp;
+
+    p = mismatch (config_before.begin(), config_before.end(), config_after.begin());
+
+    int new_value, pos_mismatch = 0;
+
+    while(p.first != config_before.end())
+    {
+        pos_mismatch = p.first - config_before.begin();
+        new_value = * p.second;
+
+        ch_possitions.push_back(pos_mismatch);
+        ch_values.push_back(new_value);
+
+        ++p.first; ++p.second;
+
+        p = mismatch (p.first, config_before.end(), p.second);
+    }
+    T_Changes changes = {ch_possitions, ch_values, ch_possitions.size()};
+    return changes;
+}

@@ -20,11 +20,10 @@ class SquaringSquare : public Benchmark
     public:
         SquaringSquare(int _size, std::vector<int> _squares);
 
-        int solutionCost(std::vector<int> configuration);
-        std::string ShowSolution(std::shared_ptr<Solution> solution);
-
         int Size(){ return size; }
         int SquareAt(int pos){ return (pos >= 0 && pos < size)? squares[pos] : -1; }
+
+        std::string showInstance();
 
     private:
         //! [Size of the big square]

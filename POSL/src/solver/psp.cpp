@@ -39,6 +39,12 @@ void PSP::UpdateSolution(vector<int> config)
         //best_found_solution = solution;
 }
 
+void PSP::Start(vector<int> config)
+{
+    bench->InitializeCostData(config);
+    copy(config.begin(), config.end(), best_found_configuration.begin());
+}
+
 void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 
 void PSP::CountIteration(){ iterations ++; }

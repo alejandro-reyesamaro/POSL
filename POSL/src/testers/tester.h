@@ -23,6 +23,7 @@ class Tester
         int ARGC;
         char **ARGV;
 
+        static vector<int> Golfers_332_c6();
         static vector<int> Golfers_442_c0();
         static vector<int> Golfers_442_c4();
         static vector<int> Golfers_442_1s();

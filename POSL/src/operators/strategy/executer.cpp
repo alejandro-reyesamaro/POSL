@@ -3,8 +3,8 @@
 using namespace std;
 
 Executer::Executer(shared_ptr<CompoundModule> _M)
-    : output(nullptr),
-      M(_M)
+    : M(_M),
+      output(nullptr)
 {}
 
 void Executer::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)

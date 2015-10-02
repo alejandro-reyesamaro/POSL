@@ -49,6 +49,7 @@
 #include "testers/tester_tabuselection.h"
 #include "testers/tester_longint.h"
 #include "solver/posl_meta_solver.h"
+#include "testers/tester_iteration_golfers.h"
 
 #include "mpi.h"
 
@@ -97,10 +98,11 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_PackingUnionNeighborhood>(argc, argv));
 
     //tests.push_back(make_shared<Tester_TabuSelection>(argc, argv));
-    tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
     //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
+    tests.push_back(make_shared<Tester_IterationGolfers>(argc, argv));
 
     string output_str;
     for(unsigned int i = 0; i < tests.size(); i++)
@@ -114,6 +116,7 @@ int main(int argc, char **argv)
         }
         cout << ">> " << output_str << endl;
     }
+    return 0;
 }
 
 // Testing PARALLEL
@@ -136,6 +139,7 @@ int mainNOO(int argc, char **argv)
     }
 
     MPI_Finalize();
+    return 0;
 }
 
 

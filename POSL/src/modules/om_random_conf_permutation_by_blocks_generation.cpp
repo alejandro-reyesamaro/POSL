@@ -16,9 +16,11 @@ shared_ptr<Solution> OM_RandomConfPermutationByBlocksGeneration::spcf_execute(sh
 {
     int block_size = object_bench->Groups() * object_bench->PlayersPerGroup();
     int blocks = object_bench->Weeks();
+
     rsolution->UpdateConfiguration(rconf_strategy->generate(block_size, blocks));
     //cout << rsolution->configurationToString() << endl;
-    psp->UpdateSolution(rsolution->GetConfiguration());
+    //psp->UpdateSolution(rsolution->GetConfiguration());
+    psp->Start(rsolution->GetConfiguration());
     return rsolution;
 }
 

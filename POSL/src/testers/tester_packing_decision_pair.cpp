@@ -56,7 +56,7 @@ string Tester_PackingDecisionPair::test()
     shared_ptr<DecisionPairPacker> packer(make_shared<DecisionPairPacker>(pair));
     vector<int> pack = packer->pack();// pair->pack();
 
-    int * buff = &pack[0];
+    //int * buff = &pack[0];
 
     shared_ptr<DecisionPair> final(make_shared<DecisionPair>(make_shared<Solution>(bench->Domains()), make_shared<Solution>(bench->Domains())));
     final->updateFromPack(&pack[0]);

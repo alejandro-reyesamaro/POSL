@@ -11,6 +11,7 @@
 
 #include <string>
 #include <vector>
+#include "t_changes.h"
 
 /*!
  * \class Tools tools.h
@@ -39,4 +40,5 @@ class Tools
         static std::vector<int> generateMonotony(int a, int b);
         static void sortAscendent(std::vector<int> & v);
         static void trim(std::string & code);
+        static T_Changes GetChanges(std::vector<int> config_before, std::vector<int> config_after);
 };

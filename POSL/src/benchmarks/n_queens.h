@@ -22,8 +22,7 @@ class NQueens : public Benchmark
 
         int Order(){ return N; }
 
-        int solutionCost(std::vector<int> configuration);
-        std::string ShowSolution(std::shared_ptr<Solution> solution);
+        std::string showInstance();
 
     private:
         //! order

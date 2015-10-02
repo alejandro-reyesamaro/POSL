@@ -26,6 +26,7 @@ class PSP
         void connectWith(int pID);
         void SendData(std::vector<int> data);        
         void UpdateSolution(std::vector<int> config);
+        void Start(std::vector<int> config);
 
         int ARGC;
         char **ARGV;

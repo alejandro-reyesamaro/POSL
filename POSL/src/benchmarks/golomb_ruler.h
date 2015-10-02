@@ -21,11 +21,10 @@ class GolombRuler : public Benchmark
     public:
         GolombRuler(int _order, int _length);
 
-        int solutionCost(std::vector<int> configuration);
-        std::string ShowSolution(std::shared_ptr<Solution> solution);
-
         int Order(){ return order; }
         int Length(){ return length; }
+
+        std::string showInstance();
 
     private:
         //! [Number of marcs], [Maximum distance]

@@ -10,7 +10,10 @@
  */
 
 #include "../data/solution.h"
+#include "../tools/t_changes.h"
 #include "cost_strategy/solution_cost_strategy.h"
+#include "show_strategy/show_strategy.h"
+#include "relative_cost_strategy/relative_cost_strategy.h"
 
 /*!
  * \class Benchmark benchmark.h
@@ -19,21 +22,32 @@
 class Benchmark
 {
     friend class PSP;
-    public:        
-        Benchmark(std::vector<Domain> _domains, std::shared_ptr<SolutionCostStrategy> _cost_strategy);
+    public:
+        Benchmark(std::vector<Domain> _domains,
+                  std::shared_ptr<SolutionCostStrategy> _cost_strategy,
+                  std::shared_ptr<RelativeCostStrategy> _relative_cost_strategy,
+                  std::shared_ptr<ShowStrategy> _show_strategy);
 
         int solutionCost(std::shared_ptr<Solution> sol);
+        int solutionCost(std::vector<int> configuration);
+        std::string ShowSolution(std::shared_ptr<Solution> solution);
 
+        int relativeSolutionCost(std::vector<int> configuration);
+        int relativeSolutionCost(std::vector<int> new_config, T_Changes changes);
 
         std::shared_ptr<Solution> GetSolution();
         std::vector<Domain> Domains(){ return domains; }
 
-        virtual std::string ShowSolution(std::shared_ptr<Solution> solution) = 0;
-        virtual int solutionCost(std::vector<int> configuration) = 0;
+        virtual std::string showInstance() = 0;
 
     protected:
         void UpdateSolution(std::vector<int> config);
+        void InitializeCostData(std::vector<int> config);
         std::vector<Domain> domains;
         std::vector<int> configuration;
+
+        //! STRATEGIES
         std::shared_ptr<SolutionCostStrategy> cost_strategy;
+        std::shared_ptr<RelativeCostStrategy> relative_cost_strategy;
+        std::shared_ptr<ShowStrategy> show_strategy;
 };

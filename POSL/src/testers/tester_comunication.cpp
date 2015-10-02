@@ -19,7 +19,7 @@ Tester_Comunication::Tester_Comunication(int argc, char *argv[])
 void Tester_Comunication::test()
 {
     int myid, comm_size, tag, pack_size;
-    MPI_Request request;
+    //MPI_Request request;
     MPI_Status status;
 
     MPI_Init(&ARGC, &ARGV);
