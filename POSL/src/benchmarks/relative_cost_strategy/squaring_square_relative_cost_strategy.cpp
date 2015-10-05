@@ -14,7 +14,7 @@ void SquaringSquareRelativeCostStrategy::initializeCostData(vector<int> _configu
     throw "Not yet implemented";
 }
 
-void SquaringSquareRelativeCostStrategy::updateConfiguration(T_Changes change)
+void SquaringSquareRelativeCostStrategy::updateConfiguration(std::vector<int> new_config)
 {
     throw "Not yet implemented";
 }
@@ -29,3 +29,7 @@ int SquaringSquareRelativeCostStrategy::relativeSolutionCost(std::vector<int> ne
     throw "Not yet implemented";
 }
 
+int SquaringSquareRelativeCostStrategy::currentCost()
+{
+    throw "Not yet implemented";
+}

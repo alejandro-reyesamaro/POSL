@@ -22,3 +22,8 @@ string OM_RandomPermutationGeneration::codeToSend()
 {
     return "A6";
 }
+
+string OM_RandomPermutationGeneration::TAG()
+{
+    return "Random_Permutation_first";
+}

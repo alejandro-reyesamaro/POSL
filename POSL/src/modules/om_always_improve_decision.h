@@ -24,4 +24,6 @@ class OM_AlwaysImproveDecision : public AOM_DecisionFunction
 
         //! From Codable
         std::string codeToSend();
+\
+        std::string TAG();
 };

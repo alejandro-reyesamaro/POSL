@@ -34,15 +34,21 @@ int Benchmark::solutionCost(vector<int> configuration)
     return cost_strategy->solutionCost(configuration);
 }
 
+int Benchmark::currentCost()
+{
+    return relative_cost_strategy->currentCost();
+}
+
 void Benchmark::UpdateSolution(vector<int> config)
 {    
-    relative_cost_strategy->updateConfiguration(Tools::GetChanges(configuration, config));
+    relative_cost_strategy->updateConfiguration(config);
     copy(config.begin(), config.end(), configuration.begin());
 }
 
 void Benchmark::InitializeCostData(std::vector<int> config)
 {
     relative_cost_strategy->initializeCostData(config, solutionCost(config));
+    copy(config.begin(), config.end(), configuration.begin());
 }
 
 string Benchmark::ShowSolution(shared_ptr<Solution> solution)

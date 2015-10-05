@@ -18,3 +18,8 @@ string OM_OnePermutationNeighborhood::codeToSend()
 {
     return "B6";
 }
+
+string OM_OnePermutationNeighborhood::TAG()
+{
+    return "(N)One_Permutation";
+}

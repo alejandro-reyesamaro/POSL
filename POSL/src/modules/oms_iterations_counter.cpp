@@ -17,3 +17,8 @@ string OMS_IterationsCounter::codeToSend()
 {
     return "S2";
 }
+
+string OMS_IterationsCounter::TAG()
+{
+    return "Iterations counter";
+}

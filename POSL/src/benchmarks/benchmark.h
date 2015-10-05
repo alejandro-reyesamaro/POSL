@@ -29,13 +29,13 @@ class Benchmark
                   std::shared_ptr<ShowStrategy> _show_strategy);
 
         int solutionCost(std::shared_ptr<Solution> sol);
-        int solutionCost(std::vector<int> configuration);
-        std::string ShowSolution(std::shared_ptr<Solution> solution);
-
+        int solutionCost(std::vector<int> configuration);        
         int relativeSolutionCost(std::vector<int> configuration);
         int relativeSolutionCost(std::vector<int> new_config, T_Changes changes);
-
+        int currentCost();
         std::shared_ptr<Solution> GetSolution();
+        std::string ShowSolution(std::shared_ptr<Solution> solution);
+
         std::vector<Domain> Domains(){ return domains; }
 
         virtual std::string showInstance() = 0;

@@ -29,6 +29,8 @@ class OM_OneSortedChangeNeighborhood : public AOM_NeighborhoodFunction
         //! From Codable
         std::string codeToSend();
 
-    private:
+        std::string TAG();
+
+    protected:
         std::shared_ptr<OneSortedChangeNeighborhood> V;
 };

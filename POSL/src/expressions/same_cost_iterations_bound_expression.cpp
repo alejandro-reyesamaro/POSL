@@ -20,7 +20,9 @@ bool SameCostIterationsBoundExpression::evaluate(shared_ptr<PSP> psp)
         iterations = 0;
     }
     else iterations ++;
-    return ( iterations < max_iter );
+    bool iter = iterations < max_iter;
+    //if (!iter) iterations = 0;
+    return ( iter );
 }
 
 string SameCostIterationsBoundExpression::codeToSend()

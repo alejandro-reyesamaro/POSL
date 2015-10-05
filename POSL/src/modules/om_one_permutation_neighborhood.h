@@ -30,6 +30,8 @@ class OM_OnePermutationNeighborhood : public AOM_NeighborhoodFunction
         //! From Codable
         std::string codeToSend();
 
-    private:
+        std::string TAG();
+
+    protected:
         std::shared_ptr<OnePermutationNeighborhood> V;
 };

@@ -18,3 +18,8 @@ string OM_MultiElementsChangedNeighborhood::codeToSend()
 {
     return "B2";
 }
+
+string OM_MultiElementsChangedNeighborhood::TAG()
+{
+    return "(N)Multi_Changes";
+}

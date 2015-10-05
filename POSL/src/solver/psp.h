@@ -17,7 +17,7 @@ class PSP
         inline int GetTime(){ return milisecs; }
         std::shared_ptr<Solution> GetBestSolutionSoFar();
         inline std::shared_ptr<Solution> GetCurrentSolution(){ return bench->GetSolution(); }
-        inline int CurrentCost(){ return bench->solutionCost(bench->GetSolution()); }
+        int CurrentCost();
         int BestCostSoFar();
 
 
@@ -36,6 +36,7 @@ class PSP
         int iterations;
         int milisecs;
         std::vector<int> best_found_configuration;
+        int best_found_cost;
         int pID;
         std::shared_ptr<Comunicator> comm;
         //! Proccesses IDs

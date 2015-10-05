@@ -30,7 +30,9 @@ class OM_RandomConfPermutationByBlocksGeneration : public AOM_FirstConfiguration
         //! From Codable
         std::string codeToSend();
 
-    private:
+        std::string TAG();
+
+    protected:
         std::shared_ptr<Solution> rsolution;
         std::shared_ptr<Golfers> object_bench;
         std::shared_ptr<RandomPermutationByBlocksGenerationStrategy> rconf_strategy;

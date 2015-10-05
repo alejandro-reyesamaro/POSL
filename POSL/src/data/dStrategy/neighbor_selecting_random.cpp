@@ -11,5 +11,4 @@ std::shared_ptr<DecisionPair> NeighborSelectingRandom::select(std::shared_ptr<PS
     int index = rand.NextInt(0, neighSize);
     rPair->update(psp->GetCurrentSolution()->GetConfiguration(), V->neighborAt(index));
     return rPair;
-    //return make_shared<DecisionPair(psp->GetCurrentSolution(), make_shared<Solution(psp->GetBenchmark()->Domains(), V->neighborAt(index)));
 }

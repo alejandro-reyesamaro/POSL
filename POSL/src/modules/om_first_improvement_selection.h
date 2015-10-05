@@ -27,6 +27,8 @@ class OM_FirstImprovementSelection : public AOM_SelectionFunction
         //! From Codable
         std::string codeToSend();
 
-    private:
+        std::string TAG();
+
+    protected:
         std::shared_ptr<NeighborSelectingFirstImprovement> search_strategy;
 };

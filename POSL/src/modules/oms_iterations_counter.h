@@ -24,4 +24,7 @@ class OMS_IterationsCounter : public OperationModule
 
         //! From Codable
         std::string codeToSend();
+
+        std::string TAG();
+
 };

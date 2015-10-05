@@ -6,15 +6,13 @@
 
 RandomPermutationByBlocksGenerationStrategy::RandomPermutationByBlocksGenerationStrategy(int configuration_size, int block_size)
     :config(configuration_size),
-      permutations(block_size)
+      permutations(Tools::generateMonotony(1,block_size))
 {}
 
 std::vector<int> RandomPermutationByBlocksGenerationStrategy::generate(int block_size, int n_blocks)
 {
     for(int i = 0; i < n_blocks; i++)
     {
-        for(int j = 0; j < block_size; j++)
-            permutations[j]= j+1;
         Tools::shuffle(permutations);
         copy(permutations.begin(), permutations.end(), config.begin() + i * block_size);
     }

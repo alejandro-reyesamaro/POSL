@@ -16,7 +16,9 @@ class OM_RandomPermutationGeneration : public AOM_FirstConfigurationGeneration
         //! From Codable
         std::string codeToSend();
 
-    private:
+        std::string TAG();
+
+    protected:
         std::shared_ptr<RandomPermutationConfigurationStrategy> rconf_strategy;
         std::shared_ptr<Solution> rsolution;
 };

@@ -24,4 +24,6 @@ class OM_FixedFirstConfiguration : public AOM_FirstConfigurationGeneration
 
         //! From Codable
         std::string codeToSend();
+
+        std::string TAG();
 };

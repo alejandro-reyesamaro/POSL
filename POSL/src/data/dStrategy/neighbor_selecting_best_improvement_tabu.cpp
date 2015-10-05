@@ -2,6 +2,8 @@
 
 #define TABU_SIZE 10
 
+using namespace std;
+
 NeighborSelectingBestImprovementTabu::NeighborSelectingBestImprovementTabu(vector<Domain> domains)
     : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains))),
       tabu_list(make_shared<TabuList>(TABU_SIZE))
@@ -13,6 +15,7 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovementTabu::select(shared_ptr
     int current_cost = psp->CurrentCost();
     best_found_config = psp->GetCurrentSolution()->GetConfiguration();
     int best_found_cost = current_cost;
+    int c;
 
     it = V->getIterator();
     it->Reset();
@@ -20,8 +23,7 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovementTabu::select(shared_ptr
     while(it->SomeNext())
     {
         vector<int> config = it->GetNext();
-        //sol = make_shared<Solution(psp->GetBenchmark()->Domains(), config);
-        int c = psp->GetBenchmark()->solutionCost(config);
+        c = psp->GetBenchmark()->relativeSolutionCost(config);
         if(c < best_found_cost && !tabu_list->isTabu(config))
         {
             best_found_cost   = c;
@@ -30,6 +32,5 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovementTabu::select(shared_ptr
     }
     tabu_list->push(best_found_config);
     rPair->update(current_config, best_found_config);
-    //DecisionPair * p = make_shared<DecisionPair(current_solution, make_shared<Solution(psp->GetBenchmark()->Domains(), best_found));
     return rPair;
 }

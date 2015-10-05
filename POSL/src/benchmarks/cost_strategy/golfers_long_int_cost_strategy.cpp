@@ -63,7 +63,7 @@ int GolfersLongIntCostStrategy::solutionCost(std::vector<int> configuration)
         fill(group_partners.begin(), group_partners.end(), LongInt(table_length, 0));
         //cout << alldiff.toString() << endl;
         // all differents cost
-        int bc = alldiff.bitCount();
+        //int bc = alldiff.bitCount();
         cost += (golfers - alldiff.bitCount()) * PENALIZATION;
         alldiff.deactivateAll();
     }// O ( p^2 * g * w ) = O ( p * n )

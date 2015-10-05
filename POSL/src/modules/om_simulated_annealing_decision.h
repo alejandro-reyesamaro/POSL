@@ -28,7 +28,9 @@ class OM_SimulatedAnnealingDecision : public AOM_DecisionFunction
         //! From Codable
         std::string codeToSend();
 
-    private:
+        std::string TAG();
+
+    protected:
         Randomizer rand;
         bool started;
 

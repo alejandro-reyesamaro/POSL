@@ -20,3 +20,8 @@ string OM_GolfersSingleSwapNeighborhood::codeToSend()
 {
     return "B3";
 }
+
+string OM_GolfersSingleSwapNeighborhood::TAG()
+{
+    return "(N)Golfers_SingleSwap";
+}

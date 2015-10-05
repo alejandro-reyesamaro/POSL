@@ -27,6 +27,8 @@ class OM_RandomSelection : public AOM_SelectionFunction
         //! From Codable
         std::string codeToSend();
 
-    private:
+        std::string TAG();
+
+    protected:
         std::shared_ptr<NeighborSelectingRandom> search_strategy;
 };

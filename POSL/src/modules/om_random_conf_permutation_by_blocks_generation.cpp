@@ -28,3 +28,8 @@ string OM_RandomConfPermutationByBlocksGeneration::codeToSend()
 {
     return "A4";
 }
+
+string OM_RandomConfPermutationByBlocksGeneration::TAG()
+{
+    return "Golfers_first";
+}

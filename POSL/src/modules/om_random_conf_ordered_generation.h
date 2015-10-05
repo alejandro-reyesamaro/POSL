@@ -16,7 +16,9 @@ class OM_RandomConfOrderedGeneration : public AOM_FirstConfigurationGeneration
         //! From Codable
         std::string codeToSend();
 
-    private:
+        std::string TAG();
+
+    protected:
         std::shared_ptr<RandomOrderedGenerationStrategy> rconf_strategy;
         std::shared_ptr<Solution> rsolution;
         std::shared_ptr<GolombRuler> object_bench;

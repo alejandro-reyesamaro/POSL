@@ -2,25 +2,27 @@
 
 #include <algorithm>
 
-NeighborSelectingBestImprovement::NeighborSelectingBestImprovement(std::vector<Domain> domains)
-    : rPair(std::make_shared<DecisionPair>(std::make_shared<Solution>(domains), std::make_shared<Solution>(domains)))
+using namespace std;
+
+NeighborSelectingBestImprovement::NeighborSelectingBestImprovement(vector<Domain> domains)
+    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains)))
 {}
 
-std::shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> V)
+shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
 {
     current_config = psp->GetCurrentSolution()->GetConfiguration();
     int current_cost = psp->CurrentCost();
     best_found_config = psp->GetCurrentSolution()->GetConfiguration();
     int best_found_cost = current_cost;
+    int c;
 
     it = V->getIterator();
     it->Reset();
 
     while(it->SomeNext())
     {
-        std::vector<int> config = it->GetNext();
-        //sol_2_return->UpdateConfiguration(it->GetNext());
-        int c = psp->GetBenchmark()->solutionCost(config);
+        vector<int> config = it->GetNext();
+        c = psp->GetBenchmark()->relativeSolutionCost(config);
         if(c < best_found_cost)
         {
             best_found_cost   = c;
@@ -28,6 +30,5 @@ std::shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(std::shar
         }
     }
     rPair->update(current_config, best_found_config);
-    //return make_shared<DecisionPair(current_solution, make_shared<Solution(psp->GetBenchmark()->Domains(), best_found));
     return rPair;
 }

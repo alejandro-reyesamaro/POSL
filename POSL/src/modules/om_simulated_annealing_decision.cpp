@@ -8,6 +8,8 @@
 #define FALL_RATE 2
 #define MAX_ITER_PER_T 5
 
+using namespace std;
+
 OM_SimulatedAnnealingDecision::OM_SimulatedAnnealingDecision()
     :   rand(),
         started(false),
@@ -15,7 +17,7 @@ OM_SimulatedAnnealingDecision::OM_SimulatedAnnealingDecision()
         m(0)
 {}
 
-std::shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<DecisionPair> input)
+shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input)
 {
 
     int wp = psp->GetBenchmark()->solutionCost(input->GetFound());
@@ -54,7 +56,12 @@ std::shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(std::share
     }
 }
 
-std::string OM_SimulatedAnnealingDecision::codeToSend()
+string OM_SimulatedAnnealingDecision::codeToSend()
 {
     return "D2";
+}
+
+string OM_SimulatedAnnealingDecision::TAG()
+{
+    return "SA_decission";
 }

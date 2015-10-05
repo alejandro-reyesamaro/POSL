@@ -1,15 +1,22 @@
 #include "om_best_improvement_selection.h"
 
-OM_BestImprovementSelection::OM_BestImprovementSelection(std::shared_ptr<Benchmark> bench)
-    : search_strategy(std::make_shared<NeighborSelectingBestImprovement>(bench->Domains()))
+using namespace std;
+
+OM_BestImprovementSelection::OM_BestImprovementSelection(shared_ptr<Benchmark> bench)
+    : search_strategy(make_shared<NeighborSelectingBestImprovement>(bench->Domains()))
 {}
 
-std::shared_ptr<DecisionPair> OM_BestImprovementSelection::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> input)
+shared_ptr<DecisionPair> OM_BestImprovementSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)
 {
     return search_strategy->select(psp, input);
 }
 
-std::string OM_BestImprovementSelection::codeToSend()
+string OM_BestImprovementSelection::codeToSend()
 {
     return "C3";
+}
+
+string OM_BestImprovementSelection::TAG()
+{
+    return "Best_Selection";
 }

@@ -16,3 +16,8 @@ string OM_BestImprovementTabuSelection::codeToSend()
 {
     return "C4";
 }
+
+string OM_BestImprovementTabuSelection::TAG()
+{
+    return "Best_Selection(Tabu)";
+}

@@ -18,3 +18,8 @@ string OM_AlwaysImproveDecision::codeToSend()
 {
     return "D1";
 }
+
+string OM_AlwaysImproveDecision::TAG()
+{
+    return "Improving_Decision";
+}

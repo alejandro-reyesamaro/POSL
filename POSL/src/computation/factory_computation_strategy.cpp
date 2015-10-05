@@ -2,6 +2,7 @@
 
 using namespace std;
 
-FactoryComputationStrategy::FactoryComputationStrategy(shared_ptr<Benchmark> _bench)
-    : bench(_bench)
+FactoryComputationStrategy::FactoryComputationStrategy(shared_ptr<Benchmark> _bench, string tag)
+    : TAG(tag),
+      bench(_bench)
 {}

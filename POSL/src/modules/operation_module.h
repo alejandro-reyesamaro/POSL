@@ -17,5 +17,6 @@
  */
 class OperationModule : public CompoundModule
 {
-
+    public:
+        virtual std::string TAG() = 0;
 };
