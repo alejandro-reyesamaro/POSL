@@ -24,7 +24,7 @@ string OMS_TimeCounter::codeToSend()
     return "S1";
 }
 
-string OMS_TimeCounter::TAG()
+string OMS_TimeCounter::Tag()
 {
     return "Time counter";
 }

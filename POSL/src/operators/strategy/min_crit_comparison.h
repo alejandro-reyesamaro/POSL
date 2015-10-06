@@ -8,4 +8,5 @@ class MinCritComparison
     public:
         MinCritComparison();
         std::shared_ptr<ComputationData> getMin(std::shared_ptr<ComputationData> d1, std::shared_ptr<ComputationData> d2, std::shared_ptr<PSP> psp);
+        bool isLessThan(std::shared_ptr<ComputationData> d1, std::shared_ptr<ComputationData> d2, std::shared_ptr<PSP> psp);
 };

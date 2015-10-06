@@ -9,7 +9,7 @@ OM_FirstImprovementSelection::OM_FirstImprovementSelection(shared_ptr<Benchmark>
 {}
 
 shared_ptr<DecisionPair> OM_FirstImprovementSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)
-{
+{    
     return search_strategy->select(psp, input);
 }
 
@@ -18,7 +18,7 @@ string OM_FirstImprovementSelection::codeToSend()
     return "C2";
 }
 
-string OM_FirstImprovementSelection::TAG()
+string OM_FirstImprovementSelection::Tag()
 {
     return "First_Selection";
 }

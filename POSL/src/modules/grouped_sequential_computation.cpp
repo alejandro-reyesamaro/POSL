@@ -10,7 +10,6 @@ GroupedSequentialComputation::GroupedSequentialComputation(shared_ptr<Operator> 
 
 shared_ptr<ComputationData> GroupedSequentialComputation::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
-    //cout << "Inside GroupedSequentialComputation" << endl;
     return op->evaluateSequentially(psp, input);
 }
 

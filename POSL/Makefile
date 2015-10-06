@@ -3,7 +3,7 @@ EXEC=POSL
 
 # Compiler
 CXX=mpic++.mpich
-IDIR=src/main src/benchmarks src/benchmarks/cost_strategy src/computation src/data src/data/dStrategy src/expressions src/modules src/modules/strategy src/operators src/operators/strategy src/packing src/packing/factory src/packing/packers src/solver src/testers src/tools
+IDIR=src/main src/benchmarks src/benchmarks/cost_strategy src/benchmarks/relative_cost_strategy src/benchmarks/show_strategy src/computation src/data src/data/dStrategy src/expressions src/modules src/modules/strategy src/operators src/operators/strategy src/packing src/packing/factory src/packing/packers src/solver src/testers src/tools
 IDIRFLAG=$(foreach idir, $(IDIR), -I$(idir))
 CXXFLAGS=-std=c++0x -Ofast -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter $(IDIRFLAG)
 
@@ -12,9 +12,9 @@ LINKER=mpic++.mpich -o
 LFLAGS=$(IDIRFLAG)
 
 # Directories
-SRCDIR=src/main src/benchmarks src/benchmarks/cost_strategy src/computation src/data src/data/dStrategy src/expressions src/modules src/modules/strategy src/operators src/operators/strategy src/packing src/packing/factory src/packing/packers src/solver src/testers src/tools
-OBJDIR=obj
-BINDIR=bin
+SRCDIR=src/main src/benchmarks src/benchmarks/cost_strategy src/benchmarks/relative_cost_strategy src/benchmarks/show_strategy src/computation src/data src/data/dStrategy src/expressions src/modules src/modules/strategy src/operators src/operators/strategy src/packing src/packing/factory src/packing/packers src/solver src/testers src/tools
+OBJDIR=obj_par
+BINDIR=bin_par
 
 # Files
 SOURCES=$(foreach sdir, $(SRCDIR), $(wildcard $(sdir)/*.cpp))

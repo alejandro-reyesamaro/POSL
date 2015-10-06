@@ -30,6 +30,7 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
 
         //cout << "PID = "<< id <<". Receiving from " << status.MPI_SOURCE << endl;
         shared_ptr<ComputationData> r = unpackMessage(buffer, psp);
+        //cout << "PID = "<< id <<". Receiving " << r->Tag() << endl;
         delete[] buffer;
         return r;
         //return unpackMessage(buffer, psp);

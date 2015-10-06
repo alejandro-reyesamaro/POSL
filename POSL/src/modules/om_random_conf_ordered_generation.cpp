@@ -28,7 +28,7 @@ string OM_RandomConfOrderedGeneration::codeToSend()
     return "A5";
 }
 
-string OM_RandomConfOrderedGeneration::TAG()
+string OM_RandomConfOrderedGeneration::Tag()
 {
     return "Random_first(sorted)";
 }

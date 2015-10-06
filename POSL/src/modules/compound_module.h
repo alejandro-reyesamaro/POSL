@@ -21,4 +21,5 @@ class CompoundModule : public Codable
 {
     public:
         virtual std::shared_ptr<ComputationData> execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input) = 0;
+        virtual std::string Tag() = 0;
 };

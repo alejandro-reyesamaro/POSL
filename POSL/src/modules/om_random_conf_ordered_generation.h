@@ -16,7 +16,7 @@ class OM_RandomConfOrderedGeneration : public AOM_FirstConfigurationGeneration
         //! From Codable
         std::string codeToSend();
 
-        std::string TAG();
+        virtual std::string Tag();
 
     protected:
         std::shared_ptr<RandomOrderedGenerationStrategy> rconf_strategy;

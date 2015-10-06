@@ -30,7 +30,7 @@ class OM_GolfersSingleSwapNeighborhood : public AOM_NeighborhoodFunction
         //! From Codable
         std::string codeToSend();
 
-        std::string TAG();
+        virtual std::string Tag();
 
     protected:
         std::shared_ptr<Golfers> object_bench;

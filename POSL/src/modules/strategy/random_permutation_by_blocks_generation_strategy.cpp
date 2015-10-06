@@ -3,6 +3,9 @@
 #include "../../tools/tools.h"
 
 #include <algorithm>
+#include <iostream>
+
+using namespace std;
 
 RandomPermutationByBlocksGenerationStrategy::RandomPermutationByBlocksGenerationStrategy(int configuration_size, int block_size)
     :config(configuration_size),

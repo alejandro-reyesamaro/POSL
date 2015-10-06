@@ -42,14 +42,15 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
 
     shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench, myid));
 
-    /*if(myid == 0)
+    if(myid == 0)
     {
         psp->connectWith(1);
         psp->connectWith(3);
-    }
-    */
+    }    
+
 
     int solver_index;
+    /*
     if(myid < comm_size/4)
     {
         psp->connectWith(comm_size/4 + myid);
@@ -60,9 +61,11 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
         solver_index = 1;
     else
         solver_index = 2;
+    */
 
-    //int numsolvers = solvers.size();
-    //solver_index = myid % numsolvers;
+
+    int numsolvers = solvers.size();
+    solver_index = myid % numsolvers;
 
 
     //cout << myid << " - solver: " << solver_index << endl;

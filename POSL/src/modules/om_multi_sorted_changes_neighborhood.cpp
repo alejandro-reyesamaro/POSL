@@ -19,7 +19,7 @@ string OM_MultiSortedChangesNeighborhood::codeToSend()
     return "B4";
 }
 
-string OM_MultiSortedChangesNeighborhood::TAG()
+string OM_MultiSortedChangesNeighborhood::Tag()
 {
     return "(N)Multi_Changes(sorted)";
 }

@@ -1,6 +1,7 @@
 #include "psp.h"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ void PSP::UpdateSolution(vector<int> config)
     {
         copy(config.begin(), config.end(), best_found_configuration.begin());
         best_found_cost = cost;
-    }
+    }    
 }
 
 void PSP::Start(vector<int> config)

@@ -26,7 +26,7 @@ class OMS_TimeCounter : public OperationModule
         //! From Codable
         string codeToSend();
 
-        std::string TAG();
+        virtual std::string Tag();
 
     protected:
         shared_ptr<Chronometer> chrono;

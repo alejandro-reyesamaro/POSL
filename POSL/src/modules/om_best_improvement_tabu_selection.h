@@ -27,7 +27,7 @@ class OM_BestImprovementTabuSelection : public AOM_SelectionFunction
         //! From Codable
         string codeToSend();
 
-        std::string TAG();
+        virtual std::string Tag();
 
     protected:
         shared_ptr<NeighborSelectingBestImprovementTabu> search_strategy;

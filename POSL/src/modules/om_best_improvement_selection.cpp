@@ -16,7 +16,7 @@ string OM_BestImprovementSelection::codeToSend()
     return "C3";
 }
 
-string OM_BestImprovementSelection::TAG()
+string OM_BestImprovementSelection::Tag()
 {
     return "Best_Selection";
 }

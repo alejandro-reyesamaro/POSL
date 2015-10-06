@@ -15,6 +15,7 @@
 #include <string>
 
 #define SOLUTION_PACKING_ID 658201
+#define TAGSOLUTION "cd_S"
 
 /*!
  * \class Solution solution.h
@@ -34,6 +35,8 @@ class Solution : public ComputationData, public std::enable_shared_from_this<Sol
 
         std::vector<int> GetConfiguration(){ return configuration; }
         std::vector<Domain> GetDomains(){ return domains; }
+
+        std::string Tag() { return TAGSOLUTION; }
 
     private:
         std::vector<Domain> domains;

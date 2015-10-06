@@ -19,7 +19,7 @@ string OM_OneSortedChangeNeighborhood::codeToSend()
     return "B5";
 }
 
-string OM_OneSortedChangeNeighborhood::TAG()
+string OM_OneSortedChangeNeighborhood::Tag()
 {
     return "(N)One_Change(sorted)";
 }

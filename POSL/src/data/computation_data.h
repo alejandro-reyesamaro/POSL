@@ -22,4 +22,5 @@ class ComputationData
 {
     public:
         virtual std::shared_ptr<FactoryPacker> BuildPacker() = 0;
+        virtual std::string Tag() = 0;
 };

@@ -23,7 +23,7 @@ string OM_RandomConfGeneration::codeToSend()
     return "A2";
 }
 
-string OM_RandomConfGeneration::TAG()
+string OM_RandomConfGeneration::Tag()
 {
     return "Random_first";
 }

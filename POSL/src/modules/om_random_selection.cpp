@@ -18,7 +18,7 @@ string OM_RandomSelection::codeToSend()
     return "C1";
 }
 
-string OM_RandomSelection::TAG()
+string OM_RandomSelection::Tag()
 {
     return "Random_selection";
 }

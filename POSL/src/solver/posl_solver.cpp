@@ -17,7 +17,7 @@ POSL_Solver::POSL_Solver(shared_ptr<ComputationStrategy> _strategy)
 
 
 void POSL_Solver::solve(shared_ptr<PSP> psp)
-{    
+{
     final_solution = strategy->execute(psp);
     final_cost = psp->GetBenchmark()->solutionCost(final_solution);
     best_solution = psp->GetBestSolutionSoFar();

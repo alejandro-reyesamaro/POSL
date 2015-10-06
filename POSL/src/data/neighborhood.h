@@ -12,6 +12,7 @@
 #include "dStrategy/posl_iterator.h"
 #include "computation_data.h"
 #define NEIGHBORHOOD_PACKING_ID 658203
+#define TAGNEIGHBORHOOD "cd_N"
 
 /*!
  * \class Neighborhood neighborhood.h
@@ -28,6 +29,8 @@ class Neighborhood : public ComputationData
         virtual std::vector<int> neighborAt(int index) = 0;
 
         std::vector<int> CurrentConfiguration(){ return current_configuration; }
+
+        std::string Tag() { return TAGNEIGHBORHOOD; }
 
     protected:        
         std::vector<int> current_configuration;

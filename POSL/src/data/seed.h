@@ -20,6 +20,8 @@ class Seed : public ComputationData
     public:
         Seed();
 
+        std::string Tag() { return "cd_Z"; }
+
         double seed();
-        std::shared_ptr<FactoryPacker> BuildPacker();
+        std::shared_ptr<FactoryPacker> BuildPacker();        
 };

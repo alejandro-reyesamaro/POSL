@@ -18,17 +18,14 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-
     vector<shared_ptr<POSL_Solver>> solvers;
 
-
     /* GOLFERS */
-    shared_ptr<Golfers> g(make_shared<Golfers>(6,6,3));
+    shared_ptr<Golfers> g(make_shared<Golfers>(5,5,2));
     shared_ptr<Benchmark> bench = g;
     shared_ptr<CreateSolverStrategy> css(make_shared<ForGolfersCSS>(g));
     solvers = css->create();
-
-
+	
     /* SQUARING SQUARE
     //vector<int> squares({6, 4, 4, 1, 3, 3, 3});
     //bench = new SquaringSquare(10, squares);
@@ -54,6 +51,7 @@ int main(int argc, char **argv)
     {
          cout << msg << endl;
     }
+
 }
 
 int mainTest(int argc, char **argv)

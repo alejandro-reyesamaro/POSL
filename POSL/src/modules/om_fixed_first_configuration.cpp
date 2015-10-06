@@ -20,7 +20,7 @@ string OM_FixedFirstConfiguration::codeToSend()
     return "A1";
 }
 
-string OM_FixedFirstConfiguration::TAG()
+string OM_FixedFirstConfiguration::Tag()
 {
     return "Fixed_Start";
 }

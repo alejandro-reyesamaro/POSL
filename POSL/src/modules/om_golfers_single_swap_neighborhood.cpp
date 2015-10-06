@@ -11,7 +11,6 @@ OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(shared_ptr<Be
 
 shared_ptr<Neighborhood> OM_GolfersSingleSwapNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    //cout << "Neighborhood input: " << Tools::configurationToString(input->GetConfiguration()) << endl;
     V->Init(input->GetConfiguration());
     return V;
 }
@@ -21,7 +20,7 @@ string OM_GolfersSingleSwapNeighborhood::codeToSend()
     return "B3";
 }
 
-string OM_GolfersSingleSwapNeighborhood::TAG()
+string OM_GolfersSingleSwapNeighborhood::Tag()
 {
     return "(N)Golfers_SingleSwap";
 }

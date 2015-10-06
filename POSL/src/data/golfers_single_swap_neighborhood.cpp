@@ -96,7 +96,7 @@ void GolfersSingleSwapNeighborhood::updateChanges()
             {
                 save_changes(i,j,w);
             }
-    }
+    }    
 }
 
 void GolfersSingleSwapNeighborhood::save_changes(int g1, int g2, int week)

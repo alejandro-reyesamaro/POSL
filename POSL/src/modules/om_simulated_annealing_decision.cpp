@@ -61,7 +61,7 @@ string OM_SimulatedAnnealingDecision::codeToSend()
     return "D2";
 }
 
-string OM_SimulatedAnnealingDecision::TAG()
+string OM_SimulatedAnnealingDecision::Tag()
 {
     return "SA_decission";
 }

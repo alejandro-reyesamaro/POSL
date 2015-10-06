@@ -29,7 +29,7 @@ class OM_RandomConfGeneration : public AOM_FirstConfigurationGeneration
         //! From Codable
         std::string codeToSend();
 
-        std::string TAG();
+        virtual std::string Tag();
 
     protected:
         std::shared_ptr<RandomConfigurationGenerationStrategy> rconf_strategy;

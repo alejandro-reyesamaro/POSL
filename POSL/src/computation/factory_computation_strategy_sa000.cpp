@@ -1,6 +1,5 @@
 #include "factory_computation_strategy_sa000.h"
 #include "../operators/sequential_exec_operator.h"
-#include "../operators/conditional_operator.h"
 #include "../operators/cyclic_operator.h"
 #include "../operators/send_data_operator.h"
 #include "../modules/grouped_sequential_computation.h"

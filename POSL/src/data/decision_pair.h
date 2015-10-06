@@ -13,6 +13,7 @@
 #include "solution.h"
 
 #define DECISIONPAIR_PACKING_ID 658202
+#define TAGDECISSIONPAIR "cd_DP"
 
 /*!
  * \class DecisionPair decision_pair.h
@@ -31,6 +32,8 @@ class DecisionPair : public ComputationData, public std::enable_shared_from_this
 
         void update(std::vector<int> _current, std::vector<int> _found);
         void updateFromPack(int * pack);
+
+        std::string Tag() { return TAGDECISSIONPAIR; }
 
     private :
         std::shared_ptr<Solution> current;
