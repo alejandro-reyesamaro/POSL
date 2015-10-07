@@ -1,0 +1,41 @@
+
+geometricalSplit <- function(M){
+    width =  M$area[1,2] - M$area[1,1]
+    height = M$area[2,2] - M$area[2,1]
+    A1 = M$area
+    A2 = M$area
+    x1 = M$X; x2 = M$X
+    y1 = M$Y; y2 = M$Y 
+    if (width >= height){ # vertical division
+        cutPoint = mean(M$area[1,])
+        A1[1,2] = cutPoint
+        A2[1,1] = cutPoint
+        #segments(cutPoint, M$area[2,1], cutPoint, M$area[2,2])
+        x1 = M$X[M$X <= cutPoint]; x2 = M$X[M$X > cutPoint]
+        y1 = M$Y[M$X <= cutPoint]; y2 = M$Y[M$X > cutPoint]
+    }else{                # horizontal division
+        cutPoint = mean(M$area[2,])
+        A1[2,2] = cutPoint
+        A2[2,1] = cutPoint
+        #segments(M$area[1,1], cutPoint, M$area[1,2], cutPoint)
+        x1 = M$X[M$Y <= cutPoint]; x2 = M$X[M$Y > cutPoint]
+        y1 = M$Y[M$Y <= cutPoint]; y2 = M$Y[M$Y > cutPoint]
+    }
+    M1 = list(area=A1, X=x1, Y=y1)
+    M2 = list(area=A2, X=x2, Y=y2)
+    result = list(M1, M2)
+    return (result)
+}
+
+
+
+x=abs(rnorm(100, mean=0, sd=0.35))
+y=abs(rnorm(100, mean=0, sd=0.35))
+color_p=1*(x>0 & y > 0)
+
+A <- array(c(0,0,1,1),dim=c(2,2)) # espacio en R^2:[0,1]X[0,1]
+Reg = list(area=A, X=x, Y=y)
+r = geometricalSplit(Reg)
+r
+
+

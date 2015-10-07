@@ -26,7 +26,7 @@ bool comparePairs(shared_ptr<DecisionPair> p1, shared_ptr<DecisionPair> p2, shar
 {
     int cost1 = bench->solutionCost(p1->GetFound());
     int cost2 = bench->solutionCost(p2->GetFound());
-    cout << cost1 << cost2 << endl;
+    //cout << cost1 << cost2 << endl;
     return (cost1 <= cost2);
 }
 

@@ -20,7 +20,7 @@ FactoryComputationStrategy_A000::FactoryComputationStrategy_A000(shared_ptr<Benc
         shared_ptr<AOM_DecisionFunction> decision_fucntion,
         int loops_main_cycle,
         int loops_restart_cycle)
-    : FactoryComputationStrategy(_bench, "Simple strategy")
+    : FactoryComputationStrategy(_bench, "A000")
 {
     shared_ptr<CompoundModule> cm_iter(make_shared<OMS_IterationsCounter>());
     shared_ptr<CompoundModule> cm_time(make_shared<OMS_TimeCounter>());

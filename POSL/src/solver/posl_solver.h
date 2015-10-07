@@ -14,6 +14,7 @@ class POSL_Solver
         void solve(std::shared_ptr<PSP> psp);
         std::string show(std::shared_ptr<Benchmark> bench);
         std::string show();
+        std::string show_to_collect();
 
     private:
         std::string showSolution(std::string str_finalSol, std::string str_bestSol);

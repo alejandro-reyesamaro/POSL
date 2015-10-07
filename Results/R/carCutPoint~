@@ -1,0 +1,4 @@
+carCutPoint <- function(vector){
+	    sort.v = sort(vector);
+	    
+}

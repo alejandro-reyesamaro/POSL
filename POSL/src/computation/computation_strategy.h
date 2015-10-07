@@ -11,6 +11,9 @@ class ComputationStrategy
         ComputationStrategy(std::shared_ptr<FactoryComputationStrategy> builder);
         std::shared_ptr<Solution> execute(std::shared_ptr<PSP> psp);
 
+        std::string TAG;
+
     private:
         std::shared_ptr<CompoundModule> module;
+
 };

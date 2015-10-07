@@ -13,7 +13,7 @@ FactoryComputationStrategy_Trivial::FactoryComputationStrategy_Trivial(shared_pt
         shared_ptr<AOM_SelectionFunction> selection_function,
         shared_ptr<AOM_DecisionFunction> decision_fucntion,
         int loops_main_cycle)
-    : FactoryComputationStrategy(_bench, "Tribial")
+    : FactoryComputationStrategy(_bench, "tribial")
 {
     shared_ptr<CompoundModule> cm_iter (make_shared<OMS_IterationsCounter>());
     shared_ptr<CompoundModule> cm_time (make_shared<OMS_TimeCounter>());

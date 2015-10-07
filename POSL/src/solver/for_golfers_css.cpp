@@ -32,7 +32,7 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             //make_shared<OM_AlwaysImproveDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
             //0.2, 20, 100, 30
-            100,30
+            200,60
         )))),
       sender_solver( make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA000>
         (
@@ -63,8 +63,12 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
 
 vector<shared_ptr<POSL_Solver> > ForGolfersCSS::create()
 {
-    solvers.push_back(sender_solver);
-    solvers.push_back(receiver_solver);
+    //solvers.push_back(sender_solver);
+    //solvers.push_back(receiver_solver);
+    //solvers.push_back(sender_solver);
+    //solvers.push_back(receiver_solver);
+    solvers.push_back(single_solver);
+    //solvers.push_back(single_solver);
     //solvers.push_back(single_solver);
     //solvers.push_back(single_solver);
 

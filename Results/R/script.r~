@@ -1,0 +1,20 @@
+x=abs(rnorm(100, mean=0, sd=0.35))
+y=abs(rnorm(100, mean=0, sd=0.35))
+A <- array(c(0,0,1,1),dim=c(2,2)) # R^2:[0,1]X[0,1]
+
+source("splitDomain.r")
+
+# image (geometrical)
+splitDomain(x, y, A, spliter="geometrical", 10, "geom.pdf")
+
+# image (cardinal)
+dev.new()
+splitDomain(x, y, A, spliter="cardinal", 10, "card.pdf")
+
+# image (mean)
+dev.new()
+splitDomain(x, y, A, spliter="mean", 10, "mean.pdf")
+
+# image (golden number)
+#dev.new()
+#splitDomain(x, y, A, spliter="gold", 10, "gold.pdf")

@@ -46,9 +46,17 @@ string POSL_Solver::show(shared_ptr<Benchmark> bench)
     if(final_solution != nullptr && best_solution != nullptr){
         string str_finalSol = bench->ShowSolution(final_solution);
         string str_bestSol = bench->ShowSolution(best_solution);
-        return showSolution(str_finalSol, str_bestSol);
+        string solver_tag = strategy->TAG;
+        return showSolution(str_finalSol, str_bestSol) + "\nSolver Tag: " + solver_tag;
     }
     else return "Solver not working";
+}
+
+string POSL_Solver::show_to_collect()
+{
+    if(final_solution != nullptr && best_solution != nullptr && best_cost == 0)
+        return Tools::int2str(time) + " " + Tools::int2str(iterations);// + " " + strategy->TAG;
+    else return "Unsucceful";
 }
 
 string POSL_Solver::show()

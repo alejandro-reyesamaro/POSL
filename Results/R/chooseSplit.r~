@@ -1,0 +1,15 @@
+chooseSplit <- function(segment, vector, spliter){
+    switch (spliter,
+            geometrical = {
+                source("geoCutPoint.r")
+                return (geoCutPoint(segment))
+            },
+            cardinal = {
+                source("carCutPoint.r")
+                return (carCutPoint(vector))
+            },
+            mean = {
+                source("meanCutPoint.r")
+                return (meanCutPoint(vector))
+            })
+}

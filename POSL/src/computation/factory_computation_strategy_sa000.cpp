@@ -18,7 +18,7 @@ FactoryComputationStrategy_SA000::FactoryComputationStrategy_SA000(shared_ptr<Be
         shared_ptr<AOM_DecisionFunction> decision_fucntion,
         int loops_main_cycle,
         int loops_restart_cycle)
-    : FactoryComputationStrategy(_bench, "A001 (sender)")
+    : FactoryComputationStrategy(_bench, "A000(s)")
 {
     shared_ptr<CompoundModule> cm_iter (make_shared<OMS_IterationsCounter>());
     shared_ptr<CompoundModule> cm_time (make_shared<OMS_TimeCounter>());

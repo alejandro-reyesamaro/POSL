@@ -19,5 +19,5 @@ void Comunicator::sendMessage(vector<int> package, int procID)
     //cout << "Sending information (" << tag << ")  to " << procID << endl; //<< ((DecisionPair *) data)->GetCurrent()->configurationToString()<< endl;
     MPI_Send(buffer, pack_size, MPI_INT, procID, tag, MPI_COMM_WORLD);
     //cout << "Sending information (" << tag << ")  to " << procID << endl; //<< ((DecisionPair *) data)->GetCurrent()->configurationToString()<< endl;
-    delete[] buffer;
+    //delete[] buffer;
 }

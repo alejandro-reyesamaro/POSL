@@ -1,0 +1,3 @@
+geoCutPoint <- function(segment){
+    return mean(segment);
+}

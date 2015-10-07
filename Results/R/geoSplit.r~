@@ -1,0 +1,27 @@
+geometricalSplit <- function(area, X, Y){
+    width =  area[1,2] - area[1,1]
+    height = area[2,2] - area[2,1]
+    A1 = area
+    A2 = area
+    x1 = X; x2 = X
+    y1 = Y; y2 = Y 
+    if (width >= height){ # vertical division
+        cutPoint = mean(area[1,])
+        A1[1,2] = cutPoint
+        A2[1,1] = cutPoint
+        segments(cutPoint, area[2,1], cutPoint, area[2,2])
+        x1 = X[X <= cutPoint]; x2 = X[X > cutPoint]
+        y1 = Y[X <= cutPoint]; y2 = Y[X > cutPoint]
+    }else{                # horizontal division
+        cutPoint = mean(area[2,])
+        A1[2,2] = cutPoint
+        A2[2,1] = cutPoint
+        segments(area[1,1], cutPoint, area[1,2], cutPoint)
+        x1 = X[Y <= cutPoint]; x2 = X[Y > cutPoint]
+        y1 = Y[Y <= cutPoint]; y2 = Y[Y > cutPoint]
+    }
+    M1 = list(area=A1, X=x1, Y=y1)
+    M2 = list(area=A2, X=x2, Y=y2)
+    result = list(M1, M2)
+    return (result)
+}

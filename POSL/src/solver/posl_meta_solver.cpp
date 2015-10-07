@@ -45,8 +45,12 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     if(myid == 0)
     {
         psp->connectWith(1);
+        //psp->connectWith(3);
+    }
+    if(myid == 2)
+    {
         psp->connectWith(3);
-    }    
+    }
 
 
     int solver_index;
@@ -64,8 +68,8 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     */
 
 
-    int numsolvers = solvers.size();
-    solver_index = myid % numsolvers;
+    //int numsolvers = solvers.size();
+    solver_index = myid;// % numsolvers;
 
 
     //cout << myid << " - solver: " << solver_index << endl;
@@ -75,7 +79,8 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
 
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);
-    cout << solver->show(psp->GetBenchmark()) << endl;
+    cout << solver->show_to_collect() << endl;
+    //cout << solver->show(psp->GetBenchmark()) << endl;
     exit(0);
 
     MPI_Finalize();

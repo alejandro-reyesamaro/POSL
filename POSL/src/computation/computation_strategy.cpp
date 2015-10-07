@@ -5,7 +5,8 @@
 using namespace std;
 
 ComputationStrategy::ComputationStrategy(shared_ptr<FactoryComputationStrategy> builder)
-    : module(builder->buildModule())
+    : TAG(builder->TAG),
+      module(builder->buildModule())
 {}
 
 shared_ptr<Solution> ComputationStrategy::execute(shared_ptr<PSP> psp)

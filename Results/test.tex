@@ -1,0 +1,180 @@
+\documentclass[a4rpaper, 10pt]{article}
+  \textwidth = 17cm
+  \oddsidemargin = 0cm
+  \textheight = 22cm
+  \topmargin = 0cm
+ 
+\usepackage{parskip}
+\setlength{\parskip}{10pt}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amssymb,amsxtra,amstext}
+\usepackage[spanish, english]{babel}
+\usepackage{graphicx,color}
+\usepackage{pslatex}
+\usepackage[all]{xy}
+\usepackage[ruled,vlined,oldcommands,lined,boxed]{algorithm2e}
+\usepackage{tikz}
+\usepackage{enumitem}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{multirow,tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\renewcommand{\arraystretch}{2}
+
+\usepackage[framemethod=tikz]{mdframed}
+\usetikzlibrary{shadows}
+\newmdenv[shadow=true,shadowcolor=black,font=\sffamily,rightmargin=8pt]{shadedbox}
+
+\setcounter{MaxMatrixCols}{30}
+\usepackage{amsfonts}
+\usepackage{pgf}
+\usepackage{appendix}
+\usepackage{subfigure}
+
+\usepackage[T1]{fontenc}
+\usepackage{courier}
+
+%\usepackage[section]{placeins}
+\usepackage{float}
+\restylefloat{table}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usepackage{hyperref}
+
+\usepackage{syntonly}
+% \syntaxonly
+
+\newtheorem{example}{Example}
+%\newtheorem{definition}{Definición}
+%\newtheorem{remark}{Comentario}
+%\newtheorem{problem}{Problema}
+%\newtheorem{proposition}{Proposición}
+
+\renewcommand{\labelitemi}{$\bullet$}
+\newcommand{\hf}{\hspace*{\fill}}
+
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\newenvironment{myfont}{\fontfamily{pcr}\selectfont}{\par}
+
+\newcommand{\comi}{\textquotedblleft}
+\newcommand{\come}{\textquotedblright}
+\newcommand{\n}{\newline}
+%\renewcommand{\baselinestretch}{1.25}
+
+\graphicspath{{R/}}
+\definecolor{naranja}{RGB}{241,70,34}
+\definecolor{verde}{RGB}{104,198,135}
+\definecolor{intenso}{RGB}{126,13,13}
+
+\newcommand{\tableresult}[3]{%
+\begin{table}[H] 
+\caption{#1}
+\centering 
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{1.5cm}|p{1.5cm}||p{1.5cm}|p{1.5cm}|p{1.5cm}||p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+	\hline\hline
+	\multicolumn{2}{|c||}{\bf A000 - No Comm.} & \multicolumn{3}{c||}{\bf A000 - 50\% Comm.} & \multicolumn{3}{c|}{\bf A000 - Comm.}\\
+	\hline\hline
+	mSec & Iterations & mSec & Iterations & Winner & mSec & Iterations & Winner \\
+	\hline\hline
+	#2
+	\hline
+\end{tabular} 
+\label{#3}
+\end{table}	
+}
+
+\title{\sc{POSL (solving GOLFERS problem)}}
+\author{Alejandro REYES-AMARO}
+\date{\today}
+
+\begin{document}
+%\selectlanguage{spanish}
+\maketitle
+%\thispagestyle{empty}
+
+%\newpage
+
+\section{Results}
+
+\tableresult{{\bf 6-6-3} (4 Core, Intel Core i7 2.20GHz, 16 Gb RAM)}
+{
+6,345 & 137 & & & & & \\
+30,766 & 621 & & & & & \\
+6,851 & 126 & & & & & \\
+3,634 & 70 & & & & & \\
+4,332 & 81 & & & & & \\
+3,701 & 74 & & & & & \\
+5,154 & 87 & & & & & \\
+3,417 & 79 & & & & & \\
+1,034 & 31 & & & & & \\
+21,867 & 420 & & & & & \\
+3,482 & 65 & & & & & \\
+4,123 & 81 & & & & & \\
+22,056 & 416 & & & & & \\
+4,772 & 86 & & & & & \\
+11,012 & 224 & & & & & \\
+14,399 & 266 & & & & & \\
+14,717 & 278 & & & & & \\
+8,976 & 172 & & & & & \\
+7,281 & 138 & & & & & \\
+3,507 & 70 & & & & & \\
+}{table:663_1}
+
+\tableresult{{\bf 6-6-3} (4 Cores, Intel Core i7 2.20GHz, 16 Gb RAM)}
+{
+1,401 & 73 & 285 & 30 & sender & & \\
+1,893 & 185 & 798 & 83 & simple & & \\
+827 & 81 & 1,845 & 176 & simple & & \\
+176 & 18 & 465 & 45 & sender & & \\
+701 & 72 & 1,900 & 172 & simple & & \\
+493 & 36 & 1,301 & 65 & simple & & \\
+8,831 & 434 & 1,079 & 43 & receiver & & \\
+1,238 & 126 & 1,942 & 28 & sender & & \\
+491 & 30 & 479 & 33 & receiver & & \\
+365 & 25 & 1,448 & 74 & simple & & \\
+637 & 41 & 627 & 64 & simple & & \\
+981 & 40 & 3,508 & 171 & simple & & \\
+2,626 & 227 & 1,897 & 178 & simple & & \\
+772 & 68 & 1,905 & 165 & simple & & \\
+2,067 & 157 & 726 & 47 & sender & & \\
+1,311 & 127 & 328 & 33 & sender & & \\
+1,963 & 181 & 4,062 & 374 & simple & & \\
+455 & 71 & 223 & 33 & simple & & \\
+1,402 & 63 & 534 & 33 & simple & & \\
+1,374 & 127 & 1,737 & 92 & simple & & \\
+}{table:663_4}
+
+10,297	553	1,232	43	 sender
+6,276	343	26,256	1,440	 simple
+11,667	658	3,368	146	 sender
+7,084	353	4,835	156	 sender
+2,599	141	5,540	267	 simple
+4,040	242	4,945	235	 simple
+9,242	451	3,796	260	 simple
+3,159	89	3,813	70	 receiver
+13,028	358	1,478	39	 receiver
+1,018	59	22,857	635	 simple
+4,874	246	12,263	348	 simple
+6,884	355	993	55	 sender
+847	54	1,442	40	 receiver
+12,402	391	3,845	53	  receiver
+1,038	51	6,031	162	 simple
+715	54	6,958	349	 simple
+15,360	841	2,585	85	 sender
+3,546	163	1,346	64	 sender
+19,224	752	3,042	155	 simple
+952	54	9,306	494	 simple
+1,410	51	17,687	975	 simple
+1,410	51	5,133	155	 sender
+
+
+\end{document}

@@ -105,6 +105,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_IterationGolfers>(argc, argv));
 
     string output_str;
+    for(int k = 0; k < 25; k ++)
     for(unsigned int i = 0; i < tests.size(); i++)
     {
         try
@@ -114,7 +115,8 @@ int main(int argc, char **argv)
         {
              cout << msg << endl;
         }
-        cout << ">> " << output_str << endl;
+        //cout << ">> " << output_str << endl;
+        cout << output_str << endl;
     }
     return 0;
 }
