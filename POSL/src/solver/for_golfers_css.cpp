@@ -63,8 +63,8 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
 
 vector<shared_ptr<POSL_Solver> > ForGolfersCSS::create()
 {
-    //solvers.push_back(sender_solver);
-    //solvers.push_back(receiver_solver);
+    solvers.push_back(sender_solver);
+    solvers.push_back(receiver_solver);
     //solvers.push_back(sender_solver);
     //solvers.push_back(receiver_solver);
     solvers.push_back(single_solver);

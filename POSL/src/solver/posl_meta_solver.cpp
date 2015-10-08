@@ -42,6 +42,7 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
 
     shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench, myid));
 
+    /*
     if(myid == 0)
     {
         psp->connectWith(1);
@@ -51,9 +52,14 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     {
         psp->connectWith(3);
     }
+    */
 
 
     int solver_index;
+
+    //*********************************************
+    //        50 % Communication
+    //*********************************************
     /*
     if(myid < comm_size/4)
     {
@@ -67,9 +73,21 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
         solver_index = 2;
     */
 
+    //*********************************************
+    //        All Communication
+    //*********************************************
+    if(myid < comm_size/2)
+    {
+        psp->connectWith(comm_size/2 + myid);
+        solver_index = 0;
+        cout << "Core " << myid << " conected with core " << comm_size/2 + myid << endl;
+    }
+    else
+        solver_index = 1;
+
 
     //int numsolvers = solvers.size();
-    solver_index = myid;// % numsolvers;
+    //solver_index = myid;// % numsolvers;
 
 
     //cout << myid << " - solver: " << solver_index << endl;
@@ -80,7 +98,7 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);
     cout << solver->show_to_collect() << endl;
-    //cout << solver->show(psp->GetBenchmark()) << endl;
+    cout << solver->show(psp->GetBenchmark()) << endl;
     exit(0);
 
     MPI_Finalize();

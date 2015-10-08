@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 /*!
  * \class ComputationData computation_data.h
