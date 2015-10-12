@@ -32,7 +32,7 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             //make_shared<OM_AlwaysImproveDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
             //0.2, 20, 100, 30
-            200,60
+            500,70
         )))),
       sender_solver( make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA000>
         (

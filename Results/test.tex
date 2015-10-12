@@ -92,6 +92,26 @@
 \end{table}	
 }
 
+\newcommand\cw{1}
+
+\newcommand{\tableresultres}[3]{%
+\begin{table}[H] 
+\caption{#1}
+\centering 
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{1.5cm}|p{1cm}||p{\cw cm}|p{\cw cm}||p{\cw cm}|p{\cw cm}|p{\cw cm}||p{\cw cm}|p{\cw cm}|p{\cw cm}|}
+\hline\hline
+\multirow{2}{*}{\footnotesize{\centering {\bf Instance}}}&\multirow{2}{*}{\footnotesize{\centering {\bf Cores}}}&\multicolumn{2}{|c||}{\bf No Comm.} & \multicolumn{3}{c||}{\bf 50\% Comm.} & \multicolumn{3}{c|}{\bf All Comm.}\\
+\cline{3-10}\cline{3-10}
+& & T & It. & T & It. & \%Rec. & T & It. & \%Rec. \\
+\hline\hline
+#2
+\hline
+\end{tabular} 
+\label{#3}
+\end{table}	
+}
+
 \title{\sc{POSL (solving GOLFERS problem)}}
 \author{Alejandro REYES-AMARO}
 \date{\today}
@@ -129,52 +149,34 @@
 3,507 & 70 & & & & & \\
 }{table:663_1}
 
-\tableresult{{\bf 6-6-3} (4 Cores, Intel Core i7 2.20GHz, 16 Gb RAM)}
+\tableresultres{Intel Core i7 2.20GHz, 16 Gb RAM}
 {
-1,401 & 73 & 285 & 30 & sender & & \\
-1,893 & 185 & 798 & 83 & simple & & \\
-827 & 81 & 1,845 & 176 & simple & & \\
-176 & 18 & 465 & 45 & sender & & \\
-701 & 72 & 1,900 & 172 & simple & & \\
-493 & 36 & 1,301 & 65 & simple & & \\
-8,831 & 434 & 1,079 & 43 & receiver & & \\
-1,238 & 126 & 1,942 & 28 & sender & & \\
-491 & 30 & 479 & 33 & receiver & & \\
-365 & 25 & 1,448 & 74 & simple & & \\
-637 & 41 & 627 & 64 & simple & & \\
-981 & 40 & 3,508 & 171 & simple & & \\
-2,626 & 227 & 1,897 & 178 & simple & & \\
-772 & 68 & 1,905 & 165 & simple & & \\
-2,067 & 157 & 726 & 47 & sender & & \\
-1,311 & 127 & 328 & 33 & sender & & \\
-1,963 & 181 & 4,062 & 374 & simple & & \\
-455 & 71 & 223 & 33 & simple & & \\
-1,402 & 63 & 534 & 33 & simple & & \\
-1,374 & 127 & 1,737 & 92 & simple & & \\
-}{table:663_4}
+\multirow{3}{*}{{\bf 6-6-3}} & 1 & 9,071 & 176 & - & - & - & - & - & -\\
+	& 4 & 1,500 & 109 & 1,354 & 97 & 10 & 3,512 & 181 & 10\\
+	& 8 &   &   &   &   &   &   &   & \\
+\hline
+\multirow{3}{*}{{\bf 7-7-3}} & 1 & 22,661 & 1,111 & - & - & - & - & - & -\\
+	& 4 & 6,231 & 287 & 6,761 & 283 & 18 & 9,470 & 261 & 22,7\\
+	& 8 &   &   &   &   &   &   &   & \\
+\hline
+\multirow{3}{*}{{\bf 8-8-3}} & 1 & 59,616 & 850 & - & - & - & - & - & -\\
+	& 4 & 26,268 & 293 & 30,051 & 317 & 22,7 & 61,412 & 362 & 36,3\\
+	& 8 &   &   &   &   &   &   &   & \\
+}{table:i7}
 
-10,297	553	1,232	43	 sender
-6,276	343	26,256	1,440	 simple
-11,667	658	3,368	146	 sender
-7,084	353	4,835	156	 sender
-2,599	141	5,540	267	 simple
-4,040	242	4,945	235	 simple
-9,242	451	3,796	260	 simple
-3,159	89	3,813	70	 receiver
-13,028	358	1,478	39	 receiver
-1,018	59	22,857	635	 simple
-4,874	246	12,263	348	 simple
-6,884	355	993	55	 sender
-847	54	1,442	40	 receiver
-12,402	391	3,845	53	  receiver
-1,038	51	6,031	162	 simple
-715	54	6,958	349	 simple
-15,360	841	2,585	85	 sender
-3,546	163	1,346	64	 sender
-19,224	752	3,042	155	 simple
-952	54	9,306	494	 simple
-1,410	51	17,687	975	 simple
-1,410	51	5,133	155	 sender
-
+\tableresultres{Curiosiphy}
+{
+\multirow{3}{*}{{\bf 6-6-3}} & 1 & 2,684 & 229 & - & - & - & - & - & -\\
+      & 20 & 595 & 49 & 750 & 54 & 5 & 1,058 & 69 & 0\\
+      & 40 & 595 & 49 & 688 & 37 & 5 & 3,150 & 104 & 5\\
+\hline
+\multirow{3}{*}{{\bf 7-7-3}} & 1 & 11,070 & 533 & - & - & - & - & - & -\\
+      & 20 & 2,983 & 130 & 2,739 & 104 & 13,6 & 4,395 & 131 & 13,6\\
+	  & 40 & 2,350 & 64 & 2,664 & 66 & 13,6 & 4,178 & 89 & 4,5\\
+\hline
+\multirow{3}{*}{{\bf 8-8-3}} & 1 & 57,363 & 754 & - & - & - & - & - & -\\
+      & 20 & 7,545 & 86 & 13,095 & 148 & 9,9 & 6,543 & 75 & 13,6\\
+	  & 40 & 8,157 & 66 & 8,514 & 65 & 10 & 8,610 & 67 & 0\\
+}{table:curiosiphy}
 
 \end{document}

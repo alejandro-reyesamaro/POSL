@@ -21,8 +21,8 @@ string Tester_CostOfSolutionGolfers::test()
     sol442 = make_shared<Solution>(psp442->GetBenchmark()->Domains(), Tester::Golfers_442_c4());
     int c2 = psp442->GetBenchmark()->solutionCost(sol442);
 
-    shared_ptr<Benchmark> bench553(make_shared<Golfers>(5,5,3));
-    shared_ptr<Solution> sol553(make_shared<Solution>(bench553->Domains(), Tester::Golfers_553_c0()));
+    shared_ptr<Benchmark> bench553(make_shared<Golfers>(5,5,4));
+    shared_ptr<Solution> sol553(make_shared<Solution>(bench553->Domains(), Tester::Golfers_554_c0()));
     //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp553(make_shared<PSP>(ARGC, ARGV, bench553));
     int c3 = psp553->GetBenchmark()->solutionCost(sol553);

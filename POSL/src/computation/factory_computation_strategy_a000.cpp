@@ -50,7 +50,7 @@ FactoryComputationStrategy_A000::FactoryComputationStrategy_A000(shared_ptr<Benc
     // <--------------------------------------------------------------------------------->
 
     shared_ptr<LoopBoundExpression> loop_b1 = make_shared<LoopBoundExpression>(loops_main_cycle);
-    shared_ptr<SameCostIterationsBoundExpression> sc_ex = make_shared<SameCostIterationsBoundExpression>(15);
+    shared_ptr<SameCostIterationsBoundExpression> sc_ex = make_shared<SameCostIterationsBoundExpression>(25);
     //shared_ptr<OrExpression> ex = make_shared<OrExpression>(loop_b1, sc_ex);
     shared_ptr<AndExpression> ex = make_shared<AndExpression>(loop_b1, sc_ex);
 

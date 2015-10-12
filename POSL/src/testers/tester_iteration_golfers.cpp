@@ -32,7 +32,7 @@ string Tester_IterationGolfers::test()
     shared_ptr<Solution> sol332(make_shared<Solution>(bench332->Domains(), init_config));
     shared_ptr<PSP> psp332(make_shared<PSP>(ARGC, ARGV, bench332));
     int cA = bench332->solutionCost(sol332);
-    cout << "Initial cost: " << cA << endl;
+    //cout << "Initial cost: " << cA << endl;
 
     psp332->Start(sol332->GetConfiguration());
 
@@ -62,13 +62,13 @@ string Tester_IterationGolfers::test()
     psp332->UpdateSolution(cc);
 
     int current_cost = psp332->CurrentCost();
-    cout << current_cost << endl;
+    //cout << current_cost << endl;
 
     cc[14] = 1;
     cc[16] = 8;
 
     cR1 = psp332->GetBenchmark()->relativeSolutionCost(cc);
-    cout << cR1 << endl;
+    //cout << cR1 << endl;
 
     ok = ok && current_cost == 4 && cR1 == 0;
     // ************************************************
@@ -89,8 +89,24 @@ string Tester_IterationGolfers::test()
     shared_ptr<GroupedComputation> Gsec3(make_shared<GroupedSequentialComputation>(sec_3));
 
     shared_ptr<Solution> sol = static_pointer_cast<Solution>(Gsec3->execute(psp332, sol332));
-    cout << sol->configurationToString() << endl;
-    cout << "Final cost: " << Tools::int2str(bench332->solutionCost(sol)) << endl;
+    //cout << sol->configurationToString() << endl;
+    //cout << "Final cost: " << Tools::int2str(bench332->solutionCost(sol)) << endl;
+
+    shared_ptr<Benchmark> bench554(make_shared<Golfers>(5,5,4));
+    vector<int> init_config2 = Tester::Golfers_554_c0();
+    shared_ptr<Solution> sol554(make_shared<Solution>(bench554->Domains(), init_config2));
+    shared_ptr<PSP> psp554(make_shared<PSP>(ARGC, ARGV, bench554));
+    int c554 = bench332->solutionCost(sol554);
+    cout << "Initial cost: " << c554 << endl;
+    psp554->Start(sol554->GetConfiguration());
+    int c554A = psp554->CurrentCost();
+    cout << "Relative cost: " << c554A << endl;
+
+    init_config2[1] = 7;
+    init_config2[6] = 2;
+
+    int rc554 = bench554->relativeSolutionCost(init_config2);
+    cout << "Relative cost: " << rc554 << endl;
 
     return (ok  ) ?
            "One Iteration (Golfers): OK !" : "One Iteration (Golfers): fail :/";

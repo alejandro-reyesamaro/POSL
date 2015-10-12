@@ -98,7 +98,7 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);
     cout << solver->show_to_collect() << endl;
-    cout << solver->show(psp->GetBenchmark()) << endl;
+    //cout << solver->show(psp->GetBenchmark()) << endl;
     exit(0);
 
     MPI_Finalize();
