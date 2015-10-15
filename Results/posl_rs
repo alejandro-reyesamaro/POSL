@@ -1,4 +1,0 @@
-for (( i = 0; i <= $1; i++ ))
-do
-   mpiexec.mpich -np 8 ./../POSL/bin_par/POSL >> $2 
-done

@@ -1,6 +1,0 @@
-Unsucceful
-Unsucceful
-[mpiexec@port-dell-reyes] Sending Ctrl-C to processes as requested
-[mpiexec@port-dell-reyes] Press Ctrl-C again to force abort
-[mpiexec@port-dell-reyes] Sending Ctrl-C to processes as requested
-[mpiexec@port-dell-reyes] Press Ctrl-C again to force abort
