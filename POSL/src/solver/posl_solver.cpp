@@ -55,7 +55,7 @@ string POSL_Solver::show(shared_ptr<Benchmark> bench)
 string POSL_Solver::show_to_collect()
 {
     if(final_solution != nullptr && best_solution != nullptr && best_cost == 0)
-        return Tools::int2str(time) + " " + Tools::int2str(iterations);// + " " + strategy->TAG;
+        return Tools::int2str(time) + " " + Tools::int2str(iterations) + " " + strategy->TAG;
     else return "Unsucceful";
 }
 

@@ -26,12 +26,17 @@ int neighborProcess(int myid, int numprocs)
 }
 */
 
-void POSL_MetaSolver::solve(int argc, char **argv, shared_ptr<Benchmark> bench)
-{    
-    solve_Default(argc, argv, bench);
+void POSL_MetaSolver::solve(int argc, char **argv, shared_ptr<Benchmark> bench, int opt)
+{
+    if(opt == 0)
+        solve_Default_NO(argc, argv, bench);
+    else if (opt == 1)
+        solve_Default_50(argc, argv, bench);
+    else if (opt == 2)
+        solve_Default_All(argc, argv, bench);
 }
 
-void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark> bench)
+void POSL_MetaSolver::solve_Default_NO(int argc, char **argv, shared_ptr<Benchmark> bench)
 {
     int myid, comm_size;
 
@@ -42,36 +47,65 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
 
     shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench, myid));
 
-    /*
-    if(myid == 0)
-    {
-        psp->connectWith(1);
-        //psp->connectWith(3);
-    }
-    if(myid == 2)
-    {
-        psp->connectWith(3);
-    }
-    */
+    int solver_index = 2;
 
+    shared_ptr<POSL_Solver> solver = solvers[solver_index];
+    solver->solve(psp);
+    cout << solver->show_to_collect() << endl;
+    //cout << solver->show(psp->GetBenchmark()) << endl;
+    exit(0);
+
+    MPI_Finalize();
+}
+
+void POSL_MetaSolver::solve_Default_50(int argc, char **argv, shared_ptr<Benchmark> bench)
+{
+    int myid, comm_size;
+
+    MPI_Init(&argc, &argv);
+
+    MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
+    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
+
+    shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench, myid));
 
     int solver_index;
 
     //*********************************************
     //        50 % Communication
     //*********************************************
-    /*
     if(myid < comm_size/4)
     {
         psp->connectWith(comm_size/4 + myid);
         solver_index = 0;
-        cout << "Core " << myid << " conected with core " << comm_size/4 + myid << endl;
+        //cout << "Core " << myid << " conected with core " << comm_size/4 + myid << endl;
     }
     else if((myid >= comm_size/4) && myid < comm_size/2)
         solver_index = 1;
     else
         solver_index = 2;
-    */
+
+    shared_ptr<POSL_Solver> solver = solvers[solver_index];
+    solver->solve(psp);
+    cout << solver->show_to_collect() << endl;
+    //cout << solver->show(psp->GetBenchmark()) << endl;
+    exit(0);
+
+    MPI_Finalize();
+}
+
+void POSL_MetaSolver::solve_Default_All(int argc, char **argv, shared_ptr<Benchmark> bench)
+{
+    int myid, comm_size;
+
+    MPI_Init(&argc, &argv);
+
+    MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
+    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
+
+    shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench, myid));
+
+    int solver_index;
 
     //*********************************************
     //        All Communication
@@ -80,20 +114,10 @@ void POSL_MetaSolver::solve_Default(int argc, char **argv, shared_ptr<Benchmark>
     {
         psp->connectWith(comm_size/2 + myid);
         solver_index = 0;
-        cout << "Core " << myid << " conected with core " << comm_size/2 + myid << endl;
+        //cout << "Core " << myid << " conected with core " << comm_size/2 + myid << endl;
     }
     else
         solver_index = 1;
-
-
-    //int numsolvers = solvers.size();
-    //solver_index = myid;// % numsolvers;
-
-
-    //cout << myid << " - solver: " << solver_index << endl;
-
-    //shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    //bench->UpdateSolution(sol);
 
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);
