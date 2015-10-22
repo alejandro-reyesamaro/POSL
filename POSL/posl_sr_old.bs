@@ -1,0 +1,106 @@
+echo "----883 (NO) 20-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 20 ./bin/POSL 8 8 3 0 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+echo "----883 (NO) 30-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 30 ./bin/POSL 8 8 3 0 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+echo "----883 (NO) 40-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 40 ./bin/POSL 8 8 3 0 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+
+
+
+
+echo "----883 (50) 10-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 10 ./bin/POSL 8 8 3 1 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+echo "----883 (50) 20-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 20 ./bin/POSL 8 8 3 1 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+echo "----883 (50) 30-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 30 ./bin/POSL 8 8 3 1 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+echo "----883 (50) 40-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 40 ./bin/POSL 8 8 3 1 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+
+
+
+echo "----883 (All) 10-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 10 ./bin/POSL 8 8 3 2 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+echo "----883 (All) 20-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 20 ./bin/POSL 8 8 3 2 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+echo "----883 (All) 30-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 30 ./bin/POSL 8 8 3 2 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+
+echo "----883 (All) 40-----" >> file_result
+for (( i = 0; i < 25; i++ ))
+do
+	mpiexec.mpich2 -np 40 ./bin/POSL 8 8 3 2 >> file_result
+done
+echo "----END-----" >> file_result
+w >> file_result
+echo "   " >> file_result
+

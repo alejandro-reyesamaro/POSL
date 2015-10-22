@@ -26,13 +26,17 @@ int neighborProcess(int myid, int numprocs)
 }
 */
 
-void POSL_MetaSolver::solve(int argc, char **argv, shared_ptr<Benchmark> bench, int opt)
+void POSL_MetaSolver::solve(int argc, char **argv, shared_ptr<Benchmark> bench, unsigned int opt)
 {
     if(opt == 0)
         solve_Default_NO(argc, argv, bench);
-    else if (opt == 1)
-        solve_Default_50(argc, argv, bench);
-    else if (opt == 2)
+    else if (opt > 0 && opt < 100)
+    {
+        int factor = 200/opt;
+        cout << factor << endl;
+        solve_Default_50(argc, argv, bench, 200/opt);
+    }
+    else if (opt >= 100)
         solve_Default_All(argc, argv, bench);
 }
 
@@ -58,7 +62,7 @@ void POSL_MetaSolver::solve_Default_NO(int argc, char **argv, shared_ptr<Benchma
     MPI_Finalize();
 }
 
-void POSL_MetaSolver::solve_Default_50(int argc, char **argv, shared_ptr<Benchmark> bench)
+void POSL_MetaSolver::solve_Default_50(int argc, char **argv, shared_ptr<Benchmark> bench, int factor)
 {
     int myid, comm_size;
 
@@ -74,13 +78,13 @@ void POSL_MetaSolver::solve_Default_50(int argc, char **argv, shared_ptr<Benchma
     //*********************************************
     //        50 % Communication
     //*********************************************
-    if(myid < comm_size/4)
+    if(myid < comm_size/factor)
     {
-        psp->connectWith(comm_size/4 + myid);
+        psp->connectWith(comm_size/factor + myid);
         solver_index = 0;
         //cout << "Core " << myid << " conected with core " << comm_size/4 + myid << endl;
     }
-    else if((myid >= comm_size/4) && myid < comm_size/2)
+    else if((myid >= comm_size/factor) && myid < comm_size/(factor/2))
         solver_index = 1;
     else
         solver_index = 2;
