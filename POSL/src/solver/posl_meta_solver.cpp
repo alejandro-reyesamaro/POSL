@@ -1,5 +1,6 @@
 #include "posl_meta_solver.h"
 #include "../solver/for_golfers_css.h"
+#include <math.h>
 
 #include <iostream>
 
@@ -32,9 +33,9 @@ void POSL_MetaSolver::solve(int argc, char **argv, shared_ptr<Benchmark> bench, 
         solve_Default_NO(argc, argv, bench);
     else if (opt > 0 && opt < 100)
     {
-        int factor = 200/opt;
-        cout << factor << endl;
-        solve_Default_50(argc, argv, bench, 200/opt);
+        //int factor = 200/opt;
+        //cout << factor << endl;
+        solve_Default_50(argc, argv, bench, round(200/opt));
     }
     else if (opt >= 100)
         solve_Default_All(argc, argv, bench);
@@ -74,6 +75,9 @@ void POSL_MetaSolver::solve_Default_50(int argc, char **argv, shared_ptr<Benchma
     shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench, myid));
 
     int solver_index;
+    factor = min(factor, comm_size);
+    //if(myid == 0)
+    //    cout << "Factor: " << factor << endl;
 
     //*********************************************
     //        50 % Communication

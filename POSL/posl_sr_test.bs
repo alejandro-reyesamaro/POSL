@@ -1,16 +1,21 @@
+runs=2
 
-runs=3
-cores=4
-inst=5
-perc=50
-inst=$((inst+1))
-#echo $inst
-for (( i = 4; i <= 6; i+=1 ))
+for (( inst = 6; inst <= 8; inst++ ))
 do
-	mpiexec.mpich -np $cores ./bin_par/POSL $i $i 3 $perc
-	echo "----$inst $inst 3 (75) $cores ----"
+
+	for (( cores = 2; cores <= 6; cores+=2 ))
+	do
+
+		echo "----$inst $inst 3 (25) $cores -----" >> file_result
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich -np $cores ./bin_par/POSL $inst $inst 3 25 >> file_result
+		done
+		echo "----END-----" >> file_result
+		w >> file_result
+		echo "   " >> file_result
+
+	done
+
 done
-echo "----END-----"
-
-
 

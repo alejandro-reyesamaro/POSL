@@ -11,7 +11,7 @@ Tester_Solver_Golfers::Tester_Solver_Golfers(int argc, char *argv[])
 
 string Tester_Solver_Golfers::test()
 {
-    shared_ptr<Golfers> g(make_shared<Golfers>(6,6,3));
+    shared_ptr<Golfers> g(make_shared<Golfers>(9,9,3));
     shared_ptr<Benchmark> bench = g;
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 

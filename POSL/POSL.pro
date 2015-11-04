@@ -221,7 +221,8 @@ SOURCES += src/main.cpp \
     src/modules/operation_module.cpp \
     src/computation/factory_computation_strategy_ra000.cpp \
     src/computation/factory_computation_strategy_sa000.cpp \
-    src/operators/strategy/min_och_sequential_strategy.cpp
+    src/operators/strategy/min_och_sequential_strategy.cpp \
+    src/solver/connections/posl_tag.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -444,7 +445,8 @@ HEADERS += \
     src/tools/connection_matrix.h \
     src/computation/factory_computation_strategy_ra000.h \
     src/computation/factory_computation_strategy_sa000.h \
-    src/operators/strategy/min_och_sequential_strategy.h
+    src/operators/strategy/min_och_sequential_strategy.h \
+    src/solver/connections/posl_tag.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
