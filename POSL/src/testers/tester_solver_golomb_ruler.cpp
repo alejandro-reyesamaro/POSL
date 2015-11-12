@@ -18,5 +18,5 @@ string Tester_Solver_GolombRuler::test()
     vector<shared_ptr<POSL_Solver>> solvers = css->create();
 
     solvers[0]->solve(psp);
-    return solvers[0]->show(psp->GetBenchmark());
+    return solvers[0]->show();
 }

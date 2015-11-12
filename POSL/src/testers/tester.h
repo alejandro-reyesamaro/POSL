@@ -29,6 +29,7 @@ class Tester
         static vector<int> Golfers_442_1s();
         static vector<int> Golfers_442_0s();
         static vector<int> Golfers_442_mal();
+        static vector<int> Golfers_444_c();
         static vector<int> Golfers_553_c0();
         static vector<int> Golfers_554_c0();
         static vector<int> Golfers_553_c1();

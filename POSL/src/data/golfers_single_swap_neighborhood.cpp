@@ -20,8 +20,6 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, i
       groups(_groups),
       indexes(Tools::generateMonotony(TP)),
       walk_indexes(Tools::generateMonotony(TP))
-      //indexes_IG(Tools::generateMonotony(_players)),
-      //indexes_IP(Tools::generateMonotony(_players))
 {
     updateChanges();
 }
@@ -90,7 +88,7 @@ void GolfersSingleSwapNeighborhood::updateChanges()
                 T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
                 changes.push_back(next_change);
             }
-         */
+        */
         for (int i = 0; i < groups - 1; i++)
             for(int j = i + 1; j < groups; j++)
             {
@@ -108,6 +106,7 @@ void GolfersSingleSwapNeighborhood::save_changes(int g1, int g2, int week)
             int pos2 = (week * TP) + indexes[g2 * players + j];
             T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
             changes.push_back(next_change);
+            //if (pos1 == 63 || pos2 == 63) cout << "Bien" << endl;
         }
 }
 

@@ -11,7 +11,7 @@ Tester_Solver_Golfers::Tester_Solver_Golfers(int argc, char *argv[])
 
 string Tester_Solver_Golfers::test()
 {
-    shared_ptr<Golfers> g(make_shared<Golfers>(9,9,3));
+    shared_ptr<Golfers> g(make_shared<Golfers>(4,4,4));
     shared_ptr<Benchmark> bench = g;
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
@@ -19,6 +19,6 @@ string Tester_Solver_Golfers::test()
     vector<shared_ptr<POSL_Solver>> solvers = css->create();
 
     solvers[2]->solve(psp);
-    //return solvers[2]->show(psp->GetBenchmark());
-    return solvers[2]->show_to_collect();
+    return solvers[2]->show();
+    //return solvers[2]->show_to_collect();
 }

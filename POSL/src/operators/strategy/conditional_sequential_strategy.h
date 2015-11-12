@@ -28,6 +28,5 @@ class ConditionalSequentialStrategy : public SequentialExecutionStrategy
         std::shared_ptr<CompoundModule> M2;
         std::shared_ptr<BooleanExpression> ex;
 
-        std::shared_ptr<ComputationData> output1;
-        std::shared_ptr<ComputationData> output2;
+        std::shared_ptr<ComputationData> output;
 };

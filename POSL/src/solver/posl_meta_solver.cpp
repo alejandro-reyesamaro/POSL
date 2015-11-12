@@ -56,7 +56,7 @@ void POSL_MetaSolver::solve_Default_NO(int argc, char **argv, shared_ptr<Benchma
 
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);
-    cout << solver->show_to_collect() << endl;
+    cout << solver->show() << endl;
     //cout << solver->show(psp->GetBenchmark()) << endl;
     exit(0);
 
@@ -95,7 +95,7 @@ void POSL_MetaSolver::solve_Default_50(int argc, char **argv, shared_ptr<Benchma
 
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);
-    cout << solver->show_to_collect() << endl;
+    cout << solver->show() << endl;
     //cout << solver->show(psp->GetBenchmark()) << endl;
     exit(0);
 
@@ -129,57 +129,9 @@ void POSL_MetaSolver::solve_Default_All(int argc, char **argv, shared_ptr<Benchm
 
     shared_ptr<POSL_Solver> solver = solvers[solver_index];
     solver->solve(psp);
-    cout << solver->show_to_collect() << endl;
+    cout << solver->show() << endl;
     //cout << solver->show(psp->GetBenchmark()) << endl;
     exit(0);
 
     MPI_Finalize();
 }
-
-/*
-void POSL_MetaSolver::solve_MS(int argc, char **argv, shared_ptr<Benchmark> bench)
-{
-    int myid, comm_size, numprocs, tag;
-    int * buff = new int[1];
-    MPI_Request reqs[2];
-    MPI_Status status[2];
-
-    MPI_Init(&argc, &argv);
-
-    MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
-    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
-
-    numprocs = comm_size - 1;    
-
-    //cout << myid << " - " << numprocs << ": " << procA << "_" << procB << endl;
-
-    shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, bench));
-
-    int numsolvers = solvers.size();
-    int solver_index = (int(myid / 2)) % numsolvers;
-
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    bench->UpdateSolution(sol);
-
-    int master_proc =  numprocs;
-    tag = TAG;
-
-    if(myid != numprocs) // SLAVE
-    {
-        shared_ptr<POSL_Solver> solver = solvers[solver_index];
-        solver->solve(psp);
-        cout << solver->show(psp->GetBenchmark()) << endl;
-
-        int to_send = 1;
-        MPI_Isend(&to_send, 1, MPI_INT, master_proc, tag, MPI_COMM_WORLD, &reqs[1]);
-    }
-    else // MASTER
-    {
-        MPI_Recv(buff, 1, MPI_INT, MPI_ANY_SOURCE, TAG, MPI_COMM_WORLD, &status[0]);
-        cout << "(Y)" << endl;
-        exit(0);
-    }
-
-    MPI_Finalize();
-}
-*/

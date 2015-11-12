@@ -14,7 +14,7 @@ Tester_GolfersPermutationNeighborhood::Tester_GolfersPermutationNeighborhood(int
 
 string Tester_GolfersPermutationNeighborhood::test()
 {
-    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,4));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
@@ -28,13 +28,13 @@ string Tester_GolfersPermutationNeighborhood::test()
         //21, 22, 23, 24, 25
     });
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_c0());
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_444_c());
 
     shared_ptr<OperationModule> op(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));
     //PSP * psp(make_shared<PSP(bench);
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    cout << Tools::configurationToString(Tester::Golfers_442_c0()) << endl;
+    cout << Tools::configurationToString(Tester::Golfers_444_c()) << endl;
     cout << "--"<<endl;
 
     shared_ptr<POSL_Iterator> it = V->getIterator();

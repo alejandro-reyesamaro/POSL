@@ -68,7 +68,9 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_CostOfSolutionNQueens>(argc, argv));
     //tests.push_back(make_shared<Tester_OneElementChangedNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_MultiElementsChangedNeighborhood>(argc, argv));
+
     //tests.push_back(make_shared<Tester_GolfersPermutationNeighborhood>(argc, argv));
+
     //tests.push_back(make_shared<Tester_MultiSortedChangesNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_FromPackNeighborhood>(argc, argv));
@@ -105,7 +107,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_IterationGolfers>(argc, argv));
 
     string output_str;
-    for(int k = 0; k < 25; k ++)
+    //for(int k = 0; k < 25; k ++)
     for(unsigned int i = 0; i < tests.size(); i++)
     {
         try

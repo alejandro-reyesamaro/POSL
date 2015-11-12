@@ -6,6 +6,7 @@
 #include "../modules/om_random_conf_permutation_by_blocks_generation.h"
 #include "../modules/om_golfers_single_swap_neighborhood.h"
 #include "../modules/om_best_improvement_tabu_selection.h"
+#include "../modules/om_best_improvement_selection.h"
 #include "../modules/om_first_improvement_selection.h"
 #include "../modules/om_always_improve_decision.h"
 #include "../modules/om_random_selection.h"
@@ -13,6 +14,7 @@
 
 #include "../computation/factory_computation_strategy_a001.h"
 #include "../computation/factory_computation_strategy_a000.h"
+#include "../computation/factory_computation_strategy_b001.h"
 #include "../computation/factory_computation_strategy_sa000.h"
 #include "../computation/factory_computation_strategy_sa001.h"
 #include "../computation/factory_computation_strategy_ra000.h"
@@ -20,21 +22,21 @@
 
 ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
     : CreateSolverStrategy(golfers),
-      single_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A000>
+      single_solver(make_shared<POSL_Solver>(golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_B001>
         (
             bench,
             make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),
             make_shared<OM_GolfersSingleSwapNeighborhood>(bench),
             make_shared<OM_FirstImprovementSelection>(bench),
-            //make_shared<OM_FirstImprovementSelection>(bench),
-            //make_shared<OM_BestImprovementTabuSelection>(bench),
+            make_shared<OM_RandomSelection>(bench),
+            //make_shared<OM_BestImprovementSelection>(bench),
             //make_shared<OM_SimulatedAnnealingDecision>(),
             //make_shared<OM_AlwaysImproveDecision>(),
             make_shared<OM_AlwaysImproveDecision>(),
             //0.2, 20, 100, 30
-            500,70
+            100,30
         )))),
-      sender_solver( make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA000>
+      sender_solver( make_shared<POSL_Solver>(golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA000>
         (
             bench,
             make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),
@@ -46,7 +48,7 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             //0.5, 20, 100, 30
             100, 30
         )))),
-      receiver_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA000>
+      receiver_solver(make_shared<POSL_Solver>(golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA000>
         (
             bench,
             make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),

@@ -1,6 +1,8 @@
 #include "loop_bound_expression.h"
 #include "../tools/tools.h"
 
+#include <iostream>
+
 using namespace std;
 
 LoopBoundExpression::LoopBoundExpression(int _max_loops)

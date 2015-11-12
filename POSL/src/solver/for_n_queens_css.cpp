@@ -17,7 +17,7 @@
 
 ForNQueensCSS::ForNQueensCSS(shared_ptr<NQueens> nq)
     : CreateSolverStrategy(nq),
-      sender_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA001>
+      sender_solver(make_shared<POSL_Solver>(nq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA001>
         (
             bench,
             make_shared<OM_RandomPermutationGeneration>(bench),
@@ -28,7 +28,7 @@ ForNQueensCSS::ForNQueensCSS(shared_ptr<NQueens> nq)
             make_shared<OM_AlwaysImproveDecision>(),
             0.5, 20, 500, 10
         )))),
-      receiver_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA001>
+      receiver_solver(make_shared<POSL_Solver>(nq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA001>
         (
             bench,
             make_shared<OM_RandomPermutationGeneration>(bench),
@@ -39,7 +39,7 @@ ForNQueensCSS::ForNQueensCSS(shared_ptr<NQueens> nq)
             make_shared<OM_AlwaysImproveDecision>(),
             0.2, 20, 500, 10
         )))),
-      single_solver(make_shared<POSL_Solver>(make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A001>
+      single_solver(make_shared<POSL_Solver>(nq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A001>
         (
             bench,
             make_shared<OM_RandomPermutationGeneration>(bench),

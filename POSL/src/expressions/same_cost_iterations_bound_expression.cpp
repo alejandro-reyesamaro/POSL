@@ -1,6 +1,8 @@
 #include "same_cost_iterations_bound_expression.h"
 #include "../tools/tools.h"
 
+#include <iostream>
+
 using namespace std;
 
 #define MAX_ITER 1000
@@ -21,7 +23,7 @@ bool SameCostIterationsBoundExpression::evaluate(shared_ptr<PSP> psp)
     }
     else iterations ++;
     bool iter = iterations < max_iter;
-    //if (!iter) iterations = 0;
+    //if (!iter) cout << "cambio" << endl;
     return ( iter );
 }
 
