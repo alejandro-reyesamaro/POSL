@@ -11,7 +11,7 @@ class OM_RandomConfOrderedGeneration : public AOM_FirstConfigurationGeneration
     public:
         OM_RandomConfOrderedGeneration(std::shared_ptr<Benchmark> bench);
 
-        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution>);
 
         //! From Codable
         std::string codeToSend();

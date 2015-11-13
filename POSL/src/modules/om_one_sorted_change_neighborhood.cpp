@@ -8,7 +8,7 @@ OM_OneSortedChangeNeighborhood::OM_OneSortedChangeNeighborhood(shared_ptr<Benchm
     : V(make_shared<OneSortedChangeNeighborhood>(bench->Domains().size()))
 {}
 
-shared_ptr<Neighborhood> OM_OneSortedChangeNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
+shared_ptr<Neighborhood> OM_OneSortedChangeNeighborhood::spcf_execute(shared_ptr<PSP>, shared_ptr<Solution> input)
 {
     V->Init(input->GetConfiguration());
     return V;

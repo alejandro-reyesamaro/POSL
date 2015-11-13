@@ -11,7 +11,7 @@ OM_RandomPermutationGeneration::OM_RandomPermutationGeneration(shared_ptr<Benchm
 {
 }
 
-shared_ptr<Solution> OM_RandomPermutationGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
+shared_ptr<Solution> OM_RandomPermutationGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution>)
 {
     rsolution->UpdateConfiguration(rconf_strategy->generate());
     psp->UpdateSolution(rsolution->GetConfiguration());

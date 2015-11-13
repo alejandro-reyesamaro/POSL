@@ -26,5 +26,4 @@ class OMS_IterationsCounter : public OperationModule
         std::string codeToSend();
 
         virtual std::string Tag();
-
 };

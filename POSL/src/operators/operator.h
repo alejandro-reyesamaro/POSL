@@ -20,7 +20,7 @@
  * \class Operator operator.h
  * \brief Class to represent an operation between modules
  */
-class Operator : public Codable
+class Operator : public Codable, public Connectable
 {
     public:
         Operator(std::shared_ptr<SequentialExecutionStrategy> _seq_strategy,

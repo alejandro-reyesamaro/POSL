@@ -24,6 +24,10 @@ class CyclicOperator : public UnaryOperator
         //! From Codable
         std::string codeToSend();
 
+        //!From Connectable
+        std::shared_ptr<HashMap<std::string, std::string>> GetConnections();
+        void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>> connections_table);
+
     private:
         std::shared_ptr<BooleanExpression> ex;
 };

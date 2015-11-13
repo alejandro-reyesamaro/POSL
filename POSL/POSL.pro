@@ -227,7 +227,9 @@ SOURCES += src/main.cpp \
     src/solver/strategy/showing_result_strategy.cpp \
     src/solver/strategy/show_plain_result_strategy.cpp \
     src/solver/strategy/show_bechmark_result_strategy.cpp \
-    src/solver/strategy/show_to_collect_strategy.cpp
+    src/solver/strategy/show_to_collect_strategy.cpp \
+    src/tools/hash_map.cpp \
+    src/modules/open_channel.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -456,7 +458,9 @@ HEADERS += \
     src/solver/strategy/showing_result_strategy.h \
     src/solver/strategy/show_plain_result_strategy.h \
     src/solver/strategy/show_bechmark_result_strategy.h \
-    src/solver/strategy/show_to_collect_strategy.h
+    src/solver/strategy/show_to_collect_strategy.h \
+    src/tools/hash_map.h \
+    src/connections/connectable.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

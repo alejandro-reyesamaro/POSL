@@ -25,7 +25,7 @@ class OM_RandomConfPermutationByBlocksGeneration : public AOM_FirstConfiguration
         //! Constructor
         OM_RandomConfPermutationByBlocksGeneration(std::shared_ptr<Benchmark> bench);
 
-        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution>);
 
         //! From Codable
         std::string codeToSend();

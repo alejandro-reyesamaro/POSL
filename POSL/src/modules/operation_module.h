@@ -17,4 +17,7 @@
  */
 class OperationModule : public CompoundModule
 {
+    //! From Connectable
+    std::shared_ptr<HashMap<std::string, std::string>> GetConnections() { return nullptr; }
+    void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>>) {}
 };

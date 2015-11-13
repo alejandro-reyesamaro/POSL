@@ -6,7 +6,7 @@
 class DecisionPairDataOpenChannel : public DataOpenChannel
 {
     public:
-        DecisionPairDataOpenChannel(std::shared_ptr<Benchmark>_bench);
+        DecisionPairDataOpenChannel(std::string name, std::shared_ptr<Benchmark>_bench);
         int dataTag();
         std::shared_ptr<ComputationData> unpackMessage(int * buffer, std::shared_ptr<PSP> psp);
 

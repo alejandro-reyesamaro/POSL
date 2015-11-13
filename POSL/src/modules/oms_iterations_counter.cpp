@@ -8,14 +8,13 @@ OMS_IterationsCounter::OMS_IterationsCounter()
 
 shared_ptr<ComputationData> OMS_IterationsCounter::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
-    psp->CountIteration();
-    //cout << "Iteration counted: " << psp->GetIterations() << endl;
+    psp->CountIteration();    
     return input;
 }
 
 string OMS_IterationsCounter::codeToSend()
 {
-    return "S2";
+    return "OM_IterCounter";
 }
 
 string OMS_IterationsCounter::Tag()

@@ -23,6 +23,10 @@ class BinaryOperator : public Operator
                        std::shared_ptr<SequentialExecutionStrategy> seq_strgy,
                        std::shared_ptr<ParallelExecutionStrategy> par_strgy);
 
+        //! From Connectable
+        std::shared_ptr<HashMap<std::string, std::string>> GetConnections();
+        void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>> connections_table);
+
     protected:
         std::shared_ptr<CompoundModule> M1;
         std::shared_ptr<CompoundModule> M2;

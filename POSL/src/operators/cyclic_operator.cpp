@@ -13,3 +13,13 @@ string CyclicOperator::codeToSend()
 {
     return "1 (" + ex->codeToSend() + ") " + M1 ->codeToSend();
 }
+
+shared_ptr<HashMap<string, string>> CyclicOperator::GetConnections()
+{
+    return M1->GetConnections();
+}
+
+void CyclicOperator::UpdateConnections(shared_ptr<HashMap<string, string>> connections_table)
+{
+    M1->UpdateConnections(connections_table);
+}

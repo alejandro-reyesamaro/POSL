@@ -12,5 +12,5 @@ std::shared_ptr<ComputationData> GroupedParallelComputation::execute(std::shared
 
 std::string GroupedParallelComputation::codeToSend()
 {
-    return "[" + op->codeToSend() + "]";
+    return "<P>" + op->codeToSend() + "<P>";
 }

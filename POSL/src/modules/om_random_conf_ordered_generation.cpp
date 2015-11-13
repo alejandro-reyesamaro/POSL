@@ -12,7 +12,7 @@ OM_RandomConfOrderedGeneration::OM_RandomConfOrderedGeneration(shared_ptr<Benchm
 {
 }
 
-shared_ptr<Solution> OM_RandomConfOrderedGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
+shared_ptr<Solution> OM_RandomConfOrderedGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution>)
 {
     if(!object_bench)
         throw "(POSL exception) Not casting allowed (OM_RandomConfOrderedGeneration.spfc_execute)";

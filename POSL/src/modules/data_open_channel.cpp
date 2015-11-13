@@ -3,11 +3,12 @@
 #include <iostream>
 using namespace std;
 
-DataOpenChannel::DataOpenChannel(shared_ptr<Benchmark> _bench)
-    : bench(_bench)
+DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
+    : OpenChannel(name),
+      bench(_bench)
 {}
 
-shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
+shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData>)
 {
     int id;
     MPI_Comm_rank(MPI_COMM_WORLD, &id);

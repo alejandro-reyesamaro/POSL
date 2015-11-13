@@ -18,8 +18,16 @@
 class SendDataOperator : public UnaryOperator
 {
     public:
-        SendDataOperator(std::shared_ptr<CompoundModule> _M1);
+        SendDataOperator(std::string _name, std::shared_ptr<CompoundModule> _M1);
 
         //! From Codable
         std::string codeToSend();
+
+        //!From Connectable
+        std::shared_ptr<HashMap<std::string, std::string>> GetConnections();
+        void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>> connections_table);
+
+    private:
+        std::string name;
+        std::string conn_tag;
 };
