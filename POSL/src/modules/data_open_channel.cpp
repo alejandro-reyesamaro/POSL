@@ -12,7 +12,7 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
 {
     int id;
     MPI_Comm_rank(MPI_COMM_WORLD, &id);
-    int tag = dataTag();
+    int tag = dataID();
     //cout << "Op.Ch. (" << tag << ") of " << id << endl;
     MPI_Status status;
     //MPI_Request request;

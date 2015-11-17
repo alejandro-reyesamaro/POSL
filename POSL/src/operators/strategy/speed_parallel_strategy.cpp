@@ -9,7 +9,7 @@ SpeedParallelStrategy::SpeedParallelStrategy(shared_ptr<CompoundModule> _M1, sha
     : M1(_M1), M2(_M2)
 {}
 
-shared_ptr<ComputationData> SpeedParallelStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
+shared_ptr<ComputationData> SpeedParallelStrategy::evaluate(shared_ptr<PSP>, shared_ptr<ComputationData>)
 {
     throw "(POSL Exception) Not yet implemented (SpeedParallelStrategy::evaluate)";
 }

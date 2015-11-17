@@ -1,4 +1,5 @@
 #include "binary_operator.h"
+#include "../tools/tools.cpp"
 
 using namespace std;
 
@@ -9,13 +10,18 @@ BinaryOperator::BinaryOperator(shared_ptr<CompoundModule> _M1,
     : Operator(seq_strgy, par_strgy), M1(_M1), M2(_M2)
 {}
 
-shared_ptr<HashMap<string, string>> BinaryOperator::GetConnections()
+vector<ConnectorInfo> BinaryOperator::Jacks()
 {
-    return M1->GetConnections()->merge(M2->GetConnections());
+    return Tools::concat(M1->Jacks(), M2->Jacks());
 }
 
-void BinaryOperator::UpdateConnections(shared_ptr<HashMap<string, string>> connections_table)
+vector<ConnectorInfo> BinaryOperator::Outlets()
 {
-    M1->UpdateConnections(connections_table);
-    M2->UpdateConnections(connections_table);
+    return Tools::concat(M1->Outlets(), M2->Outlets());
+}
+
+void BinaryOperator::connect(ConnectorInfo connector, int procID)
+{
+    M1->connect(connector, procID);
+    M2->connect(connector, procID);
 }

@@ -25,8 +25,9 @@ class CyclicOperator : public UnaryOperator
         std::string codeToSend();
 
         //!From Connectable
-        std::shared_ptr<HashMap<std::string, std::string>> GetConnections();
-        void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>> connections_table);
+        std::vector<ConnectorInfo> Jacks();
+        std::vector<ConnectorInfo> Outlets();
+        void connect(ConnectorInfo connector, int procID);
 
     private:
         std::shared_ptr<BooleanExpression> ex;

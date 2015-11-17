@@ -29,7 +29,7 @@ FactoryComputationStrategy_RA000::FactoryComputationStrategy_RA000(shared_ptr<Be
     shared_ptr<CompoundModule> cm_time(make_shared<OMS_TimeCounter>());
 
     // OPEN CHANNEL to receive the selecton from other solvers
-    shared_ptr<CompoundModule> och_selection(make_shared<DecisionPairDataOpenChannel>(bench));
+    shared_ptr<CompoundModule> och_selection(make_shared<DecisionPairDataOpenChannel>("Ch1", bench));
     shared_ptr<Operator> min(make_shared<MinOperator>(selection_function, och_selection));
     shared_ptr<GroupedComputation>G_min(make_shared<GroupedSequentialComputation>(min));
     shared_ptr<Operator> cond_1(make_shared<ConditionalOperator>(selection_function, G_min, make_shared<LoopBoundExpression>(4)));

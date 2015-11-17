@@ -10,7 +10,7 @@ DecisionPairDataOpenChannel::DecisionPairDataOpenChannel(string name, shared_ptr
       pair_data(make_shared<DecisionPair>(make_shared<Solution>(_bench->Domains()), make_shared<Solution>(_bench->Domains())))
 {}
 
-int DecisionPairDataOpenChannel::dataTag()
+int DecisionPairDataOpenChannel::dataID()
 {
     return DECISIONPAIR_PACKING_ID;
 }

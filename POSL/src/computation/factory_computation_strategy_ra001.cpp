@@ -40,7 +40,7 @@ FactoryComputationStrategy_RA001::FactoryComputationStrategy_RA001(shared_ptr<Be
     shared_ptr<GroupedComputation> G_rho(make_shared<GroupedSequentialComputation>(rho));
 
     // OPEN CHANNEL to receive the selecton from other solvers
-    shared_ptr<CompoundModule> och_selection(make_shared<DecisionPairDataOpenChannel>(bench));
+    shared_ptr<CompoundModule> och_selection(make_shared<DecisionPairDataOpenChannel>("Ch1", bench));
     shared_ptr<Operator> min(make_shared<MinOperator>(G_rho, och_selection));
     shared_ptr<GroupedComputation>G_min(make_shared<GroupedSequentialComputation>(min));
     shared_ptr<Operator> cond_1(make_shared<ConditionalOperator>(G_rho, G_min, make_shared<LoopBoundExpression>(4)));

@@ -6,6 +6,6 @@ class NeighborhoodDataOpenChannel : public DataOpenChannel
 {
     public:
         NeighborhoodDataOpenChannel(std::string name, std::shared_ptr<Benchmark> _bench);
-        int dataTag();
+        int dataID();
         std::shared_ptr<ComputationData> unpackMessage(int * buffer, std::shared_ptr<PSP>);
 };

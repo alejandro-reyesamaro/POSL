@@ -20,5 +20,5 @@ class NotImplementedParallelStrategy : public ParallelExecutionStrategy
     public:
         NotImplementedParallelStrategy();
 
-        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP>, std::shared_ptr<ComputationData>);
 };

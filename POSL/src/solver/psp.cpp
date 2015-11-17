@@ -21,15 +21,6 @@ PSP::PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench)
     : PSP (_argc, _argv, _bench, -1)
 {}
 
-int PSP::BestCostSoFar()
-{
-    return best_found_cost;// bench->solutionCost(best_found_configuration);
-}
-
-shared_ptr<Solution> PSP::GetBestSolutionSoFar()
-{
-    return make_shared<Solution>(bench->Domains(), best_found_configuration);
-}
 
 void PSP::UpdateSolution(vector<int> config)
 {
@@ -54,10 +45,6 @@ void PSP::Start(vector<int> config)
     }
 }
 
-int PSP::CurrentCost()
-{
-    return bench->currentCost();
-}
 
 void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 

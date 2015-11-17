@@ -14,12 +14,17 @@ string CyclicOperator::codeToSend()
     return "1 (" + ex->codeToSend() + ") " + M1 ->codeToSend();
 }
 
-shared_ptr<HashMap<string, string>> CyclicOperator::GetConnections()
+vector<ConnectorInfo> CyclicOperator::Jacks()
 {
-    return M1->GetConnections();
+    return M1->Jacks();
 }
 
-void CyclicOperator::UpdateConnections(shared_ptr<HashMap<string, string>> connections_table)
+vector<ConnectorInfo> CyclicOperator::Outlets()
 {
-    M1->UpdateConnections(connections_table);
+    return M1->Outlets();
+}
+
+void CyclicOperator::connect(ConnectorInfo connector, int procID)
+{
+    M1->connect(connector, procID);
 }

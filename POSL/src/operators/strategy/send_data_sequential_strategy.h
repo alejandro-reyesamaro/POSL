@@ -20,8 +20,10 @@ class SendDataSequentialStrategy : public SequentialExecutionStrategy
         SendDataSequentialStrategy(std::shared_ptr<CompoundModule> _M1);
 
         std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
+        void addDestiny(int pID);
 
     private:
         std::shared_ptr<CompoundModule> M1;
         std::shared_ptr<ComputationData> output;
+        std::vector<int> destinies;
 };

@@ -17,3 +17,8 @@ shared_ptr<ComputationData> SendDataSequentialStrategy::evaluate(shared_ptr<PSP>
     psp->SendData(output->BuildPacker()->pack());
     return output;
 }
+
+void SendDataSequentialStrategy::addDestiny(int pID)
+{
+    destinies.push_back(pID);
+}

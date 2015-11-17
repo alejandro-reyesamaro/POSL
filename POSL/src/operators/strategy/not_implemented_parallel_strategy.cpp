@@ -6,7 +6,7 @@ NotImplementedParallelStrategy::NotImplementedParallelStrategy()
 {
 }
 
-shared_ptr<ComputationData> NotImplementedParallelStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
+shared_ptr<ComputationData> NotImplementedParallelStrategy::evaluate(shared_ptr<PSP>, shared_ptr<ComputationData>)
 {
     throw "Parallel strategy not supported";
 }

@@ -23,4 +23,9 @@ class FlorianOperator : public UnaryOperator
 
         //! From Codable
         std::string codeToSend();
+
+        //!From Connectable
+        std::vector<ConnectorInfo> Jacks();
+        std::vector<ConnectorInfo> Outlets();
+        void connect(ConnectorInfo connector, int procID);
 };

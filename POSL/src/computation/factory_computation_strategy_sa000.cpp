@@ -24,7 +24,7 @@ FactoryComputationStrategy_SA000::FactoryComputationStrategy_SA000(shared_ptr<Be
     shared_ptr<CompoundModule> cm_time (make_shared<OMS_TimeCounter>());
 
     // SEND the selection:
-    shared_ptr<SendDataOperator> sen(make_shared<SendDataOperator>(selection_function));
+    shared_ptr<SendDataOperator> sen(make_shared<SendDataOperator>("send_01", selection_function));
     shared_ptr<GroupedComputation> G_sen(make_shared<GroupedSequentialComputation>(sen));
 
 

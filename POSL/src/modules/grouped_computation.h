@@ -9,8 +9,10 @@ class GroupedComputation : public CompoundModule
 
         virtual std::string Tag() { return "cm_GC"; }
 
-        std::shared_ptr<HashMap<std::string, std::string>> GetConnections();
-        void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>> connections_table);
+        //! From Connectable
+        std::vector<ConnectorInfo> Jacks() { return op->Jacks(); }
+        std::vector<ConnectorInfo> Outlets() { return op->Outlets(); }
+        void connect(ConnectorInfo connector, int procID) { op->connect(connector, procID); }
 
     protected:
         std::shared_ptr<Operator> op;

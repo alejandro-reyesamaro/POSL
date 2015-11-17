@@ -282,7 +282,7 @@ shared_ptr<CompoundModule> ModuleUncoder::uncodeCompoundModule(string code, shar
     char back  = code.back();
     string sub_code = code.substr(1, code.size() - 2);
 
-    // GROUPERS ---- '{.}': sequential, '[.]': parallel
+    // GROUPERS ---- '<S>.<S>': sequential, '<P>.<P>': parallel
     if (front == '{' && back == '}')
         return uncodeGroupedSequentialComputation(sub_code, bench);
     else if (front == '[' && back == ']')

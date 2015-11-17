@@ -18,6 +18,7 @@
 class OperationModule : public CompoundModule
 {
     //! From Connectable
-    std::shared_ptr<HashMap<std::string, std::string>> GetConnections() { return nullptr; }
-    void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>>) {}
+    std::vector<ConnectorInfo> Jacks() { return std::vector<ConnectorInfo>(0); }
+    std::vector<ConnectorInfo> Outlets() { return std::vector<ConnectorInfo>(0); }
+    void connect(ConnectorInfo, int) {}
 };

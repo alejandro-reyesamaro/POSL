@@ -11,22 +11,24 @@ class PSP
         PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench);
         PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench, int _pID);
 
-        inline int GetPID(){ return pID; }
-        inline std::shared_ptr<Benchmark> GetBenchmark(){ return bench; }
-        inline int GetIterations(){ return iterations; }
-        inline int GetTime(){ return milisecs; }
-        std::shared_ptr<Solution> GetBestSolutionSoFar();
-        inline std::shared_ptr<Solution> GetCurrentSolution(){ return bench->GetSolution(); }
-        int CurrentCost();
-        int BestCostSoFar();
+        //! Properties
+        int GetPID(){ return pID; }
+        std::shared_ptr<Benchmark> GetBenchmark(){ return bench; }
+        int GetIterations(){ return iterations; }
+        int GetTime(){ return milisecs; }
+        std::shared_ptr<Solution> GetBestSolutionSoFar(){ return std::make_shared<Solution>(bench->Domains(), best_found_configuration); }
+        inline std::shared_ptr<Solution> GetCurrentSolution(){ return bench->GetSolution(); }        
+        int CurrentCost() { return bench->currentCost(); }
+        int BestCostSoFar() { return best_found_cost; }
 
-
+        //! State functions
+        void Start(std::vector<int> config);
         void UpdateTime(int _milisecs);
         void CountIteration();
         void connectWith(int pID);
-        void SendData(std::vector<int> data);        
         void UpdateSolution(std::vector<int> config);
-        void Start(std::vector<int> config);
+
+        void SendData(std::vector<int> data);
 
         int ARGC;
         char **ARGV;

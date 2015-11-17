@@ -41,4 +41,6 @@ class Tools
         static void sortAscendent(std::vector<int> & v);
         static void trim(std::string & code);
         static T_Changes GetChanges(std::vector<int> config_before, std::vector<int> config_after);
+        template<typename T>
+        static std::vector<T> concat(std::vector<T> & vector1, std::vector<T> & vector2);
 };

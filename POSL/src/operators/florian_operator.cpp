@@ -12,3 +12,18 @@ string FlorianOperator::codeToSend()
 {
     return "7 " + M1 ->codeToSend();
 }
+
+vector<ConnectorInfo> FlorianOperator::Jacks()
+{
+    return M1->Jacks();
+}
+
+vector<ConnectorInfo> FlorianOperator::Outlets()
+{
+    return M1->Outlets();
+}
+
+void FlorianOperator::connect(ConnectorInfo connector, int procID)
+{
+    M1->connect(connector, procID);
+}

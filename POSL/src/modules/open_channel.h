@@ -24,11 +24,11 @@ class OpenChannel : public CompoundModule
         virtual std::string Tag(){ return TAGOCh; }
 
         //! From Connectable
-        std::shared_ptr<HashMap<std::string, std::string>> GetConnections();
-        void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>> connections_table);
+        std::vector<ConnectorInfo> Jacks() { return std::vector<ConnectorInfo>(0); }
+        std::vector<ConnectorInfo> Outlets();
+        void connect(ConnectorInfo, int) {}
 
     protected:
         std::string name;
-        std::string conn_tag;
 };
 

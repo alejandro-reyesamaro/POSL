@@ -22,7 +22,7 @@ class SpeedParallelStrategy : public ParallelExecutionStrategy
         //! Constructor
         SpeedParallelStrategy(std::shared_ptr<CompoundModule> _M1, std::shared_ptr<CompoundModule> _M2);
 
-        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
+        std::shared_ptr<ComputationData> evaluate(std::shared_ptr<PSP>, std::shared_ptr<ComputationData>);
 
     private:
         Executer M1;

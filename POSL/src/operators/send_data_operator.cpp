@@ -1,5 +1,4 @@
 #include "send_data_operator.h"
-#include "strategy/send_data_sequential_strategy.h"
 
 #include <iostream>
 using namespace std;
@@ -15,14 +14,28 @@ string SendDataOperator::codeToSend()
     return M1->codeToSend();
 }
 
-shared_ptr<HashMap<string, string>> SendDataOperator::GetConnections()
+vector<ConnectorInfo> SendDataOperator::Jacks()
 {
-    shared_ptr<HashMap<string,string>> conns (make_shared<HashMap<string,string>>());
-    conns->insert(name, conn_tag);
-    return conns;
+    ConnectorInfo ci {name, JACK};
+    vector<ConnectorInfo> vec;
+    vec.push_back(ci);
+    return vec;
 }
 
-void SendDataOperator::UpdateConnections(shared_ptr<HashMap<string, string>> connections_table)
+vector<ConnectorInfo> SendDataOperator::Outlets()
 {
-    conn_tag = connections_table->mapOf(name);
+    return M1->Outlets();
+}
+
+shared_ptr<SendDataSequentialStrategy> SendDataOperator::CastMyStrategy()
+{
+    return static_pointer_cast<SendDataSequentialStrategy>(seq_strategy);
+}
+
+void SendDataOperator::connect(ConnectorInfo connector, int procID)
+{
+    if(connector.name == name)
+        CastMyStrategy()->addDestiny(procID);
+    else
+        M1->connect(connector, procID);
 }

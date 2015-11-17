@@ -222,14 +222,15 @@ SOURCES += src/main.cpp \
     src/computation/factory_computation_strategy_ra000.cpp \
     src/computation/factory_computation_strategy_sa000.cpp \
     src/operators/strategy/min_och_sequential_strategy.cpp \
-    src/solver/connections/posl_tag.cpp \
     src/computation/factory_computation_strategy_b001.cpp \
     src/solver/strategy/showing_result_strategy.cpp \
     src/solver/strategy/show_plain_result_strategy.cpp \
     src/solver/strategy/show_bechmark_result_strategy.cpp \
     src/solver/strategy/show_to_collect_strategy.cpp \
     src/tools/hash_map.cpp \
-    src/modules/open_channel.cpp
+    src/modules/open_channel.cpp \
+    src/tools/posl_tag.cpp \
+    src/solver/posl_name_space.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -453,14 +454,15 @@ HEADERS += \
     src/computation/factory_computation_strategy_ra000.h \
     src/computation/factory_computation_strategy_sa000.h \
     src/operators/strategy/min_och_sequential_strategy.h \
-    src/solver/connections/posl_tag.h \
     src/computation/factory_computation_strategy_b001.h \
     src/solver/strategy/showing_result_strategy.h \
     src/solver/strategy/show_plain_result_strategy.h \
     src/solver/strategy/show_bechmark_result_strategy.h \
     src/solver/strategy/show_to_collect_strategy.h \
     src/tools/hash_map.h \
-    src/connections/connectable.h
+    src/connections/connectable.h \
+    src/tools/posl_tag.h \
+    src/solver/posl_name_space.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

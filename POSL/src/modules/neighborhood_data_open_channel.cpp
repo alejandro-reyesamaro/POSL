@@ -9,7 +9,7 @@ NeighborhoodDataOpenChannel::NeighborhoodDataOpenChannel(string name, shared_ptr
     : DataOpenChannel(name, _bench)
 {}
 
-int NeighborhoodDataOpenChannel::dataTag()
+int NeighborhoodDataOpenChannel::dataID()
 {
     return NEIGHBORHOOD_PACKING_ID;
 }

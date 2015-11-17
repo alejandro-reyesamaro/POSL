@@ -38,7 +38,7 @@ FactoryComputationStrategy_SA001::FactoryComputationStrategy_SA001(shared_ptr<Be
 
 
     // SEND the selection:
-    shared_ptr<SendDataOperator> sen(make_shared<SendDataOperator>(G_rho));
+    shared_ptr<SendDataOperator> sen(make_shared<SendDataOperator>("send_01", G_rho));
     shared_ptr<GroupedComputation> G_sen(make_shared<GroupedSequentialComputation>(sen));
 
 

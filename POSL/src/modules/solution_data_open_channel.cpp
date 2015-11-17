@@ -8,7 +8,7 @@ SolutionDataOpenChannel::SolutionDataOpenChannel(string name, shared_ptr<Benchma
       solution_data(make_shared<Solution>(_bench->Domains()))
 {}
 
-int SolutionDataOpenChannel::dataTag()
+int SolutionDataOpenChannel::dataID()
 {
     return SOLUTION_PACKING_ID;
 }

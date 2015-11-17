@@ -10,6 +10,7 @@
  */
 
 #include "unary_operator.h"
+#include "strategy/send_data_sequential_strategy.h"
 
 /*!
  * \class SendDataOperator send_data_operator.h
@@ -24,10 +25,13 @@ class SendDataOperator : public UnaryOperator
         std::string codeToSend();
 
         //!From Connectable
-        std::shared_ptr<HashMap<std::string, std::string>> GetConnections();
-        void UpdateConnections(std::shared_ptr<HashMap<std::string, std::string>> connections_table);
+        std::vector<ConnectorInfo> Jacks();
+        std::vector<ConnectorInfo> Outlets();
+        void connect(ConnectorInfo connector, int procID);
 
     private:
+        std::shared_ptr<SendDataSequentialStrategy> CastMyStrategy();
+
         std::string name;
         std::string conn_tag;
 };
