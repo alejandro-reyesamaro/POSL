@@ -1,16 +1,21 @@
 #include "florian_operator.h"
-#include "strategy/florian_sequential_strategy.h"
+#include "../tools/tools.h"
 
 #include <iostream>
 using namespace std;
 
-FlorianOperator::FlorianOperator(shared_ptr<CompoundModule> _M1)
-    : UnaryOperator(_M1, make_shared<FlorianSequentialStrategy>(_M1))
+FlorianOperator::FlorianOperator(int k, shared_ptr<CompoundModule> _M1)
+    : UnaryOperator(_M1, make_shared<FlorianSequentialStrategy>(k, _M1))
 {}
+
+shared_ptr<FlorianSequentialStrategy> FlorianOperator::CastMyStrategy()
+{
+    return static_pointer_cast<FlorianSequentialStrategy>(seq_strategy);
+}
 
 string FlorianOperator::codeToSend()
 {
-    return "7 " + M1 ->codeToSend();
+    return "OP.Flo (" + Tools::int2str(CastMyStrategy()->GetIterations()) + ") " + M1 ->codeToSend();
 }
 
 vector<ConnectorInfo> FlorianOperator::Jacks()

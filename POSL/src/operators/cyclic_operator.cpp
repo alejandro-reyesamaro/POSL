@@ -11,7 +11,7 @@ CyclicOperator::CyclicOperator(shared_ptr<CompoundModule> _M1, shared_ptr<Boolea
 
 string CyclicOperator::codeToSend()
 {
-    return "1 (" + ex->codeToSend() + ") " + M1 ->codeToSend();
+    return "OP.Cyc (" + ex->codeToSend() + ") " + M1 ->codeToSend();
 }
 
 vector<ConnectorInfo> CyclicOperator::Jacks()

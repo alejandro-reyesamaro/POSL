@@ -1,4 +1,5 @@
 #include "om_random_conf_ordered_generation.h"
+
 #include <random>
 #include <iostream>
 
@@ -9,8 +10,7 @@ OM_RandomConfOrderedGeneration::OM_RandomConfOrderedGeneration(shared_ptr<Benchm
       rconf_strategy(make_shared<RandomOrderedGenerationStrategy>(bench->Domains().size())),
       rsolution(make_shared<Solution>(bench->Domains())),
       object_bench(dynamic_pointer_cast<GolombRuler> (bench))
-{
-}
+{   }
 
 shared_ptr<Solution> OM_RandomConfOrderedGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution>)
 {
@@ -25,7 +25,7 @@ shared_ptr<Solution> OM_RandomConfOrderedGeneration::spcf_execute(shared_ptr<PSP
 
 string OM_RandomConfOrderedGeneration::codeToSend()
 {
-    return "A5";
+    return OM_RANDOM_CONFIG_ORDERED_GENERATION_TOCK;
 }
 
 string OM_RandomConfOrderedGeneration::Tag()

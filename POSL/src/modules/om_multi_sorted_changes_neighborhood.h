@@ -15,6 +15,8 @@
 #include "../data/neighborhood.h"
 #include "../data/multi_sorted_changes_neighborhood.h"
 
+#define OM_MULTI_SORTED_CHANGES_NEIGHBORHOOD_TOK "OM_V.NChangesOrd"
+
 /*!
  * \class OM_MultiSortedChangesNeighborhood om_multi_sorted_changes_neighborhood.h
  * \brief Class to represent an Operation Module to generate a neighborhood of a given configuration

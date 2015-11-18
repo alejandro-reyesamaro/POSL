@@ -15,6 +15,7 @@
 #include "../benchmarks/benchmark.h"
 #include "strategy/random_configuration_generation_strategy.h"
 
+#define OM_RANDOM_CONFIG_GENERATION_TOK "OM_S.Rand"
 /*!
  * \class OM_RandomConfGeneration om_random_conf_generation.h
  * \brief Class to represent an Operation module to generate a random first configuration

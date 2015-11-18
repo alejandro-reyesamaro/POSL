@@ -20,7 +20,7 @@ string SquaringSquare::showInstance()
 {
     string out =  "Squaring Square: size-" + Tools::int2str(size);
            out += ", Squares: \n  >>[ ";
-    for(int i = 0; i < squares.size(); i ++)
+    for(unsigned int i = 0; i < squares.size(); i ++)
         out+= Tools::int2str(squares[i]) + " ";
     out += "]\n";
     return out;

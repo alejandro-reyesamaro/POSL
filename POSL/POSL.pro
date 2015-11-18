@@ -230,7 +230,21 @@ SOURCES += src/main.cpp \
     src/tools/hash_map.cpp \
     src/modules/open_channel.cpp \
     src/tools/posl_tag.cpp \
-    src/solver/posl_name_space.cpp
+    src/solver/posl_name_space.cpp \
+    src/packing/compound_module_uncoder.cpp \
+    src/packing/grouped_sequential_computation_uncoder.cpp \
+    src/packing/grouped_parallel_computation_uncoder.cpp \
+    src/packing/operation_module_uncoder.cpp \
+    src/packing/om_s_uncoder.cpp \
+    src/packing/om_v_uncoder.cpp \
+    src/packing/om_ss_uncoder.cpp \
+    src/packing/om_d_uncoder.cpp \
+    src/packing/operator_uncoder.cpp \
+    src/packing/operator_conditional_uncoder.cpp \
+    src/packing/operator_cyclic_uncoder.cpp \
+    src/packing/operator_flo_uncoder.cpp \
+    src/packing/operator_rho_uncoder.cpp \
+    src/packing/operator_send_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -462,7 +476,21 @@ HEADERS += \
     src/tools/hash_map.h \
     src/connections/connectable.h \
     src/tools/posl_tag.h \
-    src/solver/posl_name_space.h
+    src/solver/posl_name_space.h \
+    src/packing/compound_module_uncoder.h \
+    src/packing/grouped_sequential_computation_uncoder.h \
+    src/packing/grouped_parallel_computation_uncoder.h \
+    src/packing/operation_module_uncoder.h \
+    src/packing/om_s_uncoder.h \
+    src/packing/om_v_uncoder.h \
+    src/packing/om_ss_uncoder.h \
+    src/packing/om_d_uncoder.h \
+    src/packing/operator_uncoder.h \
+    src/packing/operator_conditional_uncoder.h \
+    src/packing/operator_cyclic_uncoder.h \
+    src/packing/operator_flo_uncoder.h \
+    src/packing/operator_rho_uncoder.h \
+    src/packing/operator_send_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

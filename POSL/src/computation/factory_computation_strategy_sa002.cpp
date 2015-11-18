@@ -80,7 +80,7 @@ FactoryComputationStrategy_SA002::FactoryComputationStrategy_SA002(shared_ptr<Be
 
 
     // Applying FLO
-    shared_ptr<Operator> flo(make_shared<FlorianOperator>(first_conf_generation));
+    shared_ptr<Operator> flo(make_shared<FlorianOperator>(100, first_conf_generation));
     shared_ptr<GroupedComputation> G_flo(make_shared<GroupedSequentialComputation>(flo));
 
 

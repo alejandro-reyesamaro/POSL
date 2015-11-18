@@ -17,7 +17,7 @@ shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(std::shared_ptr<PS
 
 string OM_FixedFirstConfiguration::codeToSend()
 {
-    return "A1";
+    return OM_FIXED_FIRST_CONFIGURATION_TOK;
 }
 
 string OM_FixedFirstConfiguration::Tag()

@@ -1,5 +1,5 @@
 #include "binary_operator.h"
-#include "../tools/tools.cpp"
+#include "../tools/tools.h"
 
 using namespace std;
 

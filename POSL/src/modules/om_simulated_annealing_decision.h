@@ -12,6 +12,8 @@
 #include "aom_decision_function.h"
 #include "../tools/randomizer.h"
 
+#define OM_SIMULATED_ANNEALING_DECISION_TOK "OM_D.SA"
+
 //#include <random>
 
 /*!

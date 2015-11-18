@@ -82,7 +82,7 @@ FactoryComputationStrategy_RA002::FactoryComputationStrategy_RA002(shared_ptr<Be
     // <--------------------------------------------------------------------------------->
 
     // Applying FLO
-    shared_ptr<Operator> flo(make_shared<FlorianOperator>(first_conf_generation));
+    shared_ptr<Operator> flo(make_shared<FlorianOperator>(100, first_conf_generation));
     shared_ptr<GroupedComputation> G_flo(make_shared<GroupedSequentialComputation>(flo));
 
     // Cyc(n lopps){ G_sec4 } :

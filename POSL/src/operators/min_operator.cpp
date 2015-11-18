@@ -25,6 +25,6 @@ MinOperator::MinOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModu
 
 string MinOperator::codeToSend()
 {
-    return "4 " + M1->codeToSend() + " " + M2->codeToSend();
+    return "OP.Min " + M1->codeToSend() + " " + M2->codeToSend();
 }
 

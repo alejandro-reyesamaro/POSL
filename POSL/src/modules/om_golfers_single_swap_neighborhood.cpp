@@ -17,7 +17,7 @@ shared_ptr<Neighborhood> OM_GolfersSingleSwapNeighborhood::spcf_execute(shared_p
 
 string OM_GolfersSingleSwapNeighborhood::codeToSend()
 {
-    return "B3";
+    return OM_GOLFERS_SINGLE_SWAP_NEIGHBORHOOD_TOK;
 }
 
 string OM_GolfersSingleSwapNeighborhood::Tag()

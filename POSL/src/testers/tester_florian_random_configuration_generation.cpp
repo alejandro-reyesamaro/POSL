@@ -18,7 +18,7 @@ string Tester_FlorianRandomConfigurationGeneration::test()
     shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
 
     shared_ptr<OperationModule> op1(make_shared<OM_RandomConfGeneration>(bench));
-    shared_ptr<Operator> op(make_shared<FlorianOperator>(op1));
+    shared_ptr<Operator> op(make_shared<FlorianOperator>(100, op1));
     shared_ptr<GroupedComputation> G(make_shared<GroupedSequentialComputation>(op));
 
     bool is_random = true;

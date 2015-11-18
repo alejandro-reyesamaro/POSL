@@ -11,6 +11,7 @@
 
 #include "unary_operator.h"
 #include "../expressions/boolean_expression.h"
+#include "strategy/florian_sequential_strategy.h"
 
 /*!
  * \class FlorianOperator florian_operator.h
@@ -19,7 +20,7 @@
 class FlorianOperator : public UnaryOperator
 {
     public:
-        FlorianOperator(std::shared_ptr<CompoundModule> _M1);
+        FlorianOperator(int k, std::shared_ptr<CompoundModule> _M1);
 
         //! From Codable
         std::string codeToSend();
@@ -28,4 +29,7 @@ class FlorianOperator : public UnaryOperator
         std::vector<ConnectorInfo> Jacks();
         std::vector<ConnectorInfo> Outlets();
         void connect(ConnectorInfo connector, int procID);
+
+    private:
+        std::shared_ptr<FlorianSequentialStrategy> CastMyStrategy();
 };

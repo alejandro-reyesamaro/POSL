@@ -1,5 +1,5 @@
 #include "hash_map.h"
-
+/*
 using namespace std;
 
 template<typename Tkey, typename Tmap>
@@ -33,13 +33,5 @@ HashMap<Tkey, Tmap> HashMap<Tkey, Tmap>::merge(HashMap<Tkey, Tmap> other)
     for ( auto it = other.hash_table.begin(); it != other.hash_table.end(); ++it )
         table.insert(it->first, it->second);
     return (table.Count() == 0) ? nullptr : table;
-}
-
-/*
-// No need to call this TemporaryFunction() function,
-// it's just to avoid link error.
-void TemporaryFunction ()
-{
-    HashMap<string, int> TempObj; // :/
 }
 */

@@ -20,7 +20,7 @@ shared_ptr<Solution> OM_RandomConfGeneration::spcf_execute(shared_ptr<PSP> psp, 
 
 string OM_RandomConfGeneration::codeToSend()
 {
-    return "A2";
+    return OM_RANDOM_CONFIG_GENERATION_TOK;
 }
 
 string OM_RandomConfGeneration::Tag()

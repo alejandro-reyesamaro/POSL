@@ -13,7 +13,7 @@ shared_ptr<DecisionPair> OM_BestImprovementSelection::spcf_execute(shared_ptr<PS
 
 string OM_BestImprovementSelection::codeToSend()
 {
-    return "C3";
+    return OM_BEST_IMPROVEMENT_SELECTION_TOK;
 }
 
 string OM_BestImprovementSelection::Tag()

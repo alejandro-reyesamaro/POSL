@@ -20,7 +20,7 @@ shared_ptr<Solution> OM_RandomPermutationGeneration::spcf_execute(shared_ptr<PSP
 
 string OM_RandomPermutationGeneration::codeToSend()
 {
-    return "A6";
+    return OM_RANDOM_PERMUTATION_GENERATION_TOK;
 }
 
 string OM_RandomPermutationGeneration::Tag()

@@ -6,6 +6,8 @@
 #include "strategy/random_ordered_generation_strategy.h"
 #include "../benchmarks/golomb_ruler.h"
 
+#define OM_RANDOM_CONFIG_ORDERED_GENERATION_TOCK "OM_S.OrdRand"
+
 class OM_RandomConfOrderedGeneration : public AOM_FirstConfigurationGeneration
 {
     public:

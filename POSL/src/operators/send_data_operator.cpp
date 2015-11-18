@@ -11,7 +11,7 @@ SendDataOperator::SendDataOperator(std::string _name, shared_ptr<CompoundModule>
 
 string SendDataOperator::codeToSend()
 {
-    return M1->codeToSend();
+    return "OP.OSend (" + name + ") " + M1->codeToSend();
 }
 
 vector<ConnectorInfo> SendDataOperator::Jacks()

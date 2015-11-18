@@ -11,5 +11,5 @@ ConditionalOperator::ConditionalOperator(shared_ptr<CompoundModule> _M1, shared_
 
 string ConditionalOperator::codeToSend()
 {
-    return "2 (" + ex->codeToSend() + ") " + M1 ->codeToSend() + " " + M2->codeToSend();
+    return "OP.? (" + ex->codeToSend() + ") " + M1 ->codeToSend() + " " + M2->codeToSend();
 }

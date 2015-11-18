@@ -15,7 +15,7 @@ shared_ptr<DecisionPair> OM_FirstImprovementSelection::spcf_execute(shared_ptr<P
 
 string OM_FirstImprovementSelection::codeToSend()
 {
-    return "C2";
+    return OM_FIRST_IMPROVEMENT_SELECTION_TOK;
 }
 
 string OM_FirstImprovementSelection::Tag()

@@ -13,6 +13,8 @@
 #include "aom_selection_function.h"
 #include "../data/dStrategy/neighbor_selecting_random.h"
 
+#define OM_RANDOM_SELECTION_TOK "OM_SS.Rand"
+
 /*!
  * \class OM_RandomSelection om_random_selection.h
  * \brief Class to represent an Operation Module to select a configuration in a neighborhood

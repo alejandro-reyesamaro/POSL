@@ -12,6 +12,8 @@
 #include "aom_selection_function.h"
 #include "../data/dStrategy/neighbor_selecting_best_improvement.h"
 
+#define OM_BEST_IMPROVEMENT_SELECTION_TOK "OM_SS.BestImpr"
+
 /*!
  * \class OM_BestImprovementSelection om_best_improvement_selection.h
  * \brief Class to represent an Operation Module to select a configuration in a neighborhood

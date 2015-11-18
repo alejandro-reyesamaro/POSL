@@ -16,7 +16,7 @@ shared_ptr<Neighborhood> OM_OnePermutationNeighborhood::spcf_execute(shared_ptr<
 
 string OM_OnePermutationNeighborhood::codeToSend()
 {
-    return "B6";
+    return OM_ONE_PERMUTATION_NEIGHBORHOOD_TOK;
 }
 
 string OM_OnePermutationNeighborhood::Tag()

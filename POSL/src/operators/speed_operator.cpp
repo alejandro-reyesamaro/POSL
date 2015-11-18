@@ -8,5 +8,5 @@ SpeedOperator::SpeedOperator(shared_ptr<CompoundModule> _M1, shared_ptr<Compound
 
 string SpeedOperator::codeToSend()
 {
-    return "5 " + M1->codeToSend() + " " + M2->codeToSend();
+    return "OP.Speed " + M1->codeToSend() + " " + M2->codeToSend();
 }

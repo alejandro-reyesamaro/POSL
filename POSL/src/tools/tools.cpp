@@ -191,6 +191,7 @@ T_Changes Tools::GetChanges(std::vector<int> config_before, std::vector<int> con
     return changes;
 }
 
+/*
 template<typename T>
 std::vector<T> Tools::concat(std::vector<T> & vector1, std::vector<T> & vector2)
 {
@@ -203,3 +204,4 @@ std::vector<T> Tools::concat(std::vector<T> & vector1, std::vector<T> & vector2)
         copy(vector2.begin(), vector2.end(), vec.begin() + v1size);
     return vec;
 }
+*/

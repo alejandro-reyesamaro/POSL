@@ -12,5 +12,5 @@ RhoOperator::RhoOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModu
 
 string RhoOperator::codeToSend()
 {
-    return "3 (" + Tools::float2str(rho) + ") " + M1->codeToSend() + " " + M2->codeToSend();
+    return "OP.Rho (" + Tools::float2str(rho) + ") " + M1->codeToSend() + " " + M2->codeToSend();
 }

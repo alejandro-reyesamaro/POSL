@@ -15,6 +15,8 @@
 #include "strategy/random_permutation_by_blocks_generation_strategy.h"
 #include "../benchmarks/golfers.h"
 
+#define OM_RANDOM_CONFIG_PERMUTATION_BY_BLOCKS_TOK "OM_S.PermBlocks"
+
 /*!
  * \class OM_RandomConfPermutationByBlocksGeneration om_random_conf_permutation_by_blocks_generation.h
  * \brief Class to represent an Operation module to generate a random first configuration that is a permutation by blocks

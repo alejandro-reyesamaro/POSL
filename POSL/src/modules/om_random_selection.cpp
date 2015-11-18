@@ -15,7 +15,7 @@ shared_ptr<DecisionPair> OM_RandomSelection::spcf_execute(shared_ptr<PSP> psp, s
 
 string OM_RandomSelection::codeToSend()
 {
-    return "C1";
+    return OM_RANDOM_SELECTION_TOK;
 }
 
 string OM_RandomSelection::Tag()

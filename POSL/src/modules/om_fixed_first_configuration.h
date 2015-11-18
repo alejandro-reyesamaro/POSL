@@ -11,6 +11,8 @@
 
 #include "aom_first_configuration_generation.h"
 
+#define OM_FIXED_FIRST_CONFIGURATION_TOK "OM_S.Fix"
+
 /*!
  * \class OM_FixedFirstConfiguration om_fixed_first_conf_generation.h
  * \brief Class to represent an Operation Module to give a fixed first configuration

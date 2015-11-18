@@ -16,7 +16,7 @@ shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp,
 
 string OM_AlwaysImproveDecision::codeToSend()
 {
-    return "D1";
+    return OM_ALWAYS_IMPROVEMENT_DECISION_TOK;
 }
 
 string OM_AlwaysImproveDecision::Tag()

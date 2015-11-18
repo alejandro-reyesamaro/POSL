@@ -35,16 +35,16 @@ void OneElementChangedNeighborhood::updateChanges()
 
     //n = N_NEIGHBORS;
     Tools::shuffle(indexes);
-    int pos_new_value = 0;
+    //int pos_new_value = 0;
     int new_value = 0;
 
     for(int i = 0; i < n; ++i)
     {
         std::vector<int> posible_values = domains[indexes[i]].GetValues();
         int current_value = current_configuration[indexes[i]];
-        pos_new_value = indexes[i];
+        //pos_new_value = indexes[i];
         Tools::shuffle(posible_values);        
-        for (int j = 0; j < posible_values.size() / 2 + 1; j++)
+        for (unsigned int j = 0; j < posible_values.size() / 2 + 1; j++)
         {            
             new_value = posible_values[j];
             if(new_value == current_value)

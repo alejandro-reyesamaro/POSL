@@ -38,7 +38,7 @@ string Tester_SpeedOperator::testeInMode(Computation comp)
 
     shared_ptr<OperationModule> m1 =(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<OperationModule> m2 =(make_shared<OM_RandomConfGeneration>(bench));
-    shared_ptr<Operator> _op =(make_shared<FlorianOperator>(m2));
+    shared_ptr<Operator> _op =(make_shared<FlorianOperator>(100, m2));
     shared_ptr<GroupedComputation> G =(make_shared<GroupedSequentialComputation>(_op));
 
     shared_ptr<Operator> op =(make_shared<SpeedOperator>(m1, G));

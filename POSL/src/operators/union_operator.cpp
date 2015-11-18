@@ -10,5 +10,5 @@ UnionOperator::UnionOperator(shared_ptr<CompoundModule> _M1, shared_ptr<Compound
 
 string UnionOperator::codeToSend()
 {
-    return "6 " + M1->codeToSend() + " " + M2->codeToSend();
+    return "OP.U " + M1->codeToSend() + " " + M2->codeToSend();
 }

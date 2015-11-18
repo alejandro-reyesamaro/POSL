@@ -14,7 +14,7 @@ shared_ptr<ComputationData> OMS_IterationsCounter::execute(shared_ptr<PSP> psp, 
 
 string OMS_IterationsCounter::codeToSend()
 {
-    return "OM_IterCounter";
+    return "OMS_IterCounter";
 }
 
 string OMS_IterationsCounter::Tag()

@@ -14,7 +14,7 @@ shared_ptr<DecisionPair> OM_BestImprovementTabuSelection::spcf_execute(shared_pt
 
 string OM_BestImprovementTabuSelection::codeToSend()
 {
-    return "C4";
+    return OM_BEST_IMPROVEMENT_TABU_SELECTION_TOK;
 }
 
 string OM_BestImprovementTabuSelection::Tag()

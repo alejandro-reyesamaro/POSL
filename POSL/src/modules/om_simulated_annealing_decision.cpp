@@ -58,7 +58,7 @@ shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP>
 
 string OM_SimulatedAnnealingDecision::codeToSend()
 {
-    return "D2";
+    return OM_SIMULATED_ANNEALING_DECISION_TOK;
 }
 
 string OM_SimulatedAnnealingDecision::Tag()

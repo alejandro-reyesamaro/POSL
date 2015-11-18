@@ -16,7 +16,7 @@ shared_ptr<Neighborhood> OM_OneElementChangedNeighborhood::spcf_execute(shared_p
 
 string OM_OneElementChangedNeighborhood::codeToSend()
 {
-    return "B1";
+    return OM_ONE_CHANGE_NEIHBORHOOD_TOK;
 }
 
 string OM_OneElementChangedNeighborhood::Tag()

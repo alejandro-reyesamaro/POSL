@@ -26,7 +26,7 @@ shared_ptr<Solution> OM_RandomConfPermutationByBlocksGeneration::spcf_execute(sh
 
 string OM_RandomConfPermutationByBlocksGeneration::codeToSend()
 {
-    return "A4";
+    return OM_RANDOM_CONFIG_PERMUTATION_BY_BLOCKS_TOK;
 }
 
 string OM_RandomConfPermutationByBlocksGeneration::Tag()

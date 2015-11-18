@@ -9,8 +9,9 @@ using namespace std;
 #include <iostream>
 #include <limits>
 
-FlorianSequentialStrategy::FlorianSequentialStrategy(shared_ptr<CompoundModule> _M1)
-    : M1(_M1),
+FlorianSequentialStrategy::FlorianSequentialStrategy(int k, shared_ptr<CompoundModule> _M1)
+    : times(k),
+      M1(_M1),
       best_solution(nullptr),
       temp_solution(nullptr)
 {}
@@ -19,7 +20,7 @@ shared_ptr<ComputationData> FlorianSequentialStrategy::evaluate(shared_ptr<PSP> 
 {    
     int best_cost = std::numeric_limits<int>::max();
 
-    for(int i = 0; i < N_ATTEMPTS; i++)
+    for(int i = 0; i < times; i++)
     {
         temp_solution = static_pointer_cast<Solution>(M1->execute(psp, input));
         int cost = psp->GetBenchmark()->solutionCost(temp_solution);

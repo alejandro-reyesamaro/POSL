@@ -12,5 +12,5 @@ SequentialExecOperator::SequentialExecOperator(shared_ptr<CompoundModule> _M1, s
 
 string SequentialExecOperator::codeToSend()
 {
-    return "4 " + M1->codeToSend() + " " + M2->codeToSend();
+    return "OP.|-> " + M1->codeToSend() + " " + M2->codeToSend();
 }

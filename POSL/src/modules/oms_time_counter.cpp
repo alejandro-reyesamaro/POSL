@@ -21,7 +21,7 @@ shared_ptr<ComputationData> OMS_TimeCounter::execute(shared_ptr<PSP> psp, shared
 
 string OMS_TimeCounter::codeToSend()
 {
-    return "S1";
+    return "OMS_TimeCounter";
 }
 
 string OMS_TimeCounter::Tag()

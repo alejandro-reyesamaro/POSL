@@ -13,6 +13,8 @@
 #include "../tools/tabu_list.h"
 #include "../data/dStrategy/neighbor_selecting_best_improvement_tabu.h"
 
+#define OM_BEST_IMPROVEMENT_TABU_SELECTION_TOK "OM_SS.BestImprTABU"
+
 /*!
  * \class OM_BestImprovementTabuSelection om_best_improvement_tabu_selection.h
  * \brief Class to represent an Operation Module to select a configuration in a neighborhood

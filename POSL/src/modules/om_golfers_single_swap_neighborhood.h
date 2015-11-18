@@ -16,6 +16,8 @@
 #include "../benchmarks/golfers.h"
 #include "../data/golfers_single_swap_neighborhood.h"
 
+#define OM_GOLFERS_SINGLE_SWAP_NEIGHBORHOOD_TOK "1SwapBtwnBlocks"
+
 /*!
  * \class OM_GolfersSingleSwapNeighborhood om_golfers_single_swap_neighborhood.h
  * \brief Class to represent an Operation Module to generate a neighborhood of a given configuration (for golfers problem)

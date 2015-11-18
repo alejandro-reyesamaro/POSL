@@ -41,6 +41,17 @@ class Tools
         static void sortAscendent(std::vector<int> & v);
         static void trim(std::string & code);
         static T_Changes GetChanges(std::vector<int> config_before, std::vector<int> config_after);
+
         template<typename T>
-        static std::vector<T> concat(std::vector<T> & vector1, std::vector<T> & vector2);
+        static std::vector<T> concat(std::vector<T> vector1, std::vector<T> vector2)
+        {
+            int v1size = vector1.size();
+            int v2size = vector2.size();
+            std::vector<T> vec(v1size + vector2.size());
+            if(v1size > 0)
+                std::copy(vector1.begin(), vector1.end(), vec.begin());
+            if(v2size > 0)
+                std::copy(vector2.begin(), vector2.end(), vec.begin() + v1size);
+            return vec;
+        }
 };
