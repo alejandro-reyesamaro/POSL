@@ -15,5 +15,5 @@ bool OrExpression::evaluate(shared_ptr<PSP> psp)
 
 string OrExpression::codeToSend()
 {
-    return "b5 ";
+    return string(BE_OR_TOK) + " (" + ex1->codeToSend() + ", " + ex2->codeToSend() + ") ";
 }

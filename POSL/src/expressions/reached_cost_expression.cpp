@@ -19,5 +19,5 @@ bool ReachedCostExpression::evaluate(shared_ptr<PSP> psp)
 
 string ReachedCostExpression::codeToSend()
 {
-    return "b3 " + Tools::int2str(cost); // + " " + Tools::int2str(max_iter);
+    return string(BE_REACHED_COST_TOK) + " " + Tools::int2str(cost); // + " " + Tools::int2str(max_iter);
 }

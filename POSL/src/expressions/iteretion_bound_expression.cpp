@@ -17,5 +17,5 @@ bool IteretionBoundExpression::evaluate(shared_ptr<PSP> psp)
 
 string IteretionBoundExpression::codeToSend()
 {
-    return "b1 " + Tools::int2str(max_iterations);
+    return string(BE_ITERATION_BOUND_TOK) + " " + Tools::int2str(max_iterations);
 }

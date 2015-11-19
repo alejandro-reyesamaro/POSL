@@ -42,7 +42,7 @@ string Tester_BestImprovementSelection::test()
     // [ [cm1 |-> cm2] |-> cm3 ] :
     shared_ptr<GroupedComputation> G2(make_shared<GroupedSequentialComputation>(op2));
 
-    shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(G2->execute(psp, sol));
+    shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(G2->execute(psp, t_seed));
     int c = psp->GetBenchmark()->solutionCost(pair->GetCurrent());
     int cc = psp->GetBenchmark()->solutionCost(pair->GetFound());
 

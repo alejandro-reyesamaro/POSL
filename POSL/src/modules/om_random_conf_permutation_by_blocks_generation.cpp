@@ -12,7 +12,7 @@ OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGene
       rconf_strategy(make_shared<RandomPermutationByBlocksGenerationStrategy>(bench->Domains().size(), object_bench->TotalPlayers()))
 {}
 
-shared_ptr<Solution> OM_RandomConfPermutationByBlocksGeneration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution>)
+shared_ptr<Solution> OM_RandomConfPermutationByBlocksGeneration::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Seed>)
 {
     int block_size = object_bench->Groups() * object_bench->PlayersPerGroup();
     int blocks = object_bench->Weeks();

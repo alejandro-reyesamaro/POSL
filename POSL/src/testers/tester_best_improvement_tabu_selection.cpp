@@ -49,7 +49,7 @@ string Tester_BestImprovementTabuSelection::test()
 
     for(int i = 0; i < 5; i++)
     {
-        pair = static_pointer_cast<DecisionPair>(G2->execute(psp, sol));
+        pair = static_pointer_cast<DecisionPair>(G2->execute(psp, t_seed));
         sol = pair->GetFound();
         cost = psp->GetBenchmark()->solutionCost(sol);
         psp->UpdateSolution(sol->GetConfiguration());

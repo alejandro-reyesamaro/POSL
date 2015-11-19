@@ -13,5 +13,5 @@ typedef struct
     //! New values
     std::vector<int> new_values;
     //! Number of changes
-    int dim;
+    unsigned int dim;
 }T_Changes;

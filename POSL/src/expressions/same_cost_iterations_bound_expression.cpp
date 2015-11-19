@@ -29,5 +29,5 @@ bool SameCostIterationsBoundExpression::evaluate(shared_ptr<PSP> psp)
 
 string SameCostIterationsBoundExpression::codeToSend()
 {
-    return "b4 " + Tools::int2str(max_iter); // + " " + Tools::int2str(max_iter);
+    return string(BE_SAME_COST_ITERATIONS_TOK) + " " + Tools::int2str(max_iter); // + " " + Tools::int2str(max_iter);
 }

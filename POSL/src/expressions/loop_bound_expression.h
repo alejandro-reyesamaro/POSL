@@ -2,6 +2,8 @@
 
 #include "boolean_expression.h"
 
+#define BE_LOOP_BOUND_TOK "BE.LoopBnd"
+
 class LoopBoundExpression : public BooleanExpression
 {
     public:

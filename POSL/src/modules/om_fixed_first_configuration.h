@@ -22,7 +22,7 @@ class OM_FixedFirstConfiguration : public AOM_FirstConfigurationGeneration
     public:
         OM_FixedFirstConfiguration(std::shared_ptr<Benchmark> bench);
 
-        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed>);
 
         //! From Codable
         std::string codeToSend();

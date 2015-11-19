@@ -10,8 +10,7 @@
  */
 
 #include "aom_first_configuration_generation.h"
-#include "../data/solution.h"
-#include "../benchmarks/benchmark.h"
+//#include "../benchmarks/benchmark.h"
 #include "strategy/random_permutation_by_blocks_generation_strategy.h"
 #include "../benchmarks/golfers.h"
 
@@ -27,7 +26,7 @@ class OM_RandomConfPermutationByBlocksGeneration : public AOM_FirstConfiguration
         //! Constructor
         OM_RandomConfPermutationByBlocksGeneration(std::shared_ptr<Benchmark> bench);
 
-        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution>);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed>);
 
         //! From Codable
         std::string codeToSend();

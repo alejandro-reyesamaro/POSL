@@ -5,7 +5,8 @@
 #include "../benchmarks/benchmark.h"
 
 Tester::Tester(int argc, char *argv[])
-    :ARGC(argc), ARGV(argv)
+    : ARGC(argc), ARGV(argv),
+      t_seed(make_shared<Seed>())
 {}
 
 vector<int> Tester::Golfers_332_c6()

@@ -1,7 +1,6 @@
 #include "tester_conditional_operator.h"
 #include "../modules/om_fixed_first_configuration.h"
 #include "../modules/om_random_conf_generation.h"
-#include "../modules/om_fixed_first_configuration.h"
 #include "../modules/om_one_element_changed_neighborhood.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_best_improvement_selection.h"
@@ -68,12 +67,12 @@ string Tester_ConditionalOperator::test()
     // [ [ [ cm1 |-> [ cm2_1 <cond> cm2_2 ] ] |-> cm3] ] |-> cm4 ] :
     shared_ptr<GroupedComputation> G1234(make_shared<GroupedSequentialComputation>(op3));
 
-    // MAL!!!!!
-    shared_ptr<Solution> after_sol1 = static_pointer_cast<Solution>(G1234->execute(psp, sol1));
+    shared_ptr<Solution> after_sol1 = static_pointer_cast<Solution>(G1234->execute(psp, t_seed));
     int cost1 = psp->GetBenchmark()->solutionCost(after_sol1);
 
     psp->UpdateSolution(sol2->GetConfiguration());
-    shared_ptr<Solution> after_sol2 = static_pointer_cast<Solution>(G1234->execute(psp, sol2));
+
+    shared_ptr<Solution> after_sol2 = static_pointer_cast<Solution>(G1234->execute(psp, t_seed));
     int cost2 = psp->GetBenchmark()->solutionCost(after_sol2);
 
     cout << cost1 << " and " << cost2 << endl;

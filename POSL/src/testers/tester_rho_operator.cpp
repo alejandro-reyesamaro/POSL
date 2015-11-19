@@ -35,7 +35,7 @@ string Tester_RhoOperator::test()
     sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
-    psp->UpdateSolution(sol->GetConfiguration());
+    //psp->UpdateSolution(sol->GetConfiguration());
 
     shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<CompoundModule> cm2(make_shared<OM_RandomConfGeneration>(bench));
@@ -49,6 +49,7 @@ string Tester_RhoOperator::test()
     int c = 0, cc = 0, i = 0;
     for(i = 0; i < 1000; i++)
     {
+        psp->UpdateSolution(sol->GetConfiguration());
         shared_ptr<Solution> solution = static_pointer_cast<Solution>(G1->execute(psp, sol));
         if(solution->equal(sol)) c++; else cc++;
     }

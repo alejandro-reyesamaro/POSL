@@ -25,5 +25,5 @@ shared_ptr<Operator> OperatorRhoUncoder::uncode(string code, shared_ptr<Benchmar
     string cm2_code = Tools::frontModule(rest);
 
     CompoundModuleUncoder cm_unc;
-    return make_shared<RhoOperator>(cm_unc.uncode(cm1_code), cm_unc.uncode(cm2_code, bench), param);
+    return make_shared<RhoOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench), param);
 }

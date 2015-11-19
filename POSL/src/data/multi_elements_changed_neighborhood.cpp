@@ -24,7 +24,7 @@ void MultiElementsChangedNeighborhood::updateChanges()
 {
     changes.clear();
     int n = current_configuration.size();
-    int ch = N_NEIGHBORS; // to chahge ch elements
+    //int ch = N_NEIGHBORS; // to chahge ch elements
     //int N = PRC_CHANGES * n;  // to have N chahges
 
     RandIndexGenerator rig(n-1);

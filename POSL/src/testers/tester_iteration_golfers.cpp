@@ -88,12 +88,14 @@ string Tester_IterationGolfers::test()
     shared_ptr<Operator> sec_3(make_shared<SequentialExecOperator>(Gsec2, OM_D));
     shared_ptr<GroupedComputation> Gsec3(make_shared<GroupedSequentialComputation>(sec_3));
 
-    shared_ptr<Solution> sol = static_pointer_cast<Solution>(Gsec3->execute(psp332, sol332));
+    psp332->UpdateSolution(sol332->GetConfiguration());
+    shared_ptr<Solution> sol = static_pointer_cast<Solution>(Gsec3->execute(psp332, t_seed));
     //cout << sol->configurationToString() << endl;
     //cout << "Final cost: " << Tools::int2str(bench332->solutionCost(sol)) << endl;
 
     shared_ptr<Benchmark> bench554(make_shared<Golfers>(5,5,4));
     vector<int> init_config2 = Tester::Golfers_554_c0();
+
     shared_ptr<Solution> sol554(make_shared<Solution>(bench554->Domains(), init_config2));
     shared_ptr<PSP> psp554(make_shared<PSP>(ARGC, ARGV, bench554));
     int c554 = bench332->solutionCost(sol554);

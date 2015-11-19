@@ -2,6 +2,8 @@
 
 #include "boolean_expression.h"
 
+#define BE_AND_TOK "BE.AND"
+
 class AndExpression : public BooleanExpression
 {
     public:

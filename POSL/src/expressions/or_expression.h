@@ -2,6 +2,8 @@
 
 #include "boolean_expression.h"
 
+#define BE_OR_TOK "BE.OR"
+
 class OrExpression : public BooleanExpression
 {
     public:

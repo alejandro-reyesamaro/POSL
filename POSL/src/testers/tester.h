@@ -6,6 +6,7 @@
 #include "../benchmarks/n_queens.h"
 #include "../solver/psp.h"
 #include "../computation/flag_computation.h"
+#include "../data/seed.h"
 
 #include <iostream>
 #include <string>
@@ -22,6 +23,8 @@ class Tester
 
         int ARGC;
         char **ARGV;
+
+        std::shared_ptr<Seed> t_seed;
 
         static vector<int> Golfers_332_c6();
         static vector<int> Golfers_442_c0();

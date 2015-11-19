@@ -26,5 +26,5 @@ bool LoopBoundExpression::evaluate(shared_ptr<PSP> psp)
 
 string LoopBoundExpression::codeToSend()
 {
-    return "b2 " + Tools::int2str(max_loops);
+    return string(BE_LOOP_BOUND_TOK) + " " + Tools::int2str(max_loops);
 }

@@ -2,6 +2,8 @@
 
 #include "boolean_expression.h"
 
+#define BE_REACHED_COST_TOK "BE.RC"
+
 class ReachedCostExpression : public BooleanExpression
 {
     public:

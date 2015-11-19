@@ -2,6 +2,7 @@
 #include <sstream>
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
+#include <fstream>
 
 using namespace std;
 
@@ -94,7 +95,7 @@ int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
     return max(0, b - A);
 }
 
-std::vector<int> Tools::vector_possible_values_to_hold_sorted(int index, std::vector<int> current_configuration)
+std::vector<int> Tools::vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> current_configuration)
 {
     std::vector<int> posible_values;
     if(index == 0)
@@ -191,17 +192,14 @@ T_Changes Tools::GetChanges(std::vector<int> config_before, std::vector<int> con
     return changes;
 }
 
-/*
-template<typename T>
-std::vector<T> Tools::concat(std::vector<T> & vector1, std::vector<T> & vector2)
+std::string Tools::textFromFile(std::string path)
 {
-    int v1size = vector1.size();
-    int v2size = vector2.size();
-    vector<T> vec(v1size + vector2.size());
-    if(v1size > 0)
-        copy(vector1.begin(), vector1.end(), vec.begin());
-    if(v2size > 0)
-        copy(vector2.begin(), vector2.end(), vec.begin() + v1size);
-    return vec;
+    std::string text = "";
+    std::string line;
+    std::ifstream infile(path);
+    while (getline(infile, line))
+    {
+        text = text + line + " ";
+    }
+    return text;
 }
-*/

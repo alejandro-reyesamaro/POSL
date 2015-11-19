@@ -2,7 +2,6 @@
 
 #include "../modules/om_fixed_first_configuration.h"
 #include "../modules/om_random_conf_generation.h"
-#include "../modules/om_fixed_first_configuration.h"
 #include "../modules/om_one_element_changed_neighborhood.h"
 #include "../modules/om_multi_elements_changed_neighborhood.h"
 #include "../modules/om_best_improvement_selection.h"
@@ -34,8 +33,7 @@ string Tester_CyclicOperator::test()
     shared_ptr<CompoundModule> cm3(make_shared<OM_BestImprovementSelection>(bench));
     shared_ptr<CompoundModule> cm4(make_shared<OM_AlwaysImproveDecision>());
 
-    // MAL!!! Seed!!
-    shared_ptr<Solution> first_solution = static_pointer_cast<Solution>(cm0->execute(psp, make_shared<Seed>()));
+    shared_ptr<Solution> first_solution = static_pointer_cast<Solution>(cm0->execute(psp, t_seed));
     int first_cost = psp->GetBenchmark()->solutionCost(first_solution);
 
     // cm2 |-> cm3 :
@@ -62,8 +60,8 @@ string Tester_CyclicOperator::test()
     // [ cm1 |-> [ Cyc(100 lopps){ [ [ cm2 |-> cm3 ] |-> cm4] ] } ] ]
     shared_ptr<GroupedComputation> G3(make_shared<GroupedSequentialComputation>(op3));
 
-    // MAL!!!!!
-    shared_ptr<Solution> best_solution = static_pointer_cast<Solution>(G3->execute(psp, first_solution));
+    psp->UpdateSolution(first_solution);
+    shared_ptr<Solution> best_solution = static_pointer_cast<Solution>(G3->execute(psp, t_seed));
 
 
     int cost = psp->GetBenchmark()->solutionCost(best_solution);

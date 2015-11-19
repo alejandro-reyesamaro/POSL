@@ -2,12 +2,12 @@
 #include "../tools/tools.h"
 #include "compound_module_uncoder.h"
 #include "../operators/conditional_operator.h"
+#include "../packing/boolean_expression_uncoder.h"
 
 using namespace std;
 
 OperatorConditionalUncoder::OperatorConditionalUncoder()
-{
-}
+{}
 
 shared_ptr<Operator> OperatorConditionalUncoder::uncode(string code, shared_ptr<Benchmark> bench)
 {
@@ -23,7 +23,8 @@ shared_ptr<Operator> OperatorConditionalUncoder::uncode(string code, shared_ptr<
     string cm2_code = Tools::frontModule(rest);
 
     CompoundModuleUncoder cm_unc;
+    BooleanExpressionUncoder be_unc;
     return make_shared<ConditionalOperator>(cm_unc.uncode(cm1_code, bench),
                                             cm_unc.uncode(cm2_code, bench),
-                                            uncodeBoolExpression(be_code));
+                                            be_unc.uncode(be_code));
 }

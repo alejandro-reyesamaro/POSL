@@ -9,10 +9,10 @@ OM_FixedFirstConfiguration::OM_FixedFirstConfiguration(shared_ptr<Benchmark> ben
     : AOM_FirstConfigurationGeneration(bench)
 {}
 
-shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(std::shared_ptr<PSP> psp, shared_ptr<Solution> input)
+shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed>)
 {
-    psp->UpdateSolution(input->GetConfiguration());
-    return input;
+    //psp->UpdateSolution(config);
+    return make_shared<Solution>(psp->GetBenchmark()->Domains(), psp->GetCurrentSolution());
 }
 
 string OM_FixedFirstConfiguration::codeToSend()

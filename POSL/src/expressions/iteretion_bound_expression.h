@@ -2,6 +2,8 @@
 
 #include "boolean_expression.h"
 
+#define BE_ITERATION_BOUND_TOK "BE.IterBnd"
+
 class IteretionBoundExpression : public BooleanExpression
 {
     public:

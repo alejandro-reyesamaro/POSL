@@ -48,7 +48,7 @@ string Tester_SpeedOperator::testeInMode(Computation comp)
             : static_pointer_cast<CompoundModule>(make_shared<GroupedParallelComputation>(op));
 
     //cout << "Testing speed operator...... " << endl;
-    shared_ptr<Solution> S = static_pointer_cast<Solution>(G1->execute(psp, sol));
+    shared_ptr<Solution> S = static_pointer_cast<Solution>(G1->execute(psp, t_seed));
 
     string mode_str = (comp == SEQ) ? "Operator_Speed (Sequential)" : "Operator_Speed (Parallel)";
     return (S->equal(sol)) ? mode_str + ": OK !" : mode_str + ": fail :/";

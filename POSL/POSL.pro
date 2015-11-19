@@ -244,7 +244,11 @@ SOURCES += src/main.cpp \
     src/packing/operator_cyclic_uncoder.cpp \
     src/packing/operator_flo_uncoder.cpp \
     src/packing/operator_rho_uncoder.cpp \
-    src/packing/operator_send_uncoder.cpp
+    src/packing/operator_send_uncoder.cpp \
+    src/packing/boolean_expression_uncoder.cpp \
+    src/packing/bool_expression_and_uncoder.cpp \
+    src/packing/bool_expression_or_uncoder.cpp \
+    src/testers/tester_coding_posl.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -490,7 +494,11 @@ HEADERS += \
     src/packing/operator_cyclic_uncoder.h \
     src/packing/operator_flo_uncoder.h \
     src/packing/operator_rho_uncoder.h \
-    src/packing/operator_send_uncoder.h
+    src/packing/operator_send_uncoder.h \
+    src/packing/boolean_expression_uncoder.h \
+    src/packing/bool_expression_and_uncoder.h \
+    src/packing/bool_expression_or_uncoder.h \
+    src/testers/tester_coding_posl.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
