@@ -12,8 +12,6 @@
 #include "aom_selection_function.h"
 #include "../data/dStrategy/neighbor_selecting_first_improvement.h"
 
-#define OM_FIRST_IMPROVEMENT_SELECTION_TOK "OM_SS.FirstImpr"
-
 /*!
  * \class OM_FirstImprovementSelection om_first_improvement_selection.h
  * \brief Class to represent an Operation Module to select a configuration in a neighborhood

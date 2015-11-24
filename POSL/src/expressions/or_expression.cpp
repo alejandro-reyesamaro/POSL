@@ -1,4 +1,5 @@
 #include "or_expression.h"
+#include "../tools/tokens_definition.h"
 
 using namespace std;
 

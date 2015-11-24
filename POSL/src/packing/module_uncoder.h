@@ -1,3 +1,4 @@
+/*
 #pragma once
 
 #include "../modules/compound_module.h"
@@ -27,3 +28,5 @@ class ModuleUncoder
         std::shared_ptr<OperationModule> uncodeOperationModule(std::string code, std::shared_ptr<Benchmark> bench);
         std::shared_ptr<BooleanExpression> uncodeBoolExpression(std::string code);
 };
+
+*/

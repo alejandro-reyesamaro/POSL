@@ -1,4 +1,5 @@
 #include "om_random_conf_permutation_by_blocks_generation.h"
+#include "../tools/tokens_definition.h"
 
 #include <random>
 #include <iostream>

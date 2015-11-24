@@ -50,7 +50,7 @@ string Tester_RhoOperator::test()
     for(i = 0; i < 1000; i++)
     {
         psp->UpdateSolution(sol->GetConfiguration());
-        shared_ptr<Solution> solution = static_pointer_cast<Solution>(G1->execute(psp, sol));
+        shared_ptr<Solution> solution = static_pointer_cast<Solution>(G1->execute(psp, t_seed));
         if(solution->equal(sol)) c++; else cc++;
     }
 

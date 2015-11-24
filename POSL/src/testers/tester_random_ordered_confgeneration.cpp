@@ -21,10 +21,10 @@ string Tester_RandomOrderedConfGeneration::test()
     shared_ptr<OperationModule> op1(make_shared<OM_RandomConfOrderedGeneration>(bench));
     bool is_random = true;
     //PSP> psp(make_shared<PSP(bench);
-    shared_ptr<Solution> current_sol = static_pointer_cast<Solution>(op1->execute(psp, psp->GetBenchmark()->GetSolution()));
+    shared_ptr<Solution> current_sol = static_pointer_cast<Solution>(op1->execute(psp, t_seed));
     for(int i = 0; i < 10; i++)
     {
-        shared_ptr<Solution> new_sol = static_pointer_cast<Solution>(op1->execute(psp, psp->GetBenchmark()->GetSolution()));
+        shared_ptr<Solution> new_sol = static_pointer_cast<Solution>(op1->execute(psp, t_seed));
         //cout << new_sol->configurationToString() << endl;
         is_random = is_random && (!current_sol->equal(new_sol));
         vector<int> conf = new_sol->GetConfiguration();

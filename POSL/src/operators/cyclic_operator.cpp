@@ -1,5 +1,6 @@
 #include "cyclic_operator.h"
 #include "strategy/cyclic_sequential_strategy.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 using namespace std;
@@ -11,7 +12,7 @@ CyclicOperator::CyclicOperator(shared_ptr<CompoundModule> _M1, shared_ptr<Boolea
 
 string CyclicOperator::codeToSend()
 {
-    return "OP.Cyc (" + ex->codeToSend() + ") " + M1 ->codeToSend();
+    return string(OP_CYCLIC_TOK) + " (" + ex->codeToSend() + ") " + M1 ->codeToSend();
 }
 
 vector<ConnectorInfo> CyclicOperator::Jacks()

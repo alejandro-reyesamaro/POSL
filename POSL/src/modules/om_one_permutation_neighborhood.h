@@ -15,8 +15,6 @@
 #include "../data/neighborhood.h"
 #include "../data/one_permutation_neighborhood.h"
 
-#define OM_ONE_PERMUTATION_NEIGHBORHOOD_TOK "OM_V.1Perm"
-
 /*!
  * \class OM_OnePermutationNeighborhood om_one_permutation_neighborhood.h
  * \brief Class to represent an Operation Module to generate a neighborhood of a given configuration

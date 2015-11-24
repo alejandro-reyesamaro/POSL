@@ -15,5 +15,5 @@ shared_ptr<ComputationData> GroupedSequentialComputation::execute(shared_ptr<PSP
 
 string GroupedSequentialComputation::codeToSend()
 {
-    return "<S>" + op->codeToSend() + "<S>";
+    return "<S>" + op->codeToSend() + "</S>";
 }

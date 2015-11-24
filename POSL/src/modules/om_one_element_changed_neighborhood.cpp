@@ -1,4 +1,5 @@
 #include "om_one_element_changed_neighborhood.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 

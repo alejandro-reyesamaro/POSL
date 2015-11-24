@@ -3,7 +3,7 @@
 using namespace std;
 
 CompoundModuleGeneratorFromCode::CompoundModuleGeneratorFromCode(string code, shared_ptr<Benchmark> bench)
-    : m_uncoder(make_shared<ModuleUncoder>()),
+    : m_uncoder(make_shared<CompoundModuleUncoder>()),
       module(generateFrom(code, bench)),
       mycode(code)
 {}
@@ -15,7 +15,7 @@ shared_ptr<ComputationData> CompoundModuleGeneratorFromCode::execute(shared_ptr<
 
 shared_ptr<CompoundModule> CompoundModuleGeneratorFromCode::generateFrom(string code, shared_ptr<Benchmark> bench)
 {
-    return m_uncoder->uncodeCompoundModule(code, bench);
+    return m_uncoder->uncode(code, bench);
 }
 
 string CompoundModuleGeneratorFromCode::codeToSend()

@@ -21,7 +21,7 @@ string Tester_RandomPermutationConfigurationGeneration::test()
     bool is_random = true;
     bool is_permut = true;
     //PSP> psp(make_shared<PSP(bench);
-    shared_ptr<Solution> current_sol = static_pointer_cast<Solution>(op1->execute(psp, psp->GetBenchmark()->GetSolution()));
+    shared_ptr<Solution> current_sol = static_pointer_cast<Solution>(op1->execute(psp, t_seed));
     //return current_sol->configurationToString();
 
     vector<int> perm;

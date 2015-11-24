@@ -1,5 +1,6 @@
 #include "operator_rho_uncoder.h"
 #include "../tools/tools.h"
+#include "../tools/coding_tools.h"
 #include "compound_module_uncoder.h"
 #include "../operators/rho_operator.h"
 
@@ -11,6 +12,7 @@ OperatorRhoUncoder::OperatorRhoUncoder()
 
 shared_ptr<Operator> OperatorRhoUncoder::uncode(string code, shared_ptr<Benchmark> bench)
 {
+    /*
     std::size_t pos_open = code.find_first_of("(");
     std::size_t pos_close = code.find_first_of(")");
     string str_param = code.substr(pos_open + 1, pos_close - pos_open - 1);
@@ -23,6 +25,13 @@ shared_ptr<Operator> OperatorRhoUncoder::uncode(string code, shared_ptr<Benchmar
     rest = rest.substr(sizefront);
     Tools::trim(rest);
     string cm2_code = Tools::frontModule(rest);
+    */
+
+    pair<string, pair<string, string>> p = CodingTools::extractExpressionAndCode2(code);
+
+    float param = Tools::str2float(p.first);
+    string cm1_code = p.second.first;
+    string cm2_code = p.second.second;
 
     CompoundModuleUncoder cm_unc;
     return make_shared<RhoOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench), param);

@@ -1,0 +1,35 @@
+<S>
+	OP.Cyc ( BE.LoopBnd 30 )
+	<S>
+		OP.|->
+		OM_S.PermBlocks
+		<S>
+			OP.Cyc ( BE.AND ( BE.LoopBnd 100 , BE.SCI 25 ) )
+			a<S>
+				OP.|->
+				<S>
+					OP.|->
+					<S>
+						OP.|->
+						<S>
+							OP.|-> 
+							OM_V.1SwapBtwnBlocks 
+							<S>
+								OP.Rho (0.5)
+								OM_SS.BestImpr							
+								OM_SS.FirstImpr
+							</S>
+						</S>
+						<S>
+							OP.? (BE.RC 10)
+							OM_D.SA
+							OM_D.AlwImpr
+						</S>
+					</S>
+					OMS.IterCounter
+				</S>
+				OMS.TimeCounter
+			</S>
+		</S>
+	</S>
+</S>

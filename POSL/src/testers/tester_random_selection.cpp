@@ -39,8 +39,7 @@ string Tester_RandomSelection::test()
 
     //cout << "Modules created" << endl;
 
-    // MAL !!!! poner una solucion donde esta seed
-    shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(G2->execute(psp, make_shared<Seed>()));
+    shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(G2->execute(psp, t_seed));
 
     //cout << "Module executed" << endl;
 

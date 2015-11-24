@@ -3,7 +3,8 @@
 #include "compound_module.h"
 #include "../operators/operator.h"
 #include "../expressions/boolean_expression.h"
-#include "../packing/module_uncoder.h"
+//#include "../packing/module_uncoder.h"
+#include "../packing/compound_module_uncoder.h"
 
 class CompoundModuleGeneratorFromCode : public CompoundModule
 {
@@ -25,7 +26,7 @@ class CompoundModuleGeneratorFromCode : public CompoundModule
     private:
         std::shared_ptr<CompoundModule> generateFrom(std::string code, std::shared_ptr<Benchmark> bench);
 
-        std::shared_ptr<ModuleUncoder> m_uncoder;
+        std::shared_ptr<CompoundModuleUncoder> m_uncoder;
         std::shared_ptr<CompoundModule> module;
         std::string mycode;
 };

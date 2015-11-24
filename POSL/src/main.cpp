@@ -1,55 +1,10 @@
+#include "testers/include_testers.h"
+
 #include <vector>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <fstream>
-
-#include "testers/tester.h"
-#include "testers/tester_cost_of_solution_golfers.h"
-#include "testers/tester_cost_of_solution_quaring_square.h"
-#include "testers/tester_cost_of_solution_golom_rules.h"
-#include "testers/tester_random_configuration_generation.h"
-#include "testers/tester_random_ordered_confgeneration.h"
-#include "testers/tester_florian_random_configuration_generation.h"
-#include "testers/tester_one_element_changed_neighborhood.h"
-#include "testers/tester_first_improvement_selection.h"
-#include "testers/tester_best_improvement_selection.h"
-#include "testers/tester_rho_operator.h"
-#include "testers/tester_cyclic_operator.h"
-#include "testers/tester_sets_index_generator.h"
-#include "testers/tester_multi_elements_changed_neighborhood.h"
-#include "testers/tester_multi_sorted_changes_neighborhood.h"
-#include "testers/tester_one_sorted_change_neighborhood.h"
-#include "testers/tester_union_operator.h"
-#include "testers/tester_conditional_operator.h"
-#include "testers/tester_random_selection.h"
-#include "testers/tester_simulated_annealing_decition.h"
-#include "testers/tester_best_improvement_tabu_selection.h"
-#include "testers/tester_random_permutation_configuration_generation.h"
-#include "testers/tester_golfers_permutation_neighborhood.h"
-#include "testers/tester_packing_solution.h"
-#include "testers/tester_packing_decision_pair.h"
-#include "testers/tester_packing_one_element_changed_neighborhood.h"
-#include "testers/tester_packing_multi_changes_neighborhood.h"
-#include "testers/tester_packing_golfers_permutation_neighborhood.h"
-#include "testers/tester_packing_union_neighborhood.h"
-#include "testers/tester_packing_union_neighborhood.h"
-#include "testers/tester_union_operator.h"
-#include "testers/tester_speed_operator.h"
-#include "testers/tester_solver_golfers.h"
-#include "testers/tester_solver_golomb_ruler.h"
-#include "testers/tester_solver_squaring_square.h"
-#include "solver/for_golfers_css.h"
-#include "solver/for_squaring_square_css.h"
-#include "solver/for_golomb_ruler_css.h"
-#include "testers/tester_comunication.h"
-#include "testers/tester_cost_of_solution_nqueens.h"
-#include "testers/tester_solver_n_queens.h"
-#include "testers/tester_from_pack_neighborhood.h"
-#include "testers/tester_tabuselection.h"
-#include "testers/tester_longint.h"
-#include "solver/posl_meta_solver.h"
-#include "testers/tester_iteration_golfers.h"
 
 #include "mpi.h"
 
@@ -100,11 +55,12 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_PackingUnionNeighborhood>(argc, argv));
 
     //tests.push_back(make_shared<Tester_TabuSelection>(argc, argv));
-    tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
     //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolfers>(argc, argv));
+    tests.push_back(make_shared<Tester_CodingPOSL>(argc, argv));
 
     string output_str;
     //for(int k = 0; k < 25; k ++)

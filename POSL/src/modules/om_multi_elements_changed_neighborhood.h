@@ -15,8 +15,6 @@
 #include "../data/neighborhood.h"
 #include "../data/multi_elements_changed_neighborhood.h"
 
-#define OM_MULTI_CHANGES_NEIGHBORHOOD_TOK "OM_V.NChanges"
-
 /*!
  * \class OM_MultiElementsChangedNeighborhood om_multi_elements_changed_neighborhood.h
  * \brief Class to represent an Operation Module to generate a neighborhood of a given configuration

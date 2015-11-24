@@ -1,5 +1,6 @@
 #include "om_simulated_annealing_decision.h"
 #include "../data/decision_pair.h"
+#include "../tools/tokens_definition.h"
 
 #include <chrono>
 #include <math.h>

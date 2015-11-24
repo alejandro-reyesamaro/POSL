@@ -1,4 +1,5 @@
 #include "oms_time_counter.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 using namespace std;
@@ -21,7 +22,7 @@ shared_ptr<ComputationData> OMS_TimeCounter::execute(shared_ptr<PSP> psp, shared
 
 string OMS_TimeCounter::codeToSend()
 {
-    return "OMS_TimeCounter";
+    return OMS_TIME_COUNTER_TOK;
 }
 
 string OMS_TimeCounter::Tag()

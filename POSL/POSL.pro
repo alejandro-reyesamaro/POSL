@@ -248,7 +248,9 @@ SOURCES += src/main.cpp \
     src/packing/boolean_expression_uncoder.cpp \
     src/packing/bool_expression_and_uncoder.cpp \
     src/packing/bool_expression_or_uncoder.cpp \
-    src/testers/tester_coding_posl.cpp
+    src/testers/tester_coding_posl.cpp \
+    src/tools/coding_tools.cpp \
+    src/packing/open_channel_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -498,7 +500,11 @@ HEADERS += \
     src/packing/boolean_expression_uncoder.h \
     src/packing/bool_expression_and_uncoder.h \
     src/packing/bool_expression_or_uncoder.h \
-    src/testers/tester_coding_posl.h
+    src/testers/tester_coding_posl.h \
+    src/testers/include_testers.h \
+    src/tools/tokens_definition.h \
+    src/tools/coding_tools.h \
+    src/packing/open_channel_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

@@ -1,4 +1,5 @@
 #include "send_data_operator.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 using namespace std;
@@ -11,7 +12,7 @@ SendDataOperator::SendDataOperator(std::string _name, shared_ptr<CompoundModule>
 
 string SendDataOperator::codeToSend()
 {
-    return "OP.OSend (" + name + ") " + M1->codeToSend();
+    return string(OP_SEND_DATA_TOK) + " (" + name + ") " + M1->codeToSend();
 }
 
 vector<ConnectorInfo> SendDataOperator::Jacks()

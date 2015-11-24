@@ -1,4 +1,5 @@
 #include "om_one_sorted_change_neighborhood.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 

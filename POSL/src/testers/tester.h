@@ -13,8 +13,6 @@
 
 using namespace std;
 
-//enum Computation {SEQ, PAR};
-
 class Tester
 {
     public:

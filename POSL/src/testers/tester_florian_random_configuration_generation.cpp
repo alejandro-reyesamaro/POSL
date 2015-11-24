@@ -25,7 +25,7 @@ string Tester_FlorianRandomConfigurationGeneration::test()
     //PSP * psp(make_shared<PSP(bench);
     for(int i = 0; i < 10; i++)
     {
-        shared_ptr<Solution> new_sol = static_pointer_cast<Solution>(G->execute(psp, sol));
+        shared_ptr<Solution> new_sol = static_pointer_cast<Solution>(G->execute(psp, t_seed));
         is_random = is_random && (!new_sol->equal(sol));
         sol = new_sol;
     }

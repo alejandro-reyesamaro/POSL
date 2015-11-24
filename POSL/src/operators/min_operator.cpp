@@ -4,6 +4,7 @@
 #include "strategy/min_parallel_strategy.h"
 #include "../modules/open_channel.h"
 #include "../tools/tools.h"
+#include "../tools/tokens_definition.h"
 
 #include <typeinfo>
 
@@ -25,6 +26,6 @@ MinOperator::MinOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModu
 
 string MinOperator::codeToSend()
 {
-    return "OP.Min " + M1->codeToSend() + " " + M2->codeToSend();
+    return string(OP_MIN_TOK) + " " + M1->codeToSend() + " " + M2->codeToSend();
 }
 

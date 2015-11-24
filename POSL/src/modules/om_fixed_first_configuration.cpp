@@ -1,4 +1,5 @@
 #include "om_fixed_first_configuration.h"
+#include "../tools/tokens_definition.h"
 
 #include <random>
 #include <iostream>
@@ -12,7 +13,7 @@ OM_FixedFirstConfiguration::OM_FixedFirstConfiguration(shared_ptr<Benchmark> ben
 shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed>)
 {
     //psp->UpdateSolution(config);
-    return make_shared<Solution>(psp->GetBenchmark()->Domains(), psp->GetCurrentSolution());
+    return make_shared<Solution>(psp->GetBenchmark()->Domains(), psp->GetCurrentSolution()->GetConfiguration());
 }
 
 string OM_FixedFirstConfiguration::codeToSend()

@@ -1,6 +1,7 @@
 #include "sequential_exec_operator.h"
 #include "strategy/not_implemented_parallel_strategy.h"
 #include "strategy/sequential_execution_sequential_strategy.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 
@@ -12,5 +13,5 @@ SequentialExecOperator::SequentialExecOperator(shared_ptr<CompoundModule> _M1, s
 
 string SequentialExecOperator::codeToSend()
 {
-    return "OP.|-> " + M1->codeToSend() + " " + M2->codeToSend();
+    return string(OP_SEQUENTIAL_EXECUTION_TOK) + " " + M1->codeToSend() + " " + M2->codeToSend();
 }

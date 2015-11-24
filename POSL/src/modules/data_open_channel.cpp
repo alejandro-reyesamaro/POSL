@@ -39,7 +39,9 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
     else return nullptr;
 }
 
+/*
 string DataOpenChannel::codeToSend()
 {
     throw "(POSL Exception) Coded Open Channels is not allowed (DataOpenChannel.codeToSend)";
 }
+*/

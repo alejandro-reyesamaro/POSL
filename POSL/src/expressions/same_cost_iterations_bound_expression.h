@@ -2,8 +2,6 @@
 
 #include "boolean_expression.h"
 
-#define BE_SAME_COST_ITERATIONS_TOK "BE.SCI"
-
 class SameCostIterationsBoundExpression : public BooleanExpression
 {
     public:

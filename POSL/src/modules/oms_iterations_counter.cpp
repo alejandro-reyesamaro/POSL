@@ -1,4 +1,5 @@
 #include "oms_iterations_counter.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 using namespace std;
@@ -14,7 +15,7 @@ shared_ptr<ComputationData> OMS_IterationsCounter::execute(shared_ptr<PSP> psp, 
 
 string OMS_IterationsCounter::codeToSend()
 {
-    return "OMS_IterCounter";
+    return OMS_ITERATIONS_COUNTER_TOK;
 }
 
 string OMS_IterationsCounter::Tag()

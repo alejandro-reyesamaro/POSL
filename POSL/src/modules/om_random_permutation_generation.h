@@ -5,8 +5,6 @@
 #include "../benchmarks/benchmark.h"
 #include "strategy/random_permutation_configuration_strategy.h"
 
-#define OM_RANDOM_PERMUTATION_GENERATION_TOK "OM_S.PermRand"
-
 class OM_RandomPermutationGeneration : public AOM_FirstConfigurationGeneration
 {
     public:

@@ -2,6 +2,7 @@
 #include "strategy/not_implemented_parallel_strategy.h"
 #include "strategy/rho_sequential_strategy.h"
 #include "../tools/tools.h"
+#include "../tools/tokens_definition.h"
 
 using namespace std;
 
@@ -12,5 +13,5 @@ RhoOperator::RhoOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModu
 
 string RhoOperator::codeToSend()
 {
-    return "OP.Rho (" + Tools::float2str(rho) + ") " + M1->codeToSend() + " " + M2->codeToSend();
+    return string(OP_RHO_TOK) + " (" + Tools::float2str(rho) + ") " + M1->codeToSend() + " " + M2->codeToSend();
 }

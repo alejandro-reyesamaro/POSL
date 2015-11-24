@@ -1,3 +1,4 @@
+/*
 #include "module_uncoder.h"
 #include "../tools/tools.h"
 
@@ -291,3 +292,4 @@ shared_ptr<CompoundModule> ModuleUncoder::uncodeCompoundModule(string code, shar
         return uncodeOperationModule(code, bench);
 }
 
+*/

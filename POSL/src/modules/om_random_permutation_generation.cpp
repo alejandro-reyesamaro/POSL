@@ -1,4 +1,5 @@
 #include "om_random_permutation_generation.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 

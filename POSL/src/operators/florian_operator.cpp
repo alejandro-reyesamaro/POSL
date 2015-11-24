@@ -1,5 +1,6 @@
 #include "florian_operator.h"
 #include "../tools/tools.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 using namespace std;
@@ -15,7 +16,7 @@ shared_ptr<FlorianSequentialStrategy> FlorianOperator::CastMyStrategy()
 
 string FlorianOperator::codeToSend()
 {
-    return "OP.Flo (" + Tools::int2str(CastMyStrategy()->GetIterations()) + ") " + M1 ->codeToSend();
+    return string(OP_PLORIAN_TOK) + " (" + Tools::int2str(CastMyStrategy()->GetIterations()) + ") " + M1 ->codeToSend();
 }
 
 vector<ConnectorInfo> FlorianOperator::Jacks()

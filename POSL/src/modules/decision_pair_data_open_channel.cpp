@@ -1,6 +1,7 @@
 #include "decision_pair_data_open_channel.h"
 #include "../packing/packers/decision_pair_packer.h"
 #include "../tools/tools.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 using namespace std;
@@ -13,6 +14,11 @@ DecisionPairDataOpenChannel::DecisionPairDataOpenChannel(string name, shared_ptr
 int DecisionPairDataOpenChannel::dataID()
 {
     return DECISIONPAIR_PACKING_ID;
+}
+
+string DecisionPairDataOpenChannel::codeToSend()
+{
+    return string(OCH_DECISIONPAIR_TOK) + "(" + name + ")";
 }
 
 shared_ptr<ComputationData> DecisionPairDataOpenChannel::unpackMessage(int * buffer, shared_ptr<PSP>)

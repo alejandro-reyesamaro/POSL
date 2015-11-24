@@ -1,5 +1,6 @@
 #include "om_golfers_single_swap_neighborhood.h"
 #include "../tools/tools.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 using namespace std;

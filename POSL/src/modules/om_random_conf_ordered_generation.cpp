@@ -1,4 +1,5 @@
 #include "om_random_conf_ordered_generation.h"
+#include "../tools/tokens_definition.h"
 
 #include <random>
 #include <iostream>

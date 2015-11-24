@@ -1,6 +1,7 @@
 #include "union_operator.h"
 #include "strategy/union_parallel_strategy.h"
 #include "strategy/union_sequential_strategy.h"
+#include "../tools/tokens_definition.h"
 
 using namespace std;
 
@@ -10,5 +11,5 @@ UnionOperator::UnionOperator(shared_ptr<CompoundModule> _M1, shared_ptr<Compound
 
 string UnionOperator::codeToSend()
 {
-    return "OP.U " + M1->codeToSend() + " " + M2->codeToSend();
+    return string(OP_UNION_TOK) + " " + M1->codeToSend() + " " + M2->codeToSend();
 }

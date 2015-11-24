@@ -21,7 +21,7 @@ class DataOpenChannel : public OpenChannel
         //! Constructor
         DataOpenChannel(std::string name, std::shared_ptr<Benchmark> _bench);
         std::shared_ptr<ComputationData> execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData>);
-        std::string codeToSend();
+        //std::string codeToSend();
         virtual int dataID() = 0;
         virtual std::shared_ptr<ComputationData> unpackMessage(int * buffer, std::shared_ptr<PSP> psp) = 0;
 

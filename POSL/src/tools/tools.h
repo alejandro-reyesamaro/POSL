@@ -17,6 +17,7 @@
  * \class Tools tools.h
  * \brief (Static) Class to represent useful methods
  */
+
 class Tools
 {
     public:
@@ -29,8 +30,7 @@ class Tools
         static std::string float2str(float f);
         static int str2int(std::string str);
         static float str2float(std::string str);
-        static std::string configurationToString(std::vector<int> config);
-        static std::string frontModule(std::string code);
+        static std::string configurationToString(std::vector<int> config);        
         static int segmentIntersection(int a1, int b1, int a2, int b2);
         static std::vector<int> vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> current_configuration);
         static int mismatches(std::vector<int> vector_1, std::vector<int> vector_2);
@@ -38,10 +38,8 @@ class Tools
         static void shuffle(std::vector<int> & vec);
         static std::vector<int> generateMonotony(int N);
         static std::vector<int> generateMonotony(int a, int b);
-        static void sortAscendent(std::vector<int> & v);
-        static void trim(std::string & code);
+        static void sortAscendent(std::vector<int> & v);        
         static T_Changes GetChanges(std::vector<int> config_before, std::vector<int> config_after);
-        static std::string textFromFile(std::string path);
 
         template<typename T>
         static std::vector<T> concat(std::vector<T> vector1, std::vector<T> vector2)

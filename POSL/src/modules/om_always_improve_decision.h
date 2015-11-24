@@ -11,8 +11,6 @@
 
 #include "aom_decision_function.h"
 
-#define OM_ALWAYS_IMPROVEMENT_DECISION_TOK "OM_D.AlwImpr"
-
 /*!
  * \class OM_AlwaysImproveDecision om_always_improve_decision.h
  * \brief Class to represent an Operation Module to decide if a configuration is keeped to the next iteration

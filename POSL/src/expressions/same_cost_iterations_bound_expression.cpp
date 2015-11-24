@@ -1,5 +1,6 @@
 #include "same_cost_iterations_bound_expression.h"
 #include "../tools/tools.h"
+#include "../tools/tokens_definition.h"
 
 #include <iostream>
 

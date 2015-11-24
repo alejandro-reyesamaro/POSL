@@ -1,8 +1,8 @@
 #include "tools.h"
+#include "tokens_definition.h"
+
 #include <sstream>
 #include <algorithm>
-#include <boost/algorithm/string.hpp>
-#include <fstream>
 
 using namespace std;
 
@@ -49,44 +49,7 @@ std::string Tools::configurationToString(vector<int> config)
     return txt + " ]";
 }
 
-int find_closed_char(std::string code, char open, char close)
-{
-    int count = 0;
-    std::string::iterator it = code.begin();
-    // *it == 'open' -> assumption
-    count ++;
-    it ++;
-    int pos = 0;
-    while (count != 0 &&  it != code.end())
-    {
-        if(*it == open) count ++;
-        else if(*it == close) count --;
-        pos ++;
-        it ++;
-    }
-    return (count == 0) ? pos : -1;
-}
 
-std::string Tools::frontModule(std::string code) // code is TRIMED
-{
-    char front = code.front();
-    std::string cm1_code = "";
-    int pos = 0;
-    switch(front)
-    {
-        case '[': // Parallel CM
-            pos = find_closed_char(code, '[',']');
-        break;
-        case '{': // Sequential CM
-            pos = find_closed_char(code, '{','}');
-        break;
-        default: // Operation Module
-            pos = code.find_first_of(" ");
-        break;
-    }
-    cm1_code = (pos != -1) ? code.substr(0, pos + 1) : code;
-    return cm1_code;
-}
 
 int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
 {
@@ -160,11 +123,6 @@ void Tools::sortAscendent(vector<int> & v)
     std::sort(v.begin(), v.end());
 }
 
-void Tools::trim(std::string & code)
-{
-    boost::trim(code);
-}
-
 T_Changes Tools::GetChanges(std::vector<int> config_before, std::vector<int> config_after)
 {
     vector<int> ch_possitions;
@@ -192,14 +150,4 @@ T_Changes Tools::GetChanges(std::vector<int> config_before, std::vector<int> con
     return changes;
 }
 
-std::string Tools::textFromFile(std::string path)
-{
-    std::string text = "";
-    std::string line;
-    std::ifstream infile(path);
-    while (getline(infile, line))
-    {
-        text = text + line + " ";
-    }
-    return text;
-}
+
