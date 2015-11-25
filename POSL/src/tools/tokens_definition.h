@@ -30,6 +30,8 @@
 #define OCH_NEIGHBORHOOD_TOK_NAME "V"
 #define OCH_DECISIONPAIR_TOK_NAME "DP"
 
+#define OCH_TOK "OCh"
+
 #define OCH_SOLUTION_TOK "OCh.Sol"
 #define OCH_NEIGHBORHOOD_TOK "OCh.V"
 #define OCH_DECISIONPAIR_TOK "OCh.DP"
@@ -74,3 +76,6 @@
 #define PAR_TOK_CLOSE "</P>"
 #define GROPER_OPEN_TOK_SIZE 3
 #define GROPER_CLOSE_TOK_SIZE 4
+
+#define CS_OM_KEYWORD "oModule"
+#define CS_OCH_KEYWORD "oChannel"

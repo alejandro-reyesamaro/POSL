@@ -8,7 +8,11 @@
 class ComputationStrategy
 {
     public:
+        //!Constructor a eliminar
         ComputationStrategy(std::shared_ptr<FactoryComputationStrategy> builder);
+
+        ComputationStrategy(std::string code, std::vector<std::string> om_instances, std::vector<std::string> och_instances, std::shared_ptr<Benchmark> bench);
+
         std::shared_ptr<Solution> execute(std::shared_ptr<PSP> psp);
 
         std::string TAG;

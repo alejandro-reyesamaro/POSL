@@ -1,16 +1,9 @@
 #pragma once
 
+#include "connector_info.h"
+
 #include <memory>
 #include <vector>
-
-enum ConnectionType { OUTLET, JACK };
-
-struct ConnectorInfo
-{
-    public:
-        std::string name;
-        ConnectionType connectiopn_type;
-};
 
 class Connectable
 {

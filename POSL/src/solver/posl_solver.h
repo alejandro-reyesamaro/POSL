@@ -5,14 +5,19 @@
 #include "../benchmarks/benchmark.h"
 #include "../modules/compound_module.h"
 #include "strategy/showing_result_strategy.h"
+#include "../connections/connectable.h"
 
-class POSL_Solver
+class POSL_Solver : public Connectable
 {
     public:
         POSL_Solver(std::shared_ptr<Benchmark> _bench, std::shared_ptr<ComputationStrategy> _strategy);
 
         void solve(std::shared_ptr<PSP> psp);
         std::string show();
+
+        std::vector<ConnectorInfo> Jacks();
+        std::vector<ConnectorInfo> Outlets();
+        void connect(ConnectorInfo connector, int procID);
 
     private:
         std::shared_ptr<Solution> final_solution;

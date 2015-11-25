@@ -13,7 +13,9 @@ string Tester_CodingPOSL::test()
         shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
         //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a000.posl");
         //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a001.posl");
-        string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a002.posl");
+        //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a002.posl");
+        //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/ra000.posl");
+        string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/sa000.posl");
         shared_ptr<CompoundModule> cm (make_shared<CompoundModuleGeneratorFromCode>(code, bench));
     }catch (const char* msg)
     {

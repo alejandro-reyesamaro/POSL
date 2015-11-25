@@ -3,6 +3,7 @@
 
 #include <boost/algorithm/string.hpp>
 #include <fstream>
+#include <sstream>
 
 std::string CodingTools::textFromFile(std::string path)
 {
@@ -106,6 +107,8 @@ std::pair<CM_type, std::string> CodingTools::extratModuleFromCM(std::string code
         return {SEQ_G, sub_code};
     else if (front == PAR_TOK_OPEN && back == PAR_TOK_CLOSE)
         return {PAR_G, sub_code};
+    else if (front == OCH_TOK)
+        return {OCH, code};
     else
         return {OM, code};
 }
@@ -202,7 +205,7 @@ std::pair<std::string, std::string> CodingTools::extractOChTokenAndName(std::str
     std::string och_token = code.substr(0, pos_space);
     std::string rest =  code.substr(pos_space + 1);
     CodingTools::trim(rest);
-    std::string name = code.substr(1, rest.size() - 2);
+    std::string name = rest.substr(1, rest.size() - 2);
     CodingTools::trim(name);
     return { och_token, name };
 }
@@ -210,4 +213,66 @@ std::pair<std::string, std::string> CodingTools::extractOChTokenAndName(std::str
 void CodingTools::trim(std::string & code)
 {
     boost::trim(code);
+}
+
+std::vector<std::string> CodingTools::split_string(const std::string & s, char delim)
+{
+    std::vector<std::string> elems;
+    std::stringstream ss(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
+}
+
+// computation strategy
+
+std::string CodingTools::extractComputationStrategyName(std::string code)
+{
+    std::string name = code.substr(0, code.find_first_of(":="));
+    CodingTools::trim(name);
+    return name;
+}
+
+std::pair<std::vector<std::string>, std::vector<std::string>> CodingTools::extractModulesNamesFromCS(std::string code)
+{
+    size_t pos_kw_om = code.find(CS_OM_KEYWORD);
+    size_t pos_2p = code.find(':', pos_kw_om);
+    size_t pos_pc = code.find(';', pos_2p);
+    pos_2p ++;
+    std::string str = code.substr(pos_2p, pos_pc - pos_2p);
+    std::vector<std::string> oms = CodingTools::split_string(str, ',');
+    size_t pos_kw_ch = code.find(CS_OCH_KEYWORD);
+    pos_2p = code.find(':', pos_kw_ch);
+    pos_pc = code.find(';', pos_2p);
+    pos_2p ++;
+    str = code.substr(pos_2p, pos_pc - pos_2p);
+    std::vector<std::string> ochs = CodingTools::split_string(str, ',');
+    return { oms, ochs };
+}
+
+std::string CodingTools::extractCompoundModuleCodeFromCS(std::string code)
+{
+    size_t pos_open = code.find("{");
+    size_t pos_close = code.find("}");
+    std::string cm_code = code.substr(pos_open, pos_close - pos_open);
+    CodingTools::trim(cm_code);
+    return cm_code;
+}
+
+void CodingTools::replace(std::string & code, std::vector<std::string> names, std::vector<std::string> instances)
+{
+    std::string n_str;
+    for(int i = 0; i < names.size(); i++)
+    {
+      n_str = names[i];
+      CodingTools::trim(n_str);
+      size_t pos = code.find_first_of(n_str);
+      while(pos != std::string::npos)
+      {
+          code.replace(pos, n_str.size(), instances[i]);
+          pos = code.find_first_of(n_str);
+      }
+    }
 }

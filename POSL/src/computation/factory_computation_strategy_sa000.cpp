@@ -27,7 +27,6 @@ FactoryComputationStrategy_SA000::FactoryComputationStrategy_SA000(shared_ptr<Be
     shared_ptr<SendDataOperator> sen(make_shared<SendDataOperator>("send_01", selection_function));
     shared_ptr<GroupedComputation> G_sen(make_shared<GroupedSequentialComputation>(sen));
 
-
     // neighborhood |-> selection :
     shared_ptr<Operator> sec_1(make_shared<SequentialExecOperator>(neighborhood_function, G_sen));
 

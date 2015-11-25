@@ -3,6 +3,7 @@
 #include "grouped_sequential_computation_uncoder.h"
 #include "grouped_parallel_computation_uncoder.h"
 #include "operation_module_uncoder.h"
+#include "open_channel_uncoder.h"
 
 using namespace std;
 
@@ -29,7 +30,8 @@ shared_ptr<CompoundModule> CompoundModuleUncoder::uncode(string code, shared_ptr
     }
     else if (info.first == OCH)
     {
-
+        OpenChannelUncoder och_unc;
+        return och_unc.uncode(info.second, bench);
     }
     else
         throw "(POSL Exception) Not well coded Compound Module (CompoundModuleUncoder::uncode)";

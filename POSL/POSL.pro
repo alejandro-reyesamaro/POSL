@@ -504,7 +504,8 @@ HEADERS += \
     src/testers/include_testers.h \
     src/tools/tokens_definition.h \
     src/tools/coding_tools.h \
-    src/packing/open_channel_uncoder.h
+    src/packing/open_channel_uncoder.h \
+    src/connections/connector_info.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
