@@ -238,17 +238,33 @@ std::string CodingTools::extractComputationStrategyName(std::string code)
 std::pair<std::vector<std::string>, std::vector<std::string>> CodingTools::extractModulesNamesFromCS(std::string code)
 {
     size_t pos_kw_om = code.find(CS_OM_KEYWORD);
-    size_t pos_2p = code.find(':', pos_kw_om);
-    size_t pos_pc = code.find(';', pos_2p);
-    pos_2p ++;
-    std::string str = code.substr(pos_2p, pos_pc - pos_2p);
-    std::vector<std::string> oms = CodingTools::split_string(str, ',');
+    size_t pos_2p;
+    size_t pos_pc;
+    std::vector<std::string> oms;
+    std::vector<std::string> ochs;
+    std::string str;
+
+    if (pos_kw_om == std::string::npos)
+        pos_2p = 0;
+    else
+    {
+        pos_2p = code.find(':', pos_kw_om);
+        pos_pc = code.find(';', pos_2p);
+        pos_2p ++;
+        str = code.substr(pos_2p, pos_pc - pos_2p);
+        oms = CodingTools::split_string(str, ',');
+    }
+
     size_t pos_kw_ch = code.find(CS_OCH_KEYWORD);
-    pos_2p = code.find(':', pos_kw_ch);
-    pos_pc = code.find(';', pos_2p);
-    pos_2p ++;
-    str = code.substr(pos_2p, pos_pc - pos_2p);
-    std::vector<std::string> ochs = CodingTools::split_string(str, ',');
+
+    if (pos_kw_ch != std::string::npos)
+    {
+        pos_2p = code.find(':', pos_kw_ch);
+        pos_pc = code.find(';', pos_2p);
+        pos_2p ++;
+        str = code.substr(pos_2p, pos_pc - pos_2p);
+        ochs = CodingTools::split_string(str, ',');
+    }
     return { oms, ochs };
 }
 
@@ -256,6 +272,7 @@ std::string CodingTools::extractCompoundModuleCodeFromCS(std::string code)
 {
     size_t pos_open = code.find("{");
     size_t pos_close = code.find("}");
+    pos_open ++;
     std::string cm_code = code.substr(pos_open, pos_close - pos_open);
     CodingTools::trim(cm_code);
     return cm_code;
@@ -268,11 +285,11 @@ void CodingTools::replace(std::string & code, std::vector<std::string> names, st
     {
       n_str = names[i];
       CodingTools::trim(n_str);
-      size_t pos = code.find_first_of(n_str);
+      size_t pos = code.find(n_str + " ");
       while(pos != std::string::npos)
       {
           code.replace(pos, n_str.size(), instances[i]);
-          pos = code.find_first_of(n_str);
+          pos = code.find(n_str + " ", pos + 1);
       }
     }
 }

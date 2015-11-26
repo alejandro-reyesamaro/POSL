@@ -32,3 +32,18 @@ string POSL_Solver::show()
 {
     return showing_strategy->show(bench, best_solution, best_cost, final_solution, final_cost, strategy->TAG, iterations, time);
 }
+
+vector<ConnectorInfo> POSL_Solver::Jacks()
+{
+    return strategy->GetCompoundModule()->Jacks();
+}
+
+vector<ConnectorInfo> POSL_Solver::Outlets()
+{
+    return strategy->GetCompoundModule()->Outlets();
+}
+
+void POSL_Solver::connect(ConnectorInfo connector, int procID)
+{
+    strategy->GetCompoundModule()->connect(connector, procID);
+}

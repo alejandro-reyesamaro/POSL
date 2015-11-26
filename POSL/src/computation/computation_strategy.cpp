@@ -18,18 +18,34 @@ shared_ptr<CompoundModule> init_module(string code, vector<string> om_instances,
     vector<string> om_names = p.first;
     vector<string> och_names = p.second;
 
-    CodingTools::replace(cm_code, om_names, om_instances);
-    CodingTools::replace(cm_code, och_names, och_instances);
-    return make_shared<CompoundModuleGeneratorFromCode>(code, bench);
+    if(om_names.size() > 0)
+        CodingTools::replace(cm_code, om_names, om_instances);
+    if(och_names.size() > 0)
+        CodingTools::replace(cm_code, och_names, och_instances);
+    return make_shared<CompoundModuleGeneratorFromCode>(cm_code, bench);
 }
 
-ComputationStrategy::ComputationStrategy(string code, vector<string> om_names, vector<string> och_names, shared_ptr<Benchmark> bench)
+ComputationStrategy::ComputationStrategy(string code, vector<string> om_instances, vector<string> och_instances, shared_ptr<Benchmark> bench)
     : TAG(CodingTools::extractComputationStrategyName(code)),
-      module(init_module(code, om_names, och_names, bench))
+      cs_code(code),
+      module(init_module(code, om_instances, och_instances, bench))
+{}
+
+ComputationStrategy::ComputationStrategy(string code)
+    : TAG(CodingTools::extractComputationStrategyName(code)),
+      cs_code(code)
 {}
 
 
+void ComputationStrategy::Instantiate(vector<string> om_instances, vector<string> och_instances, shared_ptr<Benchmark> bench)
+{
+    module = init_module(cs_code, om_instances, och_instances, bench);
+}
+
 shared_ptr<Solution> ComputationStrategy::execute(shared_ptr<PSP> psp)
 {
-    return static_pointer_cast<Solution>(module->execute(psp, make_shared<Seed>()));
+    if(module)
+        return static_pointer_cast<Solution>(module->execute(psp, make_shared<Seed>()));
+    else
+        throw "(POSL Exception) The compound module is not ready (ComputationStrategy::execute)";
 }
