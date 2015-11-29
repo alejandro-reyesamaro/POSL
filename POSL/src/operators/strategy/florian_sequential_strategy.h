@@ -26,7 +26,6 @@ class FlorianSequentialStrategy : public SequentialExecutionStrategy
 
     private:
         std::shared_ptr<CompoundModule> M1;
-
         int times;
         std::shared_ptr<Solution> best_solution;
         std::shared_ptr<Solution> temp_solution;

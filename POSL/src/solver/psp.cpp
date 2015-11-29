@@ -50,10 +50,10 @@ void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 
 void PSP::CountIteration(){ iterations ++; }
 
-void PSP::connectWith(int pID) { connections.push_back(pID); }
+//void PSP::connectWith(int pID) { connections.push_back(pID); }
 
-void PSP::SendData(vector<int> data)
+void PSP::SendData(vector<int> data, vector<int> destinies)
 {
-    for(std::vector<int>::iterator it = connections.begin(); it != connections.end(); ++it)
+    for(std::vector<int>::iterator it = destinies.begin(); it != destinies.end(); ++it)
         comm->sendMessage(data, *it);
 }

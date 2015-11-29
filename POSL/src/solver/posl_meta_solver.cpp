@@ -84,7 +84,7 @@ void POSL_MetaSolver::solve_Default_50(int argc, char **argv, shared_ptr<Benchma
     //*********************************************
     if(myid < comm_size/factor)
     {
-        psp->connectWith(comm_size/factor + myid);
+        //psp->connectWith(comm_size/factor + myid);
         solver_index = 0;
         //cout << "Core " << myid << " conected with core " << comm_size/4 + myid << endl;
     }
@@ -120,7 +120,7 @@ void POSL_MetaSolver::solve_Default_All(int argc, char **argv, shared_ptr<Benchm
     //*********************************************
     if(myid < comm_size/2)
     {
-        psp->connectWith(comm_size/2 + myid);
+        //psp->connectWith(comm_size/2 + myid);
         solver_index = 0;
         //cout << "Core " << myid << " conected with core " << comm_size/2 + myid << endl;
     }

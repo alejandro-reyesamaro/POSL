@@ -10,8 +10,8 @@ using namespace std;
 #include <limits>
 
 FlorianSequentialStrategy::FlorianSequentialStrategy(int k, shared_ptr<CompoundModule> _M1)
-    : times(k),
-      M1(_M1),
+    : M1(_M1),
+      times(k),
       best_solution(nullptr),
       temp_solution(nullptr)
 {}

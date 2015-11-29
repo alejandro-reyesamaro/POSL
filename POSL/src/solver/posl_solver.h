@@ -14,12 +14,14 @@ class POSL_Solver : public Connectable
 
         void solve(std::shared_ptr<PSP> psp);
         std::string show();
+        std::string solverName() { return solver_name; }
 
         std::vector<ConnectorInfo> Jacks();
         std::vector<ConnectorInfo> Outlets();
         void connect(ConnectorInfo connector, int procID);
 
     private:
+        std::string solver_name;
         std::shared_ptr<Solution> final_solution;
         std::shared_ptr<Solution> best_solution;
         int final_cost, best_cost, iterations, time;

@@ -25,10 +25,10 @@ class PSP
         void Start(std::vector<int> config);
         void UpdateTime(int _milisecs);
         void CountIteration();
-        void connectWith(int pID);
+        //void connectWith(int pID);
         void UpdateSolution(std::vector<int> config);
 
-        void SendData(std::vector<int> data);
+        void SendData(std::vector<int> data, std::vector<int> destinies);
 
         int ARGC;
         char **ARGV;
@@ -42,5 +42,5 @@ class PSP
         int pID;
         std::shared_ptr<Comunicator> comm;
         //! Proccesses IDs
-        std::vector<int> connections;
+        //std::vector<int> connections;
 };

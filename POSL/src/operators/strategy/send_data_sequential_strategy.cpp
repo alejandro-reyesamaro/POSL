@@ -14,7 +14,7 @@ SendDataSequentialStrategy::SendDataSequentialStrategy(shared_ptr<CompoundModule
 shared_ptr<ComputationData> SendDataSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     output = M1->execute(psp, input);
-    psp->SendData(output->BuildPacker()->pack());
+    psp->SendData(output->BuildPacker()->pack(), destinies);
     return output;
 }
 

@@ -250,7 +250,9 @@ SOURCES += src/main.cpp \
     src/packing/bool_expression_or_uncoder.cpp \
     src/testers/tester_coding_posl.cpp \
     src/tools/coding_tools.cpp \
-    src/packing/open_channel_uncoder.cpp
+    src/packing/open_channel_uncoder.cpp \
+    src/connections/scheduler.cpp \
+    src/connections/connection_operator_broadcasting.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -505,7 +507,9 @@ HEADERS += \
     src/tools/tokens_definition.h \
     src/tools/coding_tools.h \
     src/packing/open_channel_uncoder.h \
-    src/connections/connector_info.h
+    src/connections/connector_info.h \
+    src/connections/scheduler.h \
+    src/connections/connection_operator_broadcasting.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
