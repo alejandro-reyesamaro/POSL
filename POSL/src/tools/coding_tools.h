@@ -9,6 +9,7 @@ class CodingTools
 {
     public:
         static std::string textFromFile(std::string path);
+        std::pair<std::string, std::string> splitDeclarationConnectionsFromFile(std::string path);
         static void trim(std::string & code);
         static std::vector<std::string> split_string(const std::string & s, char delim);
 

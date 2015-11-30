@@ -18,6 +18,33 @@ std::string CodingTools::textFromFile(std::string path)
     return text;
 }
 
+std::pair<std::string, std::string> CodingTools::splitDeclarationConnectionsFromFile(std::string path)
+{
+    std::string decl_text = "";
+    std::string conn_text = "";
+    bool declaration_part = true;
+    std::string line;
+    std::ifstream infile(path);
+    size_t pos_conn_kw;
+    size_t pos_2p;
+    while (getline(infile, line))
+    {
+        CodingTools::trim(line);
+        pos_conn_kw = line.find(CONNECTION_KW);
+        if(pos_conn_kw != std::string::npos)
+        {
+            pos_2p = line.find(CONNECTION_KW, pos_conn_kw);
+            line = line.substr(pos_2p + 1);
+            declaration_part = false;
+        }
+        if(declaration_part)
+            decl_text = decl_text + line + " ";
+        else
+            conn_text = conn_text + line + " ";
+    }
+    return { decl_text, conn_text };
+}
+
 // ///////////////////////////////////////////////////////
 //! Private functions ////////////////////////////////////
 ///// ////////////////////////////////////////////////////

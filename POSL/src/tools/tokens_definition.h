@@ -81,3 +81,5 @@
 #define CS_KEYWORD "cStrategy"
 #define CS_OM_KEYWORD "oModule"
 #define CS_OCH_KEYWORD "oChannel"
+
+#define CONNECTION_KW "connections"
