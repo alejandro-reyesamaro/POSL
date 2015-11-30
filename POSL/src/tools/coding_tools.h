@@ -22,9 +22,10 @@ class CodingTools
         static std::pair<std::string, std::pair<std::string, std::string>> extractNameAndCode2(std::string code);
         static std::pair<std::string, std::string> extractOChTokenAndName(std::string code);        
 
-        // computation strategy
-        static std::string extractComputationStrategyName(std::string code);
-        static std::pair<std::vector<std::string>, std::vector<std::string>> extractModulesNamesFromCS(std::string code);
+        // computation strategy and solver
+        static std::string extractDeclarationName(std::string code);
+        static std::pair<std::vector<std::string>, std::vector<std::string>> extractModulesNamesFromDeclaration(std::string code);
         static std::string extractCompoundModuleCodeFromCS(std::string code);
         static void replace(std::string & code, std::vector<std::string> names, std::vector<std::string> instances);
+        static std::string extractCSName(std::string code);
 };

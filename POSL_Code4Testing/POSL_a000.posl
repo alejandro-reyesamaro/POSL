@@ -29,3 +29,7 @@ single_solver := solver
 	cStrategy: St_a000;
 	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
 }
+
+connections:
+
+[single_solver.send_01] OP.#-> [] 30;

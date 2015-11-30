@@ -8,6 +8,12 @@ class HashMap
     public:
         HashMap(){}
 
+        bool existsKey(Tkey key)
+        {
+            typename std::unordered_map<Tkey,Tmap>::const_iterator it_find = hash_table.find(key);
+            return ( it_find != hash_table.end() );
+        }
+
         Tmap mapOf(Tkey key)
         {
             //unordered_map<Tkey,Tmap>::const_iterator it_find = hash_table.find (key);
@@ -25,7 +31,7 @@ class HashMap
 
         HashMap<Tkey, Tmap> merge(HashMap<Tkey, Tmap> other)
         {
-            HashMap<Tkey, Tmap> table;
+            HashMap<Tkey, Tmap> table;            
             for ( auto it = hash_table.begin(); it != hash_table.end(); ++it )
                 table.insert(it->first, it->second);
             for ( auto it = other.hash_table.begin(); it != other.hash_table.end(); ++it )

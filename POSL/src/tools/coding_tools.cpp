@@ -226,16 +226,16 @@ std::vector<std::string> CodingTools::split_string(const std::string & s, char d
     return elems;
 }
 
-// computation strategy
+// computation strategy and solver
 
-std::string CodingTools::extractComputationStrategyName(std::string code)
+std::string CodingTools::extractDeclarationName(std::string code)
 {
     std::string name = code.substr(0, code.find_first_of(":="));
     CodingTools::trim(name);
     return name;
 }
 
-std::pair<std::vector<std::string>, std::vector<std::string>> CodingTools::extractModulesNamesFromCS(std::string code)
+std::pair<std::vector<std::string>, std::vector<std::string>> CodingTools::extractModulesNamesFromDeclaration(std::string code)
 {
     size_t pos_kw_om = code.find(CS_OM_KEYWORD);
     size_t pos_2p;
@@ -292,4 +292,14 @@ void CodingTools::replace(std::string & code, std::vector<std::string> names, st
           pos = code.find(n_str + " ", pos + 1);
       }
     }
+}
+
+std::string CodingTools::extractCSName(std::string code)
+{
+    size_t pos_kw_cs = code.find(CS_KEYWORD);
+    size_t pos_2p = code.find(':', pos_kw_cs);
+    size_t pos_pc = code.find(';', pos_2p);
+    pos_2p ++;
+    std::string cs_name = code.substr(pos_2p, pos_pc - pos_2p);
+    return cs_name;
 }

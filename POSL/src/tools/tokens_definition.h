@@ -77,5 +77,7 @@
 #define GROPER_OPEN_TOK_SIZE 3
 #define GROPER_CLOSE_TOK_SIZE 4
 
+#define SOLVER_KEYWORD "solver"
+#define CS_KEYWORD "cStrategy"
 #define CS_OM_KEYWORD "oModule"
 #define CS_OCH_KEYWORD "oChannel"

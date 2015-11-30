@@ -2,13 +2,13 @@
 
 using namespace std;
 
-ConnectionOperatorBroadcasting::ConnectionOperatorBroadcasting()
-{
-}
+ConnectionOperatorBroadcasting::ConnectionOperatorBroadcasting(vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> _solver_jacks,
+                                                               vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> _solver_outlets)
+    : solver_jacks(_solver_jacks),
+      solver_outlets(_solver_outlets)
+{}
 
-void ConnectionOperatorBroadcasting::connect(vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> solver_jacks,
-                                             vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> solver_outlets,
-                                             shared_ptr<Scheduler> scheduler)
+void ConnectionOperatorBroadcasting::connect(shared_ptr<Scheduler> scheduler)
 {
     shared_ptr<POSL_Solver> s_jack;
     ConnectorInfo jack;

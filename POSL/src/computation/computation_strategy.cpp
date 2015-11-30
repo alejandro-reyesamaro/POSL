@@ -1,7 +1,7 @@
 #include "computation_strategy.h"
 #include "../data/seed.h"
 #include "../tools/coding_tools.h"
-#include "../modules/compound_module_generator_from_code.h"
+//#include "../modules/compound_module_generator_from_code.h"
 
 #include <iostream>
 using namespace std;
@@ -11,6 +11,7 @@ ComputationStrategy::ComputationStrategy(shared_ptr<FactoryComputationStrategy> 
       module(builder->buildModule())
 {}
 
+/*
 shared_ptr<CompoundModule> init_module(string code, vector<string> om_instances, vector<std::string> och_instances, shared_ptr<Benchmark> bench)
 {
     pair<vector<string>, vector<string>> p = CodingTools::extractModulesNamesFromCS(code);
@@ -24,22 +25,23 @@ shared_ptr<CompoundModule> init_module(string code, vector<string> om_instances,
         CodingTools::replace(cm_code, och_names, och_instances);
     return make_shared<CompoundModuleGeneratorFromCode>(cm_code, bench);
 }
+*/
 
 ComputationStrategy::ComputationStrategy(string code, vector<string> om_instances, vector<string> och_instances, shared_ptr<Benchmark> bench)
-    : TAG(CodingTools::extractComputationStrategyName(code)),
+    : TAG(CodingTools::extractDeclarationName(code)),
       cs_code(code),
-      module(init_module(code, om_instances, och_instances, bench))
+      module(cs_uncoder.uncode(code, om_instances, och_instances, bench))
 {}
 
 ComputationStrategy::ComputationStrategy(string code)
-    : TAG(CodingTools::extractComputationStrategyName(code)),
+    : TAG(CodingTools::extractDeclarationName(code)),
       cs_code(code)
 {}
 
 
 void ComputationStrategy::Instantiate(vector<string> om_instances, vector<string> och_instances, shared_ptr<Benchmark> bench)
 {
-    module = init_module(cs_code, om_instances, och_instances, bench);
+    module = cs_uncoder.uncode(cs_code, om_instances, och_instances, bench);
 }
 
 shared_ptr<Solution> ComputationStrategy::execute(shared_ptr<PSP> psp)

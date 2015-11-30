@@ -252,7 +252,11 @@ SOURCES += src/main.cpp \
     src/tools/coding_tools.cpp \
     src/packing/open_channel_uncoder.cpp \
     src/connections/scheduler.cpp \
-    src/connections/connection_operator_broadcasting.cpp
+    src/connections/connection_operator_broadcasting.cpp \
+    src/packing/computation_strategy_uncoder.cpp \
+    src/packing/posl_solver_declaration.cpp \
+    src/packing/solver_declaration_uncoder.cpp \
+    src/packing/posl_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -509,7 +513,11 @@ HEADERS += \
     src/packing/open_channel_uncoder.h \
     src/connections/connector_info.h \
     src/connections/scheduler.h \
-    src/connections/connection_operator_broadcasting.h
+    src/connections/connection_operator_broadcasting.h \
+    src/packing/computation_strategy_uncoder.h \
+    src/packing/posl_solver_declaration.h \
+    src/packing/solver_declaration_uncoder.h \
+    src/packing/posl_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

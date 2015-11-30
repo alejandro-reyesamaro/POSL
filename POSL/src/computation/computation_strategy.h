@@ -4,6 +4,7 @@
 #include "../benchmarks/benchmark.h"
 #include "../modules/compound_module.h"
 #include "factory_computation_strategy.h"
+#include "../packing/computation_strategy_uncoder.h"
 
 class ComputationStrategy
 {
@@ -23,6 +24,6 @@ class ComputationStrategy
 
     private:
         std::string cs_code;
-        std::shared_ptr<CompoundModule> module;        
-
+        std::shared_ptr<CompoundModule> module;
+        ComputationStrategyUncoder cs_uncoder;
 };

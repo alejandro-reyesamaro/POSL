@@ -4,13 +4,22 @@
 
 using namespace std;
 
-Scheduler::Scheduler()
-    : process_base(0), first_available_process(0)
+Scheduler::Scheduler(int _capacity)
+    : process_base(0),
+      first_available_process(0),
+      capacity(_capacity)
+{}
+
+void Scheduler:: checkOut()
 {
+    process_base = first_available_process;
 }
 
 int Scheduler::schedule(shared_ptr<POSL_Solver> solver)
 {
+    // Scheduler capacity overflows (capacity == # of cores)
+    if(first_available_process == capacity)
+        return -1;
     string solver_name = solver->solverName();
     vector<string>::iterator ptr_solver_name = find(solver_names.begin() + process_base, solver_names.end(), solver_name);
     int pos_to_return = 0;
@@ -30,8 +39,11 @@ void Scheduler::connect(shared_ptr<POSL_Solver> solver, ConnectorInfo connector,
 {
     string solver_name = solver->solverName();
     vector<string>::iterator ptr_solver_name = find(solver_names.begin() + process_base, solver_names.end(), solver_name);
-    int solver_pos = ptr_solver_name - solver_names.begin();
-    connections[solver_pos].push_back({ connector, pID});
+    if(ptr_solver_name != solver_names.end())
+    {
+        int solver_pos = ptr_solver_name - solver_names.begin();
+        connections[solver_pos].push_back({ connector, pID});
+    }
 }
 
 shared_ptr<POSL_Solver> Scheduler::getSolverAt(int i)
