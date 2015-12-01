@@ -13,6 +13,7 @@ shared_ptr<CompoundModule> ComputationStrategyUncoder::uncode(string code,
                                                               shared_ptr<Benchmark> bench)
 {
     pair<vector<string>, vector<string>> p = CodingTools::extractModulesNamesFromDeclaration(code);
+
     string cm_code = CodingTools::extractCompoundModuleCodeFromCS(code);
     vector<string> om_names = p.first;
     vector<string> och_names = p.second;

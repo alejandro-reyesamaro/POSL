@@ -5,6 +5,11 @@
 #include <fstream>
 #include <sstream>
 
+///
+/// \brief CodingTools::textFromFile Load the code from file
+/// \param path
+/// \return Code
+///
 std::string CodingTools::textFromFile(std::string path)
 {
     std::string text = "";
@@ -18,6 +23,12 @@ std::string CodingTools::textFromFile(std::string path)
     return text;
 }
 
+
+///
+/// \brief CodingTools::splitDeclarationConnectionsFromFile Split the declaration code and the communication code
+/// \param path
+/// \return pair.first: declaration code (strategies and solvers), pair.second: communication code (connections)
+///
 std::pair<std::string, std::string> CodingTools::splitDeclarationConnectionsFromFile(std::string path)
 {
     std::string decl_text = "";
@@ -45,82 +56,131 @@ std::pair<std::string, std::string> CodingTools::splitDeclarationConnectionsFrom
     return { decl_text, conn_text };
 }
 
-// ///////////////////////////////////////////////////////
-//! Private functions ////////////////////////////////////
-///// ////////////////////////////////////////////////////
-std::pair<std::string, std::string> decouplingExpressionCode(std::string code)
+///
+/// \brief extractInnerCode Extract the code between delimiters
+/// \param code
+/// \param open Open delimiter. <P> for example
+/// \param close Close delimiter. <\P> for example
+/// \param composite If we have to assume that there are more delimiters inside
+/// \param strict If we want just the code inside or also de delimiters
+/// \return pair.first: inner code, pair.second: the rest
+///
+std::pair<std::string, std::string> CodingTools::extractInnerCode(std::string code, std::string open, std::string close, bool composite, bool strict)
 {
-    size_t pos = code.find_first_of('(');
-    size_t first = pos + 1;
-    int count = 1;
-    pos = code.find_first_of("()",pos + 1);
-    size_t last = pos;
-    while (pos != std::string::npos && count != 0)
+    size_t pos_begin;
+    size_t pos_end;
+    if(!composite)
     {
-        if(code[pos] == '(') count ++;
-        else if (code[pos] == ')') count --;
-        last = pos;
-        pos = code.find_first_of("()", pos + 1);
+        pos_begin = (strict) ? code.find(open) + open.size() : code.find(open);
+        pos_end = (strict) ? code.find(close) - 1 : code.find(close) + close.size() - 1;
     }
-    std::string expr = code.substr(first, last-first);
-    std::string rest = code.substr(last + 1);
-    return { expr, rest };
+    else
+    {
+        int count = 0;
+        pos_begin = code.find(open);
+        size_t pos = pos_begin + 1;
+        count ++;
+        size_t pos_o, pos_c;
+        while (count != 0 &&  pos != std::string::npos)
+        {
+            pos_o = code.find(open, pos);
+            pos_c = code.find(close, pos);
+            pos_end = (pos_o < pos_c && pos_o != std::string::npos) ? pos_o : pos_c;
+            count += (pos_o < pos_c && pos_o != std::string::npos) ? 1 : -1;
+            pos = pos_end + 1;
+        }
+        if (count == 0)
+        {
+            if (strict)
+            {
+                pos_begin += open.size();
+                pos_end --;
+            } else pos_end = pos_end + close.size() - 1;
+        } else  return { code, "" };
+    }
+    std::string inner_code = code.substr(pos_begin, pos_end - pos_begin + 1);
+    std::string rest = (strict) ? code.substr(pos_end + close.size() + 1) : code.substr(pos_end + 1);
+    return {inner_code, rest};
 }
 
-int find_closed_char(std::string code, std::string open, std::string close)
+///
+/// \brief findDeclarationName Extract the name and the keyword in a declaration header
+/// \param code
+/// \return pair.first.first: name, pair.firs.second: keyword, pair.second.first: header, pair.second.second: rest
+///
+std::pair<std::pair<std::string, std::string>, std::string> CodingTools::findDeclarationName(std::string code)
 {
-    int count = 0;
-    std::string::iterator it = code.begin();
-    // *it == 'open' -> assumption
-    count ++;
-    it ++;
-    int pos = 0;
-    std::string aux = "";
-    while (count != 0 &&  it != code.end())
-    {
-        aux = {*it, *(it+1), *(it+2)};
-        if(aux == open)
-        {
-            it += GROPER_OPEN_TOK_SIZE;
-            pos += GROPER_OPEN_TOK_SIZE;
-            count ++;
-        }
-        else if((aux + *(it+3)) == close)
-        {
-            it += GROPER_CLOSE_TOK_SIZE;
-            pos += GROPER_CLOSE_TOK_SIZE;
-            count --;
-        }
-        else
-        {
-            it ++;
-            pos ++;
-        }
-    }
-    return (count == 0) ? pos : -1;
+    std::string asign = ":=";
+    size_t pos_2peq = code.find(asign);
+    std::string name = code.substr(0, pos_2peq);
+    CodingTools::trim(name);
+    std::string rest = code.substr(pos_2peq + asign.size());
+    CodingTools::trim(rest);
+    size_t pos_esp = rest.find(' ');
+    std::string kw = rest.substr(0, pos_esp);
+    CodingTools::trim(kw);
+    rest = rest.substr(pos_esp + 1);
+    return {{name, kw}, rest };
 }
 
-std::pair<std::string, std::string> frontModule(std::string code, int hm) // code is TRIMED
+
+///
+/// \brief extractDeclarationListFromKeyword Extracting the modules or the channel list in the declaration
+/// \param code
+/// \param km Keyword
+/// \return The list of words
+///
+std::vector<std::string> CodingTools::extractDeclarationListFromKeyword(std::string code, std::string kw)
 {
+    std::vector<std::string> l;
+    size_t pos_kw = code.find(kw);
+    if(pos_kw != std::string::npos)
+    {
+        std::pair<std::string, std::string> p = CodingTools::extractInnerCode(code.substr(pos_kw), ":", ";", false , true);
+        l = CodingTools::split_string(p.first, ',');
+    }
+    return l;
+}
+
+///
+/// \brief CodingTools::separateModules Separates modules of an operator
+/// \param code
+/// \param hm Arity of the operator
+/// \return pair.first: module 1, pair.second: module 2 (if hm = 2) or "" (if hm = 1)
+///
+std::pair<std::string, std::string> CodingTools::separateModules(std::string code, int hm)
+{
+    CodingTools::trim(code);
     std::string front = code.substr(0, GROPER_OPEN_TOK_SIZE);
     std::string cm1_code = "";
-    int pos = 0;
+    std::string cm2_code = "";
 
     if(front == PAR_TOK_OPEN) // Parallel CM
-        pos = find_closed_char(code, PAR_TOK_OPEN,PAR_TOK_OPEN);
-    else if(front == SEQ_TOK_OPEN) // Sequential CM
-        pos = find_closed_char(code, SEQ_TOK_OPEN,SEQ_TOK_CLOSE);
-    else pos = code.find_first_of(" ");
-    cm1_code = (pos != -1) ? code.substr(0, pos + 1) : code;
-    if (hm == 1)
-        return { cm1_code, "" };
-    else if (hm == 2)
-        return { cm1_code, code.substr(pos + 1 ) };
+    {
+        std::pair<std::string, std::string> p = CodingTools::extractInnerCode(code, PAR_TOK_OPEN, PAR_TOK_CLOSE, true, false);
+        cm1_code = p.first;
+        cm2_code = (hm == 1) ? "" : p.second;
+    }
+    else if(front == SEQ_TOK_OPEN) // Parallel CM
+    {
+        std::pair<std::string, std::string> p = CodingTools::extractInnerCode(code, SEQ_TOK_OPEN, SEQ_TOK_CLOSE, true, false);
+        cm1_code = p.first;
+        cm2_code = (hm == 1) ? "" : p.second;
+    }
     else
-        throw "(POSL Exception) Not right call to function (CodingTools::frontModule)";
+    {
+        size_t pos = code.find_first_of(" ");
+        cm1_code = (pos != std::string::npos) ? code.substr(0, pos + 1) : code;
+        cm2_code = (hm == 1) ? "" : code.substr(pos + 1 );
+    }
+    return { cm1_code, cm2_code };
 }
-// ///////////////////////////////////////////////////////
 
+///
+/// \brief CodingTools::extratModuleFromCM Remove the groupers (e.g. <P> and </P>) if there are
+/// \param code
+/// \return pair.first: what kind of module it is (grouped, OM or OCh), pair.second: the code inside (returns 'code' if is a OM or an OCh)
+///
 std::pair<CM_type, std::string> CodingTools::extratModuleFromCM(std::string code)
 {
     CodingTools::trim(code);
@@ -140,6 +200,11 @@ std::pair<CM_type, std::string> CodingTools::extratModuleFromCM(std::string code
         return {OM, code};
 }
 
+///
+/// \brief CodingTools::extractExpressionsCommaSeparated Extract the boolean expressions separated by commas
+/// \param code
+/// \return 2 boolean expressions
+///
 std::pair<std::string, std::string> CodingTools::extractExpressionsCommaSeparated(std::string code)
 {
     size_t pos = code.find_first_of('(');
@@ -169,23 +234,22 @@ std::pair<std::string, std::string> CodingTools::extractExpressionsCommaSeparate
     return {ex_1, ex_2};
 }
 
-std::pair<std::string, std::string> CodingTools::decouplingNameCodeFromBE(std::string code)
-{
-    CodingTools::trim(code);
-    size_t pos_name = code.find('.') + 1;
-    size_t pos_space = code.find_first_of(" ");
-    std::string op_name = code.substr(pos_name, code.find(' ') - pos_name);
-    std::string rest = code.substr(pos_space);
-    CodingTools::trim(rest);
-    return { op_name, rest };
-}
-
+///
+/// \brief CodingTools::extractTypeFromToken Extract just the type of a token
+/// \param code
+/// \return Token's type
+///
 std::string CodingTools::extractTypeFromToken(std::string code)
 {
     CodingTools::trim(code);
     return code.substr(0, code.find('.'));
 }
 
+///
+/// \brief CodingTools::extractNameFromToken Extract just the name of a token
+/// \param code
+/// \return Token's name
+///
 std::string CodingTools::extractNameFromToken(std::string code)
 {
     CodingTools::trim(code);
@@ -194,47 +258,22 @@ std::string CodingTools::extractNameFromToken(std::string code)
     return code.substr(pos_name, pos_space - pos_name);
 }
 
-std::pair<std::string, std::string> CodingTools::extractExpressionAndCode1(std::string code)
-{
-    std::pair<std::string, std::string> p1 = decouplingExpressionCode(code);
-    std::string rest = p1.second;
-    CodingTools::trim(rest);
-    std::pair<std::string, std::string> p2 = frontModule(rest, 1);
-    return {p1.first, p2.first};
-}
 
-std::pair<std::string, std::pair<std::string, std::string>> CodingTools::extractExpressionAndCode2(std::string code)
-{
-    std::pair<std::string, std::string> p1 = decouplingExpressionCode(code);
-    std::string rest = p1.second;
-    CodingTools::trim(rest);
-    std::pair<std::string, std::string> p2 = frontModule(rest, 2);
-    return { p1.first, p2 };
-}
-
-
-std::pair<std::string, std::pair<std::string, std::string>> CodingTools::extractNameAndCode2(std::string code)
+///
+/// \brief CodingTools::separateTokenAndCode Separates the token (e.g. OP.Min) and the module(s)
+/// \param code
+/// \return pair.first.first: token type (OP, BE, etc..), pair.first.second: token name (e.g. |->), pair.second: modules code
+///
+std::pair<std::pair<std::string, std::string>, std::string> CodingTools::separateTokenAndCode(std::string code)
 {
     CodingTools::trim(code);
-    int pos_name = code.find('.') + 1;
-    int pos_space = code.find(' ');
-    std::string op_name = code.substr(pos_name, pos_space - pos_name);
-    std::string rest =  code.substr(pos_space + 1);
-    CodingTools::trim(rest);
-    std::pair<std::string, std::string> p = frontModule(rest, 2);
-    return { op_name, p };
-}
-
-std::pair<std::string, std::string> CodingTools::extractOChTokenAndName(std::string code)
-{
-    CodingTools::trim(code);
-    int pos_space = code.find(' ');
-    std::string och_token = code.substr(0, pos_space);
-    std::string rest =  code.substr(pos_space + 1);
-    CodingTools::trim(rest);
-    std::string name = rest.substr(1, rest.size() - 2);
-    CodingTools::trim(name);
-    return { och_token, name };
+    size_t pos_space = code.find(" ");
+    std::string cms_code = code.substr(pos_space + 1);
+    std::string token = code.substr(0, pos_space);
+    size_t pos_p = token.find('.') + 1;
+    std::string tk_type = token.substr(0, pos_p);
+    std::string tk_name = token.substr(pos_p + 1);
+    return {{ tk_type, tk_name}, cms_code};
 }
 
 void CodingTools::trim(std::string & code)
@@ -242,16 +281,31 @@ void CodingTools::trim(std::string & code)
     boost::trim(code);
 }
 
-std::vector<std::string> CodingTools::split_string(const std::string & s, char delim)
+///
+/// \brief CodingTools::split_string Split the string taking into account the separator
+/// \param s String
+/// \param delim Char separator
+/// \return The string list
+///
+std::vector<std::string> CodingTools::split_string(const std::string & s, char separator)
 {
     std::vector<std::string> elems;
     std::stringstream ss(s);
     std::string item;
-    while (std::getline(ss, item, delim)) {
+    while (std::getline(ss, item, separator)) {
         elems.push_back(item);
     }
     return elems;
 }
+
+
+
+
+
+
+
+
+
 
 // computation strategy and solver
 
@@ -329,4 +383,15 @@ std::string CodingTools::extractCSName(std::string code)
     pos_2p ++;
     std::string cs_name = code.substr(pos_2p, pos_pc - pos_2p);
     return cs_name;
+}
+
+// connections
+
+std::string CodingTools::removeFirstConnection(std::string & code)
+{
+    size_t pos_pc = code.find(';');
+    std::string line = code.substr(0, pos_pc + 1);
+    code = code.substr(pos_pc + 1);
+    CodingTools::trim(code);
+    return line;
 }

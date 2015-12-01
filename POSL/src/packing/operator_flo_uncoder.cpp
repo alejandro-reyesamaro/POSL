@@ -19,9 +19,12 @@ shared_ptr<Operator> OperatorFloUncoder::uncode(string code, shared_ptr<Benchmar
     string cm_code = code.substr(pos_close + 1);
     */
 
-    pair<string, string> p = CodingTools::extractExpressionAndCode1(code);
+    //pair<string, string> p = CodingTools::extractExpressionAndCode1(code);
+    pair<string, string> p = CodingTools::extractInnerCode(code, "(", ")", true, true);
     int param = Tools::str2int(p.first);
     string cm_code = p.second;
+    //CodingTools::trim(cm_code);
+
     CompoundModuleUncoder cm_unc;
     return make_shared<FlorianOperator>(param, cm_unc.uncode(cm_code, bench));
 }

@@ -25,7 +25,7 @@ shared_ptr<CompoundModule> init_module(string code, vector<string> om_instances,
         CodingTools::replace(cm_code, och_names, och_instances);
     return make_shared<CompoundModuleGeneratorFromCode>(cm_code, bench);
 }
-*/
+
 
 ComputationStrategy::ComputationStrategy(string code, vector<string> om_instances, vector<string> och_instances, shared_ptr<Benchmark> bench)
     : TAG(CodingTools::extractDeclarationName(code)),
@@ -33,8 +33,10 @@ ComputationStrategy::ComputationStrategy(string code, vector<string> om_instance
       module(cs_uncoder.uncode(code, om_instances, och_instances, bench))
 {}
 
-ComputationStrategy::ComputationStrategy(string code)
-    : TAG(CodingTools::extractDeclarationName(code)),
+*/
+
+ComputationStrategy::ComputationStrategy(string name, string code)
+    : TAG(name),
       cs_code(code)
 {}
 

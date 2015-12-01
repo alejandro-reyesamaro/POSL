@@ -19,8 +19,10 @@ BooleanExpressionUncoder::BooleanExpressionUncoder()
 
 shared_ptr<BooleanExpression> BooleanExpressionUncoder::uncode(string code)
 {
-    pair<string, string> p = CodingTools::decouplingNameCodeFromBE(code);
-    string op_name = p.first;
+    //pair<string, string> p = CodingTools::decouplingNameCodeFromBE(code);
+    pair<pair<string, string>, string> p_tnm = CodingTools::separateTokenAndCode(code);
+
+    string op_name = p_tnm.first.second;
 
     if(op_name == BE_AND_TOK_NAME)
     {
@@ -34,7 +36,9 @@ shared_ptr<BooleanExpression> BooleanExpressionUncoder::uncode(string code)
     }
     else
     {
-        int param = Tools::str2int(p.second);
+        string str_param = p_tnm.second;
+        CodingTools::trim(str_param);
+        int param = Tools::str2int(str_param);
         if(op_name == BE_ITERATION_BOUND_TOK_NAME)
             return make_shared<IteretionBoundExpression>(param);
         else if(op_name == BE_LOOP_BOUND_TOK_NAME)

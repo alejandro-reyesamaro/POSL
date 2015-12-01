@@ -18,7 +18,8 @@ shared_ptr<Operator> OperatorSendUncoder::uncode(string code, shared_ptr<Benchma
     string cm_code = code.substr(pos_close + 1);
     */
 
-    pair<string, string> p = CodingTools::extractExpressionAndCode1(code);
+    //pair<string, string> p = CodingTools::extractExpressionAndCode1(code);
+    pair<string, string> p = CodingTools::extractInnerCode(code, "(", ")", true, true);
 
     string name = p.first;
     string cm_code = p.second;

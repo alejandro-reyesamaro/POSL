@@ -256,7 +256,9 @@ SOURCES += src/main.cpp \
     src/packing/computation_strategy_uncoder.cpp \
     src/packing/posl_solver_declaration.cpp \
     src/packing/solver_declaration_uncoder.cpp \
-    src/packing/posl_uncoder.cpp
+    src/packing/posl_uncoder.cpp \
+    src/packing/connections_declaration.cpp \
+    src/packing/posl_declaration_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -517,7 +519,9 @@ HEADERS += \
     src/packing/computation_strategy_uncoder.h \
     src/packing/posl_solver_declaration.h \
     src/packing/solver_declaration_uncoder.h \
-    src/packing/posl_uncoder.h
+    src/packing/posl_uncoder.h \
+    src/packing/connections_declaration.h \
+    src/packing/posl_declaration_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

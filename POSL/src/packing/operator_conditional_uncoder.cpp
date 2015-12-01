@@ -11,11 +11,15 @@ OperatorConditionalUncoder::OperatorConditionalUncoder()
 
 shared_ptr<Operator> OperatorConditionalUncoder::uncode(string code, shared_ptr<Benchmark> bench)
 {
-    pair<string, pair<string, string>> p = CodingTools::extractExpressionAndCode2(code);
+    //pair<string, pair<string, string>> p = CodingTools::extractExpressionAndCode2(code);
 
+    pair<string, string> p = CodingTools::extractInnerCode(code, "(", ")", true, true);
     string be_code = p.first;
-    string cm1_code = p.second.first;
-    string cm2_code = p.second.second;
+
+    pair<string, string> pm = CodingTools::separateModules(p.second, 2);
+
+    string cm1_code = pm.first;
+    string cm2_code = pm.second;
 
     CompoundModuleUncoder cm_unc;
     BooleanExpressionUncoder be_unc;

@@ -28,7 +28,7 @@ string Tester_CodingPOSL::test()
         vector<string> ochannels_instances = {};
 
         string cs_code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/CS_a000.posl");
-        shared_ptr<ComputationStrategy> cs (make_shared<ComputationStrategy>(cs_code, modules_instances, ochannels_instances, bench));
+        //shared_ptr<ComputationStrategy> cs (make_shared<ComputationStrategy>(cs_code, modules_instances, ochannels_instances, bench));
     }
     catch (const char* msg)
     {

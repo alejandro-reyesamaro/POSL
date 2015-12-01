@@ -14,16 +14,17 @@ OpenChannelUncoder::OpenChannelUncoder()
 
 std::shared_ptr<OpenChannel> OpenChannelUncoder::uncode(string code, shared_ptr<Benchmark> bench)
 {
-    pair<string, string> p = CodingTools::extractOChTokenAndName(code);
+    //pair<string, string> p = CodingTools::extractOChTokenAndName(code);
+    pair<pair<string, string>, string> p_tnm = CodingTools::separateTokenAndCode(code);
+    string och_token_name = p_tnm.first.second;
+    pair<string, string> p = CodingTools::extractInnerCode(p_tnm.second, "(", ")", false, true);
+    string och_name = p.first;
 
-    string och_token = p.first;
-    string och_name = p.second;
-
-    if(och_token == OCH_SOLUTION_TOK) // SOLUTION
+    if(och_token_name == OCH_SOLUTION_TOK_NAME) // SOLUTION
         return make_shared<SolutionDataOpenChannel>(och_name, bench);
-    else if(och_token == OCH_NEIGHBORHOOD_TOK) // NEIGHBORHOOD
+    else if(och_token_name == OCH_NEIGHBORHOOD_TOK_NAME) // NEIGHBORHOOD
         return make_shared<NeighborhoodDataOpenChannel>(och_name, bench);
-    else if(och_token == OCH_DECISIONPAIR_TOK) // DECISION PAIR
+    else if(och_token_name == OCH_DECISIONPAIR_TOK_NAME) // DECISION PAIR
         return make_shared<DecisionPairDataOpenChannel>(och_name, bench);
     else
         throw "(POSL Exception) Not well coded Open CHannel (OpenChannelUncoder::uncode)";

@@ -1,6 +1,10 @@
 #include "posl_meta_solver.h"
 #include "../solver/for_golfers_css.h"
 #include <math.h>
+#include "../tools/hash_map.h"
+#include "../tools/coding_tools.h"
+#include "../packing/posl_uncoder.h"
+#include "../packing/connections_declaration.h"
 
 #include <iostream>
 
@@ -13,6 +17,23 @@ using namespace std;
 POSL_MetaSolver::POSL_MetaSolver(vector<shared_ptr<POSL_Solver> > _solvers)
     : solvers(_solvers)
 {}
+
+
+POSL_MetaSolver::POSL_MetaSolver(string code, int _comm_size, shared_ptr<Benchmark> bench)
+    : comm_size(_comm_size)
+{
+    shared_ptr<PoslUncoder> posl_unc;
+    pair<string, string> codes = CodingTools::splitDeclarationConnectionsFromFile("PATH");
+    HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench);
+    //vector<ConnectionsDeclaration> connections = posl_unc->
+}
+
+
+void POSL_MetaSolver::solve(int argc, char **argv, std::shared_ptr<Benchmark> bench)
+{
+
+}
+
 
 /*
 int mainProcess(int myid)

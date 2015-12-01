@@ -27,11 +27,13 @@ shared_ptr<Operator> OperatorRhoUncoder::uncode(string code, shared_ptr<Benchmar
     string cm2_code = Tools::frontModule(rest);
     */
 
-    pair<string, pair<string, string>> p = CodingTools::extractExpressionAndCode2(code);
-
+    //pair<string, pair<string, string>> p = CodingTools::extractExpressionAndCode2(code);
+    pair<string, string> p = CodingTools::extractInnerCode(code, "(", ")", true, true);
     float param = Tools::str2float(p.first);
-    string cm1_code = p.second.first;
-    string cm2_code = p.second.second;
+
+    pair<string, string> pm = CodingTools::separateModules(p.second, 2);
+    string cm1_code = pm.first;
+    string cm2_code = pm.second;
 
     CompoundModuleUncoder cm_unc;
     return make_shared<RhoOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench), param);
