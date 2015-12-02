@@ -258,7 +258,12 @@ SOURCES += src/main.cpp \
     src/packing/solver_declaration_uncoder.cpp \
     src/packing/posl_uncoder.cpp \
     src/packing/connections_declaration.cpp \
-    src/packing/posl_declaration_uncoder.cpp
+    src/packing/posl_declaration_uncoder.cpp \
+    src/packing/posl_connections_uncoder.cpp \
+    src/connections/connection_operator.cpp \
+    src/connections/connection_operator_no_connection.cpp \
+    src/connections/connection_operator_bipartition.cpp \
+    src/connections/connection_operator_rin.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -521,7 +526,12 @@ HEADERS += \
     src/packing/solver_declaration_uncoder.h \
     src/packing/posl_uncoder.h \
     src/packing/connections_declaration.h \
-    src/packing/posl_declaration_uncoder.h
+    src/packing/posl_declaration_uncoder.h \
+    src/packing/posl_connections_uncoder.h \
+    src/connections/connection_operator.h \
+    src/connections/connection_operator_no_connection.h \
+    src/connections/connection_operator_bipartition.h \
+    src/connections/connection_operator_rin.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

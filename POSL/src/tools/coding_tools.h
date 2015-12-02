@@ -33,7 +33,7 @@ class CodingTools
 
 
         static std::string textFromFile(std::string path);
-        static std::pair<std::string, std::string> splitDeclarationConnectionsFromFile(std::string path);
+        static std::pair<std::vector<std::string>, std::string> splitDeclarationConnectionsFromFile(std::string path);
 
         static std::pair<CM_type, std::string> extratModuleFromCM(std::string code);
         static std::string extractTypeFromToken(std::string code);

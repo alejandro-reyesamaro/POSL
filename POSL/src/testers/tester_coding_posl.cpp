@@ -3,6 +3,7 @@
 #include "../tools/coding_tools.h"
 #include "../tools/tokens_definition.h"
 #include "../computation/computation_strategy.h"
+#include "../solver/posl_meta_solver.h"
 
 Tester_CodingPOSL::Tester_CodingPOSL(int argc, char *argv[])
     : Tester(argc, argv)
@@ -17,18 +18,19 @@ string Tester_CodingPOSL::test()
         //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a001.posl");
         //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a002.posl");
         //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/ra000.posl");
-        string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/sa000.posl");
-        shared_ptr<CompoundModule> cm (make_shared<CompoundModuleGeneratorFromCode>(code, bench));
+        //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/sa000.posl");
+        //shared_ptr<CompoundModule> cm (make_shared<CompoundModuleGeneratorFromCode>(code, bench));
 
         //"OM_S", "OM_V", "OM_SS", "OM_D"
-        vector<string> modules_instances = { OM_RANDOM_CONFIG_PERMUTATION_BY_BLOCKS_TOK,
-                                             OM_GOLFERS_SINGLE_SWAP_NEIGHBORHOOD_TOK,
-                                             OM_FIRST_IMPROVEMENT_SELECTION_TOK,
-                                             OM_ALWAYS_IMPROVEMENT_DECISION_TOK};
-        vector<string> ochannels_instances = {};
+        //vector<string> modules_instances = { OM_RANDOM_CONFIG_PERMUTATION_BY_BLOCKS_TOK,
+        //                                     OM_GOLFERS_SINGLE_SWAP_NEIGHBORHOOD_TOK,
+        //                                     OM_FIRST_IMPROVEMENT_SELECTION_TOK,
+        //                                     OM_ALWAYS_IMPROVEMENT_DECISION_TOK};
+        //vector<string> ochannels_instances = {};
 
-        string cs_code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/CS_a000.posl");
+        //string cs_code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/CS_a000.posl");
         //shared_ptr<ComputationStrategy> cs (make_shared<ComputationStrategy>(cs_code, modules_instances, ochannels_instances, bench));
+        shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_a000.posl", 10, bench));
     }
     catch (const char* msg)
     {

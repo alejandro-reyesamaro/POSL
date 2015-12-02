@@ -2,6 +2,8 @@
 
 #include "posl_solver.h"
 #include "../connections/scheduler.h"
+#include "../connections/connection_operator.h"
+
 
 class POSL_MetaSolver
 {
@@ -12,14 +14,15 @@ class POSL_MetaSolver
         //------
 
 
-        POSL_MetaSolver(std::string code, int _comm_size, std::shared_ptr<Benchmark> bench);
+        POSL_MetaSolver(std::string path, int _comm_size, std::shared_ptr<Benchmark> bench);
         void solve(int argc, char **argv, std::shared_ptr<Benchmark> bench);
 
 
 
     private:
-        std::shared_ptr<Scheduler> scheduler;
         int comm_size;
+        std::shared_ptr<Scheduler> scheduler;
+        std::vector<std::shared_ptr<ConnectionOperator>> connection_operators;
 
 
 

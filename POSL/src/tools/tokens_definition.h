@@ -83,3 +83,8 @@
 #define CS_OCH_KEYWORD "oChannel"
 
 #define CONNECTION_KW "connections"
+
+#define OP_CONNECTION_BC_NAME "#->"
+#define OP_CONNECTION_BP_NAME "-->"
+#define OP_CONNECTION_RING_NAME "<>"
+#define OP_CONNECTION_NC_NAME "n.c"

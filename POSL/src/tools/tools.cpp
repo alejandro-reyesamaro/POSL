@@ -8,37 +8,47 @@ using namespace std;
 
 std::string Tools::int2str(int c)
 {
-    std::string s = to_string(c);
+    string s = to_string(c);
     //ostringstream ss;
     //ss << c;
     //std::string s(ss.str());
     return s;
 }
 
-std::string Tools::float2str(float f)
+string Tools::float2str(float f)
 {
-    std::string s = to_string(f);
+    string s = to_string(f);
     return s;
 }
 
 int Tools::str2int(string str)
 {
-    std::string::size_type sz;   // alias of size_t
+    string::size_type sz;   // alias of size_t
     int i_dec = std::stoi (str,&sz);
     return i_dec;
 }
 
 float Tools::str2float(string str)
 {
-    std::string::size_type sz;
+    string::size_type sz;
     float f = stof(str,&sz);
     return f;
 }
 
-std::string Tools::configurationToString(vector<int> config)
+bool Tools::isANumber(string str)
 {
-    std::string txt = "[ ";
-    std::vector<int>::iterator it = config.begin();
+    //std::string::const_iterator it = s.begin();
+    //while (it != s.end() && std::isdigit(*it)) ++it;
+    //return !s.empty() && it == s.end();
+    char* p;
+    strtol(str.c_str(), &p, 10);
+    return !(*p);
+}
+
+string Tools::configurationToString(vector<int> config)
+{
+    string txt = "[ ";
+    vector<int>::iterator it = config.begin();
     txt += Tools::int2str(*it);
     it++;
     while ( it != config.end())
@@ -49,8 +59,6 @@ std::string Tools::configurationToString(vector<int> config)
     return txt + " ]";
 }
 
-
-
 int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
 {
     int A = max(a1, a2);
@@ -58,9 +66,9 @@ int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
     return max(0, b - A);
 }
 
-std::vector<int> Tools::vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> current_configuration)
+vector<int> Tools::vector_possible_values_to_hold_sorted(unsigned int index, vector<int> current_configuration)
 {
-    std::vector<int> posible_values;
+    vector<int> posible_values;
     if(index == 0)
     {
         posible_values.push_back(0);
@@ -79,7 +87,7 @@ std::vector<int> Tools::vector_possible_values_to_hold_sorted(unsigned int index
     return posible_values;
 }
 
-int Tools::mismatches(std::vector<int> vector_1, std::vector<int> vector_2)
+int Tools::mismatches(vector<int> vector_1, vector<int> vector_2)
 {
     int c = 0;
     for(unsigned int i = 0; i < vector_1.size(); i++)
@@ -91,39 +99,51 @@ int Tools::mismatches(std::vector<int> vector_1, std::vector<int> vector_2)
 int * Tools::vector2array(vector<int> vec)
 {
     int * buff = new int[vec.size()];
-    std::copy(vec.begin(), vec.end(), buff);
+    copy(vec.begin(), vec.end(), buff);
     return buff;
 }
 
-void Tools::shuffle(std::vector<int> & vec)
+void Tools::shuffle(vector<int> & vec)
 {
     std::srand(time(0));
     std::random_shuffle (vec.begin(), vec.end());
 }
 
-std::vector<int> Tools::generateMonotony(int N)
+vector<int> Tools::generateMonotony(int N)
 {
-    std::vector<int> v;
-    for(int i = 0; i < N; i++)
-        v.push_back(i);
+    //vector<int> v;
+    //for(int i = 0; i < N; i++)
+    //    v.push_back(i);
+    //return v;
+
+    vector<int> v(N);
+    vector<int>::iterator it = v.begin();
+    iota(it, it + N, 0);
     return v;
 }
 
-std::vector<int> Tools::generateMonotony(int a, int b)
+vector<int> Tools::generateMonotony(int a, int b)
 {
-    std::vector<int> v;
-    if(a > b) return v;
-    for (int i = a; i <= b; i++)
-        v.push_back(i);
+    //vector<int> v;
+    //if(a > b) return v;
+    //for (int i = a; i <= b; i++)
+    //    v.push_back(i);
+    //return v;
+
+    if(a > b) return vector<int>();
+    int N = b - a + 1;
+    vector<int> v(N);
+    vector<int>::iterator it = v.begin();
+    iota(it, it + N, a);
     return v;
 }
 
 void Tools::sortAscendent(vector<int> & v)
 {
-    std::sort(v.begin(), v.end());
+    sort(v.begin(), v.end());
 }
 
-T_Changes Tools::GetChanges(std::vector<int> config_before, std::vector<int> config_after)
+T_Changes Tools::GetChanges(vector<int> config_before, vector<int> config_after)
 {
     vector<int> ch_possitions;
     vector<int> ch_values;

@@ -29,7 +29,7 @@ std::string CodingTools::textFromFile(std::string path)
 /// \param path
 /// \return pair.first: declaration code (strategies and solvers), pair.second: communication code (connections)
 ///
-std::pair<std::string, std::string> CodingTools::splitDeclarationConnectionsFromFile(std::string path)
+std::pair<std::vector<std::string>, std::string> CodingTools::splitDeclarationConnectionsFromFile(std::string path)
 {
     std::string decl_text = "";
     std::string conn_text = "";
@@ -38,13 +38,21 @@ std::pair<std::string, std::string> CodingTools::splitDeclarationConnectionsFrom
     std::ifstream infile(path);
     size_t pos_conn_kw;
     size_t pos_2p;
+    std::vector<std::string> declarations;
     while (getline(infile, line))
     {
         CodingTools::trim(line);
+        if(line == "};")
+        {
+            decl_text = decl_text + " } ";
+            declarations.push_back(decl_text);
+            decl_text = "";
+            continue;
+        }
         pos_conn_kw = line.find(CONNECTION_KW);
         if(pos_conn_kw != std::string::npos)
         {
-            pos_2p = line.find(CONNECTION_KW, pos_conn_kw);
+            pos_2p = line.find(':', pos_conn_kw);
             line = line.substr(pos_2p + 1);
             declaration_part = false;
         }
@@ -53,7 +61,7 @@ std::pair<std::string, std::string> CodingTools::splitDeclarationConnectionsFrom
         else
             conn_text = conn_text + line + " ";
     }
-    return { decl_text, conn_text };
+    return { declarations, conn_text };
 }
 
 ///
@@ -262,7 +270,7 @@ std::string CodingTools::extractNameFromToken(std::string code)
 ///
 /// \brief CodingTools::separateTokenAndCode Separates the token (e.g. OP.Min) and the module(s)
 /// \param code
-/// \return pair.first.first: token type (OP, BE, etc..), pair.first.second: token name (e.g. |->), pair.second: modules code
+/// \return pair.first.first: token type (OP, BE, etc..), pair.first.second: token name (e.g. |->), pair.second: modules code (rest)
 ///
 std::pair<std::pair<std::string, std::string>, std::string> CodingTools::separateTokenAndCode(std::string code)
 {
@@ -270,7 +278,7 @@ std::pair<std::pair<std::string, std::string>, std::string> CodingTools::separat
     size_t pos_space = code.find(" ");
     std::string cms_code = code.substr(pos_space + 1);
     std::string token = code.substr(0, pos_space);
-    size_t pos_p = token.find('.') + 1;
+    size_t pos_p = token.find('.');
     std::string tk_type = token.substr(0, pos_p);
     std::string tk_name = token.substr(pos_p + 1);
     return {{ tk_type, tk_name}, cms_code};
@@ -293,6 +301,7 @@ std::vector<std::string> CodingTools::split_string(const std::string & s, char s
     std::stringstream ss(s);
     std::string item;
     while (std::getline(ss, item, separator)) {
+        CodingTools::trim(item);
         elems.push_back(item);
     }
     return elems;

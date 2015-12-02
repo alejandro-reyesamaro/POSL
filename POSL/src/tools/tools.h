@@ -30,6 +30,7 @@ class Tools
         static std::string float2str(float f);
         static int str2int(std::string str);
         static float str2float(std::string str);
+        static bool isANumber(std::string str);
         static std::string configurationToString(std::vector<int> config);        
         static int segmentIntersection(int a1, int b1, int a2, int b2);
         static std::vector<int> vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> current_configuration);

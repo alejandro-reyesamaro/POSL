@@ -1,25 +1,22 @@
 #include "posl_uncoder.h"
 #include "posl_declaration_uncoder.h"
-#include "../tools/coding_tools.h"
+#include "posl_connections_uncoder.h"
+
 
 using namespace std;
 
 PoslUncoder::PoslUncoder()
 {}
 
-HashMap<string, shared_ptr<POSL_Solver>> PoslUncoder::uncode_declarations(string code, std::shared_ptr<Benchmark> bench)
+HashMap<string, shared_ptr<POSL_Solver>> PoslUncoder::uncode_declarations(vector<string> code, std::shared_ptr<Benchmark> bench)
 {    
     POSL_DeclarationUncoder dec_unc;
     return dec_unc.uncode(code, bench);
 }
 
-vector<ConnectionsDeclaration> PoslUncoder::uncode_connections(string code, shared_ptr<Benchmark> bench)
+vector<ConnectionsDeclaration> PoslUncoder::uncode_connections(string code)
 {
-    CodingTools::trim(code);
-    while(!code.empty())
-    {
-        string line = CodingTools::removeFirstConnection(code);
-        //string
-    }
+    POSL_ConnectionsUncoder conn_unc;
+    return conn_unc.uncode(code);
 }
 

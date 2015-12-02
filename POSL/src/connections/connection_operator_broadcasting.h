@@ -2,9 +2,10 @@
 
 #include "../solver/posl_solver.h"
 #include "connector_info.h"
-#include "scheduler.h"
+#include "connection_operator.h"
 
-class ConnectionOperatorBroadcasting
+
+class ConnectionOperatorBroadcasting : public ConnectionOperator
 {
     public:
         ConnectionOperatorBroadcasting(std::vector<std::pair<std::shared_ptr<POSL_Solver>, ConnectorInfo> > _solver_jacks,

@@ -2,7 +2,7 @@
 
 #include <string>
 
-enum ConnectionType { OUTLET, JACK };
+enum ConnectionType { OUTLET, JACK, NON};
 
 struct ConnectorInfo
 {
