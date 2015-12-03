@@ -1,0 +1,39 @@
+runs=35
+
+for (( inst = 6; inst <= 8; inst++ ))
+do
+
+	for (( cores = 10; cores <= 40; cores+=10 ))
+	do
+
+		echo "----$inst $inst 3 (25) $cores -----" >> file_result
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich2 -np $cores ./bin/POSL $inst $inst 3 25 >> file_result
+		done
+		echo "----END-----" >> file_result
+		w >> file_result
+		echo "   " >> file_result
+
+	done
+
+done
+
+for (( inst = 6; inst <= 8; inst++ ))
+do
+
+	for (( cores = 10; cores <= 40; cores+=10 ))
+	do
+
+		echo "----$inst $inst 3 (75) $cores -----" >> file_result
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich2 -np $cores ./bin/POSL $inst $inst 3 75 >> file_result
+		done
+		echo "----END-----" >> file_result
+		w >> file_result
+		echo "   " >> file_result
+
+	done
+
+done

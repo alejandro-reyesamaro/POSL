@@ -15,7 +15,7 @@ class POSL_MetaSolver
 
 
         POSL_MetaSolver(std::string path, int _comm_size, std::shared_ptr<Benchmark> bench);
-        void solve(int argc, char **argv, std::shared_ptr<Benchmark> bench);
+        void solve(int argc, char **argv);
 
 
 
@@ -23,6 +23,7 @@ class POSL_MetaSolver
         int comm_size;
         std::shared_ptr<Scheduler> scheduler;
         std::vector<std::shared_ptr<ConnectionOperator>> connection_operators;
+        std::shared_ptr<Benchmark> benchmark;
 
 
 

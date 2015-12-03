@@ -6,8 +6,9 @@
 #include <iostream>
 using namespace std;
 
-POSL_Solver::POSL_Solver(shared_ptr<Benchmark> _bench, shared_ptr<ComputationStrategy> _strategy)
-    : final_solution(nullptr),
+POSL_Solver::POSL_Solver(string name, shared_ptr<Benchmark> _bench, shared_ptr<ComputationStrategy> _strategy)
+    : solver_name(name),
+      final_solution(nullptr),
       best_solution(nullptr),
       final_cost(-1),
       best_cost(-1),

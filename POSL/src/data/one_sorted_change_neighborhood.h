@@ -1,3 +1,4 @@
+#pragma once
 /**
  * POSL
  *
@@ -13,8 +14,6 @@
 #include "../tools/t_changes.h"
 #include "dynamic_neighborhood.h"
 #include "dStrategy/apply_change_behavior.h"
-
-//#include <random>
 
 /*!
  * \class OneSortedChangeNeighborhood one_sorted_change_neighborhood.h

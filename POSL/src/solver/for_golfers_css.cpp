@@ -22,7 +22,7 @@
 
 ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
     : CreateSolverStrategy(golfers),
-      single_solver(make_shared<POSL_Solver>(golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_B001>
+      single_solver(make_shared<POSL_Solver>("s1", golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_B001>
         (
             bench,
             make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),
@@ -36,7 +36,7 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             //0.2, 20, 100, 30
             100,30
         )))),
-      sender_solver( make_shared<POSL_Solver>(golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA000>
+      sender_solver(make_shared<POSL_Solver>("s1", golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA000>
         (
             bench,
             make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),
@@ -48,7 +48,7 @@ ForGolfersCSS::ForGolfersCSS(shared_ptr<Golfers> golfers)
             //0.5, 20, 100, 30
             100, 30
         )))),
-      receiver_solver(make_shared<POSL_Solver>(golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA000>
+      receiver_solver(make_shared<POSL_Solver>("s1", golfers, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA000>
         (
             bench,
             make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench),

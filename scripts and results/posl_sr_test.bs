@@ -1,0 +1,21 @@
+runs=2
+
+for (( inst = 6; inst <= 8; inst++ ))
+do
+
+	for (( cores = 2; cores <= 6; cores+=2 ))
+	do
+
+		echo "----$inst $inst 3 (25) $cores -----" >> file_result
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich -np $cores ./bin_par/POSL $inst $inst 3 25 >> file_result
+		done
+		echo "----END-----" >> file_result
+		w >> file_result
+		echo "   " >> file_result
+
+	done
+
+done
+

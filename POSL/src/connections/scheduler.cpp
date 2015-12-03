@@ -7,7 +7,8 @@ using namespace std;
 Scheduler::Scheduler(int _capacity)
     : process_base(0),
       first_available_process(0),
-      capacity(_capacity)
+      capacity(_capacity),
+      solver_instances(make_shared<HashMap<std::string, std::shared_ptr<POSL_Solver>>>())
 {}
 
 void Scheduler:: checkOut()
@@ -26,6 +27,7 @@ int Scheduler::schedule(shared_ptr<POSL_Solver> solver)
     if(ptr_solver_name == solver_names.end())
     {
         solver_names.push_back(solver->solverName());
+        connections.push_back(vector<pair<ConnectorInfo, int>>()); // the vector connections to the solver
         pos_to_return = first_available_process ++;
     }
     else
@@ -54,7 +56,7 @@ shared_ptr<POSL_Solver> Scheduler::getSolverAt(int i)
     pair<ConnectorInfo, int> p;
     ConnectorInfo ci;
     int pid;
-    for(int j = 0; j < connections[i].size(); j++)
+    for(unsigned int j = 0; j < connections[i].size(); j++)
     {
         p = connections[i][j];
         ci = p.first;

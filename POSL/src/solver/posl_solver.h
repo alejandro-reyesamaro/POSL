@@ -10,7 +10,7 @@
 class POSL_Solver : public Connectable
 {
     public:
-        POSL_Solver(std::shared_ptr<Benchmark> _bench, std::shared_ptr<ComputationStrategy> _strategy);
+        POSL_Solver(std::string name, std::shared_ptr<Benchmark> _bench, std::shared_ptr<ComputationStrategy> _strategy);
 
         void solve(std::shared_ptr<PSP> psp);
         std::string show();

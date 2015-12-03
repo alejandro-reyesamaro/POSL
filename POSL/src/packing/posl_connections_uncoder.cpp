@@ -65,7 +65,7 @@ vector<ConnectionsDeclaration> POSL_ConnectionsUncoder::uncode(string code)
         else if(Tools::isANumber(rest))
         {
             repetitions = Tools::str2int(rest);
-            declars.push_back({p_op.first.second, v_solvers_jacks, v_jacks, v_solvers_outlets, v_outlets, 1});
+            declars.push_back({p_op.first.second, v_solvers_jacks, v_jacks, v_solvers_outlets, v_outlets, repetitions});
         }
 
         v_solvers_jacks.clear();

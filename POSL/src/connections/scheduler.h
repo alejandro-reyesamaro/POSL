@@ -12,6 +12,7 @@ class Scheduler
         int schedule(std::shared_ptr<POSL_Solver> solver);
         void connect(std::shared_ptr<POSL_Solver> solver, ConnectorInfo connector, int pID);
         std::shared_ptr<POSL_Solver> getSolverAt(int i);
+        int schedulerSize() { return solver_names.size(); }
 
     private:
 

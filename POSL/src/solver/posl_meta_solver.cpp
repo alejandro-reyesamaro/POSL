@@ -13,11 +13,9 @@
 
 #include <iostream>
 
-using namespace std;
-
 #include "mpi.h"
 
-#define TAG 1001
+using namespace std;
 
 POSL_MetaSolver::POSL_MetaSolver(vector<shared_ptr<POSL_Solver> > _solvers)
     : solvers(_solvers)
@@ -26,7 +24,8 @@ POSL_MetaSolver::POSL_MetaSolver(vector<shared_ptr<POSL_Solver> > _solvers)
 
 POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchmark> bench)
     : comm_size(_comm_size),
-      scheduler(make_shared<Scheduler>(_comm_size))
+      scheduler(make_shared<Scheduler>(_comm_size)),
+      benchmark(bench)
 {
     shared_ptr<PoslUncoder> posl_unc;
     pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);
@@ -56,13 +55,13 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
                     outlets_solvers_info.push_back({solver_o, {outlet, OUTLET}});
                 }
             }
-            if(current_declaration.Operator_Name != OP_CONNECTION_BC_NAME)
+            if(current_declaration.Operator_Name == OP_CONNECTION_BC_NAME)
                 connection_operators.push_back(make_shared<ConnectionOperatorBroadcasting>(jacks_solvers_info, outlets_solvers_info));
-            else if (current_declaration.Operator_Name != OP_CONNECTION_NC_NAME)
+            else if (current_declaration.Operator_Name == OP_CONNECTION_NC_NAME)
                 connection_operators.push_back(make_shared<ConnectionOperatorNoConnection>(jacks_solvers_info));
-            else if (current_declaration.Operator_Name != OP_CONNECTION_BP_NAME)
+            else if (current_declaration.Operator_Name == OP_CONNECTION_BP_NAME)
                 connection_operators.push_back(make_shared<ConnectionOperatorBipartition>(jacks_solvers_info, outlets_solvers_info));
-            else if (current_declaration.Operator_Name != OP_CONNECTION_RING_NAME)
+            else if (current_declaration.Operator_Name == OP_CONNECTION_RING_NAME)
                 connection_operators.push_back(make_shared<ConnectionOperatorRin>(jacks_solvers_info, outlets_solvers_info));
             else
                 throw "(POSL Exception) Not well coded connection operator (POSL_MetaSolver::POSL_MetaSolver)";
@@ -76,9 +75,21 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
         connection_operators[i]->connect(scheduler);
 }
 
-void POSL_MetaSolver::solve(int argc, char **argv, std::shared_ptr<Benchmark> bench)
+void POSL_MetaSolver::solve(int argc, char **argv)
 {
+    int myid = 0;
 
+    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
+
+    if(myid < scheduler->schedulerSize())
+    {
+        shared_ptr<POSL_Solver> solver = scheduler->getSolverAt(0);
+        shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, benchmark, myid));
+        solver->solve(psp);
+        cout << solver->show() << endl;
+    }
+
+    exit(0);
 }
 
 

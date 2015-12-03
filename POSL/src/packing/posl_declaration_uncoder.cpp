@@ -34,7 +34,7 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
             type_declar = p_info.first.second;// code.substr(pos_2peq, pos_br - pos_2peq);
             if(type_declar == SOLVER_KEYWORD)
             {
-                pos_br_clse = code.find("}", pos_br);
+                pos_br_clse = code.find("}");
                 solver_declar_code = code.substr(0, pos_br_clse + 1);
                 sdec = sd_unc.uncode(solver_declar_code);
                 strategy_name = sdec.Computation_Strategy_Name;
@@ -43,7 +43,7 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
                     strategy_code = strategies.mapOf(strategy_name);
                     st_instance = make_shared<ComputationStrategy>(strategy_name, strategy_code);
                     st_instance->Instantiate(sdec.Operation_Module_Instance_Names, sdec.Open_Channel_Instance_Names, bench);
-                    solver = make_shared<POSL_Solver>(bench, st_instance);
+                    solver = make_shared<POSL_Solver>(sdec.Solver_Name, bench, st_instance);
                     solvers_list.insert(sdec.Solver_Name, solver);//push_back(solver);
                 }
                 else
@@ -52,7 +52,7 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
             }
             else if(type_declar == CS_KEYWORD)
             {
-                pos_br_clse = code.find("}", pos_br);
+                pos_br_clse = code.find("}");
                 strategy_code = code.substr(0, pos_br_clse + 1);
                 strategy_name = CodingTools::extractDeclarationName(strategy_code);
                 strategies.insert(strategy_name, strategy_code);

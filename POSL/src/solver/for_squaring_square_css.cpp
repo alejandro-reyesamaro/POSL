@@ -14,7 +14,7 @@
 
 ForSquaringSquareCSS::ForSquaringSquareCSS(shared_ptr<SquaringSquare> ssq)
     : CreateSolverStrategy(ssq),
-      sender_solver(make_shared<POSL_Solver>(ssq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA002>
+      sender_solver(make_shared<POSL_Solver>("s1", ssq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_SA002>
         (
             bench,
             make_shared<OM_RandomConfGeneration>(bench),
@@ -26,7 +26,7 @@ ForSquaringSquareCSS::ForSquaringSquareCSS(shared_ptr<SquaringSquare> ssq)
             make_shared<OM_AlwaysImproveDecision>(),
             0.5, 20, 500, 10
         )))),
-      receiver_solver(make_shared<POSL_Solver>(ssq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA002>
+      receiver_solver(make_shared<POSL_Solver>("s1", ssq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_RA002>
         (
             bench,
             make_shared<OM_RandomConfGeneration>(bench),
@@ -38,7 +38,7 @@ ForSquaringSquareCSS::ForSquaringSquareCSS(shared_ptr<SquaringSquare> ssq)
             make_shared<OM_AlwaysImproveDecision>(),
             0.2, 20, 500, 10
         )))),
-      single_solver(make_shared<POSL_Solver>(ssq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A002>
+      single_solver(make_shared<POSL_Solver>("s1", ssq, make_shared<ComputationStrategy>(make_shared<FactoryComputationStrategy_A002>
         (
             bench,
             make_shared<OM_RandomConfGeneration>(bench),
