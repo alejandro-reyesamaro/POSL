@@ -15,6 +15,7 @@ class POSL_Solver : public Connectable
         void solve(std::shared_ptr<PSP> psp);
         std::string show();
         std::string solverName() { return solver_name; }
+        bool isOpen();
 
         std::vector<ConnectorInfo> Jacks();
         std::vector<ConnectorInfo> Outlets();

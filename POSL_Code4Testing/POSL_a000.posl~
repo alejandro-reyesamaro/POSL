@@ -116,5 +116,5 @@ sender_solver := solver
 
 connections:
 
-[sender_solver.send_1] OP.#-> [receiver_solver.Ch1] 3;
+[sender_solver.send_1] OP.#-> [receiver_solver.Ch1] 2;
 [single_solver]2;

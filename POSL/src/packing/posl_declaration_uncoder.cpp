@@ -15,13 +15,13 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
     SolverDeclarationUncoder sd_unc;
     HashMap<string, shared_ptr<POSL_Solver>> solvers_list;
 
-    size_t pos_2peq, pos_br, pos_br_clse, pos_sp;
+    size_t pos_br_clse;
     string type_declar, strategy_name, strategy_code, solver_declar_code, code;
     PoslSolverDeclaration sdec;
     shared_ptr<POSL_Solver> solver;
     shared_ptr<ComputationStrategy> st_instance;
 
-    for(int i = 0; i < vcode.size(); i++)
+    for(unsigned int i = 0; i < vcode.size(); i++)
     {
         code = vcode[i];
         CodingTools::trim(code);

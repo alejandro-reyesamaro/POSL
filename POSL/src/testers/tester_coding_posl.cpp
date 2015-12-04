@@ -13,7 +13,7 @@ string Tester_CodingPOSL::test()
 {
     try
     {
-        shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
+        shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,3));
         //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a000.posl");
         //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a001.posl");
         //string code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/a002.posl");
@@ -31,7 +31,7 @@ string Tester_CodingPOSL::test()
         //string cs_code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/CS_a000.posl");
         //shared_ptr<ComputationStrategy> cs (make_shared<ComputationStrategy>(cs_code, modules_instances, ochannels_instances, bench));
         shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_a000.posl", 10, bench));
-        posl_ms->solve(ARGC, ARGV);
+        posl_ms->solve_sequentially(ARGC, ARGV);
     }
     catch (const char* msg)
     {

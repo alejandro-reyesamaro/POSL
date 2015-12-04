@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 
+/*
 ///
 /// \brief CodingTools::textFromFile Load the code from file
 /// \param path
@@ -39,8 +40,18 @@ std::pair<std::vector<std::string>, std::string> CodingTools::splitDeclarationCo
     size_t pos_conn_kw;
     size_t pos_2p;
     std::vector<std::string> declarations;
+    size_t pos_com;
     while (getline(infile, line))
     {
+        // extracting commentaries
+        pos_com = line.find("//");
+        if(pos_com != std::string::npos)
+            line = line.substr(0, pos_com);
+
+        // <input> filename
+        pos_com = line.find("input_cm");
+
+
         CodingTools::trim(line);
         if(line == "};")
         {
@@ -63,6 +74,7 @@ std::pair<std::vector<std::string>, std::string> CodingTools::splitDeclarationCo
     }
     return { declarations, conn_text };
 }
+*/
 
 ///
 /// \brief extractInnerCode Extract the code between delimiters
@@ -371,7 +383,7 @@ std::string CodingTools::extractCompoundModuleCodeFromCS(std::string code)
 void CodingTools::replace(std::string & code, std::vector<std::string> names, std::vector<std::string> instances)
 {
     std::string n_str;
-    for(int i = 0; i < names.size(); i++)
+    for(unsigned int i = 0; i < names.size(); i++)
     {
       n_str = names[i];
       CodingTools::trim(n_str);

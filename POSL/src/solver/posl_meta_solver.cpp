@@ -75,7 +75,7 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
         connection_operators[i]->connect(scheduler);
 }
 
-void POSL_MetaSolver::solve(int argc, char **argv)
+void POSL_MetaSolver::solve_in_parallel(int argc, char **argv)
 {
     int myid = 0;
 
@@ -92,6 +92,17 @@ void POSL_MetaSolver::solve(int argc, char **argv)
     exit(0);
 }
 
+void POSL_MetaSolver::solve_sequentially(int argc, char **argv)
+{    
+    shared_ptr<POSL_Solver> solver = scheduler->getFirstSequentialSolver();
+    if(solver)
+    {
+        shared_ptr<PSP> psp(make_shared<PSP>(argc, argv, benchmark));
+        solver->solve(psp);
+        cout << solver->show() << endl;
+    }
+    exit(0);
+}
 
 
 

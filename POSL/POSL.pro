@@ -263,7 +263,8 @@ SOURCES += src/main.cpp \
     src/connections/connection_operator.cpp \
     src/connections/connection_operator_no_connection.cpp \
     src/connections/connection_operator_bipartition.cpp \
-    src/connections/connection_operator_rin.cpp
+    src/connections/connection_operator_rin.cpp \
+    src/tools/coding_tools_ff.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 

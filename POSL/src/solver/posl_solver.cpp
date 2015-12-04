@@ -29,6 +29,13 @@ void POSL_Solver::solve(shared_ptr<PSP> psp)
     time = psp->GetTime();
 }
 
+bool POSL_Solver::isOpen()
+{
+    vector<ConnectorInfo> j = Jacks();
+    vector<ConnectorInfo> o = Outlets();
+    return (j.size() != 0 || o.size());
+}
+
 string POSL_Solver::show()
 {
     return showing_strategy->show(bench, best_solution, best_cost, final_solution, final_cost, strategy->TAG, iterations, time);

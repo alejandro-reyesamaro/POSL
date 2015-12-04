@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     int g = Tools::str2int(argv[2]);
     int w = Tools::str2int(argv[3]);
 	string path = argv[4];
-	cout << path << endl;
+	//cout << path << endl;
     
     /* GOLFERS */
 	shared_ptr<Golfers> gol(make_shared<Golfers>(p,g,w));
@@ -62,3 +62,7 @@ int main(int argc, char *argv[])
 
     MPI_Finalize();
 }
+
+/*
+mpiexec.mpich -np 8 ./bin_par/POSL 4 4 2 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_a000.posl
+*/

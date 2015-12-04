@@ -43,7 +43,7 @@ void OneSortedChangeNeighborhood::updateChanges()
     for(int i = 0; i < n-2; ++i)
     {
         int current_value = current_configuration[indexes[i]];
-        std::vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i],current_configuration);
+        std::vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i], current_configuration);
         Tools::shuffle(posible_values);
         int l = posible_values.size();
         for (int j = 0; j <  l / 2; j++)

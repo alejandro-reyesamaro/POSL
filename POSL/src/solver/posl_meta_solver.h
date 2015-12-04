@@ -15,7 +15,8 @@ class POSL_MetaSolver
 
 
         POSL_MetaSolver(std::string path, int _comm_size, std::shared_ptr<Benchmark> bench);
-        void solve(int argc, char **argv);
+        void solve_in_parallel(int argc, char **argv);
+        void solve_sequentially(int argc, char **argv);
 
 
 

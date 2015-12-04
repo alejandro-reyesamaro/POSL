@@ -65,3 +65,15 @@ shared_ptr<POSL_Solver> Scheduler::getSolverAt(int i)
     }
     return solver;
 }
+
+shared_ptr<POSL_Solver> Scheduler::getFirstSequentialSolver()
+{
+    shared_ptr<POSL_Solver> solver;
+    for ( auto it = solver_instances->it_begin(); it != solver_instances->it_end(); ++it )
+        if(!it->second->isOpen())
+        {
+            solver = it->second;
+            break;
+        }
+    return solver;
+}

@@ -39,6 +39,16 @@ class HashMap
             return (table.Count() == 0) ? nullptr : table;
         }
 
+        typename std::unordered_map<Tkey, Tmap>::iterator it_begin()
+        {
+            return hash_table.begin();
+        }
+
+        typename std::unordered_map<Tkey, Tmap>::iterator it_end()
+        {
+            return hash_table.end();
+        }
+
         int Count() { return hash_table.size(); }
 
     private:
