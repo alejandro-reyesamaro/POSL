@@ -84,7 +84,6 @@ SOURCES += src/main.cpp \
     src/computation/factory_computation_strategy_a001.cpp \
     src/computation/factory_computation_strategy_a002.cpp \
     src/computation/factory_computation_strategy_trivial.cpp \
-    src/computation/flag_computation.cpp \
     src/computation/factory_computation_strategy_sa002.cpp \
     src/computation/factory_computation_strategy_ra002.cpp \
     src/testers/tester_random_configuration_generation.cpp \
@@ -229,8 +228,6 @@ SOURCES += src/main.cpp \
     src/solver/strategy/show_to_collect_strategy.cpp \
     src/tools/hash_map.cpp \
     src/modules/open_channel.cpp \
-    src/tools/posl_tag.cpp \
-    src/solver/posl_name_space.cpp \
     src/packing/compound_module_uncoder.cpp \
     src/packing/grouped_sequential_computation_uncoder.cpp \
     src/packing/grouped_parallel_computation_uncoder.cpp \
@@ -377,7 +374,6 @@ HEADERS += \
     src/computation/factory_computation_strategy_ra001.h \
     src/computation/factory_computation_strategy_sa001.h \
     src/computation/factory_computation_strategy_ra001.h \
-    src/computation/flag_computation.h \
     src/computation/factory_computation_strategy_sa002.h \
     src/computation/factory_computation_strategy_ra002.h \
     src/testers/tester.h \
@@ -495,8 +491,6 @@ HEADERS += \
     src/solver/strategy/show_to_collect_strategy.h \
     src/tools/hash_map.h \
     src/connections/connectable.h \
-    src/tools/posl_tag.h \
-    src/solver/posl_name_space.h \
     src/packing/compound_module_uncoder.h \
     src/packing/grouped_sequential_computation_uncoder.h \
     src/packing/grouped_parallel_computation_uncoder.h \

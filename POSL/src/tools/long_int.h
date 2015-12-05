@@ -24,10 +24,8 @@ class LongInt
         int bitCount();
         bool Equal(LongInt &other);
         std::string toString();
-        //bool clearBits();
 
     private:
         int bytes;
         std::vector<int> value;
-        //vector<int> aux;
 };

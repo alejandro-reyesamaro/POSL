@@ -19,7 +19,7 @@ string Tester_SolverSquaringSquare::test()
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
 
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     shared_ptr<CreateSolverStrategy> css(make_shared<ForSquaringSquareCSS>(ss));
     vector<shared_ptr<POSL_Solver>> solvers = css->create();

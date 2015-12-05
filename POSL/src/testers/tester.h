@@ -5,13 +5,14 @@
 #include  "../benchmarks/golomb_ruler.h"
 #include "../benchmarks/n_queens.h"
 #include "../solver/psp.h"
-#include "../computation/flag_computation.h"
 #include "../data/seed.h"
 
 #include <iostream>
 #include <string>
 
 using namespace std;
+
+enum Computation { PAR, SEQ };
 
 class Tester
 {

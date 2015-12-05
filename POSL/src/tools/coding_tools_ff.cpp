@@ -1,7 +1,6 @@
 #include "coding_tools.h"
 #include "tokens_definition.h"
 
-//#include <boost/algorithm/string.hpp>
 #include <fstream>
 #include <sstream>
 
@@ -36,7 +35,6 @@ string load_cm_code(string line, string path)
     path = path.substr(0, pos_last_bs + 1) + file_name;
     return path;
 }
-
 
 ///
 /// \brief CodingTools::splitDeclarationConnectionsFromFile Split the declaration code and the communication code

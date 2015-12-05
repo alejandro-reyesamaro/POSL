@@ -14,7 +14,7 @@ string Tester_CostOfSolutionNQueens::test()
     vector<int> config4({4, 8, 3, 8, 2, 7, 1, 6, 0, 5}); // costo 0
 
     shared_ptr<Benchmark> bench(make_shared<NQueens>(10));
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
     shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
     int c1 = psp->GetBenchmark()->solutionCost(sol);
 

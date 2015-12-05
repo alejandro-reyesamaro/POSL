@@ -30,7 +30,7 @@ string Tester_IterationGolfers::test()
     shared_ptr<Benchmark> bench332(make_shared<Golfers>(3,3,2));
     vector<int> init_config = Tester::Golfers_332_c6();
     shared_ptr<Solution> sol332(make_shared<Solution>(bench332->Domains(), init_config));
-    shared_ptr<PSP> psp332(make_shared<PSP>(ARGC, ARGV, bench332));
+    shared_ptr<PSP> psp332(make_shared<PSP>(bench332));
     int cA = bench332->solutionCost(sol332);
     //cout << "Initial cost: " << cA << endl;
 
@@ -97,7 +97,7 @@ string Tester_IterationGolfers::test()
     vector<int> init_config2 = Tester::Golfers_554_c0();
 
     shared_ptr<Solution> sol554(make_shared<Solution>(bench554->Domains(), init_config2));
-    shared_ptr<PSP> psp554(make_shared<PSP>(ARGC, ARGV, bench554));
+    shared_ptr<PSP> psp554(make_shared<PSP>(bench554));
     int c554 = bench332->solutionCost(sol554);
     cout << "Initial cost: " << c554 << endl;
     psp554->Start(sol554->GetConfiguration());

@@ -9,7 +9,6 @@
 #include "../modules/grouped_sequential_computation.h"
 #include "../modules/grouped_parallel_computation.h"
 #include "../data/multi_elements_changed_neighborhood.h"
-#include "../computation/flag_computation.h"
 
 Tester_UnionOperator::Tester_UnionOperator(int argc, char *argv[])
     : Tester(argc, argv)
@@ -37,7 +36,7 @@ string Tester_UnionOperator::testeInMode(Computation comp)
     //Benchmark> bench(make_shared<GolombRuler(12, 85);
     //vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
     shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
 
     shared_ptr<OperationModule> m1(make_shared<OM_MultiElementsChangedNeighborhood>(bench));

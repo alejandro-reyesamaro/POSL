@@ -8,13 +8,7 @@ MergedLongInt::MergedLongInt(LongInt &a, LongInt &b)
       _min(min(a.length(), b.length())),
       it_upper((a.length() > b.length()) ? a.value.begin() : b.value.begin()),
       it_lower((a.length() > b.length()) ? b.value.begin() : a.value.begin())
-{
-    //_max = max(a.length(), b.length());
-    //_min = min(a.length(), b.length());
-
-    //it_upper = (a.length() > b.length()) ? a.value.begin() : b.value.begin();
-    //it_lower = (a.length() > b.length()) ? b.value.begin() : a.value.begin();
-}
+{}
 
 LongInt MergedLongInt::long_or()
 {

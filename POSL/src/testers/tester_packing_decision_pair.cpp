@@ -17,7 +17,7 @@ string Tester_PackingDecisionPair::test()
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     vector<int> config1(
     {

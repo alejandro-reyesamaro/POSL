@@ -12,7 +12,7 @@ string Tester_Solver_GolombRuler::test()
     //GolombRuler * bench(make_shared<GolombRuler(12,85);
     //GolombRuler * bench(make_shared<GolombRuler(8,34);
     shared_ptr<GolombRuler> bench(make_shared<GolombRuler>(7,25));
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     shared_ptr<CreateSolverStrategy> css(make_shared<ForGolombRulerCSS>(bench));
     vector<shared_ptr<POSL_Solver>> solvers = css->create();

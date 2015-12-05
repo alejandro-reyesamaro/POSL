@@ -25,7 +25,7 @@ string Tester_ConditionalOperator::test()
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     shared_ptr<Solution> sol1(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_c4()));
     shared_ptr<Solution> sol2(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_mal()));

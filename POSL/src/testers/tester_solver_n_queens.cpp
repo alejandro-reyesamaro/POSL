@@ -10,7 +10,7 @@ Tester_SolverNQueens::Tester_SolverNQueens(int argc, char *argv[])
 string Tester_SolverNQueens::test()
 {
     shared_ptr<NQueens> bench(make_shared<NQueens>(8));
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     shared_ptr<CreateSolverStrategy> css(make_shared<ForNQueensCSS>(bench));
     vector<shared_ptr<POSL_Solver>> solvers = css->create();

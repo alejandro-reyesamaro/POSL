@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 	try
 	{
 	    shared_ptr<POSL_MetaSolver> s(make_shared<POSL_MetaSolver>(path, comm_size, bench));
-	    s->solve(argc, argv);
+	    s->solve_in_parallel(argc, argv);
 	}catch (const char* msg)
 	{
 	    cout << msg << endl;

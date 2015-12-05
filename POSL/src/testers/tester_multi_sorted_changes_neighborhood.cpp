@@ -16,7 +16,7 @@ string Tester_MultiSortedChangesNeighborhood::test()
 {
     //Benchmark * bench(make_shared<GolombRuler(5, 11);
     shared_ptr<Benchmark> bench(make_shared<GolombRuler>(12, 85));
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     //vector<int> config( { 0, 1, 4, 9, 11 } );
     vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );

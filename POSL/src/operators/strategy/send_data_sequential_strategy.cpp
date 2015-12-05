@@ -8,13 +8,15 @@ using namespace std;
 
 SendDataSequentialStrategy::SendDataSequentialStrategy(shared_ptr<CompoundModule> _M1)
     : M1(_M1),
-      output(nullptr)
+      output(nullptr),
+      comm(make_shared<Comunicator>())
 {}
 
 shared_ptr<ComputationData> SendDataSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     output = M1->execute(psp, input);
-    psp->SendData(output->BuildPacker()->pack(), destinies);
+    for(vector<int>::iterator it = destinies.begin(); it != destinies.end(); ++it)
+        comm->sendMessage(output->BuildPacker()->pack(), *it);
     return output;
 }
 

@@ -17,9 +17,6 @@ LongInt::LongInt(unsigned int _bytes, int _value)
 {    
     fill(value.begin(), value.end(), 0);
     value[0] = _value;
-    //vector<int> aux (bytes, 0);
-    //aux[0] = _value;
-    //value = aux;
 }
 
 LongInt::LongInt(unsigned int _bytes)
@@ -28,15 +25,6 @@ LongInt::LongInt(unsigned int _bytes)
 {
     activateAll();
 }
-
-/*
-bool LongInt::clearBits()
-{
-    fill(value.begin(), value.end(), 0);
-    //vector<int> aux (bytes, 0);
-    //value = aux;
-}
-*/
 
 int LongInt::length() { return (int)bytes; }
 

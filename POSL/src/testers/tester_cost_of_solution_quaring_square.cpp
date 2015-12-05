@@ -12,7 +12,7 @@ string Tester_CostOfSolutionSquaringSquare::test()
     shared_ptr<Benchmark> bench(make_shared<SquaringSquare>(10,squares));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     vector<int> config1({0, 6, 0, 6, 7, 4, 7, 0, 0, 6, 6, 4, 7, 7}); // costo 0
     vector<int> config2({2, 0, 6, 1, 5, 7, 0, 2, 1, 6, 8, 2, 0, 4}); // costo 27

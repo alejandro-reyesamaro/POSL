@@ -5,77 +5,6 @@
 #include <fstream>
 #include <sstream>
 
-/*
-///
-/// \brief CodingTools::textFromFile Load the code from file
-/// \param path
-/// \return Code
-///
-std::string CodingTools::textFromFile(std::string path)
-{
-    std::string text = "";
-    std::string line;
-    std::ifstream infile(path);
-    while (getline(infile, line))
-    {
-        CodingTools::trim(line);
-        text = text + line + " ";
-    }
-    return text;
-}
-
-
-///
-/// \brief CodingTools::splitDeclarationConnectionsFromFile Split the declaration code and the communication code
-/// \param path
-/// \return pair.first: declaration code (strategies and solvers), pair.second: communication code (connections)
-///
-std::pair<std::vector<std::string>, std::string> CodingTools::splitDeclarationConnectionsFromFile(std::string path)
-{
-    std::string decl_text = "";
-    std::string conn_text = "";
-    bool declaration_part = true;
-    std::string line;
-    std::ifstream infile(path);
-    size_t pos_conn_kw;
-    size_t pos_2p;
-    std::vector<std::string> declarations;
-    size_t pos_com;
-    while (getline(infile, line))
-    {
-        // extracting commentaries
-        pos_com = line.find("//");
-        if(pos_com != std::string::npos)
-            line = line.substr(0, pos_com);
-
-        // <input> filename
-        pos_com = line.find("input_cm");
-
-
-        CodingTools::trim(line);
-        if(line == "};")
-        {
-            decl_text = decl_text + " } ";
-            declarations.push_back(decl_text);
-            decl_text = "";
-            continue;
-        }
-        pos_conn_kw = line.find(CONNECTION_KW);
-        if(pos_conn_kw != std::string::npos)
-        {
-            pos_2p = line.find(':', pos_conn_kw);
-            line = line.substr(pos_2p + 1);
-            declaration_part = false;
-        }
-        if(declaration_part)
-            decl_text = decl_text + line + " ";
-        else
-            conn_text = conn_text + line + " ";
-    }
-    return { declarations, conn_text };
-}
-*/
-
 ///
 /// \brief extractInnerCode Extract the code between delimiters
 /// \param code
@@ -318,15 +247,6 @@ std::vector<std::string> CodingTools::split_string(const std::string & s, char s
     }
     return elems;
 }
-
-
-
-
-
-
-
-
-
 
 // computation strategy and solver
 

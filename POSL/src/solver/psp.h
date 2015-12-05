@@ -2,14 +2,13 @@
 
 #include "../benchmarks/benchmark.h"
 #include "../data/solution.h"
-#include "../computation/flag_computation.h"
 #include "comunicator.h"
 
 class PSP
 {
     public:
-        PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench);
-        PSP(int _argc, char **_argv, std::shared_ptr<Benchmark> _bench, int _pID);
+        PSP(std::shared_ptr<Benchmark> _bench);
+        PSP(std::shared_ptr<Benchmark> _bench, int _pID);
 
         //! Properties
         int GetPID(){ return pID; }
@@ -25,13 +24,10 @@ class PSP
         void Start(std::vector<int> config);
         void UpdateTime(int _milisecs);
         void CountIteration();
-        //void connectWith(int pID);
         void UpdateSolution(std::vector<int> config);
 
-        void SendData(std::vector<int> data, std::vector<int> destinies);
-
-        int ARGC;
-        char **ARGV;
+        //int ARGC;
+        //char **ARGV;
 
     private:
         std::shared_ptr<Benchmark> bench;
@@ -40,7 +36,4 @@ class PSP
         std::vector<int> best_found_configuration;
         int best_found_cost;
         int pID;
-        std::shared_ptr<Comunicator> comm;
-        //! Proccesses IDs
-        //std::vector<int> connections;
 };

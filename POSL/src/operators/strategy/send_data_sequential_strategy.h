@@ -1,3 +1,4 @@
+#pragma once
 /**
  * POSL
  *
@@ -25,5 +26,6 @@ class SendDataSequentialStrategy : public SequentialExecutionStrategy
     private:
         std::shared_ptr<CompoundModule> M1;
         std::shared_ptr<ComputationData> output;
+        std::shared_ptr<Comunicator> comm;
         std::vector<int> destinies;
 };

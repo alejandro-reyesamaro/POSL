@@ -31,7 +31,7 @@ void Tester_Comunication::test()
 
     shared_ptr<Solution> sol1(make_shared<Solution>(bench->Domains(), Tester::Golfers_442_1s()));
     shared_ptr<Solution> sol2(make_shared<Solution>(bench->Domains(), Tester::Golfers_442_c0()));
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
     //bench->UpdateSolution(sol);
 
     int * buffer;

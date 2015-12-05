@@ -16,7 +16,7 @@ string Tester_RandomOrderedConfGeneration::test()
     shared_ptr<Benchmark> bench(make_shared<GolombRuler>(12,85));
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
-    shared_ptr<PSP> psp(make_shared<PSP>(ARGC, ARGV, bench));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     shared_ptr<OperationModule> op1(make_shared<OM_RandomConfOrderedGeneration>(bench));
     bool is_random = true;
