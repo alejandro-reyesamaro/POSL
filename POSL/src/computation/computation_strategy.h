@@ -3,14 +3,13 @@
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
 #include "../modules/compound_module.h"
-#include "factory_computation_strategy.h"
 #include "../packing/computation_strategy_uncoder.h"
 
 class ComputationStrategy
 {
     public:
         //!Constructor a eliminar
-        ComputationStrategy(std::shared_ptr<FactoryComputationStrategy> builder);
+        //ComputationStrategy(std::shared_ptr<FactoryComputationStrategy> builder);
 
         //ComputationStrategy(std::string code, std::vector<std::string> om_instances, std::vector<std::string> och_instances, std::shared_ptr<Benchmark> bench);
         ComputationStrategy(std::string name, std::string code);

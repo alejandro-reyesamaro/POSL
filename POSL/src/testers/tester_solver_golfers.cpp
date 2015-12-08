@@ -1,8 +1,6 @@
 #include "tester_solver_golfers.h"
 
 #include "../solver/posl_solver.h"
-#include "../solver/for_golfers_css.h"
-#include "../solver/for_golfers_css.h"
 
 Tester_Solver_Golfers::Tester_Solver_Golfers(int argc, char *argv[])
     : Tester(argc, argv)
@@ -10,6 +8,7 @@ Tester_Solver_Golfers::Tester_Solver_Golfers(int argc, char *argv[])
 
 string Tester_Solver_Golfers::test()
 {
+    /*
     shared_ptr<Golfers> g(make_shared<Golfers>(4,4,4));
     shared_ptr<Benchmark> bench = g;
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
@@ -20,4 +19,6 @@ string Tester_Solver_Golfers::test()
     solvers[2]->solve(psp);
     return solvers[2]->show();
     //return solvers[2]->show_to_collect();
+    */
+    return "in process...";
 }

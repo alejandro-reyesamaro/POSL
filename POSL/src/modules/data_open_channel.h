@@ -26,5 +26,11 @@ class DataOpenChannel : public OpenChannel
         virtual std::shared_ptr<ComputationData> unpackMessage(int * buffer, std::shared_ptr<PSP> psp) = 0;
 
     protected:
+        std::shared_ptr<ComputationData> receive_and_log(int id, int tag, std::shared_ptr<PSP> psp);
+
         std::shared_ptr<Benchmark> bench;
+        bool logging;
+
+        MPI_Status status;
+        std::shared_ptr<ComputationData> r;
 };

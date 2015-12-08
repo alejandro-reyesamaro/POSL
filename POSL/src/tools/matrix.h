@@ -18,7 +18,6 @@ class Matrix
         vector<int> diagonalLeft(int shift);
 
     private:
-        int N, M;
         vector<vector<int>> A;
-
+        int N, M;
 };

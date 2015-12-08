@@ -30,8 +30,8 @@ string Tester_CodingPOSL::test()
 
         //string cs_code = CodingTools::textFromFile("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/CS_a000.posl");
         //shared_ptr<ComputationStrategy> cs (make_shared<ComputationStrategy>(cs_code, modules_instances, ochannels_instances, bench));
-        shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_a000.posl", 10, bench));
-        posl_ms->solve_in_parallel();
+        shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_b001.posl", 10, bench));
+        posl_ms->solve_sequentially();
     }
     catch (const char* msg)
     {

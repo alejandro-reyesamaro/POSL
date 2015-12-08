@@ -6,12 +6,12 @@
 #include <iostream>
 using namespace std;
 
+/*
 ComputationStrategy::ComputationStrategy(shared_ptr<FactoryComputationStrategy> builder)
     : TAG(builder->TAG),
       module(builder->buildModule())
 {}
 
-/*
 shared_ptr<CompoundModule> init_module(string code, vector<string> om_instances, vector<std::string> och_instances, shared_ptr<Benchmark> bench)
 {
     pair<vector<string>, vector<string>> p = CodingTools::extractModulesNamesFromCS(code);

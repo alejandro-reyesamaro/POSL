@@ -15,4 +15,5 @@ class Comunicator
 
     private:
         MPI_Request request;
+        bool logging;
 };

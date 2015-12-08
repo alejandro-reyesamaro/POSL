@@ -1,5 +1,4 @@
 #include "posl_meta_solver.h"
-#include "../solver/for_golfers_css.h"
 #include <math.h>
 #include "../tools/hash_map.h"
 #include "../tools/coding_tools.h"

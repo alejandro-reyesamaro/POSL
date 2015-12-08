@@ -27,8 +27,6 @@ int main(int argc, char *argv[])
     /* GOLFERS */
 	shared_ptr<Golfers> gol(make_shared<Golfers>(p,g,w));
 	shared_ptr<Benchmark> bench = gol;
-	//shared_ptr<CreateSolverStrategy> css(make_shared<ForGolfersCSS>(gol));
-	//solvers = css->create();
 
 	/* SQUARING SQUARE
 	//vector<int> squares({6, 4, 4, 1, 3, 3, 3});
@@ -54,7 +52,7 @@ int main(int argc, char *argv[])
 	try
 	{
 	    shared_ptr<POSL_MetaSolver> s(make_shared<POSL_MetaSolver>(path, comm_size, bench));
-	    s->solve_in_parallel(argc, argv);
+	    s->solve_in_parallel();
 	}catch (const char* msg)
 	{
 	    cout << msg << endl;
