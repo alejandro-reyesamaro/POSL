@@ -13,7 +13,7 @@
 #include "../tools/t_changes.h"
 #include "cost_strategy/solution_cost_strategy.h"
 #include "show_strategy/show_strategy.h"
-#include "relative_cost_strategy/relative_cost_strategy.h"
+#include "cost_strategy/relative_cost_strategy.h"
 
 /*!
  * \class Benchmark benchmark.h
@@ -40,7 +40,7 @@ class Benchmark
 
         virtual std::string showInstance() = 0;
 
-    protected:
+    //protected:
         void UpdateSolution(std::vector<int> config);
         void InitializeCostData(std::vector<int> config);
         std::vector<Domain> domains;

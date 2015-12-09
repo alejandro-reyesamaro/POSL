@@ -2,6 +2,9 @@
 
 #include "solution_cost_strategy.h"
 #include "../../tools/long_int.h"
+#include "n_queens_cost_structure.h"
+
+#include <memory>
 
 class NQueensDanielCostStrategy : public SolutionCostStrategy
 {
@@ -11,7 +14,8 @@ class NQueensDanielCostStrategy : public SolutionCostStrategy
 
     private:
         int N;
-        std::vector<int> err_d1;
-        std::vector<int> err_d2;
-        std::vector<unsigned int> flags;
+        std::shared_ptr<NQueensCostStructure> nq_str;
+        //std::vector<int> err_d1;
+        //std::vector<int> err_d2;
+        //std::vector<unsigned int> flags;
 };

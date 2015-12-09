@@ -3,7 +3,7 @@
 #include "../data/dStrategy/factory_n_int_domain.h"
 #include "cost_strategy/golfers_long_int_cost_strategy.h"
 #include "show_strategy/golfers_default_show_strategy.h"
-#include "relative_cost_strategy/golfers_relative_cost_strategy.h"
+#include "cost_strategy/golfers_relative_cost_strategy.h"
 
 #include <vector>
 #include <iostream>

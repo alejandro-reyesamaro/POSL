@@ -1,0 +1,9 @@
+#pragma once
+
+class RelativeCostStrategy
+{
+    public:
+        RelativeCostStrategy();
+};
+
+#endif // RELATIVE_COSTS_TRATEGY_H

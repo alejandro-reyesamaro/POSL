@@ -2,7 +2,7 @@
 #include "../data/dStrategy/factory_n_int_domain.h"
 #include "cost_strategy/golomb_ruler_distances_cost_strategy.h"
 #include "show_strategy/golomb_ruler_default_show_strategy.h"
-#include "relative_cost_strategy/golomb_ruler_relative_cost_strategy.h"
+#include "cost_strategy/golomb_ruler_relative_cost_strategy.h"
 #include "../tools/tools.h"
 
 using namespace std;

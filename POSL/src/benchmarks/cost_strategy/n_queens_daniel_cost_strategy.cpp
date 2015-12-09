@@ -3,25 +3,29 @@
 #include <algorithm>
 
 using namespace std;
-
+/*
 #define PENALIZATION 10
-
 #define D1(i, j)      (i + N-1 - j)
 #define D2(i, j)      (i + j)
 #define ErrD1(i, j)   (err_d1[D1(i, j)])
 #define ErrD2(i, j)   (err_d2[D2(i, j)])
 
+int F(int x){ return (x <= 1) ? 0 : x; }
+*/
+
 NQueensDanielCostStrategy::NQueensDanielCostStrategy(int n)
     : N(n),
-      err_d1(2 * n - 1, 0),
-      err_d2(2 * n - 1, 0),
-      flags(n,0)
+      nq_str(make_shared<NQueensCostStructure>(n))
+      //err_d1(2 * n - 1, 0),
+      //err_d2(2 * n - 1, 0),
+      //flags(n,0)
 {}
-
-int F(int x){ return (x <= 1) ? 0 : x; }
 
 int NQueensDanielCostStrategy::solutionCost(std::vector<int> configuration)
 {
+    nq_str->set(configuration);
+    return nq_str->CurrentCost;
+    /*
     int nb_diag = 2 * N - 1;
     //memset(err_d1, 0, nb_diag * sizeof(int));
     //vector<int> err_d1(nb_diag, 0);
@@ -58,4 +62,5 @@ int NQueensDanielCostStrategy::solutionCost(std::vector<int> configuration)
         if(++flags[configuration[*it]] > 1)
             cost += N/2;
     return cost;
+    */
 }

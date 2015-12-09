@@ -3,7 +3,7 @@
 #include "../tools/tools.h"
 #include "cost_strategy/squaring_square_superposition_cost_strategy.h"
 #include "show_strategy/squaring_square_default_show_strategy.h"
-#include "relative_cost_strategy/squaring_square_relative_cost_strategy.h"
+#include "cost_strategy/squaring_square_relative_cost_strategy.h"
 
 using namespace std;
 

@@ -196,11 +196,6 @@ SOURCES += src/main.cpp \
     src/benchmarks/show_strategy/golomb_ruler_default_show_strategy.cpp \
     src/benchmarks/show_strategy/n_queens_default_show_strategy.cpp \
     src/benchmarks/show_strategy/squaring_square_default_show_strategy.cpp \
-    src/benchmarks/relative_cost_strategy/relative_cost_strategy.cpp \
-    src/benchmarks/relative_cost_strategy/golfers_relative_cost_strategy.cpp \
-    src/benchmarks/relative_cost_strategy/squaring_square_relative_cost_strategy.cpp \
-    src/benchmarks/relative_cost_strategy/golomb_ruler_relative_cost_strategy.cpp \
-    src/benchmarks/relative_cost_strategy/nqueens_relative_cost_strategy.cpp \
     src/testers/tester_iteration_golfers.cpp \
     src/tools/connection_matrix.cpp \
     src/modules/operation_module.cpp \
@@ -245,7 +240,12 @@ SOURCES += src/main.cpp \
     src/connections/connection_operator_bipartition.cpp \
     src/connections/connection_operator_rin.cpp \
     src/tools/coding_tools_ff.cpp \
-    src/testers/tester_packing_strategies.cpp
+    src/testers/tester_packing_strategies.cpp \
+    src/benchmarks/cost_strategy/golfers_relative_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/golomb_ruler_relative_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/squaring_square_relative_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/n_queens_relative_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/n_queens_cost_structure.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -441,11 +441,6 @@ HEADERS += \
     src/benchmarks/show_strategy/golomb_ruler_default_show_strategy.h \
     src/benchmarks/show_strategy/n_queens_default_show_strategy.h \
     src/benchmarks/show_strategy/squaring_square_default_show_strategy.h \
-    src/benchmarks/relative_cost_strategy/relative_cost_strategy.h \
-    src/benchmarks/relative_cost_strategy/golfers_relative_cost_strategy.h \
-    src/benchmarks/relative_cost_strategy/squaring_square_relative_cost_strategy.h \
-    src/benchmarks/relative_cost_strategy/golomb_ruler_relative_cost_strategy.h \
-    src/benchmarks/relative_cost_strategy/nqueens_relative_cost_strategy.h \
     src/tools/t_changes.h \
     src/testers/tester_iteration_golfers.h \
     src/tools/connection_matrix.h \
@@ -492,7 +487,13 @@ HEADERS += \
     src/connections/connection_operator_no_connection.h \
     src/connections/connection_operator_bipartition.h \
     src/connections/connection_operator_rin.h \
-    src/testers/tester_packing_strategies.h
+    src/testers/tester_packing_strategies.h \
+    src/benchmarks/cost_strategy/golfers_relative_cost_strategy.h \
+    src/benchmarks/cost_strategy/golomb_ruler_relative_cost_strategy.h \
+    src/benchmarks/cost_strategy/relative_cost_strategy.h \
+    src/benchmarks/cost_strategy/squaring_square_relative_cost_strategy.h \
+    src/benchmarks/cost_strategy/n_queens_relative_cost_strategy.h \
+    src/benchmarks/cost_strategy/n_queens_cost_structure.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
