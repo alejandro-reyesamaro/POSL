@@ -1,25 +1,16 @@
 <S>
 	OP.Cyc ( BE.LoopBnd 30 )
-	<S>
-		OP.|->
-		OM_S.PermBlocks
-		<S>
-			OP.Cyc ( BE.AND ( BE.LoopBnd 100 , BE.SCI 25 ) )
-			<S>
-				OP.|->
-				<S>
-					OP.|->
-					<S>
-						OP.|->
-						<S>
-							OP.|-> OM_V.1SwapBtwnBlocks OM_SS.FirstImpr
-						</S>
-						OM_D.AlwImpr
+	<S> 	OP.|->
+			OM_S
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 100 , BE.SCI 25 ) )
+					<S> 	OP.|->
+							<S> 	OP.|->
+									<S> 	OP.|-> 
+											<S> OP.|-> OM_V OM_SS </S> 
+											OM_D 
+									</S> OMS.IterCounter
+							</S> OMS.TimeCounter
 					</S>
-					OMS.IterCounter
-				</S>
-				OMS.TimeCounter
 			</S>
-		</S>
-	</S>
+	</S> 
 </S>

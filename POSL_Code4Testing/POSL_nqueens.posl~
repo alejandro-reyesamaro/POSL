@@ -1,0 +1,44 @@
+St_a000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+	input a000;
+};
+
+St_ra000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+	// OCh (Ch1)
+	input ra000;
+};
+
+St_sa000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+	// op send (send_1)
+	input sa000;
+};
+
+single_solver := solver
+{
+	cStrategy: St_a000;
+	oModule: OM_S.PermRand, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+receiver_solver := solver
+{
+	cStrategy: St_ra000;
+	oModule: OM_S.PermRand, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP;
+};
+
+sender_solver := solver
+{
+	cStrategy: St_sa000;
+	oModule: OM_S.PermRand, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+connections:
+
+[sender_solver.send_1] OP.--> [receiver_solver.Ch1] 2;
+[single_solver]2;

@@ -26,14 +26,15 @@ string CodingTools::textFromFile(string path)
 
 string load_cm_code(string line, string path)
 {
-    size_t pos_com = line.find("input_cm");
-    pos_com += 8;
-    string file_name = line.substr(pos_com);
+    size_t pos_com = line.find("input");
+    size_t pos_pc = line.find(';');
+    pos_com += 5;
+    string file_name = line.substr(pos_com, pos_pc - pos_com);
     CodingTools::trim(file_name);
     file_name += ".posl";
     size_t pos_last_bs = path.find_last_of('/');
     path = path.substr(0, pos_last_bs + 1) + file_name;
-    return path;
+    return CodingTools::textFromFile(path);
 }
 
 ///
@@ -56,7 +57,7 @@ pair<vector<string>, string> CodingTools::splitDeclarationConnectionsFromFile(st
             line = line.substr(0, pos_com);
 
         // <input> filename
-        if(line.find("input_cm") != string::npos)
+        if(line.find("input") != string::npos)
         {
             decl_text = decl_text + load_cm_code(line, path);
             continue;

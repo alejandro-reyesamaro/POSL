@@ -1,39 +1,20 @@
 <S>
 	OP.Cyc ( BE.LoopBnd 30 )
-	<S>
-		OP.|->
-		OM_S.Rand
-		<S>
-			OP.Cyc ( BE.AND ( BE.LoopBnd 100 , BE.SCI 25 ) )
+	<S>	OP.|->
+			OM_S.Rand
 			<S>
-				OP.|->
-				<S>
-					OP.|->
-					<S>
-						OP.|->
-						<S>
-							OP.|-> 
-							<S>
-								OP.U
-								OM_V.1Change
-								OM_V.NChanges
-							</S>
-							<S>
-								OP.Rho (0.5)
-								OM_SS.BestImpr							
-								OM_SS.FirstImpr
-							</S>
-						</S>
-						<S>
-							OP.? (BE.RC 10)
-							OM_D.SA
-							OM_D.AlwImpr
-						</S>
-					</S>
-					OMS.IterCounter
+				OP.Cyc ( BE.AND ( BE.LoopBnd 100 , BE.SCI 25 ) )
+				<S> 	OP.|->
+						<S> 	OP.|->
+								<S> 	OP.|->
+										<S> 	OP.|-> 
+												<S> OP.U OM_V1 OM_V2 </S>
+												<S> OP.Rho (0.5) OM_SS1 OM_SS2 </S>
+										</S>
+										<S> OP.? (BE.RC 10) OM_D1 OM_D2 </S>
+								</S> OMS.IterCounter
+						</S> OMS.TimeCounter
 				</S>
-				OMS.TimeCounter
 			</S>
-		</S>
 	</S>
 </S>

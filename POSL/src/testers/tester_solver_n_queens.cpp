@@ -1,6 +1,6 @@
 #include "tester_solver_n_queens.h"
 
-#include "../solver/posl_solver.h"
+#include "../solver/posl_meta_solver.h"
 
 Tester_SolverNQueens::Tester_SolverNQueens(int argc, char *argv[])
     : Tester(argc, argv)
@@ -8,15 +8,9 @@ Tester_SolverNQueens::Tester_SolverNQueens(int argc, char *argv[])
 
 string Tester_SolverNQueens::test()
 {
-    /*
-    shared_ptr<NQueens> bench(make_shared<NQueens>(8));
-    shared_ptr<PSP> psp(make_shared<PSP>(bench));
+    shared_ptr<NQueens> nq(make_shared<NQueens>(10));
+    shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("/home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_nqueens.posl", 10, nq));
+    posl_ms->solve_sequentially();
 
-    shared_ptr<CreateSolverStrategy> css(make_shared<ForNQueensCSS>(bench));
-    vector<shared_ptr<POSL_Solver>> solvers = css->create();
-
-    solvers[0]->solve(psp);
-    return solvers[0]->show();
-    */
-    return "in process...";
+    return "Solving N-Queens OK!";
 }
