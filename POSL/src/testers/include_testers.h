@@ -45,3 +45,4 @@
 #include "tester_iteration_golfers.h"
 #include "tester_coding_posl.h"
 #include "tester_packing_strategies.h"
+#include "tester_adaptive_search_neighborhood.h"

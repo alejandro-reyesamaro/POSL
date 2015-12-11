@@ -103,3 +103,14 @@ int NQueensCostStructure::relative_cost(vector<int> new_config, T_Changes change
         }
     return cost;
 }
+
+int NQueensCostStructure::costOnVariable(int i)
+{
+    int j, r, x;
+    j = Configuration[i];
+    x = ErrD1(i, j);
+    r = F(x);
+    x = ErrD2(i, j);
+    r += F(x);
+    return r;
+}

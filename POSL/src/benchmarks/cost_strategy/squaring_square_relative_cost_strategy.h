@@ -12,4 +12,5 @@ class SquaringSquareRelativeCostStrategy : public RelativeCostStrategy
         int relativeSolutionCost(std::vector<int> new_config, T_Changes change);
         void updateConfiguration(std::vector<int> new_config);
         int currentCost();
+        int costOnVariable(int) { return 0; } // default behavior
 };

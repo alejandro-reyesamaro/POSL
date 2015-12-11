@@ -39,6 +39,11 @@ int Benchmark::currentCost()
     return relative_cost_strategy->currentCost();
 }
 
+int Benchmark::costOnVariable(int index)
+{
+    return relative_cost_strategy->costOnVariable(index);
+}
+
 void Benchmark::UpdateSolution(vector<int> config)
 {    
     relative_cost_strategy->updateConfiguration(config);

@@ -24,6 +24,7 @@ class GolfersRelativeCostStrategy : public RelativeCostStrategy
         int relativeSolutionCost(std::vector<int> new_config, T_Changes changes);
         void updateConfiguration(std::vector<int> new_config);
         int currentCost() { return current_cost; }
+        int costOnVariable(int) { return 0; } // default behavior
 
     private:
         int relative_cost(std::vector<int> new_config, T_Changes change, bool updating);

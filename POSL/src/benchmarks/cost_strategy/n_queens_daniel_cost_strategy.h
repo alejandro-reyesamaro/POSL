@@ -15,7 +15,4 @@ class NQueensDanielCostStrategy : public SolutionCostStrategy
     private:
         int N;
         std::shared_ptr<NQueensCostStructure> nq_str;
-        //std::vector<int> err_d1;
-        //std::vector<int> err_d2;
-        //std::vector<unsigned int> flags;
 };

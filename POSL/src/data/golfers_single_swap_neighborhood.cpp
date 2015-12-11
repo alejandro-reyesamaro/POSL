@@ -28,67 +28,12 @@ void GolfersSingleSwapNeighborhood::updateChanges()
 {
     changes.clear();
     int weeks = current_configuration.size() / (players*groups);
-    //int posibles = players * (players-1);
-    //int swaps = min(SWAPS, posibles);
-
-    /*
-    for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
-    {
-        Tools::shuffle(indexes);
-        for (int i = 0; i < players - 1; i++)
-            for(int j = i + 1; j < players; j++)
-            {
-                if ( (i+1) * (j+1) > posibles || changes.size() >= swaps)
-                    break;
-                int pos1 = (w*players) + indexes[i];
-                int pos2 = (w*players) + indexes[j];
-                T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
-                changes.push_back(next_change);
-            }
-    }
-    */
-    /*
-    for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
-    {
-        for (int i = 0; i < players - 1; i++)
-        {
-            Tools::shuffle(indexes_IG);
-            for(int j = 0; j < players - 1; j++)
-            {
-                Tools::shuffle(indexes_IP);
-                int subgroup1 = indexes_IG[i];
-                int subgroup2 = indexes_IG[i+1];
-                int subplayer1 = indexes_IP[j];
-                int subplayer2 = indexes_IP[j+1];
-                int pos1 = (TP * w) + subgroup1 * players + subplayer1;
-                int pos2 = (TP * w) + subgroup2 * players + subplayer2;
-
-                T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
-                changes.push_back(next_change);
-            }
-        }
-    }
-    */
 
     for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
     {
         srand(time(0));
         for(int i = 0; i < groups; i++)
             random_shuffle(indexes.begin() + i * players, indexes.begin() + (i+1) * players);
-        //Tools::shuffle(walk_indexes);
-
-        /*
-        for (int i = 0; i < TP - 1; i++)
-            for(int j = i + 1; j < TP; j++)
-            {
-                if (i/players == j/players)
-                    continue;
-                int pos1 = (w * TP) + indexes[i];
-                int pos2 = (w * TP) + indexes[j];
-                T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
-                changes.push_back(next_change);
-            }
-        */
         for (int i = 0; i < groups - 1; i++)
             for(int j = i + 1; j < groups; j++)
             {
@@ -106,7 +51,6 @@ void GolfersSingleSwapNeighborhood::save_changes(int g1, int g2, int week)
             int pos2 = (week * TP) + indexes[g2 * players + j];
             T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
             changes.push_back(next_change);
-            //if (pos1 == 63 || pos2 == 63) cout << "Bien" << endl;
         }
 }
 

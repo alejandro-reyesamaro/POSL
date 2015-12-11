@@ -12,4 +12,6 @@ class RelativeCostStrategy
         virtual int relativeSolutionCost(std::vector<int> new_config, T_Changes change) = 0;
         virtual void updateConfiguration(std::vector<int> new_config) = 0;
         virtual int currentCost() = 0;
+
+        virtual int costOnVariable(int i) = 0;
 };

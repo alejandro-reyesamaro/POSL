@@ -29,7 +29,7 @@ class MultiElementsChangedNeighborhood
 {
     friend class ElementsChangeIterator;
     public:
-        MultiElementsChangedNeighborhood(int _config_size, std::vector<Domain> _domainsl);
+        MultiElementsChangedNeighborhood(int _config_size, std::vector<Domain> _domains);
 
         std::shared_ptr<POSL_Iterator> getIterator();
         int size() { return changes.size(); }
