@@ -171,3 +171,12 @@ T_Changes Tools::GetChanges(vector<int> config_before, vector<int> config_after)
 }
 
 
+int Tools::sum(std::vector<int> v)
+{
+    return std::accumulate(v.begin(), v.end(), 0);
+}
+
+int Tools::identity(int x, int base)
+{
+    return (x > base) ? x : 0;
+}

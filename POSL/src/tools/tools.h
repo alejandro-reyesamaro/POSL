@@ -41,6 +41,8 @@ class Tools
         static std::vector<int> generateMonotony(int a, int b);
         static void sortAscendent(std::vector<int> & v);        
         static T_Changes GetChanges(std::vector<int> config_before, std::vector<int> config_after);
+        static int sum(std::vector<int> v);
+        static int identity(int x, int base = 1);
 
         template<typename T>
         static std::vector<T> concat(std::vector<T> vector1, std::vector<T> vector2)

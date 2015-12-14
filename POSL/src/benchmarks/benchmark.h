@@ -14,6 +14,7 @@
 #include "cost_strategy/solution_cost_strategy.h"
 #include "show_strategy/show_strategy.h"
 #include "cost_strategy/relative_cost_strategy.h"
+#include "../tools/randomizer.h"
 
 /*!
  * \class Benchmark benchmark.h
@@ -33,9 +34,12 @@ class Benchmark
         int relativeSolutionCost(std::vector<int> configuration);
         int relativeSolutionCost(std::vector<int> new_config, T_Changes changes);
         int currentCost();
-        int costOnVariable(int index);
+
         std::shared_ptr<Solution> GetSolution();
         std::string ShowSolution(std::shared_ptr<Solution> solution);
+
+        //! Projected Cost (AS)
+        int costOnVariable(int index);
 
         std::vector<Domain> Domains(){ return domains; }
 

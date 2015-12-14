@@ -249,7 +249,15 @@ SOURCES += src/main.cpp \
     src/data/adaptive_search_neighborhood.cpp \
     src/tools/fixed_size_vector.cpp \
     src/modules/om_adaptive_search_neighborhood.cpp \
-    src/testers/tester_adaptive_search_neighborhood.cpp
+    src/testers/tester_adaptive_search_neighborhood.cpp \
+    src/data/golfers_adaptive_search_neighborhood.cpp \
+    src/modules/om_golfers_adaptive_searchneigborhood.cpp \
+    src/testers/tester_golfers_as_neighborhood.cpp \
+    src/benchmarks/costas_array.cpp \
+    src/benchmarks/show_strategy/costas_array_default_show_strategy.cpp \
+    src/benchmarks/cost_strategy/costas_array_cost_structure.cpp \
+    src/benchmarks/cost_strategy/costas_array_relative_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/costas_array_daniel_cost_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -501,7 +509,15 @@ HEADERS += \
     src/data/adaptive_search_neighborhood.h \
     src/tools/fixed_size_vector.h \
     src/modules/om_adaptive_search_neighborhood.h \
-    src/testers/tester_adaptive_search_neighborhood.h
+    src/testers/tester_adaptive_search_neighborhood.h \
+    src/data/golfers_adaptive_search_neighborhood.h \
+    src/modules/om_golfers_adaptive_search_neigborhood.h \
+    src/testers/tester_golfers_as_neighborhood.h \
+    src/benchmarks/costas_array.h \
+    src/benchmarks/show_strategy/costas_array_default_show_strategy.h \
+    src/benchmarks/cost_strategy/costas_array_cost_structure.h \
+    src/benchmarks/cost_strategy/costas_array_relative_cost_strategy.h \
+    src/benchmarks/cost_strategy/costas_array_daniel_cost_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

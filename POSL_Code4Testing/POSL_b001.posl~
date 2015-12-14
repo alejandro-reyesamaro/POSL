@@ -86,7 +86,7 @@ St_sa000 := cStrategy
 
 single_solver := solver
 {
-	cStrategy: St_a000;
+	cStrategy: St_b001;
 	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
 };
 

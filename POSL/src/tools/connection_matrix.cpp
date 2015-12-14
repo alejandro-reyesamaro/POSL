@@ -1,4 +1,5 @@
 #include "connection_matrix.h"
+#include "tools.h"
 
 using namespace std;
 
@@ -53,6 +54,16 @@ int ConnectionMatrix::get_connectios(int a, int b)
     return connections[pa][pb];
 }
 
+int ConnectionMatrix::ranking_cost_of_variable(int variable_index)
+{
+    int sum = 0;
+    for(unsigned int i = 0; i < connections[variable_index].size(); i++)
+        sum += Tools::identity(connections[variable_index][i]);
+    for(unsigned int i = variable_index + 1; i < connections.size(); i++)
+        sum += Tools::identity(connections[i][variable_index]);
+    return sum;
+}
+
 int ConnectionMatrix::projected_cost(int a, int b)
 {
     if(a == b) return 0;
@@ -65,6 +76,6 @@ int ConnectionMatrix::projected_cost(int a, int b)
 
 void ConnectionMatrix::clear()
 {
-    for(int i = 0; i < connections.size() ; i++)
+    for(unsigned int i = 0; i < connections.size() ; i++)
          fill(connections[i].begin(), connections[i].end(), 0);
 }

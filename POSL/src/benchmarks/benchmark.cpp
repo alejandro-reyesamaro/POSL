@@ -65,3 +65,5 @@ shared_ptr<Solution> Benchmark::GetSolution()
 {
     return make_shared<Solution>(domains, configuration);
 }
+
+

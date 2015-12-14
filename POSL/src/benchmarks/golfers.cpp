@@ -16,7 +16,7 @@ using namespace std;
 #define TP players * groups
 
 Golfers::Golfers(int g, int p, int w)
-    : Benchmark(vector<Domain>(g * p * w, Domain(make_shared<Factory_NIntDomain>(1,p * g))),
+    : Benchmark(vector<Domain>(g * p * w, Domain(make_shared<Factory_NIntDomain>(1, p * g))),
                 make_shared<GolfersLongIntCostStrategy>(g,p,w),
                 make_shared<GolfersRelativeCostStrategy>(g,p,w),
                 make_shared<GolfersDefaultShowStrategy>(g,p,w)),

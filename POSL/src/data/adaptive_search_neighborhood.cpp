@@ -53,7 +53,7 @@ void AdaptiveSearchNeighborhood::updateChanges()
             bad_variables.clear();
             bad_variables.pushBack(i);
         }
-    }
+    }    
 
     int bad_variable = bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
 

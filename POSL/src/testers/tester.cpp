@@ -24,6 +24,25 @@ vector<int> Tester::Golfers_332_c6()
     return config;
 }
 
+vector<int> Tester::Golfers_333_c()
+{
+    vector<int> config(
+    {
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 9,
+
+        3, 4, 5,
+        6, 7, 8,
+        9, 1, 2,
+
+        1, 4, 7,
+        2, 5, 8,
+        3, 6, 9,
+    });
+    return config;
+}
+
 vector<int> Tester::Golfers_442_c0()
 {
     vector<int> config(

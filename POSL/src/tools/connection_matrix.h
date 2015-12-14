@@ -11,6 +11,7 @@ class ConnectionMatrix
         int get_connectios(int a, int b);
         int projected_cost(int a, int b);
         void clear();
+        int ranking_cost_of_variable(int variable_index);
 
     private:
         std::vector<std::vector<int>> connections;

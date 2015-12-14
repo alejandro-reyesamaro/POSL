@@ -26,6 +26,7 @@ class Tester
         std::shared_ptr<Seed> t_seed;
 
         static vector<int> Golfers_332_c6();
+        static vector<int> Golfers_333_c();
         static vector<int> Golfers_442_c0();
         static vector<int> Golfers_442_c4();
         static vector<int> Golfers_442_1s();
