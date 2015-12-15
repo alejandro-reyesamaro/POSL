@@ -4,6 +4,7 @@
 #include  "../benchmarks/squaring_square.h"
 #include  "../benchmarks/golomb_ruler.h"
 #include "../benchmarks/n_queens.h"
+#include "../benchmarks/costas_array.h"
 #include "../solver/psp.h"
 #include "../data/seed.h"
 
@@ -45,4 +46,11 @@ class Tester
         static vector<int> Golomb_10_55_c11();
         static vector<int> Golomb_11_72_c19();
         static vector<int> Golomb_12_85_c19();
+
+        static vector<int> Costas_6_c0();
+
+        static vector<int> NQueens_10_c0();
+        static vector<int> NQueens_10_c6();
+        static vector<int> NQueens_10_c11();
+        static vector<int> NQueens_10_c10();
 };

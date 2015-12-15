@@ -14,8 +14,7 @@ AdaptiveSearchNeighborhood::AdaptiveSearchNeighborhood(shared_ptr<Benchmark> _be
     : Neighborhood(_config_size),
       benchmark(_benchmark),
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
-      monotony(Tools::generateMonotony(_config_size)),
-      bad_variables(_config_size)
+      monotony(Tools::generateMonotony(_config_size))
 {
     updateChanges();
 }
@@ -34,28 +33,8 @@ void AdaptiveSearchNeighborhood::Init(vector<int> _configuration)
 void AdaptiveSearchNeighborhood::updateChanges()
 {
     changes.clear();
-    bad_variables.clear();
-
-    int n = current_configuration.size();
     Tools::shuffle(monotony);
-
-    int cov;
-    int bcov = benchmark->costOnVariable(0);
-    bad_variables.pushBack(0);
-    for(int i = 1; i < n; i++)
-    {
-        cov = benchmark->costOnVariable(i);
-        if (cov == bcov)
-            bad_variables.pushBack(i);
-        else if(cov > bcov)
-        {
-            bcov = cov;
-            bad_variables.clear();
-            bad_variables.pushBack(i);
-        }
-    }    
-
-    int bad_variable = bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
+    int bad_variable = benchmark->sickestVariable();
 
     for(unsigned int i = 0; i < current_configuration.size(); i++)
     {

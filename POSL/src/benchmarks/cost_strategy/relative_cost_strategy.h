@@ -14,4 +14,5 @@ class RelativeCostStrategy
         virtual int currentCost() = 0;
 
         virtual int costOnVariable(int i) = 0;
+        virtual int sickestVariable() = 0;
 };

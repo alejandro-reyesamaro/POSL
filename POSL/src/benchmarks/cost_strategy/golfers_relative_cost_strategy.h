@@ -2,6 +2,9 @@
 
 #include "relative_cost_strategy.h"
 #include "../../tools/connection_matrix.h"
+#include "../../tools/fixed_size_vector.h"
+#include "../../tools/randomizer.h"
+
 #include <algorithm>
 
 struct Occurrences
@@ -24,7 +27,9 @@ class GolfersRelativeCostStrategy : public RelativeCostStrategy
         int relativeSolutionCost(std::vector<int> new_config, T_Changes changes);
         void updateConfiguration(std::vector<int> new_config);
         int currentCost() { return current_cost; }
+
         int costOnVariable(int variable_index);
+        int sickestVariable();
 
     private:
         int relative_cost(std::vector<int> new_config, T_Changes change, bool updating);
@@ -35,5 +40,7 @@ class GolfersRelativeCostStrategy : public RelativeCostStrategy
         //! Current configuration occurrences
         ConnectionMatrix cc_occurrences;
         int current_cost;
+        FixedSizeVector<int> bad_variables;
+        Randomizer rand;
 };
 

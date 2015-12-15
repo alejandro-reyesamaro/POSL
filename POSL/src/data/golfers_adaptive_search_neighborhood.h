@@ -6,8 +6,6 @@
 #include "../tools/t_changes.h"
 #include "dStrategy/apply_change_behavior.h"
 #include "../benchmarks/golfers.h"
-#include "../tools/fixed_size_vector.h"
-#include "../tools/randomizer.h"
 
 class GolfersAdaptiveSearchNeighborhood
         : public Neighborhood,
@@ -33,11 +31,5 @@ class GolfersAdaptiveSearchNeighborhood
         std::shared_ptr<Golfers> benchmark;
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
         int players, groups;
-
-        //std::vector<int> indexes;
-        //std::vector<int> walk_indexes;
-
         std::vector<T_Changes> changes;
-        FixedSizeVector<int> bad_variables;
-        Randomizer rand;
 };

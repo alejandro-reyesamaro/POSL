@@ -5,9 +5,7 @@
 #include "dynamic_neighborhood.h"
 #include "../tools/t_changes.h"
 #include "dStrategy/apply_change_behavior.h"
-#include "../tools/randomizer.h"
 #include "../benchmarks/benchmark.h"
-#include "../tools/fixed_size_vector.h"
 
 class AdaptiveSearchNeighborhood
         : public Neighborhood,
@@ -31,8 +29,6 @@ class AdaptiveSearchNeighborhood
 
         std::shared_ptr<Benchmark> benchmark;
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        Randomizer rand;
         std::vector<int> monotony;
         std::vector<T_Changes> changes;
-        FixedSizeVector<int> bad_variables;
 };

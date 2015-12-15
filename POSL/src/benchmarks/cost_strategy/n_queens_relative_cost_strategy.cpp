@@ -8,7 +8,8 @@ using namespace std;
 
 NQueensRelativeCostStrategy::NQueensRelativeCostStrategy(int n)
     : N(n),
-      nq_str(make_shared<NQueensCostStructure>(n))
+      nq_str(make_shared<NQueensCostStructure>(n)),
+      bad_variables(n)
 {}
 
 void NQueensRelativeCostStrategy::initializeCostData(vector<int> _configuration, int initial_cost)
@@ -44,5 +45,27 @@ int NQueensRelativeCostStrategy::relativeSolutionCost(std::vector<int> new_confi
 
 int NQueensRelativeCostStrategy::costOnVariable(int i)
 {
-    nq_str->costOnVariable(i);
+    return nq_str->costOnVariable(i);
+}
+
+int NQueensRelativeCostStrategy::sickestVariable()
+{
+    bad_variables.clear();
+    int cov;
+    int bcov = nq_str->costOnVariable(0);
+    bad_variables.pushBack(0);
+    for(int i = 1; i < N; i++)
+    {
+        cov = nq_str->costOnVariable(i);
+        if (cov == bcov)
+            bad_variables.pushBack(i);
+        else if(cov > bcov)
+        {
+            bcov = cov;
+            bad_variables.clear();
+            bad_variables.pushBack(i);
+        }
+    }
+
+    return bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
 }

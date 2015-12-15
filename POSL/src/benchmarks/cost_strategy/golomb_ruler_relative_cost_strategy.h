@@ -13,4 +13,5 @@ class GolombRulerRelativeCostStrategy : public RelativeCostStrategy
         void updateConfiguration(std::vector<int> new_config);
         int currentCost();
         int costOnVariable(int) { return 0; } // default behavior
+        int sickestVariable() { return 0; } // default behavior
 };

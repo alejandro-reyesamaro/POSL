@@ -11,7 +11,7 @@ Tester::Tester(int argc, char *argv[])
 
 vector<int> Tester::Golfers_332_c6()
 {
-    vector<int> config(
+    return
     {
         1, 2, 3,
         4, 5, 6,
@@ -20,13 +20,12 @@ vector<int> Tester::Golfers_332_c6()
         3, 4, 5,
         6, 7, 8,
         9, 1, 2
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_333_c()
 {
-    vector<int> config(
+    return
     {
         1, 2, 3,
         4, 5, 6,
@@ -39,13 +38,12 @@ vector<int> Tester::Golfers_333_c()
         1, 4, 7,
         2, 5, 8,
         3, 6, 9,
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_442_c0()
 {
-    vector<int> config(
+    return
     {
         1,  2,   3,  4,
         5,  6,   7,  8,
@@ -56,13 +54,12 @@ vector<int> Tester::Golfers_442_c0()
         14, 11,  8,  1,
         15, 12,  2,  5,
         16,  3,  6,  9
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_444_c()
 {
-    vector<int> config(
+    return
     {
         1,  2,   3,  4,
         5,  6,   7,  8,
@@ -83,13 +80,12 @@ vector<int> Tester::Golfers_444_c()
          2,  5, 10,  15,
          3,  8,  9,  14,
          4,  7, 12,  16
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_442_c4()
 {
-    vector<int> config(
+    return
     {
         1,  2,   3,  4,
         5,  6,   7,  8,
@@ -100,8 +96,7 @@ vector<int> Tester::Golfers_442_c4()
         14, 11,  4,  1,
         15, 12,  2,  5,
         16,  3,  6,  9
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_442_mal()
@@ -114,7 +109,7 @@ vector<int> Tester::Golfers_442_mal()
 
 vector<int> Tester::Golfers_442_1s()
 {
-    vector<int> config(
+    return
     {
         1,  1,  1,  1,
         1,  1,  1,  1,
@@ -125,13 +120,12 @@ vector<int> Tester::Golfers_442_1s()
         1,  1,  1,  1,
         1,  1,  1,  1,
         1,  1,  1,  1,
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_442_0s()
 {
-    vector<int> config(
+    return
     {
         0,  0,  0,  0,
         0,  0,  0,  0,
@@ -142,13 +136,12 @@ vector<int> Tester::Golfers_442_0s()
         0,  0,  0,  0,
         0,  0,  0,  0,
         0,  0,  0,  0
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_553_c0()
 {
-    vector<int> config(
+    return
     {
         1,   2,  3,  4,  5,
         6,   7,  8,  9, 10,
@@ -167,13 +160,12 @@ vector<int> Tester::Golfers_553_c0()
         15, 19, 23, 6, 2,
         20, 24, 11, 7, 3,
         25, 4, 8, 12, 16
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_554_c0()
 {
-    vector<int> config(
+    return
     {
         1,   2,  3,  4,  5,
         6,   7,  8,  9, 10,
@@ -198,13 +190,12 @@ vector<int> Tester::Golfers_554_c0()
         11, 17, 23, 4, 10,
         16, 22, 3, 9, 15,
         2, 8, 14, 20, 21
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_553_c1()
 {
-    vector<int> config(
+    return
     {
         1,   2,  3,  4,  5,
         6,   7,  8,  9, 10,
@@ -223,13 +214,12 @@ vector<int> Tester::Golfers_553_c1()
         15, 19, 23, 6, 2,
         20, 24, 11, 7, 3,
         25, 4, 8, 13, 16
-    });
-    return config;
+    };
 }
 
 vector<int> Tester::Golfers_662_c0()
 {
-    vector<int> config(
+    return
     {
         1,   2,  3,  4,  5, 6,
         7,   8,  9, 10, 11, 12,
@@ -244,48 +234,27 @@ vector<int> Tester::Golfers_662_c0()
          4, 10, 16, 22, 28, 34,
          5, 11, 17, 23, 29, 35,
          6, 12, 18, 24, 30, 36
-    });
-    return config;
+    };
 }
 
-vector<int> Tester::Golomb_6_17_c2()
-{
-    vector<int> config({0, 1, 4, 10, 12, 17}); // costo 2
-    return config;
-}
+vector<int> Tester::Golomb_6_17_c2(){ return {0, 1, 4, 10, 12, 17}; } // costo 2
 
-vector<int> Tester::Golomb_7_25_c4()
-{
-    vector<int> config({0, 1, 4, 10, 18, 23, 25}); // costo 4
-    return config;
-}
+vector<int> Tester::Golomb_7_25_c4(){ return { 0, 1, 4, 10, 18, 23, 25}; } // costo 4
 
-vector<int> Tester::Golomb_8_34_c7()
-{
-    vector<int> config({0, 1, 4, 9, 15, 22, 32, 34}); // costo 7
-    return config;
-}
+vector<int> Tester::Golomb_8_34_c7(){ return {0, 1, 4, 9, 15, 22, 32, 34}; } // costo 7
 
-vector<int> Tester::Golomb_9_44_c9()
-{
-    vector<int> config({0, 1, 5, 12, 25, 27, 35, 41, 44}); // costo 9
-    return config;
-}
+vector<int> Tester::Golomb_9_44_c9(){ return {0, 1, 5, 12, 25, 27, 35, 41, 44}; } // costo 9
 
-vector<int> Tester::Golomb_10_55_c11()
-{
-    vector<int> config({0, 1, 6, 10, 23, 26, 34, 41, 53, 55}); // costo 11
-    return config;
-}
+vector<int> Tester::Golomb_10_55_c11(){ return {0, 1, 6, 10, 23, 26, 34, 41, 53, 55}; } // costo 11
 
-vector<int> Tester::Golomb_11_72_c19()
-{
-    vector<int> config({0, 1, 4, 13, 28, 33, 47, 54, 64, 70, 72}); // costo 19
-    return config;
-}
+vector<int> Tester::Golomb_11_72_c19(){ return {0, 1, 4, 13, 28, 33, 47, 54, 64, 70, 72}; } // costo 19
 
-vector<int> Tester::Golomb_12_85_c19()
-{
-    vector<int> config({0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85}); // costo 20
-    return config;
-}
+vector<int> Tester::Golomb_12_85_c19(){ return {0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85}; } // costo 20
+
+vector<int> Tester::NQueens_10_c0(){ return {4, 9, 3, 8, 2, 7, 1, 6, 0, 5}; } // costo 0
+vector<int> Tester::NQueens_10_c6(){ return {4, 3, 9, 8, 2, 7, 1, 6, 0, 5}; } // costo 6
+vector<int> Tester::NQueens_10_c11(){ return {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}; } // costo 11
+vector<int> Tester::NQueens_10_c10(){ return {4, 8, 3, 8, 2, 7, 1, 6, 0, 5}; } // costo 10
+
+
+vector<int> Tester::Costas_6_c0(){ return {0,1,4,3,5,2}; }

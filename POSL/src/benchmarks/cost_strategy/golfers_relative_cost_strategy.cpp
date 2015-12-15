@@ -16,7 +16,8 @@ GolfersRelativeCostStrategy::GolfersRelativeCostStrategy(int g, int p, int w)
       players(p),
       weeks(w),
       cc_occurrences(g * p),
-      current_cost(0)
+      current_cost(0),
+      bad_variables(TP)
 {}
 
 void GolfersRelativeCostStrategy::initializeCostData(vector<int> _configuration, int initial_cost)
@@ -101,4 +102,30 @@ int GolfersRelativeCostStrategy::relativeSolutionCost(vector<int> new_config, T_
 int GolfersRelativeCostStrategy::costOnVariable(int variable_index)
 {
     return cc_occurrences.ranking_cost_of_variable(variable_index);
+}
+
+
+///
+/// \brief Returns just the worst player
+///
+int GolfersRelativeCostStrategy::sickestVariable()
+{
+    bad_variables.clear();
+    int cov;
+    int bcov = costOnVariable(0);
+    bad_variables.pushBack(0);
+    for(int i = 1; i < groups * players; i++)
+    {
+        cov = costOnVariable(i);
+        if (cov == bcov)
+            bad_variables.pushBack(i);
+        else if(cov > bcov)
+        {
+            bcov = cov;
+            bad_variables.clear();
+            bad_variables.pushBack(i);
+        }
+    }
+
+    return bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
 }

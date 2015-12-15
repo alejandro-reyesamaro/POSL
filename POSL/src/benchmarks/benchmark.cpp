@@ -44,6 +44,11 @@ int Benchmark::costOnVariable(int index)
     return relative_cost_strategy->costOnVariable(index);
 }
 
+int Benchmark::sickestVariable()
+{
+    return relative_cost_strategy->sickestVariable();
+}
+
 void Benchmark::UpdateSolution(vector<int> config)
 {    
     relative_cost_strategy->updateConfiguration(config);

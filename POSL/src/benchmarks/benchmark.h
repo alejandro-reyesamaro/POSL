@@ -40,6 +40,7 @@ class Benchmark
 
         //! Projected Cost (AS)
         int costOnVariable(int index);
+        int sickestVariable();
 
         std::vector<Domain> Domains(){ return domains; }
 

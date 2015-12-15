@@ -20,10 +20,7 @@ GolfersAdaptiveSearchNeighborhood::GolfersAdaptiveSearchNeighborhood(shared_ptr<
       benchmark(_bench),
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       players(_players),
-      groups(_groups),
-      //indexes(Tools::generateMonotony(TP)),
-      //walk_indexes(Tools::generateMonotony(TP)),
-      bad_variables(TP)
+      groups(_groups)
 {
     updateChanges();
 }
@@ -31,26 +28,9 @@ GolfersAdaptiveSearchNeighborhood::GolfersAdaptiveSearchNeighborhood(shared_ptr<
 void GolfersAdaptiveSearchNeighborhood::updateChanges()
 {
     changes.clear();
-    bad_variables.clear();
     int weeks = current_configuration.size() / (players*groups);
+    int bad_variable = benchmark->sickestVariable();
 
-    int cov;
-    int bcov = benchmark->costOnVariable(0);
-    bad_variables.pushBack(0);
-    for(int i = 1; i < TP; i++)
-    {
-        cov = benchmark->costOnVariable(i);
-        if (cov == bcov)
-            bad_variables.pushBack(i);
-        else if(cov > bcov)
-        {
-            bcov = cov;
-            bad_variables.clear();
-            bad_variables.pushBack(i);
-        }
-    }
-
-    int bad_variable = bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
     vector<int>::iterator it;
     size_t pos_bv;
     int g_bv, gw, pl;
