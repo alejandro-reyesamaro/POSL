@@ -6,15 +6,13 @@
 using namespace std;
 
 PSP::PSP(std::shared_ptr<Benchmark> _bench, int _pID)
-    : //ARGC(_argc),
-      //ARGV(_argv),
-      bench(_bench),
+    : bench(_bench),
       iterations(0),
       milisecs(0),
       best_found_configuration(_bench->Domains().size(),1),
       best_found_cost(1000),
-      pID(_pID)//,
-      //comm(std::make_shared<Comunicator>())
+      pID(_pID),
+      outer_information(false)
 {}
 
 PSP::PSP(std::shared_ptr<Benchmark> _bench)
@@ -45,17 +43,6 @@ void PSP::Start(vector<int> config)
     }
 }
 
-
 void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 
 void PSP::CountIteration(){ iterations ++; }
-
-/*
-void PSP::connectWith(int pID) { connections.push_back(pID); }
-
-void PSP::SendData(vector<int> data, vector<int> destinies)
-{
-    for(std::vector<int>::iterator it = destinies.begin(); it != destinies.end(); ++it)
-        comm->sendMessage(data, *it);
-}
-*/

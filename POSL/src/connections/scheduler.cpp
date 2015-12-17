@@ -17,15 +17,16 @@ void Scheduler:: checkOut()
 }
 
 int Scheduler::schedule(shared_ptr<POSL_Solver> solver)
-{
-    // Scheduler capacity overflows (capacity == # of cores)
-    if(first_available_process == capacity)
-        return -1;
+{    
     string solver_name = solver->solverName();
     vector<string>::iterator ptr_solver_name = find(solver_names.begin() + process_base, solver_names.end(), solver_name);
     int pos_to_return = 0;
     if(ptr_solver_name == solver_names.end())
     {
+        // Scheduler capacity overflows (capacity == # of cores)
+        if(first_available_process == capacity)
+            return -1;
+
         solver_names.push_back(solver->solverName());
         connections.push_back(vector<pair<ConnectorInfo, int>>()); // the vector connections to the solver
         pos_to_return = first_available_process ++;

@@ -24,9 +24,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_CostOfSolutionCostasArray>(argc, argv));
     //tests.push_back(make_shared<Tester_OneElementChangedNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_MultiElementsChangedNeighborhood>(argc, argv));
-
     //tests.push_back(make_shared<Tester_GolfersPermutationNeighborhood>(argc, argv));
-
     //tests.push_back(make_shared<Tester_MultiSortedChangesNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_FromPackNeighborhood>(argc, argv));
@@ -34,20 +32,18 @@ int main(int argc, char **argv)
 
     //tests.push_back(make_shared<Tester_RandomOrderedConfGeneration>(argc, argv));
     //tests.push_back(make_shared<Tester_FlorianRandomConfigurationGeneration>(argc, argv));
-    /*
-    tests.push_back(make_shared<Tester_RandomConfigurationGeneration>(argc, argv));
-    tests.push_back(make_shared<Tester_FirstImprovementSelection>(argc, argv));
-    tests.push_back(make_shared<Tester_BestImprovementSelection>(argc, argv));
-    tests.push_back(make_shared<Tester_RhoOperator>(argc, argv));
+    //tests.push_back(make_shared<Tester_RandomConfigurationGeneration>(argc, argv));
+    //tests.push_back(make_shared<Tester_FirstImprovementSelection>(argc, argv));
+    //tests.push_back(make_shared<Tester_BestImprovementSelection>(argc, argv));
+    //tests.push_back(make_shared<Tester_RhoOperator>(argc, argv));
     //tests.push_back(make_shared<Tester_CyclicOperator>(argc, argv));
-    tests.push_back(make_shared<Tester_SetsIndexGenerator>(argc, argv));
+    //tests.push_back(make_shared<Tester_SetsIndexGenerator>(argc, argv));
 
-    tests.push_back(make_shared<Tester_ConditionalOperator>(argc, argv));
-    tests.push_back(make_shared<Tester_RandomSelection>(argc, argv));
-    tests.push_back(make_shared<Tester_SimulatedAnnealingDecition>(argc, argv));
-    tests.push_back(make_shared<Tester_BestImprovementTabuSelection>(argc, argv));
-    tests.push_back(make_shared<Tester_RandomPermutationConfigurationGeneration>(argc, argv));
-    */
+    //tests.push_back(make_shared<Tester_ConditionalOperator>(argc, argv));
+    //tests.push_back(make_shared<Tester_RandomSelection>(argc, argv));
+    //tests.push_back(make_shared<Tester_SimulatedAnnealingDecition>(argc, argv));
+    //tests.push_back(make_shared<Tester_BestImprovementTabuSelection>(argc, argv));
+    //tests.push_back(make_shared<Tester_RandomPermutationConfigurationGeneration>(argc, argv));
     //tests.push_back(make_shared<Tester_PackingSolution>(argc, argv));
     //tests.push_back(make_shared<Tester_PackingDecisionPair>(argc, argv));
     //tests.push_back(make_shared<Tester_PackingOneElementChangedNeighborhood>(argc, argv));
@@ -56,11 +52,11 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_PackingUnionNeighborhood>(argc, argv));
 
     //tests.push_back(make_shared<Tester_TabuSelection>(argc, argv));
-    //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
+    tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
     //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
-    tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolfers>(argc, argv));
     //tests.push_back(make_shared<Tester_CodingPOSL>(argc, argv));
     //tests.push_back(make_shared<Tester_PackingStrategies>(argc, argv));

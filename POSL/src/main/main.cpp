@@ -5,12 +5,9 @@
 #include <fstream>
 #include <memory>
 
-#include "../solver/for_golfers_css.h"
-#include "../solver/for_squaring_square_css.h"
-#include "../solver/for_golomb_ruler_css.h"
-#include "../testers/tester_comunication.h"
 #include "../tools/tools.h"
 #include "../solver/posl_meta_solver.h"
+#include "../benchmarks/golfers.h"
 
 #include "mpi.h"
 
@@ -62,5 +59,5 @@ int main(int argc, char *argv[])
 }
 
 /*
-mpiexec.mpich -np 8 ./bin_par/POSL 4 4 2 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_a000.posl
+mpiexec.mpich -np 8 ./bin_par/POSL 4 4 2 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_golfers.posl
 */

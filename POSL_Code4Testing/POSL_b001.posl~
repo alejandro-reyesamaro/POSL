@@ -2,22 +2,22 @@ St_b001 := cStrategy
 	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
 {
 <S>
-	OP.Cyc (BE.LoopBnd 30) 
+	OP.Cyc (BE.LoopBnd 50) 
 	<S>
 		OP.|-> 	OM_S
 					<S>
-						OP.Cyc (BE.LoopBnd 300) 
+						OP.Cyc (BE.LoopBnd 500) 
 						<S>
 							OP.|-> 
 							<S>
 								OP.|-> 
 								<S> 
-									OP.|-> 
-									OM_V 	<S>
-												OP.? (BE.SCI 5) 
-												<S> OP.|-> OM_SS1 OM_D </S> 
-												<S> OP.|-> OM_SS2 OM_D </S>
-											</S>
+									OP.|-> 	OM_V 	
+												<S>
+													OP.? (BE.SCI 5) 
+													<S> OP.|-> OM_SS1 OM_D </S> 
+													<S> OP.|-> OM_SS2 OM_D </S>
+												</S>
 								</S> OMS.IterCounter
 							</S> OMS.TimeCounter
 						</S>
@@ -74,12 +74,16 @@ St_sa000 := cStrategy
 								<S>
 									OP.|->
 									<S>
-										OP.|-> OM_V <S> OP.OSend (send_1) OM_SS </S>
-									</S> OM_D
-								</S> OMS.IterCounter
-							</S> OMS.TimeCounter
+										OP.|-> 	OM_V 
+													<S>
+														OP.? (BE.SCI 5) 
+														<S> OP.|-> <S> OP.OSend (send_1) OM_SS1 </S> OM_D </S> 
+														<S> OP.|-> <S> OP.OSend (send_2) OM_SS2 </S> OM_D </S>
+													</S>
+									</S> OMS.IterCounter
+								</S> OMS.TimeCounter
+							</S>
 						</S>
-					</S>
 	</S>
 </S>
 };
@@ -87,7 +91,7 @@ St_sa000 := cStrategy
 single_solver := solver
 {
 	cStrategy: St_b001;
-	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
 };
 
 receiver_solver := solver

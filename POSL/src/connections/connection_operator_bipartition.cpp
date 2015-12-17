@@ -1,9 +1,11 @@
 #include "connection_operator_bipartition.h"
 
+#include <iostream>
+
 using namespace std;
 
 ConnectionOperatorBipartition::ConnectionOperatorBipartition(vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> _solver_jacks,
-                                                               vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> _solver_outlets)
+                                                             vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> _solver_outlets)
     : solver_jacks(_solver_jacks),
       solver_outlets(_solver_outlets)
 {}
@@ -24,6 +26,7 @@ void ConnectionOperatorBipartition::connect(shared_ptr<Scheduler> scheduler)
 
         pid_solver_jack = scheduler->schedule(s_jack);
         pid_solver_outlet = scheduler->schedule(s_outlet);
-        scheduler->connect(s_jack, jack, pid_solver_outlet);
+        if(pid_solver_outlet >= 0)
+            scheduler->connect(s_jack, jack, pid_solver_outlet);
     }
 }

@@ -21,7 +21,7 @@ shared_ptr<SequentialExecutionStrategy> chose_sequential_strategy(shared_ptr<Com
 
 
 MinOperator::MinOperator(shared_ptr<CompoundModule> _M1, shared_ptr<CompoundModule> _M2)
-    : BinaryOperator(_M1, _M2, chose_sequential_strategy(_M1, _M2), make_shared<MinParallelStrategy>(_M1, _M2))
+    : BinaryOperator(_M1, _M2, chose_sequential_strategy(_M1, _M2), make_shared<MinParallelStrategy>(_M1, _M2)) // hacer lo mimso de escoger la estrategia pero en paralelo
 {}
 
 string MinOperator::codeToSend()

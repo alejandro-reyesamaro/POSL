@@ -6,7 +6,7 @@ class ShowPlainResultStrategy : public ShowingResultStrategy
 {
     public:
         ShowPlainResultStrategy();
-        std::string show(std::shared_ptr<Benchmark> bench,
+        std::string show(std::shared_ptr<PSP> psp, std::shared_ptr<Benchmark>,
                          std::shared_ptr<Solution> best_solution,
                          int best_cost,
                          std::shared_ptr<Solution> final_solution,

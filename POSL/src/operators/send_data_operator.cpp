@@ -1,7 +1,10 @@
 #include "send_data_operator.h"
 #include "../tools/tokens_definition.h"
 
+#include "mpi.h"
+
 #include <iostream>
+
 using namespace std;
 
 SendDataOperator::SendDataOperator(std::string _name, shared_ptr<CompoundModule> _M1)
@@ -36,7 +39,12 @@ shared_ptr<SendDataSequentialStrategy> SendDataOperator::CastMyStrategy()
 void SendDataOperator::connect(ConnectorInfo connector, int procID)
 {
     if(connector.name == name)
+    {
+        //int myid = 0;
+        //MPI_Comm_rank(MPI_COMM_WORLD,&myid);
         CastMyStrategy()->addDestiny(procID);
+        //cout << "from " << myid << "(" << name << ")" <<" adding destiny : " << procID << endl;
+    }
     else
         M1->connect(connector, procID);
 }

@@ -4,11 +4,13 @@
 #include <memory>
 
 #include "../../benchmarks/benchmark.h"
+#include "../psp.h"
 
 class ShowingResultStrategy
 {
     public:
-        virtual std::string show(std::shared_ptr<Benchmark> bench,
+        virtual std::string show(std::shared_ptr<PSP> psp,
+                                 std::shared_ptr<Benchmark> bench,
                                  std::shared_ptr<Solution> best_solution,
                                  int best_cost,
                                  std::shared_ptr<Solution> final_solution,

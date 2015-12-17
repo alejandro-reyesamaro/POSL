@@ -6,7 +6,7 @@ using namespace std;
 
 Comunicator::Comunicator()
     : request(MPI_REQUEST_NULL),
-      logging(true) // manually turned on/of to log behavior
+      logging(false) // manually turned on/of to log behavior
 {}
 
 void Comunicator::sendMessage(vector<int> package, int procID)

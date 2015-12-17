@@ -34,7 +34,7 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
     MPI_Comm_rank(MPI_COMM_WORLD, &id);
     int tag = dataID();
     int pack_size;
-    int test_flag;    
+    int test_flag;
 
     MPI_Iprobe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &test_flag, &status);
     if(test_flag)

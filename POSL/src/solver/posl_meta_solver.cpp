@@ -1,5 +1,4 @@
 #include "posl_meta_solver.h"
-#include <math.h>
 #include "../tools/hash_map.h"
 #include "../tools/coding_tools.h"
 #include "../packing/posl_uncoder.h"
@@ -15,12 +14,6 @@
 #include "mpi.h"
 
 using namespace std;
-
-/*
-POSL_MetaSolver::POSL_MetaSolver(vector<shared_ptr<POSL_Solver> > _solvers)
-    : solvers(_solvers)
-{}
-*/
 
 POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchmark> bench)
     : comm_size(_comm_size),
@@ -87,7 +80,7 @@ void POSL_MetaSolver::solve_in_parallel()
         shared_ptr<POSL_Solver> solver = scheduler->getSolverAt(myid);
         shared_ptr<PSP> psp(make_shared<PSP>(benchmark, myid));
         solver->solve(psp);
-        cout << solver->show() << endl;
+        cout << solver->show(psp) << endl;
     }
     exit(0);
 }
@@ -99,7 +92,7 @@ void POSL_MetaSolver::solve_sequentially()
     {
         shared_ptr<PSP> psp(make_shared<PSP>(benchmark));
         solver->solve(psp);
-        cout << solver->show() << endl;
+        cout << solver->show(psp) << endl;
         exit(0);
     }    
 }

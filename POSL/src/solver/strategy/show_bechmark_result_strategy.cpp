@@ -7,14 +7,15 @@ ShowBechmarkResultStrategy::ShowBechmarkResultStrategy()
 {
 }
 
-std::string ShowBechmarkResultStrategy::show(std::shared_ptr<Benchmark> bench,
-                 shared_ptr<Solution> best_solution,
-                 int best_cost,
-                 shared_ptr<Solution> final_solution,
-                 int final_cost,
-                 string strategy_tag,
-                 int iterations,
-                 int time)
+std::string ShowBechmarkResultStrategy::show(std::shared_ptr<PSP> psp,
+                                             std::shared_ptr<Benchmark> bench,
+                                             shared_ptr<Solution> best_solution,
+                                             int best_cost,
+                                             shared_ptr<Solution> final_solution,
+                                             int final_cost,
+                                             string strategy_tag,
+                                             int iterations,
+                                             int time)
 {
     if(final_solution != nullptr && best_solution != nullptr){
         string str_finalSol = bench->ShowSolution(final_solution);
@@ -30,6 +31,7 @@ std::string ShowBechmarkResultStrategy::show(std::shared_ptr<Benchmark> bench,
         out += "Iterations: " + Tools::int2str(iterations) + "\n";
         out += "Time (milisecs): " + Tools::int2str(time) + "\n";
         out += "Strategy: " + strategy_tag;
+        out += psp->FoundThanksOuterInformation() ? " (thanks!)" : "";
         return out;
     }
     else return "Solver not working";

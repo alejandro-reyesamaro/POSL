@@ -1,8 +1,8 @@
 <S>
-	OP.Cyc ( BE.LoopBnd 30 )
+	OP.Cyc ( BE.LoopBnd 50 )
 	<S> 	OP.|->
 			OM_S
-			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 500 , BE.SCI 55 ) )
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 3000 , BE.SCI 100 ) )
 					<S> 	OP.|->
 							<S> 	OP.|->
 									<S> 	OP.|-> 

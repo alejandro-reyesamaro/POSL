@@ -35,9 +35,9 @@ bool POSL_Solver::isOpen()
     return (j.size() != 0 || o.size());
 }
 
-string POSL_Solver::show()
+string POSL_Solver::show(std::shared_ptr<PSP> psp)
 {
-    return showing_strategy->show(bench, best_solution, best_cost, final_solution, final_cost, strategy->TAG, iterations, time);
+    return showing_strategy->show(psp, bench, best_solution, best_cost, final_solution, final_cost, strategy->TAG, iterations, time);
 }
 
 vector<ConnectorInfo> POSL_Solver::Jacks()

@@ -1,0 +1,111 @@
+St_b001 := cStrategy
+	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+{
+<S>
+	OP.Cyc (BE.LoopBnd 500) 
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc (BE.LoopBnd 20) 
+						<S>
+							OP.|-> 
+							<S>
+								OP.|-> 
+								<S> 
+									OP.|-> 	OM_V 	
+												<S>
+													OP.? (BE.SCI 5) 
+													<S> OP.|-> OM_SS1 OM_D </S> 
+													<S> OP.|-> OM_SS2 OM_D </S>
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+St_ra000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 30 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.AND ( BE.LoopBnd 100 , BE.SCI 25 ) )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|->
+									<S>
+										OP.|->   OM_V
+													<S> 
+														OP.? (BE.LoopBnd 4)
+														OM_SS
+														<S> OP.Min OM_SS OCh (Ch1) </S>
+													</S>
+									</S> OM_D
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+St_sb001 := cStrategy
+	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 30 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.AND ( BE.LoopBnd 100 , BE.SCI 25 ) )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|-> 	OM_V 
+												<S>
+													OP.? (BE.SCI 5) 
+													<S> OP.|-> <S> OP.OSend (send_1) OM_SS1 </S> OM_D </S> 
+													<S> OP.|-> <S> OP.OSend (send_2) OM_SS2 </S> OM_D </S>
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter							
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+single_solver := solver
+{
+	cStrategy: St_b001;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+};
+
+receiver_solver := solver
+{
+	cStrategy: St_ra000;
+	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP;
+};
+
+sender_solver := solver
+{
+	cStrategy: St_sb001;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+};
+
+connections:
+
+[sender_solver.send_1, sender_solver.send_2] OP.--> [receiver_solver.Ch1, receiver_solver.Ch1] 1;
+[single_solver]2;
