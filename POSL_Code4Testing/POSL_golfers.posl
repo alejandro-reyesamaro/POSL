@@ -35,7 +35,7 @@ St_ra000 := cStrategy
 	<S>
 		OP.|-> 	OM_S
 					<S>
-						OP.Cyc ( BE.AND ( BE.LoopBnd 500 , BE.SCI 25 ) )
+						OP.Cyc ( BE.AND ( BE.LoopBnd 500 , BE.SCI 100 ) )
 						<S>
 							OP.|->
 							<S>
@@ -66,7 +66,7 @@ St_sb001 := cStrategy
 	<S>
 		OP.|-> 	OM_S
 					<S>
-						OP.Cyc ( BE.AND ( BE.LoopBnd 500 , BE.SCI 25 ) )
+						OP.Cyc ( BE.AND ( BE.LoopBnd 500 , BE.SCI 100 ) )
 						<S>
 							OP.|->
 							<S>
@@ -89,23 +89,23 @@ St_sb001 := cStrategy
 single_solver := solver
 {
 	cStrategy: St_b001;
-	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.BestImpr, OM_SS.Rand, OM_D.AlwImpr;
 };
 
 receiver_solver := solver
 {
 	cStrategy: St_ra000;
-	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.BestImpr, OM_D.AlwImpr;
 	oChannel: OCh.DP;
 };
 
 sender_solver := solver
 {
 	cStrategy: St_sb001;
-	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.BestImpr, OM_SS.Rand, OM_D.AlwImpr;
 };
 
 connections:
 
-[sender_solver.send_1, sender_solver.send_2] OP.--> [receiver_solver.Ch1, receiver_solver.Ch1] 1;
-//[single_solver]2;
+[sender_solver.send_1, sender_solver.send_2] OP.--> [receiver_solver.Ch1, receiver_solver.Ch1] 2;
+[single_solver]2;

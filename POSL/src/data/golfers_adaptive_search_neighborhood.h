@@ -26,10 +26,11 @@ class GolfersAdaptiveSearchNeighborhood
 
     private:
         void updateChanges();
-        void save_change(int pos1, int pos2);
+        void save_swap(int pos1, int pos2);
 
         std::shared_ptr<Golfers> benchmark;
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        int players, groups;
+        int players, groups, weeks;        
+        std::vector<int> w_index;
         std::vector<T_Changes> changes;
 };

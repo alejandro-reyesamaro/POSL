@@ -11,6 +11,8 @@
 using namespace std;
 
 #define TP (players * groups)
+#define _TP (_players * _groups)
+#define _W (_config_size / _TP)
 
 GolfersAdaptiveSearchNeighborhood::GolfersAdaptiveSearchNeighborhood(shared_ptr<Golfers> _bench,
                                                                      int _config_size,
@@ -20,7 +22,9 @@ GolfersAdaptiveSearchNeighborhood::GolfersAdaptiveSearchNeighborhood(shared_ptr<
       benchmark(_bench),
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       players(_players),
-      groups(_groups)
+      groups(_groups),
+      weeks(_config_size / _TP),
+      w_index(Tools::generateMonotony(1, _W - 1))
 {
     updateChanges();
 }
@@ -28,30 +32,34 @@ GolfersAdaptiveSearchNeighborhood::GolfersAdaptiveSearchNeighborhood(shared_ptr<
 void GolfersAdaptiveSearchNeighborhood::updateChanges()
 {
     changes.clear();
-    int weeks = current_configuration.size() / (players*groups);
+    //int weeks = current_configuration.size() / (players * groups);
     int bad_variable = benchmark->sickestVariable();
 
     vector<int>::iterator it;
     size_t pos_bv;
     int g_bv, gw, pl;
 
-    for (int w = 1; w < weeks; w++) // w = 1 first week remains the same
+    Tools::shuffle(w_index);
+    int wi;
+    //for (int w = 1; w < weeks; w++) // w = 1 first week remains the same
+    for (int w = 0; w < weeks - 1; ++w)
     {
-        it = find(current_configuration.begin()+(w * TP), current_configuration.begin()+((w+1) * TP), bad_variable + 1);
+        wi = w_index[w];
+        it = find(current_configuration.begin()+(wi * TP), current_configuration.begin()+((wi+1) * TP), bad_variable + 1);
         pos_bv = it - current_configuration.begin();
         g_bv = (pos_bv) / players;
-        for(gw = w * groups; gw < (w + 1) * groups; gw++)
+        for(gw = wi * groups; gw < (wi + 1) * groups; gw++)
         {
             if(gw == g_bv) continue;
             for(pl = gw * players; pl < (gw + 1) * players; pl++)
-                save_change(pos_bv, pl);
+                save_swap(pos_bv, pl);
         }
     }
 }
 
-void GolfersAdaptiveSearchNeighborhood::save_change(int pos1, int pos2)
+void GolfersAdaptiveSearchNeighborhood::save_swap(int pos1, int pos2)
 {
-    T_Changes next_change = { {pos1, pos2}, {current_configuration[pos2], current_configuration[pos1]}, 2};
+    T_Changes next_change = { { pos1, pos2 }, { current_configuration[pos2], current_configuration[pos1] }, 2};
     changes.push_back(next_change);
 }
 

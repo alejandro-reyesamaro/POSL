@@ -6,8 +6,11 @@
 #include <memory>
 
 #include "../tools/tools.h"
+#include "../tools/coding_tools.h"
 #include "../solver/posl_meta_solver.h"
 #include "../benchmarks/golfers.h"
+#include "../benchmarks/n_queens.h"
+#include "../benchmarks/costas_array.h"
 
 #include "mpi.h"
 
@@ -15,15 +18,36 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    int p = Tools::str2int(argv[1]);    
-    int g = Tools::str2int(argv[2]);
-    int w = Tools::str2int(argv[3]);
-	string path = argv[4];
-	//cout << path << endl;
+    string tbench = argv[1];   
+    string params = argv[2];    
+	string path = argv[3];	
     
-    /* GOLFERS */
-	shared_ptr<Golfers> gol(make_shared<Golfers>(p,g,w));
-	shared_ptr<Benchmark> bench = gol;
+    shared_ptr<Benchmark> bench;
+
+    if(tbench == "golfers")
+    {
+	    /* GOLFERS */
+	    vector<string> v_params = CodingTools::split_string(params, '-');
+	    int p = Tools::str2int(v_params[0]);
+	    int g = Tools::str2int(v_params[1]);
+	    int w = Tools::str2int(v_params[2]);
+		shared_ptr<Golfers> gol(make_shared<Golfers>(p,g,w));
+		bench = gol;
+	}
+	else if(tbench == "nqueens")
+    {
+	    /* N-QUEENS */	    
+	    int n = Tools::str2int(params);
+		shared_ptr<NQueens> gol(make_shared<NQueens>(n));
+		bench = gol;
+	}
+	else if(tbench == "costas")
+    {
+	    /* COSTAS ARRAY */	    
+	    int n = Tools::str2int(params);
+		shared_ptr<CostasArray> gol(make_shared<CostasArray>(n));
+		bench = gol;
+	}
 
 	/* SQUARING SQUARE
 	//vector<int> squares({6, 4, 4, 1, 3, 3, 3});
@@ -59,5 +83,7 @@ int main(int argc, char *argv[])
 }
 
 /*
-mpiexec.mpich -np 8 ./bin_par/POSL 4 4 2 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_golfers.posl
+mpiexec.mpich -np 6 ./bin_par/POSL golfers 4-4-4 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_golfers.posl
+mpiexec.mpich -np 6 ./bin_par/POSL nqueens 300 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_nqueens.posl
+mpiexec.mpich -np 6 ./bin_par/POSL costas 12 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_costas.posl
 */

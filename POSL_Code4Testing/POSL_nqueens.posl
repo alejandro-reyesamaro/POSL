@@ -28,14 +28,14 @@ single_solver := solver
 receiver_solver := solver
 {
 	cStrategy: St_ra000;
-	oModule: OM_S.PermRand, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
 	oChannel: OCh.DP;
 };
 
 sender_solver := solver
 {
 	cStrategy: St_sa000;
-	oModule: OM_S.PermRand, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 connections:

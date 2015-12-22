@@ -1,41 +1,99 @@
 St_a000 := cStrategy
 	oModule: OM_S, OM_V, OM_SS, OM_D;
 {
-	input a000;
+<S>
+	OP.Cyc ( BE.LoopBnd 200 )
+	<S> 	OP.|->
+			OM_S
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 300000 , BE.SCI 500 ) )
+					<S> 	OP.|->
+							<S> 	OP.|->
+									<S> 	OP.|-> 
+											<S> OP.|-> OM_V OM_SS </S> 
+											OM_D 
+									</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+					</S>
+			</S>
+	</S> 
+</S>
 };
 
 St_ra000 := cStrategy
 	oModule: OM_S, OM_V, OM_SS, OM_D;
 	oChannel: OCh;
 {
-	// OCh (Ch1)
-	input ra000;
+<S>
+	OP.Cyc ( BE.LoopBnd 200 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.AND ( BE.LoopBnd 300000 , BE.SCI 500 ) )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|->
+									<S>
+										OP.|->   OM_V
+													<S> 
+														OP.? (BE.LoopBnd 4)
+														OM_SS
+														<S> OP.Min OM_SS OCh (Ch1) </S>
+													</S>
+									</S> OM_D
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
 };
 
 St_sa000 := cStrategy
 	oModule: OM_S, OM_V, OM_SS, OM_D;
 {
-	// op send (send_1)
-	input sa000;
+	<S>
+	OP.Cyc ( BE.LoopBnd 200 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.AND ( BE.LoopBnd 300000 , BE.SCI 500 ) )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|->
+									<S>
+										OP.|-> OM_V <S> OP.OSend (send_1) OM_SS </S>
+									</S> OM_D
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
 };
 
 single_solver := solver
 {
 	cStrategy: St_a000;
-	oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oModule: OM_S.PermRand, OM_V.AS, OM_SS.BestImpr, OM_D.AlwImpr;
 };
 
 receiver_solver := solver
 {
 	cStrategy: St_ra000;
-	oModule: OM_S.PermRand, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
 	oChannel: OCh.DP;
 };
 
 sender_solver := solver
 {
 	cStrategy: St_sa000;
-	oModule: OM_S.PermRand, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 connections:

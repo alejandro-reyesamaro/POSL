@@ -80,8 +80,8 @@ void POSL_MetaSolver::solve_in_parallel()
         shared_ptr<POSL_Solver> solver = scheduler->getSolverAt(myid);
         shared_ptr<PSP> psp(make_shared<PSP>(benchmark, myid));
         solver->solve(psp);
-        cout << solver->show(psp) << endl;
-    }
+        cout << solver->show(psp) << endl;        
+    }    
     exit(0);
 }
 

@@ -1,4 +1,4 @@
-#include "tools.h"
+    #include "tools.h"
 #include "tokens_definition.h"
 
 #include <sstream>
@@ -111,11 +111,12 @@ void Tools::shuffle(vector<int> & vec)
 
 vector<int> Tools::generateMonotony(int N)
 {
-    //vector<int> v;
-    //for(int i = 0; i < N; i++)
-    //    v.push_back(i);
-    //return v;
-
+    /*
+    vector<int> v;
+    for(int i = 0; i < N; i++)
+        v.push_back(i);
+    return v;
+    */
     vector<int> v(N);
     vector<int>::iterator it = v.begin();
     iota(it, it + N, 0);

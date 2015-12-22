@@ -11,7 +11,7 @@
 using namespace std;
 
 //#define SWAPS 600
-#define TP players * groups
+#define TP (players * groups)
 
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, int _players, int _groups)
     : Neighborhood(_config_size),
@@ -27,7 +27,7 @@ GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, i
 void GolfersSingleSwapNeighborhood::updateChanges()
 {
     changes.clear();
-    int weeks = current_configuration.size() / (players*groups);
+    int weeks = current_configuration.size() / (players*groups);    
 
     for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
     {

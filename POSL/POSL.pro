@@ -259,7 +259,9 @@ SOURCES += src/main.cpp \
     src/benchmarks/cost_strategy/costas_array_relative_cost_strategy.cpp \
     src/benchmarks/cost_strategy/costas_array_daniel_cost_strategy.cpp \
     src/testers/tester_cost_of_solution_costas_array.cpp \
-    src/testers/tester_solver_costas_array.cpp
+    src/testers/tester_solver_costas_array.cpp \
+    src/benchmarks/cost_strategy/squaring_square_cost_structure.cpp \
+    src/tools/upper_matrix.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -521,7 +523,9 @@ HEADERS += \
     src/benchmarks/cost_strategy/costas_array_relative_cost_strategy.h \
     src/benchmarks/cost_strategy/costas_array_daniel_cost_strategy.h \
     src/testers/tester_cost_of_solution_costas_array.h \
-    src/testers/tester_solver_costas_array.h
+    src/testers/tester_solver_costas_array.h \
+    src/benchmarks/cost_strategy/squaring_square_cost_structure.h \
+    src/tools/upper_matrix.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

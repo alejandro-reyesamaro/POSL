@@ -10,7 +10,7 @@ int SquaringSquareSuperpositionCostStrategy::solutionCost(std::vector<int> confi
 {
     int sqrs = squares.size();
     if (configuration.size() > sqrs * 2)
-        return size * size * size;
+        throw "(POSL Exception) wrong configuration length (SquaringSquareSuperpositionCostStrategy::solutionCost)";
 
     int cost = 0;
     int penaltyX = 0, penaltyY = 0;
