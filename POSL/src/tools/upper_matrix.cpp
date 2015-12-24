@@ -35,7 +35,7 @@ int UpperMatrix::elementAt(int a, int b)
     return M[ia][ib];
 }
 
-int UpperMatrix::set(int value)
+int UpperMatrix::set(int a, int b, int value)
 {
     int ia = min(a, b);
     int ib = max(a, b);

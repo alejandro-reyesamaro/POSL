@@ -49,7 +49,11 @@ void SquaringSquareCostStructure::set(vector<int> _configuration)
         penaltyY = std::max(0, Configuration[i+sqrs]+squares[i] - size);
         cost_on_leaving[i] = penaltyX * penaltyY;                   // Cost on leaving the big square (square i)
 
-        CurrentCost += (cost_on_variable_coefix[i] + cost_on_leaving[i]) * momement_capacity[i];
+        CurrentCost += (cost_on_variable_coefix[i] + (cost_on_leaving[i] * cost_on_leaving[i])) * momement_capacity[i];
     }
 }
 
+int SquaringSquareCostStructure::relative_cost(std::vector<int> new_config, T_Changes change, bool updating)
+{
+    
+}
