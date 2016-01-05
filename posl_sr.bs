@@ -1,0 +1,38 @@
+runs=2
+
+declare -a files_results = ('frg_SS' 'frg_AS' 'frg_SSrhoAS' 'frg_SSuAS' 'frnq_1P' 'frnq_AS' 'frnq_ASrho1P' 'frnq_ASu1P');
+declare -a strs = ('./POSL_golfers_SS.posl' './POSL_golfers_AS.posl' './POSL_golfers_ASrhoSS.posl' './POSL_golfers_ASuSS.posl' './POSL_nqueens_1P.posl' './POSL_nqueens_AS.posl' './POSL_nqueens_ASrho1P.posl' './POSL_nqueens_ASu1P.posl');
+
+#for (( inst = 8; inst <= 10; inst++ ))
+#do
+inst = 10
+
+#	for (( cores = 10; cores <= 40; cores+=10 ))
+#	do
+
+		for (( i = 0; i < 8; i++ ))
+		do
+			echo "----$inst $inst 3 - 40  -----" >> ${files_results[i]}
+		done
+
+		for (( i = 0; i < $runs; i++ ))
+		do
+			for (( j = 0; j < 4; j++ ))
+			do			
+				mpiexec.mpich2 -np 40 ./bin/POSL golfers ${strs[j]} >> ${files_results[j]}
+			done
+			for (( j = 4; j < 8; j++ ))
+			do			
+				mpiexec.mpich2 -np 40 ./bin/POSL nqueens ${strs[j]} >> ${files_results[j]}
+			done
+		done
+
+		for (( i = 0; i < 8; i++ ))
+		do
+			echo "----END-----" >> ${files_results[i]}
+			w >> ${files_results[i]}
+			echo "   " >> ${files_results[i]}
+		done
+
+#	done
+#done

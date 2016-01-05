@@ -10,7 +10,8 @@ OM_FirstImprovementSelection::OM_FirstImprovementSelection(shared_ptr<Benchmark>
 {}
 
 shared_ptr<DecisionPair> OM_FirstImprovementSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)
-{    
+{
+    //cout << "OM_SS" << endl;
     return search_strategy->select(psp, input);
 }
 

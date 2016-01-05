@@ -13,6 +13,7 @@ OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(shared_ptr<Be
 shared_ptr<Neighborhood> OM_GolfersSingleSwapNeighborhood::spcf_execute(shared_ptr<PSP>, shared_ptr<Solution> input)
 {
     V->Init(input->GetConfiguration());
+    //cout << "OM_V" << endl;
     return V;
 }
 

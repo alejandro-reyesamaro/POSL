@@ -30,7 +30,7 @@ std::string ShowBechmarkResultStrategy::show(std::shared_ptr<PSP> psp,
         out += "\n";
         out += "Iterations: " + Tools::int2str(iterations) + "\n";
         out += "Time (milisecs): " + Tools::int2str(time) + "\n";
-        out += "Strategy: " + strategy_tag;
+        out += "Strategy: " + strategy_tag + " [id: " + Tools::int2str(psp->GetPID()) + "]";
         out += psp->FoundThanksOuterInformation() ? " (thanks!)" : "";
         return out;
     }

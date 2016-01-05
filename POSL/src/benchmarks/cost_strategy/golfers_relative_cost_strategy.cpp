@@ -85,7 +85,6 @@ void GolfersRelativeCostStrategy::updateConfiguration(vector<int> new_config)
         current_cost += relative_cost(new_config, changes, true);
         copy(new_config.begin(), new_config.end(), configuration.begin());
     }
-
 }
 
 int GolfersRelativeCostStrategy::relativeSolutionCost(vector<int> _configuration)
@@ -126,6 +125,5 @@ int GolfersRelativeCostStrategy::sickestVariable()
             bad_variables.pushBack(i);
         }
     }
-
     return bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
 }

@@ -1,0 +1,43 @@
+runs=2
+file1 = file_result_SS
+file2 = file_result_AS
+file3 = file_result_SSrhoAS
+file4 = file_result_SSuAS
+
+#for (( inst = 8; inst <= 10; inst++ ))
+#do
+inst = 10
+
+#	for (( cores = 10; cores <= 40; cores+=10 ))
+#	do
+
+		echo "----$inst $inst 3 - 40  -----" >> $file1
+		echo "----$inst $inst 3 - 40  -----" >> $file2
+		echo "----$inst $inst 3 - 40  -----" >> $file3
+		echo "----$inst $inst 3 - 40  -----" >> $file4
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich2 -np 40 ./bin/POSL golfers $inst-$inst-3 ./POSL_golfers_SS.posl >> $file1
+			mpiexec.mpich2 -np 40 ./bin/POSL golfers $inst-$inst-3 ./POSL_golfers_AS.posl >> $file2
+			mpiexec.mpich2 -np 40 ./bin/POSL golfers $inst-$inst-3 ./POSL_golfers_ASrhoSS.posl >> $file3
+			mpiexec.mpich2 -np 40 ./bin/POSL golfers $inst-$inst-3 ./POSL_golfers_ASuSS.posl >> $file4
+		done
+		echo "----END-----" >> $file1
+		w >> $file1
+		echo "   " >> $file1
+
+		echo "----END-----" >> $file2
+		w >> $file2
+		echo "   " >> $file2
+
+		echo "----END-----" >> $file3
+		w >> $file3
+		echo "   " >> $file3
+		
+		echo "----END-----" >> $file3
+		w >> $file3
+		echo "   " >> $file3
+
+#	done
+
+#done

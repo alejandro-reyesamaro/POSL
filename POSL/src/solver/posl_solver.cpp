@@ -1,6 +1,7 @@
 #include "posl_solver.h"
 #include "../tools/tools.h"
 #include "strategy/show_bechmark_result_strategy.h"
+#include "strategy/show_to_collect_strategy.h"
 
 #include <iostream>
 using namespace std;
@@ -15,7 +16,8 @@ POSL_Solver::POSL_Solver(string name, shared_ptr<Benchmark> _bench, shared_ptr<C
       time(-1),
       strategy(_strategy),
       bench(_bench),
-      showing_strategy(make_shared<ShowBechmarkResultStrategy>())
+      //showing_strategy(make_shared<ShowBechmarkResultStrategy>())
+      showing_strategy(make_shared<ShowToCollectStrategy>())
 {}
 
 void POSL_Solver::solve(shared_ptr<PSP> psp)

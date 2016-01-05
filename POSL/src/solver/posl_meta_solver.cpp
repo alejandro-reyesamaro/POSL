@@ -41,7 +41,7 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
             for(unsigned int k = 0; k < current_declaration.Jack_solvers.size(); k++)
             {
                 solver_j = solver_list.mapOf(current_declaration.Jack_solvers[k]);
-                jack = current_declaration.Jacks[k];
+                jack = (current_declaration.Jacks.size() == 0) ? "" : current_declaration.Jacks[k];
                 jacks_solvers_info.push_back({solver_j, {jack, (current_declaration.Operator_Name == OP_CONNECTION_NC_NAME) ? NON : JACK}});
                 if(current_declaration.Operator_Name != OP_CONNECTION_NC_NAME)
                 {

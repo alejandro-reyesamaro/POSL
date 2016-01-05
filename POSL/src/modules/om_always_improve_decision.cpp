@@ -12,6 +12,7 @@ OM_AlwaysImproveDecision::OM_AlwaysImproveDecision()
 shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input)
 {
     psp->UpdateSolution(input->GetFound()->GetConfiguration());
+    //cout << "OM_SS" << endl;
     return input->GetFound();
 }
 

@@ -19,7 +19,7 @@ class PSP
         inline std::shared_ptr<Solution> GetCurrentSolution() { return bench->GetSolution(); }
         int CurrentCost() { return bench->currentCost(); }
         int BestCostSoFar() { return best_found_cost; }
-        bool FoundThanksOuterInformation() { return outer_information; }
+        bool FoundThanksOuterInformation() { return found_thanks_outer_information; }
 
         //! State functions
         void Start(std::vector<int> config);
@@ -37,4 +37,5 @@ class PSP
         int best_found_cost;
         int pID;
         bool outer_information;
+        bool found_thanks_outer_information;
 };

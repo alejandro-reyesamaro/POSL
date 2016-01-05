@@ -12,7 +12,8 @@ PSP::PSP(std::shared_ptr<Benchmark> _bench, int _pID)
       best_found_configuration(_bench->Domains().size(),1),
       best_found_cost(1000),
       pID(_pID),
-      outer_information(false)
+      outer_information(false),
+      found_thanks_outer_information(false)
 {}
 
 PSP::PSP(std::shared_ptr<Benchmark> _bench)
@@ -29,6 +30,7 @@ void PSP::UpdateSolution(vector<int> config)
     {
         copy(config.begin(), config.end(), best_found_configuration.begin());
         best_found_cost = cost;
+        found_thanks_outer_information = outer_information;
     }    
 }
 

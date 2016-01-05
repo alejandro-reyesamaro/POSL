@@ -1,0 +1,35 @@
+St_a010 := cStrategy
+	oModule: OM_S, OM_V1, OM_V2, OM_SS, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>	OP.|->
+			OM_S
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 25 ) )
+					<S>	OP.|->
+							<S>	OP.|->
+									<S>	OP.|->
+											<S> 	OP.|-> 
+													<S>
+														OP.Rho (0.5) OM_V1 OM_V2
+													</S>
+													OM_SS
+											</S>
+											OM_D
+									</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+					</S>
+			</S>
+	</S>
+</S>
+};
+
+solver1 := solver
+{
+	cStrategy: St_a010;
+	oModule: OM_S.PermRand, OM_V.AS, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+connections:
+
+[solver1]6;

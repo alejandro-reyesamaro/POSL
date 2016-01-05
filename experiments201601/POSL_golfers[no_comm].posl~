@@ -1,0 +1,118 @@
+St_a000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S> 	OP.|->
+			OM_S
+			<S> 	OP.Cyc ( BE.LoopBnd 1000) //( BE.AND ( BE.LoopBnd 3000 , BE.SCI 100 ) )
+					<S> 	OP.|->
+							<S> 	OP.|->
+									<S> 	OP.|-> 
+											<S> OP.|-> OM_V OM_SS </S> 
+											OM_D 
+									</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+					</S>
+			</S>
+	</S> 
+</S>
+};
+
+St_a001 := cStrategy
+	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>	OP.|->
+			OM_S
+			<S> 	OP.Cyc ( BE.LoopBnd 1000)
+					<S>	OP.|->
+							<S>	OP.|->
+									<S>	OP.|->
+											<S> 	OP.|-> 
+													OM_V
+													<S>
+														OP.Rho (0.5) OM_SS1 OM_SS2
+													</S>
+											</S>
+											OM_D
+									</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+					</S>
+			</S>
+	</S>
+</S>
+};
+
+St_a002 := cStrategy
+	oModule: OM_S, OM_V1, OM_V1, OM_SS, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>	OP.|->
+			OM_S
+			<S>
+				OP.Cyc ( BE.LoopBnd 1000)
+				<S> 	OP.|->
+						<S> 	OP.|->
+								<S> 	OP.|->
+										<S> 	OP.|-> 
+												<S> OP.U OM_V1 OM_V2 </S>
+												OM_SS
+										</S>
+										OM_D
+								</S> OMS.IterCounter
+						</S> OMS.TimeCounter
+				</S>
+			</S>
+	</S>
+</S>
+};
+
+St_b001 := cStrategy
+	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+{
+<S>
+	OP.Cyc (BE.LoopBnd 50) 
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.LoopBnd 1000 )
+						<S>
+							OP.|-> 
+							<S>
+								OP.|-> 
+								<S> 
+									OP.|-> 	OM_V 
+												<S>
+													OP.? (BE.SCI 25) 
+													<S> OP.|-> OM_SS1 OM_D </S> 
+													<S> OP.|-> OM_SS2 OM_D </S>
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+solver1 := solver
+{
+	cStrategy: St_a000;
+	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+solver2 := solver
+{
+	cStrategy: St_a000;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+connections:
+
+//[sender_solver.send_1, sender_solver.send_2] OP.--> [receiver_solver.Ch1, receiver_solver.Ch1] 2;
+//[sender_solver.send_1] OP.--> [receiver_solver.Ch1] 2;
+[solver1]3;
+[solver2]3;

@@ -10,7 +10,6 @@
 
 using namespace std;
 
-//#define SWAPS 600
 #define TP (players * groups)
 
 GolfersSingleSwapNeighborhood::GolfersSingleSwapNeighborhood(int _config_size, int _players, int _groups)
