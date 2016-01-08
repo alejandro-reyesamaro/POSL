@@ -1,11 +1,12 @@
-mpiexec.mpich -np 6 ../POSL/bin_par/POSL golfers 6-6-3 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_golfers_SS.posl
+#mpiexec.mpich -np 6 ../POSL/bin_par/POSL golfers 10-10-3 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_golfers_SS.posl
 #mpiexec.mpich -np 6 ../POSL/bin_par/POSL golfers 6-6-3 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_golfers_AS.posl
 #mpiexec.mpich -np 6 ../POSL/bin_par/POSL golfers 6-6-3 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_golfers_ASrhoSS.posl
 #mpiexec.mpich -np 6 ../POSL/bin_par/POSL golfers 6-6-3 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_golfers_ASuSS.posl
 
-#mpiexec.mpich -np 6 ../POSL/bin_par/POSL nqueens 300 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_nqueens_1P.posl
-#mpiexec.mpich -np 6 ../POSL/bin_par/POSL nqueens 300 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_nqueens_AS.posl
+#mpiexec.mpich -np 6 ../POSL/bin_par/POSL nqueens 500 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_nqueens_1P.posl
+#mpiexec.mpich -np 6 ../POSL/bin_par/POSL nqueens 1000 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_nqueens_AS.posl
 #mpiexec.mpich -np 6 ../POSL/bin_par/POSL nqueens 300 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_nqueens_ASrho1P.posl
 #mpiexec.mpich -np 6 ../POSL/bin_par/POSL nqueens 300 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_nqueens_ASu1P.posl
 
-#mpiexec.mpich -np 6 ../POSL/bin_par/POSL costas 17 /home/reyesamaro-a/Documents/POSL/experiments201601/ex.posl
+
+mpiexec.mpich -np 6 ../POSL/bin_par/POSL costas 17 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_costas.posl

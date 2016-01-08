@@ -5,7 +5,7 @@ St_a000 := cStrategy
 	OP.Cyc ( BE.LoopBnd 50 )
 	<S> 	OP.|->
 			OM_S
-			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 25 ) )
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 5000 , BE.SCI 200 ) )
 					<S> 	OP.|->
 							<S> 	OP.|->
 									<S> 	OP.|-> 
@@ -26,7 +26,7 @@ St_a001 := cStrategy
 	OP.Cyc ( BE.LoopBnd 50 )
 	<S>	OP.|->
 			OM_S
-			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 7000 , BE.SCI 1000 ) )
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 5000 , BE.SCI 200 ) )
 					<S>	OP.|->
 							<S>	OP.|->
 									<S>	OP.|->
@@ -45,7 +45,33 @@ St_a001 := cStrategy
 </S>
 };
 
-St_a002 := cStrategy
+St_a010 := cStrategy
+	oModule: OM_S, OM_V1, OM_V2, OM_SS, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>	OP.|->
+			OM_S
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 5000 , BE.SCI 200 ) )
+					<S>	OP.|->
+							<S>	OP.|->
+									<S>	OP.|->
+											<S> 	OP.|-> 
+													<S>
+														OP.Rho (0.5) OM_V1 OM_V2
+													</S>
+													OM_SS
+											</S>
+											OM_D
+									</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+					</S>
+			</S>
+	</S>
+</S>
+};
+
+St_a020 := cStrategy
 	oModule: OM_S, OM_V1, OM_V2, OM_SS, OM_D;
 {
 <S>
@@ -53,7 +79,7 @@ St_a002 := cStrategy
 	<S>	OP.|->
 			OM_S
 			<S>
-				OP.Cyc ( BE.AND ( BE.LoopBnd 7000 , BE.SCI 1000 ) )
+				OP.Cyc ( BE.AND ( BE.LoopBnd 5000 , BE.SCI 200 ) )
 				<S> 	OP.|->
 						<S> 	OP.|->
 								<S> 	OP.|->
@@ -78,7 +104,7 @@ St_b001 := cStrategy
 	<S>
 		OP.|-> 	OM_S
 					<S>
-						OP.Cyc ( BE.LoopBnd 7000 )
+						OP.Cyc ( BE.LoopBnd 5000 )
 						<S>
 							OP.|-> 
 							<S>
@@ -98,21 +124,120 @@ St_b001 := cStrategy
 </S>
 };
 
+St_ra000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc (BE.LoopBnd 5000)
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|->
+									<S>
+										OP.|->   OM_V
+													<S> 
+														OP.? (BE.LoopBnd 10)
+														OM_SS
+														<S> OP.Min OM_SS OCh (Ch1) </S>
+													</S>
+									</S> OM_D
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+St_sa000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.AND ( BE.LoopBnd 5000 , BE.SCI 25 ) )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|->
+									<S>
+										OP.|-> OM_V <S> OP.OSend (send_1) OM_SS </S>
+									</S> OM_D
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+St_sb001 := cStrategy
+	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.LoopBnd 5000 )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|-> 	OM_V 
+												<S>
+													OP.? (BE.SCI 5) 
+													<S> OP.|-> <S> OP.OSend (send_1) OM_SS1 </S> OM_D </S> 
+													<S> OP.|-> OM_SS2 OM_D </S> //<S> OP.|-> <S> OP.OSend (send_2) OM_SS2 </S> OM_D </S>
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter							
+						</S>
+					</S>
+	</S>
+</S>
+};
+
 solver1 := solver
 {
-	cStrategy: St_a002;
-	oModule: OM_S.PermRand, OM_V.AS, OM_V.1Perm, OM_SS.FirstImpr, OM_D.AlwImpr;
+	cStrategy: St_a000;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr; // OM_V.1SwapBtwnBlocks
 };
 
 solver2 := solver
 {
 	cStrategy: St_b001;
-	oModule: OM_S.PermRand, OM_V.AS, OM_SS.BestImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+};
+
+receiver_solver := solver
+{
+	cStrategy: St_ra000;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP;
+};
+
+sender_solver := solver
+{
+	cStrategy: St_sa000;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 connections:
 
-//[sender_solver.send_1, sender_solver.send_2] OP.--> [receiver_solver.Ch1, receiver_solver.Ch1] 2;
 //[sender_solver.send_1] OP.--> [receiver_solver.Ch1] 2;
-[solver2]6;
+[solver1]6;
 //[solver2]3;

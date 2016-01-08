@@ -1,0 +1,115 @@
+----10 10 3 - 40  -----
+----END-----
+ 14:39:11 up 84 days,  3:52, 35 users,  load average: 0.00, 0.01, 0.05
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+hazem    pts/0    hp-morin5.lina.s Tue11   46:28m  0.23s  0.23s -bash
+montoya  pts/1    mac-montoya.lina 08:38   12:39   1.73s  0.06s vim /home/monto
+hazem    pts/2    hp-morin5.lina.s Tue18   28:15m 27:50   0.01s sshd: hazem [pr
+hazem    pts/3    hp-morin5.lina.s Tue11   28:40m  0.14s  0.14s -bash
+hazem    pts/4    hp-morin5.lina.s Tue11   28:43m  0.11s  0.11s -bash
+hazem    pts/5    hp-morin5.lina.s Tue11   28:27m  0.11s  0.11s -bash
+hazem    pts/6    hp-morin5.lina.s Tue11   44:26m  0.11s  0.11s -bash
+hazem    pts/7    hp-morin5.lina.s Tue11   28:37m  0.12s  0.12s -bash
+hazem    pts/8    hp-morin5.lina.s Tue11   46:27m  0.11s  0.11s -bash
+hazem    pts/9    hp-morin5.lina.s Tue11   25:55m  0.11s  0.11s -bash
+hazem    pts/10   hp-morin5.lina.s Tue11   28:29m  0.11s  0.11s -bash
+hazem    pts/11   hp-morin5.lina.s Tue12   26:18m  0.07s  0.07s -bash
+hazem    pts/12   hp-morin5.lina.s Tue12   28:29m  0.04s  0.04s -bash
+hazem    pts/13   hp-morin5.lina.s Tue12   46:06m  0.08s  0.08s -bash
+hazem    pts/14   hp-morin5.lina.s Tue12   46:27m  0.12s  0.12s -bash
+hazem    pts/15   hp-morin5.lina.s Tue12   46:26m  0.06s  0.06s -bash
+hazem    pts/16   hp-morin5.lina.s Tue12   21:19m  0.10s  0.10s -bash
+hazem    pts/18   hp-morin5.lina.s Tue12   22:05m  0.10s  0.10s -bash
+hazem    pts/19   hp-morin5.lina.s Tue12    3:23m  0.12s  0.12s -bash
+hazem    pts/20   hp-morin5.lina.s Tue12    3:23m  0.10s  0.10s -bash
+hazem    pts/21   hp-morin5.lina.s Tue12    3:23m  0.11s  0.11s -bash
+hazem    pts/22   hp-morin5.lina.s Tue12   28:16m  0.06s  0.06s -bash
+hazem    pts/23   hp-morin5.lina.s Tue12   28:16m  0.08s  0.08s -bash
+hazem    pts/24   hp-morin5.lina.s Tue12   46:24m  0.06s  0.06s -bash
+hazem    pts/25   hp-morin5.lina.s Tue12   46:24m  0.07s  0.07s -bash
+hazem    pts/26   hp-morin5.lina.s Tue12   46:23m  0.06s  0.06s -bash
+hazem    pts/27   hp-morin5.lina.s Tue15   26:59m  0.11s  0.11s -bash
+hazem    pts/28   hp-morin5.lina.s Tue15   47:10m  0.06s  0.06s -bash
+hazem    pts/29   hp-morin5.lina.s Tue15   47:09m  0.07s  0.07s -bash
+hazem    pts/30   hp-morin5.lina.s Tue15   47:09m  0.06s  0.06s -bash
+hazem    pts/31   hp-morin5.lina.s Tue15   47:09m  0.07s  0.07s -bash
+hazem    pts/32   hp-morin5.lina.s Tue15   47:08m  0.05s  0.05s -bash
+reyes    pts/33   pc-severine.lina Wed10    7.00s  0.19s  0.00s w
+hazem    pts/34   hp-morin5.lina.s Tue17   27:45m  0.81s  0.81s -bash
+montoya  pts/35   mac-montoya.lina 09:34    3:18m  0.58s  0.58s -bash
+   
+----10 10 3 - 40  -----
+980 274 St_a000 0
+1100 338 St_a000 16
+400 126 St_a000 3
+2510 814 St_a000 1
+2380 866 St_a000 22
+280 96 St_a000 2
+320 103 St_a000 13
+250 98 St_a000 28
+2760 986 St_a000 20
+1860 654 St_a000 10
+690 285 St_a000 17
+500 190 St_a000 12
+560 187 St_a000 27
+980 347 St_a000 16
+320 118 St_a000 33
+650 200 St_a000 32
+240 106 St_a000 15
+1080 311 St_a000 25
+1420 483 St_a000 8
+300 98 St_a000 9
+240 86 St_a000 16
+320 100 St_a000 27
+270 98 St_a000 26
+2130 660 St_a000 22
+1070 332 St_a000 37
+1310 337 St_a000 35
+2180 754 St_a000 15
+960 316 St_a000 2
+3970 1388 St_a000 11
+1880 607 St_a000 32
+250 99 St_a000 19
+880 318 St_a000 1
+1900 598 St_a000 29
+3930 1381 St_a000 37
+760 217 St_a000 38
+----END-----
+ 15:37:35 up 84 days,  4:50, 35 users,  load average: 39.94, 40.02, 39.04
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+hazem    pts/0    hp-morin5.lina.s Tue11   47:27m  0.23s  0.23s -bash
+montoya  pts/1    mac-montoya.lina 08:38    1:11m  1.73s  0.06s vim /home/monto
+hazem    pts/2    hp-morin5.lina.s Tue18   29:14m 28:50   0.01s sshd: hazem [pr
+hazem    pts/3    hp-morin5.lina.s Tue11   29:39m  0.14s  0.14s -bash
+hazem    pts/4    hp-morin5.lina.s Tue11   29:41m  0.11s  0.11s -bash
+hazem    pts/5    hp-morin5.lina.s Tue11   29:25m  0.11s  0.11s -bash
+hazem    pts/6    hp-morin5.lina.s Tue11   45:25m  0.11s  0.11s -bash
+hazem    pts/7    hp-morin5.lina.s Tue11   29:36m  0.12s  0.12s -bash
+hazem    pts/8    hp-morin5.lina.s Tue11   47:26m  0.11s  0.11s -bash
+hazem    pts/9    hp-morin5.lina.s Tue11   26:53m  0.11s  0.11s -bash
+hazem    pts/10   hp-morin5.lina.s Tue11   29:28m  0.11s  0.11s -bash
+hazem    pts/11   hp-morin5.lina.s Tue12   27:17m  0.07s  0.07s -bash
+hazem    pts/12   hp-morin5.lina.s Tue12   29:27m  0.04s  0.04s -bash
+hazem    pts/13   hp-morin5.lina.s Tue12   47:05m  0.08s  0.08s -bash
+hazem    pts/14   hp-morin5.lina.s Tue12   47:25m  0.12s  0.12s -bash
+hazem    pts/15   hp-morin5.lina.s Tue12   47:25m  0.06s  0.06s -bash
+hazem    pts/16   hp-morin5.lina.s Tue12   22:18m  0.10s  0.10s -bash
+hazem    pts/18   hp-morin5.lina.s Tue12   23:03m  0.10s  0.10s -bash
+hazem    pts/19   hp-morin5.lina.s Tue12    4:21m  0.12s  0.12s -bash
+hazem    pts/20   hp-morin5.lina.s Tue12    4:21m  0.10s  0.10s -bash
+hazem    pts/21   hp-morin5.lina.s Tue12    4:21m  0.11s  0.11s -bash
+hazem    pts/22   hp-morin5.lina.s Tue12   29:15m  0.06s  0.06s -bash
+hazem    pts/23   hp-morin5.lina.s Tue12   29:15m  0.08s  0.08s -bash
+hazem    pts/24   hp-morin5.lina.s Tue12   47:22m  0.06s  0.06s -bash
+hazem    pts/25   hp-morin5.lina.s Tue12   47:22m  0.07s  0.07s -bash
+hazem    pts/26   hp-morin5.lina.s Tue12   47:22m  0.06s  0.06s -bash
+hazem    pts/27   hp-morin5.lina.s Tue15   27:58m  0.11s  0.11s -bash
+hazem    pts/28   hp-morin5.lina.s Tue15    2days  0.06s  0.06s -bash
+hazem    pts/29   hp-morin5.lina.s Tue15    2days  0.07s  0.07s -bash
+hazem    pts/30   hp-morin5.lina.s Tue15    2days  0.06s  0.06s -bash
+hazem    pts/31   hp-morin5.lina.s Tue15    2days  0.07s  0.07s -bash
+hazem    pts/32   hp-morin5.lina.s Tue15    2days  0.05s  0.05s -bash
+reyes    pts/33   pc-severine.lina Wed10   57:27   0.19s  0.00s w
+hazem    pts/34   hp-morin5.lina.s Tue17   28:44m  0.81s  0.81s -bash
+montoya  pts/35   mac-montoya.lina 09:34    4:16m  0.58s  0.58s -bash
+   
