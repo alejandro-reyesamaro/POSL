@@ -1,0 +1,27 @@
+#pragma once
+
+#include "aom_rearrange_configuration.h"
+#include "strategy/rearrange_strategy.h"
+
+class OM_AdaptiveSearchRearrenge : public AOM_RearrangeConfiguration
+{
+    public:
+        OM_AdaptiveSearchRearrenge(std::shared_ptr<Benchmark> bench);
+
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution>);
+
+        //! From Codable
+        std::string codeToSend();
+
+        virtual std::string Tag();
+
+    private:
+          std::vector<int> config;
+          std::shared_ptr<RearrangeStrategy> all_circualr_shift_str;
+          std::shared_ptr<RearrangeStrategy> circualr_shift_str;
+          std::shared_ptr<RearrangeStrategy> add_const_str;
+          std::shared_ptr<Solution> sol_1;
+          std::shared_ptr<Solution> sol_2;
+          std::shared_ptr<Solution> sol_3;
+          int cost_1, cost_2, cost_3;
+};

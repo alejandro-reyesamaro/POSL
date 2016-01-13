@@ -3,6 +3,7 @@
 #include "../tools/tokens_definition.h"
 
 #include "om_s_uncoder.h"
+#include "om_r_uncoder.h"
 #include "om_v_uncoder.h"
 #include "om_ss_uncoder.h"
 #include "om_d_uncoder.h"
@@ -24,6 +25,11 @@ shared_ptr<OperationModule> OperationModuleUncoder::uncode(string code, shared_p
     {
         OM_S_Uncoder oms_unc;
         return oms_unc.uncode(code, bench);
+    }
+    else if(om_type == OM_R_TOK_TYPE) // REARRENGEMENT
+    {
+        OM_R_Uncoder omv_unc;
+        return omv_unc.uncode(code, bench);
     }
     else if(om_type == OM_V_TOK_TYPE) // NEIGHBORHOOD
     {

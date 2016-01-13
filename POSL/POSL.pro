@@ -261,7 +261,15 @@ SOURCES += src/main.cpp \
     src/testers/tester_cost_of_solution_costas_array.cpp \
     src/testers/tester_solver_costas_array.cpp \
     src/benchmarks/cost_strategy/squaring_square_cost_structure.cpp \
-    src/tools/upper_matrix.cpp
+    src/tools/upper_matrix.cpp \
+    src/modules/aom_rearrange_configuration.cpp \
+    src/modules/om_default_rearrange.cpp \
+    src/packing/om_r_uncoder.cpp \
+    src/modules/om_adaptive_search_rearrenge.cpp \
+    src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.cpp \
+    src/modules/strategy/add_a_constant_rearrange_strategy.cpp \
+    src/testers/tester_as_restart.cpp \
+    src/modules/strategy/circular_shift_around_bad_rearrange_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -525,7 +533,16 @@ HEADERS += \
     src/testers/tester_cost_of_solution_costas_array.h \
     src/testers/tester_solver_costas_array.h \
     src/benchmarks/cost_strategy/squaring_square_cost_structure.h \
-    src/tools/upper_matrix.h
+    src/tools/upper_matrix.h \
+    src/modules/aom_rearrange_configuration.h \
+    src/modules/om_default_rearrange.h \
+    src/packing/om_r_uncoder.h \
+    src/modules/om_adaptive_search_rearrenge.h \
+    src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.h \
+    src/modules/strategy/add_a_constant_rearrange_strategy.h \
+    src/testers/tester_as_restart.h \
+    src/modules/strategy/circular_shift_around_bad_rearrange_strategy.h \
+    src/modules/strategy/rearrange_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

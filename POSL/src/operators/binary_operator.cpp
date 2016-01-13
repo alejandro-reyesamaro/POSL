@@ -12,7 +12,9 @@ BinaryOperator::BinaryOperator(shared_ptr<CompoundModule> _M1,
 
 vector<ConnectorInfo> BinaryOperator::Jacks()
 {
-    return Tools::concat(M1->Jacks(), M2->Jacks());
+    vector<ConnectorInfo> jm1 = M1->Jacks();
+    vector<ConnectorInfo> jm2 = M2->Jacks();
+    return Tools::concat(jm1, jm2);//(M1->Jacks(), M2->Jacks());
 }
 
 vector<ConnectorInfo> BinaryOperator::Outlets()

@@ -18,7 +18,10 @@
 class OperationModule : public CompoundModule
 {
     //! From Connectable
-    std::vector<ConnectorInfo> Jacks() { return std::vector<ConnectorInfo>(0); }
+    std::vector<ConnectorInfo> Jacks()
+    {
+        return std::vector<ConnectorInfo>(0);
+    }
     std::vector<ConnectorInfo> Outlets() { return std::vector<ConnectorInfo>(0); }
     void connect(ConnectorInfo, int) {}
 };

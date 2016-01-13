@@ -49,3 +49,4 @@
 #include "tester_golfers_as_neighborhood.h"
 #include "tester_cost_of_solution_costas_array.h"
 #include "tester_solver_costas_array.h"
+#include "tester_as_restart.h"
