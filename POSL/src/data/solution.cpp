@@ -28,12 +28,15 @@ void Solution::UpdateConfigurationFromPack(int * pack)
 
 bool Solution::equal(std::shared_ptr<Solution> other)
 {
+    return Tools::equals_vectors(other->configuration, configuration);
+    /*
     if (other->configuration.size() != configuration.size())
         return false;
     for(unsigned int i = 0; i < configuration.size(); i++)
         if (other->configuration[i] != configuration[i])
             return false;
     return true;
+    */
 }
 
 std::string Solution::configurationToString(){ return Tools::configurationToString(configuration); }

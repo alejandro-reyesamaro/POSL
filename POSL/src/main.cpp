@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOfSolutionNQueens>(argc, argv));
-    //tests.push_back(make_shared<Tester_CostOfSolutionCostasArray>(argc, argv));
+
     //tests.push_back(make_shared<Tester_OneElementChangedNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_MultiElementsChangedNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_GolfersPermutationNeighborhood>(argc, argv));
@@ -55,14 +55,20 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
     //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
-    //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
-    //tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
+    tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolfers>(argc, argv));
     //tests.push_back(make_shared<Tester_CodingPOSL>(argc, argv));
     //tests.push_back(make_shared<Tester_PackingStrategies>(argc, argv));
     //tests.push_back(make_shared<Tester_AdaptiveSearchNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_GolfersASNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_ASRestart>(argc, argv));
+    //tests.push_back(make_shared<Tester_ASRestart>(argc, argv));
+    //tests.push_back(make_shared<Tester_BinarySearchTree>(argc, argv));
+    //tests.push_back(make_shared<Tester_KBestImprovementSelection>(argc, argv));
+    //tests.push_back(make_shared<Tester_Golfers1WeekNeighborhood>(argc, argv));
+
+    //tests.push_back(make_shared<Tester_DanielRestart>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
+    //tests.push_back(make_shared<Tester_CostOfSolutionCostasArray>(argc, argv));
 
     string output_str;
     //for(int k = 0; k < 25; k ++)

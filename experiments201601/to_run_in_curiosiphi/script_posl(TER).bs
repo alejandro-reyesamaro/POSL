@@ -1,0 +1,17 @@
+runs=2
+
+fr="file_result";
+posl_code="./golfers_exp.posl"; 
+
+p=5;
+g=3;
+w=7;
+cores=6
+
+echo "----$p $g $w : $cores  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich -np $cores ./bin_par/POSL golfers $p-$g-$w $posl_code >> $fr
+done
+echo "----END-----" >> $fr
+echo "   " >> $fr

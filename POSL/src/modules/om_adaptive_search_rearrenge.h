@@ -20,8 +20,6 @@ class OM_AdaptiveSearchRearrenge : public AOM_RearrangeConfiguration
           std::shared_ptr<RearrangeStrategy> all_circualr_shift_str;
           std::shared_ptr<RearrangeStrategy> circualr_shift_str;
           std::shared_ptr<RearrangeStrategy> add_const_str;
-          std::shared_ptr<Solution> sol_1;
-          std::shared_ptr<Solution> sol_2;
-          std::shared_ptr<Solution> sol_3;
+          std::vector<std::shared_ptr<Solution>>  three_stpes_solutions;
           int cost_1, cost_2, cost_3;
 };

@@ -16,13 +16,27 @@
 
 using namespace std;
 
+#include <limits.h>
+#include <unistd.h>
+
+std::string getexepath()
+{
+	char result[ PATH_MAX ];
+  	ssize_t count = readlink( "/proc/self/exe", result, PATH_MAX );
+  	return std::string( result, (count > 0) ? count : 0 );
+}
+
 int main(int argc, char *argv[])
 {
     string tbench = argv[1];   
     string params = argv[2];    
-	string path = argv[3];	
-    
+	string path = argv[3];
+
     shared_ptr<Benchmark> bench;
+
+    string exe_path = getexepath();
+    size_t p = exe_path.find_last_of('/');
+    string log_path = exe_path.substr(0, p);
 
     if(tbench == "golfers")
     {
@@ -72,7 +86,7 @@ int main(int argc, char *argv[])
 
 	try
 	{
-	    shared_ptr<POSL_MetaSolver> s(make_shared<POSL_MetaSolver>(path, comm_size, bench));
+	    shared_ptr<POSL_MetaSolver> s(make_shared<POSL_MetaSolver>(path, comm_size, bench, log_path));
 	    s->solve_in_parallel();
 	}catch (const char* msg)
 	{

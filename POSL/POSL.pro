@@ -269,7 +269,20 @@ SOURCES += src/main.cpp \
     src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.cpp \
     src/modules/strategy/add_a_constant_rearrange_strategy.cpp \
     src/testers/tester_as_restart.cpp \
-    src/modules/strategy/circular_shift_around_bad_rearrange_strategy.cpp
+    src/modules/strategy/circular_shift_around_bad_rearrange_strategy.cpp \
+    src/modules/om_daniel_as_restart_rearrange.cpp \
+    src/testers/tester_daniel_restart.cpp \
+    src/data/dStrategy/neighbor_selecting_k_best_improvement.cpp \
+    src/tools/binary_search_tree.cpp \
+    src/testers/tester_binary_search_tree.cpp \
+    src/modules/om_k_best_improvement_selection.cpp \
+    src/testers/tester_k_best_improvement_selection.cpp \
+    src/data/golfers_single_week_swap_neighborhood.cpp \
+    src/modules/om_golfers_single_week_swap_neighborhood.cpp \
+    src/testers/tester_golfers_1_week_neighborhood.cpp \
+    src/operators/strategy/not_null_sequential_strategy.cpp \
+    src/operators/not_null_operator.cpp \
+    src/tools/posl_log.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -542,7 +555,20 @@ HEADERS += \
     src/modules/strategy/add_a_constant_rearrange_strategy.h \
     src/testers/tester_as_restart.h \
     src/modules/strategy/circular_shift_around_bad_rearrange_strategy.h \
-    src/modules/strategy/rearrange_strategy.h
+    src/modules/strategy/rearrange_strategy.h \
+    src/modules/om_daniel_as_restart_rearrange.h \
+    src/testers/tester_daniel_restart.h \
+    src/data/dStrategy/neighbor_selecting_k_best_improvement.h \
+    src/tools/binary_search_tree.h \
+    src/testers/tester_binary_search_tree.h \
+    src/modules/om_k_best_improvement_selection.h \
+    src/testers/tester_k_best_improvement_selection.h \
+    src/data/golfers_single_week_swap_neighborhood.h \
+    src/modules/om_golfers_single_week_swap_neighborhood.h \
+    src/testers/tester_golfers_1_week_neighborhood.h \
+    src/operators/strategy/not_null_sequential_strategy.h \
+    src/operators/not_null_operator.h \
+    src/tools/posl_log.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

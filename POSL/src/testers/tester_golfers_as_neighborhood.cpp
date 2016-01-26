@@ -14,7 +14,7 @@ Tester_GolfersASNeighborhood::Tester_GolfersASNeighborhood(int argc, char *argv[
 
 string Tester_GolfersASNeighborhood::test()
 {
-    shared_ptr<Benchmark> bench(make_shared<Golfers>(4, 4, 2));
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
 
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 

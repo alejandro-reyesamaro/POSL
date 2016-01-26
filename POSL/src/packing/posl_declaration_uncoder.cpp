@@ -44,7 +44,7 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
                     st_instance = make_shared<ComputationStrategy>(strategy_name, strategy_code);
                     st_instance->Instantiate(sdec.Operation_Module_Instance_Names, sdec.Open_Channel_Instance_Names, bench);
                     solver = make_shared<POSL_Solver>(sdec.Solver_Name, bench, st_instance);
-                    solvers_list.insert(sdec.Solver_Name, solver);//push_back(solver);
+                    solvers_list.insert_or_replace(sdec.Solver_Name, solver);//push_back(solver);
                 }
                 else
                     throw "(POSL Exception) No such strategy declared (PoslUncoder::uncode) [" + strategy_name + "]";
@@ -55,7 +55,7 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
                 pos_br_clse = code.find("}");
                 strategy_code = code.substr(0, pos_br_clse + 1);
                 strategy_name = CodingTools::extractDeclarationName(strategy_code);
-                strategies.insert(strategy_name, strategy_code);
+                strategies.insert_or_replace(strategy_name, strategy_code);
                 code = code.substr(pos_br_clse + 1);
             }
 

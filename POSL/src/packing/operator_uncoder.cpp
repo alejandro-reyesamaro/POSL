@@ -13,6 +13,7 @@
 #include "../operators/speed_operator.h"
 #include "../operators/union_operator.h"
 #include "../operators/min_operator.h"
+#include "../operators/not_null_operator.h"
 
 using namespace std;
 
@@ -77,6 +78,8 @@ shared_ptr<Operator> OperatorUncoder::uncode(string code, shared_ptr<Benchmark> 
 
         if (op_name == OP_MIN_TOK_NAME)
             return make_shared<MinOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
+        if (op_name == OP_NOTNULL_TOK_NAME)
+            return make_shared<NotNullOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
         else if (op_name == OP_SEQUENTIAL_EXECUTION_TOK_NAME)
             return make_shared<SequentialExecOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
         else if (op_name == OP_SPEED_TOK_NAME)

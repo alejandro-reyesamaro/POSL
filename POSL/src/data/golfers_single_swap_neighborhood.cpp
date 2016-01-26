@@ -28,7 +28,7 @@ void GolfersSingleSwapNeighborhood::updateChanges()
     changes.clear();
     int weeks = current_configuration.size() / (players*groups);    
 
-    for (int w = 1; w < weeks; w++) // w = 1 porque la primera semana se mantiene igual
+    for (int w = 1; w < weeks; w++) // w = 1 because the first week remains the same
     {
         srand(time(0));
         for(int i = 0; i < groups; i++)

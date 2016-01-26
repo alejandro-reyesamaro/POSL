@@ -14,7 +14,14 @@ shared_ptr<ComputationData> OMS_TimeCounter::execute(shared_ptr<PSP> psp, shared
     if(!chrono->isRunning())
         chrono->start();
     else
+    {
         psp->UpdateTime(chrono->TimeMiliseconds());
+        if(psp->GetTime() > psp->GetTimeOut())
+        {
+            cout << "(POSL exception) cutting time" << endl;
+            exit(0);
+        }
+    }
 
     //cout << "Time counted: " << psp->GetTime() << endl;
     return input;

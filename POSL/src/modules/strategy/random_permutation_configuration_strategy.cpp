@@ -5,6 +5,10 @@ RandomPermutationConfigurationStrategy::RandomPermutationConfigurationStrategy(i
     : config(Tools::generateMonotony(N))
 {}
 
+RandomPermutationConfigurationStrategy::RandomPermutationConfigurationStrategy(int a, int b)
+    : config(Tools::generateMonotony(a, b))
+{}
+
 std::vector<int> RandomPermutationConfigurationStrategy::generate()
 {
     Tools::shuffle(config);

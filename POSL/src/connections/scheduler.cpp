@@ -35,7 +35,7 @@ int Scheduler::schedule(shared_ptr<POSL_Solver> solver)
         pos_to_return = ptr_solver_name - solver_names.begin();
 
     if(!solver_instances->existsKey(solver_name))
-        solver_instances->insert(solver_name, solver);
+        solver_instances->insert_or_replace(solver_name, solver);
     return pos_to_return;
 }
 

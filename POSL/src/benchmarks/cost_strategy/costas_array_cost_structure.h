@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "../../tools/t_changes.h"
+#include "../../tools/randomizer.h"
 
 class CostasArrayCostStructure
 {
@@ -13,6 +14,7 @@ class CostasArrayCostStructure
 
         void init(std::vector<int> config);
         int costOnVariable(int index);
+        void Reset();
 
         int N;
         int CurrentCost;
@@ -21,7 +23,10 @@ class CostasArrayCostStructure
     private:
         int m_error(){ return (N * N - (dist * dist)); }
         void m_errOn(int k) { err[k] += m_error(); err[k - dist] += m_error(); }
+        void Random_Array_Permut(std::vector<int> vec, int begin, int size);
+        int Cost(std::vector<int> config, bool update);
 
+        Randomizer rand;
         int dist = 1;
         int i, first_i;
         int diff, diff_translated;
@@ -30,4 +35,9 @@ class CostasArrayCostStructure
         std::vector<int> err;       /* errors on variables */
         std::vector<int> nb_occ;    /* nb occurrences of each distance -(size -1)..-1 1..size-1 (0 is unused) */
         std::vector<int> first;		/* records the indice of a first occurence of a distance */
+
+        std::vector<int> save_sol;  /* save the sol[] vector */
+        std::vector<int> best_sol;  /* save the best sol[] found in a reset phase */
+        std::vector<int> i_err;     /* indices of erroneous vars */
+        std::vector<int> to_add;	/* some values to add (circularly) at reset */
 };

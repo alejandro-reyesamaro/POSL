@@ -3,12 +3,14 @@
 #include "../benchmarks/benchmark.h"
 #include "../data/solution.h"
 #include "comunicator.h"
+#include "../tools/posl_log.h"
 
 class PSP
 {
     public:
         PSP(std::shared_ptr<Benchmark> _bench);
         PSP(std::shared_ptr<Benchmark> _bench, int _pID);
+        PSP(std::shared_ptr<Benchmark> _bench, int _pID, std::string _logs_path);
 
         //! Properties
         int GetPID() { return pID; }
@@ -20,6 +22,8 @@ class PSP
         int CurrentCost() { return bench->currentCost(); }
         int BestCostSoFar() { return best_found_cost; }
         bool FoundThanksOuterInformation() { return found_thanks_outer_information; }
+        void SetTimeOut(int milliseconds) { time_out = milliseconds; }
+        int GetTimeOut() { return time_out; }
 
         //! State functions
         void Start(std::vector<int> config);
@@ -28,6 +32,8 @@ class PSP
         void UpdateSolution(std::vector<int> config);
         void SearchingWithOuterInformation_ON() { outer_information = true; }
         void SearchingWithOuterInformation_OFF() { outer_information = false; }
+
+        void log(std::string text);
 
     private:
         std::shared_ptr<Benchmark> bench;
@@ -38,4 +44,7 @@ class PSP
         int pID;
         bool outer_information;
         bool found_thanks_outer_information;
+        int time_out;
+        POSL_Log plog;
+        std::string logs_path;
 };

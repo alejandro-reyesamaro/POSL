@@ -1,7 +1,6 @@
 #include "costas_array.h"
 #include "../tools/tools.h"
 #include "../data/dStrategy/factory_n_int_domain.h"
-#include "cost_strategy/costas_array_relative_cost_strategy.h"
 #include "show_strategy/costas_array_default_show_strategy.h"
 #include "cost_strategy/costas_array_daniel_cost_strategy.h"
 
@@ -22,4 +21,14 @@ string CostasArray::showInstance()
 {
     string out =  "Costas Array: n = " + Tools::int2str(n);
     return out;
+}
+
+shared_ptr<CostasArrayRelativeCostStrategy> CostasArray::cast_my_relative_strategy()
+{
+    return static_pointer_cast<CostasArrayRelativeCostStrategy>(relative_cost_strategy);
+}
+
+vector<int> CostasArray::Reset(vector<int> current_configuration)
+{
+    return cast_my_relative_strategy()->Reset(current_configuration);
 }

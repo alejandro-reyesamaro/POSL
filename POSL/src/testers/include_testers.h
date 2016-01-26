@@ -50,3 +50,7 @@
 #include "tester_cost_of_solution_costas_array.h"
 #include "tester_solver_costas_array.h"
 #include "tester_as_restart.h"
+#include "tester_daniel_restart.h"
+#include "tester_binary_search_tree.h"
+#include "tester_k_best_improvement_selection.h"
+#include "tester_golfers_1_week_neighborhood.h"

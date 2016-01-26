@@ -21,13 +21,13 @@ class HashMap
             return hash_table.at(key);
         }
 
-        void insert(Tkey key, Tmap map)
+        void insert_or_replace(Tkey key, Tmap map)
         {
             typename std::unordered_map<Tkey, Tmap>::const_iterator it_find = hash_table.find(key);
             if ( it_find != hash_table.end() )
                 hash_table.erase(key);
             hash_table.insert({key, map});
-        }
+        }        
 
         HashMap<Tkey, Tmap> merge(HashMap<Tkey, Tmap> other)
         {

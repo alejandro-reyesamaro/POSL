@@ -7,6 +7,7 @@ class RandomPermutationConfigurationStrategy
 {
     public:
         RandomPermutationConfigurationStrategy(int N);
+        RandomPermutationConfigurationStrategy(int a, int b);
 
         std::vector<int> generate();
 

@@ -57,6 +57,22 @@ vector<int> Tester::Golfers_442_c0()
     };
 }
 
+vector<int> Tester::Golfers_442_c14()
+{
+    return
+    {
+        1,  2,   3,  4,
+        5,  6,   7,  8,
+        9,  10, 11, 12,
+        13, 14, 15, 16,
+
+         1,  5,   7,  9,
+         2, 11,  10,  13,
+        15, 12,  16,  14,
+         4,  3,   6,  8
+    };
+}
+
 vector<int> Tester::Golfers_444_c()
 {
     return

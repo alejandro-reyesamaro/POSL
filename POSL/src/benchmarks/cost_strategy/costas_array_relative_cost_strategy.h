@@ -20,6 +20,8 @@ class CostasArrayRelativeCostStrategy : public RelativeCostStrategy
         int costOnVariable(int i);
         int sickestVariable();
 
+        std::vector<int> Reset(std::vector<int> current_configuration);
+
     private:
 
         int N;

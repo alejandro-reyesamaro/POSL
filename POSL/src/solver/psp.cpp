@@ -5,19 +5,28 @@
 
 using namespace std;
 
-PSP::PSP(std::shared_ptr<Benchmark> _bench, int _pID)
+#define EXIT_TIME 300000
+
+PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
     : bench(_bench),
       iterations(0),
       milisecs(0),
       best_found_configuration(_bench->Domains().size(),1),
-      best_found_cost(1000),
+      best_found_cost(100000),
       pID(_pID),
       outer_information(false),
-      found_thanks_outer_information(false)
+      found_thanks_outer_information(false),
+      time_out(EXIT_TIME),
+      plog(max(0, _pID), _logs_path),
+      logs_path(_logs_path)
 {}
 
-PSP::PSP(std::shared_ptr<Benchmark> _bench)
-    : PSP (_bench, -1)
+PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)
+    : PSP (_bench, _pID, "./logs")
+{}
+
+PSP::PSP(shared_ptr<Benchmark> _bench)
+    : PSP (_bench, -1, "./logs")
 {}
 
 
@@ -48,3 +57,5 @@ void PSP::Start(vector<int> config)
 void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 
 void PSP::CountIteration(){ iterations ++; }
+
+void PSP::log(std::string text){ plog.log(text); }

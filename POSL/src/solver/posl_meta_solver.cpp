@@ -15,11 +15,13 @@
 
 using namespace std;
 
-POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchmark> bench)
+POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchmark> bench, string _exe_path)
     : comm_size(_comm_size),
       scheduler(make_shared<Scheduler>(_comm_size)),
-      benchmark(bench)
+      benchmark(bench),
+      exe_path(_exe_path)
 {
+    //cout << exe_path << endl;
     shared_ptr<PoslUncoder> posl_unc;
     pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);
     HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench);
@@ -70,6 +72,10 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
     }
 }
 
+POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchmark> bench)
+    :POSL_MetaSolver(path, _comm_size, bench, "./logs")
+{}
+
 void POSL_MetaSolver::solve_in_parallel()
 {
     int myid = 0;
@@ -78,9 +84,11 @@ void POSL_MetaSolver::solve_in_parallel()
     if(myid < scheduler->schedulerSize())
     {
         shared_ptr<POSL_Solver> solver = scheduler->getSolverAt(myid);
-        shared_ptr<PSP> psp(make_shared<PSP>(benchmark, myid));
+        shared_ptr<PSP> psp(make_shared<PSP>(benchmark, myid, exe_path));
         solver->solve(psp);
-        cout << solver->show(psp) << endl;        
+        string output = solver->show(psp);
+        cout << output << endl;
+        psp->log(output);
     }    
     exit(0);
 }
@@ -92,7 +100,9 @@ void POSL_MetaSolver::solve_sequentially()
     {
         shared_ptr<PSP> psp(make_shared<PSP>(benchmark));
         solver->solve(psp);
-        cout << solver->show(psp) << endl;
+        string output = solver->show(psp);
+        cout << output << endl;
+        psp->log(output);
         exit(0);
     }    
 }

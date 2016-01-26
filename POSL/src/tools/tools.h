@@ -43,6 +43,7 @@ class Tools
         static T_Changes GetChanges(std::vector<int> config_before, std::vector<int> config_after);
         static int sum(std::vector<int> v);
         static int identity(int x, int base = 1);
+        static bool equals_vectors(std::vector<int> v1, std::vector<int> v2);
 
         template<typename T>
         static std::vector<T> concat(std::vector<T> vector1, std::vector<T> vector2)
