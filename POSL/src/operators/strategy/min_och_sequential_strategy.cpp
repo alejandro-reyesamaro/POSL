@@ -41,7 +41,7 @@ shared_ptr<ComputationData> MinOChSequentialStrategy::evaluate(shared_ptr<PSP> p
         {
             shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(result_och);
             psp->Start(pair->GetFound()->GetConfiguration());
-            psp->log("Taking outer solution...");
+            //psp->log("Taking outer solution...");
             return result_och;
         }
         // Neighborhoods

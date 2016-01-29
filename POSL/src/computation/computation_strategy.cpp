@@ -19,7 +19,7 @@ void ComputationStrategy::Instantiate(vector<string> om_instances, vector<string
 shared_ptr<Solution> ComputationStrategy::execute(shared_ptr<PSP> psp)
 {
     if(module)
-        return static_pointer_cast<Solution>(module->execute(psp, make_shared<Seed>()));
+        return static_pointer_cast<Solution>(module->execute(psp, psp->GetSeed()));
     else
         throw "(POSL Exception) The compound module is not ready (ComputationStrategy::execute)";
 }

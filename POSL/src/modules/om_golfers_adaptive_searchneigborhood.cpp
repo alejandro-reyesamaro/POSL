@@ -13,8 +13,9 @@ OM_GolfersAdaptiveSearchNeigborhood::OM_GolfersAdaptiveSearchNeigborhood(shared_
                                                        object_bench->Groups()))
 {}
 
-shared_ptr<Neighborhood> OM_GolfersAdaptiveSearchNeigborhood::spcf_execute(shared_ptr<PSP>, shared_ptr<Solution> input)
+shared_ptr<Neighborhood> OM_GolfersAdaptiveSearchNeigborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
+    V->SetSeed(psp->GetSeed());
     V->Init(input->GetConfiguration());
     //cout << "OM_V" << endl;
     return V;

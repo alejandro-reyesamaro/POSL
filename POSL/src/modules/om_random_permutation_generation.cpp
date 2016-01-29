@@ -17,11 +17,11 @@ OM_RandomPermutationGeneration::OM_RandomPermutationGeneration(shared_ptr<Benchm
 {
 }
 
-shared_ptr<Solution> OM_RandomPermutationGeneration::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Seed>)
+shared_ptr<Solution> OM_RandomPermutationGeneration::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Seed> seed)
 {
-    rsolution->UpdateConfiguration(rconf_strategy->generate());
+    rsolution->UpdateConfiguration(rconf_strategy->generate(seed));
     psp->Start(rsolution->GetConfiguration());
-    psp->log("Start ");//->" + rsolution->configurationToString());
+    //psp->log("Start ");//->" + rsolution->configurationToString());
     return rsolution;
 }
 

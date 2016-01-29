@@ -67,6 +67,5 @@ int CostasArrayRelativeCostStrategy::sickestVariable()
             bad_variables.pushBack(i);
         }
     }
-
     return bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
 }

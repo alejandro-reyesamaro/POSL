@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../tools/t_changes.h"
+#include "../../data/seed.h"
 
 #include <vector>
 

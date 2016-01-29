@@ -26,7 +26,13 @@ GolfersAdaptiveSearchNeighborhood::GolfersAdaptiveSearchNeighborhood(shared_ptr<
       weeks(_config_size / _TP),
       w_index(Tools::generateMonotony(1, _W - 1))
 {
-    updateChanges();
+    //updateChanges();
+}
+
+void GolfersAdaptiveSearchNeighborhood::SetSeed(std::shared_ptr<Seed> _seed)
+{
+    if(!my_seed)
+        my_seed = _seed;
 }
 
 void GolfersAdaptiveSearchNeighborhood::updateChanges()

@@ -18,7 +18,8 @@ PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
       found_thanks_outer_information(false),
       time_out(EXIT_TIME),
       plog(max(0, _pID), _logs_path),
-      logs_path(_logs_path)
+      logs_path(_logs_path),
+      the_seed(make_shared<Seed>()) // To achive real pseudo-random, remove the numeric argument
 {}
 
 PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)
@@ -28,7 +29,6 @@ PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)
 PSP::PSP(shared_ptr<Benchmark> _bench)
     : PSP (_bench, -1, "./logs")
 {}
-
 
 void PSP::UpdateSolution(vector<int> config)
 {
@@ -40,13 +40,12 @@ void PSP::UpdateSolution(vector<int> config)
         copy(config.begin(), config.end(), best_found_configuration.begin());
         best_found_cost = cost;
         found_thanks_outer_information = outer_information;
-    }    
+    }
 }
 
 void PSP::Start(vector<int> config)
 {
-    bench->InitializeCostData(config);    
-    //bench->UpdateSolution(config);
+    bench->InitializeCostData(config);
     if(iterations == 0)
     {
         copy(config.begin(), config.end(), best_found_configuration.begin());
@@ -58,4 +57,4 @@ void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 
 void PSP::CountIteration(){ iterations ++; }
 
-void PSP::log(std::string text){ plog.log(text); }
+//void PSP::log(std::string text){ plog.log(text); }

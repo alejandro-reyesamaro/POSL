@@ -45,7 +45,7 @@ St_sb001 := cStrategy
 												<S>
 													OP.? (BE.SCI 5) 
 													<S> OP.|-> <S> OP.OSend (send_1) OM_SS1 </S> OM_D </S> 
-													<S> OP.|-> OM_SS2 OM_D </S> //<S> OP.|-> <S> OP.OSend (send_2) OM_SS2 </S> OM_D </S>
+													<S> OP.|-> OM_SS2 OM_D </S> 
 												</S>
 								</S> OMS.IterCounter
 							</S> OMS.TimeCounter							

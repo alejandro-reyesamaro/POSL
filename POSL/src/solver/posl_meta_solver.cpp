@@ -88,7 +88,7 @@ void POSL_MetaSolver::solve_in_parallel()
         solver->solve(psp);
         string output = solver->show(psp);
         cout << output << endl;
-        psp->log(output);
+        //psp->log(output);
     }    
     exit(0);
 }
@@ -102,7 +102,7 @@ void POSL_MetaSolver::solve_sequentially()
         solver->solve(psp);
         string output = solver->show(psp);
         cout << output << endl;
-        psp->log(output);
+        //psp->log(output);
         exit(0);
     }    
 }

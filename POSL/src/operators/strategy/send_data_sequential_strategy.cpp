@@ -16,7 +16,10 @@ shared_ptr<ComputationData> SendDataSequentialStrategy::evaluate(shared_ptr<PSP>
 {
     output = M1->execute(psp, input);
     for(vector<int>::iterator it = destinies.begin(); it != destinies.end(); ++it)
+    {
         comm->sendMessage(output->BuildPacker()->pack(), *it);
+        //psp->log("Sending data");
+    }
     return output;
 }
 

@@ -43,6 +43,7 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
             return receive_and_log(id, tag, psp);
         else
         {
+            //psp->log("Receiving data");
             MPI_Get_count(&status, MPI_INT, &pack_size);
             int * buffer = new int[pack_size];
             MPI_Recv(buffer, pack_size, MPI_INT, status.MPI_SOURCE, tag, MPI_COMM_WORLD, &status);

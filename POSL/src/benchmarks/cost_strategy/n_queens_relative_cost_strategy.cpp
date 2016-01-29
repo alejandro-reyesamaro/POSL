@@ -31,7 +31,6 @@ int NQueensRelativeCostStrategy::relative_cost(vector<int> new_config, T_Changes
     return nq_str ->relative_cost(new_config, change, updating);
 }
 
-
 int NQueensRelativeCostStrategy::relativeSolutionCost(vector<int> _configuration)
 {
     T_Changes changes = Tools::GetChanges(nq_str->Configuration, _configuration);
@@ -66,6 +65,5 @@ int NQueensRelativeCostStrategy::sickestVariable()
             bad_variables.pushBack(i);
         }
     }
-
     return bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
 }

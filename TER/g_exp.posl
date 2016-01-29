@@ -1,0 +1,123 @@
+St_rb001 := cStrategy
+	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.Cyc (BE.LoopBnd 50) 
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.LoopBnd 5000 )
+						<S>
+							OP.|-> 
+							<S>
+								OP.|-> 
+								<S> 
+									OP.|-> 	OM_V 
+												<S>
+													OP.? (BE.SCI 50) 
+													<S> 	OP.|-> 
+															<S> 
+																OP.? (BE.LoopBnd 10) 
+																OM_SS1 
+																<S> OP.Min OM_SS1 OCh (Ch1) </S> 
+															</S> 
+															OM_D 
+													</S> 
+													<S> OP.|-> OM_SS2 OM_D </S>
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+St_sb001 := cStrategy
+	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.LoopBnd 5000 )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|-> 	OM_V 
+												<S>
+													OP.? (BE.SCI 5) 
+													<S> 	OP.|-> 
+															<S>
+																OP.? (BE.SCI 10) 																
+																OM_SS1
+																<S> OP.OSend (send_1) OM_SS1 </S> 
+															</S>															 
+															OM_D 
+													</S> 
+													<S> OP.|-> OM_SS2 OM_D </S> 
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter							
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+St_b001 := cStrategy
+	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+{
+<S>
+	OP.Cyc (BE.LoopBnd 50) 
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.LoopBnd 5000 )
+						<S>
+							OP.|-> 
+							<S>
+								OP.|-> 
+								<S> 
+									OP.|-> 	OM_V 
+												<S>
+													OP.? (BE.SCI 50) 
+													<S> OP.|-> OM_SS1 OM_D </S> 
+													<S> OP.|-> OM_SS2 OM_D </S>
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+solver_sender := solver
+{
+	cStrategy: St_sb001;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+};
+
+solver_single := solver
+{
+	cStrategy: St_b001;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+};
+
+solver_receiver := solver
+{
+	cStrategy: St_rb001;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oChannel: OCh.DP;
+};
+
+connections:
+
+//[solver_sender.send_1] OP.--> [solver_receiver.Ch1]10;
+[solver_sender.send_1] OP.#-> [solver_receiver.Ch1]2;
+[solver_single]2;

@@ -6,7 +6,7 @@ St_b001 := cStrategy
 	<S>
 		OP.|-> 	OM_S
 					<S>
-						OP.Cyc ( BE.LoopBnd 5000 )
+						OP.Cyc ( BE.LoopBnd 1000 )
 						<S>
 							OP.|-> 
 							<S>

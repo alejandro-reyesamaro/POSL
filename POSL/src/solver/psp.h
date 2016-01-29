@@ -24,6 +24,7 @@ class PSP
         bool FoundThanksOuterInformation() { return found_thanks_outer_information; }
         void SetTimeOut(int milliseconds) { time_out = milliseconds; }
         int GetTimeOut() { return time_out; }
+        std::shared_ptr<Seed> GetSeed() { return the_seed; }
 
         //! State functions
         void Start(std::vector<int> config);
@@ -33,7 +34,7 @@ class PSP
         void SearchingWithOuterInformation_ON() { outer_information = true; }
         void SearchingWithOuterInformation_OFF() { outer_information = false; }
 
-        void log(std::string text);
+        //void log(std::string text);
 
     private:
         std::shared_ptr<Benchmark> bench;
@@ -47,4 +48,5 @@ class PSP
         int time_out;
         POSL_Log plog;
         std::string logs_path;
+        std::shared_ptr<Seed> the_seed;
 };

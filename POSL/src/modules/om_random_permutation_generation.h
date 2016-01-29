@@ -10,7 +10,7 @@ class OM_RandomPermutationGeneration : public AOM_FirstConfigurationGeneration
     public:
         OM_RandomPermutationGeneration(std::shared_ptr<Benchmark> bench);
 
-        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed>);
+        std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed> seed);
 
         //! From Codable
         std::string codeToSend();

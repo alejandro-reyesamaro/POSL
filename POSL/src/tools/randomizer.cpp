@@ -3,10 +3,8 @@
 using namespace std;
 
 Randomizer::Randomizer()
-    : seed(),
-      generator(seed.seed())
-{
-}
+    : generator(std::default_random_engine(make_shared<Seed>()->seed()))
+{}
 
 int Randomizer::NextInt(int min, int max)
 {

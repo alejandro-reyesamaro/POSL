@@ -23,6 +23,7 @@ class GolfersAdaptiveSearchNeighborhood
         std::vector<int> neighborAt(int index);
         std::shared_ptr<FactoryPacker> BuildPacker();
         void Init(std::vector<int> _configuration);
+        void SetSeed(std::shared_ptr<Seed> _seed);
 
     private:
         void updateChanges();
@@ -33,4 +34,5 @@ class GolfersAdaptiveSearchNeighborhood
         int players, groups, weeks;        
         std::vector<int> w_index;
         std::vector<T_Changes> changes;
+        std::shared_ptr<Seed> my_seed;
 };

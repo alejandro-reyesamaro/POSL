@@ -1,0 +1,19 @@
+runs=35
+
+fr="fr";
+posl_code="./nq_1.1.posl"; #"./golfers_exp.posl"; 
+
+p=5;
+g=3;
+w=7;
+n=1500;
+cores=40
+
+echo "----$p $g $w : $cores  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	#mpiexec.mpich2 -np $cores ./bin/POSL golfers $p-$g-$w $posl_code >> $fr
+	mpiexec.mpich2 -np $cores ./bin/POSL nqueens $n $posl_code >> $fr
+done
+echo "----END-----" >> $fr
+echo "   " >> $fr

@@ -12,7 +12,8 @@ AllCircularShiftAroundWorstRearrangeStrategy::AllCircularShiftAroundWorstRearran
 {}
 
 /// Example code in cpp.sh/32whl
-shared_ptr<Solution> AllCircularShiftAroundWorstRearrangeStrategy::rearrangement(vector<int> current_configuration, shared_ptr<Benchmark> benchmark)
+shared_ptr<Solution> AllCircularShiftAroundWorstRearrangeStrategy::rearrangement(vector<int> current_configuration,
+                                                                                 shared_ptr<Benchmark> benchmark)
 {
     int worst_index = benchmark->sickestVariable();
     int w = worst_index + 1;

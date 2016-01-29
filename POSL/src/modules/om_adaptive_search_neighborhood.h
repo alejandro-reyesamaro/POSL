@@ -12,7 +12,7 @@ class OM_AdaptiveSearchNeighborhood : public AOM_NeighborhoodFunction
         //! Constructor
         OM_AdaptiveSearchNeighborhood(std::shared_ptr<Benchmark> bench);
 
-        std::shared_ptr<Neighborhood> spcf_execute(std::shared_ptr<PSP>, std::shared_ptr<Solution> input);
+        std::shared_ptr<Neighborhood> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
         //! From Codable
         std::string codeToSend();

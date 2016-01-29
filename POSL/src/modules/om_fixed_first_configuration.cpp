@@ -16,7 +16,7 @@ OM_FixedFirstConfiguration::OM_FixedFirstConfiguration(shared_ptr<Benchmark> ben
       config(0)
 {}
 
-shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed>)
+shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Seed>)
 {
     if(config.size() == 0)
     {

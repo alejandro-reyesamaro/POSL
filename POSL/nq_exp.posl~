@@ -1,0 +1,92 @@
+St_a000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S> 	OP.|->
+			OM_S
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 10 ) )
+					<S> 	OP.|->
+							<S> 	OP.|->
+									<S> 	OP.|-> 
+											<S> OP.|-> OM_V OM_SS </S> 
+											OM_D 
+									</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+					</S>
+			</S>
+	</S> 
+</S>
+};
+
+St_ra000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 10 ) )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|->
+									<S>
+										OP.|->   OM_V
+													<S> 
+														OP.? (BE.LoopBnd 10)
+														OM_SS
+														<S> OP.Min OM_SS OCh (Ch1) </S>
+													</S>
+									</S> OM_D
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+St_sa000 := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 10 ) )
+						<S>
+							OP.|->
+							<S>
+								OP.|->
+								<S>
+									OP.|->
+									<S>
+										OP.|-> 	OM_V
+													<S> OP.? (BE.LoopBnd 10)
+														OM_SS
+														<S> OP.OSend (send_1) OM_SS </S>
+													</S>
+									</S> OM_D
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+solver1 := solver
+{
+	cStrategy: St_a000;
+	oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+connections:
+
+[solver1]6;

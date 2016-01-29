@@ -37,6 +37,7 @@ class Tools
         static int mismatches(std::vector<int> vector_1, std::vector<int> vector_2);
         static int * vector2array(std::vector<int> vec);
         static void shuffle(std::vector<int> & vec);
+        //static void shuffle(std::vector<int> & vec, int seed);
         static std::vector<int> generateMonotony(int N);
         static std::vector<int> generateMonotony(int a, int b);
         static void sortAscendent(std::vector<int> & v);        

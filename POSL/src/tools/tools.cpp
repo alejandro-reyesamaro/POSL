@@ -109,6 +109,14 @@ void Tools::shuffle(vector<int> & vec)
     std::random_shuffle (vec.begin(), vec.end());
 }
 
+/*
+void Tools::shuffle(vector<int> & vec, int seed)
+{
+    std::srand(seed);
+    std::random_shuffle (vec.begin(), vec.end());
+}
+*/
+
 vector<int> Tools::generateMonotony(int N)
 {
     /*

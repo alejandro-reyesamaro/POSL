@@ -8,9 +8,10 @@ class Randomizer
     public:
         Randomizer();
         int NextInt(int min, int max);
+        //void SetSeed(std::shared_ptr<Seed> posl_seed);
 
     private:
-        Seed seed;
+        //std::shared_ptr<Seed> seed;
         std::default_random_engine generator;
-        //std::shared_ptr<std::uniform_int_distribution<int>> distribution;
+        //std::shared_ptr<std::default_random_engine> generator;
 };

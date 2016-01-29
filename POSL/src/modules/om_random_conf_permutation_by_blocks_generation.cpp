@@ -20,6 +20,7 @@ shared_ptr<Solution> OM_RandomConfPermutationByBlocksGeneration::spcf_execute(sh
 
     rsolution->UpdateConfiguration(rconf_strategy->generate(block_size, blocks));
     psp->Start(rsolution->GetConfiguration());
+    //psp->log("Start ");
     //cout << "OM_S" << endl;
     return rsolution;
 }

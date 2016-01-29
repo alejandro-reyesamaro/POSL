@@ -16,7 +16,7 @@ AdaptiveSearchNeighborhood::AdaptiveSearchNeighborhood(shared_ptr<Benchmark> _be
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       monotony(Tools::generateMonotony(_config_size))
 {
-    updateChanges();
+    //updateChanges();
 }
 
 shared_ptr<POSL_Iterator> AdaptiveSearchNeighborhood::getIterator()

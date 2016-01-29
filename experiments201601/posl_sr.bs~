@@ -1,43 +1,25 @@
-runs=2
+runs=10
 
-files_results=(frg_Best frg_First); #frg_SSrhoAS frg_SSuAS frnq_1P frnq_AS frnq_ASrho1P frnq_ASu1P);
-strs=(./POSL_golfers_Berst.posl ./POSL_golfers_First.posl); #./POSL_golfers_ASrhoSS.posl ./POSL_golfers_ASuSS.posl ./POSL_nqueens_1P.posl ./POSL_nqueens_AS.posl ./POSL_nqueens_ASrho1P.posl ./POSL_nqueens_ASu1P.posl);
+files_results=(frnq__ frnq_1.1 frnq_1.n);
+strs=(./nq.posl ./nq_1.1.posl ./nq_1.n.posl);
 
-#for (( inst = 8; inst <= 10; inst++ ))
-#do
-p=5
-g=3
-w=7
+n=1500
 cores=6
 
-#	for (( cores = 10; cores <= 40; cores+=10 ))
-#	do
-		for item in ${files_results[*]}
-		do
-   		echo "----$p $g $w - $cores  -----" >> $item
-		done
 
-		for (( j = 0; j < 2; j++ ))
-		do			
-			for (( i = 0; i < $runs; i++ ))
-			do
-				mpiexec.mpich -np $cores ../POSL/bin_par/POSL golfers $p-$g-$w ${strs[j]} >> ${files_results[j]}				
-			done
-			echo "----END-----" >> ${files_results[j]}
-			#w >> ${files_results[j]}
-			echo "   " >> ${files_results[j]}
-		done
-			
-		#for (( j = 4; j < 8; j++ ))
-		#do		
-		#	for (( i = 0; i < $runs; i++ ))
-		#	do	
-		#		mpiexec.mpich -np $cores ../POSL/bin_par/POSL nqueens 50 ${strs[j]} >> ${files_results[j]}
-		#	done
-		#	echo "----END-----" >> ${files_results[j]}
-		#	w >> ${files_results[j]}
-		#	echo "   " >> ${files_results[j]}
-		#done
+for item in ${files_results[*]}
+do
+	echo "---- $n queens : $cores  -----" >> $item
+done
 
-#	done
-#done
+for (( j = 0; j < 3; j++ ))
+do			
+	for (( i = 0; i < $runs; i++ ))
+	do
+		mpiexec.mpich -np $cores ./bin_par/POSL nqueens $n ${strs[j]} >> ${files_results[j]}				
+	done
+	echo "----END-----" >> ${files_results[j]}
+	#w >> ${files_results[j]}
+	echo "   " >> ${files_results[j]}
+done
+
