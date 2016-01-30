@@ -13,8 +13,8 @@ LFLAGS=$(IDIRFLAG)
 
 # Directories
 SRCDIR=src/main src/benchmarks src/benchmarks/cost_strategy src/benchmarks/relative_cost_strategy src/benchmarks/show_strategy src/computation src/connections src/data src/data/dStrategy src/expressions src/modules src/modules/strategy src/operators src/operators/strategy src/packing src/packing/factory src/packing/packers src/solver src/solver/strategy src/testers src/tools
-OBJDIR=obj_par
-BINDIR=bin_par
+OBJDIR=obj
+BINDIR=bin
 
 # Files
 SOURCES=$(foreach sdir, $(SRCDIR), $(wildcard $(sdir)/*.cpp))

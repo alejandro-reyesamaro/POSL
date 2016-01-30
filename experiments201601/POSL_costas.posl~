@@ -1,52 +1,3 @@
-St_a000 := cStrategy
-	oModule: OM_S, OM_V, OM_SS, OM_D;
-{
-<S>
-	OP.Cyc ( BE.LoopBnd 50 )
-	<S> 	OP.|->
-			OM_S
-			<S> 	OP.Cyc ( BE.LoopBnd 1000 )
-					<S> 	OP.|->
-							<S> 	OP.|->
-									<S> 	OP.|-> 
-											<S> OP.|-> OM_V OM_SS </S> 
-											OM_D 
-									</S> OMS.IterCounter
-							</S> OMS.TimeCounter
-					</S>
-			</S>
-	</S> 
-</S>
-};
-
-St_b001 := cStrategy
-	oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
-{
-<S>
-	OP.Cyc (BE.LoopBnd 100)
-	<S>
-		OP.|-> 	OM_S
-					<S>
-						OP.Cyc ( BE.LoopBnd 1000 )
-						<S>
-							OP.|-> 
-							<S>
-								OP.|-> 
-								<S> 
-									OP.|-> 	OM_V 
-												<S>
-													OP.? (BE.SCI 40) 
-													<S> OP.|-> OM_SS1 OM_D </S> 
-													<S> OP.|-> OM_SS2 OM_D </S>
-												</S>
-								</S> OMS.IterCounter
-							</S> OMS.TimeCounter
-						</S>
-					</S>
-	</S>
-</S>
-};
-
 St_ca000 := cStrategy
 	oModule: OM_S, OM_R, OM_V, OM_SS, OM_D;
 {
@@ -54,10 +5,10 @@ St_ca000 := cStrategy
 	OP.|->
 	OM_S
 	<S>
-		OP.Cyc ( BE.LoopBnd 2000 )
+		OP.Cyc ( BE.LoopBnd 7000 )
 		<S> 	OP.|->
 				OM_R
-				<S> 	OP.Cyc ( BE.LoopBnd 10 )
+				<S> 	OP.Cyc ( BE.LoopBnd 3 )
 						<S> 	OP.|->
 								<S> 	OP.|->
 										<S> 	OP.|-> 
@@ -72,130 +23,7 @@ St_ca000 := cStrategy
 </S>
 };
 
-St_ca001 := cStrategy
-	oModule: OM_S, OM_R, OM_V, OM_SS1, OM_SS2, OM_D;
-{
-<S>
-	OP.|->
-	OM_S
-	<S>
-		OP.Cyc ( BE.LoopBnd 50 )
-		<S>	OP.|->
-				OM_R
-				<S> 	OP.Cyc ( BE.LoopBnd 1000 )
-						<S>	OP.|->
-								<S>	OP.|->
-										<S>	OP.|->
-												<S> 	OP.|-> 
-														OM_V
-														<S>
-															OP.Rho (0.5) OM_SS1 OM_SS2
-														</S>
-												</S>
-												OM_D
-										</S> OMS.IterCounter
-								</S> OMS.TimeCounter
-						</S>
-				</S>
-		</S>
-	</S>
-</S>
-};
-
-St_ca010 := cStrategy
-	oModule: OM_S, OM_R, OM_V1, OM_V2, OM_SS, OM_D;
-{
-<S>
-	OP.|->
-	OM_S
-	<S>
-		OP.Cyc ( BE.LoopBnd 50 )
-		<S>	OP.|->
-				OM_R
-				<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 5000 , BE.SCI 200 ) )
-						<S>	OP.|->
-								<S>	OP.|->
-										<S>	OP.|->
-												<S> 	OP.|-> 
-														<S>
-															OP.Rho (0.5) 
-															<S> OP.|-> OM_R OM_V1 </S> 
-															<S> OP.|-> OM_R OM_V2 </S>
-														</S>
-														OM_SS
-												</S>
-												OM_D
-										</S> OMS.IterCounter
-								</S> OMS.TimeCounter
-						</S>
-				</S>
-		</S>
-	</S>
-</S>
-};
-
-St_ca020 := cStrategy
-	oModule: OM_S, OM_R, OM_V1, OM_V2, OM_SS, OM_D;
-{
-<S>
-	OP.|->
-	OM_S
-	<S>
-		OP.Cyc ( BE.LoopBnd 50 )
-		<S>	OP.|->
-				OM_R
-				<S>
-					OP.Cyc ( BE.AND ( BE.LoopBnd 5000 , BE.SCI 200 ) )
-					<S> 	OP.|->
-							<S> 	OP.|->
-									<S> 	OP.|->
-											<S> 	OP.|-> 
-													<S> OP.U OM_V1 OM_V2 </S>
-													OM_SS
-											</S>
-											OM_D
-									</S> OMS.IterCounter
-							</S> OMS.TimeCounter
-					</S>
-				</S>
-		</S>
-	</S>
-</S>
-};
-
-St_cb001 := cStrategy
-	oModule: OM_S, OM_R, OM_V, OM_SS1, OM_SS2, OM_D;
-{
-<S>
-	OP.|->
-	OM_S
-	<S>
-		OP.Cyc (BE.LoopBnd 100) 
-		<S>
-			OP.|-> 	OM_R
-						<S>
-							OP.Cyc ( BE.LoopBnd 1000 )
-							<S>
-								OP.|-> 
-								<S>
-									OP.|-> 
-									<S> 
-										OP.|-> 	OM_V
-													<S>
-														OP.? (BE.SCI 40) 
-														<S> OP.|-> OM_SS1 OM_D </S> 
-														<S> OP.|-> OM_SS2 OM_D </S>
-													</S>
-									</S> OMS.IterCounter
-								</S> OMS.TimeCounter
-							</S>
-						</S>
-		</S>
-	</S>
-</S>
-};
-
-St_rca000 := cStrategy
+St_rca000_a := cStrategy
 	oModule: OM_S, OM_R, OM_V, OM_SS, OM_D;
 	oChannel: OCh;
 {
@@ -203,29 +31,54 @@ St_rca000 := cStrategy
 	OP.|->
 	OM_S
 	<S>
-		OP.Cyc ( BE.LoopBnd 50 )
-		<S>
-			OP.|-> 	OM_R
-						<S>
-							OP.Cyc (BE.LoopBnd 7000)
-							<S>
-								OP.|->
-								<S>
-									OP.|->
-									<S>
-										OP.|->
-										<S>
-											OP.|->   OM_V
+		OP.Cyc ( BE.LoopBnd 7000 )
+		<S>	OP.|-> 	
+				OM_R
+				<S>	OP.Cyc (BE.LoopBnd 3)
+						<S>	OP.|->
+								<S>	OP.|->
+										<S>	OP.|->
+												<S>	OP.|->   
+														OM_V
 														<S> 
 															OP.? (BE.LoopBnd 10)
 															OM_SS
 															<S> OP.Min OM_SS OCh (Ch1) </S>
 														</S>
-										</S> OM_D
-									</S> OMS.IterCounter
+												</S> OM_D
+										</S> OMS.IterCounter
 								</S> OMS.TimeCounter
-							</S>
 						</S>
+				</S>
+		</S>
+	</S>
+</S>
+};
+
+St_rca000_b := cStrategy
+	oModule: OM_S, OM_R, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.|->
+	OM_S
+	<S>
+		OP.Cyc ( BE.LoopBnd 7000 )
+		<S>	OP.|->
+				<S>	OP.? (BE.LoopBnd 10)
+						OM_R
+						<S> OP.Min OM_R OCh (Ch1) </S>
+				</S>
+				<S>	OP.Cyc (BE.LoopBnd 3)
+						<S>	OP.|->
+								<S>	OP.|->
+										<S>	OP.|->
+												<S> OP.|-> OM_V OM_SS </S> 
+												OM_D
+										</S> OMS.IterCounter
+								</S> OMS.TimeCounter
+						</S>
+				</S>
 		</S>
 	</S>
 </S>
@@ -239,24 +92,23 @@ St_sca000 := cStrategy
 	OP.|->
 	OM_S
 	<S>
-		OP.Cyc ( BE.LoopBnd 50 )
+		OP.Cyc ( BE.LoopBnd 7000 )
 		<S>
 			OP.|-> 	OM_R
 						<S>
-							OP.Cyc ( BE.AND ( BE.LoopBnd 5000 , BE.SCI 200 ) )
-							<S>
-								OP.|->
-								<S>
-									OP.|->
-									<S>
-										OP.|->
-										<S>
-												OP.|-> 
-												OM_V
-											 	<S> OP.OSend (send_1) OM_SS </S>
-										</S> OM_D
-									</S> OMS.IterCounter
-								</S> OMS.TimeCounter
+							OP.Cyc ( BE.LoopBnd 3 )
+							<S>	OP.|->
+									<S>	OP.|->
+											<S>	OP.|->
+													<S>	OP.|-> 
+															OM_V
+															<S>	OP.? (BE.LoopBnd 10)
+																	OM_SS
+																	<S> OP.OSend (send_1) OM_SS </S>
+														 	</S>
+													</S> OM_D
+											</S> OMS.IterCounter
+									</S> OMS.TimeCounter
 							</S>
 						</S>
 		</S>
@@ -264,69 +116,32 @@ St_sca000 := cStrategy
 </S>
 };
 
-St_scb001 := cStrategy
-	oModule: OM_S, OM_R, OM_V, OM_SS1, OM_SS2, OM_D;
-{
-<S>
-	OP.|->
-	OM_S
-	<S>
-		OP.Cyc ( BE.LoopBnd 50 )
-		<S>
-			OP.|-> 	OM_R
-						<S>
-							OP.Cyc ( BE.LoopBnd 7000 )
-							<S>
-								OP.|->
-								<S>
-									OP.|->
-									<S>
-										OP.|-> 	OM_V
-													<S>
-														OP.? (BE.SCI 30) 
-														<S> OP.|-> <S> OP.OSend (send_1) OM_SS1 </S> OM_D </S> 
-														<S> OP.|-> OM_SS2 OM_D </S> //<S> OP.|-> <S> OP.OSend (send_2) OM_SS2 </S> OM_D </S>
-													</S>
-									</S> OMS.IterCounter
-								</S> OMS.TimeCounter							
-							</S>
-						</S>
-		</S>
-	</S>
-</S>
-};
-
-solver1 := solver
-{
-	cStrategy: St_cb001;
-	oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
-};
-
-solver2 := solver
-{
-	cStrategy: St_b001;
-	oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
-};
-
-solver3 := solver
+single_solver := solver
 {
 	cStrategy: St_ca000;
+	oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+sender_solver := solver
+{
+	cStrategy: St_sca000;
+	oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+receiver_solver_a := solver
+{
+	cStrategy: St_rca000_a;
 	oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.BestImpr, OM_D.AlwImpr;
+	oChannel: OCh.Sol;
 };
 
 
-//sender_solver := solver
-//{
-//	cStrategy: St_sb001;
-//	oModule: OM_S.PermRand, OM_R.Default, OM_V.AS, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
-//};
-
-//receiver_solver := solver
-//{
-//	cStrategy: St_ra000;
-//	oModule: OM_S.PermRand, OM_R.Default, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
-//	oChannel: OCh.DP;
-//};
+receiver_solver_a := solver
+{
+	cStrategy: St_rca000_b;
+	oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.BestImpr, OM_D.AlwImpr;
+	oChannel: OCh.Sol;
+};
 
 connections:
 
