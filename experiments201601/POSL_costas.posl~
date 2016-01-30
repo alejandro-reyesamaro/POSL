@@ -135,7 +135,6 @@ receiver_solver_a := solver
 	oChannel: OCh.Sol;
 };
 
-
 receiver_solver_a := solver
 {
 	cStrategy: St_rca000_b;

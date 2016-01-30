@@ -46,7 +46,11 @@ St_sa000 := cStrategy
 								<S>
 									OP.|->
 									<S>
-										OP.|-> OM_V <S> OP.OSend (send_1) OM_SS </S>
+										OP.|-> 	OM_V
+													<S> OP.? (BE.LoopBnd 10)
+														OM_SS
+														<S> OP.OSend (send_1) OM_SS </S>
+													</S>
 									</S> OM_D
 								</S> OMS.IterCounter
 							</S> OMS.TimeCounter
