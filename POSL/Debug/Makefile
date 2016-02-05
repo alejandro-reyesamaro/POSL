@@ -5805,7 +5805,8 @@ om_d_uncoder.o: ../src/packing/om_d_uncoder.cpp ../src/packing/om_d_uncoder.h \
 		../src/modules/om_always_improve_decision.h \
 		../src/modules/aom_decision_function.h \
 		../src/data/decision_pair.h \
-		../src/modules/om_simulated_annealing_decision.h
+		../src/modules/om_simulated_annealing_decision.h \
+		../src/packing/operation_module_simulated_anealing_uncoder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_d_uncoder.o ../src/packing/om_d_uncoder.cpp
 
 operator_uncoder.o: ../src/packing/operator_uncoder.cpp ../src/packing/operator_uncoder.h \
@@ -7592,6 +7593,7 @@ operation_module_simulated_anealing_uncoder.o: ../src/packing/operation_module_s
 		../src/connections/connectable.h \
 		../src/connections/connector_info.h \
 		../src/tools/coding_tools.h \
+		../src/tools/tools.h \
 		../src/tools/tokens_definition.h \
 		../src/modules/om_always_improve_decision.h \
 		../src/modules/aom_decision_function.h \
