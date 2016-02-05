@@ -282,7 +282,8 @@ SOURCES += src/main.cpp \
     src/testers/tester_golfers_1_week_neighborhood.cpp \
     src/operators/strategy/not_null_sequential_strategy.cpp \
     src/operators/not_null_operator.cpp \
-    src/tools/posl_log.cpp
+    src/tools/posl_log.cpp \
+    src/packing/operation_module_simulated_anealing_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -568,7 +569,8 @@ HEADERS += \
     src/testers/tester_golfers_1_week_neighborhood.h \
     src/operators/strategy/not_null_sequential_strategy.h \
     src/operators/not_null_operator.h \
-    src/tools/posl_log.h
+    src/tools/posl_log.h \
+    src/packing/operation_module_simulated_anealing_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -581,3 +583,6 @@ QMAKE_CFLAGS += $$system(mpicc --showme:compile)
 QMAKE_LFLAGS += $$system(mpicxx --showme:link)
 QMAKE_CXXFLAGS += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_SEEK
 QMAKE_CXXFLAGS_RELEASE += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_SEEK
+
+OTHER_FILES += \
+    src/testers/test_codes/sa_test.posl

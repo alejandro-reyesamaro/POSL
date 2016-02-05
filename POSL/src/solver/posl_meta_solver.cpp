@@ -106,3 +106,15 @@ void POSL_MetaSolver::solve_sequentially()
         exit(0);
     }    
 }
+
+string POSL_MetaSolver::test(shared_ptr<PSP> psp)
+{
+    shared_ptr<POSL_Solver> solver = scheduler->getFirstSequentialSolver();
+    if(solver)
+    {        
+        solver->solve(psp);
+        string output = solver->show(psp);
+        return output;
+    }
+    else return "POSL Meta-Solver: fail :/";
+}

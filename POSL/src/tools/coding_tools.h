@@ -33,6 +33,7 @@ class CodingTools
         static std::pair<std::string, std::string> separateModules(std::string code, int hm);
         static std::pair<std::pair<std::string, std::string>, std::string> separateTokenAndCode(std::string code);
         static std::pair<std::string, std::string> extractExpressionsCommaSeparated(std::string code);
+        static bool isInThere(std::string code, std::string word);
         static void trim(std::string & code);
         static std::vector<std::string> split_string(const std::string & s, char separator);
         static std::pair<std::pair<std::string, std::string>, std::string> findDeclarationName(std::string code);

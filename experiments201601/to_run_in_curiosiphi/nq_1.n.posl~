@@ -7,7 +7,7 @@ St_ra000 := cStrategy
 	<S>
 		OP.|-> 	OM_S
 					<S>
-						OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 10 ) )
+						OP.Cyc ( BE.AND ( BE.LoopBnd 2000 , BE.SCI 20 ) )
 						<S>
 							OP.|->
 							<S>
@@ -38,7 +38,7 @@ St_sa000 := cStrategy
 	<S>
 		OP.|-> 	OM_S
 					<S>
-						OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 10 ) )
+						OP.Cyc ( BE.AND ( BE.LoopBnd 2000 , BE.SCI 20 ) )
 						<S>
 							OP.|->
 							<S>
@@ -75,4 +75,4 @@ receiver_solver := solver
 
 connections:
 
-[sender_solver.send_1] OP.#-> [receiver_solver.Ch1]3;
+[sender_solver.send_1] OP.#-> [receiver_solver.Ch1]20;

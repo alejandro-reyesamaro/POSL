@@ -27,4 +27,4 @@ solver1 := solver
 
 connections:
 
-[solver1]6;
+[solver1]40;

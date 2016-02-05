@@ -21,7 +21,13 @@
 class OM_SimulatedAnnealingDecision : public AOM_DecisionFunction
 {
     public:
-        OM_SimulatedAnnealingDecision();
+        ///
+        /// \brief OM_SimulatedAnnealingDecision
+        /// \param _start_probability Probability to start choosing bad configurations
+        /// \param _fall_rate
+        /// \param _temperature_itereations Iterations with the same temperature
+        ///
+        OM_SimulatedAnnealingDecision(double _start_probability, double _fall_rate, double _temperature_itereations);
 
         std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<DecisionPair> input);
 
@@ -36,8 +42,11 @@ class OM_SimulatedAnnealingDecision : public AOM_DecisionFunction
 
         //! Temperature
         double T;
-        //! Number of iteration with the same temperature
-        int M;
-        //! Relative interation counter
-        int m;        
+        double start_probability;
+        double fall_rate;
+        int temperature_iterations;
+
+        //! Temp variables
+        int relative_iteration_counter, current_probability, current_solution_cost, found_solution_cost;
+        double relative_difference_cost;
 };

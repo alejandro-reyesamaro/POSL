@@ -106,7 +106,7 @@ solver_sender := solver
 solver_single := solver
 {
 	cStrategy: St_b001;
-	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.SA (0.7 - 0.8 - 5);
 };
 
 solver_receiver := solver

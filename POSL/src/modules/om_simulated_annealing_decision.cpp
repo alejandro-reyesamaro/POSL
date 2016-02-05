@@ -4,48 +4,50 @@
 
 #include <chrono>
 #include <math.h>
+#include <iostream>
 
-#define P_START 0.5
-#define FALL_RATE 2
+#define P_START 0.7         // Probability to start choosing bad configurations
+#define FALL_RATE 0.8
 #define MAX_ITER_PER_T 5
 
 using namespace std;
 
-OM_SimulatedAnnealingDecision::OM_SimulatedAnnealingDecision()
-    :   rand(),
-        started(false),
-        M(MAX_ITER_PER_T),
-        m(0)
+OM_SimulatedAnnealingDecision::OM_SimulatedAnnealingDecision(double _start_probability, double _fall_rate, double _temperature_itereations)
+    : rand(),
+      started(false),
+      start_probability(_start_probability),
+      fall_rate(_fall_rate),
+      temperature_iterations(_temperature_itereations),
+      relative_iteration_counter(0),
+      current_probability(0)
 {}
 
 shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input)
 {
+    found_solution_cost = psp->GetBenchmark()->solutionCost(input->GetFound()); //wp
+    current_solution_cost = psp->GetBenchmark()->solutionCost(input->GetCurrent()); //w
+    if(found_solution_cost == 0) return input->GetFound();
+    relative_difference_cost = abs((double)found_solution_cost - (double)current_solution_cost)/abs((double)found_solution_cost);
 
-    int wp = psp->GetBenchmark()->solutionCost(input->GetFound());
-    int w = psp->GetBenchmark()->solutionCost(input->GetCurrent());
-
-    if(wp == 0) return input->GetFound();
-
-    double relative_dif = abs((double)wp - (double)w)/abs((double)wp);
-
-    // Calcular T por primera vez, dependeiendo de la diferencia de los costos
     if(!started)
     {
         started = true;
-        T = -(relative_dif)/log(0.5); // Probabilidad con que se quiere comenzar a elegir malas configuraciones
+        // computing T for the first time, depending on the cost difference
+        T = -(relative_difference_cost)/log(start_probability);
     }
-    int p = exp( - (relative_dif) /   T ) * 10;
+    current_probability = exp( - (relative_difference_cost) /   T ) * 10;
 
     int k = rand.NextInt(0, 10);
 
-    // Si se llega al limites de iteraciones por temperatura, reducir T a la mitad ????
-    if(m++ > M)
+    // Reducing T when the MAX_ITER_PER_T is reached
+    if(relative_iteration_counter++ > temperature_iterations)
     {
-        m = 0;
-        T = T / FALL_RATE;
+        relative_iteration_counter = 0;
+        T = T * fall_rate;
     }
 
-    if(k < p)
+    // cout << current_probability << endl;
+    if(k >= current_probability)
     {
         psp->UpdateSolution(input->GetFound()->GetConfiguration());
         return input->GetFound();

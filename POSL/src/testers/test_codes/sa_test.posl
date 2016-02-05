@@ -1,0 +1,22 @@
+St_1 := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+<S>
+    OP.|->
+        OM_S
+        <S> OP.|->
+            OM_V
+            <S> OP.|-> OM_SS OM_D </S>
+        </S>
+</S>
+};
+
+sol := solver
+{
+        cStrategy: St_1;
+        oModule: OM_S.Fix, OM_V.1SwapBtwnBlocks, OM_SS.BestImpr, OM_D.SA (0.7 - 0.8 - 5);
+};
+
+connections:
+
+[sol]6;

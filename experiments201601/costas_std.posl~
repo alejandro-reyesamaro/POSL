@@ -1,0 +1,90 @@
+St_rcb000 := cStrategy
+	oModule: OM_S, OM_R, OM_V, OM_SS1, OM_SS2, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.|->
+	OM_S
+	<S>
+		OP.Cyc ( BE.LoopBnd 50 )
+		<S>	OP.|-> 	
+				OM_R
+				<S>	OP.Cyc (BE.LoopBnd 2000)
+						<S>	OP.|->
+								<S>	OP.|->
+										<S>	OP.|->
+												<S>	OP.|->   
+														OM_V
+														<S>
+															OP.? (BE.SCI 30)
+															<S> 
+																OP.? (BE.LoopBnd 10)
+																OM_SS1
+																<S> OP.Min OM_SS1 OCh (Ch1) </S>
+															</S>
+															OM_SS2
+														</S>														
+												</S> OM_D
+										</S> OMS.IterCounter
+								</S> OMS.TimeCounter
+						</S>
+				</S>
+		</S>
+	</S>
+</S>
+};
+
+St_scb000 := cStrategy
+	oModule: OM_S, OM_R, OM_V, OM_SS1, OM_SS2, OM_D;
+{
+<S>
+	OP.|->
+	OM_S
+	<S>
+		OP.Cyc ( BE.LoopBnd 50 )
+		<S>
+			OP.|-> 	OM_R
+						<S>
+							OP.Cyc ( BE.LoopBnd 2000 )
+							<S>	OP.|->
+									<S>	OP.|->
+											<S>	OP.|->
+													<S>	OP.|-> 
+															OM_V
+															<S>
+																OP.? (BE.SCI 30)
+																<S>	OP.? (BE.LoopBnd 10)
+																		OM_SS1
+																		<S> OP.OSend (send_1) OM_SS1 </S>
+															 	</S>
+																OM_SS2
+															</S>
+													</S> OM_D
+											</S> OMS.IterCounter
+									</S> OMS.TimeCounter
+							</S>
+						</S>
+		</S>
+	</S>
+</S>
+};
+
+sender_solver := solver
+{
+	cStrategy: St_scb000;
+	oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+};
+
+receiver_solver := solver
+{
+	cStrategy: St_rcb000;
+	oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.BestImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oChannel: OCh.Sol;
+};
+
+
+connections:
+
+//[sender_solver]6;
+//[receiver_solver_a]6;
+[sender_solver.send_1] OP.--> [receiver_solver.Ch1]3;

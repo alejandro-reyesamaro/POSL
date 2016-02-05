@@ -5,7 +5,7 @@ St_a000 := cStrategy
 	OP.Cyc ( BE.LoopBnd 50 )
 	<S> 	OP.|->
 			OM_S
-			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 10 ) )
+			<S> 	OP.Cyc ( BE.AND ( BE.LoopBnd 2000 , BE.SCI 20 ) )
 					<S> 	OP.|->
 							<S> 	OP.|->
 									<S> 	OP.|-> 

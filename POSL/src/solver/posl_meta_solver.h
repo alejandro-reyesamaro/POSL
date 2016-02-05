@@ -4,7 +4,6 @@
 #include "../connections/scheduler.h"
 #include "../connections/connection_operator.h"
 
-
 class POSL_MetaSolver
 {
     public:
@@ -12,8 +11,7 @@ class POSL_MetaSolver
         POSL_MetaSolver(std::string path, int _comm_size, std::shared_ptr<Benchmark> bench);
         void solve_in_parallel();
         void solve_sequentially();
-
-
+        std::string test(std::shared_ptr<PSP> psp);
 
     private:
         int comm_size;

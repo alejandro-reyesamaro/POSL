@@ -5,7 +5,7 @@ St_ca000 := cStrategy
 	OP.|->
 	OM_S
 	<S>
-		OP.Cyc ( BE.LoopBnd 7000 )
+		OP.Cyc ( BE.LoopBnd 12000 )
 		<S> 	OP.|->
 				OM_R
 				<S> 	OP.Cyc ( BE.LoopBnd 3 )
@@ -31,7 +31,7 @@ St_rca000_a := cStrategy
 	OP.|->
 	OM_S
 	<S>
-		OP.Cyc ( BE.LoopBnd 7000 )
+		OP.Cyc ( BE.LoopBnd 12000 )
 		<S>	OP.|-> 	
 				OM_R
 				<S>	OP.Cyc (BE.LoopBnd 3)
@@ -63,7 +63,7 @@ St_rca000_b := cStrategy
 	OP.|->
 	OM_S
 	<S>
-		OP.Cyc ( BE.LoopBnd 7000 )
+		OP.Cyc ( BE.LoopBnd 12000 )
 		<S>	OP.|->
 				<S>	OP.? (BE.LoopBnd 10)
 						OM_R
@@ -86,13 +86,12 @@ St_rca000_b := cStrategy
 
 St_sca000 := cStrategy
 	oModule: OM_S, OM_R, OM_V, OM_SS, OM_D;
-	oChannel: OCh;
 {
 <S>
 	OP.|->
 	OM_S
 	<S>
-		OP.Cyc ( BE.LoopBnd 7000 )
+		OP.Cyc ( BE.LoopBnd 12000 )
 		<S>
 			OP.|-> 	OM_R
 						<S>
@@ -135,7 +134,7 @@ receiver_solver_a := solver
 	oChannel: OCh.Sol;
 };
 
-receiver_solver_a := solver
+receiver_solver_b := solver
 {
 	cStrategy: St_rca000_b;
 	oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.BestImpr, OM_D.AlwImpr;
@@ -144,6 +143,5 @@ receiver_solver_a := solver
 
 connections:
 
-//[sender_solver.send_1] OP.--> [receiver_solver.Ch1] 2;
-[solver3]6;
-//[solver2]3;
+[sender_solver.send_1] OP.--> [receiver_solver_b.Ch1]3;
+//[single_solver]6;

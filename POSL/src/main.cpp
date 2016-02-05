@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 
     //tests.push_back(make_shared<Tester_ConditionalOperator>(argc, argv));
     //tests.push_back(make_shared<Tester_RandomSelection>(argc, argv));
-    //tests.push_back(make_shared<Tester_SimulatedAnnealingDecition>(argc, argv));
+    tests.push_back(make_shared<Tester_SimulatedAnnealingDecition>(argc, argv));
     //tests.push_back(make_shared<Tester_BestImprovementTabuSelection>(argc, argv));
     //tests.push_back(make_shared<Tester_RandomPermutationConfigurationGeneration>(argc, argv));
     //tests.push_back(make_shared<Tester_PackingSolution>(argc, argv));
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_Golfers1WeekNeighborhood>(argc, argv));
 
     //tests.push_back(make_shared<Tester_DanielRestart>(argc, argv));
-    tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOfSolutionCostasArray>(argc, argv));
 
     string output_str;

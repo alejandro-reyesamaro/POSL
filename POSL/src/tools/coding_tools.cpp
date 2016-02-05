@@ -300,6 +300,12 @@ std::string CodingTools::extractCompoundModuleCodeFromCS(std::string code)
     return cm_code;
 }
 
+bool CodingTools::isInThere(std::string code, std::string word)
+{
+    size_t pos = code.find(word);
+    return pos != std::string::npos;
+}
+
 void CodingTools::replace(std::string & code, std::vector<std::string> names, std::vector<std::string> instances)
 {
     std::string n_str;
