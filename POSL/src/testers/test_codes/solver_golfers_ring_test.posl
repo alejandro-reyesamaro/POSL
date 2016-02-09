@@ -1,0 +1,58 @@
+St_m000 := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D;
+    oChannel: OCh;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 50 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc (BE.LoopBnd 1000)
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                            <S>
+                                OP.|->
+                                OM_V
+                                <S>
+                                    OP.? (BE.SCI 20)
+                                    OM_SS
+                                    <S> OP.NotNull <S> OP.OSend (send_1) OM_SS </S> OCh (Ch1) </S>
+                                </S>
+                            </S> OM_D
+                    </S> OMS.IterCounter
+                </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+solver1 := solver
+{
+    cStrategy: St_m000;
+    oModule: OM_S.PermBlocks, OM_V.1W1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.DP;
+};
+
+solver2 := solver
+{
+    cStrategy: St_m000;
+    oModule: OM_S.PermBlocks, OM_V.2W1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.DP;
+};
+
+solver3 := solver
+{
+    cStrategy: St_m000;
+    oModule: OM_S.PermBlocks, OM_V.3W1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.DP;
+};
+
+connections:
+
+[solver1.send_1, solver2.send_1, solver3.send_1] OP.<> [solver1.Ch1, solver2.Ch1, solver3.Ch1]2;

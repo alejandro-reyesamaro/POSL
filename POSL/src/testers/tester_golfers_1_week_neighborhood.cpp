@@ -6,6 +6,7 @@
 #include "../modules/grouped_sequential_computation.h"
 #include "../operators/sequential_exec_operator.h"
 #include "../modules/om_fixed_first_configuration.h"
+#include "../tools/tools.h"
 
 Tester_Golfers1WeekNeighborhood::Tester_Golfers1WeekNeighborhood(int argc, char *argv[])
     : Tester(argc, argv)
@@ -17,7 +18,7 @@ string Tester_Golfers1WeekNeighborhood::test()
     int g = 3;
     int p = 3;
     int w = 3;
-    int week = 1;
+    int week = 2;
     vector<int> first_conf = Tester::Golfers_333_c();
 
     shared_ptr<Benchmark> bench(make_shared<Golfers>(g,p,w));
@@ -42,9 +43,10 @@ string Tester_Golfers1WeekNeighborhood::test()
     while(it->SomeNext())
     {
         vector<int> neighbor = it->GetNext();
-        for(int i = (g*p)*week; i < (g*p)*(week+1); i++)
-            cout << neighbor[i] << " ";
-        cout << endl;
+        cout << Tools::configurationToString(neighbor) << endl;
+        //for(int i = (g*p)*week; i < (g*p)*(week+1); i++)
+        //    cout << neighbor[i] << " ";
+        //cout << endl;
     }
     return "OM_Golfers_1Week_Neighborhood: OK !"; // : "OM_Golfers_1Week_Neighborhood: fail :/";
 }

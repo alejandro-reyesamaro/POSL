@@ -19,20 +19,7 @@ string Tester_RhoOperator::test()
     //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
-    vector<int> config(
-    {
-        1,  2,   3,  4,
-        5,  6,   7,  8,
-        9,  10, 11, 12,
-        13, 14, 15, 16,
-
-        13, 10,  7,  8,
-        14, 11,  4,  1,
-        15, 12,  2,  5,
-        16,  3,  6,  9
-    });
-
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
+    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_c4());
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
     //psp->UpdateSolution(sol->GetConfiguration());

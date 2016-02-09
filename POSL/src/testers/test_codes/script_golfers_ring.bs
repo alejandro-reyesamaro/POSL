@@ -1,0 +1,1 @@
+mpiexec.mpich -np 6 ../../../bin/POSL golfers 4-4-4 ./solver_golfers_ring_test.posl

@@ -12,10 +12,13 @@
 #include "../modules/om_adaptive_search_neighborhood.h"
 #include "../modules/om_golfers_adaptive_search_neigborhood.h"
 #include "../modules/om_golfers_single_week_swap_neighborhood.h"
+#include "../modules/om_golfers_single_week_adaptive_search_neighborhood.h"
 
 using namespace std;
 
 int is_golfers_week(string code);
+int is_golfers_AS_week(string code);
+
 
 OM_V_Uncoder::OM_V_Uncoder()
 {
@@ -45,6 +48,8 @@ shared_ptr<OperationModule> OM_V_Uncoder::uncode(string code, shared_ptr<Benchma
         return make_shared<OM_GolfersAdaptiveSearchNeigborhood>(bench);
     else if((w = is_golfers_week(code)) != -1)
         return make_shared<OM_GolfersSingleWeekSwapNeighborhood>(bench, w);
+    else if((w = is_golfers_AS_week(code)) != -1)
+        return make_shared<OM_GolfersSingleWeekAdaptiveSearchNeighborhood>(bench, w);
     else
         throw "(POSL Exception) OM does not exists (OM_V_Uncoder::uncode)";
 }
@@ -59,6 +64,20 @@ int is_golfers_week(string code)
         if(new_code == code)
             return i;
         new_code = OM_GOLFERS_SINGLE_WEEK_SWAP_NEIGHBORHOOD_TOK;
+    }
+    return -1;
+}
+
+int is_golfers_AS_week(string code)
+{
+    string new_code = OM_GOLFERS_SINGLE_WEEK_ADAPTIVE_SEARCH_NEIGHBORHOOD_TOK;
+    for(int i = 1; i < 15; i++)
+    {
+        // _num_
+        new_code.replace(5, 5, Tools::int2str(i));
+        if(new_code == code)
+            return i;
+        new_code = OM_GOLFERS_SINGLE_WEEK_ADAPTIVE_SEARCH_NEIGHBORHOOD_TOK;
     }
     return -1;
 }

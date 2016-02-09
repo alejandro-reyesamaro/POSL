@@ -27,6 +27,7 @@ shared_ptr<DecisionPair> NeighborSelectingFirstImprovement::select(shared_ptr<PS
         {
             best_found_cost   = c;
             best_found_config = config;
+            cout << "better has been found : " << c << endl;
             break;
         }
     }

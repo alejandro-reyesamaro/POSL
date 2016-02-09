@@ -24,7 +24,6 @@ shared_ptr<OperationModule> OM_D_Uncoder::uncode(string code, shared_ptr<Benchma
     {
         OperationModuleSimulatedAnealingUncoder sa_unc;
         return sa_unc.uncode(code, bench);
-        //return make_shared<OM_SimulatedAnnealingDecision>(0.7, 0.8, 5);
     }
     else
         throw "(POSL Exception) OM does not exists (OM_D_Uncoder::uncode)";

@@ -18,5 +18,29 @@ shared_ptr<ComputationData> NotNullSequentialStrategy::evaluate(shared_ptr<PSP> 
     result_och = Och->execute(psp, input);
     result_m = M->execute(psp, input);
 
-    return (result_och == nullptr) ? result_m : result_och;
+    if (result_och == nullptr) return result_m;
+    else
+    {
+        psp->SearchingWithOuterInformation_ON();
+        // Solution
+        if(result_och->Tag() == TAGSOLUTION)
+        {
+            shared_ptr<Solution> sol = static_pointer_cast<Solution>(result_och);
+            psp->Start(sol->GetConfiguration());
+            return result_och;
+        }
+        // DecisionPair
+        else if(result_och->Tag() == TAGDECISSIONPAIR)
+        {
+            shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(result_och);
+            psp->Start(pair->GetFound()->GetConfiguration());
+            //psp->log("Taking outer solution...");
+            return result_och;
+        }
+        // Neighborhoods
+        else if(result_och->Tag() == TAGNEIGHBORHOOD)
+            return result_och;
+
+        throw "(POSL Exception) Not casting allowed (NotNullSequentialStrategy.evaluate)";
+    }
 }
