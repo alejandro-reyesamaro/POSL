@@ -283,7 +283,10 @@ SOURCES += src/main.cpp \
     src/operators/strategy/not_null_sequential_strategy.cpp \
     src/operators/not_null_operator.cpp \
     src/tools/posl_log.cpp \
-    src/packing/operation_module_simulated_anealing_uncoder.cpp
+    src/packing/operation_module_simulated_anealing_uncoder.cpp \
+    src/testers/tester_same_cost_iterations_be.cpp \
+    src/data/golfers_adaptive_search_single_week_neighborhood.cpp \
+    src/modules/om_golfers_single_week_adaptive_search_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -570,7 +573,10 @@ HEADERS += \
     src/operators/strategy/not_null_sequential_strategy.h \
     src/operators/not_null_operator.h \
     src/tools/posl_log.h \
-    src/packing/operation_module_simulated_anealing_uncoder.h
+    src/packing/operation_module_simulated_anealing_uncoder.h \
+    src/testers/tester_same_cost_iterations_be.h \
+    src/data/golfers_adaptive_search_single_week_neighborhood.h \
+    src/modules/om_golfers_single_week_adaptive_search_neighborhood.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -585,4 +591,6 @@ QMAKE_CXXFLAGS += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_SEEK
 QMAKE_CXXFLAGS_RELEASE += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_SEEK
 
 OTHER_FILES += \
-    src/testers/test_codes/sa_test.posl
+    src/testers/test_codes/sa_test.posl \
+    src/testers/test_codes/solver_golfers_ring_test.posl \
+    src/testers/test_codes/script_golfers_ring.bs

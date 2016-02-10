@@ -6,7 +6,7 @@ using namespace std;
 DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
     : OpenChannel(name),
       bench(_bench),
-      logging(false) // manually turned on/of to log behavior
+      logging(false) // manually turn it on/of to log behavior
 {}
 
 shared_ptr<ComputationData> DataOpenChannel::receive_and_log(int id, int tag, shared_ptr<PSP> psp)
@@ -54,7 +54,6 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
     }
     else return nullptr;
 }
-
 
 /*
 string DataOpenChannel::codeToSend()
