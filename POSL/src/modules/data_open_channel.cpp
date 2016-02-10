@@ -55,7 +55,6 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
     else return nullptr;
 }
 
-
 /*
 string DataOpenChannel::codeToSend()
 {
