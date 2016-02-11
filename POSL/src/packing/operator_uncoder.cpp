@@ -23,11 +23,6 @@ OperatorUncoder::OperatorUncoder()
 
 shared_ptr<Operator> OperatorUncoder::uncode(string code, shared_ptr<Benchmark> bench)
 {
-    /*
-    Tools::trim(code);
-    int pos_name = code.find('.') + 1;
-    string op_name = code.substr(pos_name, code.find(' ') - pos_name);
-    */
     pair<pair<string, string>, string> p_tnc = CodingTools::separateTokenAndCode(code);
     string op_name = p_tnc.first.second;
 
@@ -58,18 +53,6 @@ shared_ptr<Operator> OperatorUncoder::uncode(string code, shared_ptr<Benchmark> 
     }
     else
     {
-        //pair<string, pair<string, string>> p = CodingTools::extractNameAndCode2(code);
-        /*
-        size_t pos_space = code.find_first_of(" ");
-        string rest = code.substr(pos_space + 1);
-        Tools::trim(rest);
-        string cm1_code = Tools::frontModule(rest);
-        int sizefront = cm1_code.size();
-        rest = rest.substr(sizefront);
-        Tools::trim(rest);
-        string cm2_code = Tools::frontModule(rest);
-        */
-        //string op_name = p.first;
         pair<string, string> p = CodingTools::separateModules(p_tnc.second, 2);
         string cm1_code = p.first;
         string cm2_code = p.second;

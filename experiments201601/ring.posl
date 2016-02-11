@@ -1,0 +1,127 @@
+St_dictator := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.Cyc (BE.LoopBnd 50) 
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.LoopBnd 5000 )
+						<S>
+							OP.|-> 
+							<S>
+								OP.|-> 
+								<S> 
+									OP.|-> 	OM_V 
+												<S>
+													OP.? (BE.SCI 20) 
+													<S> OP.|-> OM_SS OM_D </S>
+													<S> 
+														OP.|-> 
+														<S> OP.NotNull
+															<S> OP.OSend (send_1) OM_SS </S>
+															OCh (Ch1)
+														</S> 
+														OM_D 
+													</S> 
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+St_submissive := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+<S>
+	OP.Cyc (BE.LoopBnd 50) 
+	<S>
+		OP.|-> 	OM_S
+					<S>
+						OP.Cyc ( BE.LoopBnd 5000 )
+						<S>
+							OP.|-> 
+							<S>
+								OP.|-> 
+								<S> 
+									OP.|-> 	OM_V 
+												<S>
+													OP.|-> 
+													<S> OP.NotNull
+														<S> OP.OSend (send_1) OM_SS </S>
+														OCh (Ch1)
+													</S> 
+													OM_D 
+												</S>
+								</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+						</S>
+					</S>
+	</S>
+</S>
+};
+
+dict_SSF := solver
+{
+	cStrategy: St_dictator;
+	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+dict_SS2 := solver
+{
+	cStrategy: St_dictator;
+	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.2BestImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+dict_ASF := solver
+{
+	cStrategy: St_dictator;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+dict_AS2 := solver
+{
+	cStrategy: St_dictator;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.2BestImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+subm_SSF := solver
+{
+	cStrategy: St_submissive;
+	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+subm_SS2 := solver
+{
+	cStrategy: St_submissive;
+	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.2BestImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+subm_ASF := solver
+{
+	cStrategy: St_submissive;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+subm_AS2 := solver
+{
+	cStrategy: St_submissive;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.2BestImpr, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+connections:
+
+

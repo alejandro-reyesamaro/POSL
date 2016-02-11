@@ -67,9 +67,6 @@ SOURCES += src/main.cpp \
     src/modules/om_always_improve_decision.cpp \
     src/modules/om_simulated_annealing_decision.cpp \
     src/modules/data_open_channel.cpp \
-    src/modules/solution_data_open_channel.cpp \
-    src/modules/decision_pair_data_open_channel.cpp \
-    src/modules/neighborhood_data_open_channel.cpp \
     src/modules/oms_time_counter.cpp \
     src/modules/oms_iterations_counter.cpp \        
     src/modules/strategy/random_configuration_generation_strategy.cpp \
@@ -286,7 +283,13 @@ SOURCES += src/main.cpp \
     src/packing/operation_module_simulated_anealing_uncoder.cpp \
     src/testers/tester_same_cost_iterations_be.cpp \
     src/data/golfers_adaptive_search_single_week_neighborhood.cpp \
-    src/modules/om_golfers_single_week_adaptive_search_neighborhood.cpp
+    src/modules/om_golfers_single_week_adaptive_search_neighborhood.cpp \
+    src/modules/decision_pair_first_data_open_channel.cpp \
+    src/modules/solution_first_data_open_channel.cpp \
+    src/modules/solution_last_data_open_channel.cpp \
+    src/modules/decision_pair_last_data_open_channel.cpp \
+    src/modules/neighborhood_last_data_open_channel.cpp \
+    src/modules/solution_best_data_open_channel.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -321,9 +324,6 @@ HEADERS += \
     src/modules/oms_time_counter.h \
     src/modules/oms_iterations_counter.h \
     src/modules/om_random_conf_ordered_generation.h \
-    src/modules/solution_data_open_channel.h \
-    src/modules/decision_pair_data_open_channel.h \
-    src/modules/neighborhood_data_open_channel.h \
     src/modules/strategy/random_ordered_generation_strategy.h \
     src/modules/strategy/random_configuration_generation_strategy.h \
     src/modules/strategy/random_permutation_by_blocks_generation_strategy.h \
@@ -576,7 +576,13 @@ HEADERS += \
     src/packing/operation_module_simulated_anealing_uncoder.h \
     src/testers/tester_same_cost_iterations_be.h \
     src/data/golfers_adaptive_search_single_week_neighborhood.h \
-    src/modules/om_golfers_single_week_adaptive_search_neighborhood.h
+    src/modules/om_golfers_single_week_adaptive_search_neighborhood.h \
+    src/modules/decision_pair_first_data_open_channel.h \
+    src/modules/solution_first_data_open_channel.h \
+    src/modules/solution_last_data_open_channel.h \
+    src/modules/decision_pair_last_data_open_channel.h \
+    src/modules/neighborhood_last_data_open_channel.h \
+    src/modules/solution_best_data_open_channel.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -593,4 +599,5 @@ QMAKE_CXXFLAGS_RELEASE += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_S
 OTHER_FILES += \
     src/testers/test_codes/sa_test.posl \
     src/testers/test_codes/solver_golfers_ring_test.posl \
-    src/testers/test_codes/script_golfers_ring.bs
+    src/testers/test_codes/script_golfers_ring.bs \
+    src/testers/test_codes/golfers_communication.posl

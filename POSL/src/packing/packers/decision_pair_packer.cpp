@@ -25,7 +25,7 @@ std::vector<int> DecisionPairPacker::pack()
     //vector<int> current_conf = pair->GetCurrent()->GetConfiguration();
     std::copy(current_configuration.begin(), current_configuration.end(), package.begin() + 2);
 
-    // Configuration 1 (current)
+    // Configuration 2 (found)
     //vector<int> found_conf = pair->GetFound()->GetConfiguration();
     std::copy(found_configuration.begin(), found_configuration.end(), package.begin() + 2 + current_configuration.size());
     return package;

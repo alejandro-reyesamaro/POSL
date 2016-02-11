@@ -3,7 +3,9 @@
 
 #include <iostream>
 
-DecisionPair::DecisionPair(std::shared_ptr<Solution> _current, std::shared_ptr<Solution> _found)
+using namespace std;
+
+DecisionPair::DecisionPair(shared_ptr<Solution> _current, shared_ptr<Solution> _found)
     : current(_current),
       found(_found)
 {}
@@ -17,10 +19,10 @@ void DecisionPair::update(std::vector<int> _current, std::vector<int> _found)
 void DecisionPair::updateFromPack(int * pack)
 {
     int conf_size = pack[1];
-    std::vector<int> config1(conf_size);
-    std::vector<int> config2(conf_size);
-    std::copy(pack + 2, pack + conf_size + 2, config1.begin());
-    std::copy(pack + conf_size + 2, pack + 2 * conf_size + 2, config2.begin());
+    vector<int> config1(conf_size);
+    vector<int> config2(conf_size);
+    copy(pack + 2, pack + conf_size + 2, config1.begin());
+    copy(pack + conf_size + 2, pack + 2 * conf_size + 2, config2.begin());
     current->UpdateConfiguration(config1);
     found->UpdateConfiguration(config2);
 }
