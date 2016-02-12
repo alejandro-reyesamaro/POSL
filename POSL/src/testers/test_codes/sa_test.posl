@@ -14,7 +14,7 @@ St_1 := cStrategy
 sol := solver
 {
         cStrategy: St_1;
-        oModule: OM_S.Fix, OM_V.1SwapBtwnBlocks, OM_SS.BestImpr, OM_D.SA (0.7 - 0.8 - 5);
+        oModule: OM_S.Fix, OM_V.1SwapBtwnBlocks, OM_SS.BestImpr, OM_D.SA (0.7 - 0.5 - 1);
 };
 
 connections:

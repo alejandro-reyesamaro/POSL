@@ -27,26 +27,29 @@ shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP>
     found_solution_cost = psp->GetBenchmark()->solutionCost(input->GetFound()); //wp
     current_solution_cost = psp->GetBenchmark()->solutionCost(input->GetCurrent()); //w
     if(found_solution_cost == 0) return input->GetFound();
+    cout << found_solution_cost << endl;
+    cout << current_solution_cost << endl;
     relative_difference_cost = abs((double)found_solution_cost - (double)current_solution_cost)/abs((double)found_solution_cost);
-
+    cout << relative_difference_cost << endl;
     if(!started)
     {
         started = true;
         // computing T for the first time, depending on the cost difference
         T = -(relative_difference_cost)/log(start_probability);
     }
-    current_probability = exp( - (relative_difference_cost) /   T ) * 10;
-
-    int k = rand.NextInt(0, 10);
-
     // Reducing T when the MAX_ITER_PER_T is reached
-    if(relative_iteration_counter++ > temperature_iterations)
+    if(++relative_iteration_counter > temperature_iterations)
     {
         relative_iteration_counter = 0;
         T = T * fall_rate;
     }
+    cout << "T=" << T << endl;
+    current_probability = ((double)exp( - (relative_difference_cost) /   T )) * 10;
 
-    // cout << current_probability << endl;
+    int k = rand.NextInt(0, 10);    
+
+    cout << current_probability << endl;
+    cout << "--" << endl;
     if(k >= current_probability)
     {
         psp->UpdateSolution(input->GetFound()->GetConfiguration());

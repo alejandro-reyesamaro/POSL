@@ -6,9 +6,11 @@ posl_nquees_code="./nq_exp.posl";
 
 p=5;
 g=3;
-w=7;
-n=1500;
+w=5;
+n=500;
 cores=6
+
+#mpiexec.mpich -np $cores ../POSL/bin/POSL golfers $p-$g-$w $posl_golfers_code
 
 echo "----$p $g $w : $cores  -----" >> $fr
 for (( i = 0; i < $runs; i++ ))
