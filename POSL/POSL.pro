@@ -289,7 +289,9 @@ SOURCES += src/main.cpp \
     src/modules/solution_last_data_open_channel.cpp \
     src/modules/decision_pair_last_data_open_channel.cpp \
     src/modules/neighborhood_last_data_open_channel.cpp \
-    src/modules/solution_best_data_open_channel.cpp
+    src/modules/solution_best_data_open_channel.cpp \
+    src/expressions/singleton_expression.cpp \
+    src/testers/tester_singleton_experession.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -582,7 +584,9 @@ HEADERS += \
     src/modules/solution_last_data_open_channel.h \
     src/modules/decision_pair_last_data_open_channel.h \
     src/modules/neighborhood_last_data_open_channel.h \
-    src/modules/solution_best_data_open_channel.h
+    src/modules/solution_best_data_open_channel.h \
+    src/expressions/singleton_expression.h \
+    src/testers/tester_singleton_experession.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -599,5 +603,14 @@ QMAKE_CXXFLAGS_RELEASE += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_S
 OTHER_FILES += \
     src/testers/test_codes/sa_test.posl \
     src/testers/test_codes/solver_golfers_ring_test.posl \
-    src/testers/test_codes/script_golfers_ring.bs \
-    src/testers/test_codes/golfers_communication.posl
+    src/testers/test_codes/golfers_communication.posl \
+    src/testers/test_codes/solver_golfers_switch_test.posl \
+    src/testers/test_codes/script_golfers.bs \
+    src/testers/test_codes/solver_golfers_test.posl \
+    src/testers/test_codes/solver_nqueens_test.posl \
+    src/testers/test_codes/script_nqueens.bs \
+    src/testers/test_codes/solver_nqueens_communication.posl \
+    src/testers/test_codes/solver_nqueens_focus.posl \
+    src/testers/test_codes/singleton_expression_test.posl \
+    src/testers/test_codes/solver_costas_comm.posl \
+    src/testers/test_codes/script_costas.bs

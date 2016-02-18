@@ -22,6 +22,7 @@ shared_ptr<Solution> OM_RandomPermutationGeneration::spcf_execute(shared_ptr<PSP
     rsolution->UpdateConfiguration(rconf_strategy->generate(seed));
     psp->Start(rsolution->GetConfiguration());
     //psp->log("Start ");//->" + rsolution->configurationToString());
+    //cout << Tag() << endl;
     return rsolution;
 }
 

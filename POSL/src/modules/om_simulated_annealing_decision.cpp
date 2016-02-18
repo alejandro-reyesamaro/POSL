@@ -6,9 +6,7 @@
 #include <math.h>
 #include <iostream>
 
-#define P_START 0.7         // Probability to start choosing bad configurations
-#define FALL_RATE 0.8
-#define MAX_ITER_PER_T 5
+#define EPS 0.02
 
 using namespace std;
 
@@ -26,11 +24,15 @@ shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP>
 {
     found_solution_cost = psp->GetBenchmark()->solutionCost(input->GetFound()); //wp
     current_solution_cost = psp->GetBenchmark()->solutionCost(input->GetCurrent()); //w
-    if(found_solution_cost == 0) return input->GetFound();
-    cout << found_solution_cost << endl;
-    cout << current_solution_cost << endl;
-    relative_difference_cost = abs((double)found_solution_cost - (double)current_solution_cost)/abs((double)found_solution_cost);
-    cout << relative_difference_cost << endl;
+    if(found_solution_cost == 0)
+    {
+        psp->UpdateSolution(input->GetFound()->GetConfiguration());
+        return input->GetFound();
+    }
+    //cout << found_solution_cost << endl;
+    //cout << current_solution_cost << endl;
+    relative_difference_cost = max(abs((double)found_solution_cost - (double)current_solution_cost)/abs((double)found_solution_cost), EPS);
+    //cout << relative_difference_cost << endl;
     if(!started)
     {
         started = true;
@@ -43,20 +45,22 @@ shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP>
         relative_iteration_counter = 0;
         T = T * fall_rate;
     }
-    cout << "T=" << T << endl;
+    //cout << "T=" << T << endl;
     current_probability = ((double)exp( - (relative_difference_cost) /   T )) * 10;
 
     int k = rand.NextInt(0, 10);    
 
-    cout << current_probability << endl;
-    cout << "--" << endl;
+    //cout << current_probability << endl;
+    //out << "--" << endl;
     if(k >= current_probability)
     {
+        //cout << "good" << endl;
         psp->UpdateSolution(input->GetFound()->GetConfiguration());
         return input->GetFound();
     }
     else
     {
+        //cout << current_probability << " :/" << endl;
         psp->UpdateSolution(input->GetCurrent()->GetConfiguration());
         return input->GetCurrent();
     }

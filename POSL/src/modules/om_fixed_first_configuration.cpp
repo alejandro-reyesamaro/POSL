@@ -18,6 +18,7 @@ OM_FixedFirstConfiguration::OM_FixedFirstConfiguration(shared_ptr<Benchmark> ben
 
 shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Seed>)
 {
+    //cout << Tag() << endl;
     if(config.size() == 0)
     {
         shared_ptr<Solution> rsolution(make_shared<Solution>(psp->GetBenchmark()->Domains(), psp->GetCurrentSolution()->GetConfiguration()));

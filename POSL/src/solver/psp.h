@@ -30,6 +30,8 @@ class PSP
         void Start(std::vector<int> config);
         void UpdateTime(int _milisecs);
         void CountIteration();
+        void StartSearch();
+        int Restarts(){ return restarts; }
         void UpdateSolution(std::vector<int> config);
         void SearchingWithOuterInformation_ON() { outer_information = true; }
         void SearchingWithOuterInformation_OFF() { outer_information = false; }
@@ -49,4 +51,5 @@ class PSP
         POSL_Log plog;
         std::string logs_path;
         std::shared_ptr<Seed> the_seed;
+        int restarts;
 };

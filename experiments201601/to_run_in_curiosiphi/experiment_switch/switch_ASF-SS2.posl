@@ -1,0 +1,100 @@
+St_dictator := cStrategy
+        oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+        oChannel: OCh;
+{
+<S>
+    OP.Cyc (BE.LoopBnd 5)
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.LoopBnd 50000 )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        OM_V
+                        <S>
+                            OP.? (BE.SCI 200)
+                            <S>
+                                OP.? (BE.SCI 50)
+                                <S> OP.|-> OM_SS1 OM_D </S>
+                                <S> OP.|-> OM_SS2 OM_D </S>
+                            </S>
+                            <S>
+                                OP.|->
+                                <S>
+                                    OP.NotNull
+                                    <S> OP.OSend (send_1) OM_SS1 </S>
+                                    OCh (Ch1)
+                                </S>
+                                OM_D
+                            </S>
+                        </S>
+                    </S> OMS.IterCounter
+                </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+St_submissive := cStrategy
+        oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+        oChannel: OCh;
+{
+<S>
+    OP.Cyc (BE.LoopBnd 50)
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.LoopBnd 5000 )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        OM_V
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.NotNull
+                                <S>
+                                    OP.? (BE.SCI 50)
+                                    <S> OP.OSend (send_1) OM_SS1 </S>
+                                    OM_SS2
+                                </S>
+                                OCh (Ch1)
+                            </S>
+                            OM_D
+                        </S>
+                    </S> OMS.IterCounter
+                </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+dict_ASF := solver
+{
+	cStrategy: St_dictator;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+subm_SS2 := solver
+{
+	cStrategy: St_submissive;
+	oModule: OM_S.PermBlocks, OM_V.1SwapBtwnBlocks, OM_SS.2BestImpr, OM_SS.Rand, OM_D.AlwImpr;
+	oChannel: OCh.DP_Last;
+};
+
+connections:
+
+[dict_ASF.send_1, subm_SS2.send_1] OP.<> [dict_ASF.Ch1, subm_SS2.Ch1]20;
+

@@ -7,6 +7,7 @@
 #include "../expressions/reached_cost_expression.h"
 #include "../expressions/loop_bound_expression.h"
 #include "../expressions/same_cost_iterations_bound_expression.h"
+#include "../expressions/singleton_expression.h"
 
 #include "bool_expression_and_uncoder.h"
 #include "bool_expression_or_uncoder.h"
@@ -24,7 +25,11 @@ shared_ptr<BooleanExpression> BooleanExpressionUncoder::uncode(string code)
 
     string op_name = p_tnm.first.second;
 
-    if(op_name == BE_AND_TOK_NAME)
+    if(op_name == BE_SINGLETON_TOK_NAME)
+    {
+        return make_shared<SingletonExpression>();
+    }
+    else if(op_name == BE_AND_TOK_NAME)
     {
         BoolExpressionAndUncoder be_and_unc;
         return be_and_unc.uncode(code);

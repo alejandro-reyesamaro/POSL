@@ -1,0 +1,68 @@
+---- 17 : 20  -----
+300 3961 St_ca000 3
+1050 10717 St_ca000 4
+1380 14303 St_ca000 3
+830 13948 St_ca000 6
+2000 34121 St_sca000 12
+1990 29401 St_rca000_c (thanks!) 13
+1210 12691 St_ca000 7
+330 3364 St_ca000 6
+1230 19300 St_sca000 18
+1250 16072 St_rca000_c (thanks!) 19
+200 3613 St_ca000 3
+200 3613 St_ca000 2
+200 3613 St_ca000 5
+1460 25720 St_ca000 3
+520 7633 St_sca000 16
+510 5509 St_rca000_c (thanks!) 17
+70 1132 St_rca000_c (thanks!) 13
+2310 41150 St_ca000 3
+660 11146 St_ca000 8
+2200 37402 St_ca000 6
+
+=====================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   EXIT CODE: 6
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+=====================================================================================
+APPLICATION TERMINATED WITH THE EXIT STRING: Aborted (signal 6)
+2760 46040 St_sca000 10
+2740 23431 St_rca000_c (thanks!) 11
+870 15301 St_ca000 8
+1450 25592 St_ca000 3
+1030 15374 St_ca000 1
+1310 23443 St_ca000 2
+3290 56720 St_sca000 18
+3280 27958 St_rca000_c (thanks!) 19
+2080 20684 St_ca000 6
+1080 17248 St_ca000 4
+1080 11152 St_ca000 3
+2200 37609 St_ca000 7
+1020 16609 St_sca000 12
+990 13039 St_rca000_c (thanks!) 13
+770 13834 St_ca000 7
+1060 11182 St_ca000 2
+1470 15313 St_ca000 6
+1570 23255 St_rca000_c (thanks!) 19
+1280 23253 St_ca000 5
+2260 19168 St_rca000_c (thanks!) 17
+1060 9013 St_rca000_c (thanks!) 19
+2100 36179 St_ca000 6
+710 10460 St_ca000 0
+1390 17308 St_rca000_c (thanks!) 11
+620 5248 St_rca000_c (thanks!) 11
+1550 17704 St_ca000 6
+620 9373 St_ca000 3
+1160 18610 St_ca000 2
+1590 27433 St_ca000 9
+980 10471 St_ca000 6
+860 14788 St_ca000 9
+1100 19773 St_ca000 2
+790 7867 St_ca000 0
+1380 13980 St_sca000 12
+1370 13657 St_rca000_c (thanks!) 13
+320 5939 St_ca000 5
+330 5939 St_ca000 4
+----END-----
+   

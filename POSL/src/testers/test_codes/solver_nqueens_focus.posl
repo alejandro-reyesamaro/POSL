@@ -1,0 +1,170 @@
+St_focus := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D;
+    oChannel: OCh;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 50 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 20 ) )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            OM_V
+                            <S>
+                                OP.? ( BE.RC 100 )
+                                <S> OP.NotNull OM_SS OCh (Ch1) </S>
+                                <S> OP.OSend (send1) OM_SS </S>
+                            </S>
+                        </S>
+                        OM_D
+                     </S> OMS.IterCounter
+                 </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+St_sfocus := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 50 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 20 ) )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            OM_V
+                            <S>
+                                OP.? ( BE.RC 100 )
+                                OM_SS
+                                <S>
+                                    OP.? ( BE.Once )
+                                    <S> OP.OSend (send1) OM_SS </S>
+                                    OM_SS
+                                </S>
+                            </S>
+                        </S>
+                        OM_D
+                     </S> OMS.IterCounter
+                 </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+St_rfocus := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D;
+    oChannel: OCh;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 50 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 20 ) )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            OM_V
+                            <S>
+                                OP.? ( BE.RC 100 )
+                                <S> OP.NotNull OM_SS OCh (Ch1) </S>
+                                OM_SS
+                            </S>
+                        </S>
+                        OM_D
+                     </S> OMS.IterCounter
+                 </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+
+St_a000 := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 50 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.AND ( BE.LoopBnd 1000 , BE.SCI 20 ) )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            OM_V
+                            OM_SS
+                        </S>
+                        OM_D
+                     </S> OMS.IterCounter
+                 </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+solver1 := solver
+{
+    cStrategy: St_a000;
+    oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+focused_solver := solver
+{
+    cStrategy: St_focus;
+    oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.DP_Last;
+};
+
+sfocused_solver := solver
+{
+    cStrategy: St_sfocus;
+    oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+rfocused_solver := solver
+{
+    cStrategy: St_rfocus;
+    oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.DP_Last;
+};
+
+connections:
+
+//[solver1]6;
+//[sender_solver.send1] OP.--> [receiver_solver.Ch1]3;
+[sfocused_solver.send1] OP.#-> [rfocused_solver.Ch1]3;
