@@ -63,14 +63,13 @@ St_b001 := cStrategy
 <S>
     OP.Cyc (BE.LoopBnd 50)
     <S>
-        OP.|->
-        OM_S
+        OP.|-> 	OM_S
         <S>
             OP.Cyc ( BE.LoopBnd 5000 )
             <S>
                 OP.|->
-                    <S>
-                        OP.|->
+                <S>
+                    OP.|->
                         <S>
                             OP.|->
                             OM_V
@@ -80,7 +79,7 @@ St_b001 := cStrategy
                                 <S> OP.|-> OM_SS2 OM_D </S>
                             </S>
                         </S> OMS.IterCounter
-                    </S> OMS.TimeCounter
+                </S> OMS.TimeCounter
             </S>
         </S>
     </S>

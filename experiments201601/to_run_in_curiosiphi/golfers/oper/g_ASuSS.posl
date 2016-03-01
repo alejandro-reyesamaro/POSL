@@ -1,0 +1,36 @@
+St_b100 := cStrategy
+	oModule: OM_S, OM_V1, OM_V2, OM_SS, OM_D;
+{
+<S>
+	OP.Cyc ( BE.LoopBnd 50 )
+	<S> 	OP.|->
+			OM_S
+			<S> 	OP.Cyc ( BE.LoopBnd 5000 )
+					<S> 	OP.|->
+							<S> 	OP.|->
+									<S> 	OP.|-> 
+											<S>
+												OP.U OM_V1 OM_V2
+											</S>
+											<S>
+												OP.? (BE.SCI 5) 
+												<S> OP.|-> OM_SS OM_D </S> 
+												<S> OP.|-> OM_SS.Rand OM_D </S>
+											</S>
+									</S> OMS.IterCounter
+							</S> OMS.TimeCounter
+					</S>
+			</S>
+	</S> 
+</S>
+};
+
+solver1 := solver
+{
+	cStrategy: St_b100;
+	oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_V.1SwapBtwnBlocks, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+connections:
+
+[solver1]40;

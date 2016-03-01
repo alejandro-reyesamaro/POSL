@@ -1,0 +1,9 @@
+runs=35
+		
+echo "---- 17 : SEQ  -----" >> c.pres
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich2 -np 1 ./bin/POSL costas 17 c.posl >> c.pres
+done
+echo "----END-----" >> c.pres
+echo "   " >> c.pres

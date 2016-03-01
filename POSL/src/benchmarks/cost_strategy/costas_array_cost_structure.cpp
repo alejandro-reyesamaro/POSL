@@ -56,7 +56,6 @@ int CostasArrayCostStructure::Cost(vector<int> config, bool update)
                     m_errOn(i);
                 }
             }
-
             if (nb > 1)
                 r += m_error();
         } while(++i < N);
@@ -70,7 +69,7 @@ int CostasArrayCostStructure::costOnVariable(int index)
     return err[index];
 }
 
-void CostasArrayCostStructure::Random_Array_Permut(vector<int> vec, int begin, int size)
+void CostasArrayCostStructure::Random_Array_Permut(vector<int> & vec, int begin, int size)
 {
     std::srand(time(0));
     random_shuffle(vec.begin() + begin, vec.begin() + begin + size);

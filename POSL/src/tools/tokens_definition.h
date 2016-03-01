@@ -79,6 +79,7 @@
 #define BE_LOOP_BOUND_TOK_NAME "LoopBnd"
 #define BE_REACHED_COST_TOK_NAME "RC"
 #define BE_SAME_COST_ITERATIONS_TOK_NAME "SCI"
+#define BE_SINGLETON_TOK_NAME "Once"
 
 #define BE_AND_TOK "BE.AND"
 #define BE_ITERATION_BOUND_TOK "BE.IterBnd"
@@ -86,6 +87,7 @@
 #define BE_OR_TOK "BE.OR"
 #define BE_REACHED_COST_TOK "BE.RC"
 #define BE_SAME_COST_ITERATIONS_TOK "BE.SCI"
+#define BE_SINGLETON_TOK "BE.Once"
 
 #define SEQ_TOK_OPEN "<S>"
 #define SEQ_TOK_CLOSE "</S>"

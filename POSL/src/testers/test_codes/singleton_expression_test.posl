@@ -1,0 +1,22 @@
+St_1 := cStrategy
+    oModule: OM_S1, OM_S2;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 10 )
+    <S>
+        OP.? (BE.Once)
+        OM_S1
+        OM_S2
+    </S>
+</S>
+};
+
+sol := solver
+{
+        cStrategy: St_1;
+        oModule: OM_S.Fix, OM_S.PermRand;
+};
+
+connections:
+
+[sol]6;

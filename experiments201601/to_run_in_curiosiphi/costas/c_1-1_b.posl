@@ -1,0 +1,82 @@
+St_rca000_b := cStrategy
+        oModule: OM_S, OM_R, OM_V, OM_SS, OM_D;
+        oChannel: OCh;
+{
+<S>
+    OP.|->
+    OM_S
+    <S>
+        OP.Cyc ( BE.LoopBnd 24000 )
+        <S>
+            OP.|->
+            <S>
+                OP.? (BE.LoopBnd 10)
+                OM_R
+                <S> OP.Min OM_R OCh (Ch1) </S>
+            </S>
+            <S>
+                OP.Cyc (BE.LoopBnd 3)
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S> OP.|-> OM_V OM_SS </S>
+                            OM_D
+                        </S> OMS.IterCounter
+                    </S> OMS.TimeCounter
+                </S>
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+St_sca000 := cStrategy
+        oModule: OM_S, OM_R, OM_V, OM_SS, OM_D;
+{
+<S>
+    OP.|->
+    OM_S
+    <S>
+        OP.Cyc ( BE.LoopBnd 24000 )
+        <S>
+            OP.|->
+            OM_R
+            <S>
+                OP.Cyc ( BE.LoopBnd 3 )
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S> OP.|-> OM_V OM_SS </S>
+                            <S> OP.OSend (send_1) OM_D </S>
+                        </S> OMS.IterCounter
+                    </S> OMS.TimeCounter
+                </S>
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+sender_solver := solver
+{
+        cStrategy: St_sca000;
+        oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+receiver_solver := solver
+{
+        cStrategy: St_rca000_b;
+        oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.BestImpr, OM_D.AlwImpr;
+        oChannel: OCh.Sol_Last;
+};
+
+connections:
+
+[sender_solver.send_1] OP.--> [receiver_solver.Ch1]10;
+

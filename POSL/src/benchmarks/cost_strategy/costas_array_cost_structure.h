@@ -23,7 +23,7 @@ class CostasArrayCostStructure
     private:
         int m_error(){ return (N * N - (dist * dist)); }
         void m_errOn(int k) { err[k] += m_error(); err[k - dist] += m_error(); }
-        void Random_Array_Permut(std::vector<int> vec, int begin, int size);
+        void Random_Array_Permut(std::vector<int> & vec, int begin, int size);
         int Cost(std::vector<int> config, bool update);
 
         Randomizer rand;

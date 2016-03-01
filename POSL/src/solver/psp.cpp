@@ -19,7 +19,8 @@ PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
       time_out(EXIT_TIME),
       plog(max(0, _pID), _logs_path),
       logs_path(_logs_path),
-      the_seed(make_shared<Seed>()) // To achive real pseudo-random, remove the numeric argument
+      the_seed(make_shared<Seed>()), // To achive real pseudo-random, remove the numeric argument
+      restarts(-1)
 {}
 
 PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)
@@ -56,5 +57,7 @@ void PSP::Start(vector<int> config)
 void PSP::UpdateTime(int _milisecs){ milisecs = _milisecs; }
 
 void PSP::CountIteration(){ iterations ++; }
+
+void PSP::StartSearch(){ restarts ++ ;}
 
 //void PSP::log(std::string text){ plog.log(text); }

@@ -34,6 +34,7 @@ shared_ptr<ComputationData> DataOpenChannel::receive_and_log(int id, int tag, sh
 
 shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData>)
 {
+    //cout << "OPCh..." << endl;
     int id;
     MPI_Comm_rank(MPI_COMM_WORLD, &id);
     int tag = dataID();
@@ -58,6 +59,7 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
         }
         MPI_Iprobe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &test_flag, &status);        
     }
+    //cout << "...OPCh" << endl;
     return selectMessage();
     //return nullptr;
 }

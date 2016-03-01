@@ -55,3 +55,4 @@
 #include "tester_k_best_improvement_selection.h"
 #include "tester_golfers_1_week_neighborhood.h"
 #include "tester_same_cost_iterations_be.h"
+#include "tester_singleton_experession.h"

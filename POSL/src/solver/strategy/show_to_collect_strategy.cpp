@@ -22,6 +22,7 @@ std::string ShowToCollectStrategy::show(shared_ptr<PSP> psp,
                Tools::int2str(iterations) + " " +
                strategy_tag +
                (psp->FoundThanksOuterInformation() ? " (thanks!)" : "") +
-               " " + Tools::int2str(psp->GetPID());
+               " " + Tools::int2str(psp->GetPID()) +
+               " r(" + Tools::int2str(psp->Restarts()) + ")";
     else return "Unsucceful (" + Tools::int2str(iterations) + ")";
 }

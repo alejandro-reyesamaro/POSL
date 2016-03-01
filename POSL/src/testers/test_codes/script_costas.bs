@@ -1,0 +1,1 @@
+mpiexec.mpich -np 6 ../../../bin/POSL costas 17 ./solver_costas_comm.posl
