@@ -11,6 +11,7 @@ using namespace std;
 
 CostasArrayCostStructure::CostasArrayCostStructure(int n)
     : N(n), CurrentCost(-1), Configuration(n),
+      rand(make_shared<Randomizer>(n)),
       dist(1), i(0), first_i(0), diff(0), diff_translated(0), nb(0), r(0),
       err(n, 0), nb_occ(2 * n, 0), first(2 * n, 0),
       save_sol(n), best_sol(n), i_err(n), to_add({1, 2, n - 2, n - 3})
@@ -18,11 +19,12 @@ CostasArrayCostStructure::CostasArrayCostStructure(int n)
 
 void CostasArrayCostStructure::init(vector<int> config)
 {
-    copy(config.begin(), config.end(), Configuration.begin());
+    //copy(config.begin(), config.end(), Configuration.begin());
+    Configuration = config;
     CurrentCost = Cost(config, true);
 }
 
-int CostasArrayCostStructure::Cost(vector<int> config, bool update)
+int CostasArrayCostStructure::Cost(vector<int> & config, bool update)
 {
     int size2 = (N - 1) / 2;
     dist = 1;
@@ -70,9 +72,9 @@ int CostasArrayCostStructure::costOnVariable(int index)
 }
 
 void CostasArrayCostStructure::Random_Array_Permut(vector<int> & vec, int begin, int size)
-{
-    std::srand(time(0));
-    random_shuffle(vec.begin() + begin, vec.begin() + begin + size);
+{    
+    //random_shuffle(vec.begin() + begin, vec.begin() + begin + size);
+    rand->vector_shuffle(vec, begin, begin + size);
 
     //int i, j, z;
     //for(i = size - 1; i > 0; i--)
@@ -120,7 +122,7 @@ void CostasArrayCostStructure::Reset()
     for(k = 0; k < N; k++)
     {
         /* we need a random here to avoid to be trapped in the same "bests" chain (see best_cost) */
-        if (rand.NextInt(0, 10) < 4) continue; //if (Random_Double() < 0.4) continue;
+        if (rand->NextInt(0, 10) < 4) continue; //if (Random_Double() < 0.4) continue;
         if (imax < k)
         {
             i = imax;
@@ -150,7 +152,7 @@ void CostasArrayCostStructure::Reset()
             if ((cost = Cost(Configuration, true)) < cost_to_exit)
                 return;		/* -1 because the err[] is not up-to-date */
 
-            if (cost < best_cost || (cost == best_cost && rand.NextInt(0, 10) < 2))
+            if (cost < best_cost || (cost == best_cost && rand->NextInt(0, 10) < 2))
             {
                 best_cost = cost;
                 //memcpy(best_sol, sol, size_bytes);
@@ -167,7 +169,7 @@ void CostasArrayCostStructure::Reset()
             if ((cost = Cost(Configuration, true)) < cost_to_exit)
                 return;
 
-            if (cost < best_cost || (cost == best_cost && rand.NextInt(0, 10) < 2))
+            if (cost < best_cost || (cost == best_cost && rand->NextInt(0, 10) < 2))
             {
                 best_cost = cost;
                 //memcpy(best_sol, sol, size_bytes);
@@ -192,7 +194,7 @@ void CostasArrayCostStructure::Reset()
         if ((cost = Cost(Configuration, true)) < cost_to_exit)
             return;      /* -1 because the err[] is not up-to-date */
 
-        if (cost < best_cost && rand.NextInt(0, 100) < 33)
+        if (cost < best_cost && rand->NextInt(0, 100) < 33)
         {
             best_cost = cost;
             //memcpy(best_sol, sol, size_bytes);
@@ -220,7 +222,7 @@ void CostasArrayCostStructure::Reset()
     for(k = 0; k < NB_OF_ERR_VARS_TO_TRY; k++)
     {
         imax = i_err[k];
-        if (imax == 0 || /*imax == size - 1 ||*/ rand.NextInt(0, 100) < 33)
+        if (imax == 0 || /*imax == size - 1 ||*/ rand->NextInt(0, 100) < 33)
             continue;
 
         //memcpy(sol, save_sol + imax, (size - imax) * sizeof(int));

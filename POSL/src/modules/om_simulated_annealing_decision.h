@@ -10,7 +10,6 @@
  */
 
 #include "aom_decision_function.h"
-#include "../tools/randomizer.h"
 
 //#include <random>
 
@@ -37,7 +36,6 @@ class OM_SimulatedAnnealingDecision : public AOM_DecisionFunction
         virtual std::string Tag();
 
     protected:
-        Randomizer rand;
         bool started;
 
         //! Temperature

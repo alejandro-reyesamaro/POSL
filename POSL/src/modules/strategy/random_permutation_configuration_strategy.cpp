@@ -11,8 +11,8 @@ RandomPermutationConfigurationStrategy::RandomPermutationConfigurationStrategy(i
     : config(Tools::generateMonotony(a, b))
 {}
 
-std::vector<int> RandomPermutationConfigurationStrategy::generate(shared_ptr<Seed>)
+std::vector<int> RandomPermutationConfigurationStrategy::generate(shared_ptr<Randomizer> rand)
 {
-    Tools::shuffle(config);
+    rand->vector_shuffle(config);
     return config;
 }

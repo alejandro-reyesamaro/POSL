@@ -27,7 +27,7 @@ string Tester_RandomOrderedConfGeneration::test()
         shared_ptr<Solution> new_sol = static_pointer_cast<Solution>(op1->execute(psp, t_seed));
         //cout << new_sol->configurationToString() << endl;
         is_random = is_random && (!current_sol->equal(new_sol));
-        vector<int> conf = new_sol->GetConfiguration();
+        vector<int> conf = new_sol->get_conf_by_copy();
         is_random = is_random && is_sorted(conf.begin(), conf.end());
     }
     return (is_random) ? "OM_RandomConfOrderedGeneration: OK !" : "OM_RandomConfOrderedGeneration: fail :/";

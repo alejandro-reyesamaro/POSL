@@ -24,12 +24,10 @@ class RandomOrderedGenerationStrategy
     public:
         RandomOrderedGenerationStrategy(int configuration_size);
 
-        std::vector<int> generate(int max);
+        std::vector<int> generate(shared_ptr<Randomizer> rand, int max);
 
     private:        
-        void place (int a, int b, int pos_1, int pos_2);
+        void place (shared_ptr<Randomizer> rand, int a, int b, int pos_1, int pos_2);
 
         std::vector<int> config;
-        Randomizer rand;
-        std::vector<Domain> domains;
 };

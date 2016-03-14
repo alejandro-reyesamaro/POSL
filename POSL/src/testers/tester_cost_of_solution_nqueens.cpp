@@ -30,7 +30,9 @@ string Tester_CostOfSolutionNQueens::test()
     //bench->InitializeCostData(config2);
     int rc1 = 11;
     //bench->UpdateSolution(config3);
-    int rc2 = bench->relativeSolutionCost(Tester::NQueens_10_c10());
+
+    vector<int> nq_10_c10 = Tester::NQueens_10_c10();
+    int rc2 = bench->relativeSolutionCost(nq_10_c10);
     int rc5 = bench->relativeSolutionCost(config5);
     rc5 = psp->GetBenchmark()->solutionCost(config5);
 

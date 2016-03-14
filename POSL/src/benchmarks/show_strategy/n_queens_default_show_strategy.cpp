@@ -7,13 +7,13 @@ NQueensDefaultShowStrategy::NQueensDefaultShowStrategy(int n)
     : N(n)
 {}
 
-string NQueensDefaultShowStrategy::showSolution(shared_ptr<Solution> solution)
+string NQueensDefaultShowStrategy::showSolution(std::shared_ptr<Solution> &solution)
 {
     if(N > 20)
         return Tools::int2str(N) +"-Queens: " + solution->configurationToString();
 
     std::string out = "";
-    std::vector<int> config = solution->GetConfiguration();
+    std::vector<int> config = solution->get_conf_by_copy();
 
     // TRANSPOSING
     std::vector<int> T(N,0);

@@ -10,7 +10,7 @@ class ComputationStrategy
     public:
         ComputationStrategy(std::string name, std::string code);
 
-        void Instantiate(std::vector<std::string> om_instances, std::vector<std::string> och_instances, std::shared_ptr<Benchmark> bench);
+        void Instantiate(vector<string> & om_instances, vector<string> & och_instances, std::shared_ptr<Benchmark> bench);
         std::shared_ptr<Solution> execute(std::shared_ptr<PSP> psp);
 
         std::shared_ptr<CompoundModule> GetCompoundModule() { return module; }

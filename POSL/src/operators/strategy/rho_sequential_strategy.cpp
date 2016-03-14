@@ -7,7 +7,6 @@ RhoSequentialStrategy::RhoSequentialStrategy(shared_ptr<CompoundModule> _M1, sha
     : M1(_M1),
       M2(_M2),
       rho(_rho),
-      rand(),
       output1(nullptr),
       output2(nullptr)
 {}
@@ -18,6 +17,6 @@ shared_ptr<ComputationData> RhoSequentialStrategy::evaluate(shared_ptr<PSP> psp,
     output2 = M2->execute(psp, input);
     if (output1 == nullptr) return output2;
     if (output2 == nullptr) return output1;
-    int k = rand.NextInt(1,10);
+    int k = psp->GetRandomizer()->NextInt(1,10);
     return (k <= rho*10) ? output1 : output2;
 }

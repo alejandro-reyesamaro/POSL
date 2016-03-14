@@ -21,8 +21,7 @@ class GolfersAdaptiveSearchSingleWeekNeighborhood
 
         std::vector<int> neighborAt(int index);
         std::shared_ptr<FactoryPacker> BuildPacker();
-        void Init(std::vector<int> _configuration);
-        void SetSeed(std::shared_ptr<Seed> _seed);
+        void Init(shared_ptr<PSP>, std::vector<int> & _configuration);
 
     private:
         void updateChanges();

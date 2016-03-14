@@ -55,7 +55,7 @@ string PackingNeighborhoodTester::test(shared_ptr<Solution> sol, shared_ptr<POSL
         sol_aux = make_shared<Solution>(dom, neighbor);
         //cout << sol_aux->configurationToString() << endl;
         int deg = pack[count++];
-        vector<int> sol_conf = sol->GetConfiguration();
+        vector<int> sol_conf = sol->get_conf_by_copy();
         copy(sol_conf.begin(), sol_conf.end(), conf_aux.begin());
         for(int i = 0; i < deg; i++)
         {

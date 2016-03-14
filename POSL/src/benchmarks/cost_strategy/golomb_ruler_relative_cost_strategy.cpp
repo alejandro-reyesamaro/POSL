@@ -9,22 +9,22 @@ GolombRulerRelativeCostStrategy::GolombRulerRelativeCostStrategy()
 {
 }
 
-void GolombRulerRelativeCostStrategy::initializeCostData(vector<int> _configuration, int initial_cost)
+void GolombRulerRelativeCostStrategy::initializeCostData(std::vector<int> &_configuration, int initial_cost)
 {
     throw "Not yet implemented";
 }
 
-void GolombRulerRelativeCostStrategy::updateConfiguration(vector<int> new_config)
+void GolombRulerRelativeCostStrategy::updateConfiguration(std::vector<int> &new_config)
 {
     throw "Not yet implemented";
 }
 
-int GolombRulerRelativeCostStrategy::relativeSolutionCost(vector<int> _configuration)
+int GolombRulerRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configuration)
 {
     throw "Not yet implemented";
 }
 
-int GolombRulerRelativeCostStrategy::relativeSolutionCost(std::vector<int> new_config, T_Changes change)
+int GolombRulerRelativeCostStrategy::relativeSolutionCost(std::vector<int> &new_config, T_Changes change)
 {
     throw "Not yet implemented";
 }

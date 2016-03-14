@@ -25,17 +25,9 @@ GolfersAdaptiveSearchNeighborhood::GolfersAdaptiveSearchNeighborhood(shared_ptr<
       groups(_groups),
       weeks(_config_size / _TP),
       w_index(Tools::generateMonotony(1, _W - 1))
-{
-    //updateChanges();
-}
+{}
 
-void GolfersAdaptiveSearchNeighborhood::SetSeed(std::shared_ptr<Seed> _seed)
-{
-    if(!my_seed)
-        my_seed = _seed;
-}
-
-void GolfersAdaptiveSearchNeighborhood::updateChanges()
+void GolfersAdaptiveSearchNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
     //int weeks = current_configuration.size() / (players * groups);
@@ -45,7 +37,7 @@ void GolfersAdaptiveSearchNeighborhood::updateChanges()
     size_t pos_bv;
     int g_bv, gw, pl;
 
-    Tools::shuffle(w_index);
+    rand->vector_shuffle(w_index);
     int wi;
     //for (int w = 1; w < weeks; w++) // w = 1 first week remains the same
     for (int w = 0; w < weeks - 1; ++w)
@@ -74,10 +66,10 @@ shared_ptr<POSL_Iterator> GolfersAdaptiveSearchNeighborhood::getIterator()
     return make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void GolfersAdaptiveSearchNeighborhood::Init(vector<int> _configuration)
+void GolfersAdaptiveSearchNeighborhood::Init(shared_ptr<PSP> psp, vector<int> & _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
-    updateChanges();
+    updateChanges(psp->GetRandomizer());
 }
 
 shared_ptr<FactoryPacker> GolfersAdaptiveSearchNeighborhood::BuildPacker()

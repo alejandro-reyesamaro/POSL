@@ -17,9 +17,9 @@ string Tester_ASRestart::test()
     shared_ptr<AddAConstantRearrangeStrategy> str2 (make_shared<AddAConstantRearrangeStrategy>());
     vector<int> conf {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     psp->Start(conf);
-    shared_ptr<Solution> sol = str->rearrangement(conf, ca);
-    shared_ptr<Solution> sol2 = str2->rearrangement(conf, ca);
-    shared_ptr<Solution> sol3 = str3->rearrangement(conf, ca);
+    shared_ptr<Solution> sol = str->rearrangement(psp, conf);
+    shared_ptr<Solution> sol2 = str2->rearrangement(psp, conf);
+    shared_ptr<Solution> sol3 = str3->rearrangement(psp, conf);
     cout << sol->configurationToString() << endl;
     cout << sol2->configurationToString() << endl;
     cout << sol3->configurationToString() << endl;

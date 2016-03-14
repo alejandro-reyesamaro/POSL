@@ -10,7 +10,7 @@ class NQueensDanielCostStrategy : public SolutionCostStrategy
 {
     public:
         NQueensDanielCostStrategy(int n);
-        int solutionCost(std::vector<int> configuration);
+        int solutionCost(std::vector<int> & configuration);
 
     private:
         int N;

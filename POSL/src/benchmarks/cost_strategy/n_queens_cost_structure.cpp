@@ -18,9 +18,10 @@ NQueensCostStructure::NQueensCostStructure(int n)
       flags(n,0)
 {}
 
-void NQueensCostStructure::set(vector<int> _configuration)
+void NQueensCostStructure::set(std::vector<int> & _configuration)
 {
-    copy(_configuration.begin(), _configuration.end(), Configuration.begin());
+    //copy(_configuration.begin(), _configuration.end(), Configuration.begin());
+    Configuration = _configuration;
 
     fill(err_d1.begin(), err_d1.end(), 0);
     fill(err_d2.begin(), err_d2.end(), 0);
@@ -51,7 +52,7 @@ void NQueensCostStructure::set(vector<int> _configuration)
             CurrentCost += N/2;
 }
 
-int NQueensCostStructure::relative_cost(vector<int> new_config, T_Changes change, bool updating)
+int NQueensCostStructure::relative_cost(std::vector<int> &new_config, T_Changes change, bool updating)
 {
     int pos_change;
     int new_value;

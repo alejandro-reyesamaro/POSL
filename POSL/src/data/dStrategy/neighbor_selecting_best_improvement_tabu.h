@@ -25,4 +25,5 @@ class NeighborSelectingBestImprovementTabu
         shared_ptr<POSL_Iterator> it;
         vector<int> current_config;
         vector<int> best_found_config;
+        vector<int> neighbor;
 };

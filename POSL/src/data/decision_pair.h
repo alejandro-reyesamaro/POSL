@@ -30,7 +30,7 @@ class DecisionPair : public ComputationData, public std::enable_shared_from_this
         std::shared_ptr<Solution> GetCurrent(){ return current; }
         std::shared_ptr<Solution> GetFound(){ return found; }
 
-        void update(std::vector<int> _current, std::vector<int> _found);
+        void update(std::vector<int> &_current, std::vector<int> _found);
         void updateFromPack(int * pack);
 
         std::string Tag() { return TAGDECISSIONPAIR; }

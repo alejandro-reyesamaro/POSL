@@ -1,8 +1,8 @@
 #include "solution_packer.h"
 
 SolutionPacker::SolutionPacker(std::shared_ptr<Solution> solution)
-    : Packer(solution->GetConfiguration().size() + 2),
-      configuration(solution->GetConfiguration())
+    : Packer(solution->get_conf_by_ref().size() + 2),
+      configuration(solution->get_conf_by_copy())
 {
 }
 

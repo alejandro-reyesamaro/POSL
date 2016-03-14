@@ -1,17 +1,24 @@
 #pragma once
 
-#include <random>
 #include "../data/seed.h"
+#include "matrix.h"
+#include "random_generator.h"
+
+#include <random>
+#include <math.h>
 
 class Randomizer
 {
     public:
-        Randomizer();
+        Randomizer(int configuration_size);
         int NextInt(int min, int max);
-        //void SetSeed(std::shared_ptr<Seed> posl_seed);
+        std::vector<std::vector<int>> generate_multichanges(int card_changes);
+        std::vector<std::vector<int>> generate_multichanges();
+        void vector_shuffle(std::vector<int> & vec);
+        void vector_shuffle(std::vector<int> & vec, int _begin, int _end);
 
     private:
-        //std::shared_ptr<Seed> seed;
-        std::default_random_engine generator;
-        //std::shared_ptr<std::default_random_engine> generator;
+        RandomGenerator r_generator;
+        int dim;
+        Matrix indexes;
 };

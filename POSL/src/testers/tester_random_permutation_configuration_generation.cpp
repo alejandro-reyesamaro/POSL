@@ -33,8 +33,8 @@ string Tester_RandomPermutationConfigurationGeneration::test()
         shared_ptr<Solution> new_sol = current_sol = static_pointer_cast<Solution>(op1->execute(psp, psp->GetBenchmark()->GetSolution()));
         //cout << new_sol->configurationToString() << endl;
         is_random =  is_random && (!current_sol->equal(new_sol));
-        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->GetConfiguration().begin());
-        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->GetConfiguration().begin()+16);
+        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->get_conf_by_copy().begin());
+        is_permut = is_permut && is_permutation (perm.begin(), perm.end(), new_sol->get_conf_by_copy().begin()+16);
     }
     return (is_random) ? "OM_RandomConfPermutationByBlocksGeneration: OK !" : "OM_RandomConfPermutationByBlocksGeneration: fail :/";
 }

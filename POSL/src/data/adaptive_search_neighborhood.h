@@ -22,10 +22,10 @@ class AdaptiveSearchNeighborhood
 
         std::vector<int> neighborAt(int index);
         std::shared_ptr<FactoryPacker> BuildPacker();
-        void Init(std::vector<int> _configuration);
+        void Init(shared_ptr<PSP> psp, vector<int> & _configuration);
 
     private:
-        void updateChanges();
+        void updateChanges(std::shared_ptr<Randomizer> rand);
 
         std::shared_ptr<Benchmark> benchmark;
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;

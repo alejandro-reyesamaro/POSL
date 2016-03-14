@@ -7,10 +7,10 @@ SquaringSquareDefaultShowStrategy::SquaringSquareDefaultShowStrategy(int _n_squa
     : n_squares(_n_squares)
 {}
 
-string SquaringSquareDefaultShowStrategy::showSolution(shared_ptr<Solution> solution)
+string SquaringSquareDefaultShowStrategy::showSolution(std::shared_ptr<Solution> &solution)
 {
     std::string out = "";
-    std::vector<int> conf = solution->GetConfiguration();
+    std::vector<int> conf = solution->get_conf_by_copy();
     out += "(" + Tools::int2str(conf[0]) + ";" + Tools::int2str(conf[n_squares]) + ")";
     for(int i = 1; i < n_squares; i++)
         out += ", (" + Tools::int2str(conf[i]) + ";" + Tools::int2str(conf[i+n_squares]) + ")";

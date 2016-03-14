@@ -7,8 +7,8 @@ class AllCircularShiftAroundWorstRearrangeStrategy : public RearrangeStrategy
     public:
         AllCircularShiftAroundWorstRearrangeStrategy(int configuration_size);
 
-        std::shared_ptr<Solution> rearrangement(std::vector<int> current_configuration,
-                                                std::shared_ptr<Benchmark> benchmark);
+        std::shared_ptr<Solution> rearrangement(std::shared_ptr<PSP> psp,
+                                                std::vector<int> current_configuration);
 
     private:
         std::vector<int> temp_vec;

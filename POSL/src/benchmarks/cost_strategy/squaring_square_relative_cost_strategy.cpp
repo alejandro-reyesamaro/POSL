@@ -9,22 +9,22 @@ SquaringSquareRelativeCostStrategy::SquaringSquareRelativeCostStrategy()
 {
 }
 
-void SquaringSquareRelativeCostStrategy::initializeCostData(vector<int> _configuration, int initial_cost)
+void SquaringSquareRelativeCostStrategy::initializeCostData(std::vector<int> &_configuration, int initial_cost)
 {
     throw "Not yet implemented";
 }
 
-void SquaringSquareRelativeCostStrategy::updateConfiguration(std::vector<int> new_config)
+void SquaringSquareRelativeCostStrategy::updateConfiguration(std::vector<int> &new_config)
 {
     throw "Not yet implemented";
 }
 
-int SquaringSquareRelativeCostStrategy::relativeSolutionCost(vector<int> _configuration)
+int SquaringSquareRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configuration)
 {
     throw "Not yet implemented";
 }
 
-int SquaringSquareRelativeCostStrategy::relativeSolutionCost(std::vector<int> new_config, T_Changes change)
+int SquaringSquareRelativeCostStrategy::relativeSolutionCost(std::vector<int> &new_config, T_Changes change)
 {
     throw "Not yet implemented";
 }

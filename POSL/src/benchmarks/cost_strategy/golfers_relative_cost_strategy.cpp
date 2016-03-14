@@ -20,9 +20,10 @@ GolfersRelativeCostStrategy::GolfersRelativeCostStrategy(int g, int p, int w)
       bad_variables(TP)
 {}
 
-void GolfersRelativeCostStrategy::initializeCostData(vector<int> _configuration, int initial_cost)
+void GolfersRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int initial_cost)
 {
-    copy(_configuration.begin(), _configuration.end(), configuration.begin());
+    //copy(_configuration.begin(), _configuration.end(), configuration.begin());
+    configuration = _configuration;
     int start_tournament, end_tournament;
     current_cost = 0;
     cc_occurrences.clear();
@@ -44,7 +45,7 @@ void GolfersRelativeCostStrategy::initializeCostData(vector<int> _configuration,
     current_cost = initial_cost;
 }
 
-int GolfersRelativeCostStrategy::relative_cost(std::vector<int> new_config, T_Changes change, bool updating)
+int GolfersRelativeCostStrategy::relative_cost(std::vector<int> &new_config, T_Changes change, bool updating)
 {
     int cost = 0;
     int pos, new_value, w, g, j;
@@ -77,7 +78,7 @@ int GolfersRelativeCostStrategy::relative_cost(std::vector<int> new_config, T_Ch
     return cost;
 }
 
-void GolfersRelativeCostStrategy::updateConfiguration(vector<int> new_config)
+void GolfersRelativeCostStrategy::updateConfiguration(vector<int> & new_config)
 {
     T_Changes changes = Tools::GetChanges(configuration, new_config);
     if(changes.dim > 0)
@@ -87,13 +88,13 @@ void GolfersRelativeCostStrategy::updateConfiguration(vector<int> new_config)
     }
 }
 
-int GolfersRelativeCostStrategy::relativeSolutionCost(vector<int> _configuration)
+int GolfersRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configuration)
 {
     T_Changes changes = Tools::GetChanges(configuration, _configuration);
     return relativeSolutionCost(_configuration, changes);
 }
 
-int GolfersRelativeCostStrategy::relativeSolutionCost(vector<int> new_config, T_Changes changes)
+int GolfersRelativeCostStrategy::relativeSolutionCost(std::vector<int> &new_config, T_Changes changes)
 {
     return current_cost + relative_cost(new_config, changes, false);
 }
@@ -125,5 +126,5 @@ int GolfersRelativeCostStrategy::sickestVariable()
             bad_variables.pushBack(i);
         }
     }
-    return bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
+    return bad_variables.elementAt(r_gen.next_int(0, bad_variables.size()-1));
 }

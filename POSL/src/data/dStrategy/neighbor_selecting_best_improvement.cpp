@@ -10,9 +10,9 @@ NeighborSelectingBestImprovement::NeighborSelectingBestImprovement(vector<Domain
 
 shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
 {
-    current_config = psp->GetCurrentSolution()->GetConfiguration();
+    current_config = psp->GetCurrentSolution()->get_conf_by_copy();
     int current_cost = psp->CurrentCost();
-    best_found_config = psp->GetCurrentSolution()->GetConfiguration();
+    best_found_config = psp->GetCurrentSolution()->get_conf_by_copy();
     int best_found_cost = current_cost;
     int c;
 
@@ -21,12 +21,12 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP
 
     while(it->SomeNext())
     {
-        vector<int> config = it->GetNext();
-        c = psp->GetBenchmark()->relativeSolutionCost(config);
+        neighbor = it->GetNext();
+        c = psp->GetBenchmark()->relativeSolutionCost(neighbor);
         if(c < best_found_cost)
         {
             best_found_cost   = c;
-            best_found_config = config;
+            best_found_config = neighbor;
         }
     }
     rPair->update(current_config, best_found_config);

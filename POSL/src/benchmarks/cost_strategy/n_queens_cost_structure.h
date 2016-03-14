@@ -8,8 +8,8 @@ class NQueensCostStructure
     public:
         NQueensCostStructure(int n);
 
-        int relative_cost(std::vector<int> new_config, T_Changes change, bool updating);
-        void set(std::vector<int> _configuration);
+        int relative_cost(std::vector<int> & new_config, T_Changes change, bool updating);
+        void set(std::vector<int> & _configuration);
         int costOnVariable(int i);
 
         int N;

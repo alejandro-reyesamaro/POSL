@@ -14,7 +14,7 @@ GolombRulerDistancesCostStrategy::GolombRulerDistancesCostStrategy(int _order, i
 {}
 
 
-int GolombRulerDistancesCostStrategy::solutionCost(std::vector<int> configuration)
+int GolombRulerDistancesCostStrategy::solutionCost(std::vector<int> & configuration)
 {
     measures.deactivateAll(); //measures.clearBits();// = new LongInt(table_length, 0);
     //vector<int> conf = sol->GetConfiguration();

@@ -36,10 +36,10 @@ class GolfersSingleSwapNeighborhood
 
         std::vector<int> neighborAt(int index);
         std::shared_ptr<FactoryPacker> BuildPacker();
-        void Init(std::vector<int> _configuration);
+        void Init(shared_ptr<PSP> psp, vector<int> & _configuration);
 
     private:
-        void updateChanges();
+        void updateChanges(shared_ptr<Randomizer> rand);
         void save_changes(int g1, int g2, int week);
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;        

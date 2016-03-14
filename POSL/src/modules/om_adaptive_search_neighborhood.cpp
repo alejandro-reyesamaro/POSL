@@ -11,7 +11,7 @@ OM_AdaptiveSearchNeighborhood::OM_AdaptiveSearchNeighborhood(shared_ptr<Benchmar
 
 shared_ptr<Neighborhood> OM_AdaptiveSearchNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    V->Init(input->GetConfiguration());
+    V->Init(psp, input->get_conf_by_ref());
     //psp->log("Executing neighborhood function...");
     return V;
 }

@@ -23,4 +23,5 @@ class NeighborSelectingFirstImprovement
         std::shared_ptr<POSL_Iterator> it;
         std::vector<int> current_config;
         std::vector<int> best_found_config;
+        std::vector<int> neighbor;
 };

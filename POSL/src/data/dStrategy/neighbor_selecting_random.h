@@ -21,6 +21,5 @@ class NeighborSelectingRandom
 
     private:        
         std::shared_ptr<DecisionPair> rPair;
-        Randomizer rand;
         std::vector<int> best_found_config;
 };

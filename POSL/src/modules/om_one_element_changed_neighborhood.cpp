@@ -9,9 +9,9 @@ OM_OneElementChangedNeighborhood::OM_OneElementChangedNeighborhood(shared_ptr<Be
     : V(std::make_shared<OneElementChangedNeighborhood>(bench->Domains().size(), bench->Domains()))
 {}
 
-shared_ptr<Neighborhood> OM_OneElementChangedNeighborhood::spcf_execute(shared_ptr<PSP>, std::shared_ptr<Solution> input)
+shared_ptr<Neighborhood> OM_OneElementChangedNeighborhood::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Solution> input)
 {
-    V->Init(input->GetConfiguration());
+    V->Init(psp, input->get_conf_by_ref());
     return V;
 }
 

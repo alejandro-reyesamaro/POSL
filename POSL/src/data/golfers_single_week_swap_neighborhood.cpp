@@ -27,16 +27,14 @@ GolfersSingleWeekSwapNeighborhood::GolfersSingleWeekSwapNeighborhood(int _config
       groups(_groups),
       indexes(Tools::generateMonotony(TP)),
       week(init_weeks(_zero_based_week))
-{
-    //updateChanges();
-}
+{}
 
-void GolfersSingleWeekSwapNeighborhood::updateChanges()
+void GolfersSingleWeekSwapNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
-    srand(time(0));
     for(int i = 0; i < groups; i++)
-        random_shuffle(indexes.begin() + i * players, indexes.begin() + (i+1) * players);
+        //random_shuffle(indexes.begin() + i * players, indexes.begin() + (i+1) * players);
+        rand->vector_shuffle(indexes, i * players, (i+1) * players);
     for (int i = 0; i < groups - 1; i++)
         for(int j = i + 1; j < groups; j++)
             save_changes(i,j,week);
@@ -59,10 +57,10 @@ shared_ptr<POSL_Iterator> GolfersSingleWeekSwapNeighborhood::getIterator()
     return make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void GolfersSingleWeekSwapNeighborhood::Init(vector<int> _configuration)
+void GolfersSingleWeekSwapNeighborhood::Init(shared_ptr<PSP> psp, vector<int> & _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
-    updateChanges();
+    updateChanges(psp->GetRandomizer());
 }
 
 shared_ptr<FactoryPacker> GolfersSingleWeekSwapNeighborhood::BuildPacker()

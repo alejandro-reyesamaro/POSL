@@ -33,14 +33,14 @@ shared_ptr<ComputationData> MinOChSequentialStrategy::evaluate(shared_ptr<PSP> p
         if(result_och->Tag() == TAGSOLUTION)
         {
             shared_ptr<Solution> sol = static_pointer_cast<Solution>(result_och);
-            psp->Start(sol->GetConfiguration());
+            psp->Start(sol->get_conf_by_ref());
             return result_och;
         }
         // DecisionPair
         else if(result_och->Tag() == TAGDECISSIONPAIR)
         {
             shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(result_och);
-            psp->Start(pair->GetFound()->GetConfiguration());
+            psp->Start(pair->GetFound()->get_conf_by_ref());
             //psp->log("Taking outer solution...");
             return result_och;
         }

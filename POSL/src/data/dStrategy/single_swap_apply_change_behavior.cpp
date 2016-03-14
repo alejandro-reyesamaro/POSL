@@ -8,7 +8,7 @@ SingleSwapApplyChangeBehavior::SingleSwapApplyChangeBehavior(int config_size)
     : ApplyChangeBehavior(config_size)
 {}
 
-vector<int> SingleSwapApplyChangeBehavior::applyChangeAt(int index, vector<int> config, vector<T_Changes> changes)
+vector<int> SingleSwapApplyChangeBehavior::applyChangeAt(int index, std::vector<int> & config, vector<T_Changes> changes)
 {
     if(index >= changes.size()) return config;
     copy(config.begin(), config.end(), configuration_changed.begin());

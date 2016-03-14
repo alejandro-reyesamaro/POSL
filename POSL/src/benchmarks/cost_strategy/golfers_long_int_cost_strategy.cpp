@@ -22,7 +22,7 @@ GolfersLongIntCostStrategy::GolfersLongIntCostStrategy(int _groups, int _players
       group_partners (TP + 1, LongInt(TL, 0))
 {}
 
-int GolfersLongIntCostStrategy::solutionCost(std::vector<int> configuration)
+int GolfersLongIntCostStrategy::solutionCost(std::vector<int> &configuration)
 {
     int golfers = TP; //players * groups;
     int table_length = TL; //golfers / 32 + 1; // how long must be the LongInt

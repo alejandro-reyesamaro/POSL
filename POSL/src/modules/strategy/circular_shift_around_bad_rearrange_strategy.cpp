@@ -12,15 +12,15 @@ CircularShiftAroundBadRearrangeStrategy::CircularShiftAroundBadRearrangeStrategy
       v(configuration_size)
 {}
 
-shared_ptr<Solution> CircularShiftAroundBadRearrangeStrategy::rearrangement(vector<int> current_configuration, shared_ptr<Benchmark> benchmark)
+shared_ptr<Solution> CircularShiftAroundBadRearrangeStrategy::rearrangement(std::shared_ptr<PSP> psp, std::vector<int> current_configuration)
 {
-    Tools::shuffle(var_index);
+    psp->GetRandomizer()->vector_shuffle(var_index);
     int bad_variable = 1;
     int ind = 0;
     for(vector<int>::iterator it = var_index.begin(); it != var_index.end(); ++it)
     {
         ind = *it;
-        if(ind > 0 && benchmark->costOnVariable(ind) > 0)
+        if(ind > 0 && psp->GetBenchmark()->costOnVariable(ind) > 0)
         {
             bad_variable = ind;
             break;
@@ -32,5 +32,5 @@ shared_ptr<Solution> CircularShiftAroundBadRearrangeStrategy::rearrangement(vect
     copy(current_configuration.begin(), current_configuration.end(), v.begin());
     std::rotate_copy(current_configuration.begin(), current_configuration.begin() + 1, current_configuration.begin() + bad_variable, v.begin());
 
-    return make_shared<Solution>(benchmark->Domains(), v);
+    return make_shared<Solution>(psp->GetBenchmark()->Domains(), v);
 }

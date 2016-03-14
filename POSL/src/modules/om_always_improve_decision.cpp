@@ -12,7 +12,7 @@ OM_AlwaysImproveDecision::OM_AlwaysImproveDecision()
 
 shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input)
 {
-    psp->UpdateSolution(input->GetFound()->GetConfiguration());
+    psp->UpdateSolution(input->GetFound()->get_conf_by_ref());
     //cout << "PId: " << Tools::int2str(psp->GetPID()) << "-" << Tools::int2str(psp->BestCostSoFar()) << endl;
     return input->GetFound();
 }

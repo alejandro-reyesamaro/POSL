@@ -12,7 +12,8 @@ string Tester_SameCostIterationsBE::test()
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
     shared_ptr<SameCostIterationsBoundExpression> be(make_shared<SameCostIterationsBoundExpression>(4));
-    psp->UpdateSolution(Tester::Golfers_442_c4());
+    vector<int> g_442_c4 = Tester::Golfers_442_c4();
+    psp->UpdateSolution(g_442_c4);
 
     int c1 = 0, c2 = 0;
     for(int i = 0; i < 10; i++)

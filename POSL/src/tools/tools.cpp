@@ -103,20 +103,6 @@ int * Tools::vector2array(vector<int> vec)
     return buff;
 }
 
-void Tools::shuffle(vector<int> & vec)
-{
-    std::srand(time(0));
-    std::random_shuffle (vec.begin(), vec.end());
-}
-
-/*
-void Tools::shuffle(vector<int> & vec, int seed)
-{
-    std::srand(seed);
-    std::random_shuffle (vec.begin(), vec.end());
-}
-*/
-
 vector<int> Tools::generateMonotony(int N)
 {
     /*

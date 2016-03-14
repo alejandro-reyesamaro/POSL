@@ -12,33 +12,33 @@ CostasArrayRelativeCostStrategy::CostasArrayRelativeCostStrategy(int n)
       bad_variables(n)
 {}
 
-void CostasArrayRelativeCostStrategy::initializeCostData(vector<int> _configuration, int initial_cost)
+void CostasArrayRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int initial_cost)
 {
     ca_str->init(_configuration);
     if(initial_cost != ca_str->CurrentCost)
         throw "(POSL Exception) Not matching costs (CostasArrayRelativeCostStrategy::initializeCostData)";
 }
 
-void CostasArrayRelativeCostStrategy::updateConfiguration(vector<int> new_config)
+void CostasArrayRelativeCostStrategy::updateConfiguration(vector<int> & new_config)
 {
     T_Changes changes = Tools::GetChanges(ca_str->Configuration, new_config);
     if(changes.dim > 0)
         relativeSolutionCost(new_config, changes);
 }
 
-int CostasArrayRelativeCostStrategy::relativeSolutionCost(vector<int> _configuration)
+int CostasArrayRelativeCostStrategy::relativeSolutionCost(vector<int> & _configuration)
 {
     T_Changes changes = Tools::GetChanges(ca_str->Configuration, _configuration);
     return relativeSolutionCost(_configuration, changes);
 }
 
-int CostasArrayRelativeCostStrategy::relativeSolutionCost(std::vector<int> new_config, T_Changes)
+int CostasArrayRelativeCostStrategy::relativeSolutionCost(std::vector<int> & new_config, T_Changes)
 {
     ca_str ->init(new_config);
     return ca_str->CurrentCost;
 }
 
-vector<int> CostasArrayRelativeCostStrategy::Reset(vector<int> current_configuration)
+vector<int> CostasArrayRelativeCostStrategy::Reset()//vector<int> & current_configuration)
 {
     ca_str->Reset();
     return ca_str->Configuration;
@@ -67,5 +67,5 @@ int CostasArrayRelativeCostStrategy::sickestVariable()
             bad_variables.pushBack(i);
         }
     }
-    return bad_variables.elementAt(rand.NextInt(0, bad_variables.size()-1));
+    return bad_variables.elementAt(ca_str->GetRandomized()->NextInt(0, bad_variables.size()-1));
 }

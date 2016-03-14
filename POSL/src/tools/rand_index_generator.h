@@ -1,3 +1,4 @@
+/*
 #pragma once
 
 #include "matrix.h"
@@ -21,3 +22,4 @@ class RandIndexGenerator
         int dim;
         Matrix indexes;        
 };
+*/

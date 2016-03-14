@@ -33,7 +33,9 @@ class Solution : public ComputationData, public std::enable_shared_from_this<Sol
         std::string configurationToString();
         std::shared_ptr<FactoryPacker> BuildPacker();
 
-        std::vector<int> GetConfiguration(){ return configuration; }
+        std::vector<int> get_conf_by_copy() { return configuration; }
+        std::vector<int> & get_conf_by_ref() { return configuration; }
+
         std::vector<Domain> GetDomains(){ return domains; }
 
         std::string Tag() { return TAGSOLUTION; }

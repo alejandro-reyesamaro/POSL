@@ -17,19 +17,18 @@ Benchmark::Benchmark(vector<Domain> _domains,
 
 int Benchmark::solutionCost(shared_ptr<Solution> sol)
 {
-    return solutionCost(sol->GetConfiguration());
+    return solutionCost(sol->get_conf_by_ref());
 }
-
-int Benchmark::relativeSolutionCost(std::vector<int> configuration)
+int Benchmark::relativeSolutionCost(std::vector<int> & configuration)
 {
     return relative_cost_strategy->relativeSolutionCost(configuration);
 }
-int Benchmark::relativeSolutionCost(std::vector<int> new_config, T_Changes changes)
+int Benchmark::relativeSolutionCost(std::vector<int> & new_config, T_Changes changes)
 {
     return relative_cost_strategy->relativeSolutionCost(new_config, changes);
 }
 
-int Benchmark::solutionCost(vector<int> configuration)
+int Benchmark::solutionCost(std::vector<int> & configuration)
 {
     return cost_strategy->solutionCost(configuration);
 }
@@ -49,13 +48,13 @@ int Benchmark::sickestVariable()
     return relative_cost_strategy->sickestVariable();
 }
 
-void Benchmark::UpdateSolution(vector<int> config)
+void Benchmark::UpdateSolution(std::vector<int> & config)
 {    
     relative_cost_strategy->updateConfiguration(config);
     copy(config.begin(), config.end(), configuration.begin());
 }
 
-void Benchmark::InitializeCostData(std::vector<int> config)
+void Benchmark::InitializeCostData(std::vector<int> & config)
 {
     relative_cost_strategy->initializeCostData(config, solutionCost(config));
     copy(config.begin(), config.end(), configuration.begin());

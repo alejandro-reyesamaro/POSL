@@ -11,27 +11,21 @@
 MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(int _config_size, std::vector<Domain> _domains)
     : Neighborhood(_config_size),
       changeAtBhv(std::make_shared<SortedApplyChangeBehavior>(_config_size)),
-      domains(_domains),
-      rand()
-{
-    updateChanges();
-}
+      domains(_domains)
+{}
 
-void MultiSortedChangesNeighborhood::updateChanges()
+void MultiSortedChangesNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
     int n = current_configuration.size();
-    //int N = PRC_CHANGES * n;  // to have N chahges
-
-    RandIndexGenerator rig(n-1);
-    std::vector<vector<int>> the_changes = rig.generate();
+    std::vector<vector<int>> the_changes = rand->generate_multichanges();
 
     //int pos_new_value = 0;
 
     for (std::vector<std::vector<int>>::iterator it = the_changes.begin(); it != the_changes.end(); ++it)
     {
         std::vector<int> list_of_indexes = (*it);
-        pushSetOfValues(list_of_indexes);
+        pushSetOfValues(rand, list_of_indexes);
     }
 }
 
@@ -40,10 +34,10 @@ std::shared_ptr<POSL_Iterator> MultiSortedChangesNeighborhood::getIterator()
     return std::make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void MultiSortedChangesNeighborhood::Init(std::vector<int> _configuration)
+void MultiSortedChangesNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _configuration)
 {
     std::copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
-    updateChanges();
+    updateChanges(psp->GetRandomizer());
 }
 
 std::shared_ptr<FactoryPacker> MultiSortedChangesNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
@@ -53,7 +47,7 @@ std::vector<int> MultiSortedChangesNeighborhood::neighborAt(int index)
     return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }
 
-void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes)
+void MultiSortedChangesNeighborhood::pushSetOfValues(shared_ptr<Randomizer> rand, vector<int> indexes)
 {
     int domains_size = domains[0].maximum();
     // <= 16
@@ -79,7 +73,7 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(vector<int> indexes)
         else
         {
             values_for_index = domains[index].GetValues();
-            Tools::shuffle(values_for_index);
+            rand->vector_shuffle(values_for_index);
         }
         vector_values.push_back(values_for_index);
     }

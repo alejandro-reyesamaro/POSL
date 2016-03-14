@@ -12,10 +12,10 @@ AllCircularShiftAroundWorstRearrangeStrategy::AllCircularShiftAroundWorstRearran
 {}
 
 /// Example code in cpp.sh/32whl
-shared_ptr<Solution> AllCircularShiftAroundWorstRearrangeStrategy::rearrangement(vector<int> current_configuration,
-                                                                                 shared_ptr<Benchmark> benchmark)
+shared_ptr<Solution> AllCircularShiftAroundWorstRearrangeStrategy::rearrangement(std::shared_ptr<PSP> psp,
+                                                                                 std::vector<int> current_configuration)
 {
-    int worst_index = benchmark->sickestVariable();
+    int worst_index = psp->GetBenchmark()->sickestVariable();
     int w = worst_index + 1;
     //std::rotate(myvector.begin()+2,myvector.begin()+3,myvector.begin()+5);
     int cost = 0, best_cost = std::numeric_limits<int>::max();    
@@ -29,7 +29,7 @@ shared_ptr<Solution> AllCircularShiftAroundWorstRearrangeStrategy::rearrangement
         std::rotate_copy(current_configuration.begin() + i, current_configuration.begin() + i + 1, current_configuration.begin() + w, temp_vec.begin() + i);
 
 
-        cost = benchmark->solutionCost(temp_vec);
+        cost = psp->GetBenchmark()->solutionCost(temp_vec);
         if (cost < best_cost)
         {
             best_cost = cost;
@@ -44,7 +44,7 @@ shared_ptr<Solution> AllCircularShiftAroundWorstRearrangeStrategy::rearrangement
         std::rotate_copy(current_configuration.begin() + w - 1, current_configuration.begin() + w, current_configuration.begin() + w + i, temp_vec.begin() + w - 1);
 
 
-        cost = benchmark->solutionCost(temp_vec);
+        cost = psp->GetBenchmark()->solutionCost(temp_vec);
         if (cost < best_cost)
         {
             best_cost = cost;
@@ -52,7 +52,7 @@ shared_ptr<Solution> AllCircularShiftAroundWorstRearrangeStrategy::rearrangement
         }
     }
 
-    return make_shared<Solution>(benchmark->Domains(), best_conf);
+    return make_shared<Solution>(psp->GetBenchmark()->Domains(), best_conf);
 }
 
 

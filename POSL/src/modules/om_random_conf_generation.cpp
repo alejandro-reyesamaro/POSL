@@ -14,8 +14,8 @@ OM_RandomConfGeneration::OM_RandomConfGeneration(shared_ptr<Benchmark> bench)
 
 shared_ptr<Solution> OM_RandomConfGeneration::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Seed>)
 {
-    rsolution->UpdateConfiguration(rconf_strategy->generate(domains));
-    psp->UpdateSolution(rsolution->GetConfiguration());
+    rsolution->UpdateConfiguration(rconf_strategy->generate(psp->GetRandomizer(), domains));
+    psp->UpdateSolution(rsolution->get_conf_by_ref());
     return rsolution;
 }
 

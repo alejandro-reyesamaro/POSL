@@ -26,9 +26,10 @@ SquaringSquareCostStructure::SquaringSquareCostStructure(int _size, vector<int> 
       momement_capacity(store_movement_capacity(_squares, _size))
 {}
 
-void SquaringSquareCostStructure::set(vector<int> _configuration)
+void SquaringSquareCostStructure::set(std::vector<int> & _configuration)
 {
-    copy(_configuration.begin(), _configuration.end(), Configuration.begin());
+    //copy(_configuration.begin(), _configuration.end(), Configuration.begin());
+    Configuration = _configuration;
     fill(cost_on_variable_coefix.begin(), cost_on_variable_coefix.end(), 0);
     fill(cost_on_leaving.begin(), cost_on_leaving.end(), 0);
     CurrentCost = 0;
@@ -53,7 +54,7 @@ void SquaringSquareCostStructure::set(vector<int> _configuration)
     }
 }
 
-int SquaringSquareCostStructure::relative_cost(std::vector<int> new_config, T_Changes change, bool updating)
+int SquaringSquareCostStructure::relative_cost(std::vector<int> & new_config, T_Changes change, bool updating)
 {
-
+    throw "(POSL Exception) not implemented yet (SquaringSquareCostStructure::relative_cost)";
 }

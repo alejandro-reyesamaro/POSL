@@ -9,9 +9,9 @@ OM_MultiSortedChangesNeighborhood::OM_MultiSortedChangesNeighborhood(shared_ptr<
     : V(make_shared<MultiSortedChangesNeighborhood>(bench->Domains().size(), bench->Domains()))
 {}
 
-shared_ptr<Neighborhood> OM_MultiSortedChangesNeighborhood::spcf_execute(shared_ptr<PSP>, shared_ptr<Solution> input)
+shared_ptr<Neighborhood> OM_MultiSortedChangesNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    V->Init(input->GetConfiguration());
+    V->Init(psp, input->get_conf_by_ref());
     return V;
 }
 

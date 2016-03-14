@@ -23,7 +23,7 @@ Golfers3PNCostStrategy::Golfers3PNCostStrategy(int _groups, int _players, int _w
 {
 }
 
-int Golfers3PNCostStrategy::solutionCost(std::vector<int> configuration)
+int Golfers3PNCostStrategy::solutionCost(std::vector<int> & configuration)
 {
     int begin_gr, cost = 0;
     fill(global_partners.begin(), global_partners.end(), LongInt(TL, 0));

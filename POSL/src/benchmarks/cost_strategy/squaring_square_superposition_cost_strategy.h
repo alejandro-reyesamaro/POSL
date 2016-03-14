@@ -6,8 +6,8 @@
 class SquaringSquareSuperpositionCostStrategy : public SolutionCostStrategy
 {
     public:
-        SquaringSquareSuperpositionCostStrategy(int _size, std::vector<int> _squares);
-        int solutionCost(std::vector<int> configuration);
+        SquaringSquareSuperpositionCostStrategy(int _size, std::vector<int> & _squares);
+        int solutionCost(std::vector<int> &configuration);
 
     private:
         //! [Size of the big square]

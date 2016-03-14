@@ -9,7 +9,7 @@ CostasArrayDanielCostStrategy::CostasArrayDanielCostStrategy(int n)
       ca_str(make_shared<CostasArrayCostStructure>(n))
 {}
 
-int CostasArrayDanielCostStrategy::solutionCost(vector<int> configuration)
+int CostasArrayDanielCostStrategy::solutionCost(std::vector<int> &configuration)
 {
     ca_str->init(configuration);
     return ca_str->CurrentCost;

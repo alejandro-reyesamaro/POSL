@@ -23,6 +23,6 @@ class NeighborSelectingKBestImprovement
         //std::vector<int> best_found_config;        
         std::shared_ptr<BinarySearchTree<std::vector<int>>> selection_tree;
 
-        std::vector<int> config;
+        std::vector<int> neighbor;
 };
 

@@ -3,7 +3,7 @@
 #include "relative_cost_strategy.h"
 #include "../../tools/connection_matrix.h"
 #include "../../tools/fixed_size_vector.h"
-#include "../../tools/randomizer.h"
+#include "../../tools/random_generator.h"
 
 #include <algorithm>
 
@@ -22,17 +22,17 @@ class GolfersRelativeCostStrategy : public RelativeCostStrategy
     public:
         GolfersRelativeCostStrategy(int g, int p, int w);
 
-        void initializeCostData(std::vector<int> _configuration, int initial_cost);
-        int relativeSolutionCost(std::vector<int> _configuration);
-        int relativeSolutionCost(std::vector<int> new_config, T_Changes changes);
-        void updateConfiguration(std::vector<int> new_config);
+        void initializeCostData(std::vector<int> & _configuration, int initial_cost);
+        int relativeSolutionCost(std::vector<int> & _configuration);
+        int relativeSolutionCost(std::vector<int> & new_config, T_Changes changes);
+        void updateConfiguration(std::vector<int> & new_config);
         int currentCost() { return current_cost; }
 
         int costOnVariable(int variable_index);
         int sickestVariable();
 
     private:
-        int relative_cost(std::vector<int> new_config, T_Changes change, bool updating);
+        int relative_cost(std::vector<int> & new_config, T_Changes change, bool updating);
 
         std::vector<int> configuration;
         //! [number of groups],[players per group],[weeks to play]
@@ -41,6 +41,6 @@ class GolfersRelativeCostStrategy : public RelativeCostStrategy
         ConnectionMatrix cc_occurrences;
         int current_cost;
         FixedSizeVector<int> bad_variables;
-        Randomizer rand;
+        RandomGenerator r_gen;
 };
 

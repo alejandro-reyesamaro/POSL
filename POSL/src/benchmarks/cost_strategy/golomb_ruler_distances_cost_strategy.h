@@ -7,7 +7,7 @@ class GolombRulerDistancesCostStrategy : public SolutionCostStrategy
 {
     public:
         GolombRulerDistancesCostStrategy(int _order, int _length);
-        int solutionCost(std::vector<int> configuration);
+        int solutionCost(std::vector<int> & configuration);
 
     private:
         //! [Number of marcs], [Maximum distance]

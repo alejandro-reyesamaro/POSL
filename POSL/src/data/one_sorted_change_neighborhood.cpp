@@ -11,22 +11,20 @@
 OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(int _config_size)
     : Neighborhood(_config_size),
       changeAtBhv(std::make_shared<SortedApplyChangeBehavior>(_config_size))
-{
-    updateChanges();
-}
+{}
 
 std::shared_ptr<POSL_Iterator> OneSortedChangeNeighborhood::getIterator()
 {
     return std::make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void OneSortedChangeNeighborhood::Init(std::vector<int> _configuration)
+void OneSortedChangeNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
-    updateChanges();
+    updateChanges(psp->GetRandomizer());
 }
 
-void OneSortedChangeNeighborhood::updateChanges()
+void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
     int n = current_configuration.size();
@@ -35,7 +33,7 @@ void OneSortedChangeNeighborhood::updateChanges()
     for (int i = 1; i < n-1; i++)
         indexes.push_back(i);
     //n = N_NEIGHBORS;
-    Tools::shuffle(indexes);
+    rand->vector_shuffle(indexes);
 
     int pos_new_value = 0;
     //vector<int> the_configuration = sol->GetConfiguration();
@@ -44,7 +42,7 @@ void OneSortedChangeNeighborhood::updateChanges()
     {
         int current_value = current_configuration[indexes[i]];
         std::vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i], current_configuration);
-        Tools::shuffle(posible_values);
+        rand->vector_shuffle(posible_values);
         int l = posible_values.size();
         for (int j = 0; j <  l / 2; j++)
         {

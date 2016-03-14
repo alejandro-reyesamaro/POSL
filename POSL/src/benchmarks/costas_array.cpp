@@ -28,7 +28,7 @@ shared_ptr<CostasArrayRelativeCostStrategy> CostasArray::cast_my_relative_strate
     return static_pointer_cast<CostasArrayRelativeCostStrategy>(relative_cost_strategy);
 }
 
-vector<int> CostasArray::Reset(vector<int> current_configuration)
+vector<int> CostasArray::Reset()//vector<int> current_configuration)
 {
-    return cast_my_relative_strategy()->Reset(current_configuration);
+    return cast_my_relative_strategy()->Reset();//current_configuration);
 }

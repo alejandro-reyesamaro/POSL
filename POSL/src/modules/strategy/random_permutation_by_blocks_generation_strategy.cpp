@@ -8,15 +8,15 @@
 using namespace std;
 
 RandomPermutationByBlocksGenerationStrategy::RandomPermutationByBlocksGenerationStrategy(int configuration_size, int block_size)
-    :config(configuration_size),
+    : config(configuration_size),
       permutations(Tools::generateMonotony(1,block_size))
 {}
 
-std::vector<int> RandomPermutationByBlocksGenerationStrategy::generate(int block_size, int n_blocks)
+std::vector<int> RandomPermutationByBlocksGenerationStrategy::generate(shared_ptr<Randomizer> rand, int block_size, int n_blocks)
 {
     for(int i = 0; i < n_blocks; i++)
     {
-        Tools::shuffle(permutations);
+        rand->vector_shuffle(permutations);
         copy(permutations.begin(), permutations.end(), config.begin() + i * block_size);
     }
     return config;

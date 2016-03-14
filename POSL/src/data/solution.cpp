@@ -18,7 +18,8 @@ void Solution::UpdateConfiguration(std::vector<int> new_config)
 {
     if(new_config.size() != configuration.size())
         throw "(POSL Exception) Configurations sizes missmatch (Solution::UpdateConfiguration)";
-    std::copy(new_config.begin(), new_config.end(), configuration.begin());
+    //std::copy(new_config.begin(), new_config.end(), configuration.begin());
+    configuration = new_config;
 }
 
 void Solution::UpdateConfigurationFromPack(int * pack)

@@ -14,10 +14,10 @@ string Tester_SetsIndexGenerator::test()
     //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
-    RandIndexGenerator it(20 , 3);
+    //RandIndexGenerator it(20 , 3);
     //  return Tools::int2str( it.indexes[0]->value);
     unsigned int to_generate = 5;
-    vector<vector<int>> inds = it.generate(to_generate);
+    vector<vector<int>> inds = psp->GetRandomizer()->generate_multichanges(to_generate);
 
     for (std::vector<vector<int>>::iterator it = inds.begin(); it!=inds.end(); ++it)
     {

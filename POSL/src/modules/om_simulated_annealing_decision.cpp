@@ -11,8 +11,7 @@
 using namespace std;
 
 OM_SimulatedAnnealingDecision::OM_SimulatedAnnealingDecision(double _start_probability, double _fall_rate, double _temperature_itereations)
-    : rand(),
-      started(false),
+    : started(false),
       start_probability(_start_probability),
       fall_rate(_fall_rate),
       temperature_iterations(_temperature_itereations),
@@ -26,7 +25,7 @@ shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP>
     current_solution_cost = psp->GetBenchmark()->solutionCost(input->GetCurrent()); //w
     if(found_solution_cost == 0)
     {
-        psp->UpdateSolution(input->GetFound()->GetConfiguration());
+        psp->UpdateSolution(input->GetFound()->get_conf_by_ref());
         return input->GetFound();
     }
     //cout << found_solution_cost << endl;
@@ -48,20 +47,20 @@ shared_ptr<Solution> OM_SimulatedAnnealingDecision::spcf_execute(shared_ptr<PSP>
     //cout << "T=" << T << endl;
     current_probability = ((double)exp( - (relative_difference_cost) /   T )) * 10;
 
-    int k = rand.NextInt(0, 10);    
+    int k = psp->GetRandomizer()->NextInt(0, 10);
 
     //cout << current_probability << endl;
     //out << "--" << endl;
     if(k >= current_probability)
     {
         //cout << "good" << endl;
-        psp->UpdateSolution(input->GetFound()->GetConfiguration());
+        psp->UpdateSolution(input->GetFound()->get_conf_by_ref());
         return input->GetFound();
     }
     else
     {
         //cout << current_probability << " :/" << endl;
-        psp->UpdateSolution(input->GetCurrent()->GetConfiguration());
+        psp->UpdateSolution(input->GetCurrent()->get_conf_by_ref());
         return input->GetCurrent();
     }
 }

@@ -9,7 +9,7 @@ class RandomPermutationConfigurationStrategy
         RandomPermutationConfigurationStrategy(int N);
         RandomPermutationConfigurationStrategy(int a, int b);
 
-        std::vector<int> generate(std::shared_ptr<Seed>);
+        std::vector<int> generate(shared_ptr<Randomizer> rand);
 
     private:
         std::vector<int> config;

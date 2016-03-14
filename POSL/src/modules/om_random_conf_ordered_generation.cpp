@@ -19,8 +19,8 @@ shared_ptr<Solution> OM_RandomConfOrderedGeneration::spcf_execute(shared_ptr<PSP
         throw "(POSL exception) Not casting allowed (OM_RandomConfOrderedGeneration.spfc_execute)";
     int max = object_bench->Length();
     //int size = object_bench->Order();
-    rsolution->UpdateConfiguration(rconf_strategy->generate(max));
-    psp->UpdateSolution(rsolution->GetConfiguration());
+    rsolution->UpdateConfiguration(rconf_strategy->generate(psp->GetRandomizer(), max));
+    psp->UpdateSolution(rsolution->get_conf_by_ref());
     return rsolution;
 }
 

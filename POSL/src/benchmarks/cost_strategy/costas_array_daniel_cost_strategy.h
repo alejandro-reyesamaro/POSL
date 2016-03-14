@@ -10,7 +10,7 @@ class CostasArrayDanielCostStrategy : public SolutionCostStrategy
 {
     public:
         CostasArrayDanielCostStrategy(int n);
-        int solutionCost(std::vector<int> configuration);
+        int solutionCost(std::vector<int> & configuration);
 
     private:
         int N;

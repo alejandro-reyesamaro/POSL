@@ -30,7 +30,7 @@ int group_coincidences(vector<int>::iterator it_lg_begin,
 }
 
 
-int GolfersIntersectionsCostStrategy::solutionCost(std::vector<int> configuration)
+int GolfersIntersectionsCostStrategy::solutionCost(std::vector<int> &configuration)
 {
     int cost = 0, i = 0;
     int N = configuration.size();

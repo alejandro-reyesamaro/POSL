@@ -24,7 +24,7 @@ class RandomPermutationByBlocksGenerationStrategy
     public:
         RandomPermutationByBlocksGenerationStrategy(int configuration_size, int block_size);
 
-        std::vector<int> generate(int block_size, int n_blocks);
+        std::vector<int> generate(shared_ptr<Randomizer> rand, int block_size, int n_blocks);
 
     private:
         std::vector<int> config;

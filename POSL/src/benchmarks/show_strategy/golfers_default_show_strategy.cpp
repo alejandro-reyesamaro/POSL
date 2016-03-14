@@ -9,12 +9,12 @@ GolfersDefaultShowStrategy::GolfersDefaultShowStrategy(int _groups, int _players
       weeks(_weeks)
 {}
 
-string GolfersDefaultShowStrategy::showSolution(shared_ptr<Solution> solution)
+string GolfersDefaultShowStrategy::showSolution(std::shared_ptr<Solution> & solution)
 {
     string out =  "Golfers: players-" + Tools::int2str(players);
            out += ", groups-" + Tools::int2str(groups);
            out += ", weeks-" + Tools::int2str(weeks) + "\n";
-    vector<int> config = solution->GetConfiguration();
+    vector<int> config = solution->get_conf_by_copy();
     vector<int>::iterator it = config.begin();
     for(int w = 0; w < weeks; w ++)
     {

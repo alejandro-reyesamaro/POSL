@@ -10,7 +10,7 @@ DecisionPair::DecisionPair(shared_ptr<Solution> _current, shared_ptr<Solution> _
       found(_found)
 {}
 
-void DecisionPair::update(std::vector<int> _current, std::vector<int> _found)
+void DecisionPair::update(std::vector<int> & _current, std::vector<int> _found)
 {
     current->UpdateConfiguration(_current);
     found->UpdateConfiguration(_found);

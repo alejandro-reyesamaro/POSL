@@ -13,14 +13,13 @@ OneElementChangedNeighborhood::OneElementChangedNeighborhood(int _config_size, s
     : Neighborhood(_config_size),
       changeAtBhv(std::make_shared<StandardApplyChangeBehavior>(_config_size)),
       domains(_domains),
-      rand(),
       indexes(Tools::generateMonotony(_config_size))
 {}
 
-void OneElementChangedNeighborhood::Init(std::vector<int> _configuration)
+void OneElementChangedNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
-    updateChanges();
+    updateChanges(psp->GetRandomizer());
 }
 
 std::shared_ptr<POSL_Iterator> OneElementChangedNeighborhood::getIterator()
@@ -28,13 +27,13 @@ std::shared_ptr<POSL_Iterator> OneElementChangedNeighborhood::getIterator()
     return std::make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void OneElementChangedNeighborhood::updateChanges()
+void OneElementChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
     int n = current_configuration.size()/2;
 
     //n = N_NEIGHBORS;
-    Tools::shuffle(indexes);
+    rand->vector_shuffle(indexes);
     //int pos_new_value = 0;
     int new_value = 0;
 
@@ -43,7 +42,7 @@ void OneElementChangedNeighborhood::updateChanges()
         std::vector<int> posible_values = domains[indexes[i]].GetValues();
         int current_value = current_configuration[indexes[i]];
         //pos_new_value = indexes[i];
-        Tools::shuffle(posible_values);        
+        rand->vector_shuffle(posible_values);
         for (unsigned int j = 0; j < posible_values.size() / 2 + 1; j++)
         {            
             new_value = posible_values[j];

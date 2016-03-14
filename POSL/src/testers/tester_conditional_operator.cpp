@@ -35,7 +35,7 @@ string Tester_ConditionalOperator::test()
 
     //cout << c1 << " and " << c2 << endl;
 
-    psp->UpdateSolution(sol1->GetConfiguration());
+    psp->UpdateSolution(sol1->get_conf_by_ref());
 
     shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<CompoundModule> cm2_1(make_shared<OM_OneElementChangedNeighborhood>(bench));
@@ -70,7 +70,7 @@ string Tester_ConditionalOperator::test()
     shared_ptr<Solution> after_sol1 = static_pointer_cast<Solution>(G1234->execute(psp, t_seed));
     int cost1 = psp->GetBenchmark()->solutionCost(after_sol1);
 
-    psp->UpdateSolution(sol2->GetConfiguration());
+    psp->UpdateSolution(sol2->get_conf_by_ref());
 
     shared_ptr<Solution> after_sol2 = static_pointer_cast<Solution>(G1234->execute(psp, t_seed));
     int cost2 = psp->GetBenchmark()->solutionCost(after_sol2);

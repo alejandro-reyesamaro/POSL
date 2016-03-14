@@ -9,10 +9,8 @@ class CostasArray : public Benchmark
         CostasArray(int _n);
 
         int N(){ return n; }
-
         std::string showInstance();
-
-        std::vector<int> Reset(std::vector<int> current_configuration);
+        std::vector<int> Reset();//std::vector<int> current_configuration);
 
     private:
         std::shared_ptr<CostasArrayRelativeCostStrategy> cast_my_relative_strategy();

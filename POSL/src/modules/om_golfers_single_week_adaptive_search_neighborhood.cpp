@@ -5,14 +5,19 @@
 #include <iostream>
 using namespace std;
 
-OM_GolfersSingleWeekAdaptiveSearchNeighborhood::OM_GolfersSingleWeekAdaptiveSearchNeighborhood(shared_ptr<Benchmark> bench, int _zero_based_week)
+OM_GolfersSingleWeekAdaptiveSearchNeighborhood::OM_GolfersSingleWeekAdaptiveSearchNeighborhood(shared_ptr<Benchmark> bench,
+                                                                                               int _zero_based_week)
     : object_bench(static_pointer_cast<Golfers> (bench)),
-      V(make_shared<GolfersAdaptiveSearchSingleWeekNeighborhood>(object_bench, bench->Domains().size(), object_bench->PlayersPerGroup(), object_bench->Groups(), _zero_based_week))
+      V(make_shared<GolfersAdaptiveSearchSingleWeekNeighborhood>(object_bench,
+                                                                 bench->Domains().size(),
+                                                                 object_bench->PlayersPerGroup(),
+                                                                 object_bench->Groups(),
+                                                                 _zero_based_week))
 {}
 
-shared_ptr<Neighborhood> OM_GolfersSingleWeekAdaptiveSearchNeighborhood::spcf_execute(shared_ptr<PSP>, shared_ptr<Solution> input)
+shared_ptr<Neighborhood> OM_GolfersSingleWeekAdaptiveSearchNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    V->Init(input->GetConfiguration());
+    V->Init(psp, input->get_conf_by_ref());
     //cout << "OM_V" << endl;
     return V;
 }

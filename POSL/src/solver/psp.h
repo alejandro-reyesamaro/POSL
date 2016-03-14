@@ -23,16 +23,16 @@ class PSP
         int BestCostSoFar() { return best_found_cost; }
         bool FoundThanksOuterInformation() { return found_thanks_outer_information; }
         void SetTimeOut(int milliseconds) { time_out = milliseconds; }
-        int GetTimeOut() { return time_out; }
-        std::shared_ptr<Seed> GetSeed() { return the_seed; }
+        int GetTimeOut() { return time_out; }        
+        std::shared_ptr<Randomizer> GetRandomizer() { return rand; }
 
         //! State functions
-        void Start(std::vector<int> config);
+        void Start(vector<int> &config);
         void UpdateTime(int _milisecs);
         void CountIteration();
         void StartSearch();
         int Restarts(){ return restarts; }
-        void UpdateSolution(std::vector<int> config);
+        void UpdateSolution(vector<int> &config);
         void SearchingWithOuterInformation_ON() { outer_information = true; }
         void SearchingWithOuterInformation_OFF() { outer_information = false; }
 
@@ -49,7 +49,7 @@ class PSP
         bool found_thanks_outer_information;
         int time_out;
         POSL_Log plog;
-        std::string logs_path;
-        std::shared_ptr<Seed> the_seed;
+        std::string logs_path;        
         int restarts;
+        std::shared_ptr<Randomizer> rand;
 };

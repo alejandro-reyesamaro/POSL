@@ -7,7 +7,7 @@ GolombRulerDefaultShowStrategy::GolombRulerDefaultShowStrategy(int _order, int _
       length(_length)
 {}
 
-string GolombRulerDefaultShowStrategy::showSolution(shared_ptr<Solution> solution)
+string GolombRulerDefaultShowStrategy::showSolution(std::shared_ptr<Solution> & solution)
 {
     string output = "";
     if(order == 6 and length == 17) output = "(6-17:2) ";

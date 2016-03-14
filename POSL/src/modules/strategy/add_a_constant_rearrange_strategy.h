@@ -8,8 +8,8 @@ class AddAConstantRearrangeStrategy : public RearrangeStrategy
     public:
         AddAConstantRearrangeStrategy();
 
-        std::shared_ptr<Solution> rearrangement(std::vector<int> current_configuration, std::shared_ptr<Benchmark> benchmark);
+        std::shared_ptr<Solution> rearrangement(std::shared_ptr<PSP> psp, std::vector<int> current_configuration);
 
-    private:
-        Randomizer rand;
+    //private:
+
 };

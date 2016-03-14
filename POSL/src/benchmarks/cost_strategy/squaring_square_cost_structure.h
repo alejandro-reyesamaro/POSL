@@ -9,8 +9,8 @@ class SquaringSquareCostStructure
     public:
         SquaringSquareCostStructure(int _size, std::vector<int> _squares);
 
-        int relative_cost(std::vector<int> new_config, T_Changes change, bool updating);
-        void set(std::vector<int> _configuration);
+        int relative_cost(std::vector<int> & new_config, T_Changes change, bool updating);
+        void set(std::vector<int> & _configuration);
         //int costOnVariable(int i);
 
         int Size;

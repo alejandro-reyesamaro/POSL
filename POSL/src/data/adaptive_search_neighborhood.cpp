@@ -15,25 +15,23 @@ AdaptiveSearchNeighborhood::AdaptiveSearchNeighborhood(shared_ptr<Benchmark> _be
       benchmark(_benchmark),
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       monotony(Tools::generateMonotony(_config_size))
-{
-    //updateChanges();
-}
+{}
 
 shared_ptr<POSL_Iterator> AdaptiveSearchNeighborhood::getIterator()
 {
     return make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void AdaptiveSearchNeighborhood::Init(vector<int> _configuration)
+void AdaptiveSearchNeighborhood::Init(shared_ptr<PSP> psp, vector<int> & _configuration)
 {
     std::copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
-    updateChanges();
+    updateChanges(psp->GetRandomizer());
 }
 
-void AdaptiveSearchNeighborhood::updateChanges()
+void AdaptiveSearchNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
-    Tools::shuffle(monotony);
+    rand->vector_shuffle(monotony);
     int bad_variable = benchmark->sickestVariable();
 
     for(unsigned int i = 0; i < current_configuration.size(); i++)

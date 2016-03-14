@@ -33,14 +33,7 @@ GolfersAdaptiveSearchSingleWeekNeighborhood::GolfersAdaptiveSearchSingleWeekNeig
       groups(_groups),
       weeks(_config_size / _TP),
       week_2_swap(init_weeks(_zero_based_week_2_swap))
-{
-}
-
-void GolfersAdaptiveSearchSingleWeekNeighborhood::SetSeed(std::shared_ptr<Seed> _seed)
-{
-    if(!my_seed)
-        my_seed = _seed;
-}
+{}
 
 void GolfersAdaptiveSearchSingleWeekNeighborhood::updateChanges()
 {
@@ -50,21 +43,15 @@ void GolfersAdaptiveSearchSingleWeekNeighborhood::updateChanges()
     vector<int>::iterator it;
     size_t pos_bv;
     int g_bv, gw, pl;
-    //int wi;
-    //for (int w = 1; w < weeks; w++) // w = 1 first week remains the same
-    //for (int w = 0; w < weeks - 1; ++w)
-    //{
-        //wi = w_index[w];
-        it = find(current_configuration.begin()+(week_2_swap * TP), current_configuration.begin()+((week_2_swap+1) * TP), bad_variable + 1);
-        pos_bv = it - current_configuration.begin();
-        g_bv = (pos_bv) / players;
-        for(gw = week_2_swap * groups; gw < (week_2_swap + 1) * groups; gw++)
-        {
-            if(gw == g_bv) continue;
-            for(pl = gw * players; pl < (gw + 1) * players; pl++)
-                save_swap(pos_bv, pl);
-        }
-    //}
+    it = find(current_configuration.begin()+(week_2_swap * TP), current_configuration.begin()+((week_2_swap+1) * TP), bad_variable + 1);
+    pos_bv = it - current_configuration.begin();
+    g_bv = (pos_bv) / players;
+    for(gw = week_2_swap * groups; gw < (week_2_swap + 1) * groups; gw++)
+    {
+        if(gw == g_bv) continue;
+        for(pl = gw * players; pl < (gw + 1) * players; pl++)
+            save_swap(pos_bv, pl);
+    }
 }
 
 void GolfersAdaptiveSearchSingleWeekNeighborhood::save_swap(int pos1, int pos2)
@@ -78,7 +65,7 @@ shared_ptr<POSL_Iterator> GolfersAdaptiveSearchSingleWeekNeighborhood::getIterat
     return make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void GolfersAdaptiveSearchSingleWeekNeighborhood::Init(vector<int> _configuration)
+void GolfersAdaptiveSearchSingleWeekNeighborhood::Init(shared_ptr<PSP>, std::vector<int> & _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges();

@@ -7,7 +7,7 @@ class Golfers3PNCostStrategy : public SolutionCostStrategy
 {
     public:
         Golfers3PNCostStrategy(int _groups, int _players, int _weeks);
-        int solutionCost(std::vector<int> configuration);
+        int solutionCost(std::vector<int> & configuration);
 
     private:
         //! [number of groups],[players per group],[weeks to play]

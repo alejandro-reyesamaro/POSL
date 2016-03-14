@@ -12,21 +12,22 @@ class CostasArrayCostStructure
         //int relative_cost(std::vector<int> new_config, T_Changes change, bool updating);
         //void set(std::vector<int> _configuration);
 
-        void init(std::vector<int> config);
+        void init(vector<int> config);
         int costOnVariable(int index);
         void Reset();
 
         int N;
         int CurrentCost;
         std::vector<int> Configuration;
+        shared_ptr<Randomizer> GetRandomized() { return rand; }
 
     private:
         int m_error(){ return (N * N - (dist * dist)); }
         void m_errOn(int k) { err[k] += m_error(); err[k - dist] += m_error(); }
         void Random_Array_Permut(std::vector<int> & vec, int begin, int size);
-        int Cost(std::vector<int> config, bool update);
+        int Cost(vector<int> &config, bool update);
 
-        Randomizer rand;
+        shared_ptr<Randomizer> rand;
         int dist = 1;
         int i, first_i;
         int diff, diff_translated;

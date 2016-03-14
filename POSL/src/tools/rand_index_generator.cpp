@@ -1,9 +1,11 @@
+/*
 #include "rand_index_generator.h"
 #include "tools.h"
 
 #include <iostream>
 #include <math.h>
 #include <algorithm>
+
 
 RandIndexGenerator::RandIndexGenerator(int configuration_size, int _dim)
     : dim(min((int)sqrt(configuration_size),_dim)), indexes(min((int)sqrt(configuration_size),_dim))
@@ -59,3 +61,4 @@ vector<vector<int>> RandIndexGenerator::generate()
 {
     return generate(4 * dim);
 }
+*/

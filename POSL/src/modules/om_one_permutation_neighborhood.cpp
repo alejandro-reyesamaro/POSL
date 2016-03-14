@@ -9,9 +9,9 @@ OM_OnePermutationNeighborhood::OM_OnePermutationNeighborhood(shared_ptr<Benchmar
     : V(make_shared<OnePermutationNeighborhood>(bench->Domains().size()))
 {}
 
-shared_ptr<Neighborhood> OM_OnePermutationNeighborhood::spcf_execute(shared_ptr<PSP>, shared_ptr<Solution> input)
+shared_ptr<Neighborhood> OM_OnePermutationNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    V->Init(input->GetConfiguration());
+    V->Init(psp, input->get_conf_by_ref());
     return V;
 }
 

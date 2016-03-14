@@ -5,8 +5,10 @@
 #include <iostream>
 #include <chrono>
 
+using namespace std;
+
 UnionNeighborhood::UnionNeighborhood(shared_ptr<Solution> sol, shared_ptr<Neighborhood> v1, shared_ptr<Neighborhood> v2)
-    : Neighborhood(sol->GetConfiguration()),
+    : Neighborhood(sol->get_conf_by_copy()),
       V1(v1), V2(v2)
 {}
 

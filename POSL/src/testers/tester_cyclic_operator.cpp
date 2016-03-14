@@ -60,7 +60,7 @@ string Tester_CyclicOperator::test()
     // [ cm1 |-> [ Cyc(100 lopps){ [ [ cm2 |-> cm3 ] |-> cm4] ] } ] ]
     shared_ptr<GroupedComputation> G3(make_shared<GroupedSequentialComputation>(op3));
 
-    psp->UpdateSolution(first_solution->GetConfiguration());
+    psp->UpdateSolution(first_solution->get_conf_by_ref());
     shared_ptr<Solution> best_solution = static_pointer_cast<Solution>(G3->execute(psp, t_seed));
 
 

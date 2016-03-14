@@ -30,8 +30,6 @@ class RhoSequentialStrategy : public SequentialExecutionStrategy
         std::shared_ptr<CompoundModule> M1;
         std::shared_ptr<CompoundModule> M2;
         float rho;
-        Randomizer rand;
-
         std::shared_ptr<ComputationData> output1;
         std::shared_ptr<ComputationData> output2;
 };

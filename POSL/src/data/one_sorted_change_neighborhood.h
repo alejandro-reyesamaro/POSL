@@ -8,6 +8,7 @@
  * \date 2015-05-28
  */
 
+#include "../solver/psp.h"
 #include "neighborhood.h"
 #include "solution.h"
 #include "../tools/randomizer.h"
@@ -31,11 +32,12 @@ class OneSortedChangeNeighborhood : public Neighborhood, public DynamicNeighborh
 
         std::vector<int> neighborAt(int index);
         std::shared_ptr<FactoryPacker> BuildPacker();
-        void Init(std::vector<int> _configuration);
+        void Init(shared_ptr<PSP> psp, std::vector<int> & _configuration);
 
     private:
-        void updateChanges();
+        void updateChanges(shared_ptr<Randomizer> rand);
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
         std::vector<T_Changes> changes;
+        shared_ptr<Randomizer> rand;
 };

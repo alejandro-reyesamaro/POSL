@@ -17,9 +17,9 @@ OM_AdaptiveSearchRearrenge::OM_AdaptiveSearchRearrenge(shared_ptr<Benchmark> ben
 
 shared_ptr<Solution> OM_AdaptiveSearchRearrenge::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    three_stpes_solutions[0] = all_circualr_shift_str->rearrangement(input->GetConfiguration(), psp->GetBenchmark());
-    three_stpes_solutions[1] = circualr_shift_str->rearrangement(input->GetConfiguration(), psp->GetBenchmark());
-    three_stpes_solutions[2] = add_const_str->rearrangement(input->GetConfiguration(), psp->GetBenchmark());
+    three_stpes_solutions[0] = all_circualr_shift_str->rearrangement(psp, input->get_conf_by_ref());
+    three_stpes_solutions[1] = circualr_shift_str->rearrangement(psp, input->get_conf_by_ref());
+    three_stpes_solutions[2] = add_const_str->rearrangement(psp, input->get_conf_by_ref());
 
     cost_1 = psp->GetBenchmark()->solutionCost(three_stpes_solutions[0]);
     cost_2 = psp->GetBenchmark()->solutionCost(three_stpes_solutions[1]);
@@ -31,7 +31,7 @@ shared_ptr<Solution> OM_AdaptiveSearchRearrenge::spcf_execute(shared_ptr<PSP> ps
     int ws = (cost_1 < cost_2) ? 0 : 1;
     ws     = (best_cost < cost_3) ? ws : 2;
 
-    psp->Start(three_stpes_solutions[ws]->GetConfiguration());
+    psp->Start(three_stpes_solutions[ws]->get_conf_by_ref());
     return three_stpes_solutions[ws];
 }
 

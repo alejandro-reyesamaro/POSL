@@ -9,8 +9,9 @@
  * \date 2015-05-30
  */
 
+#include "../solver/psp.h"
 #include "neighborhood.h"
-#include "solution.h"
+//#include "solution.h"
 #include "../tools/randomizer.h"
 #include "../tools/t_changes.h"
 #include "dynamic_neighborhood.h"
@@ -37,13 +38,12 @@ class MultiElementsChangedNeighborhood
 
         std::vector<int> neighborAt(int index);
         std::shared_ptr<FactoryPacker> BuildPacker();
-        void Init(std::vector<int> _configuration);
+        void Init(shared_ptr<PSP> psp, std::vector<int> &_configuration);
 
     private:
-        void updateChanges();
+        void updateChanges(shared_ptr<Randomizer> rand);
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
         std::vector<Domain> domains;
-        Randomizer rand;
         std::vector<T_Changes> changes;        
 };

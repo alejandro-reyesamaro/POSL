@@ -1,12 +1,12 @@
 #include "squaring_square_superposition_cost_strategy.h"
 #include "../../tools/tools.h"
 
-SquaringSquareSuperpositionCostStrategy::SquaringSquareSuperpositionCostStrategy(int _size, std::vector<int> _squares)
+SquaringSquareSuperpositionCostStrategy::SquaringSquareSuperpositionCostStrategy(int _size, std::vector<int> &_squares)
     : size(_size),
       squares(_squares)
 {}
 
-int SquaringSquareSuperpositionCostStrategy::solutionCost(std::vector<int> configuration)
+int SquaringSquareSuperpositionCostStrategy::solutionCost(std::vector<int> & configuration)
 {
     int sqrs = squares.size();
     if (configuration.size() > sqrs * 2)

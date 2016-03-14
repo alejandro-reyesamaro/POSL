@@ -15,7 +15,7 @@ shared_ptr<Solution> OM_DanielASRestartRearrange::spcf_execute(shared_ptr<PSP> p
 {
     //cout << "input :"<< input->configurationToString() << endl;
     object_bench = static_pointer_cast<CostasArray>(psp->GetBenchmark());
-    vector<int> c = object_bench->Reset(input->GetConfiguration());
+    vector<int> c = object_bench->Reset();//input->GetConfiguration());
     psp->Start(c);
     shared_ptr<Solution> s (make_shared<Solution> (object_bench->Domains(), c));
     //cout << "reset :"<< input->configurationToString() << " - " << s->configurationToString() << endl;

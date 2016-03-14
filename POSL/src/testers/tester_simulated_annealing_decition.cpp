@@ -16,7 +16,7 @@ string Tester_SimulatedAnnealingDecition::test()
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     shared_ptr<Solution> init_sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_repeted()));
-    psp->UpdateSolution(init_sol->GetConfiguration());
+    psp->UpdateSolution(init_sol->get_conf_by_ref());
 
     int current_cost = psp->GetBenchmark()->solutionCost(init_sol);
 
@@ -34,7 +34,7 @@ string Tester_SimulatedAnnealingDecition::test()
         out_put = posl_ms->test(psp);
         new_cost = psp->GetBenchmark()->solutionCost(psp->GetBestSolutionSoFar());
         if(current_cost == new_cost) bad_choice++; else good_choice++;
-        psp->UpdateSolution(init_sol->GetConfiguration());
+        psp->UpdateSolution(init_sol->get_conf_by_ref());
     }
 
     string prefix = "rate: 100-" + Tools::int2str(bad_choice);

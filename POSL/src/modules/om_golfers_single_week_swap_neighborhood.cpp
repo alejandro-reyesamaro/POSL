@@ -10,9 +10,9 @@ OM_GolfersSingleWeekSwapNeighborhood::OM_GolfersSingleWeekSwapNeighborhood(share
       V(make_shared<GolfersSingleWeekSwapNeighborhood>(bench->Domains().size(), object_bench->PlayersPerGroup(), object_bench->Groups(), _zero_based_week))
 {}
 
-shared_ptr<Neighborhood> OM_GolfersSingleWeekSwapNeighborhood::spcf_execute(shared_ptr<PSP>, shared_ptr<Solution> input)
+shared_ptr<Neighborhood> OM_GolfersSingleWeekSwapNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    V->Init(input->GetConfiguration());
+    V->Init(psp, input->get_conf_by_ref());
     //cout << "OM_V" << endl;
     return V;
 }

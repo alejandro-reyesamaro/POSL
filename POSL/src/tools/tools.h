@@ -35,8 +35,7 @@ class Tools
         static int segmentIntersection(int a1, int b1, int a2, int b2);
         static std::vector<int> vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> current_configuration);
         static int mismatches(std::vector<int> vector_1, std::vector<int> vector_2);
-        static int * vector2array(std::vector<int> vec);
-        static void shuffle(std::vector<int> & vec);
+        static int * vector2array(std::vector<int> vec);        
         //static void shuffle(std::vector<int> & vec, int seed);
         static std::vector<int> generateMonotony(int N);
         static std::vector<int> generateMonotony(int a, int b);

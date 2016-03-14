@@ -6,48 +6,47 @@
 
 #include <algorithm>
 #include <iostream>
-//#include <chrono>
+
+using namespace std;
 
 OnePermutationNeighborhood::OnePermutationNeighborhood(int _config_size)
     : Neighborhood(_config_size),
-      changeAtBhv(std::make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
+      changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       monotony(Tools::generateMonotony(_config_size))
-{
-    updateChanges();
-}
+{}
 
-std::shared_ptr<POSL_Iterator> OnePermutationNeighborhood::getIterator()
+shared_ptr<POSL_Iterator> OnePermutationNeighborhood::getIterator()
 {
     return std::make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void OnePermutationNeighborhood::Init(std::vector<int> _configuration)
+void OnePermutationNeighborhood::Init(shared_ptr<PSP> psp, vector<int> & _configuration)
 {
     std::copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
-    updateChanges();
+    updateChanges(psp->GetRandomizer());
 }
 
-void OnePermutationNeighborhood::updateChanges()
+void OnePermutationNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
     int n = current_configuration.size();
     int n_changes = n/2;
 
-    Tools::shuffle(monotony);
+    rand->vector_shuffle(monotony);
 
     for(int i = 0; i < n_changes; i++)
     {
-        std::vector<int> new_indexes ({monotony[2*i], monotony[2*1 + 1]});
-        std::vector<int> new_values ({current_configuration[monotony[2*1 + 1]], current_configuration[monotony[2*i]]});
+        vector<int> new_indexes ({monotony[2*i], monotony[2*1 + 1]});
+        vector<int> new_values ({current_configuration[monotony[2*1 + 1]], current_configuration[monotony[2*i]]});
 
         T_Changes next_changes = {new_indexes, new_values, new_values.size()};
         changes.push_back(next_changes);
     }
 }
 
-std::shared_ptr<FactoryPacker> OnePermutationNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
+shared_ptr<FactoryPacker> OnePermutationNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
 
-std::vector<int> OnePermutationNeighborhood::neighborAt(int index)
+vector<int> OnePermutationNeighborhood::neighborAt(int index)
 {
     return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

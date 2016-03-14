@@ -7,6 +7,6 @@
 class ShowStrategy
 {
     public:
-        virtual std::string showSolution(std::shared_ptr<Solution> solution) = 0;
+        virtual std::string showSolution(std::shared_ptr<Solution> & solution) = 0;
 };
 

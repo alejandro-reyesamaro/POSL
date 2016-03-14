@@ -7,13 +7,13 @@ CostasArrayDefaultShowStrategy::CostasArrayDefaultShowStrategy(int n)
     : N(n)
 {}
 
-string CostasArrayDefaultShowStrategy::showSolution(shared_ptr<Solution> solution)
+string CostasArrayDefaultShowStrategy::showSolution(std::shared_ptr<Solution> & solution)
 {
     if(N > 20)
         return Tools::int2str(N) +"-Costas Array: " + solution->configurationToString();
 
     std::string out = "";
-    std::vector<int> config = solution->GetConfiguration();
+    std::vector<int> config = solution->get_conf_by_copy();
 
     // TRANSPOSING
     std::vector<int> T(N,0);

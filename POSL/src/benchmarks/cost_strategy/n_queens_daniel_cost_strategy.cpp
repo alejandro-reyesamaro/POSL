@@ -9,7 +9,7 @@ NQueensDanielCostStrategy::NQueensDanielCostStrategy(int n)
       nq_str(make_shared<NQueensCostStructure>(n))
 {}
 
-int NQueensDanielCostStrategy::solutionCost(std::vector<int> configuration)
+int NQueensDanielCostStrategy::solutionCost(std::vector<int> &configuration)
 {
     nq_str->set(configuration);
     return nq_str->CurrentCost;

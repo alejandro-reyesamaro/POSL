@@ -3,9 +3,9 @@
 #include <algorithm>
 
 DecisionPairPacker::DecisionPairPacker(std::shared_ptr<DecisionPair> pair)
-    : Packer(pair->GetCurrent()->GetConfiguration().size() * 2 + 2),
-      current_configuration(pair->GetCurrent()->GetConfiguration()),
-      found_configuration(pair->GetFound()->GetConfiguration())
+    : Packer(pair->GetCurrent()->get_conf_by_ref().size() * 2 + 2),
+      current_configuration(pair->GetCurrent()->get_conf_by_ref()),
+      found_configuration(pair->GetFound()->get_conf_by_ref())
 {}
 
 void DecisionPairPacker::update(std::vector<int> current, std::vector<int> found)
