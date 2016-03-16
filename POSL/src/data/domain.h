@@ -9,10 +9,7 @@
  * \date 2015-04-14
  */
 
-#include "dStrategy/factory_domain.h"
-
 #include <vector>
-#include <memory>
 
 /*!
  * \class Domain domain.h
@@ -21,12 +18,13 @@
 class Domain
 {
     public:
-        Domain(std::shared_ptr<FactoryDomain> fd);
+        Domain(int _min_value, int _max_value);
 
         std::vector<int> GetValues();
         int minimum();
         int maximum();
 
     private:
-        std::vector<int> D;
+        int min_value;
+        int max_value;
 };

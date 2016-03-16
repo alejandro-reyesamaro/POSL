@@ -9,7 +9,7 @@ OM_GolfersSingleWeekAdaptiveSearchNeighborhood::OM_GolfersSingleWeekAdaptiveSear
                                                                                                int _zero_based_week)
     : object_bench(static_pointer_cast<Golfers> (bench)),
       V(make_shared<GolfersAdaptiveSearchSingleWeekNeighborhood>(object_bench,
-                                                                 bench->Domains().size(),
+                                                                 bench->Dimension(),
                                                                  object_bench->PlayersPerGroup(),
                                                                  object_bench->Groups(),
                                                                  _zero_based_week))

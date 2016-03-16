@@ -9,8 +9,8 @@
 using namespace std;
 
 OM_AdaptiveSearchRearrenge::OM_AdaptiveSearchRearrenge(shared_ptr<Benchmark> bench)
-    : all_circualr_shift_str(make_shared<AllCircularShiftAroundWorstRearrangeStrategy>(bench->Domains().size())),
-      circualr_shift_str(make_shared<CircularShiftAroundBadRearrangeStrategy>(bench->Domains().size())),
+    : all_circualr_shift_str(make_shared<AllCircularShiftAroundWorstRearrangeStrategy>(bench->Dimension())),
+      circualr_shift_str(make_shared<CircularShiftAroundBadRearrangeStrategy>(bench->Dimension())),
       add_const_str(make_shared<AddAConstantRearrangeStrategy>()),
       three_stpes_solutions(3)
 {}

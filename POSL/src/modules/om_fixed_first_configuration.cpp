@@ -21,13 +21,13 @@ shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(shared_ptr<PSP> ps
     //cout << Tag() << endl;
     if(config.size() == 0)
     {
-        shared_ptr<Solution> rsolution(make_shared<Solution>(psp->GetBenchmark()->Domains(), psp->GetCurrentSolution()->get_conf_by_copy()));
+        shared_ptr<Solution> rsolution(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), psp->GetCurrentSolution()->get_conf_by_copy()));
         psp->Start(rsolution->get_conf_by_ref());
         return rsolution;
     }
     else
     {
-        shared_ptr<Solution> rsolution(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+        shared_ptr<Solution> rsolution(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config));
         psp->Start(rsolution->get_conf_by_ref());
         return rsolution;
     }

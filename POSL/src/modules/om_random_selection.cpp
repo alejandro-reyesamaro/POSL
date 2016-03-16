@@ -6,7 +6,7 @@
 using namespace std;
 
 OM_RandomSelection::OM_RandomSelection(shared_ptr<Benchmark> bench)
-    : search_strategy(make_shared<NeighborSelectingRandom>(bench->Domains()))
+    : search_strategy(make_shared<NeighborSelectingRandom>(bench->Variable_Domain(), bench->Dimension()))
 {}
 
 shared_ptr<DecisionPair> OM_RandomSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)

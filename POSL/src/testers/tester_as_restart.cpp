@@ -12,8 +12,8 @@ string Tester_ASRestart::test()
 {    
     shared_ptr<CostasArray> ca(make_shared<CostasArray>(10));
     shared_ptr<PSP> psp(make_shared<PSP>(ca));
-    shared_ptr<AllCircularShiftAroundWorstRearrangeStrategy> str (make_shared<AllCircularShiftAroundWorstRearrangeStrategy>(ca->Domains().size()));
-    shared_ptr<CircularShiftAroundBadRearrangeStrategy> str3 (make_shared<CircularShiftAroundBadRearrangeStrategy>(ca->Domains().size()));
+    shared_ptr<AllCircularShiftAroundWorstRearrangeStrategy> str (make_shared<AllCircularShiftAroundWorstRearrangeStrategy>(ca->Dimension()));
+    shared_ptr<CircularShiftAroundBadRearrangeStrategy> str3 (make_shared<CircularShiftAroundBadRearrangeStrategy>(ca->Dimension()));
     shared_ptr<AddAConstantRearrangeStrategy> str2 (make_shared<AddAConstantRearrangeStrategy>());
     vector<int> conf {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     psp->Start(conf);

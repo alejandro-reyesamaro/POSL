@@ -17,7 +17,10 @@ class PSP
         std::shared_ptr<Benchmark> GetBenchmark() { return bench; }
         int GetIterations() { return iterations; }
         int GetTime() { return milisecs; }
-        std::shared_ptr<Solution> GetBestSolutionSoFar() { return std::make_shared<Solution>(bench->Domains(), best_found_configuration); }
+        std::shared_ptr<Solution> GetBestSolutionSoFar()
+        {
+            return std::make_shared<Solution>(bench->Variable_Domain(), best_found_configuration);
+        }
         inline std::shared_ptr<Solution> GetCurrentSolution() { return bench->GetSolution(); }
         int CurrentCost() { return bench->currentCost(); }
         int BestCostSoFar() { return best_found_cost; }

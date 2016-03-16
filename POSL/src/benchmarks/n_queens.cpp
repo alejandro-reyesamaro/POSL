@@ -12,7 +12,8 @@
 using namespace std;
 
 NQueens::NQueens(int n)
-    : Benchmark(vector<Domain>(n, Domain(std::make_shared<Factory_NIntDomain>(0, n-1))),
+    : Benchmark(n,
+                make_shared<Domain>(0, n-1),
                 make_shared<NQueensDanielCostStrategy>(n),
                 make_shared<NQueensRelativeCostStrategy>(n),
                 make_shared<NQueensDefaultShowStrategy>(n)),

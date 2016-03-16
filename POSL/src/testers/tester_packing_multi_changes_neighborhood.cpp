@@ -13,8 +13,6 @@ Tester_PackingMultiChangesNeighborhood::Tester_PackingMultiChangesNeighborhood(i
 string Tester_PackingMultiChangesNeighborhood::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     vector<int> config(
@@ -29,8 +27,7 @@ string Tester_PackingMultiChangesNeighborhood::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    //PSP> psp(make_shared<PSP(bench);
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
+    shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config);
     shared_ptr<OperationModule> op(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
     shared_ptr<MultiElementsChangedNeighborhood> N = static_pointer_cast<MultiElementsChangedNeighborhood >(V);

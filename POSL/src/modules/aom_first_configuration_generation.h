@@ -12,5 +12,5 @@ class AOM_FirstConfigurationGeneration : public OperationModule
         virtual std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed> input) = 0;
 
     protected:
-        std::vector<Domain> domains;
+        std::shared_ptr<Domain> domain;
 };

@@ -15,7 +15,7 @@ string Tester_SimulatedAnnealingDecition::test()
     shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("../src/testers/test_codes/sa_test.posl", 10, bench));
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
-    shared_ptr<Solution> init_sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_repeted()));
+    shared_ptr<Solution> init_sol(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::Golfers_442_repeted()));
     psp->UpdateSolution(init_sol->get_conf_by_ref());
 
     int current_cost = psp->GetBenchmark()->solutionCost(init_sol);

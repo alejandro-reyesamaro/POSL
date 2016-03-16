@@ -5,7 +5,7 @@
 using namespace std;
 
 OM_BestImprovementTabuSelection::OM_BestImprovementTabuSelection(shared_ptr<Benchmark> bench)
-    : search_strategy(make_shared<NeighborSelectingBestImprovementTabu>(bench->Domains()))
+    : search_strategy(make_shared<NeighborSelectingBestImprovementTabu>(bench->Variable_Domain(), bench->Dimension()))
 {}
 
 shared_ptr<DecisionPair> OM_BestImprovementTabuSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)

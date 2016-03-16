@@ -15,7 +15,7 @@ string Tester_SingletonExperession::test()
     shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("../src/testers/test_codes/singleton_expression_test.posl", 10, bench));
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
-    shared_ptr<Solution> init_sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::NQueens_10_c0()));
+    shared_ptr<Solution> init_sol(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::NQueens_10_c0()));
     psp->UpdateSolution(init_sol->get_conf_by_ref());
 
     string out_put = posl_ms->test(psp);

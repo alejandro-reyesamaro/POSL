@@ -6,7 +6,7 @@
 using namespace std;
 
 OM_AdaptiveSearchNeighborhood::OM_AdaptiveSearchNeighborhood(shared_ptr<Benchmark> bench)
-    : V(make_shared<AdaptiveSearchNeighborhood>(bench, bench->Domains().size()))
+    : V(make_shared<AdaptiveSearchNeighborhood>(bench))
 {}
 
 shared_ptr<Neighborhood> OM_AdaptiveSearchNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)

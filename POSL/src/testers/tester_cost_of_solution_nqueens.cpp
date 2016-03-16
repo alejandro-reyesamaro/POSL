@@ -12,18 +12,18 @@ string Tester_CostOfSolutionNQueens::test()
 
     shared_ptr<Benchmark> bench(make_shared<NQueens>(10));
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
-    shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::NQueens_10_c0()));
+    shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::NQueens_10_c0()));
     int c1 = psp->GetBenchmark()->solutionCost(sol);
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::NQueens_10_c6());
+    sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::NQueens_10_c6());
     int c2 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c2 << endl;
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::NQueens_10_c11());
+    sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::NQueens_10_c11());
     int c3 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c3 << endl;
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::NQueens_10_c10());
+    sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::NQueens_10_c10());
     int c4 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Cost: " << c4 << endl;
 

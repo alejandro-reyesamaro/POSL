@@ -27,7 +27,7 @@ class OneElementChangedNeighborhood : public Neighborhood, public DynamicNeighbo
 {
     friend class ElementsChangeIterator;
     public:
-        OneElementChangedNeighborhood(int _config_size, std::vector<Domain> _domains);
+        OneElementChangedNeighborhood(int _config_size, std::shared_ptr<Domain> _domain);
         std::shared_ptr<POSL_Iterator> getIterator();
         int size(){ return changes.size(); }
         std::vector<T_Changes> GetChanges(){ return changes; }
@@ -40,7 +40,7 @@ class OneElementChangedNeighborhood : public Neighborhood, public DynamicNeighbo
         void updateChanges(shared_ptr<Randomizer> rand);
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        std::vector<Domain> domains;
+        std::shared_ptr<Domain> domain;
         std::vector<int> indexes;
         std::vector<T_Changes> changes;
 };

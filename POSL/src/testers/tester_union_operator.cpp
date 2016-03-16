@@ -37,7 +37,7 @@ string Tester_UnionOperator::testeInMode(Computation comp)
     //vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
-    shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config));
 
     shared_ptr<OperationModule> m1(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
     shared_ptr<OperationModule> m2(make_shared<OM_OneElementChangedNeighborhood>(bench));

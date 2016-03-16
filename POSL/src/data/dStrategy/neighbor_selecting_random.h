@@ -9,7 +9,7 @@
 class NeighborSelectingRandom
 {
     public:
-        NeighborSelectingRandom(std::vector<Domain> domains);
+        NeighborSelectingRandom(shared_ptr<Domain> domain, int dimension);
 
         //! Select the the current and the selected configurations when the search state indicates to stop
         /*!

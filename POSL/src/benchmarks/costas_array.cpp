@@ -10,7 +10,8 @@
 using namespace std;
 
 CostasArray::CostasArray(int _n)
-    : Benchmark(vector<Domain>(_n, Domain(make_shared<Factory_NIntDomain>(1, _n))),
+    : Benchmark(n,
+                make_shared<Domain>(1, _n),
                 make_shared<CostasArrayDanielCostStrategy>(_n),
                 make_shared<CostasArrayRelativeCostStrategy>(_n),
                 make_shared<CostasArrayDefaultShowStrategy>(_n)
@@ -29,7 +30,7 @@ shared_ptr<CostasArrayRelativeCostStrategy> CostasArray::cast_my_relative_strate
     return static_pointer_cast<CostasArrayRelativeCostStrategy>(relative_cost_strategy);
 }
 
-vector<int> CostasArray::Reset()//vector<int> current_configuration)
+vector<int> CostasArray::Reset()
 {
-    return cast_my_relative_strategy()->Reset();//current_configuration);
+    return cast_my_relative_strategy()->Reset();
 }

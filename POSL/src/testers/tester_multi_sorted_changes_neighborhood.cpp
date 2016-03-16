@@ -21,7 +21,7 @@ string Tester_MultiSortedChangesNeighborhood::test()
     //vector<int> config( { 0, 1, 4, 9, 11 } );
     vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
-    shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config));
 
     shared_ptr<OperationModule> op(make_shared<OM_MultiSortedChangesNeighborhood>(bench));
     //PSP * psp(make_shared<PSP(bench);

@@ -2,9 +2,9 @@
 
 using namespace std;
 
-NeighborSelectingKBestImprovement::NeighborSelectingKBestImprovement(vector<Domain> domains, int k)
+NeighborSelectingKBestImprovement::NeighborSelectingKBestImprovement(shared_ptr<Domain> domain, int dimension, int k)
     : K(k),
-      rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains)))
+      rPair(make_shared<DecisionPair>(make_shared<Solution>(domain, dimension), make_shared<Solution>(domain, dimension)))
 {}
 
 shared_ptr<DecisionPair> NeighborSelectingKBestImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)

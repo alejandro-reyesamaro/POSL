@@ -11,7 +11,7 @@
 class NeighborSelectingKBestImprovement
 {
     public:
-        NeighborSelectingKBestImprovement(std::vector<Domain> domains, int k);
+        NeighborSelectingKBestImprovement(shared_ptr<Domain> domain, int dimension, int k);
 
         std::shared_ptr<DecisionPair> select(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> V);
 

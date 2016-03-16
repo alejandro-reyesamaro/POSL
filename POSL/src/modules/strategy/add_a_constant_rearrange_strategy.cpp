@@ -15,5 +15,5 @@ shared_ptr<Solution> AddAConstantRearrangeStrategy::rearrangement(std::shared_pt
     int C = psp->GetRandomizer()->NextInt(1, N-2);
     for(int i = 0; i < size; i++)
         current_configuration[i] = (current_configuration[i] + C) % N;
-    return make_shared<Solution>(psp->GetBenchmark()->Domains(), current_configuration);
+    return make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), current_configuration);
 }

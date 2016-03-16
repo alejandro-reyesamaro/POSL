@@ -14,13 +14,11 @@ Tester_OneSortedChangeNeighborhood::Tester_OneSortedChangeNeighborhood(int argc,
 string Tester_OneSortedChangeNeighborhood::test()
 {
     shared_ptr<Benchmark> bench(make_shared<GolombRuler>(12,85));
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
+    shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config);
     shared_ptr<OperationModule> op(make_shared<OM_OneSortedChangeNeighborhood>(bench));
     //PSP> psp(make_shared<PSP(bench);
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));

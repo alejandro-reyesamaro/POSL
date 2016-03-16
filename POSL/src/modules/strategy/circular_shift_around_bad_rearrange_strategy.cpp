@@ -32,5 +32,5 @@ shared_ptr<Solution> CircularShiftAroundBadRearrangeStrategy::rearrangement(std:
     copy(current_configuration.begin(), current_configuration.end(), v.begin());
     std::rotate_copy(current_configuration.begin(), current_configuration.begin() + 1, current_configuration.begin() + bad_variable, v.begin());
 
-    return make_shared<Solution>(psp->GetBenchmark()->Domains(), v);
+    return make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), v);
 }

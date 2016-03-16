@@ -9,12 +9,11 @@
 
 using namespace std;
 
-AdaptiveSearchNeighborhood::AdaptiveSearchNeighborhood(shared_ptr<Benchmark> _benchmark,
-                                                       int _config_size)
-    : Neighborhood(_config_size),
+AdaptiveSearchNeighborhood::AdaptiveSearchNeighborhood(shared_ptr<Benchmark> _benchmark)
+    : Neighborhood(_benchmark->Dimension()),
       benchmark(_benchmark),
-      changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
-      monotony(Tools::generateMonotony(_config_size))
+      changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_benchmark->Dimension())),
+      monotony(Tools::generateMonotony(_benchmark->Dimension()))
 {}
 
 shared_ptr<POSL_Iterator> AdaptiveSearchNeighborhood::getIterator()

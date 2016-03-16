@@ -24,8 +24,8 @@
 class Solution : public ComputationData, public std::enable_shared_from_this<Solution>
 {
     public:
-        Solution(std::vector<Domain> _domains);
-        Solution(std::vector<Domain> _domains, std::vector<int> conf);
+        Solution(std::shared_ptr<Domain> _domains, int dimension);
+        Solution(std::shared_ptr<Domain> _domains, std::vector<int> conf);
 
         void UpdateConfiguration(std::vector<int> new_config);
         void UpdateConfigurationFromPack(int * pack);
@@ -36,11 +36,11 @@ class Solution : public ComputationData, public std::enable_shared_from_this<Sol
         std::vector<int> get_conf_by_copy() { return configuration; }
         std::vector<int> & get_conf_by_ref() { return configuration; }
 
-        std::vector<Domain> GetDomains(){ return domains; }
+        std::shared_ptr<Domain> GetVariablesDomain(){ return variables_domains; }
 
         std::string Tag() { return TAGSOLUTION; }
 
     private:
-        std::vector<Domain> domains;
+        std::shared_ptr<Domain> variables_domains;
         std::vector<int> configuration;
 };

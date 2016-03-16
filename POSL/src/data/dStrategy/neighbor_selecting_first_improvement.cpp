@@ -5,8 +5,8 @@
 
 using namespace std;
 
-NeighborSelectingFirstImprovement::NeighborSelectingFirstImprovement(vector<Domain> domains)
-    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains)))
+NeighborSelectingFirstImprovement::NeighborSelectingFirstImprovement(shared_ptr<Domain> domain, int dimension)
+    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domain, dimension), make_shared<Solution>(domain, dimension)))
 {}
 
 shared_ptr<DecisionPair> NeighborSelectingFirstImprovement::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)

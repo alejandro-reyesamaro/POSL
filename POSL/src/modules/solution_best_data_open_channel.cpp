@@ -6,8 +6,8 @@ using namespace std;
 
 SolutionBestDataOpenChannel::SolutionBestDataOpenChannel(string name, shared_ptr<Benchmark> _bench)
     : DataOpenChannel(name, _bench),
-      solution_data(make_shared<Solution>(_bench->Domains())),
-      best_solution_data(make_shared<Solution>(_bench->Domains()))
+      solution_data(make_shared<Solution>(_bench->Variable_Domain(), _bench->Dimension())),
+      best_solution_data(make_shared<Solution>(_bench->Variable_Domain(), _bench->Dimension()))
 {}
 
 int SolutionBestDataOpenChannel::dataID()

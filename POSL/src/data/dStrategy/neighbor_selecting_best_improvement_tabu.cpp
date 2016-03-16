@@ -4,8 +4,8 @@
 
 using namespace std;
 
-NeighborSelectingBestImprovementTabu::NeighborSelectingBestImprovementTabu(vector<Domain> domains)
-    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domains), make_shared<Solution>(domains))),
+NeighborSelectingBestImprovementTabu::NeighborSelectingBestImprovementTabu(shared_ptr<Domain> domain, int dimension)
+    : rPair(make_shared<DecisionPair>(make_shared<Solution>(domain, dimension), make_shared<Solution>(domain, dimension))),
       tabu_list(make_shared<TabuList>(TABU_SIZE))
 {}
 

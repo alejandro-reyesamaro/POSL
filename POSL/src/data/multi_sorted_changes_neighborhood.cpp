@@ -8,10 +8,10 @@
 #include <iostream>
 #include <chrono>
 
-MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(int _config_size, std::vector<Domain> _domains)
+MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(std::shared_ptr<Domain> _domain, int _config_size)
     : Neighborhood(_config_size),
       changeAtBhv(std::make_shared<SortedApplyChangeBehavior>(_config_size)),
-      domains(_domains)
+      domain(_domain)
 {}
 
 void MultiSortedChangesNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
@@ -49,7 +49,7 @@ std::vector<int> MultiSortedChangesNeighborhood::neighborAt(int index)
 
 void MultiSortedChangesNeighborhood::pushSetOfValues(shared_ptr<Randomizer> rand, vector<int> indexes)
 {
-    int domains_size = domains[0].maximum();
+    int domains_size = domain->maximum();
     // <= 16
     int NCh = (domains_size <= 20) ? 1 : sqrt(domains_size);
 
@@ -72,7 +72,7 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(shared_ptr<Randomizer> rand
         }
         else
         {
-            values_for_index = domains[index].GetValues();
+            values_for_index = domain->GetValues();
             rand->vector_shuffle(values_for_index);
         }
         vector_values.push_back(values_for_index);

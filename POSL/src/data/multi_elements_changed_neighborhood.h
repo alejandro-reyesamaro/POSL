@@ -30,7 +30,7 @@ class MultiElementsChangedNeighborhood
 {
     friend class ElementsChangeIterator;
     public:
-        MultiElementsChangedNeighborhood(int _config_size, std::vector<Domain> _domains);
+        MultiElementsChangedNeighborhood(std::shared_ptr<Domain> _domain, int _config_size);
 
         std::shared_ptr<POSL_Iterator> getIterator();
         int size() { return changes.size(); }
@@ -44,6 +44,6 @@ class MultiElementsChangedNeighborhood
         void updateChanges(shared_ptr<Randomizer> rand);
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        std::vector<Domain> domains;
+        std::shared_ptr<Domain> domain;
         std::vector<T_Changes> changes;        
 };

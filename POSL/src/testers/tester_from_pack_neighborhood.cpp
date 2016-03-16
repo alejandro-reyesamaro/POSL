@@ -17,8 +17,7 @@ Tester_FromPackNeighborhood::Tester_FromPackNeighborhood(int argc, char *argv[])
 
 string Tester_FromPackNeighborhood::test()
 {
-    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));    
     //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
@@ -43,7 +42,7 @@ string Tester_FromPackNeighborhood::test()
         13, 14, 15, 16
     });
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
+    shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config);
 
     shared_ptr<OperationModule> op(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));
     //PSP * psp(make_shared<PSP(bench);

@@ -8,7 +8,7 @@
 class NeighborSelectingBestImprovement
 {
     public:
-        NeighborSelectingBestImprovement(std::vector<Domain> domains);
+        NeighborSelectingBestImprovement(shared_ptr<Domain> domain, int dimension);
 
         //! Select the the current and the selected configurations when the search state indicates to stop
         /*!

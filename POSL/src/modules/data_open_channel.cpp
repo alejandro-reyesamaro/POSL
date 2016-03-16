@@ -8,7 +8,7 @@ DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
       bench(_bench),
       logging(false), // manually turn it on/of to log behavior
       contains_information(false),
-      buffer(2 + _bench->Domains().size() * 2)
+      buffer(2 + _bench->Dimension() * 2)
 {}
 
 shared_ptr<ComputationData> DataOpenChannel::receive_and_log(int id, int tag, shared_ptr<PSP> psp)

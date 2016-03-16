@@ -9,7 +9,7 @@
 class NeighborSelectingBestImprovementTabu
 {
     public:
-        NeighborSelectingBestImprovementTabu(vector<Domain> domains);
+        NeighborSelectingBestImprovementTabu(shared_ptr<Domain> domain, int dimension);
 
         //! Select the the current and the selected configurations when the search state indicates to stop
         /*!

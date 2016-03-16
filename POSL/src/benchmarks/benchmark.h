@@ -24,10 +24,10 @@ class Benchmark
 {
     friend class PSP;
     public:
-        Benchmark(std::vector<Domain> _domains,
-                  std::shared_ptr<SolutionCostStrategy> _cost_strategy,
-                  std::shared_ptr<RelativeCostStrategy> _relative_cost_strategy,
-                  std::shared_ptr<ShowStrategy> _show_strategy);
+        Benchmark(int _dimension, shared_ptr<Domain> _domain,
+                  shared_ptr<SolutionCostStrategy> _cost_strategy,
+                  shared_ptr<RelativeCostStrategy> _relative_cost_strategy,
+                  shared_ptr<ShowStrategy> _show_strategy);
 
         int solutionCost(std::shared_ptr<Solution> sol);
         int solutionCost(std::vector<int> & configuration);
@@ -35,25 +35,28 @@ class Benchmark
         int relativeSolutionCost(std::vector<int> & new_config, T_Changes changes);
         int currentCost();
 
-        std::shared_ptr<Solution> GetSolution();
+        shared_ptr<Solution> GetSolution();
         std::string ShowSolution(std::shared_ptr<Solution> solution);
 
         //! Projected Cost (AS)
         int costOnVariable(int index);
         int sickestVariable();
 
-        std::vector<Domain> Domains(){ return domains; }
+        int Dimension(){ return problem_dimension; }
+        shared_ptr<Domain> Variable_Domain(){ return domain; }
 
         virtual std::string showInstance() = 0;
 
     protected:
         void UpdateSolution(std::vector<int> & config);
         void InitializeCostData(std::vector<int> & config);
-        std::vector<Domain> domains;
+
+        int problem_dimension;
+        shared_ptr<Domain> domain;
         std::vector<int> configuration;
 
         //! STRATEGIES
-        std::shared_ptr<SolutionCostStrategy> cost_strategy;
-        std::shared_ptr<RelativeCostStrategy> relative_cost_strategy;
-        std::shared_ptr<ShowStrategy> show_strategy;
+        shared_ptr<SolutionCostStrategy> cost_strategy;
+        shared_ptr<RelativeCostStrategy> relative_cost_strategy;
+        shared_ptr<ShowStrategy> show_strategy;
 };

@@ -14,8 +14,6 @@ Tester_PackingGolfersPermutationNeighborhood::Tester_PackingGolfersPermutationNe
 string Tester_PackingGolfersPermutationNeighborhood::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     vector<int> config(
@@ -30,8 +28,7 @@ string Tester_PackingGolfersPermutationNeighborhood::test()
         15, 12,  2,  5,
         16,  3,  6,  9
     });
-    //PSP> psp(make_shared<PSP(bench);
-    sol =make_shared<Solution>(psp->GetBenchmark()->Domains(), config);
+    shared_ptr<Solution> sol =make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config);
     shared_ptr<OperationModule> op(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
     shared_ptr<GolfersSingleSwapNeighborhood> N = static_pointer_cast<GolfersSingleSwapNeighborhood>(V);

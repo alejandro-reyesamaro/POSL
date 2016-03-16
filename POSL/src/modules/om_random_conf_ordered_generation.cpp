@@ -8,8 +8,8 @@ using namespace std;
 
 OM_RandomConfOrderedGeneration::OM_RandomConfOrderedGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
-      rconf_strategy(make_shared<RandomOrderedGenerationStrategy>(bench->Domains().size())),
-      rsolution(make_shared<Solution>(bench->Domains())),
+      rconf_strategy(make_shared<RandomOrderedGenerationStrategy>(bench->Dimension())),
+      rsolution(make_shared<Solution>(bench->Variable_Domain(), bench->Dimension())),
       object_bench(dynamic_pointer_cast<GolombRuler> (bench))
 {   }
 

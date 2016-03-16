@@ -8,7 +8,8 @@ using namespace std;
 
 DecisionPairLastDataOpenChannel::DecisionPairLastDataOpenChannel(string name, shared_ptr<Benchmark> _bench)
     : DataOpenChannel(name, _bench),
-      pair_data(make_shared<DecisionPair>(make_shared<Solution>(_bench->Domains()), make_shared<Solution>(_bench->Domains())))
+      pair_data(make_shared<DecisionPair>(make_shared<Solution>(_bench->Variable_Domain(), _bench->Dimension()),
+                                          make_shared<Solution>(_bench->Variable_Domain(), _bench->Dimension())))
 
 {}
 

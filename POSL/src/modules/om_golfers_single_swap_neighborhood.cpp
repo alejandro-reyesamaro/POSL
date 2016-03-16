@@ -7,7 +7,7 @@ using namespace std;
 
 OM_GolfersSingleSwapNeighborhood::OM_GolfersSingleSwapNeighborhood(shared_ptr<Benchmark> bench)
     : object_bench(static_pointer_cast<Golfers> (bench)),
-      V(make_shared<GolfersSingleSwapNeighborhood>(bench->Domains().size(), object_bench->PlayersPerGroup(), object_bench->Groups()))
+      V(make_shared<GolfersSingleSwapNeighborhood>(bench->Dimension(), object_bench->PlayersPerGroup(), object_bench->Groups()))
 {}
 
 shared_ptr<Neighborhood> OM_GolfersSingleSwapNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)

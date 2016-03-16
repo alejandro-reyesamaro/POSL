@@ -29,8 +29,8 @@ void Tester_Comunication::test()
 
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
 
-    shared_ptr<Solution> sol1(make_shared<Solution>(bench->Domains(), Tester::Golfers_442_1s()));
-    shared_ptr<Solution> sol2(make_shared<Solution>(bench->Domains(), Tester::Golfers_442_c0()));
+    shared_ptr<Solution> sol1(make_shared<Solution>(bench->Variable_Domain(), Tester::Golfers_442_1s()));
+    shared_ptr<Solution> sol2(make_shared<Solution>(bench->Variable_Domain(), Tester::Golfers_442_c0()));
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
     //bench->UpdateSolution(sol);
 
@@ -62,7 +62,8 @@ void Tester_Comunication::test()
         //MPI_Test(&request, &test_flag, &status);
 
         //cout << buffer[0] << endl;
-        shared_ptr<DecisionPair> rPair(make_shared<DecisionPair>(make_shared<Solution>(bench->Domains()), make_shared<Solution>(bench->Domains())));
+        shared_ptr<DecisionPair> rPair(make_shared<DecisionPair>(make_shared<Solution>(bench->Variable_Domain(), bench->Dimension()),
+                                                                 make_shared<Solution>(bench->Variable_Domain(), bench->Dimension())));
         rPair->updateFromPack(buffer);
         cout << rPair->GetFound()->configurationToString() << endl;
         delete[] buffer;

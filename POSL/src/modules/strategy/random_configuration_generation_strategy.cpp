@@ -4,13 +4,13 @@ RandomConfigurationGenerationStrategy::RandomConfigurationGenerationStrategy(int
     : config(configuration_size)
 {}
 
-std::vector<int> RandomConfigurationGenerationStrategy::generate(shared_ptr<Randomizer> rand, std::vector<Domain> domains)
+std::vector<int> RandomConfigurationGenerationStrategy::generate(shared_ptr<Randomizer> rand, std::shared_ptr<Domain> domain)
 {
     int k = 0;
     int index = 0;
-    for(std::vector<Domain>::iterator it = domains.begin(); it != domains.end(); ++it)
+    for(int i = 0; i < config.size(); i++)
     {
-        k = rand->NextInt(it->minimum(), it->maximum());
+        k = rand->NextInt(domain->minimum(), domain->maximum());
         config[index++] = k;
     }
     return config;

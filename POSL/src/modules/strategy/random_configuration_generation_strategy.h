@@ -25,7 +25,7 @@ class RandomConfigurationGenerationStrategy
     public:
         RandomConfigurationGenerationStrategy(int configuration_size);
 
-        std::vector<int> generate(shared_ptr<Randomizer> rand, std::vector<Domain> domains);
+        std::vector<int> generate(shared_ptr<Randomizer> rand, std::shared_ptr<Domain> domain);
 
     private:
         std::vector<int> config;

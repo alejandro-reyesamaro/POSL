@@ -6,7 +6,7 @@
 using namespace std;
 
 OM_OnePermutationNeighborhood::OM_OnePermutationNeighborhood(shared_ptr<Benchmark> bench)
-    : V(make_shared<OnePermutationNeighborhood>(bench->Domains().size()))
+    : V(make_shared<OnePermutationNeighborhood>(bench->Dimension()))
 {}
 
 shared_ptr<Neighborhood> OM_OnePermutationNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)

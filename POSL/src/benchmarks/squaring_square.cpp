@@ -8,7 +8,8 @@
 using namespace std;
 
 SquaringSquare::SquaringSquare(int _size, std::vector<int> _squares)
-    : Benchmark(std::vector<Domain>(_squares.size() * 2, Domain(std::make_shared<Factory_NIntDomain>(0,_size - 1))),
+    : Benchmark(_squares.size() * 2,
+                make_shared<Domain>(0,_size - 1),
                 make_shared<SquaringSquareSuperpositionCostStrategy>(_size, _squares),
                 make_shared<SquaringSquareRelativeCostStrategy>(),
                 make_shared<SquaringSquareDefaultShowStrategy>(_squares.size())),

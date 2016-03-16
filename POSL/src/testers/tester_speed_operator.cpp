@@ -17,8 +17,6 @@ Tester_SpeedOperator::Tester_SpeedOperator(int argc, char *argv[])
 string Tester_SpeedOperator::testeInMode(Computation comp)
 {
     shared_ptr<Benchmark> bench =(make_shared<Golfers>(4,4,2));
-    shared_ptr<Solution> sol =(make_shared<Solution>(bench->Domains()));
-    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp =(make_shared<PSP>(bench));
 
     vector<int> config(
@@ -34,7 +32,7 @@ string Tester_SpeedOperator::testeInMode(Computation comp)
         1,  1,  1,  1
     });
 
-    sol =(make_shared<Solution>(psp->GetBenchmark()->Domains(), config));
+    shared_ptr<Solution> sol =(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config));
 
     shared_ptr<OperationModule> m1 =(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<OperationModule> m2 =(make_shared<OM_RandomConfGeneration>(bench));

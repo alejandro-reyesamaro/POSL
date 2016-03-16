@@ -1,12 +1,16 @@
 #include "domain.h"
+#include "../tools/tools.h"
 
-#include <algorithm>
-
-Domain::Domain(std::shared_ptr<FactoryDomain> fd) : D(fd->BuildDomain())
+Domain::Domain(int _min_value, int _max_value)
+    : min_value(_min_value),
+      max_value(_max_value)
 {}
 
-std::vector<int> Domain::GetValues(){ return D; }
+std::vector<int> Domain::GetValues()
+{
+    return Tools::generateMonotony(min_value, max_value);
+}
 
-int Domain::minimum(){ return *min_element(D.begin(), D.end()); }
+int Domain::minimum(){ return min_value; }
 
-int Domain::maximum(){ return *max_element(D.begin(), D.end()); }
+int Domain::maximum(){ return max_value; }

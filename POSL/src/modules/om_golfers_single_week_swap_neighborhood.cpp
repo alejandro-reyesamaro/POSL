@@ -7,7 +7,7 @@ using namespace std;
 
 OM_GolfersSingleWeekSwapNeighborhood::OM_GolfersSingleWeekSwapNeighborhood(shared_ptr<Benchmark> bench, int _zero_based_week)
     : object_bench(static_pointer_cast<Golfers> (bench)),
-      V(make_shared<GolfersSingleWeekSwapNeighborhood>(bench->Domains().size(), object_bench->PlayersPerGroup(), object_bench->Groups(), _zero_based_week))
+      V(make_shared<GolfersSingleWeekSwapNeighborhood>(bench->Dimension(), object_bench->PlayersPerGroup(), object_bench->Groups(), _zero_based_week))
 {}
 
 shared_ptr<Neighborhood> OM_GolfersSingleWeekSwapNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)

@@ -52,7 +52,7 @@ shared_ptr<Solution> AllCircularShiftAroundWorstRearrangeStrategy::rearrangement
         }
     }
 
-    return make_shared<Solution>(psp->GetBenchmark()->Domains(), best_conf);
+    return make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), best_conf);
 }
 
 

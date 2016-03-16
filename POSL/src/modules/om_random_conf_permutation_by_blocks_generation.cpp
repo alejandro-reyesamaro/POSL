@@ -8,9 +8,9 @@ using namespace std;
 
 OM_RandomConfPermutationByBlocksGeneration::OM_RandomConfPermutationByBlocksGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
-      rsolution(make_shared<Solution>(bench->Domains())),
+      rsolution(make_shared<Solution>(bench->Variable_Domain(), bench->Dimension())),
       object_bench(dynamic_pointer_cast<Golfers> (bench)),
-      rconf_strategy(make_shared<RandomPermutationByBlocksGenerationStrategy>(bench->Domains().size(), object_bench->TotalPlayers()))
+      rconf_strategy(make_shared<RandomPermutationByBlocksGenerationStrategy>(bench->Dimension(), object_bench->TotalPlayers()))
 {}
 
 shared_ptr<Solution> OM_RandomConfPermutationByBlocksGeneration::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Seed>)

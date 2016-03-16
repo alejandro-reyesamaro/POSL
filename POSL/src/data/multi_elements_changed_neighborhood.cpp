@@ -12,10 +12,10 @@
 
 using namespace std;
 
-MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(int _config_size, std::vector<Domain> _domains)
+MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(std::shared_ptr<Domain> _domain, int _config_size)
     : Neighborhood(_config_size),
       changeAtBhv(std::make_shared<StandardApplyChangeBehavior>(_config_size)),
-      domains(_domains)
+      domain(_domain)
 {}
 
 void MultiElementsChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
@@ -38,7 +38,7 @@ void MultiElementsChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand
         {
             //cout << *jt << " ";
 
-            std::vector<int> posible_values =domains[*jt].GetValues();
+            std::vector<int> posible_values =domain->GetValues();
             int current_value = current_configuration[*jt];
 
             std::vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);

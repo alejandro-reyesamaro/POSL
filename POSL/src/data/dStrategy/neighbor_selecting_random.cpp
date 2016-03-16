@@ -1,10 +1,12 @@
 #include "neighbor_selecting_random.h"
 
-NeighborSelectingRandom::NeighborSelectingRandom(std::vector<Domain> domains)
-    : rPair(std::make_shared<DecisionPair>(std::make_shared<Solution>(domains), std::make_shared<Solution>(domains)))
+using namespace std;
+
+NeighborSelectingRandom::NeighborSelectingRandom(shared_ptr<Domain> domain, int dimension)
+    : rPair(std::make_shared<DecisionPair>(make_shared<Solution>(domain, dimension), make_shared<Solution>(domain, dimension)))
 {}
 
-std::shared_ptr<DecisionPair> NeighborSelectingRandom::select(std::shared_ptr<PSP> psp, std::shared_ptr<Neighborhood> V)
+shared_ptr<DecisionPair> NeighborSelectingRandom::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
 {
     int neighSize = V->size();
     int index = psp->GetRandomizer()->NextInt(0, neighSize);

@@ -11,7 +11,7 @@ PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
     : bench(_bench),
       iterations(0),
       milisecs(0),
-      best_found_configuration(_bench->Domains().size(),1),
+      best_found_configuration(_bench->Dimension(),1),
       best_found_cost(100000),
       pID(_pID),
       outer_information(false),
@@ -20,7 +20,7 @@ PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
       plog(max(0, _pID), _logs_path),
       logs_path(_logs_path),      
       restarts(-1),
-      rand(make_shared<Randomizer>(_bench->Domains().size()))
+      rand(make_shared<Randomizer>(_bench->Dimension()))
 {}
 
 PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)

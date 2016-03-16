@@ -16,7 +16,6 @@ Tester_PackingDecisionPair::Tester_PackingDecisionPair(int argc, char *argv[])
 string Tester_PackingDecisionPair::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
@@ -47,8 +46,8 @@ string Tester_PackingDecisionPair::test()
     });
 
 
-    shared_ptr<Solution> sol_current(make_shared<Solution>(bench->Domains(), config1));
-    shared_ptr<Solution> sol_found(make_shared<Solution>(bench->Domains(), config2));
+    shared_ptr<Solution> sol_current(make_shared<Solution>(bench->Variable_Domain(), config1));
+    shared_ptr<Solution> sol_found(make_shared<Solution>(bench->Variable_Domain(), config2));
     shared_ptr<ComputationData> data(make_shared<DecisionPair>(sol_current, sol_found));
     shared_ptr<DecisionPair> pair = static_pointer_cast<DecisionPair>(data);
 
@@ -59,7 +58,8 @@ string Tester_PackingDecisionPair::test()
 
     //int * buff = &pack[0];
 
-    shared_ptr<DecisionPair> final(make_shared<DecisionPair>(make_shared<Solution>(bench->Domains()), make_shared<Solution>(bench->Domains())));
+    shared_ptr<DecisionPair> final(make_shared<DecisionPair>(make_shared<Solution>(bench->Variable_Domain(), bench->Dimension()),
+                                                             make_shared<Solution>(bench->Variable_Domain(), bench->Dimension())));
     final->updateFromPack(&pack[0]);
     bool succ = final->GetCurrent()->equal(sol_current) && final->GetFound()->equal(sol_found);
 

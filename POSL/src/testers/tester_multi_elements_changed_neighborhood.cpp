@@ -12,11 +12,10 @@ Tester_MultiElementsChangedNeighborhood::Tester_MultiElementsChangedNeighborhood
 string Tester_MultiElementsChangedNeighborhood::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
     //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_0s());
+    shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::Golfers_442_0s());
 
     shared_ptr<OperationModule> op(make_shared<OM_MultiElementsChangedNeighborhood>(bench));
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));

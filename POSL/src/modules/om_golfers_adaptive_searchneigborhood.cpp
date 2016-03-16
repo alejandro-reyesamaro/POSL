@@ -8,7 +8,7 @@ using namespace std;
 OM_GolfersAdaptiveSearchNeigborhood::OM_GolfersAdaptiveSearchNeigborhood(shared_ptr<Benchmark> bench)
     : object_bench(static_pointer_cast<Golfers> (bench)),
       V(make_shared<GolfersAdaptiveSearchNeighborhood>(object_bench,
-                                                       bench->Domains().size(),
+                                                       bench->Dimension(),
                                                        object_bench->PlayersPerGroup(),
                                                        object_bench->Groups()))
 {}

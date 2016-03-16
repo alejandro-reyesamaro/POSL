@@ -6,7 +6,7 @@
 using namespace std;
 
 OM_FirstImprovementSelection::OM_FirstImprovementSelection(shared_ptr<Benchmark> bench)
-    : search_strategy(std::make_shared<NeighborSelectingFirstImprovement>(bench->Domains()))
+    : search_strategy(std::make_shared<NeighborSelectingFirstImprovement>(bench->Variable_Domain(), bench->Dimension()))
 {}
 
 shared_ptr<DecisionPair> OM_FirstImprovementSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)

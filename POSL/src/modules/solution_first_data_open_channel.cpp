@@ -6,7 +6,7 @@ using namespace std;
 
 SolutionFirstDataOpenChannel::SolutionFirstDataOpenChannel(string name, shared_ptr<Benchmark> _bench)
     : DataOpenChannel(name, _bench),
-      solution_data(make_shared<Solution>(_bench->Domains()))
+      solution_data(make_shared<Solution>(_bench->Variable_Domain(), _bench->Dimension()))
 {}
 
 int SolutionFirstDataOpenChannel::dataID()

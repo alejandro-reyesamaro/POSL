@@ -6,7 +6,7 @@
 using namespace std;
 
 OM_MultiElementsChangedNeighborhood::OM_MultiElementsChangedNeighborhood(shared_ptr<Benchmark> bench)
-    : V(make_shared<MultiElementsChangedNeighborhood>(bench->Domains().size(), bench->Domains()))
+    : V(make_shared<MultiElementsChangedNeighborhood>(bench->Variable_Domain(), bench->Dimension()))
 {}
 
 shared_ptr<Neighborhood> OM_MultiElementsChangedNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)

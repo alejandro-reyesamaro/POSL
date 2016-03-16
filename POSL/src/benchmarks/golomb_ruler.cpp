@@ -8,7 +8,8 @@
 using namespace std;
 
 GolombRuler::GolombRuler(int _order, int _length)
-    : Benchmark(vector<Domain>(_order, Domain(make_shared<Factory_NIntDomain>(0, _length))),
+    : Benchmark(_order,
+                make_shared<Domain>(0, _length),
                 make_shared<GolombRulerDistancesCostStrategy>(_order, _length),
                 make_shared<GolombRulerRelativeCostStrategy>(),
                 make_shared<GolombRulerDefaultShowStrategy>(_order, _length)),

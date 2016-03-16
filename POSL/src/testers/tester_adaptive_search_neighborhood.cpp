@@ -19,7 +19,6 @@ string Tester_AdaptiveSearchNeighborhood::test()
     shared_ptr<Benchmark> bench(make_shared<NQueens>(8));
 
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
-    //shared_ptr<Solution> sol(make_shared<Solution>(psp->GetBenchmark()->Domains(), config1));
 
     shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench, config1));
     shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchNeighborhood>(bench));
@@ -43,7 +42,7 @@ string Tester_AdaptiveSearchNeighborhood::test()
             sum  += k;
             prod *= k;
         }
-        shared_ptr<Solution> aux(make_shared<Solution>(bench->Domains(), neighbor));
+        shared_ptr<Solution> aux(make_shared<Solution>(bench->Variable_Domain(), neighbor));
         cout << aux->configurationToString() << endl;
     }
     return (only_change_one) ? "OM_AdaptiveSearchNeighborhood: OK !" : "OM_AdaptiveSearchNeighborhood: fail :/";

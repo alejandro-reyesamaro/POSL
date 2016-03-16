@@ -30,7 +30,7 @@ string Tester_GolfersASNeighborhood::test()
     while(it->SomeNext())
     {
         vector<int> neighbor = it->GetNext();
-        shared_ptr<Solution> aux(make_shared<Solution>(bench->Domains(), neighbor));
+        shared_ptr<Solution> aux(make_shared<Solution>(bench->Variable_Domain(), neighbor));
         cout << aux->configurationToString() << endl;
     }
     return "OM_Golfers_AS_Neighborhood: OK !"; // : "OM_Golfers_AS_Neighborhood: fail :/";

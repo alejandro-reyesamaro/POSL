@@ -14,7 +14,7 @@ class AdaptiveSearchNeighborhood
 {
     friend class ElementsChangeIterator;
     public:
-        AdaptiveSearchNeighborhood(std::shared_ptr<Benchmark> _benchmark, int _config_size);
+        AdaptiveSearchNeighborhood(std::shared_ptr<Benchmark> _benchmark);
 
         std::shared_ptr<POSL_Iterator> getIterator();
         int size() { return changes.size(); }

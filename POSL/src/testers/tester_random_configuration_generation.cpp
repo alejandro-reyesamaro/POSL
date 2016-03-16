@@ -12,8 +12,6 @@ Tester_RandomConfigurationGeneration::Tester_RandomConfigurationGeneration(int a
 string Tester_RandomConfigurationGeneration::test()
 {
     shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
-    //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     shared_ptr<OperationModule> op1(make_shared<OM_RandomConfGeneration>(bench));

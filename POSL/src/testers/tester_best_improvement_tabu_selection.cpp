@@ -16,12 +16,11 @@ Tester_BestImprovementTabuSelection::Tester_BestImprovementTabuSelection(int arg
 
 string Tester_BestImprovementTabuSelection::test()
 {
-    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));
-    shared_ptr<Solution> sol(make_shared<Solution>(bench->Domains()));
+    shared_ptr<Benchmark> bench(make_shared<Golfers>(4,4,2));    
     //bench->UpdateSolution(sol);
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
-    sol = make_shared<Solution>(psp->GetBenchmark()->Domains(), Tester::Golfers_442_1s());
+    shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::Golfers_442_1s());
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
     psp->UpdateSolution(sol->get_conf_by_ref());

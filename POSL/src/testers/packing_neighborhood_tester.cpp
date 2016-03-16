@@ -46,7 +46,7 @@ string PackingNeighborhoodTester::test(shared_ptr<Solution> sol, shared_ptr<POSL
     shared_ptr<Solution> sol_aux;
     shared_ptr<Solution> neighbor_aux;
     vector<int> conf_aux (32);
-    vector<Domain> dom = sol->GetDomains();
+    shared_ptr<Domain> dom = sol->GetVariablesDomain();
 
     while(neighbors->SomeNext())
     {

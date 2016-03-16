@@ -6,7 +6,7 @@
 using namespace std;
 
 OM_MultiSortedChangesNeighborhood::OM_MultiSortedChangesNeighborhood(shared_ptr<Benchmark> bench)
-    : V(make_shared<MultiSortedChangesNeighborhood>(bench->Domains().size(), bench->Domains()))
+    : V(make_shared<MultiSortedChangesNeighborhood>(bench->Variable_Domain(), bench->Dimension()))
 {}
 
 shared_ptr<Neighborhood> OM_MultiSortedChangesNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)

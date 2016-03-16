@@ -34,7 +34,7 @@ string Tester_PackingUnionNeighborhood::test()
         16,  3,  6,  9
     });
 
-    sol = new Solution(psp->GetBenchmark()->Domains(), config);
+    sol = new Solution(psp->GetBenchmark()->Variable_Domain(), config);
     OperationModule * m1 = new OM_OneElementChangedNeighborhood();
     OperationModule * m2 = new OM_MultiElementsChangedNeighborhood();
 

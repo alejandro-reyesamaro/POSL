@@ -9,10 +9,10 @@
 
 #define N_NEIGHBORS 16
 
-OneElementChangedNeighborhood::OneElementChangedNeighborhood(int _config_size, std::vector<Domain> _domains)
+OneElementChangedNeighborhood::OneElementChangedNeighborhood(int _config_size, std::shared_ptr<Domain> _domain)
     : Neighborhood(_config_size),
       changeAtBhv(std::make_shared<StandardApplyChangeBehavior>(_config_size)),
-      domains(_domains),
+      domain(_domain),
       indexes(Tools::generateMonotony(_config_size))
 {}
 
@@ -39,7 +39,7 @@ void OneElementChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 
     for(int i = 0; i < n; ++i)
     {
-        std::vector<int> posible_values = domains[indexes[i]].GetValues();
+        std::vector<int> posible_values = domain->GetValues();
         int current_value = current_configuration[indexes[i]];
         //pos_new_value = indexes[i];
         rand->vector_shuffle(posible_values);
