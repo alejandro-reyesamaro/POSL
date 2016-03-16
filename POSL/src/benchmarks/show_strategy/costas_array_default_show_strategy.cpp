@@ -7,26 +7,38 @@ CostasArrayDefaultShowStrategy::CostasArrayDefaultShowStrategy(int n)
     : N(n)
 {}
 
-string CostasArrayDefaultShowStrategy::showSolution(std::shared_ptr<Solution> & solution)
+string write_limit(int N)
 {
-    if(N > 20)
+    string out = "";
+    for(int i = 0; i < N; i++)
+        out += "+-";
+    out += "+\n";
+    return out;
+}
+
+string write_line(int N, int pos)
+{
+    string out = "";
+    for(int i = 0; i < N; i ++)
+        out +=(i != pos)? "| " : "|*";
+    out += "|\n";
+    return out;
+}
+
+string CostasArrayDefaultShowStrategy::showSolution(std::shared_ptr<Solution> solution)
+{
+    if(N > 24)
         return Tools::int2str(N) +"-Costas Array: " + solution->configurationToString();
 
-    std::string out = "";
+    std::string out = Tools::int2str(N) +"-Costas Array: " + solution->configurationToString() + "\n";
     std::vector<int> config = solution->get_conf_by_copy();
 
-    // TRANSPOSING
-    std::vector<int> T(N,0);
-    for(std::vector<int>::iterator it = config.begin(); it != config.end(); ++it)
-        T[*it] = *it;
-    //------------
-
+    out += write_limit(N);
     for(std::vector<int>::iterator it = config.begin(); it != config.end(); ++it)
     {
-        int pos = *it;
-        for(int i = 0; i < N; i ++)
-            out +=(i != pos)? "0 " : "X ";
-        out += "\n";
+        int pos = *it;        
+        out += write_line(N, pos);
     }
+    out += write_limit(N);
     return out;
 }

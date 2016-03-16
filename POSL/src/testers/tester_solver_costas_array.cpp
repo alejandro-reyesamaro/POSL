@@ -7,7 +7,7 @@ Tester_SolverCostasArray::Tester_SolverCostasArray(int argc, char *argv[])
 
 string Tester_SolverCostasArray::test()
 {
-    shared_ptr<CostasArray> ca(make_shared<CostasArray>(16));
+    shared_ptr<CostasArray> ca(make_shared<CostasArray>(15));
     shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("../src/testers/test_codes/solver_costas_test.posl", 10, ca));
     posl_ms->solve_sequentially();
     return "Solving Costas OK!";

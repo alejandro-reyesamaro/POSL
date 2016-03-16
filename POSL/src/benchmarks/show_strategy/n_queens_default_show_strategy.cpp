@@ -7,7 +7,7 @@ NQueensDefaultShowStrategy::NQueensDefaultShowStrategy(int n)
     : N(n)
 {}
 
-string NQueensDefaultShowStrategy::showSolution(std::shared_ptr<Solution> &solution)
+string NQueensDefaultShowStrategy::showSolution(std::shared_ptr<Solution> solution)
 {
     if(N > 20)
         return Tools::int2str(N) +"-Queens: " + solution->configurationToString();

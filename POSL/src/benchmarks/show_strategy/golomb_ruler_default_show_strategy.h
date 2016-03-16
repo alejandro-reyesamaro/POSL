@@ -6,7 +6,7 @@ class GolombRulerDefaultShowStrategy : public ShowStrategy
 {
     public:
         GolombRulerDefaultShowStrategy(int _order, int _length);
-        std::string showSolution(std::shared_ptr<Solution> & solution);
+        std::string showSolution(std::shared_ptr<Solution> solution);
 
     private:
         //! [Number of marcs], [Maximum distance]

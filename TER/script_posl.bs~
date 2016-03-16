@@ -1,0 +1,29 @@
+runs=2
+
+fr="file_result.pres";
+posl_golfers_code="./g_exp.posl";
+posl_nquees_code="./nq_exp.posl";
+
+p=5;
+g=3;
+w=5;
+n=2000;
+cores=6
+
+#mpiexec.mpich -np $cores ../POSL/bin/POSL golfers $p-$g-$w $posl_golfers_code
+
+echo "----$p $g $w : $cores  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich -np $cores ../POSL/bin/POSL golfers $p-$g-$w $posl_golfers_code >> $fr
+done
+echo "----END-----" >> $fr
+echo "   " >> $fr
+
+echo "---- $n : $cores  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich -np $cores ../POSL/bin/POSL nqueens $n $posl_nquees_code >> $fr
+done
+echo "----END-----" >> $fr
+echo "   " >> $fr

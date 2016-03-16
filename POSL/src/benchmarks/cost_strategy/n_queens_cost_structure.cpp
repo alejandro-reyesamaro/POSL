@@ -20,8 +20,8 @@ NQueensCostStructure::NQueensCostStructure(int n)
 
 void NQueensCostStructure::set(std::vector<int> & _configuration)
 {
-    //copy(_configuration.begin(), _configuration.end(), Configuration.begin());
-    Configuration = _configuration;
+    copy(_configuration.begin(), _configuration.end(), Configuration.begin());
+    //Configuration = _configuration;
 
     fill(err_d1.begin(), err_d1.end(), 0);
     fill(err_d2.begin(), err_d2.end(), 0);
@@ -45,14 +45,14 @@ void NQueensCostStructure::set(std::vector<int> & _configuration)
     }
     CurrentCost = r;
 
-    //tener en cuenta el caso en que haya alguno repetido :P
+    // penalizing the configurations with repetitions
     fill(flags.begin(), flags.end(), 0);
     for(vector<int>::iterator it = _configuration.begin(); it != _configuration.end(); ++it)
         if(++flags[_configuration[*it]] > 1)
             CurrentCost += N/2;
 }
 
-int NQueensCostStructure::relative_cost(std::vector<int> &new_config, T_Changes change, bool updating)
+int NQueensCostStructure::relative_cost(std::vector<int> & new_config, T_Changes change, bool updating)
 {
     int pos_change;
     int new_value;
@@ -80,7 +80,7 @@ int NQueensCostStructure::relative_cost(std::vector<int> &new_config, T_Changes 
     }
     cost = r;
 
-    //tener en cuenta el caso en que haya alguno repetido :P
+    // penalizing the configurations with repetitions
     fill(flags.begin(), flags.end(), 0);
     for(vector<int>::iterator it = new_config.begin(); it != new_config.end(); ++it)
         if(++flags[new_config[*it]] > 1)

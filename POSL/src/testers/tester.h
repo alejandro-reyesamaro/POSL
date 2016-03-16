@@ -50,6 +50,8 @@ class Tester
         static vector<int> Golomb_12_85_c19();
 
         static vector<int> Costas_6_c0();
+        static vector<int> Costas_16_c0();
+        static vector<int> Costas_18_c0();
 
         static vector<int> NQueens_10_c0();
         static vector<int> NQueens_10_c6();

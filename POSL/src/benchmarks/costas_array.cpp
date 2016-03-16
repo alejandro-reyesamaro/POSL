@@ -10,10 +10,11 @@
 using namespace std;
 
 CostasArray::CostasArray(int _n)
-    : Benchmark(vector<Domain>(_n, Domain(make_shared<Factory_NIntDomain>(0, _n-1))),
+    : Benchmark(vector<Domain>(_n, Domain(make_shared<Factory_NIntDomain>(1, _n))),
                 make_shared<CostasArrayDanielCostStrategy>(_n),
                 make_shared<CostasArrayRelativeCostStrategy>(_n),
-                make_shared<CostasArrayDefaultShowStrategy>(_n)),
+                make_shared<CostasArrayDefaultShowStrategy>(_n)
+               ),
       n(_n)
 {}
 

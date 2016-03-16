@@ -9,7 +9,7 @@ GolfersDefaultShowStrategy::GolfersDefaultShowStrategy(int _groups, int _players
       weeks(_weeks)
 {}
 
-string GolfersDefaultShowStrategy::showSolution(std::shared_ptr<Solution> & solution)
+string GolfersDefaultShowStrategy::showSolution(std::shared_ptr<Solution> solution)
 {
     string out =  "Golfers: players-" + Tools::int2str(players);
            out += ", groups-" + Tools::int2str(groups);

@@ -11,8 +11,8 @@ int dmax (Domain d) { return d.maximum(); }
 
 OM_RandomPermutationGeneration::OM_RandomPermutationGeneration(shared_ptr<Benchmark> bench)
     : AOM_FirstConfigurationGeneration(bench),
-      rconf_strategy(make_shared<RandomPermutationConfigurationStrategy>(bench->Domains().size())),
-      //rconf_strategy(make_shared<RandomPermutationConfigurationStrategy>(dmin(bench->Domains()[0]), dmax(bench->Domains()[0]))),
+      //rconf_strategy(make_shared<RandomPermutationConfigurationStrategy>(bench->Domains().size())),
+      rconf_strategy(make_shared<RandomPermutationConfigurationStrategy>(dmin(bench->Domains()[0]), dmax(bench->Domains()[0]))),
       rsolution(make_shared<Solution>(bench->Domains()))
 {
 }

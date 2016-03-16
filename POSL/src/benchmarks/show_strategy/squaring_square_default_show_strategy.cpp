@@ -7,7 +7,7 @@ SquaringSquareDefaultShowStrategy::SquaringSquareDefaultShowStrategy(int _n_squa
     : n_squares(_n_squares)
 {}
 
-string SquaringSquareDefaultShowStrategy::showSolution(std::shared_ptr<Solution> &solution)
+string SquaringSquareDefaultShowStrategy::showSolution(std::shared_ptr<Solution> solution)
 {
     std::string out = "";
     std::vector<int> conf = solution->get_conf_by_copy();

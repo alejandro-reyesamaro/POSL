@@ -289,4 +289,7 @@ vector<int> Tester::NQueens_10_c11(){ return {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}; } /
 vector<int> Tester::NQueens_10_c10(){ return {4, 8, 3, 8, 2, 7, 1, 6, 0, 5}; } // costo 10
 
 
-vector<int> Tester::Costas_6_c0(){ return {0,1,4,3,5,2}; }
+vector<int> Tester::Costas_6_c0(){ return {4,2,3,6,5,1}; }
+vector<int> Tester::Costas_16_c0(){ return {12, 8, 2, 1, 3, 9, 13, 16, 7, 5, 10, 11, 6, 15, 4, 14}; }
+vector<int> Tester::Costas_18_c0(){ return {9, 3, 12, 1, 17, 14, 18, 2, 10, 16, 6, 11, 13, 5, 4, 7, 8, 15}; }
+

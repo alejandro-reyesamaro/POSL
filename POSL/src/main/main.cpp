@@ -32,6 +32,10 @@ int main(int argc, char *argv[])
     string params = argv[2];    
 	string path = argv[3];
 
+	int comm_size;
+	MPI_Init(&argc, &argv);
+    MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
+
     shared_ptr<Benchmark> bench;
 
     string exe_path = getexepath();
@@ -78,11 +82,7 @@ int main(int argc, char *argv[])
 	bench = new GolombRuler(9,44);
 	CreateSolverStrategy * css = new ForGolombRulerCSS();
 	solvers = css->create();
-	*/
-	
-	int comm_size;
-	MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD,&comm_size);
+	*/	
 
 	try
 	{

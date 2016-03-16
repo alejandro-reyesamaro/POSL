@@ -32,7 +32,6 @@ int CostasArrayCostStructure::Cost(vector<int> & config, bool update)
 
     if (update) //memset(err, 0, size * sizeof(int));
         fill(err.begin(), err.end(), 0);
-
     do
     {
         //memset(nb_occ, 0,  size * (2 * sizeof(int)));
@@ -149,7 +148,7 @@ void CostasArrayCostStructure::Reset()
             copy(save_sol.begin() + i + 1, save_sol.begin() + i + 1 + sz, Configuration.begin() + i);
             Configuration[j] = save_sol[i];
 
-            if ((cost = Cost(Configuration, true)) < cost_to_exit)
+            if ((cost = Cost(Configuration, false)) < cost_to_exit) // NULL
                 return;		/* -1 because the err[] is not up-to-date */
 
             if (cost < best_cost || (cost == best_cost && rand->NextInt(0, 10) < 2))
@@ -166,7 +165,7 @@ void CostasArrayCostStructure::Reset()
             copy(save_sol.begin() + i, save_sol.begin() + i + sz, Configuration.begin() + i + 1);
             Configuration[i] = save_sol[j];
 
-            if ((cost = Cost(Configuration, true)) < cost_to_exit)
+            if ((cost = Cost(Configuration, false)) < cost_to_exit) //NULL
                 return;
 
             if (cost < best_cost || (cost == best_cost && rand->NextInt(0, 10) < 2))
@@ -188,10 +187,10 @@ void CostasArrayCostStructure::Reset()
     {
         // PROBLEM : (not the same as AS)
         for(i = 0; i < N; i++)
-            if ((Configuration[i] = save_sol[i] + k) >= N)
+            if ((Configuration[i] = save_sol[i] + k) > N)
                 Configuration[i] -= N;
 
-        if ((cost = Cost(Configuration, true)) < cost_to_exit)
+        if ((cost = Cost(Configuration, false)) < cost_to_exit) // NULL
             return;      /* -1 because the err[] is not up-to-date */
 
         if (cost < best_cost && rand->NextInt(0, 100) < 33)
@@ -230,7 +229,7 @@ void CostasArrayCostStructure::Reset()
         copy(save_sol.begin() + imax, save_sol.end(), Configuration.begin());
         copy(save_sol.begin(), save_sol.begin() + imax, Configuration.begin() + N - imax);
 
-        if ((cost = Cost(Configuration, true)) < cost_to_exit) /* only if it is a var with max error */
+        if ((cost = Cost(Configuration, false)) < cost_to_exit) /* only if it is a var with max error */ // NULL
             return;      /* -1 because the err[] is not up-to-date */
 
         if (cost < best_cost)
