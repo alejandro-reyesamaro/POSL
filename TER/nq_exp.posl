@@ -22,7 +22,7 @@ St_a000 := cStrategy
 solver1 := solver
 {
 	cStrategy: St_a000;
-	oModule: OM_S.PermRand, OM_V.AS, OM_SS.3BestImpr, OM_D.AlwImpr;
+	oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 connections:
