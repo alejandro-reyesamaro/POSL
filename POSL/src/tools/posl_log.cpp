@@ -26,7 +26,7 @@ POSL_Log::POSL_Log(int pid, string path)
     time_t now = time(0);
     tm * ltm = localtime(&now);
     string Time = Tools::int2str(ltm->tm_hour) + ":" + Tools::int2str(1 + ltm->tm_min);// + ":" + Tools::int2str(1 + ltm->tm_sec);
-    log("\nBegin at " + Time + "\n--");
+    //log("\nBegin at " + Time + "\n--");
 }
 
 void POSL_Log::log(std::string text)

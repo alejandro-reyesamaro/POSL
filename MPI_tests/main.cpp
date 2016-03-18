@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
   int numtasks, rank, dest, source, rc, count, tag = 1; 
   int test_flag;
-  char inmsg, outmsg= 'x';
+  char inmsg, outmsg= 'a';
   MPI_Status status;
 
   MPI_Init(&argc,&argv);
@@ -22,33 +22,43 @@ int main(int argc, char *argv[])
   if (rank == 0) 
   {
     dest = 1;
-    std::vector<char> v ({'a', 'b', 'c', 'e', 'f'});
-    for (int i = 0; i < 5; i++)
-    {    
-      rc = MPI_Send(&v[i], 1, MPI_CHAR, dest, tag, MPI_COMM_WORLD);
+    source = 0;    
+    rc = MPI_Send(&outmsg, 1, MPI_CHAR, dest, tag, MPI_COMM_WORLD);    
+    MPI_Iprobe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &test_flag, &status);
+    
+    if(test_flag)
+    {
+      cout << "0 has a message" << endl;
+      rc = MPI_Recv(&inmsg, 1, MPI_CHAR, source, tag, MPI_COMM_WORLD, &status);      
+      //rc = MPI_Get_count(&status, MPI_CHAR, &count);
+      return 0;
+    }
+    else 
+    {
+      cout << "0 is done" << endl;
+      exit(0);
     }
   } 
   else if (rank == 1) 
   {
-    source = 0;    
-    this_thread::sleep_for (std::chrono::seconds(10));
-    //for (int i = 0; i < 3; i++)
-    //{
-    //  rc = MPI_Recv(&inmsg, 1, MPI_CHAR, source, tag, MPI_COMM_WORLD, &status);    
-    //  rc = MPI_Get_count(&Stat, MPI_CHAR, &count);
-    //}
-
+    dest = 0;
+    source = 1;
+    rc = MPI_Send(&outmsg, 1, MPI_CHAR, dest, tag, MPI_COMM_WORLD);    
+    
     MPI_Iprobe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &test_flag, &status);
-    while (test_flag)
+    
+    if(test_flag)
     {
+      cout << "1 has a message" << endl;
       rc = MPI_Recv(&inmsg, 1, MPI_CHAR, source, tag, MPI_COMM_WORLD, &status);
-      rc = MPI_Get_count(&status, MPI_CHAR, &count);
-      MPI_Iprobe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &test_flag, &status);
+      //rc = MPI_Get_count(&status, MPI_CHAR, &count);
+      return 0;
     }
-
-    cout << "PID=1: " << inmsg << endl;
-    //printf("Task %d: Received %d char(s) from task %d with tag %d \n",
-      //rank, count, Stat.MPI_SOURCE, Stat.MPI_TAG);
+    else 
+    {
+      cout << "1 is done" << endl;
+      exit(0);
+    }
   }
 
   MPI_Finalize();

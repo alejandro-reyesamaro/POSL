@@ -18,7 +18,7 @@ St_b001 := cStrategy
                             OP.|->
                             OM_V
                             <S>
-                                OP.? ( BE.SCI 20 )
+                                OP.? ( BE.SCI 5 )
                                 OM_SS1
                                 OM_SS2
                             </S>

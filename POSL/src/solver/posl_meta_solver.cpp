@@ -19,9 +19,11 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
     : comm_size(_comm_size),
       scheduler(make_shared<Scheduler>(_comm_size)),
       benchmark(bench),
-      exe_path(_exe_path)
+      exe_path(_exe_path),
+      par_str(make_shared<SolveInParallelStrategy>(bench, exe_path)),
+      seq_str(make_shared<SolveSequentiallyStrategy>(bench)),
+      test_str(make_shared<SolveToTestStrategy>(bench))
 {
-    //cout << exe_path << endl;
     shared_ptr<PoslUncoder> posl_unc;
     pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);
     HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench);
@@ -78,43 +80,19 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
 
 void POSL_MetaSolver::solve_in_parallel()
 {
-    int myid = 0;
-    MPI_Comm_rank(MPI_COMM_WORLD,&myid);
-
-    if(myid < scheduler->schedulerSize())
-    {
-        shared_ptr<POSL_Solver> solver = scheduler->getSolverAt(myid);
-        shared_ptr<PSP> psp(make_shared<PSP>(benchmark, myid, exe_path));
-        solver->solve(psp);
-        string output = solver->show(psp);
-        cout << output << endl;
-        //psp->log(output);
-    }    
+    cout << par_str->solve(scheduler) << endl;
+    //psp->log(output);
     exit(0);
 }
 
 void POSL_MetaSolver::solve_sequentially()
-{    
-    shared_ptr<POSL_Solver> solver = scheduler->getFirstSequentialSolver();
-    if(solver)
-    {
-        shared_ptr<PSP> psp(make_shared<PSP>(benchmark));
-        solver->solve(psp);
-        string output = solver->show(psp);
-        cout << output << endl;
-        //psp->log(output);
-        exit(0);
-    }    
+{
+    cout << seq_str->solve(scheduler) << endl;
+    //psp->log(output);
+    exit(0);
 }
 
 string POSL_MetaSolver::test(shared_ptr<PSP> psp)
 {
-    shared_ptr<POSL_Solver> solver = scheduler->getFirstSequentialSolver();
-    if(solver)
-    {        
-        solver->solve(psp);
-        string output = solver->show(psp);
-        return output;
-    }
-    else return "POSL Meta-Solver: fail :/";
+    return test_str->solve(scheduler, psp);
 }

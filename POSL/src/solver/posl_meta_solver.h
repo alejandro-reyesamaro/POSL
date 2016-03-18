@@ -3,6 +3,9 @@
 #include "posl_solver.h"
 #include "../connections/scheduler.h"
 #include "../connections/connection_operator.h"
+#include "strategy/solve_in_parallel_strategy.h"
+#include "strategy/solve_sequentially_strategy.h"
+#include "strategy/solve_to_test_strategy.h"
 
 class POSL_MetaSolver
 {
@@ -18,4 +21,7 @@ class POSL_MetaSolver
         std::shared_ptr<Scheduler> scheduler;
         std::shared_ptr<Benchmark> benchmark;
         std::string exe_path;
+        shared_ptr<SolveInParallelStrategy> par_str;
+        shared_ptr<SolveSequentiallyStrategy> seq_str;
+        shared_ptr<SolveToTestStrategy> test_str;
 };

@@ -292,7 +292,10 @@ SOURCES += src/main.cpp \
     src/modules/solution_best_data_open_channel.cpp \
     src/expressions/singleton_expression.cpp \
     src/testers/tester_singleton_experession.cpp \
-    src/tools/std/random_generator.cpp
+    src/tools/std/random_generator.cpp \
+    src/solver/strategy/solve_in_parallel_strategy.cpp \
+    src/solver/strategy/solve_sequentially_strategy.cpp \
+    src/solver/strategy/solve_to_test_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -588,7 +591,10 @@ HEADERS += \
     src/modules/solution_best_data_open_channel.h \
     src/expressions/singleton_expression.h \
     src/testers/tester_singleton_experession.h \
-    src/tools/random_generator.h
+    src/tools/random_generator.h \
+    src/solver/strategy/solve_in_parallel_strategy.h \
+    src/solver/strategy/solve_sequentially_strategy.h \
+    src/solver/strategy/solve_to_test_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
