@@ -12,10 +12,11 @@ string Tester_LongInt::test()
 {
     LongInt a(2, 64);
     LongInt b(2, 64);
-    LongInt c = a | b;
+    //LongInt c = a | b;
     a.activate(50);
     b.activate(50);
     bool activated = a.Equal(b);
+    bool activated_50 = a.activated(50);
 
     LongInt d(2, 0);
     for(int i = 0; i <= 33; i++)
@@ -23,6 +24,6 @@ string Tester_LongInt::test()
     //d.activate(1);
     cout << d.toString() << endl;
 
-    return (activated) ?
+    return (activated && activated_50) ?
            "LongInt: OK !" : "LongInt: fail :/";
 }

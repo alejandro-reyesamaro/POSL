@@ -18,6 +18,7 @@ class LongInt
         LongInt operator&(LongInt &other);
 
         bool activated();
+        bool activated(unsigned int bit);
         void activate(unsigned int bit);
         void activateAll();
         void deactivateAll();

@@ -33,7 +33,7 @@ int GolombRulerDistancesCostStrategy::solutionCost(std::vector<int> & configurat
         penalty += PENALIZATION * PENALIZATION;
     if(configuration[order - 1] != length)
         penalty += PENALIZATION * PENALIZATION;
-    cost = not_measured + penalty * PENALIZATION;
+    cost = not_measured + penalty;
     return cost;
 }
 

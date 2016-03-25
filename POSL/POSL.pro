@@ -295,7 +295,8 @@ SOURCES += src/main.cpp \
     src/tools/std/random_generator.cpp \
     src/solver/strategy/solve_in_parallel_strategy.cpp \
     src/solver/strategy/solve_sequentially_strategy.cpp \
-    src/solver/strategy/solve_to_test_strategy.cpp
+    src/solver/strategy/solve_to_test_strategy.cpp \
+    src/benchmarks/cost_strategy/golomb_ruler_cost_structure.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -594,7 +595,8 @@ HEADERS += \
     src/tools/random_generator.h \
     src/solver/strategy/solve_in_parallel_strategy.h \
     src/solver/strategy/solve_sequentially_strategy.h \
-    src/solver/strategy/solve_to_test_strategy.h
+    src/solver/strategy/solve_to_test_strategy.h \
+    src/benchmarks/cost_strategy/golomb_ruler_cost_structure.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

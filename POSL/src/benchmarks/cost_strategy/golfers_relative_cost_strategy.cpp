@@ -45,7 +45,7 @@ void GolfersRelativeCostStrategy::initializeCostData(vector<int> & _configuratio
     current_cost = initial_cost;
 }
 
-int GolfersRelativeCostStrategy::relative_cost(std::vector<int> &new_config, T_Changes change, bool updating)
+int GolfersRelativeCostStrategy::relative_cost(std::vector<int> & new_config, T_Changes change, bool updating)
 {
     int cost = 0;
     int pos, new_value, w, g, j;

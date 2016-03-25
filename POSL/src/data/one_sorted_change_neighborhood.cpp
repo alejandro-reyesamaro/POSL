@@ -38,10 +38,11 @@ void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
     int pos_new_value = 0;
     //vector<int> the_configuration = sol->GetConfiguration();
 
+    std::vector<int> posible_values;
     for(int i = 0; i < n-2; ++i)
     {
         int current_value = current_configuration[indexes[i]];
-        std::vector<int> posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i], current_configuration);
+        posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i], current_configuration);
         rand->vector_shuffle(posible_values);
         int l = posible_values.size();
         for (int j = 0; j <  l / 2; j++)

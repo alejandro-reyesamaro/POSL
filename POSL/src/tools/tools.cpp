@@ -176,6 +176,17 @@ int Tools::identity(int x, int base)
     return (x > base) ? x : 0;
 }
 
+int Tools::sqr(int b)
+{
+    return b * b;
+}
+
+int Tools::sign(int x)
+{
+    if (x == 0) return 0;
+    return (x > 0) ? 1 : -1;
+}
+
 bool Tools::equals_vectors(std::vector<int> v1, std::vector<int> v2)
 {
     if (v1.size() != v2.size())

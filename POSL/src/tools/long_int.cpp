@@ -28,13 +28,13 @@ LongInt::LongInt(unsigned int _bytes)
 
 int LongInt::length() { return (int)bytes; }
 
-LongInt LongInt::operator|(LongInt &other)
+LongInt LongInt::operator|(LongInt & other)
 {
     MergedLongInt m (*this, other);
     return m.long_or();
 }
 
-LongInt LongInt::operator&(LongInt &other)
+LongInt LongInt::operator&(LongInt & other)
 {
     MergedLongInt m (*this, other);
     return m.long_and();
@@ -46,6 +46,21 @@ bool LongInt::activated()
     for(int i = 0; i < length(); i++)
         act = act || (value[i] > 0);
     return act;
+}
+
+bool LongInt::activated(unsigned int bit)
+{
+    //int act = max(0,int((bit % 32) - 1));
+    //int act = (bit % 32) - 1;
+    int act = (bit % 32);
+    int byte = bit / 32;
+    int activated_bit = (int)pow(2,act);
+    if (byte < length())
+    {
+        int is_activated = value[byte] & activated_bit;
+        return (is_activated != 0);
+    }
+    else return false;
 }
 
 void LongInt::activate(unsigned int bit)
