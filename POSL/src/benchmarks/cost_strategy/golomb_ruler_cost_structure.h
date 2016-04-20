@@ -21,9 +21,11 @@ class GolombRulerCostStructure
         std::vector<int> Configuration;
 
     private:
-        std::vector<int> measures;
-        std::vector<std::list<int>> measures_intervenants;
-        std::vector<std::list<int>> measures_intervenants_index;
-        std::vector<std::list<int>> negative_measures_intervenants;
-        std::vector<int> variables_in_negative_measures;
+        std::vector<int> measure_counters;
+        std::vector<std::list<int>> measure_per_variable;
+        //std::vector<std::list<int>> measures_intervenants;
+        //std::vector<std::list<int>> measures_intervenants_index;
+        //std::vector<std::list<int>> negative_measures_intervenants;
+        //std::vector<int> variables_in_negative_measures;
+        //std::vector<int> aux_new_config;
 };
