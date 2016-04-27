@@ -269,18 +269,13 @@ vector<int> Tester::Golfers_662_c0()
     };
 }
 
-vector<int> Tester::Golomb_6_17_c2(){ return {0, 1, 4, 10, 12, 17}; } // costo 2
-
-vector<int> Tester::Golomb_7_25_c4(){ return { 0, 1, 4, 10, 18, 23, 25}; } // costo 4
-
+vector<int> Tester::Golomb_6_17_c2(){ return {0, 1, 4, 10, 12, 17}; } // costo 2 - 0
+vector<int> Tester::Golomb_7_25_c4(){ return { 0, 1, 4, 10, 18, 23, 25}; } // costo 4 - 0
+vector<int> Tester::Golomb_7_25_m3(){ return { 0, 1, 4, 11, 18, 23, 25}; } // m_cost 3
 vector<int> Tester::Golomb_8_34_c7(){ return {0, 1, 4, 9, 15, 22, 32, 34}; } // costo 7
-
 vector<int> Tester::Golomb_9_44_c9(){ return {0, 1, 5, 12, 25, 27, 35, 41, 44}; } // costo 9
-
 vector<int> Tester::Golomb_10_55_c11(){ return {0, 1, 6, 10, 23, 26, 34, 41, 53, 55}; } // costo 11
-
 vector<int> Tester::Golomb_11_72_c19(){ return {0, 1, 4, 13, 28, 33, 47, 54, 64, 70, 72}; } // costo 19
-
 vector<int> Tester::Golomb_12_85_c19(){ return {0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85}; } // costo 20
 
 vector<int> Tester::NQueens_10_c0(){ return {4, 9, 3, 8, 2, 7, 1, 6, 0, 5}; } // costo 0

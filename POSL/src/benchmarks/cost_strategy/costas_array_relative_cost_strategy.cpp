@@ -1,5 +1,6 @@
 #include "costas_array_relative_cost_strategy.h"
 #include "../../tools/tools.h"
+#include "default_sickest_variable_strategy.h"
 
 #include <iostream>
 #include <algorithm>
@@ -7,9 +8,10 @@
 using namespace std;
 
 CostasArrayRelativeCostStrategy::CostasArrayRelativeCostStrategy(int n)
-    : N(n),
+    : //N(n),
       ca_str(make_shared<CostasArrayCostStructure>(n)),
-      bad_variables(n)
+      //bad_variables(n),
+      sickest_variable_strategy(make_shared<DefaultSickestVariableStrategy>(n, dynamic_pointer_cast<ProjectableCost>(ca_str)))
 {}
 
 void CostasArrayRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int initial_cost)
@@ -51,21 +53,5 @@ int CostasArrayRelativeCostStrategy::costOnVariable(int i)
 
 int CostasArrayRelativeCostStrategy::sickestVariable()
 {
-    bad_variables.clear();
-    int cov;
-    int bcov = ca_str->costOnVariable(0);
-    bad_variables.pushBack(0);
-    for(int i = 1; i < N; i++)
-    {
-        cov = ca_str->costOnVariable(i);
-        if (cov == bcov)
-            bad_variables.pushBack(i);
-        else if(cov > bcov)
-        {
-            bcov = cov;
-            bad_variables.clear();
-            bad_variables.pushBack(i);
-        }
-    }
-    return bad_variables.elementAt(ca_str->GetRandomized()->NextInt(0, bad_variables.size()-1));
+    return sickest_variable_strategy->sickestVariable();
 }

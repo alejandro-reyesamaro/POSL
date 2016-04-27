@@ -1,6 +1,5 @@
 #include "tester_solver_golomb_ruler.h"
-
-#include "../solver/posl_solver.h"
+#include "../solver/posl_meta_solver.h"
 
 Tester_Solver_GolombRuler::Tester_Solver_GolombRuler(int argc, char *argv[])
     : Tester(argc, argv)
@@ -8,17 +7,9 @@ Tester_Solver_GolombRuler::Tester_Solver_GolombRuler(int argc, char *argv[])
 
 string Tester_Solver_GolombRuler::test()
 {
-    /*
-    //GolombRuler * bench(make_shared<GolombRuler(12,85);
-    //GolombRuler * bench(make_shared<GolombRuler(8,34);
-    shared_ptr<GolombRuler> bench(make_shared<GolombRuler>(7,25));
-    shared_ptr<PSP> psp(make_shared<PSP>(bench));
+    shared_ptr<GolombRuler> gr(make_shared<GolombRuler>(7,25));
+    shared_ptr<POSL_MetaSolver> posl_ms (make_shared<POSL_MetaSolver>("../src/testers/test_codes/solver_golomb_test.posl", 10, gr));
+    posl_ms->solve_sequentially();
 
-    shared_ptr<CreateSolverStrategy> css(make_shared<ForGolombRulerCSS>(bench));
-    vector<shared_ptr<POSL_Solver>> solvers = css->create();
-
-    solvers[0]->solve(psp);
-    return solvers[0]->show();
-    */
-    return "in process...";
+    return "Solving Golomb-Ruler OK!";
 }

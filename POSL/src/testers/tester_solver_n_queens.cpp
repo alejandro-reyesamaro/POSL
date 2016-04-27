@@ -1,5 +1,4 @@
 #include "tester_solver_n_queens.h"
-
 #include "../solver/posl_meta_solver.h"
 
 Tester_SolverNQueens::Tester_SolverNQueens(int argc, char *argv[])

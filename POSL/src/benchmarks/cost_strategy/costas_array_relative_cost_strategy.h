@@ -2,8 +2,7 @@
 
 #include "relative_cost_strategy.h"
 #include "costas_array_cost_structure.h"
-#include "../../tools/fixed_size_vector.h"
-#include "../../tools/randomizer.h"
+#include "sickest_variable_strategy.h"
 
 #include <memory>
 
@@ -26,5 +25,5 @@ class CostasArrayRelativeCostStrategy : public RelativeCostStrategy
 
         int N;
         std::shared_ptr<CostasArrayCostStructure> ca_str;
-        FixedSizeVector<int> bad_variables;
+        std::shared_ptr<SickestVariableStrategy> sickest_variable_strategy;
 };

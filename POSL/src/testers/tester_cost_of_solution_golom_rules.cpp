@@ -16,7 +16,7 @@ string Tester_CostOfSolutionGolomRules::test()
 
     bench = make_shared<GolombRuler>(7, 25);
     psp = make_shared<PSP>(bench);
-    sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::Golomb_7_25_c4());
+    sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::Golomb_7_25_c4());//Tester::Golomb_7_25_m3());
     int c2 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Best cost for 7-5: " << c2 << endl;
 
@@ -50,7 +50,8 @@ string Tester_CostOfSolutionGolomRules::test()
     int c7 = psp->GetBenchmark()->solutionCost(sol);
     //cout << "Best cost for 12-85: " << c7 << endl;
 
-    return (c1 == 2 && c2 == 4 && c3 == 7 && c4 == 9 && c5 == 11 && c6 == 19 && c7 == 20)
+    //return (c1 == 0 && c2 == 0 && c3 == 7 && c4 == 9 && c5 == 11 && c6 == 19 && c7 == 20)
+    return (c1 + c2 + c3 + c4 + c5 + c6 + c7 == 0)
         ? "CostOfSolution (Golom Ruler): OK !"
         : "CostOfSolution (Golom Ruler): fail :/";
 }

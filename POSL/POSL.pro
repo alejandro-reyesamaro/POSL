@@ -296,7 +296,9 @@ SOURCES += src/main.cpp \
     src/solver/strategy/solve_in_parallel_strategy.cpp \
     src/solver/strategy/solve_sequentially_strategy.cpp \
     src/solver/strategy/solve_to_test_strategy.cpp \
-    src/benchmarks/cost_strategy/golomb_ruler_cost_structure.cpp
+    src/benchmarks/cost_strategy/golomb_ruler_cost_structure.cpp \
+    src/benchmarks/cost_strategy/default_sickest_variable_strategy.cpp \
+    src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -596,7 +598,11 @@ HEADERS += \
     src/solver/strategy/solve_in_parallel_strategy.h \
     src/solver/strategy/solve_sequentially_strategy.h \
     src/solver/strategy/solve_to_test_strategy.h \
-    src/benchmarks/cost_strategy/golomb_ruler_cost_structure.h
+    src/benchmarks/cost_strategy/golomb_ruler_cost_structure.h \
+    src/benchmarks/cost_strategy/sickest_variable_strategy.h \
+    src/benchmarks/cost_strategy/projectable_cost.h \
+    src/benchmarks/cost_strategy/default_sickest_variable_strategy.h \
+    src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -623,4 +629,5 @@ OTHER_FILES += \
     src/testers/test_codes/solver_nqueens_focus.posl \
     src/testers/test_codes/singleton_expression_test.posl \
     src/testers/test_codes/script_costas.bs \
-    src/testers/test_codes/solver_costas_test.posl
+    src/testers/test_codes/solver_costas_test.posl \
+    src/testers/test_codes/solver_golomb_test.posl

@@ -2,8 +2,9 @@
 
 #include <vector>
 #include "../../tools/t_changes.h"
+#include "projectable_cost.h"
 
-class NQueensCostStructure
+class NQueensCostStructure : public ProjectableCost
 {
     public:
         NQueensCostStructure(int n);

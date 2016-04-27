@@ -3,8 +3,9 @@
 #include <vector>
 #include "../../tools/t_changes.h"
 #include "../../tools/randomizer.h"
+#include "projectable_cost.h"
 
-class CostasArrayCostStructure
+class CostasArrayCostStructure : public ProjectableCost
 {
     public:
         CostasArrayCostStructure(int n);

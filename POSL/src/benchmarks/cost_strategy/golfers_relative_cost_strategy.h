@@ -4,6 +4,7 @@
 #include "../../tools/connection_matrix.h"
 #include "../../tools/fixed_size_vector.h"
 #include "../../tools/random_generator.h"
+#include "projectable_cost.h"
 
 #include <algorithm>
 

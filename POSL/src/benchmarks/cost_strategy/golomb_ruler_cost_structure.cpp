@@ -141,7 +141,7 @@ int GolombRulerCostStructure::cost(vector<int> & config)
                 variables_in_negative_measures[j] ++;
                 continue;
             }*/
-            if (distance > 0 && distance < Length)
+            if (distance > 0 && distance <= Length)
             {
                 measure_per_variable[i].push_back(distance);
                 measure_per_variable[j].push_back(distance);
@@ -152,7 +152,7 @@ int GolombRulerCostStructure::cost(vector<int> & config)
             }
         }
     for (int i = 0; i < Length; i++)
-        cost += Tools::sqr(zero_bounded_decrease(measure_counters[i]));
+        cost += zero_bounded_decrease(measure_counters[i]);
 
     //int max_possible_measures = (Order * (Order - 1)) / 2;
 

@@ -4,8 +4,9 @@
 #include <list>
 #include "../../tools/t_changes.h"
 #include "../../tools/long_int.h"
+#include "projectable_cost.h"
 
-class GolombRulerCostStructure
+class GolombRulerCostStructure : public ProjectableCost
 {
     public:
         GolombRulerCostStructure(int _order, int _length);

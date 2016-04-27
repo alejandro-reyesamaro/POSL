@@ -1,4 +1,4 @@
-#include "n_queens_cost_structure.h"
+    #include "n_queens_cost_structure.h"
 
 #include <algorithm>
 

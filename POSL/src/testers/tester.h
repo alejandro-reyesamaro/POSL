@@ -43,6 +43,7 @@ class Tester
 
         static vector<int> Golomb_6_17_c2();
         static vector<int> Golomb_7_25_c4();
+        static vector<int> Golomb_7_25_m3();
         static vector<int> Golomb_8_34_c7();
         static vector<int> Golomb_9_44_c9();
         static vector<int> Golomb_10_55_c11();
