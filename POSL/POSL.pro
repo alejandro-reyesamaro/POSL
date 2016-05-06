@@ -298,7 +298,14 @@ SOURCES += src/main.cpp \
     src/solver/strategy/solve_to_test_strategy.cpp \
     src/benchmarks/cost_strategy/golomb_ruler_cost_structure.cpp \
     src/benchmarks/cost_strategy/default_sickest_variable_strategy.cpp \
-    src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.cpp
+    src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.cpp \
+    src/testers/tester_cost_on_variable_golomb_ruler.cpp \
+    src/data/one_worst_sorted_change_neighborhood.cpp \
+    src/testers/tester_one_worst_sorted_change_neighborhood.cpp \
+    src/modules/om_one_worst_sorted_neighborhood.cpp \
+    src/benchmarks/cost_strategy/golomb_ruler_relative_cost_structure.cpp \
+    src/benchmarks/cost_strategy/golomb_measures_struct.cpp \
+    src/testers/tester_iteration_golomb_ruler.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -602,7 +609,14 @@ HEADERS += \
     src/benchmarks/cost_strategy/sickest_variable_strategy.h \
     src/benchmarks/cost_strategy/projectable_cost.h \
     src/benchmarks/cost_strategy/default_sickest_variable_strategy.h \
-    src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.h
+    src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.h \
+    src/testers/tester_cost_on_variable_golomb_ruler.h \
+    src/data/one_worst_sorted_change_neighborhood.h \
+    src/testers/tester_one_worst_sorted_change_neighborhood.h \
+    src/modules/om_one_worst_sorted_neighborhood.h \
+    src/benchmarks/cost_strategy/golomb_ruler_relative_cost_structure.h \
+    src/benchmarks/cost_strategy/golomb_measures_struct.h \
+    src/testers/tester_iteration_golomb_ruler.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

@@ -73,6 +73,9 @@ int main(int argc, char **argv)
 
     //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
     tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
+    //tests.push_back(make_shared<Tester_CostOnVariableGolombRuler>(argc, argv));
+    //tests.push_back(make_shared<Tester_OneWorstSortedChangeNeighborhood>(argc, argv));
+    //tests.push_back(make_shared<Tester_IterationGolombRuler>(argc, argv));
 
     string output_str;
     //for(int k = 0; k < 25; k ++)

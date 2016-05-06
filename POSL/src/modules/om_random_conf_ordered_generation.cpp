@@ -11,16 +11,15 @@ OM_RandomConfOrderedGeneration::OM_RandomConfOrderedGeneration(shared_ptr<Benchm
       rconf_strategy(make_shared<RandomOrderedGenerationStrategy>(bench->Dimension())),
       rsolution(make_shared<Solution>(bench->Variable_Domain(), bench->Dimension())),
       object_bench(dynamic_pointer_cast<GolombRuler> (bench))
-{   }
+{}
 
 shared_ptr<Solution> OM_RandomConfOrderedGeneration::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Seed>)
 {
     if(!object_bench)
         throw "(POSL exception) Not casting allowed (OM_RandomConfOrderedGeneration.spfc_execute)";
     int max = object_bench->Length();
-    //int size = object_bench->Order();
     rsolution->UpdateConfiguration(rconf_strategy->generate(psp->GetRandomizer(), max));
-    psp->UpdateSolution(rsolution->get_conf_by_ref());
+    psp->Start(rsolution->get_conf_by_ref());
     return rsolution;
 }
 

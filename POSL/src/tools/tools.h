@@ -31,21 +31,22 @@ class Tools
         static int str2int(std::string str);
         static float str2float(std::string str);
         static bool isANumber(std::string str);
-        static std::string configurationToString(std::vector<int> config);        
+        static std::string configurationToString(std::vector<int> & config);
         static int segmentIntersection(int a1, int b1, int a2, int b2);
-        static std::vector<int> vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> current_configuration);
-        static int mismatches(std::vector<int> vector_1, std::vector<int> vector_2);
-        static int * vector2array(std::vector<int> vec);        
+        static std::vector<int> vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> &current_configuration);
+        static int mismatches(std::vector<int> &vector_1, std::vector<int> &vector_2);
+        static int * vector2array(std::vector<int> & vec);
         //static void shuffle(std::vector<int> & vec, int seed);
         static std::vector<int> generateMonotony(int N);
         static std::vector<int> generateMonotony(int a, int b);
         static void sortAscendent(std::vector<int> & v);        
-        static T_Changes GetChanges(std::vector<int> config_before, std::vector<int> config_after);
-        static int sum(std::vector<int> v);
+        static T_Changes GetChanges(std::vector<int> &config_before, std::vector<int> &config_after);
+        static int sum(std::vector<int> &v);
+        static int zero_bounded_decrease(int x);
         static int identity(int x, int base = 1);
         static int sqr(int b);
         static int sign(int x);
-        static bool equals_vectors(std::vector<int> v1, std::vector<int> v2);
+        static bool equals_vectors(std::vector<int> &v1, std::vector<int> &v2);
 
         template<typename T>
         static std::vector<T> concat(std::vector<T> vector1, std::vector<T> vector2)

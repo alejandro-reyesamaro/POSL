@@ -56,3 +56,6 @@
 #include "tester_golfers_1_week_neighborhood.h"
 #include "tester_same_cost_iterations_be.h"
 #include "tester_singleton_experession.h"
+#include "tester_cost_on_variable_golomb_ruler.h"
+#include "tester_one_worst_sorted_change_neighborhood.h"
+#include "tester_iteration_golomb_ruler.h"

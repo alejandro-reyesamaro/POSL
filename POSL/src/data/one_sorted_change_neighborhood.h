@@ -39,5 +39,5 @@ class OneSortedChangeNeighborhood : public Neighborhood, public DynamicNeighborh
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
         std::vector<T_Changes> changes;
-        shared_ptr<Randomizer> rand;
+        //shared_ptr<Randomizer> rand;
 };

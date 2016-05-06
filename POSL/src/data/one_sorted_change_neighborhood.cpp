@@ -3,11 +3,6 @@
 #include "dStrategy/sorted_apply_change_behavior.h"
 #include "dStrategy/elements_change_iterator.h"
 
-#include <algorithm>
-#include <chrono>
-
-#define N_NEIGHBORS 16
-
 OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(int _config_size)
     : Neighborhood(_config_size),
       changeAtBhv(std::make_shared<SortedApplyChangeBehavior>(_config_size))
@@ -29,14 +24,10 @@ void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
     changes.clear();
     int n = current_configuration.size();
 
-    std::vector<int> indexes;
-    for (int i = 1; i < n-1; i++)
-        indexes.push_back(i);
-    //n = N_NEIGHBORS;
+    std::vector<int> indexes = Tools::generateMonotony(1, n-2);
     rand->vector_shuffle(indexes);
 
     int pos_new_value = 0;
-    //vector<int> the_configuration = sol->GetConfiguration();
 
     std::vector<int> posible_values;
     for(int i = 0; i < n-2; ++i)
@@ -45,7 +36,7 @@ void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
         posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i], current_configuration);
         rand->vector_shuffle(posible_values);
         int l = posible_values.size();
-        for (int j = 0; j <  l / 2; j++)
+        for (int j = 0; j <  l ; j++) // or l/2
         {
             pos_new_value = j;
             if(posible_values[pos_new_value] == current_value)

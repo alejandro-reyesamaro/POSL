@@ -33,7 +33,8 @@ string Tester_GolfersPermutationNeighborhood::test()
     //PSP * psp(make_shared<PSP(bench);
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
-    cout << Tools::configurationToString(Tester::Golfers_444_c()) << endl;
+    vector<int> v = Tester::Golfers_444_c();
+    cout << Tools::configurationToString(v) << endl;
     cout << "--"<<endl;
 
     shared_ptr<POSL_Iterator> it = V->getIterator();

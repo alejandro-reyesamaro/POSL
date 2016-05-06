@@ -45,7 +45,7 @@ bool Tools::isANumber(string str)
     return !(*p);
 }
 
-string Tools::configurationToString(vector<int> config)
+string Tools::configurationToString(vector<int> & config)
 {
     string txt = "[ ";
     vector<int>::iterator it = config.begin();
@@ -66,7 +66,7 @@ int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
     return max(0, b - A);
 }
 
-vector<int> Tools::vector_possible_values_to_hold_sorted(unsigned int index, vector<int> current_configuration)
+vector<int> Tools::vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> & current_configuration)
 {
     vector<int> posible_values;
     if(index == 0)
@@ -87,7 +87,7 @@ vector<int> Tools::vector_possible_values_to_hold_sorted(unsigned int index, vec
     return posible_values;
 }
 
-int Tools::mismatches(vector<int> vector_1, vector<int> vector_2)
+int Tools::mismatches(std::vector<int> & vector_1, std::vector<int> & vector_2)
 {
     int c = 0;
     for(unsigned int i = 0; i < vector_1.size(); i++)
@@ -96,7 +96,7 @@ int Tools::mismatches(vector<int> vector_1, vector<int> vector_2)
     return c;
 }
 
-int * Tools::vector2array(vector<int> vec)
+int * Tools::vector2array(vector<int> & vec)
 {
     int * buff = new int[vec.size()];
     copy(vec.begin(), vec.end(), buff);
@@ -138,7 +138,7 @@ void Tools::sortAscendent(vector<int> & v)
     sort(v.begin(), v.end());
 }
 
-T_Changes Tools::GetChanges(vector<int> config_before, vector<int> config_after)
+T_Changes Tools::GetChanges(std::vector<int> & config_before, std::vector<int> & config_after)
 {
     vector<int> ch_possitions;
     vector<int> ch_values;
@@ -166,9 +166,14 @@ T_Changes Tools::GetChanges(vector<int> config_before, vector<int> config_after)
 }
 
 
-int Tools::sum(std::vector<int> v)
+int Tools::sum(std::vector<int> & v)
 {
     return std::accumulate(v.begin(), v.end(), 0);
+}
+
+int Tools::zero_bounded_decrease(int x)
+{
+    return (x > 0) ? x - 1 : 0;
 }
 
 int Tools::identity(int x, int base)
@@ -187,7 +192,7 @@ int Tools::sign(int x)
     return (x > 0) ? 1 : -1;
 }
 
-bool Tools::equals_vectors(std::vector<int> v1, std::vector<int> v2)
+bool Tools::equals_vectors(std::vector<int> & v1, std::vector<int> & v2)
 {
     if (v1.size() != v2.size())
         return false;

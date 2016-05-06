@@ -2,6 +2,7 @@
 
 #include "solution_cost_strategy.h"
 #include "golomb_ruler_cost_structure.h"
+#include "golomb_ruler_relative_cost_structure.h"
 
 #include <memory>
 
@@ -12,5 +13,6 @@ class GolombRulerMaxPossibleDistancesCostStrategy : public SolutionCostStrategy
         int solutionCost(std::vector<int> & configuration);
 
     private:
+        //std::shared_ptr<GolombRulerRelativeCostStructure> cost_structure;
         std::shared_ptr<GolombRulerCostStructure> cost_structure;
 };

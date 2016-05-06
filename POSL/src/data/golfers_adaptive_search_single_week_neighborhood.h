@@ -33,5 +33,5 @@ class GolfersAdaptiveSearchSingleWeekNeighborhood
         int players, groups, weeks;
         int week_2_swap;
         std::vector<T_Changes> changes;
-        std::shared_ptr<Seed> my_seed;
+        //std::shared_ptr<Seed> my_seed;
 };

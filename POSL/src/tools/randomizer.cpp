@@ -26,6 +26,14 @@ Randomizer::Randomizer(int configuration_size)
             indexes.setValue(i, j, conf_index[i * dim + j]);
 }
 
+bool Randomizer::bernoulli(float p)
+{
+    p = min(p, 1.0f);
+    p = max(0.0f, p);
+    int k = NextInt(0, 100);
+    return k < (int)(p*100);
+}
+
 int Randomizer::NextInt(int min, int max)
 {
     return r_generator.next_int(min, max);

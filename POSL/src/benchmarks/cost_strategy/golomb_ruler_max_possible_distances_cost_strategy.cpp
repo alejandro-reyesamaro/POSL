@@ -8,6 +8,7 @@
 using namespace std;
 
 GolombRulerMaxPossibleDistancesCostStrategy::GolombRulerMaxPossibleDistancesCostStrategy(int _order, int _length)
+    //: cost_structure(make_shared<GolombRulerRelativeCostStructure>(_order,_length))
     : cost_structure(make_shared<GolombRulerCostStructure>(_order,_length))
 {}
 

@@ -12,6 +12,7 @@ class Randomizer
     public:
         Randomizer(int configuration_size);
         int NextInt(int min, int max);
+        bool bernoulli(float p);
         std::vector<std::vector<int>> generate_multichanges(int card_changes);
         std::vector<std::vector<int>> generate_multichanges();
         void vector_shuffle(std::vector<int> & vec);

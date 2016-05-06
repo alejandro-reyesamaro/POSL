@@ -14,6 +14,7 @@ shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp,
 {
     psp->UpdateSolution(input->GetFound()->get_conf_by_ref());
     //cout << "PId: " << Tools::int2str(psp->GetPID()) << "-" << Tools::int2str(psp->BestCostSoFar()) << endl;
+    //cout << input->GetFound()->configurationToString() << endl;
     return input->GetFound();
 }
 

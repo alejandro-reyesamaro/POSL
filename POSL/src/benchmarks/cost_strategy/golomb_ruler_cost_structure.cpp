@@ -7,7 +7,6 @@ using namespace std;
 
 #define PENALIZATION 100
 
-int zero_bounded_decrease(int x) { return (x > 0) ? x - 1 : 0; }
 vector<list<int>> create_lists_for_measures(int size)
 {
     vector<list<int>> v_result;
@@ -19,7 +18,7 @@ vector<list<int>> create_lists_for_measures(int size)
     return v_result;
 }
 
-void clear_measures(vector<list<int>> _measures_par_variable)
+void clear_measures(vector<list<int>> & _measures_par_variable)
 {
     for(int i = 0; i <= _measures_par_variable.size() - 1; i++)
         _measures_par_variable[i].clear();
@@ -95,7 +94,7 @@ int GolombRulerCostStructure::relative_cost(vector<int> & new_config, T_Changes 
             distance = (k < new_pos)
                 ? new_config[k] - new_value
                 : new_value - new_config[k];
-            min_val = min(new_config[k], new_value);
+            min_val = min(new_config[k], new_value);int zero_bounded_decrease(int x)
             min_index = (min_val == new_config[k]) ? new_pos : k;
             if (distance > 0 && distance < Length)
             {
@@ -152,7 +151,7 @@ int GolombRulerCostStructure::cost(vector<int> & config)
             }
         }
     for (int i = 0; i < Length; i++)
-        cost += zero_bounded_decrease(measure_counters[i]);
+        cost += Tools::zero_bounded_decrease(measure_counters[i]);
 
     //int max_possible_measures = (Order * (Order - 1)) / 2;
 
