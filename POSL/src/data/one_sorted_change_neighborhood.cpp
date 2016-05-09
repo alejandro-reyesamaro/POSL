@@ -1,11 +1,13 @@
 #include "one_sorted_change_neighborhood.h"
 #include "../tools/tools.h"
+#include "../tools/golomb_tools.h"
 #include "dStrategy/sorted_apply_change_behavior.h"
 #include "dStrategy/elements_change_iterator.h"
 
 OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(int _config_size)
     : Neighborhood(_config_size),
-      changeAtBhv(std::make_shared<SortedApplyChangeBehavior>(_config_size))
+      changeAtBhv(std::make_shared<SortedApplyChangeBehavior>(_config_size)),
+      indexes(Tools::generateMonotony(1, _config_size - 2))
 {}
 
 std::shared_ptr<POSL_Iterator> OneSortedChangeNeighborhood::getIterator()
@@ -15,6 +17,17 @@ std::shared_ptr<POSL_Iterator> OneSortedChangeNeighborhood::getIterator()
 
 void OneSortedChangeNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _configuration)
 {
+    // change this -> the neighborhood to give the posibility to reach the legnth at the end
+    if(measured_distances.size() != GolombTools::max_posible_distances(_configuration.size(), _configuration[_configuration.size()-1]) + 1)
+        measured_distances.resize(GolombTools::max_posible_distances(_configuration.size(), _configuration[_configuration.size()-1]) + 1, false);
+
+    int distance = 0;
+    for(unsigned int i = 0; i < _configuration.size() - 1; i++)
+    {
+        distance = _configuration[i+1] - _configuration[i];
+        if(distance > 0 && distance < measured_distances.size())
+           measured_distances[distance] = true;
+    }
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges(psp->GetRandomizer());
 }
@@ -22,29 +35,33 @@ void OneSortedChangeNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _
 void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
-    int n = current_configuration.size();
-
-    std::vector<int> indexes = Tools::generateMonotony(1, n-2);
     rand->vector_shuffle(indexes);
 
-    int pos_new_value = 0;
+    int current_value, posible_values_size;
+    T_Changes next_change;
 
     std::vector<int> posible_values;
-    for(int i = 0; i < n-2; ++i)
+    for(unsigned int i = 0; i < current_configuration.size()-2; i++)
     {
-        int current_value = current_configuration[indexes[i]];
-        posible_values = Tools::vector_possible_values_to_hold_sorted(indexes[i], current_configuration);
+        current_value = current_configuration[indexes[i]];
+        posible_values = GolombTools::vector_possible_values_to_hold_sorted(indexes[i], current_configuration);
         rand->vector_shuffle(posible_values);
-        int l = posible_values.size();
-        for (int j = 0; j <  l ; j++) // or l/2
-        {
-            pos_new_value = j;
-            if(posible_values[pos_new_value] == current_value)
-                continue;
-            T_Changes next_change = {{indexes[i]}, {posible_values[pos_new_value]}, 1};
-            changes.push_back(next_change);
-        }
+        posible_values_size = posible_values.size();
+        for (int pos_new_value = 0; pos_new_value <  posible_values_size ; pos_new_value++) // or posible_values_size/2
+            if(posible_values[pos_new_value] != current_value && is_valid_distance(indexes[i], posible_values[pos_new_value]))
+            {
+                next_change = {{indexes[i]}, {posible_values[pos_new_value]}, 1};
+                changes.push_back(next_change);
+            }
     }
+}
+
+bool OneSortedChangeNeighborhood::is_valid_distance(int new_index, int new_value)
+{
+    //int distance1 = new_value - current_configuration[new_index-1];
+    //int distance2 = current_configuration[new_index+1] - new_value;
+    return ! (measured_distances[new_value - current_configuration[new_index-1]] ||
+              measured_distances[current_configuration[new_index+1] - new_value]);
 }
 
 std::shared_ptr<FactoryPacker> OneSortedChangeNeighborhood::BuildPacker(){ throw "Not implemented yet"; }

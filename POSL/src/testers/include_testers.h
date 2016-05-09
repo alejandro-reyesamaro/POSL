@@ -59,3 +59,6 @@
 #include "tester_cost_on_variable_golomb_ruler.h"
 #include "tester_one_worst_sorted_change_neighborhood.h"
 #include "tester_iteration_golomb_ruler.h"
+#include "tester_cost_of_solution_subsum.h"
+#include "tester_subsum_single_swap_neighborhood.h"
+#include "tester_solver_subsum.h"

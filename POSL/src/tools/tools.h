@@ -33,7 +33,6 @@ class Tools
         static bool isANumber(std::string str);
         static std::string configurationToString(std::vector<int> & config);
         static int segmentIntersection(int a1, int b1, int a2, int b2);
-        static std::vector<int> vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> &current_configuration);
         static int mismatches(std::vector<int> &vector_1, std::vector<int> &vector_2);
         static int * vector2array(std::vector<int> & vec);
         //static void shuffle(std::vector<int> & vec, int seed);
@@ -41,7 +40,10 @@ class Tools
         static std::vector<int> generateMonotony(int a, int b);
         static void sortAscendent(std::vector<int> & v);        
         static T_Changes GetChanges(std::vector<int> &config_before, std::vector<int> &config_after);
+        static int max(std::vector<int> & v);
+        static int min(std::vector<int> & v);
         static int sum(std::vector<int> &v);
+        static int sum(std::vector<int> & v, int first_k_elements);
         static int zero_bounded_decrease(int x);
         static int identity(int x, int base = 1);
         static int sqr(int b);

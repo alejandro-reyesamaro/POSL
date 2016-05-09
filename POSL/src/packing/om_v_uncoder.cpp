@@ -14,6 +14,7 @@
 #include "../modules/om_golfers_adaptive_search_neigborhood.h"
 #include "../modules/om_golfers_single_week_swap_neighborhood.h"
 #include "../modules/om_golfers_single_week_adaptive_search_neighborhood.h"
+#include "../modules/om_subsum_single_permutation_neighborhood.h"
 
 using namespace std;
 
@@ -41,6 +42,8 @@ shared_ptr<OperationModule> OM_V_Uncoder::uncode(string code, shared_ptr<Benchma
         return make_shared<OM_MultiSortedChangesNeighborhood>(bench);
     else if(code == OM_ONE_WORST_SORTED_CHANGE_NEIGHBORHOOD_TOK)
         return make_shared<OM_OneWorstSortedNeighborhood>(bench);
+    else if(code == OM_SUBSUM_SINGLE_SWAP_NEIGHBORHOOD_TOK)
+        return make_shared<OM_SubsumSinglePermutationNeighborhood>(bench);
     else if(code == OM_ONE_SORTED_CHANGE_NEIGHBORHOOD_TOK)
         return make_shared<OM_OneSortedChangeNeighborhood>(bench);
     else if(code == OM_ONE_PERMUTATION_NEIGHBORHOOD_TOK)

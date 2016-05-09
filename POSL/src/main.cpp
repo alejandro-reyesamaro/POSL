@@ -23,7 +23,6 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_MultiElementsChangedNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_GolfersPermutationNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_MultiSortedChangesNeighborhood>(argc, argv));
-    //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_FromPackNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_UnionOperator>(argc, argv));
 
@@ -71,11 +70,16 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOfSolutionCostasArray>(argc, argv));
 
+    //tests.push_back(make_shared<Tester_CostOfSolutionSubsum>(argc, argv));
+    //tests.push_back(make_shared<Tester_SubsumSingleSwapNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_SolverSubsum>(argc, argv));
+
     //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
-    tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOnVariableGolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_OneWorstSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolombRuler>(argc, argv));
+    //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
 
     string output_str;
     //for(int k = 0; k < 25; k ++)
@@ -116,7 +120,6 @@ int mainNOO(int argc, char **argv)
     MPI_Finalize();
     return 0;
 }
-
 
 // PARALLEL
 // Compile command line:

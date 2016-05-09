@@ -61,30 +61,9 @@ string Tools::configurationToString(vector<int> & config)
 
 int Tools::segmentIntersection(int a1, int b1, int a2, int b2)
 {
-    int A = max(a1, a2);
-    int b = min(b1, b2);
-    return max(0, b - A);
-}
-
-vector<int> Tools::vector_possible_values_to_hold_sorted(unsigned int index, std::vector<int> & current_configuration)
-{
-    vector<int> posible_values;
-    if(index == 0)
-    {
-        posible_values.push_back(0);
-        return posible_values;
-    }
-    else if(index == current_configuration.size() - 1)
-    {
-        posible_values.push_back(current_configuration[current_configuration.size()-1]);
-        return posible_values;
-    }
-    int a = current_configuration[index-1];
-    int b = current_configuration[index+1];
-    for(int i = a+1; i <= b-1; i++)
-        if(i != current_configuration[index])
-            posible_values.push_back(i);
-    return posible_values;
+    int A = std::max(a1, a2);
+    int b = std::min(b1, b2);
+    return std::max(0, b - A);
 }
 
 int Tools::mismatches(std::vector<int> & vector_1, std::vector<int> & vector_2)
@@ -165,10 +144,26 @@ T_Changes Tools::GetChanges(std::vector<int> & config_before, std::vector<int> &
     return changes;
 }
 
+int Tools::max(std::vector<int> & v)
+{
+    std::vector<int>::iterator it = std::max_element(v.begin(),v.end());
+    return *it;
+}
+
+int Tools::min(std::vector<int> & v)
+{
+    std::vector<int>::iterator it = std::min_element(v.begin(),v.end());
+    return *it;
+}
 
 int Tools::sum(std::vector<int> & v)
 {
     return std::accumulate(v.begin(), v.end(), 0);
+}
+
+int Tools::sum(std::vector<int> & v, int first_k_elements)
+{
+    return std::accumulate(v.begin(), v.begin() + first_k_elements, 0);
 }
 
 int Tools::zero_bounded_decrease(int x)

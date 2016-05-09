@@ -35,8 +35,8 @@ St_b001 := cStrategy
 solver1 := solver
 {
     cStrategy: St_b001;
-    oModule: OM_S.OrdRand, OM_V.1WChS, OM_SS.BestImprTABU, OM_D.AlwImpr;
-    //oModule: OM_S.OrdRand, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
+    //oModule: OM_S.OrdRand, OM_V.1WChS, OM_SS.BestImprTABU, OM_D.AlwImpr;
+    oModule: OM_S.OrdRand, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 connections:

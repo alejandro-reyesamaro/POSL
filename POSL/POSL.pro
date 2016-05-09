@@ -305,7 +305,20 @@ SOURCES += src/main.cpp \
     src/modules/om_one_worst_sorted_neighborhood.cpp \
     src/benchmarks/cost_strategy/golomb_ruler_relative_cost_structure.cpp \
     src/benchmarks/cost_strategy/golomb_measures_struct.cpp \
-    src/testers/tester_iteration_golomb_ruler.cpp
+    src/testers/tester_iteration_golomb_ruler.cpp \
+    src/tools/golomb_tools.cpp \
+    src/modules/strategy/random_golomb_valid_generation_strategy.cpp \
+    src/benchmarks/cost_strategy/subsum_cost_structure.cpp \
+    src/benchmarks/cost_strategy/subsum_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/subsum_relative_cost_strategy.cpp \
+    src/testers/tester_cost_of_solution_subsum.cpp \
+    src/benchmarks/subsum.cpp \
+    src/benchmarks/show_strategy/subsum_show_strategy.cpp \
+    src/data/subsum_single_permitation_neighborhood.cpp \
+    src/modules/om_subsum_single_permutation_neighborhood.cpp \
+    src/testers/tester_subsum_single_swap_neighborhood.cpp \
+    src/testers/tester_solver_subsum.cpp \
+    src/modules/strategy/random_first_valid_configuration_4_golomb_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -616,7 +629,20 @@ HEADERS += \
     src/modules/om_one_worst_sorted_neighborhood.h \
     src/benchmarks/cost_strategy/golomb_ruler_relative_cost_structure.h \
     src/benchmarks/cost_strategy/golomb_measures_struct.h \
-    src/testers/tester_iteration_golomb_ruler.h
+    src/testers/tester_iteration_golomb_ruler.h \
+    src/tools/golomb_tools.h \
+    src/modules/strategy/random_golomb_valid_generation_strategy.h \
+    src/benchmarks/cost_strategy/subsum_cost_structure.h \
+    src/benchmarks/cost_strategy/subsum_cost_strategy.h \
+    src/benchmarks/cost_strategy/subsum_relative_cost_strategy.h \
+    src/testers/tester_cost_of_solution_subsum.h \
+    src/benchmarks/subsum.h \
+    src/benchmarks/show_strategy/subsum_show_strategy.h \
+    src/data/subsum_single_permitation_neighborhood.h \
+    src/modules/om_subsum_single_permutation_neighborhood.h \
+    src/testers/tester_subsum_single_swap_neighborhood.h \
+    src/testers/tester_solver_subsum.h \
+    src/modules/strategy/random_first_valid_configuration_4_golomb_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -644,4 +670,5 @@ OTHER_FILES += \
     src/testers/test_codes/singleton_expression_test.posl \
     src/testers/test_codes/script_costas.bs \
     src/testers/test_codes/solver_costas_test.posl \
-    src/testers/test_codes/solver_golomb_test.posl
+    src/testers/test_codes/solver_golomb_test.posl \
+    src/testers/test_codes/solver_subsum_test.posl

@@ -36,8 +36,10 @@ class OneSortedChangeNeighborhood : public Neighborhood, public DynamicNeighborh
 
     private:
         void updateChanges(shared_ptr<Randomizer> rand);
+        bool is_valid_distance(int new_index, int new_value);
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
         std::vector<T_Changes> changes;
-        //shared_ptr<Randomizer> rand;
+        std::vector<int> indexes;
+        std::vector<bool> measured_distances;
 };
