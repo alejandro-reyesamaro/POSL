@@ -2,12 +2,12 @@ St_b001 := cStrategy
         oModule: OM_S, OM_V, OM_SS, OM_D;
 {
 <S>
-    OP.Cyc ( BE.LoopBnd 5 )
+    OP.Cyc ( BE.LoopBnd 100 )
     <S>
         OP.|->
         OM_S
         <S>
-            OP.Cyc ( BE.LoopBnd 5000 )
+            OP.Cyc ( BE.LoopBnd 100 )
             <S>
                 OP.|->
                 <S>
@@ -18,7 +18,7 @@ St_b001 := cStrategy
                             OP.|->
                             OM_V
                             <S>
-                                OP.? ( BE.SCI 20 )
+                                OP.? ( BE.SCI 3 )
                                 OM_SS
                                 OM_SS.Rand
                             </S>
@@ -35,8 +35,8 @@ St_b001 := cStrategy
 solver1 := solver
 {
     cStrategy: St_b001;
-    //oModule: OM_S.OrdRand, OM_V.1WChS, OM_SS.BestImprTABU, OM_D.AlwImpr;
-    oModule: OM_S.OrdRand, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
+    //oModule: OM_S.OrdRand, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 connections:

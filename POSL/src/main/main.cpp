@@ -11,6 +11,7 @@
 #include "../benchmarks/golfers.h"
 #include "../benchmarks/n_queens.h"
 #include "../benchmarks/costas_array.h"
+#include "../benchmarks/golomb_ruler.h"
 
 #include "mpi.h"
 
@@ -66,6 +67,15 @@ int main(int argc, char *argv[])
 		shared_ptr<CostasArray> gol(make_shared<CostasArray>(n));
 		bench = gol;
 	}
+	else if(tbench == "golomb")
+    {
+	    /* GOLOMB */
+	    vector<string> v_params = CodingTools::split_string(params, '-');
+	    int o = Tools::str2int(v_params[0]);
+	    int l = Tools::str2int(v_params[1]);
+		shared_ptr<GolombRuler> gol(make_shared<GolombRuler>(o,l));
+		bench = gol;
+	}
 
 	/* SQUARING SQUARE
 	//vector<int> squares({6, 4, 4, 1, 3, 3, 3});
@@ -100,4 +110,5 @@ int main(int argc, char *argv[])
 mpiexec.mpich -np 6 ./bin_par/POSL golfers 4-4-4 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_golfers\[no_comm\].posl
 mpiexec.mpich -np 6 ./bin_par/POSL nqueens 300 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_nqueens.posl
 mpiexec.mpich -np 6 ./bin_par/POSL costas 12 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_costas.posl
+mpiexec.mpich -np 6 ./bin_par/POSL golomb 6-17 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_costas.posl
 */

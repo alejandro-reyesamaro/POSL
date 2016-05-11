@@ -8,7 +8,7 @@
 using namespace std;
 
 GolombRulerRelativeCostStrategy::GolombRulerRelativeCostStrategy(int _order, int _length)
-//    : cost_structure(make_shared<GolombRulerRelativeCostStructure>(_order,_length)),
+    //: cost_structure(make_shared<GolombRulerRelativeCostStructure>(_order,_length)),
     : cost_structure(make_shared<GolombRulerCostStructure>(_order,_length)),
       sickest_variable_strategy(make_shared<DefaultSickestVariableStrategy>(_order,
                                                                             dynamic_pointer_cast<ProjectableCost>(cost_structure)))

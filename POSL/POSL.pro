@@ -318,7 +318,12 @@ SOURCES += src/main.cpp \
     src/modules/om_subsum_single_permutation_neighborhood.cpp \
     src/testers/tester_subsum_single_swap_neighborhood.cpp \
     src/testers/tester_solver_subsum.cpp \
-    src/modules/strategy/random_first_valid_configuration_4_golomb_strategy.cpp
+    src/modules/om_golomb_valid_generation.cpp \
+    src/benchmarks/cost_strategy/all_intervals_cost_structure.cpp \
+    src/benchmarks/all_intervals.cpp \
+    src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.cpp \
+    src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.cpp \
+    src/benchmarks/show_strategy/all_interval_default_show_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -642,7 +647,12 @@ HEADERS += \
     src/modules/om_subsum_single_permutation_neighborhood.h \
     src/testers/tester_subsum_single_swap_neighborhood.h \
     src/testers/tester_solver_subsum.h \
-    src/modules/strategy/random_first_valid_configuration_4_golomb_strategy.h
+    src/modules/om_golomb_valid_generation.h \
+    src/benchmarks/cost_strategy/all_intervals_cost_structure.h \
+    src/benchmarks/all_intervals.h \
+    src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.h \
+    src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.h \
+    src/benchmarks/show_strategy/all_interval_default_show_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

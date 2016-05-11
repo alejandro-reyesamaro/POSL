@@ -7,6 +7,7 @@
 #include "../modules/om_random_conf_permutation_by_blocks_generation.h"
 #include "../modules/om_random_conf_ordered_generation.h"
 #include "../modules/om_random_permutation_generation.h"
+#include "../modules/om_golomb_valid_generation.h"
 
 using namespace std;
 
@@ -28,6 +29,8 @@ shared_ptr<OperationModule> OM_S_Uncoder::uncode(string code, shared_ptr<Benchma
         return make_shared<OM_RandomConfOrderedGeneration>(bench);
     else if(code == OM_RANDOM_CONFIG_PERMUTATION_BY_BLOCKS_TOK)
         return make_shared<OM_RandomConfPermutationByBlocksGeneration>(bench);
+    else if(code == OM_RANDOM_CONFIG_GOLOMB_VALID_TOK)
+        return make_shared<OM_GolombValidGeneration>(bench);
     else if(code == OM_RANDOM_PERMUTATION_GENERATION_TOK)
         return make_shared<OM_RandomPermutationGeneration>(bench);
     else

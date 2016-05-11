@@ -23,6 +23,5 @@ class GolombRulerRelativeCostStrategy : public RelativeCostStrategy
 
         //std::shared_ptr<GolombRulerRelativeCostStructure> cost_structure;
         std::shared_ptr<GolombRulerCostStructure> cost_structure;
-        //std::shared_ptr<GolombRulerCostStructure> cost_structure;
         std::shared_ptr<SickestVariableStrategy> sickest_variable_strategy;
 };

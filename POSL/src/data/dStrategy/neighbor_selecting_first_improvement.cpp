@@ -36,7 +36,6 @@ shared_ptr<DecisionPair> NeighborSelectingFirstImprovement::select(shared_ptr<PS
             break;
         }
     }
-    //cout << "...first (it)" << endl;
     rPair->update(current_config, best_found_config);
     //cout << "... first" << endl;
     return rPair;

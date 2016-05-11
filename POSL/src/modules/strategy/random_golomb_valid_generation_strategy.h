@@ -2,17 +2,23 @@
 
 #include "../../data/solution.h"
 #include "../../data/domain.h"
-#include "../../tools/randomizer.h"
+#include "../../modules/grouped_computation.h"
+#include "../../benchmarks/benchmark.h"
 
 class RandomGolombValidGenerationStrategy
 {
     public:
         RandomGolombValidGenerationStrategy(int _order, int _length);
 
-        std::vector<int> generate(shared_ptr<Randomizer> rand);
+        std::vector<int> generate();
 
     private:
-        int order, length;
-        std::vector<int> config;
-        std::vector<int> possible_measures;
+        int subsum, n;
+        std::vector<int> values;
+
+        shared_ptr<Benchmark> bench;
+        shared_ptr<PSP> psp;
+        shared_ptr<GroupedComputation> CM; // Gsec3
+
+        shared_ptr<Solution> sol;
 };

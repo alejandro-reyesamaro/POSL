@@ -26,7 +26,7 @@ void SubsumSinglePermitationNeighborhood::updateChanges(shared_ptr<Randomizer> r
     rand->vector_shuffle(not_valid_index);
     T_Changes next_change;
     //for (unsigned int vi = 0; vi < subsum_valid_index.size(); vi++)
-    int vi = rand->NextInt(0, subsum_valid_index.size());
+    int vi = rand->NextInt(0, subsum_valid_index.size() - 1);
         for(unsigned int nvi = 0; nvi < not_valid_index.size(); nvi++)
         {
             next_change = { {subsum_valid_index[vi], not_valid_index[nvi]},

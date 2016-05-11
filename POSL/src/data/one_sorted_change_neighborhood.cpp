@@ -7,6 +7,7 @@
 OneSortedChangeNeighborhood::OneSortedChangeNeighborhood(int _config_size)
     : Neighborhood(_config_size),
       changeAtBhv(std::make_shared<SortedApplyChangeBehavior>(_config_size)),
+      changes(0),
       indexes(Tools::generateMonotony(1, _config_size - 2))
 {}
 
@@ -35,6 +36,7 @@ void OneSortedChangeNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _
 void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
+    int sz = changes.size();
     rand->vector_shuffle(indexes);
 
     int current_value, posible_values_size;
@@ -48,7 +50,7 @@ void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
         rand->vector_shuffle(posible_values);
         posible_values_size = posible_values.size();
         for (int pos_new_value = 0; pos_new_value <  posible_values_size ; pos_new_value++) // or posible_values_size/2
-            if(posible_values[pos_new_value] != current_value && is_valid_distance(indexes[i], posible_values[pos_new_value]))
+            if(posible_values[pos_new_value] != current_value)// && is_valid_distance(indexes[i], posible_values[pos_new_value]))
             {
                 next_change = {{indexes[i]}, {posible_values[pos_new_value]}, 1};
                 changes.push_back(next_change);

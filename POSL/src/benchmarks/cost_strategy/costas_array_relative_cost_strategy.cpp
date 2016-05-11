@@ -8,9 +8,7 @@
 using namespace std;
 
 CostasArrayRelativeCostStrategy::CostasArrayRelativeCostStrategy(int n)
-    : //N(n),
-      ca_str(make_shared<CostasArrayCostStructure>(n)),
-      //bad_variables(n),
+    : ca_str(make_shared<CostasArrayCostStructure>(n)),
       sickest_variable_strategy(make_shared<DefaultSickestVariableStrategy>(n, dynamic_pointer_cast<ProjectableCost>(ca_str)))
 {}
 

@@ -5,8 +5,7 @@
 using namespace std;
 
 CostasArrayDanielCostStrategy::CostasArrayDanielCostStrategy(int n)
-    : N(n),
-      ca_str(make_shared<CostasArrayCostStructure>(n))
+    : ca_str(make_shared<CostasArrayCostStructure>(n))
 {}
 
 int CostasArrayDanielCostStrategy::solutionCost(std::vector<int> &configuration)

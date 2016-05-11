@@ -11,7 +11,7 @@ SortedApplyChangeBehavior::SortedApplyChangeBehavior(int config_size)
 std::vector<int> SortedApplyChangeBehavior::applyChangeAt(int index, std::vector<int> & config, std::vector<T_Changes> changes)
 {
     configuration_changed = pb->applyChangeAt(index, config, changes);
-    std::sort(configuration_changed.begin(), configuration_changed.end());
+    if (!std::is_sorted(configuration_changed.begin(), configuration_changed.end()))
+        std::sort(configuration_changed.begin(), configuration_changed.end());
     return configuration_changed;
 }
-

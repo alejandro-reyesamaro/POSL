@@ -22,8 +22,6 @@ class CostasArrayRelativeCostStrategy : public RelativeCostStrategy
         std::vector<int> Reset();//vector<int> &current_configuration);
 
     private:
-
-        int N;
         std::shared_ptr<CostasArrayCostStructure> ca_str;
         std::shared_ptr<SickestVariableStrategy> sickest_variable_strategy;
 };

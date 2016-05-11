@@ -13,6 +13,5 @@ class CostasArrayDanielCostStrategy : public SolutionCostStrategy
         int solutionCost(std::vector<int> & configuration);
 
     private:
-        int N;
         std::shared_ptr<CostasArrayCostStructure> ca_str;
 };

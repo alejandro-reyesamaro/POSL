@@ -9,6 +9,7 @@ class Subsum : public Benchmark
 
         int GetSubsum(){ return subsum; }
         int GetN(){ return n; }
+        std::vector<int> GetValues(){ return values; }
 
         std::string showInstance();
 
