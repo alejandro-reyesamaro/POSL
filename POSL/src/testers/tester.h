@@ -6,6 +6,7 @@
 #include "../benchmarks/golomb_ruler.h"
 #include "../benchmarks/n_queens.h"
 #include "../benchmarks/costas_array.h"
+#include "../benchmarks/all_intervals.h"
 #include "../solver/psp.h"
 #include "../data/seed.h"
 

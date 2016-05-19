@@ -62,3 +62,5 @@
 #include "tester_cost_of_solution_subsum.h"
 #include "tester_subsum_single_swap_neighborhood.h"
 #include "tester_solver_subsum.h"
+#include "tester_far_random_conf_generation.h"
+#include "tester_cost_of_solution_all_intervals.h"

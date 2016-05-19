@@ -156,14 +156,14 @@ int Tools::min(std::vector<int> & v)
     return *it;
 }
 
-int Tools::sum(std::vector<int> & v)
+int Tools::sum(vector<int> & v)
 {
-    return std::accumulate(v.begin(), v.end(), 0);
+    return accumulate(v.begin(), v.end(), 0);
 }
 
-int Tools::sum(std::vector<int> & v, int first_k_elements)
+int Tools::sum(vector<int> & v, int first_k_elements)
 {
-    return std::accumulate(v.begin(), v.begin() + first_k_elements, 0);
+    return accumulate(v.begin(), v.begin() + first_k_elements, 0);
 }
 
 int Tools::zero_bounded_decrease(int x)
@@ -187,7 +187,7 @@ int Tools::sign(int x)
     return (x > 0) ? 1 : -1;
 }
 
-bool Tools::equals_vectors(std::vector<int> & v1, std::vector<int> & v2)
+bool Tools::equals_vectors(vector<int> & v1, vector<int> & v2)
 {
     if (v1.size() != v2.size())
         return false;

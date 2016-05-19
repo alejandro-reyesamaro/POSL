@@ -323,7 +323,10 @@ SOURCES += src/main.cpp \
     src/benchmarks/all_intervals.cpp \
     src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.cpp \
     src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.cpp \
-    src/benchmarks/show_strategy/all_interval_default_show_strategy.cpp
+    src/benchmarks/show_strategy/all_interval_default_show_strategy.cpp \
+    src/modules/strategy/far_random_configuration_generation_strategy.cpp \
+    src/testers/tester_far_random_conf_generation.cpp \
+    src/testers/tester_cost_of_solution_all_intervals.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -652,7 +655,10 @@ HEADERS += \
     src/benchmarks/all_intervals.h \
     src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.h \
     src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.h \
-    src/benchmarks/show_strategy/all_interval_default_show_strategy.h
+    src/benchmarks/show_strategy/all_interval_default_show_strategy.h \
+    src/modules/strategy/far_random_configuration_generation_strategy.h \
+    src/testers/tester_far_random_conf_generation.h \
+    src/testers/tester_cost_of_solution_all_intervals.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
