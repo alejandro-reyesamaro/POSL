@@ -43,7 +43,7 @@ void OneElementChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
         int current_value = current_configuration[indexes[i]];
         //pos_new_value = indexes[i];
         rand->vector_shuffle(posible_values);
-        for (unsigned int j = 0; j < posible_values.size() / 2 + 1; j++)
+        for (unsigned int j = 0; j < posible_values.size(); j++)// / 2 + 1; j++)
         {            
             new_value = posible_values[j];
             if(new_value == current_value)
