@@ -324,17 +324,14 @@ SOURCES += src/main.cpp \
     src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.cpp \
     src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.cpp \
     src/benchmarks/show_strategy/all_interval_default_show_strategy.cpp \
-<<<<<<< HEAD
     src/modules/strategy/far_random_configuration_generation_strategy.cpp \
     src/testers/tester_far_random_conf_generation.cpp \
-    src/testers/tester_cost_of_solution_all_intervals.cpp
-=======
+    src/testers/tester_cost_of_solution_all_intervals.cpp \
     src/testers/tester_solver_all_intervals.cpp \
     src/data/all_permutations_neighborhood.cpp \
     src/modules/om_all_permutations_neighborhood.cpp \
     src/testers/tester_all_permutations_neighborhood.cpp \
     src/testers/tester_iteration_squaring_square.cpp
->>>>>>> all_intervals
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -666,7 +663,7 @@ HEADERS += \
     src/benchmarks/show_strategy/all_interval_default_show_strategy.h \
     src/modules/strategy/far_random_configuration_generation_strategy.h \
     src/testers/tester_far_random_conf_generation.h \
-    src/testers/tester_cost_of_solution_all_intervals.h
+    src/testers/tester_cost_of_solution_all_intervals.h \
     src/testers/tester_solver_all_intervals.h \
     src/benchmarks/cost_strategy/reseteable.h \
     src/data/all_permutations_neighborhood.h \
