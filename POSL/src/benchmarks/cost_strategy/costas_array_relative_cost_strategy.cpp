@@ -34,7 +34,7 @@ int CostasArrayRelativeCostStrategy::relativeSolutionCost(vector<int> & _configu
 
 int CostasArrayRelativeCostStrategy::relativeSolutionCost(std::vector<int> & new_config, T_Changes)
 {
-    ca_str ->init(new_config);
+    ca_str->init(new_config);
     return ca_str->CurrentCost;
 }
 

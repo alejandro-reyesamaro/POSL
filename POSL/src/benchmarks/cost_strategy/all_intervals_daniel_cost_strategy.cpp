@@ -5,7 +5,7 @@
 using namespace std;
 
 AllIntervalsDanielCostStrategy::AllIntervalsDanielCostStrategy(int n)
-    : cost_str(make_shared<CostasArrayCostStructure>(n))
+    : cost_str(make_shared<AllIntervalsCostStructure>(n))
 {}
 
 int AllIntervalsDanielCostStrategy::solutionCost(std::vector<int> & configuration)

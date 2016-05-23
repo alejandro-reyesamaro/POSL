@@ -7,7 +7,7 @@ using namespace std;
 Benchmark::Benchmark(int _dimension,
                      shared_ptr<Domain> _domain,
                      shared_ptr<SolutionCostStrategy> _cost_strategy,
-                     std::shared_ptr<RelativeCostStrategy> _relative_cost_strategy,
+                     shared_ptr<RelativeCostStrategy> _relative_cost_strategy,
                      shared_ptr<ShowStrategy> _show_strategy)
     : problem_dimension(_dimension),
       domain(_domain),
@@ -70,6 +70,11 @@ string Benchmark::ShowSolution(shared_ptr<Solution> solution)
 shared_ptr<Solution> Benchmark::GetSolution()
 {
     return make_shared<Solution>(domain, configuration);
+}
+
+vector<int> Benchmark::Reset()
+{
+    return configuration;
 }
 
 

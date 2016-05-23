@@ -16,8 +16,7 @@ int main(int argc, char **argv)
     vector<shared_ptr<Tester>> tests;
 
     //tests.push_back(make_shared<Tester_LongInt>(argc, argv));
-    //tests.push_back(make_shared<Tester_CostOfSolutionGolfers>(argc, argv));
-    //tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
+    //tests.push_back(make_shared<Tester_CostOfSolutionGolfers>(argc, argv));    
 
     //tests.push_back(make_shared<Tester_OneElementChangedNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_MultiElementsChangedNeighborhood>(argc, argv));
@@ -50,7 +49,6 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_TabuSelection>(argc, argv));
     //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
 
-    //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));    
     //tests.push_back(make_shared<Tester_IterationGolfers>(argc, argv));
     //tests.push_back(make_shared<Tester_CodingPOSL>(argc, argv));
     //tests.push_back(make_shared<Tester_PackingStrategies>(argc, argv));
@@ -75,11 +73,18 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_SolverSubsum>(argc, argv));
 
     //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
-    tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOnVariableGolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_OneWorstSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
+
+    //tests.push_back(make_shared<Tester_SolverAllIntervals>(argc, argv));
+    //tests.push_back(make_shared<Tester_AllPermutationsNeighborhood>(argc, argv));
+
+    //tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
+    tests.push_back(make_shared<Tester_IterationSquaringSquare>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
 
     string output_str;
     //for(int k = 0; k < 25; k ++)

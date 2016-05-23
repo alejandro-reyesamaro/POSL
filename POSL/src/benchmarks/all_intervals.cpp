@@ -10,7 +10,7 @@
 using namespace std;
 
 AllIntervals::AllIntervals(int _n)
-    : Benchmark(n,
+    : Benchmark(_n,
                 make_shared<Domain>(0, _n-1),
                 make_shared<AllIntervalsDanielCostStrategy>(_n),
                 make_shared<AllIntervalRelativeCostStrategy>(_n),

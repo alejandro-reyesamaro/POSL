@@ -2,7 +2,7 @@
 
 #include "aom_rearrange_configuration.h"
 #include "strategy/rearrange_strategy.h"
-#include "../benchmarks/costas_array.h"
+#include "../benchmarks/cost_strategy/reseteable.h"
 
 class OM_DanielASRestartRearrange : public AOM_RearrangeConfiguration
 {
@@ -17,5 +17,6 @@ class OM_DanielASRestartRearrange : public AOM_RearrangeConfiguration
         virtual std::string Tag();
 
     private:
-        std::shared_ptr<CostasArray> object_bench;
+        //std::shared_ptr<Reseteable> reseteable_bench;
+        //std::shared_ptr<Benchmark> base_bench;
 };

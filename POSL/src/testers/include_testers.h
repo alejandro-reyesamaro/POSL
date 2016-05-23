@@ -62,3 +62,6 @@
 #include "tester_cost_of_solution_subsum.h"
 #include "tester_subsum_single_swap_neighborhood.h"
 #include "tester_solver_subsum.h"
+#include "tester_solver_all_intervals.h"
+#include "tester_all_permutations_neighborhood.h"
+#include "tester_iteration_squaring_square.h"

@@ -14,7 +14,8 @@ string Tester_CostOfSolutionSquaringSquare::test()
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     vector<int> config1({0, 6, 0, 6, 7, 4, 7, 0, 0, 6, 6, 4, 7, 7}); // costo 0
-    vector<int> config2({2, 0, 6, 1, 5, 7, 0, 2, 1, 6, 8, 2, 0, 4}); // costo 27
+    vector<int> config2({2, 0, 6, 1, 5, 7, 0, 2, 1, 6, 8, 2, 0, 4}); // costo 54
+    vector<int> config3({2, 0, 7, 1, 5, 7, 0, 2, 1, 1, 8, 2, 0, 4}); // costo 86
 
     shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config1);
     int c1 = psp->GetBenchmark()->solutionCost(sol);
@@ -22,8 +23,11 @@ string Tester_CostOfSolutionSquaringSquare::test()
     sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config2);
     int c2 = psp->GetBenchmark()->solutionCost(sol);
 
-    //cout << c1 << " - " << c2 << endl;
-    return (c1 == 0 && c2 == 27)
+    sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config3);
+    int c3 = psp->GetBenchmark()->solutionCost(sol);
+    cout << c1 << " - " << c2 << " - " << c3 << endl;
+
+    return (c1 == 0 && c2 == 54 && c3 == 86)
         ? "CostOfSolution (Squaring Square): OK !"
         : "CostOfSolution (Squaring Square): fail :/";
 }

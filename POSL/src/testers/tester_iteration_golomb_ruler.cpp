@@ -50,7 +50,6 @@ string Tester_IterationGolombRuler::test()
     c = bench->relativeSolutionCost(cc);
     //cout << "Final Cost (0) ? -> " << c << endl;
 
-
     shared_ptr<CompoundModule> OM_S (make_shared<OM_FixedFirstConfiguration>(bench, init_config));
     shared_ptr<CompoundModule> OM_V (make_shared<OM_OneSortedChangeNeighborhood>(bench));
     shared_ptr<CompoundModule> OM_SS (make_shared<OM_BestImprovementSelection>(bench));

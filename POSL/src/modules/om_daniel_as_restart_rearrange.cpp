@@ -13,14 +13,12 @@ OM_DanielASRestartRearrange::OM_DanielASRestartRearrange()
 
 shared_ptr<Solution> OM_DanielASRestartRearrange::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    //cout << "input :"<< input->configurationToString() << endl;
-    object_bench = static_pointer_cast<CostasArray>(psp->GetBenchmark());
-    vector<int> c = object_bench->Reset();//input->GetConfiguration());
+    //reseteable_bench = static_pointer_cast<Reseteable>(psp->GetBenchmark());
+    //base_bench = static_pointer_cast<Benchmark>(psp->GetBenchmark());
+    vector<int> c = psp->GetBenchmark()->Reset();
     psp->Start(c);
-    shared_ptr<Solution> s (make_shared<Solution> (object_bench->Variable_Domain(), c));
-    //cout << "reset :"<< input->configurationToString() << " - " << s->configurationToString() << endl;
-    //cout << object_bench->solutionCost(input) << " - " << object_bench->solutionCost(s) << endl;
-    return make_shared<Solution>(object_bench->Variable_Domain(), c);
+    //shared_ptr<Solution> s (make_shared<Solution> (base_bench->Variable_Domain(), c));
+    return make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), c);
 }
 
 string OM_DanielASRestartRearrange::codeToSend()

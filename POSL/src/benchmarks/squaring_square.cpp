@@ -11,7 +11,7 @@ SquaringSquare::SquaringSquare(int _size, std::vector<int> _squares)
     : Benchmark(_squares.size() * 2,
                 make_shared<Domain>(0,_size - 1),
                 make_shared<SquaringSquareSuperpositionCostStrategy>(_size, _squares),
-                make_shared<SquaringSquareRelativeCostStrategy>(),
+                make_shared<SquaringSquareRelativeCostStrategy>(_size, _squares),
                 make_shared<SquaringSquareDefaultShowStrategy>(_squares.size())),
       size(_size),
       squares(_squares)

@@ -10,7 +10,7 @@ class AllIntervals : public Benchmark
 
         int N(){ return n; }
         std::string showInstance();
-        std::vector<int> Reset();
+        std::vector<int> Reset() override;
 
     private:
         std::shared_ptr<AllIntervalRelativeCostStrategy> cast_my_relative_strategy();

@@ -32,12 +32,12 @@ int UpperMatrix::elementAt(int a, int b)
 {
     int ia = min(a, b);
     int ib = max(a, b);
-    return M[ia][ib];
+    return M[ia][ib-ia];
 }
 
-int UpperMatrix::set(int a, int b, int value)
+void UpperMatrix::set(int a, int b, int value)
 {
     int ia = min(a, b);
     int ib = max(a, b);
-    M[ia][ib] = value;
+    M[ia][ib-ia] = value;
 }
