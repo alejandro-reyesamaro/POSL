@@ -38,7 +38,7 @@ void MultiElementsChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand
         {
             //cout << *jt << " ";
 
-            std::vector<int> posible_values =domain->GetValues();
+            std::vector<int> posible_values =domain->GetValues(*jt);
             int current_value = current_configuration[*jt];
 
             std::vector<int>::iterator p = find (posible_values.begin(), posible_values.end(), current_value);

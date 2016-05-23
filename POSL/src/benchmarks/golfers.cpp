@@ -4,6 +4,7 @@
 #include "cost_strategy/golfers_long_int_cost_strategy.h"
 #include "show_strategy/golfers_default_show_strategy.h"
 #include "cost_strategy/golfers_relative_cost_strategy.h"
+#include "../data/uniform_domain.h"
 
 #include <vector>
 #include <iostream>
@@ -17,7 +18,7 @@ using namespace std;
 
 Golfers::Golfers(int g, int p, int w)
     : Benchmark(g * p * w,
-                make_shared<Domain>(1, p * g),
+                make_shared<UniformDomain>(1, p * g),
                 make_shared<GolfersLongIntCostStrategy>(g,p,w),
                 make_shared<GolfersRelativeCostStrategy>(g,p,w),
                 make_shared<GolfersDefaultShowStrategy>(g,p,w)),

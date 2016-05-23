@@ -3,6 +3,7 @@
 #include "../data/dStrategy/factory_n_int_domain.h"
 #include "show_strategy/costas_array_default_show_strategy.h"
 #include "cost_strategy/costas_array_daniel_cost_strategy.h"
+#include "../data/uniform_domain.h"
 
 #include <vector>
 #include <iostream>
@@ -10,8 +11,8 @@
 using namespace std;
 
 CostasArray::CostasArray(int _n)
-    : Benchmark(n,
-                make_shared<Domain>(1, _n),
+    : Benchmark(_n,
+                make_shared<UniformDomain>(1, _n),
                 make_shared<CostasArrayDanielCostStrategy>(_n),
                 make_shared<CostasArrayRelativeCostStrategy>(_n),
                 make_shared<CostasArrayDefaultShowStrategy>(_n)

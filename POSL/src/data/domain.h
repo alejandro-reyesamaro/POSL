@@ -18,13 +18,7 @@
 class Domain
 {
     public:
-        Domain(int _min_value, int _max_value);
-
-        std::vector<int> GetValues();
-        int minimum();
-        int maximum();
-
-    private:
-        int min_value;
-        int max_value;
+        virtual std::vector<int> GetValues(int variable) = 0;
+        virtual int minimum(int variable) = 0;
+        virtual int maximum(int variable) = 0;
 };

@@ -87,6 +87,7 @@ int main(int argc, char **argv)
 
     //tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationSquaringSquare>(argc, argv));
+
     tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
 
     string output_str;

@@ -39,7 +39,7 @@ void OneElementChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 
     for(int i = 0; i < n; ++i)
     {
-        std::vector<int> posible_values = domain->GetValues();
+        std::vector<int> posible_values = domain->GetValues(indexes[i]);
         int current_value = current_configuration[indexes[i]];
         //pos_new_value = indexes[i];
         rand->vector_shuffle(posible_values);

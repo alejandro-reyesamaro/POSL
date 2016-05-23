@@ -10,7 +10,7 @@ std::vector<int> RandomConfigurationGenerationStrategy::generate(shared_ptr<Rand
     int index = 0;
     for(int i = 0; i < config.size(); i++)
     {
-        k = rand->NextInt(domain->minimum(), domain->maximum());
+        k = rand->NextInt(domain->minimum(i), domain->maximum(i));
         config[index++] = k;
     }
     return config;

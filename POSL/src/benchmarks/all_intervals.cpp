@@ -3,6 +3,7 @@
 #include "../data/dStrategy/factory_n_int_domain.h"
 #include "show_strategy/all_interval_default_show_strategy.h"
 #include "cost_strategy/all_intervals_daniel_cost_strategy.h"
+#include "../data/uniform_domain.h"
 
 #include <vector>
 #include <iostream>
@@ -11,7 +12,7 @@ using namespace std;
 
 AllIntervals::AllIntervals(int _n)
     : Benchmark(_n,
-                make_shared<Domain>(0, _n-1),
+                make_shared<UniformDomain>(0, _n-1),
                 make_shared<AllIntervalsDanielCostStrategy>(_n),
                 make_shared<AllIntervalRelativeCostStrategy>(_n),
                 make_shared<AllIntervalDefaultShowStrategy>(_n)

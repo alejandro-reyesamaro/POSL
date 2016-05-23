@@ -5,12 +5,13 @@
 #include "show_strategy/golomb_ruler_default_show_strategy.h"
 #include "cost_strategy/golomb_ruler_relative_cost_strategy.h"
 #include "../tools/tools.h"
+#include "../data/uniform_domain.h"
 
 using namespace std;
 
 GolombRuler::GolombRuler(int _order, int _length)
     : Benchmark(_order,
-                make_shared<Domain>(0, _length),
+                make_shared<UniformDomain>(0, _length),
                 make_shared<GolombRulerMaxPossibleDistancesCostStrategy>(_order, _length),
                 make_shared<GolombRulerRelativeCostStrategy>(_order, _length),
                 make_shared<GolombRulerDefaultShowStrategy>(_order, _length)),

@@ -4,12 +4,13 @@
 #include "cost_strategy/squaring_square_superposition_cost_strategy.h"
 #include "show_strategy/squaring_square_default_show_strategy.h"
 #include "cost_strategy/squaring_square_relative_cost_strategy.h"
+#include "../data/uniform_domain.h"
 
 using namespace std;
 
 SquaringSquare::SquaringSquare(int _size, std::vector<int> _squares)
     : Benchmark(_squares.size() * 2,
-                make_shared<Domain>(0,_size - 1),
+                make_shared<UniformDomain>(0,_size - 1),
                 make_shared<SquaringSquareSuperpositionCostStrategy>(_size, _squares),
                 make_shared<SquaringSquareRelativeCostStrategy>(_size, _squares),
                 make_shared<SquaringSquareDefaultShowStrategy>(_squares.size())),

@@ -2,6 +2,7 @@
 #include "../data/solution.h"
 #include "../modules/strategy/far_random_configuration_generation_strategy.h"
 #include "../tools/tools.h"
+#include "../data/uniform_domain.h"
 
 #include <algorithm>
 
@@ -18,9 +19,9 @@ string Tester_FarRandomConfGeneration::test()
     existing_confs.push_back({2, 2, 3, 4, 4});
     existing_confs.push_back({3, 2, 3, 2, 3});
     int min_percentage_of_changes = 60;
-    shared_ptr<Domain> domain(make_shared<Domain>(1,5));
+    shared_ptr<Domain> domain(make_shared<UniformDomain>(1,5));
 
-    FarRandomConfigurationGenerationStrategy f(5, domain->GetValues());
+    FarRandomConfigurationGenerationStrategy f(5, domain->GetValues(0));
 
     vector<int> new_conf = f.generate(rand, existing_confs, min_percentage_of_changes);
     cout << Tools::configurationToString(new_conf) << endl;

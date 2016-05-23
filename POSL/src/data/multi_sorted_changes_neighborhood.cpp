@@ -49,7 +49,7 @@ std::vector<int> MultiSortedChangesNeighborhood::neighborAt(int index)
 
 void MultiSortedChangesNeighborhood::pushSetOfValues(shared_ptr<Randomizer> rand, vector<int> indexes)
 {
-    int domains_size = domain->maximum();
+    int domains_size = domain->maximum(0);
     // <= 16
     int NCh = (domains_size <= 20) ? 1 : sqrt(domains_size);
 
@@ -72,7 +72,7 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(shared_ptr<Randomizer> rand
         }
         else
         {
-            values_for_index = domain->GetValues();
+            values_for_index = domain->GetValues(index);
             rand->vector_shuffle(values_for_index);
         }
         vector_values.push_back(values_for_index);

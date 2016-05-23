@@ -4,6 +4,7 @@
 #include "cost_strategy/n_queens_daniel_cost_strategy.h"
 #include "show_strategy/n_queens_default_show_strategy.h"
 #include "cost_strategy/n_queens_relative_cost_strategy.h"
+#include "../data/uniform_domain.h"
 
 #include <vector>
 #include <iostream>
@@ -13,7 +14,7 @@ using namespace std;
 
 NQueens::NQueens(int n)
     : Benchmark(n,
-                make_shared<Domain>(0, n-1),
+                make_shared<UniformDomain>(0, n-1),
                 make_shared<NQueensDanielCostStrategy>(n),
                 make_shared<NQueensRelativeCostStrategy>(n),
                 make_shared<NQueensDefaultShowStrategy>(n)),

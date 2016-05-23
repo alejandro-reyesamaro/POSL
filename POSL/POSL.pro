@@ -331,7 +331,9 @@ SOURCES += src/main.cpp \
     src/data/all_permutations_neighborhood.cpp \
     src/modules/om_all_permutations_neighborhood.cpp \
     src/testers/tester_all_permutations_neighborhood.cpp \
-    src/testers/tester_iteration_squaring_square.cpp
+    src/testers/tester_iteration_squaring_square.cpp \
+    src/data/uniform_domain.cpp \
+    src/data/irregular_domain.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -669,7 +671,9 @@ HEADERS += \
     src/data/all_permutations_neighborhood.h \
     src/modules/om_all_permutations_neighborhood.h \
     src/testers/tester_all_permutations_neighborhood.h \
-    src/testers/tester_iteration_squaring_square.h
+    src/testers/tester_iteration_squaring_square.h \
+    src/data/uniform_domain.h \
+    src/data/irregular_domain.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
