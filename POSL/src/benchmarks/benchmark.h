@@ -33,7 +33,7 @@ class Benchmark
         int solutionCost(std::vector<int> & configuration);
         int relativeSolutionCost(std::vector<int> & configuration);
         int relativeSolutionCost(std::vector<int> & new_config, T_Changes changes);
-        int currentCost();
+        int currentCost();        
 
         shared_ptr<Solution> GetSolution();
         std::string ShowSolution(std::shared_ptr<Solution> solution);
@@ -46,6 +46,7 @@ class Benchmark
         shared_ptr<Domain> Variable_Domain(){ return domain; }
 
         virtual std::string showInstance() = 0;
+        virtual std::vector<int> Reset();
 
     protected:
         void UpdateSolution(std::vector<int> & config);

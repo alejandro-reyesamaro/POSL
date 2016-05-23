@@ -13,6 +13,7 @@ shared_ptr<Neighborhood> OM_AdaptiveSearchNeighborhood::spcf_execute(shared_ptr<
 {
     V->Init(psp, input->get_conf_by_ref());
     //psp->log("Executing neighborhood function...");
+    //cout << "OM_V" << endl;
     return V;
 }
 

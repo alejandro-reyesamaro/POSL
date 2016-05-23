@@ -110,5 +110,5 @@ int main(int argc, char *argv[])
 mpiexec.mpich -np 6 ./bin_par/POSL golfers 4-4-4 /home/reyesamaro-a/Documents/POSL/experiments201601/POSL_golfers\[no_comm\].posl
 mpiexec.mpich -np 6 ./bin_par/POSL nqueens 300 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_nqueens.posl
 mpiexec.mpich -np 6 ./bin_par/POSL costas 12 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_costas.posl
-mpiexec.mpich -np 6 ./bin_par/POSL golomb 6-17 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/POSL_costas.posl
+mpiexec.mpich -np 6 ./bin_par/POSL golomb 6-17 /home/reyesamaro-a/Documents/POSL/POSL_Code4Testing/golomb_no_comm.posl
 */

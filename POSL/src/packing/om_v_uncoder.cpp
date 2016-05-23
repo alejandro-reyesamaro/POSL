@@ -10,6 +10,7 @@
 #include "../modules/om_one_sorted_change_neighborhood.h"
 #include "../modules/om_one_worst_sorted_neighborhood.h"
 #include "../modules/om_one_permutation_neighborhood.h"
+#include "../modules/om_all_permutations_neighborhood.h"
 #include "../modules/om_adaptive_search_neighborhood.h"
 #include "../modules/om_golfers_adaptive_search_neigborhood.h"
 #include "../modules/om_golfers_single_week_swap_neighborhood.h"
@@ -48,6 +49,8 @@ shared_ptr<OperationModule> OM_V_Uncoder::uncode(string code, shared_ptr<Benchma
         return make_shared<OM_OneSortedChangeNeighborhood>(bench);
     else if(code == OM_ONE_PERMUTATION_NEIGHBORHOOD_TOK)
         return make_shared<OM_OnePermutationNeighborhood>(bench);
+    else if(code == OM_ALL_PERMUTATIONS_NEIGHBORHOOD_TOK)
+        return make_shared<OM_AllPermutationsNeighborhood>(bench);
     else if(code == OM_ADAPTIVE_SEARCH_NEIGHBORHOOD_TOK)
         return make_shared<OM_AdaptiveSearchNeighborhood>(bench);
     else if(code == OM_GOLFERS_ADAPTIVE_SEARCH_NEIGHBORHOOD_TOK)

@@ -1,13 +1,17 @@
 #include "squaring_square_superposition_cost_strategy.h"
 #include "../../tools/tools.h"
 
-SquaringSquareSuperpositionCostStrategy::SquaringSquareSuperpositionCostStrategy(int _size, std::vector<int> &_squares)
+using namespace std;
+
+SquaringSquareSuperpositionCostStrategy::SquaringSquareSuperpositionCostStrategy(int _size, vector<int> _squares)
     : size(_size),
-      squares(_squares)
+      squares(_squares),
+      cost_struct(make_shared<SquaringSquareCostStructure>(_size, _squares))
 {}
 
 int SquaringSquareSuperpositionCostStrategy::solutionCost(std::vector<int> & configuration)
 {
+    /*
     int sqrs = squares.size();
     if (configuration.size() > sqrs * 2)
         throw "(POSL Exception) wrong configuration length (SquaringSquareSuperpositionCostStrategy::solutionCost)";
@@ -30,4 +34,7 @@ int SquaringSquareSuperpositionCostStrategy::solutionCost(std::vector<int> & con
             cost += intersecX * intersecY + penaltyX + penaltyY;
         }
     return cost;
+    */
+    cost_struct->set(configuration);
+    return cost_struct->CurrentCost;
 }

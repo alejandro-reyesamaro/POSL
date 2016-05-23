@@ -64,3 +64,6 @@
 #include "tester_solver_subsum.h"
 #include "tester_far_random_conf_generation.h"
 #include "tester_cost_of_solution_all_intervals.h"
+#include "tester_solver_all_intervals.h"
+#include "tester_all_permutations_neighborhood.h"
+#include "tester_iteration_squaring_square.h"

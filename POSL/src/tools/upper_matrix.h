@@ -8,7 +8,7 @@ class UpperMatrix
         UpperMatrix(int n);
         int getLineSum(int index);
         int elementAt(int a, int b);
-        int set(int a, int b, int value);
+        void set(int a, int b, int value);
 
     private:
         int N;
