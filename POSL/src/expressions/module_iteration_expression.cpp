@@ -15,8 +15,8 @@ bool ModuleIterationExpression::evaluate(shared_ptr<PSP> psp)
     int costsofar = psp->BestCostSoFar();
     if(costsofar < 0)
         costsofar = 1; // making true the second expression
-    int iter = psp->GetIterations();
-    bool resp = (psp->GetIterations() % iterations != 0 && costsofar > 0);
+    //int iter = psp->GetIterations();
+    //bool resp = (psp->GetIterations() % iterations != 0 && costsofar > 0);
     return (psp->GetIterations() % iterations != 0 && costsofar > 0);
 }
 
