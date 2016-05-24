@@ -20,7 +20,7 @@ PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
       plog(max(0, _pID), _logs_path),
       logs_path(_logs_path),      
       restarts(-1),
-      rand(make_shared<Randomizer>(_bench->Dimension()))
+      rand(make_shared<Randomizer>(_bench->Dimension(), max(0, _pID)))
 {}
 
 PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)

@@ -333,7 +333,13 @@ SOURCES += src/main.cpp \
     src/testers/tester_all_permutations_neighborhood.cpp \
     src/testers/tester_iteration_squaring_square.cpp \
     src/data/uniform_domain.cpp \
-    src/data/irregular_domain.cpp
+    src/data/irregular_domain.cpp \
+    src/data/one_2d_change_neighborhood.cpp \
+    src/modules/om_one_2d_change_neighborhood.cpp \
+    src/testers/tester_one_2d_change_neighborhood.cpp \
+    src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.cpp \
+    src/modules/om_h_first_improvement_selection.cpp \
+    src/expressions/module_iteration_expression.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -673,7 +679,13 @@ HEADERS += \
     src/testers/tester_all_permutations_neighborhood.h \
     src/testers/tester_iteration_squaring_square.h \
     src/data/uniform_domain.h \
-    src/data/irregular_domain.h
+    src/data/irregular_domain.h \
+    src/data/one_2d_change_neighborhood.h \
+    src/modules/om_one_2d_change_neighborhood.h \
+    src/testers/tester_one_2d_change_neighborhood.h \
+    src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.h \
+    src/modules/om_h_first_improvement_selection.h \
+    src/expressions/module_iteration_expression.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

@@ -12,8 +12,9 @@ unsigned generate_seed(int pID)
         std::chrono::system_clock::now().time_since_epoch().count();
 }
 */
-Randomizer::Randomizer(int configuration_size)
-    : r_generator(),//(generate_seed(pID)),
+Randomizer::Randomizer(int configuration_size, int base_seed)
+    : r_generator(base_seed),
+      generator(chrono::system_clock::now().time_since_epoch().count() + Tools::sqr(base_seed + 1)),
       dim((int)sqrt(configuration_size)),
       indexes((int)sqrt(configuration_size))
 {
@@ -43,12 +44,12 @@ int Randomizer::NextInt(int min, int max)
 
 void Randomizer::vector_shuffle(vector<int> & vec)
 {
-    std::shuffle(vec.begin(), vec.end(), r_generator.GetGenerator());
+    std::shuffle(vec.begin(), vec.end(), generator);
 }
 
 void Randomizer::vector_shuffle(vector<int> & vec, int _begin, int _end)
 {
-    std::shuffle(vec.begin() + _begin, vec.begin() + _end, r_generator.GetGenerator());
+    std::shuffle(vec.begin() + _begin, vec.begin() + _end, generator);
 }
 
 vector<vector<int>> Randomizer::generate_multichanges(int card_changes)

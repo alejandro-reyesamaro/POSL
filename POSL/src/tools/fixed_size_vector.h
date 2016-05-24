@@ -20,6 +20,7 @@ class FixedSizeVector
         }
 
         int size() { return _size; }
+        int capacity() { return z; }
 
         void pushBack(T element)
         {

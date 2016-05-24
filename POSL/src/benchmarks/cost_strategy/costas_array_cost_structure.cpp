@@ -11,7 +11,7 @@ using namespace std;
 
 CostasArrayCostStructure::CostasArrayCostStructure(int n)
     : N(n), CurrentCost(-1), Configuration(n),
-      rand(make_shared<Randomizer>(n)),
+      rand(make_shared<Randomizer>(n, 1)),
       dist(1), i(0), first_i(0), diff(0), diff_translated(0), nb(0), r(0),
       err(n, 0), nb_occ(2 * n, 0), first(2 * n, 0),
       save_sol(n), best_sol(n), i_err(n), to_add({1, 2, n - 2, n - 3})

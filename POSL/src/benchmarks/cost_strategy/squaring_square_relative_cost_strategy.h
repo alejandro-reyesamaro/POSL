@@ -3,6 +3,8 @@
 #include "relative_cost_strategy.h"
 #include "squaring_square_cost_structure.h"
 #include "sickest_variable_strategy.h"
+#include "../../tools/fixed_size_vector.h"
+#include "../../tools/randomizer.h"
 
 class SquaringSquareRelativeCostStrategy : public RelativeCostStrategy
 {
@@ -20,4 +22,6 @@ class SquaringSquareRelativeCostStrategy : public RelativeCostStrategy
     private:
         std::shared_ptr<SquaringSquareCostStructure> cost_str;
         std::shared_ptr<SickestVariableStrategy> sickest_variable_strategy;
+        FixedSizeVector<int> bad_variables;
+        RandomGenerator r_gen;
 };

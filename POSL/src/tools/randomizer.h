@@ -10,7 +10,7 @@
 class Randomizer
 {
     public:
-        Randomizer(int configuration_size);
+        Randomizer(int configuration_size, int base_seed);
         int NextInt(int min, int max);
         bool bernoulli(float p);
         std::vector<std::vector<int>> generate_multichanges(int card_changes);
@@ -20,6 +20,7 @@ class Randomizer
 
     private:
         RandomGenerator r_generator;
+        std::default_random_engine generator;
         int dim;
         Matrix indexes;
 };

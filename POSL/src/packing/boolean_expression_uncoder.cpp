@@ -8,6 +8,7 @@
 #include "../expressions/loop_bound_expression.h"
 #include "../expressions/same_cost_iterations_bound_expression.h"
 #include "../expressions/singleton_expression.h"
+#include "../expressions/module_iteration_expression.h"
 
 #include "bool_expression_and_uncoder.h"
 #include "bool_expression_or_uncoder.h"
@@ -48,6 +49,8 @@ shared_ptr<BooleanExpression> BooleanExpressionUncoder::uncode(string code)
             return make_shared<IteretionBoundExpression>(param);
         else if(op_name == BE_LOOP_BOUND_TOK_NAME)
             return make_shared<LoopBoundExpression>(param);
+        else if(op_name == BE_MODULE_ITERATIONS_TOK)
+            return make_shared<ModuleIterationExpression>(param);
         else if(op_name == BE_REACHED_COST_TOK_NAME)
             return make_shared<ReachedCostExpression>(param);
         else if(op_name == BE_SAME_COST_ITERATIONS_TOK_NAME)

@@ -8,8 +8,10 @@ std::vector<int> RandomConfigurationGenerationStrategy::generate(shared_ptr<Rand
 {
     int k = 0;
     int index = 0;
-    for(int i = 0; i < config.size(); i++)
+    for(unsigned int i = 0; i < config.size(); i++)
     {
+        //int min = domain->minimum(i);
+        //int max = domain->maximum(i);
         k = rand->NextInt(domain->minimum(i), domain->maximum(i));
         config[index++] = k;
     }

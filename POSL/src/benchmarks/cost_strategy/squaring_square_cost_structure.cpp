@@ -141,5 +141,6 @@ int SquaringSquareCostStructure::relative_cost(std::vector<int> & new_config, T_
 
 int SquaringSquareCostStructure::costOnVariable(int index)
 {
+    //int cov = (cost_on_variable[index] + (cost_on_leaving[index] * cost_on_leaving[index])) * momement_capacity[index];
     return (cost_on_variable[index] + (cost_on_leaving[index] * cost_on_leaving[index])) * momement_capacity[index];
 }

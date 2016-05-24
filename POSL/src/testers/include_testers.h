@@ -67,3 +67,4 @@
 #include "tester_solver_all_intervals.h"
 #include "tester_all_permutations_neighborhood.h"
 #include "tester_iteration_squaring_square.h"
+#include "tester_one_2d_change_neighborhood.h"

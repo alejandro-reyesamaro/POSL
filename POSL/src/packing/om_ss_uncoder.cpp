@@ -8,12 +8,12 @@
 #include "../modules/om_random_selection.h"
 #include "../modules/om_first_improvement_selection.h"
 #include "../modules/om_k_best_improvement_selection.h"
+#include "../modules/om_h_first_improvement_selection.h"
 
 using namespace std;
 
 OM_SS_Uncoder::OM_SS_Uncoder()
-{
-}
+{}
 
 int is_kBest(string code);
 
@@ -31,6 +31,8 @@ shared_ptr<OperationModule> OM_SS_Uncoder::uncode(string code, shared_ptr<Benchm
         return make_shared<OM_RandomSelection>(bench);
     else if(code == OM_FIRST_IMPROVEMENT_SELECTION_TOK)
         return make_shared<OM_FirstImprovementSelection>(bench);
+    else if(code == OM_HEURISTIC_FIRST_IMPROVEMENT_SELECTION_TOK)
+        return make_shared<OM_HFirstImprovementSelection>(bench);
     else if((k = is_kBest(code)) != -1)
         return make_shared<OM_KBestImprovementSelection>(bench, k);
     else

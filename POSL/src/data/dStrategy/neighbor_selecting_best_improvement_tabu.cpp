@@ -16,8 +16,6 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovementTabu::select(shared_ptr
     best_found_config = psp->GetCurrentSolution()->get_conf_by_copy();
     int best_found_cost = current_cost;
     int c;
-    shared_ptr<Randomizer> rand = psp->GetRandomizer();
-
     it = V->getIterator();
     it->Reset();
 

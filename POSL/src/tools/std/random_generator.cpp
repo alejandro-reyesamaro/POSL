@@ -4,6 +4,10 @@
 
 using namespace std;
 
+RandomGenerator::RandomGenerator(int base_seed)
+    : generator(chrono::system_clock::now().time_since_epoch().count() * (base_seed + 1))
+{}
+
 RandomGenerator::RandomGenerator()
     : generator(chrono::system_clock::now().time_since_epoch().count())
 {}

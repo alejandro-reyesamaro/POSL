@@ -10,7 +10,8 @@ using namespace std;
 SquaringSquareRelativeCostStrategy::SquaringSquareRelativeCostStrategy(int _size, vector<int> _squares)
     : cost_str(make_shared<SquaringSquareCostStructure>(_size, _squares)),
       sickest_variable_strategy(make_shared<DefaultSickestVariableStrategy>(_squares.size() * 2,
-                                                                            dynamic_pointer_cast<ProjectableCost>(cost_str)))
+                                                                            dynamic_pointer_cast<ProjectableCost>(cost_str))),
+      bad_variables(_squares.size())
 {
 }
 
@@ -46,5 +47,21 @@ int SquaringSquareRelativeCostStrategy::costOnVariable(int index)
 
 int SquaringSquareRelativeCostStrategy::sickestVariable()
 {
-    return sickest_variable_strategy->sickestVariable();
+    bad_variables.clear();
+    int cov;
+    int bcov = costOnVariable(0);
+    bad_variables.pushBack(0);
+    for(int i = 1; i < bad_variables.capacity(); i++)
+    {
+        cov = costOnVariable(i);
+        if (cov == bcov)
+            bad_variables.pushBack(i);
+        else if(cov > bcov)
+        {
+            bcov = cov;
+            bad_variables.clear();
+            bad_variables.pushBack(i);
+        }
+    }
+    return bad_variables.elementAt(r_gen.next_int(0, bad_variables.size()-1));
 }

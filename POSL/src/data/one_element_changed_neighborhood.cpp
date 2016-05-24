@@ -5,9 +5,6 @@
 #include "dStrategy/elements_change_iterator.h"
 
 #include <algorithm>
-#include <chrono>
-
-#define N_NEIGHBORS 16
 
 OneElementChangedNeighborhood::OneElementChangedNeighborhood(int _config_size, std::shared_ptr<Domain> _domain)
     : Neighborhood(_config_size),
@@ -46,10 +43,11 @@ void OneElementChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
         for (unsigned int j = 0; j < posible_values.size(); j++)// / 2 + 1; j++)
         {            
             new_value = posible_values[j];
-            if(new_value == current_value)
-                continue;
-            T_Changes next_change = {{indexes[i]}, {new_value}, 1};
-            changes.push_back(next_change);
+            if(new_value != current_value)
+            {
+                T_Changes next_change = {{indexes[i]}, {new_value}, 1};
+                changes.push_back(next_change);
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ Tester_FarRandomConfGeneration::Tester_FarRandomConfGeneration(int argc, char *a
 
 string Tester_FarRandomConfGeneration::test()
 {
-    shared_ptr<Randomizer> rand(make_shared<Randomizer>(5));
+    shared_ptr<Randomizer> rand(make_shared<Randomizer>(5, 1));
     vector<std::vector<int>> existing_confs;
     existing_confs.push_back({1, 1, 1, 2, 2});
     existing_confs.push_back({2, 2, 3, 4, 4});

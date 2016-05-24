@@ -35,7 +35,7 @@ AllIntervalsCostStructure::AllIntervalsCostStructure(int _n)
       Configuration(_n),
       nb_occ(_n),
       nb_occ_aux(_n),
-      rand(make_shared<Randomizer>(_n))
+      rand(make_shared<Randomizer>(_n, 1))
 {}
 
 int AllIntervalsCostStructure::relative_cost(vector<int> & new_config, T_Changes, bool updating)
