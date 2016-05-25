@@ -33,7 +33,9 @@ class Benchmark
         int solutionCost(std::vector<int> & configuration);
         int relativeSolutionCost(std::vector<int> & configuration);
         int relativeSolutionCost(std::vector<int> & new_config, T_Changes changes);
-        int currentCost();        
+        int currentCost();
+        void SetDefaultConfiguration(std::vector<int> &_default_configuration);
+        std::vector<int> GetDefaultConfiguration();
 
         shared_ptr<Solution> GetSolution();
         std::string ShowSolution(std::shared_ptr<Solution> solution);
@@ -55,6 +57,7 @@ class Benchmark
         int problem_dimension;
         shared_ptr<Domain> domain;
         std::vector<int> configuration;
+        std::vector<int> default_configuration;
 
         //! STRATEGIES
         shared_ptr<SolutionCostStrategy> cost_strategy;

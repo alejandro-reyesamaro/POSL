@@ -11,6 +11,7 @@ OM_RandomSelection::OM_RandomSelection(shared_ptr<Benchmark> bench)
 
 shared_ptr<DecisionPair> OM_RandomSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)
 {
+    //cout << "OM_S iteration: " << psp->GetIterations() << endl;
     return search_strategy->select(psp, input);
 }
 

@@ -26,7 +26,7 @@ void SquaringSquareRelativeCostStrategy::updateConfiguration(std::vector<int> & 
 {
     T_Changes changes = Tools::GetChanges(cost_str->Configuration, new_config);
     if(changes.dim > 0)
-        relativeSolutionCost(new_config, changes);
+        cost_str->relative_cost(new_config, changes, true);
 }
 
 int SquaringSquareRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configuration)

@@ -23,7 +23,7 @@ string Tester_BestImprovementTabuSelection::test()
     shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::Golfers_442_1s());
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
-    psp->UpdateSolution(sol->get_conf_by_ref());
+    bench->SetDefaultConfiguration(sol->get_conf_by_ref());
     int initial_cost = psp->GetBenchmark()->solutionCost(sol);
 
 

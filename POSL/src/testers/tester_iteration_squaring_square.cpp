@@ -45,13 +45,14 @@ string Tester_IterationSquaringSquare::test()
     //cout << "Cost (86) ? -> " << rc << " - " << ac << endl;
 
 
-    vector<int> config3({0, 0, 6, 4, 6, 7, 4, 0, 6, 0, 6, 6, 7, 7});
+    vector<int> config3(14,0);//({0, 0, 6, 4, 6, 7, 4, 0, 6, 0, 6, 6, 7, 7});
     sol = make_shared<Solution>(bench->Variable_Domain(), config3);
     psp = make_shared<PSP>(bench);
     int c3 = bench->solutionCost(sol);
     cout << "Initial cost (12): " << c3 << endl;
 
-    shared_ptr<CompoundModule> OM_S (make_shared<OM_FixedFirstConfiguration>(bench, config3));
+    bench->SetDefaultConfiguration(config3);
+    shared_ptr<CompoundModule> OM_S (make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<CompoundModule> OM_V (make_shared<OM_OneElementChangedNeighborhood>(bench));
     shared_ptr<CompoundModule> OM_SS (make_shared<OM_BestImprovementSelection>(bench));
     shared_ptr<CompoundModule> OM_D (make_shared<OM_AlwaysImproveDecision>());

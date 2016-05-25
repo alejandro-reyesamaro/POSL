@@ -17,10 +17,11 @@ string Tester_AdaptiveSearchNeighborhood::test()
     vector<int> config1({ 0, 2, 4, 6, 1, 7, 3, 5 });
 
     shared_ptr<Benchmark> bench(make_shared<NQueens>(8));
+    bench->SetDefaultConfiguration(config1);
 
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
-    shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench, config1));
+    shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchNeighborhood>(bench));
     shared_ptr<Operator> op(make_shared<SequentialExecOperator>(om_s, om_v));
     shared_ptr<GroupedComputation> G(make_shared<GroupedSequentialComputation>(op));

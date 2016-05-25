@@ -17,9 +17,10 @@ string Tester_One2DChangeNeighborhood::test()
     shared_ptr<Benchmark> bench(make_shared<SquaringSquare>(10, squares));
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
-    vector<int> config({0, 0, 6, 4, 5, 7, 4,    0, 6, 0, 6, 6, 7, 7});
+    vector<int> config(14,0);//({0, 0, 6, 4, 5, 7, 4,    0, 6, 0, 6, 6, 7, 7});
 
-    shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench, config));
+    bench->SetDefaultConfiguration(config);
+    shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<OperationModule> om_v(make_shared<OM_One2DChangeNeighborhood>(bench));
     shared_ptr<Operator> op(make_shared<SequentialExecOperator>(om_s, om_v));
     shared_ptr<GroupedComputation> G(make_shared<GroupedSequentialComputation>(op));

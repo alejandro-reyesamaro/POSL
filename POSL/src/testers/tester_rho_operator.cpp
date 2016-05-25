@@ -31,7 +31,7 @@ string Tester_RhoOperator::test()
     int c = 0, cc = 0, i = 0;
     for(i = 0; i < 1000; i++)
     {
-        psp->UpdateSolution(sol->get_conf_by_ref());
+        bench->SetDefaultConfiguration(sol->get_conf_by_ref());
         shared_ptr<Solution> solution = static_pointer_cast<Solution>(G1->execute(psp, t_seed));
         if(solution->equal(sol)) c++; else cc++;
     }

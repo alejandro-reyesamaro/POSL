@@ -88,7 +88,7 @@ string Tester_IterationGolfers::test()
     shared_ptr<Operator> sec_3(make_shared<SequentialExecOperator>(Gsec2, OM_D));
     shared_ptr<GroupedComputation> Gsec3(make_shared<GroupedSequentialComputation>(sec_3));
 
-    psp332->UpdateSolution(sol332->get_conf_by_ref());
+    bench332->SetDefaultConfiguration(sol332->get_conf_by_ref());
     shared_ptr<Solution> sol = static_pointer_cast<Solution>(Gsec3->execute(psp332, t_seed));
     //cout << sol->configurationToString() << endl;
     //cout << "Final cost: " << Tools::int2str(bench332->solutionCost(sol)) << endl;

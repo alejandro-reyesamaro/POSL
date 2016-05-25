@@ -22,7 +22,7 @@ string Tester_KBestImprovementSelection::test()
     shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), Tester::Golfers_442_c14());
     //bench->UpdateSolution(sol);
     //PSP> psp(make_shared<PSP(bench);
-    psp->UpdateSolution(sol->get_conf_by_ref());
+    bench->SetDefaultConfiguration(sol->get_conf_by_ref());
 
     shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<CompoundModule> cm2(make_shared<OM_GolfersSingleSwapNeighborhood>(bench));

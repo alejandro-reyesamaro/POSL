@@ -6,31 +6,17 @@
 
 using namespace std;
 
-OM_FixedFirstConfiguration::OM_FixedFirstConfiguration(shared_ptr<Benchmark> bench, vector<int> _config)
-    : AOM_FirstConfigurationGeneration(bench),
-      config(_config)
-{}
-
 OM_FixedFirstConfiguration::OM_FixedFirstConfiguration(shared_ptr<Benchmark> bench)
-    : AOM_FirstConfigurationGeneration(bench),
-      config(0)
+    : AOM_FirstConfigurationGeneration(bench)
 {}
 
 shared_ptr<Solution> OM_FixedFirstConfiguration::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Seed>)
 {
     //cout << Tag() << endl;
-    if(config.size() == 0)
-    {
-        shared_ptr<Solution> rsolution(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), psp->GetCurrentSolution()->get_conf_by_copy()));
-        psp->Start(rsolution->get_conf_by_ref());
-        return rsolution;
-    }
-    else
-    {
-        shared_ptr<Solution> rsolution(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config));
-        psp->Start(rsolution->get_conf_by_ref());
-        return rsolution;
-    }
+    shared_ptr<Solution> rsolution(make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(),
+                                                         psp->GetBenchmark()->GetDefaultConfiguration()));
+    psp->Start(rsolution->get_conf_by_ref());
+    return rsolution;
 }
 
 string OM_FixedFirstConfiguration::codeToSend()

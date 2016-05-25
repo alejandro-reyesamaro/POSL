@@ -18,7 +18,8 @@ string Tester_DanielRestart::test()
 
     //[ 12, 9, 0, 13, 1, 7, 8, 6, 11, 3, 2, 5, 14, 10, 4 ] - [ 13, 10, 1, 14, 2, 8, 9, 7, 12, 4, 3, 6, 15, 11, 5 ]
     vector<int> conf ({12, 9, 0, 13, 1, 7, 8, 6, 11, 3, 2, 5, 14, 10, 4 });
-    shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench, conf));
+    bench->SetDefaultConfiguration(conf);
+    shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<OperationModule> om_r(make_shared<OM_DanielASRestartRearrange>());
     shared_ptr<Operator> op(make_shared<SequentialExecOperator>(om_s, om_r));
     shared_ptr<GroupedComputation> G(make_shared<GroupedSequentialComputation>(op));

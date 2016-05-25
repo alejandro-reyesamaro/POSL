@@ -26,4 +26,7 @@ class OM_AlwaysImproveDecision : public AOM_DecisionFunction
         std::string codeToSend();
 \
         virtual std::string Tag();
+
+        // temporal (debug) variables
+        int cost;
 };

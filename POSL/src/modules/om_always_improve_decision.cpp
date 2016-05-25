@@ -7,14 +7,26 @@
 using namespace std;
 
 OM_AlwaysImproveDecision::OM_AlwaysImproveDecision()
+    : cost(-1)
 {
 }
 
 shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp, shared_ptr<DecisionPair> input)
 {
     psp->UpdateSolution(input->GetFound()->get_conf_by_ref());
-    //cout << "PId: " << Tools::int2str(psp->GetPID()) << "-" << Tools::int2str(psp->BestCostSoFar()) << endl;
+    // <debug code>
+    /*
+    vector<int> found = input->GetFound()->get_conf_by_copy();
+    int current_cost = psp->CurrentCost();
+    int best_cost = psp->BestCostSoFar();
+    if(psp->CurrentCost() != cost)
+    {
+        cost = psp->CurrentCost();
+        cout << psp->GetIterations() << " - " << cost << " - " << psp->BestCostSoFar() << endl;
+    }
     //cout << input->GetFound()->configurationToString() << endl;
+    */
+    // </debug code>
     return input->GetFound();
 }
 

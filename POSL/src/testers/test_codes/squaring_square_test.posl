@@ -16,14 +16,14 @@ St_a := cStrategy
                         OP.|->
                         <S>
                             OP.|->
-                            <S>
-                                OP.? ( BE.IterMod 20 )
-                                OM_V.2DChange
+                            //<S>
+                            //    OP.? ( BE.IterMod 20 )
+                            //    OM_V.2DChange
                                 OM_V
-                            </S>
+                            //</S>
                             //OM_SS
                             <S>
-                                OP.? ( BE.IterMod 20 )
+                                OP.? ( BE.SCI 20 )//( BE.IterMod 20 )
                                 OM_SS
                                 OM_SS.Rand
                             </S>
@@ -40,7 +40,7 @@ St_a := cStrategy
 solver1 := solver
 {
     cStrategy: St_a;
-    oModule: OM_S.Rand, OM_V.1Change, OM_SS.BestImpr, OM_D.AlwImpr;
+    oModule: OM_S.Rand, OM_V.1Change, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 connections:

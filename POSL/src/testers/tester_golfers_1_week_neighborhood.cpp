@@ -24,8 +24,9 @@ string Tester_Golfers1WeekNeighborhood::test()
     shared_ptr<Benchmark> bench(make_shared<Golfers>(g,p,w));
 
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
+    bench->SetDefaultConfiguration(first_conf);
 
-    shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench, first_conf));
+    shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench));
 
     shared_ptr<OperationModule> om_v(make_shared<OM_GolfersSingleWeekSwapNeighborhood>(bench, week));
     shared_ptr<Operator> op(make_shared<SequentialExecOperator>(om_s, om_v));

@@ -11,7 +11,8 @@ Benchmark::Benchmark(int _dimension,
                      shared_ptr<ShowStrategy> _show_strategy)
     : problem_dimension(_dimension),
       domain(_domain),
-      configuration(_dimension,0),
+      configuration(_dimension, 0),
+      default_configuration(_dimension, 0),
       cost_strategy(_cost_strategy),
       relative_cost_strategy(_relative_cost_strategy),
       show_strategy(_show_strategy)
@@ -77,4 +78,11 @@ vector<int> Benchmark::Reset()
     return configuration;
 }
 
-
+void Benchmark::SetDefaultConfiguration(std::vector<int> & _default_configuration)
+{
+    copy(_default_configuration.begin(), _default_configuration.end(), configuration.begin());
+}
+vector<int> Benchmark::GetDefaultConfiguration()
+{
+    return default_configuration;
+}

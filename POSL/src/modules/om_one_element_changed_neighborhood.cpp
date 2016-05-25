@@ -12,6 +12,7 @@ OM_OneElementChangedNeighborhood::OM_OneElementChangedNeighborhood(shared_ptr<Be
 shared_ptr<Neighborhood> OM_OneElementChangedNeighborhood::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Solution> input)
 {
     V->Init(psp, input->get_conf_by_ref());
+    //cout << "OM_V iteration: " << psp->GetIterations() << endl;
     return V;
 }
 

@@ -33,7 +33,7 @@ string Tester_ConditionalOperator::test()
 
     //cout << c1 << " and " << c2 << endl;
 
-    psp->UpdateSolution(sol1->get_conf_by_ref());
+    bench->SetDefaultConfiguration(sol1->get_conf_by_ref());
 
     shared_ptr<CompoundModule> cm1(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<CompoundModule> cm2_1(make_shared<OM_OneElementChangedNeighborhood>(bench));

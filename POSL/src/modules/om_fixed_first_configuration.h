@@ -18,7 +18,6 @@
 class OM_FixedFirstConfiguration : public AOM_FirstConfigurationGeneration
 {
     public:
-        OM_FixedFirstConfiguration(std::shared_ptr<Benchmark> bench, std::vector<int> _config);        
         OM_FixedFirstConfiguration(std::shared_ptr<Benchmark> bench);
 
         std::shared_ptr<Solution> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Seed>);
@@ -27,6 +26,4 @@ class OM_FixedFirstConfiguration : public AOM_FirstConfigurationGeneration
         std::string codeToSend();
 
         virtual std::string Tag();
-    private:
-          std::vector<int> config;
 };

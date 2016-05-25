@@ -135,7 +135,7 @@ int SquaringSquareCostStructure::relative_cost(std::vector<int> & new_config, T_
         copy(Configuration.begin(), Configuration.end(), configuration_aux.begin());
         copy(cost_on_variable.begin(), cost_on_variable.end(), cost_on_variable_aux.begin());
         copy(cost_on_leaving.begin(), cost_on_leaving.end(), cost_on_leaving_aux.begin());
-        return relative_cost(m_cost_aux, Configuration, new_config, change, CurrentCost, cost_on_variable_aux, cost_on_leaving_aux);
+        return relative_cost(m_cost_aux, configuration_aux, new_config, change, CurrentCost, cost_on_variable_aux, cost_on_leaving_aux);
     }
 }
 
