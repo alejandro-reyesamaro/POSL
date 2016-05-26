@@ -5,12 +5,6 @@
 #include "../../data/seed.h"
 #include "../../tools/randomizer.h"
 
-//#include <random>
-
-/*!
- * \class RandomConfigurationGenerationStrategy random_configuration_generation_strategy.h
- * \brief Class to generate random configurations (Solutions)
- */
 class FarRandomConfigurationGenerationStrategy
 {
     public:

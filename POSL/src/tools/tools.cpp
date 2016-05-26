@@ -144,6 +144,44 @@ T_Changes Tools::GetChanges(std::vector<int> & config_before, std::vector<int> &
     return changes;
 }
 
+float Tools::norm1(std::vector<int> & v1, std::vector<int> & v2)
+{
+    if(v1.size() != v2.size())
+        throw "(PSOL Exception) vectors sizes mismatch (Tools::norm1)";
+    float min = abs(v1[0] - v2[0]);
+    float diff;
+    for (unsigned int i = 1; i < v1.size(); ++i)
+    {
+        diff = abs(v1[i] - v2[i]);
+        if (diff < min) min = diff;
+    }
+    return min;
+}
+
+float Tools::norm2(std::vector<int> & v1, std::vector<int> & v2)
+{
+    if(v1.size() != v2.size())
+        throw "(PSOL Exception) vectors sizes mismatch (Tools::norm2)";
+    float sum = 0;
+    for (unsigned int i = 1; i < v1.size(); ++i)
+        sum += (v1[i] - v2[i]) * (v1[i] - v2[i]);
+    return sqrt(sum);
+}
+
+float Tools::norm8(std::vector<int> & v1, std::vector<int> & v2)
+{
+    if(v1.size() != v2.size())
+        throw "(PSOL Exception) vectors sizes mismatch (Tools::norm8)";
+    float max = abs(v1[0] - v2[0]);
+    float diff;
+    for (unsigned int i = 1; i < v1.size(); ++i)
+    {
+        diff = abs(v1[i] - v2[i]);
+        if (diff > max) max = diff;
+    }
+    return max;
+}
+
 int Tools::max(std::vector<int> & v)
 {
     std::vector<int>::iterator it = std::max_element(v.begin(),v.end());

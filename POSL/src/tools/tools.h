@@ -40,6 +40,9 @@ class Tools
         static std::vector<int> generateMonotony(int a, int b);
         static void sortAscendent(std::vector<int> & v);        
         static T_Changes GetChanges(std::vector<int> &config_before, std::vector<int> &config_after);
+        static float norm1(std::vector<int> & v1, std::vector<int> & v2);
+        static float norm2(std::vector<int> & v1, std::vector<int> & v2);
+        static float norm8(std::vector<int> & v1, std::vector<int> & v2);
         static int max(std::vector<int> & v);
         static int min(std::vector<int> & v);
         static int sum(std::vector<int> &v);

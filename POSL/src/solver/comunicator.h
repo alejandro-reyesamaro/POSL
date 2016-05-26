@@ -1,7 +1,5 @@
 #pragma once
 
-//#include "../data/computation_data.h"
-
 #include "mpi.h"
 
 #include <vector>

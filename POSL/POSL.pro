@@ -339,7 +339,8 @@ SOURCES += src/main.cpp \
     src/testers/tester_one_2d_change_neighborhood.cpp \
     src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.cpp \
     src/modules/om_h_first_improvement_selection.cpp \
-    src/expressions/module_iteration_expression.cpp
+    src/expressions/module_iteration_expression.cpp \
+    src/modules/strategy/not_tabu_random_configuration_generation_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -685,7 +686,8 @@ HEADERS += \
     src/testers/tester_one_2d_change_neighborhood.h \
     src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.h \
     src/modules/om_h_first_improvement_selection.h \
-    src/expressions/module_iteration_expression.h
+    src/expressions/module_iteration_expression.h \
+    src/modules/strategy/not_tabu_random_configuration_generation_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
