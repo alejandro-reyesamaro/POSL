@@ -22,7 +22,7 @@ PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
       logs_path(_logs_path),      
       restarts(-1),
       rand(make_shared<Randomizer>(_bench->Dimension(), max(0, _pID))),
-      tabu_list(make_shared<TabuList>(TABU_SIZE))
+      tabu_object(make_shared<TabuObject>(TABU_SIZE, _bench->Dimension()))
 {}
 
 PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)
@@ -63,18 +63,3 @@ void PSP::CountIteration(){ iterations ++; }
 void PSP::StartSearch(){ restarts ++ ;}
 
 //void PSP::log(std::string text){ plog.log(text); }
-
-void PSP::addTabuSolution(vector<int> & configuration)
-{
-    tabu_list->push(configuration);
-}
-
-bool PSP::isGlobalTabu(vector<int> & configuration, float eps)
-{
-    return tabu_list->isTabuByNorm2(configuration, eps);
-}
-
-bool PSP::isGlobalTabu(vector<int> & configuration)
-{
-    return tabu_list->isTabu(configuration);
-}

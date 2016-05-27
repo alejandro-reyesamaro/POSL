@@ -78,6 +78,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_OneWorstSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
+    tests.push_back(make_shared<Tester_GlobalTabu>(argc, argv));
 
     //tests.push_back(make_shared<Tester_CostOfSolutionAllIntervals>(argc, argv));
 
@@ -88,7 +89,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_CostOfSolutionSquaringSquare>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationSquaringSquare>(argc, argv));
     //tests.push_back(make_shared<Tester_One2DChangeNeighborhood>(argc, argv));
-    tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
 
 
     string output_str;

@@ -340,7 +340,15 @@ SOURCES += src/main.cpp \
     src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.cpp \
     src/modules/om_h_first_improvement_selection.cpp \
     src/expressions/module_iteration_expression.cpp \
-    src/modules/strategy/not_tabu_random_configuration_generation_strategy.cpp
+    src/modules/strategy/not_tabu_random_configuration_generation_strategy.cpp \
+    src/testers/tester_global_tabu.cpp \
+    src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.cpp \
+    src/modules/om_first_improvement_global_tabu_selection.cpp \
+    src/solver/tabu_object.cpp \
+    src/operators/strategy/tabu_sequential_strategy.cpp \
+    src/operators/strategy/tabu_och_sequential_strategy.cpp \
+    src/operators/tabu_operator.cpp \
+    src/operators/strategy/first_sequential_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -687,7 +695,15 @@ HEADERS += \
     src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.h \
     src/modules/om_h_first_improvement_selection.h \
     src/expressions/module_iteration_expression.h \
-    src/modules/strategy/not_tabu_random_configuration_generation_strategy.h
+    src/modules/strategy/not_tabu_random_configuration_generation_strategy.h \
+    src/testers/tester_global_tabu.h \
+    src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.h \
+    src/modules/om_first_improvement_global_tabu_selection.h \
+    src/solver/tabu_object.h \
+    src/operators/strategy/tabu_sequential_strategy.h \
+    src/operators/strategy/tabu_och_sequential_strategy.h \
+    src/operators/tabu_operator.h \
+    src/operators/strategy/first_sequential_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

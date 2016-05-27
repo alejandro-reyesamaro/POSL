@@ -16,10 +16,13 @@ NotNullSequentialStrategy::NotNullSequentialStrategy(shared_ptr<OpenChannel> _OC
 shared_ptr<ComputationData> NotNullSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     //cout << "notnull" << endl;
-    result_och = Och->execute(psp, input);
-    result_m = M->execute(psp, input);
+    result_och = Och->execute(psp, input);    
 
-    if (result_och == nullptr) return result_m;
+    if (result_och == nullptr)
+    {
+        result_m = M->execute(psp, input);
+        return result_m;
+    }
     else
     {
         psp->SearchingWithOuterInformation_ON();

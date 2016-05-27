@@ -12,19 +12,21 @@ OM_GolombValidGeneration::OM_GolombValidGeneration(shared_ptr<Benchmark> bench)
       object_bench(dynamic_pointer_cast<GolombRuler>(bench)),
       rconf_strategy(make_shared<RandomGolombValidGenerationStrategy>(object_bench->Order(),
                                                                       object_bench->Length())),
-      order(object_bench->Order()),
-      golomb_configuration(object_bench->Order(),0),
-      subsum_configuration(object_bench->Order())
+      order(object_bench->Order())
+
 {}
 
 shared_ptr<Solution> OM_GolombValidGeneration::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Seed>)
 {
-    subsum_configuration = rconf_strategy->generate();
-    //golomb_configuration[0] = 0; // --> already done in constructor
-    for(int i = 0; i < order-1; i++)
-        golomb_configuration[i+1] = golomb_configuration[i] + subsum_configuration[i];
-    rsolution->UpdateConfiguration(golomb_configuration);
-    psp->Start(golomb_configuration);//(rsolution->get_conf_by_ref());
+
+    if(psp->GetTabuObject()->ThereIsTabu())
+    {
+        last_global_tabu_configuration = psp->GetTabuObject()->GetLastArrivedTabu();
+        rsolution->UpdateConfiguration(rconf_strategy->generate(last_global_tabu_configuration));
+    }
+    else
+        rsolution->UpdateConfiguration(rconf_strategy->generate());
+    psp->Start(rsolution->get_conf_by_ref());
     //psp->log("Start ");
     //cout << rsolution->configurationToString() << endl;//"OM_S" << endl;
     return rsolution;

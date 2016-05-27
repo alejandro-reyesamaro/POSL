@@ -22,6 +22,5 @@ class OM_GolombValidGeneration : public AOM_FirstConfigurationGeneration
         std::shared_ptr<GolombRuler> object_bench;
         std::shared_ptr<RandomGolombValidGenerationStrategy> rconf_strategy;
         int order;
-        std::vector<int> golomb_configuration;
-        std::vector<int> subsum_configuration;
+        std::vector<int> last_global_tabu_configuration;
 };

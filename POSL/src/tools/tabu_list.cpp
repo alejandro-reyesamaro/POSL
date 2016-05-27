@@ -36,7 +36,9 @@ bool TabuList::is_tabu(vector<int> & conf, std::function<float(vector<int>&, vec
 {
     for (std::list<vector<int>>::iterator it = tabu_list.begin(); it != tabu_list.end(); ++it)
     {
-        if(abs(norm(conf, *it)) < eps) return true;
+        //vector<int> current = *it;
+        if(norm(conf, *it) < eps)
+            return true;
     }
     return false;
 }

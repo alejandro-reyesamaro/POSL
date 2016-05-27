@@ -10,10 +10,14 @@ class RandomGolombValidGenerationStrategy
     public:
         RandomGolombValidGenerationStrategy(int _order, int _length);
 
+        std::vector<int> generate(vector<int> &configuration_tabu);
         std::vector<int> generate();
 
     private:
+        std::vector<int> generate_conf();
+
         int subsum, n;
+        int golomb_order;
         std::vector<int> values;
 
         shared_ptr<Benchmark> bench;
@@ -21,4 +25,6 @@ class RandomGolombValidGenerationStrategy
         shared_ptr<GroupedComputation> CM; // Gsec3
 
         shared_ptr<Solution> sol;
+        std::vector<int> golomb_configuration;
+        std::vector<int> subsum_configuration;
 };

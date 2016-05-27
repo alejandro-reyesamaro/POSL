@@ -8,6 +8,7 @@ class TabuList
 {
     public:
         TabuList(int _size);
+
         void push(std::vector<int> & conf);
         bool isTabu(std::vector<int> & conf);
         bool isTabuByNorm1(std::vector<int> & conf, float eps);
@@ -15,7 +16,7 @@ class TabuList
         bool isTabuByNorm8(std::vector<int> & conf, float eps);
 
     private:
-        bool is_tabu(std::vector<int> & conf, std::function<float(std::vector<int>&, std::vector<int>&)> norm, float eps);
+        bool is_tabu(std::vector<int> & conf, std::function<float(std::vector<int> &, std::vector<int> &)> norm, float eps);
 
         int count;
         std::list<std::vector<int>> tabu_list;
