@@ -15,10 +15,10 @@ SquaringSquareRelativeCostStrategy::SquaringSquareRelativeCostStrategy(int _size
 {
 }
 
-void SquaringSquareRelativeCostStrategy::initializeCostData(std::vector<int> & _configuration, int initial_cost)
+void SquaringSquareRelativeCostStrategy::initializeCostData(std::vector<int> & _configuration, int _initial_cost)
 {
     cost_str->set(_configuration);
-    if(initial_cost != cost_str->CurrentCost)
+    if(_initial_cost != cost_str->CurrentCost)
         throw "(POSL Exception) Not matching costs (SquaringSquareRelativeCostStrategy::initializeCostData)";
 }
 
@@ -35,9 +35,9 @@ int SquaringSquareRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_
     return relativeSolutionCost(_configuration, changes);
 }
 
-int SquaringSquareRelativeCostStrategy::relativeSolutionCost(std::vector<int> & new_config, T_Changes change)
+int SquaringSquareRelativeCostStrategy::relativeSolutionCost(std::vector<int> & _configuration, T_Changes _change)
 {
-    return cost_str->relative_cost(new_config, change, false);
+    return cost_str->relative_cost(_configuration, _change, false);
 }
 
 int SquaringSquareRelativeCostStrategy::costOnVariable(int index)

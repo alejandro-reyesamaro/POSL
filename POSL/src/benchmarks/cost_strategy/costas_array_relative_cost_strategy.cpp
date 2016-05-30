@@ -12,10 +12,10 @@ CostasArrayRelativeCostStrategy::CostasArrayRelativeCostStrategy(int n)
       sickest_variable_strategy(make_shared<DefaultSickestVariableStrategy>(n, dynamic_pointer_cast<ProjectableCost>(ca_str)))
 {}
 
-void CostasArrayRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int initial_cost)
+void CostasArrayRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int _initial_cost)
 {
     ca_str->init(_configuration);
-    if(initial_cost != ca_str->CurrentCost)
+    if(_initial_cost != ca_str->CurrentCost)
         throw "(POSL Exception) Not matching costs (CostasArrayRelativeCostStrategy::initializeCostData)";
 }
 
@@ -32,21 +32,21 @@ int CostasArrayRelativeCostStrategy::relativeSolutionCost(vector<int> & _configu
     return relativeSolutionCost(_configuration, changes);
 }
 
-int CostasArrayRelativeCostStrategy::relativeSolutionCost(std::vector<int> & new_config, T_Changes)
+int CostasArrayRelativeCostStrategy::relativeSolutionCost(std::vector<int> & _configuration, T_Changes)
 {
-    ca_str->init(new_config);
+    ca_str->init(_configuration);
     return ca_str->CurrentCost;
 }
 
 vector<int> CostasArrayRelativeCostStrategy::Reset()
 {
-    ca_str->Reset();
+    ca_str->reset();
     return ca_str->Configuration;
 }
 
-int CostasArrayRelativeCostStrategy::costOnVariable(int i)
+int CostasArrayRelativeCostStrategy::costOnVariable(int variable_index)
 {
-    return ca_str->costOnVariable(i);
+    return ca_str->costOnVariable(variable_index);
 }
 
 int CostasArrayRelativeCostStrategy::sickestVariable()

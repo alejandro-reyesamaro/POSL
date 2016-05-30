@@ -11,10 +11,10 @@ SubsumRelativeCostStrategy::SubsumRelativeCostStrategy(vector<int> values, int s
 {
 }
 
-void SubsumRelativeCostStrategy::initializeCostData(std::vector<int> & _configuration, int initial_cost)
+void SubsumRelativeCostStrategy::initializeCostData(std::vector<int> & _configuration, int _initial_cost)
 {
     cost_structure->init(_configuration);
-    if(initial_cost != cost_structure->CurrentCost)
+    if(_initial_cost != cost_structure->CurrentCost)
         throw "(POSL Exception) Not matching costs (SubsumRelativeCostStrategy::initializeCostData)";
 }
 
@@ -31,9 +31,9 @@ int SubsumRelativeCostStrategy::relativeSolutionCost(std::vector<int> & _configu
     return relativeSolutionCost(_configuration, changes);
 }
 
-int SubsumRelativeCostStrategy::relativeSolutionCost(std::vector<int> & new_config, T_Changes change)
+int SubsumRelativeCostStrategy::relativeSolutionCost(std::vector<int> & _configuration, T_Changes _change)
 {
-    return cost_structure->relative_cost(new_config, change, false);
+    return cost_structure->relative_cost(_configuration, _change, false);
 }
 
 int SubsumRelativeCostStrategy::currentCost()
@@ -46,9 +46,9 @@ int SubsumRelativeCostStrategy::sickestVariable()
     return sickest_variable_strategy->sickestVariable();
 }
 
-int SubsumRelativeCostStrategy::costOnVariable(int index)
+int SubsumRelativeCostStrategy::costOnVariable(int variable_index)
 {
-    return cost_structure->costOnVariable(index);
+    return cost_structure->costOnVariable(variable_index);
 }
 
 int SubsumRelativeCostStrategy::relative_cost(std::vector<int> & new_config, T_Changes change, bool updating)

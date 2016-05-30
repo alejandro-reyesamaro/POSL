@@ -20,7 +20,9 @@
 
 using namespace std;
 
-#define MAX_ITERS 100
+#define MAX_ATTEMPTS 100
+#define MAX_ITERS 2000
+#define EPS 3
 
 RandomGolombValidGenerationStrategy::RandomGolombValidGenerationStrategy(int _order, int _length)
     : subsum(_length),
@@ -50,13 +52,13 @@ RandomGolombValidGenerationStrategy::RandomGolombValidGenerationStrategy(int _or
                                       (
                                           make_shared<OM_SubsumSinglePermutationNeighborhood>(bench),
                                           //make_shared<OM_FirstImprovementSelection>(bench)
-                                          make_shared<OM_FirstImprovementGlobalTabuSelection>(bench)
+                                          make_shared<OM_FirstImprovementGlobalTabuSelection>(bench, EPS)
                                       )
                                   ),
                                   make_shared<OM_AlwaysImproveDecision>()
                               )
                           ),
-                          make_shared<LoopBoundExpression>(2000)
+                          make_shared<LoopBoundExpression>(MAX_ITERS)
                       )
                   )
               )
@@ -72,7 +74,7 @@ vector<int> RandomGolombValidGenerationStrategy::generate_conf()
     do{
         sol = static_pointer_cast<Solution>(CM->execute(psp, make_shared<Seed>()));
     }
-    while(psp->BestCostSoFar() != 0 && count ++ < MAX_ITERS);
+    while(psp->BestCostSoFar() != 0 && count ++ < MAX_ATTEMPTS);
     if(psp->BestCostSoFar() != 0)
         throw "(POSL Exception) Unable to find a starting solution (RandomGolombValidGenerationStrategy::generate)";
     subsum_configuration = sol->get_conf_by_copy();

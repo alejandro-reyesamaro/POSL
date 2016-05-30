@@ -17,11 +17,11 @@ CostasArrayCostStructure::CostasArrayCostStructure(int n)
       save_sol(n), best_sol(n), i_err(n), to_add({1, 2, n - 2, n - 3})
 {}
 
-void CostasArrayCostStructure::init(vector<int> config)
+void CostasArrayCostStructure::init(vector<int> _configuration)
 {
     //copy(config.begin(), config.end(), Configuration.begin());
-    Configuration = config;
-    CurrentCost = Cost(config, true);
+    Configuration = _configuration;
+    CurrentCost = Cost(_configuration, true);
 }
 
 int CostasArrayCostStructure::Cost(vector<int> & config, bool update)
@@ -85,7 +85,7 @@ void CostasArrayCostStructure::Random_Array_Permut(vector<int> & vec, int begin,
     //}
 }
 
-void CostasArrayCostStructure::Reset()
+void CostasArrayCostStructure::reset()
 {    
     int i, j, k, sz;
     int max = 0, nb_max = 0, imax;

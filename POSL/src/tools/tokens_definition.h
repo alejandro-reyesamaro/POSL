@@ -69,6 +69,7 @@
 #define OP_UNION_TOK_NAME "U"
 #define OP_NOTNULL_TOK_NAME "NotNull"
 #define OP_TABU_TOK_NAME "Tabu"
+#define OP_FIRST_TOK_NAME "First"
 
 #define OP_CONDITIONAL_EXECUTION_TOK "OP.?"
 #define OP_SEQUENTIAL_EXECUTION_TOK "OP.|->"
@@ -81,6 +82,7 @@
 #define OP_UNION_TOK "OP.U"
 #define OP_NOTNULL_TOK "OP.NotNull"
 #define OP_TABU_TOK "OP.Tabu"
+#define OP_FIRST_TOK "OP.First"
 
 #define BE_AND_TOK_NAME "AND"
 #define BE_OR_TOK_NAME "OR"

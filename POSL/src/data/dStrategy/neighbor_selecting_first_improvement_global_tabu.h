@@ -17,7 +17,7 @@ class NeighborSelectingFirstImprovementGlobalTabu
         * \param V The set (a Neighborhood)
         * \return The current and the new found configurations
         */
-        shared_ptr<DecisionPair> select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V);
+        shared_ptr<DecisionPair> select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V, float eps);
 
     private:
         shared_ptr<DecisionPair> rPair;

@@ -12,10 +12,10 @@ AllIntervalRelativeCostStrategy::AllIntervalRelativeCostStrategy(int n)
       sickest_variable_strategy(make_shared<DefaultSickestVariableStrategy>(n, dynamic_pointer_cast<ProjectableCost>(cost_str)))
 {}
 
-void AllIntervalRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int initial_cost)
+void AllIntervalRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int _initial_cost)
 {
     cost_str->init(_configuration);
-    if(initial_cost != cost_str->CurrentCost)
+    if(_initial_cost != cost_str->CurrentCost)
         throw "(POSL Exception) Not matching costs (AllIntervalRelativeCostStrategy::initializeCostData)";
 }
 
@@ -44,9 +44,9 @@ vector<int> AllIntervalRelativeCostStrategy::Reset()
     return cost_str->Configuration;
 }
 
-int AllIntervalRelativeCostStrategy::costOnVariable(int i)
+int AllIntervalRelativeCostStrategy::costOnVariable(int variable_index)
 {
-    return cost_str->costOnVariable(i);
+    return cost_str->costOnVariable(variable_index);
 }
 
 int AllIntervalRelativeCostStrategy::sickestVariable()

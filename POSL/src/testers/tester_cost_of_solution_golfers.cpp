@@ -1,7 +1,7 @@
 #include "tester_cost_of_solution_golfers.h"
 #include "../data/solution.h"
 #include "../benchmarks/benchmark.h"
-#include "../benchmarks/cost_strategy/golfers_intersections_costs_trategy.h"
+#include "../benchmarks/cost_strategy/golfers_intersections_cost_strategy.h"
 
 Tester_CostOfSolutionGolfers::Tester_CostOfSolutionGolfers(int argc, char *argv[])
     : Tester(argc, argv)

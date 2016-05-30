@@ -12,10 +12,10 @@ NQueensRelativeCostStrategy::NQueensRelativeCostStrategy(int n)
       sickest_variable_strategy(make_shared<DefaultSickestVariableStrategy>(n, dynamic_pointer_cast<ProjectableCost>(nq_str)))
 {}
 
-void NQueensRelativeCostStrategy::initializeCostData(std::vector<int> &_configuration, int initial_cost)
+void NQueensRelativeCostStrategy::initializeCostData(std::vector<int> &_configuration, int _initial_cost)
 {
     nq_str->set(_configuration);
-    if(initial_cost != nq_str->CurrentCost)
+    if(_initial_cost != nq_str->CurrentCost)
         throw "(POSL Exception) Not matching costs (NQueensRelativeCostStrategy::initializeCostData)";
 }
 
@@ -37,14 +37,14 @@ int NQueensRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configu
     return relativeSolutionCost(_configuration, changes);
 }
 
-int NQueensRelativeCostStrategy::relativeSolutionCost(std::vector<int> &new_config, T_Changes change)
+int NQueensRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configuration, T_Changes change)
 {
-    return relative_cost(new_config, change, false);
+    return relative_cost(_configuration, change, false);
 }
 
-int NQueensRelativeCostStrategy::costOnVariable(int i)
+int NQueensRelativeCostStrategy::costOnVariable(int variable_index)
 {
-    return nq_str->costOnVariable(i);
+    return nq_str->costOnVariable(variable_index);
 }
 
 int NQueensRelativeCostStrategy::sickestVariable()

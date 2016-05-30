@@ -6,6 +6,7 @@
 #include "operator_flo_uncoder.h"
 #include "operator_rho_uncoder.h"
 #include "operator_send_uncoder.h"
+#include "operator_tabu_uncoder.h"
 #include "compound_module_uncoder.h"
 #include "../tools/tokens_definition.h"
 
@@ -14,6 +15,7 @@
 #include "../operators/union_operator.h"
 #include "../operators/min_operator.h"
 #include "../operators/not_null_operator.h"
+#include "../operators/first_operator.h"
 
 using namespace std;
 
@@ -51,6 +53,11 @@ shared_ptr<Operator> OperatorUncoder::uncode(string code, shared_ptr<Benchmark> 
         OperatorSendUncoder op_send_unc;
         return op_send_unc.uncode(code, bench);
     }
+    else if (op_name == OP_TABU_TOK_NAME)
+    {
+        OperatorTabuUncoder op_tabu_unc;
+        return op_tabu_unc.uncode(code, bench);
+    }
     else
     {
         pair<string, string> p = CodingTools::separateModules(p_tnc.second, 2);
@@ -63,6 +70,8 @@ shared_ptr<Operator> OperatorUncoder::uncode(string code, shared_ptr<Benchmark> 
             return make_shared<MinOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
         if (op_name == OP_NOTNULL_TOK_NAME)
             return make_shared<NotNullOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
+        if (op_name == OP_FIRST_TOK_NAME)
+            return make_shared<FirstOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
         else if (op_name == OP_SEQUENTIAL_EXECUTION_TOK_NAME)
             return make_shared<SequentialExecOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
         else if (op_name == OP_SPEED_TOK_NAME)

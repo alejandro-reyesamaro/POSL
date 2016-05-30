@@ -20,7 +20,7 @@ GolfersRelativeCostStrategy::GolfersRelativeCostStrategy(int g, int p, int w)
       bad_variables(TP)
 {}
 
-void GolfersRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int initial_cost)
+void GolfersRelativeCostStrategy::initializeCostData(vector<int> & _configuration, int _initial_cost)
 {
     //copy(_configuration.begin(), _configuration.end(), configuration.begin());
     configuration = _configuration;
@@ -42,7 +42,7 @@ void GolfersRelativeCostStrategy::initializeCostData(vector<int> & _configuratio
                 }
         }
     }
-    current_cost = initial_cost;
+    current_cost = _initial_cost;
 }
 
 int GolfersRelativeCostStrategy::relative_cost(std::vector<int> & new_config, T_Changes change, bool updating)
@@ -94,9 +94,9 @@ int GolfersRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configu
     return relativeSolutionCost(_configuration, changes);
 }
 
-int GolfersRelativeCostStrategy::relativeSolutionCost(std::vector<int> &new_config, T_Changes changes)
+int GolfersRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configuration, T_Changes _changes)
 {
-    return current_cost + relative_cost(new_config, changes, false);
+    return current_cost + relative_cost(_configuration, _changes, false);
 }
 
 int GolfersRelativeCostStrategy::costOnVariable(int variable_index)
@@ -128,3 +128,15 @@ int GolfersRelativeCostStrategy::sickestVariable()
     }
     return bad_variables.elementAt(r_gen.next_int(0, bad_variables.size()-1));
 }
+
+/*
+struct Occurrences
+{
+    Occurrences(int n) : players(n, 0){}
+    int GetValue(int pos){ return players[pos]; }
+    void SetValue(int pos, int value){ players[pos] = value; }
+    void IncreaseValue(int pos){ players[pos] ++; }
+    void DecreaseValue(int pos){ players[pos] = std::min(0, players[pos] - 1); }
+    std::vector<int> players;
+};
+*/

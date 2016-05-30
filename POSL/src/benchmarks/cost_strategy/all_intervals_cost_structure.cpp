@@ -49,9 +49,9 @@ int AllIntervalsCostStructure::relative_cost(vector<int> & new_config, T_Changes
         return cost_of_solution(nb_occ_aux, new_config, N);
 }
 
-void AllIntervalsCostStructure::init(vector<int> config)
+void AllIntervalsCostStructure::init(vector<int> _configuration)
 {
-    Configuration = config;
+    Configuration = _configuration;
     CurrentCost = cost_of_solution(nb_occ, Configuration, N);
 }
 

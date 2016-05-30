@@ -348,7 +348,9 @@ SOURCES += src/main.cpp \
     src/operators/strategy/tabu_sequential_strategy.cpp \
     src/operators/strategy/tabu_och_sequential_strategy.cpp \
     src/operators/tabu_operator.cpp \
-    src/operators/strategy/first_sequential_strategy.cpp
+    src/operators/strategy/first_sequential_strategy.cpp \
+    src/operators/first_operator.cpp \
+    src/packing/operator_tabu_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -524,7 +526,6 @@ HEADERS += \
     src/data/dStrategy/standard_apply_change_behavior.h \
     src/data/dStrategy/sorted_apply_change_behavior.h \
     src/packing/module_uncoder.h \
-    src/benchmarks/cost_strategy/golfers_intersections_costs_trategy.h \
     src/benchmarks/cost_strategy/solution_cost_strategy.h \
     src/benchmarks/cost_strategy/golfers_long_int_cost_strategy.h \
     src/benchmarks/cost_strategy/golomb_ruler_distances_cost_strategy.h \
@@ -703,7 +704,10 @@ HEADERS += \
     src/operators/strategy/tabu_sequential_strategy.h \
     src/operators/strategy/tabu_och_sequential_strategy.h \
     src/operators/tabu_operator.h \
-    src/operators/strategy/first_sequential_strategy.h
+    src/operators/strategy/first_sequential_strategy.h \
+    src/operators/first_operator.h \
+    src/packing/operator_tabu_uncoder.h \
+    src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
