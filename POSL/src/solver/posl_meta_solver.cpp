@@ -80,6 +80,7 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
 
 void POSL_MetaSolver::solve_in_parallel()
 {
+    //cout << scheduler->schedulerSize() << endl;
     cout << par_str->solve(scheduler) << endl;
     //psp->log(output);
     exit(0);

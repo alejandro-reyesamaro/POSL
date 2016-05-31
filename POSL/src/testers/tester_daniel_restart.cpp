@@ -2,7 +2,7 @@
 #include "../data/solution.h"
 #include "../modules/operation_module.h"
 #include "../modules/om_fixed_first_configuration.h"
-#include "../modules/om_daniel_as_restart_rearrange.h"
+#include "../modules/om_daniel_as_restart_processing.h"
 #include "../modules/grouped_sequential_computation.h"
 #include "../operators/sequential_exec_operator.h"
 
@@ -20,7 +20,7 @@ string Tester_DanielRestart::test()
     vector<int> conf ({12, 9, 0, 13, 1, 7, 8, 6, 11, 3, 2, 5, 14, 10, 4 });
     bench->SetDefaultConfiguration(conf);
     shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench));
-    shared_ptr<OperationModule> om_r(make_shared<OM_DanielASRestartRearrange>());
+    shared_ptr<OperationModule> om_r(make_shared<OM_DanielASRestartProcessing>());
     shared_ptr<Operator> op(make_shared<SequentialExecOperator>(om_s, om_r));
     shared_ptr<GroupedComputation> G(make_shared<GroupedSequentialComputation>(op));
 

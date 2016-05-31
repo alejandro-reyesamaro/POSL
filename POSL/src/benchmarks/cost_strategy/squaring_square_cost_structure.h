@@ -10,7 +10,13 @@
 class SquaringSquareCostStructure : public ProjectableCost
 {
     public:
+        //! Default constructor.
+        /*!
+            \param _size Size of the big square.
+            \param _squares Sizes of the squares.
+         */
         SquaringSquareCostStructure(int _size, std::vector<int> _squares);
+
 
         int relative_cost(std::vector<int> & new_config, T_Changes change, bool updating);
         void set(std::vector<int> _configuration);

@@ -29,4 +29,5 @@ std::shared_ptr<ComputationData> DecisionPairFirstDataOpenChannel::storeMessage(
         pair_data->updateFromPack(buffer);
         return pair_data;
     }
+    else return nullptr;
 }

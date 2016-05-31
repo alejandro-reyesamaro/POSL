@@ -18,6 +18,7 @@ void TabuObject::addTabuSolution(vector<int> & configuration)
 
 bool TabuObject::isGlobalTabu(vector<int> & configuration, float eps)
 {
+    //bool t = tabu_list->isTabuByNorm2(configuration, eps);
     return tabu_list->isTabuByNorm2(configuration, eps);
 }
 

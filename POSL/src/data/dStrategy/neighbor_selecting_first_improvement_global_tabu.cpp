@@ -24,15 +24,16 @@ shared_ptr<DecisionPair> NeighborSelectingFirstImprovementGlobalTabu::select(sha
         is_global_tabu = (eps == 0) ? psp->GetTabuObject()->isGlobalTabu(neighbor)
                                     : psp->GetTabuObject()->isGlobalTabu(neighbor,eps);
         if (!is_global_tabu)
+        {
             if(c < best_found_cost)
             {
                 best_found_cost   = c;
                 best_found_config = neighbor;
                 break;
             }
-            //else if(c = best_found_cost && psp->GetRandomizer()->bernoulli(0.5))
-            //    best_found_config = neighbor;
-
+        }
+        //else
+        //    cout<< "found tabu (NeighborSelectingFirstImprovementGlobalTabu)" << endl;
     }
     rPair->update(current_config, best_found_config);
     return rPair;

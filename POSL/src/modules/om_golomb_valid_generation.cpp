@@ -21,6 +21,7 @@ shared_ptr<Solution> OM_GolombValidGeneration::spcf_execute(shared_ptr<PSP> psp,
 
     if(psp->GetTabuObject()->ThereIsTabu())
     {
+        //cout << "tabu arrived" << endl;
         last_global_tabu_configuration = psp->GetTabuObject()->GetLastArrivedTabu();
         rsolution->UpdateConfiguration(rconf_strategy->generate(last_global_tabu_configuration));
     }

@@ -176,7 +176,6 @@ SOURCES += src/main.cpp \
     src/data/dStrategy/standard_apply_change_behavior.cpp \
     src/data/dStrategy/sorted_apply_change_behavior.cpp \
     src/packing/module_uncoder.cpp \
-    src/benchmarks/cost_strategy/golfers_intersections_costs_trategy.cpp \
     src/benchmarks/cost_strategy/solution_cost_strategy.cpp \
     src/benchmarks/cost_strategy/golfers_long_int_cost_strategy.cpp \
     src/benchmarks/cost_strategy/golomb_ruler_distances_cost_strategy.cpp \
@@ -259,15 +258,11 @@ SOURCES += src/main.cpp \
     src/testers/tester_solver_costas_array.cpp \
     src/benchmarks/cost_strategy/squaring_square_cost_structure.cpp \
     src/tools/upper_matrix.cpp \
-    src/modules/aom_rearrange_configuration.cpp \
-    src/modules/om_default_rearrange.cpp \
     src/packing/om_r_uncoder.cpp \
-    src/modules/om_adaptive_search_rearrenge.cpp \
     src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.cpp \
     src/modules/strategy/add_a_constant_rearrange_strategy.cpp \
     src/testers/tester_as_restart.cpp \
     src/modules/strategy/circular_shift_around_bad_rearrange_strategy.cpp \
-    src/modules/om_daniel_as_restart_rearrange.cpp \
     src/testers/tester_daniel_restart.cpp \
     src/data/dStrategy/neighbor_selecting_k_best_improvement.cpp \
     src/tools/binary_search_tree.cpp \
@@ -345,12 +340,14 @@ SOURCES += src/main.cpp \
     src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.cpp \
     src/modules/om_first_improvement_global_tabu_selection.cpp \
     src/solver/tabu_object.cpp \
-    src/operators/strategy/tabu_sequential_strategy.cpp \
-    src/operators/strategy/tabu_och_sequential_strategy.cpp \
-    src/operators/tabu_operator.cpp \
     src/operators/strategy/first_sequential_strategy.cpp \
     src/operators/first_operator.cpp \
-    src/packing/operator_tabu_uncoder.cpp
+    src/modules/aom_process_configuration.cpp \
+    src/modules/om_tabu_processing.cpp \
+    src/modules/om_default_processing.cpp \
+    src/modules/om_daniel_as_restart_processing.cpp \
+    src/modules/om_adaptive_search_processing.cpp \
+    src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -611,16 +608,12 @@ HEADERS += \
     src/testers/tester_solver_costas_array.h \
     src/benchmarks/cost_strategy/squaring_square_cost_structure.h \
     src/tools/upper_matrix.h \
-    src/modules/aom_rearrange_configuration.h \
-    src/modules/om_default_rearrange.h \
     src/packing/om_r_uncoder.h \
-    src/modules/om_adaptive_search_rearrenge.h \
     src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.h \
     src/modules/strategy/add_a_constant_rearrange_strategy.h \
     src/testers/tester_as_restart.h \
     src/modules/strategy/circular_shift_around_bad_rearrange_strategy.h \
     src/modules/strategy/rearrange_strategy.h \
-    src/modules/om_daniel_as_restart_rearrange.h \
     src/testers/tester_daniel_restart.h \
     src/data/dStrategy/neighbor_selecting_k_best_improvement.h \
     src/tools/binary_search_tree.h \
@@ -701,13 +694,14 @@ HEADERS += \
     src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.h \
     src/modules/om_first_improvement_global_tabu_selection.h \
     src/solver/tabu_object.h \
-    src/operators/strategy/tabu_sequential_strategy.h \
-    src/operators/strategy/tabu_och_sequential_strategy.h \
-    src/operators/tabu_operator.h \
     src/operators/strategy/first_sequential_strategy.h \
     src/operators/first_operator.h \
-    src/packing/operator_tabu_uncoder.h \
-    src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.h
+    src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.h \
+    src/modules/aom_process_configuration.h \
+    src/modules/om_tabu_processing.h \
+    src/modules/om_default_processing.h \
+    src/modules/om_daniel_as_restart_processing.h \
+    src/modules/om_adaptive_search_processing.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -738,4 +732,5 @@ OTHER_FILES += \
     src/testers/test_codes/solver_golomb_test.posl \
     src/testers/test_codes/solver_subsum_test.posl \
     src/testers/test_codes/solver_all_intervals_test.posl \
-    src/testers/test_codes/squaring_square_test.posl
+    src/testers/test_codes/squaring_square_test.posl \
+    src/testers/test_codes/script_golomb.bs

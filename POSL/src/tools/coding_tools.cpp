@@ -110,7 +110,7 @@ std::pair<std::string, std::string> CodingTools::separateModules(std::string cod
         cm1_code = p.first;
         cm2_code = (hm == 1) ? "" : p.second;
     }
-    else if(front == SEQ_TOK_OPEN) // Parallel CM
+    else if(front == SEQ_TOK_OPEN) // Sequential CM
     {
         std::pair<std::string, std::string> p = CodingTools::extractInnerCode(code, SEQ_TOK_OPEN, SEQ_TOK_CLOSE, true, false);
         cm1_code = p.first;
@@ -118,9 +118,18 @@ std::pair<std::string, std::string> CodingTools::separateModules(std::string cod
     }
     else
     {
-        size_t pos = code.find_first_of(" ");
-        cm1_code = (pos != std::string::npos) ? code.substr(0, pos + 1) : code;
-        cm2_code = (hm == 1) ? "" : code.substr(pos + 1 );
+        if (front == OM_TOK)
+        {
+            size_t pos = code.find_first_of(" ");
+            cm1_code = (pos != std::string::npos) ? code.substr(0, pos + 1) : code;
+            cm2_code = (hm == 1) ? "" : code.substr(pos + 1 );
+        }
+        else // front == OCH_TOK
+        {
+            size_t pos = code.find_first_of(")");
+            cm1_code = (pos != std::string::npos) ? code.substr(0, pos+1) : code;
+            cm2_code = (hm == 1) ? "" : code.substr(pos + 1);
+        }
     }
     return { cm1_code, cm2_code };
 }

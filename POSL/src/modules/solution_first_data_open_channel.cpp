@@ -26,4 +26,5 @@ shared_ptr<ComputationData> SolutionFirstDataOpenChannel::storeMessage(int * buf
         solution_data->UpdateConfigurationFromPack(buffer);
         return solution_data;
     }
+    else return nullptr;
 }

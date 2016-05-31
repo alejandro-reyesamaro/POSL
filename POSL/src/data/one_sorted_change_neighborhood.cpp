@@ -50,7 +50,7 @@ void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
         rand->vector_shuffle(posible_values);
         posible_values_size = posible_values.size();
         for (int pos_new_value = 0; pos_new_value <  posible_values_size ; pos_new_value++) // or posible_values_size/2
-            if(posible_values[pos_new_value] != current_value)// && is_valid_distance(indexes[i], posible_values[pos_new_value]))
+            if(posible_values[pos_new_value] != current_value && is_valid_distance(indexes[i], posible_values[pos_new_value]))
             {
                 next_change = {{indexes[i]}, {posible_values[pos_new_value]}, 1};
                 changes.push_back(next_change);
@@ -62,8 +62,16 @@ bool OneSortedChangeNeighborhood::is_valid_distance(int new_index, int new_value
 {
     //int distance1 = new_value - current_configuration[new_index-1];
     //int distance2 = current_configuration[new_index+1] - new_value;
-    return ! (measured_distances[new_value - current_configuration[new_index-1]] ||
-              measured_distances[current_configuration[new_index+1] - new_value]);
+
+    int distance_left = current_configuration[new_index] - current_configuration[new_index - 1];
+    int distance_right = current_configuration[new_index + 1] - current_configuration[new_index];
+    measured_distances[distance_left] = false;
+    measured_distances[distance_right] = false;
+    bool result =  ! (measured_distances[new_value - current_configuration[new_index-1]] ||
+                      measured_distances[current_configuration[new_index+1] - new_value]);
+    measured_distances[distance_left] = true;
+    measured_distances[distance_right] = true;
+    return result;
 }
 
 std::shared_ptr<FactoryPacker> OneSortedChangeNeighborhood::BuildPacker(){ throw "Not implemented yet"; }
