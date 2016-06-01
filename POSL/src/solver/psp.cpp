@@ -6,7 +6,6 @@
 using namespace std;
 
 #define EXIT_TIME 300000
-#define TABU_SIZE 15
 
 PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
     : bench(_bench),
@@ -22,7 +21,7 @@ PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
       logs_path(_logs_path),      
       restarts(-1),
       rand(make_shared<Randomizer>(_bench->Dimension(), max(0, _pID))),
-      tabu_object(make_shared<TabuObject>(TABU_SIZE, _bench->Dimension()))
+      tabu_object(make_shared<TabuObject>(_bench->Dimension()))
 {}
 
 PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)

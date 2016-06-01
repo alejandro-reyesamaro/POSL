@@ -7,7 +7,7 @@
 class TabuObject
 {
     public:
-        TabuObject(int tabu_size, int problem_dimention);
+        TabuObject(int problem_dimention);
 
         void addTabuSolution(std::vector<int> & configuration);
         bool isGlobalTabu(std::vector<int> & configuration, float eps);

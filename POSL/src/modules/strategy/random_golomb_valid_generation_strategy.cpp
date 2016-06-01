@@ -22,7 +22,7 @@ using namespace std;
 
 #define MAX_ATTEMPTS 100
 #define MAX_ITERS 2000
-#define EPS 7
+#define EPS 4
 
 RandomGolombValidGenerationStrategy::RandomGolombValidGenerationStrategy(int _order, int _length)
     : subsum(_length),

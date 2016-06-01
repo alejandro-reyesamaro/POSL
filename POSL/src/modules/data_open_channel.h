@@ -27,7 +27,7 @@ class DataOpenChannel : public OpenChannel
         std::shared_ptr<ComputationData> selectMessage();
 
     protected:
-        std::shared_ptr<ComputationData> receive_and_log(int id, int tag, std::shared_ptr<PSP> psp);
+        void receive_and_log(int id, int tag, std::shared_ptr<PSP> psp);
         bool ContainsInformation() { return contains_information; }
 
         std::shared_ptr<Benchmark> bench;

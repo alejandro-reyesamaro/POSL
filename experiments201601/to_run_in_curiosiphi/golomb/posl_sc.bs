@@ -1,0 +1,19 @@
+runs=3
+
+files_results=g_eps7.pres;
+strs=g_base.posl
+
+cores=40
+
+
+echo "---- ${n[r]} : $cores  -----" >> $item
+		
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich2 -np $cores ./bin/POSL golomb 8-34 $strs >> $files_results
+done
+echo "----END-----" >> $files_results
+#w >> $files_results
+echo "   " >> $files_results
+
+

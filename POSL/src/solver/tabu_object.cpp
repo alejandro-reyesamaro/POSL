@@ -2,8 +2,10 @@
 
 using namespace std;
 
-TabuObject::TabuObject(int tabu_size, int problem_dimention)
-    : tabu_list(make_shared<TabuList>(tabu_size)),
+#define TABU_SIZE 15
+
+TabuObject::TabuObject(int problem_dimention)
+    : tabu_list(make_shared<TabuList>(TABU_SIZE)),
       last_arrived_tabu_configuration(problem_dimention, 0),
       something_has_arrived(false)
 {

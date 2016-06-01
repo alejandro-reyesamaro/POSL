@@ -16,7 +16,7 @@ FirstSequentialStrategy::FirstSequentialStrategy(shared_ptr<CompoundModule> _M1,
 shared_ptr<ComputationData> FirstSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     //cout << "first" << endl;
-    result_m1 = M2->execute(psp, input);
+    result_m1 = M1->execute(psp, input);
     result_m2 = M2->execute(psp, input);
 
     return (result_m1 != nullptr) ? result_m1 : result_m2;
