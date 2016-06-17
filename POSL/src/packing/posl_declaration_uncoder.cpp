@@ -9,7 +9,9 @@ using namespace std;
 POSL_DeclarationUncoder::POSL_DeclarationUncoder()
 {}
 
-HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<string> vcode, std::shared_ptr<Benchmark> bench)
+HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<string> vcode,
+                                                                         std::shared_ptr<Benchmark> bench,
+                                                                         shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     HashMap<string, string> strategies;
     SolverDeclarationUncoder sd_unc;
@@ -42,7 +44,7 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
                 {
                     strategy_code = strategies.mapOf(strategy_name);
                     st_instance = make_shared<ComputationStrategy>(strategy_name, strategy_code);
-                    st_instance->Instantiate(sdec.Operation_Module_Instance_Names, sdec.Open_Channel_Instance_Names, bench);
+                    st_instance->Instantiate(sdec.Operation_Module_Instance_Names, sdec.Open_Channel_Instance_Names, bench, psp_params);
                     solver = make_shared<POSL_Solver>(sdec.Solver_Name, bench, st_instance);
                     solvers_list.insert_or_replace(sdec.Solver_Name, solver);//push_back(solver);
                 }

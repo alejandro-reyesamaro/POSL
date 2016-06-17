@@ -9,7 +9,9 @@ using namespace std;
 OperatorConditionalUncoder::OperatorConditionalUncoder()
 {}
 
-shared_ptr<Operator> OperatorConditionalUncoder::uncode(string code, shared_ptr<Benchmark> bench)
+shared_ptr<Operator> OperatorConditionalUncoder::uncode(string code,
+                                                        shared_ptr<Benchmark> bench,
+                                                        shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     //pair<string, pair<string, string>> p = CodingTools::extractExpressionAndCode2(code);
 
@@ -23,7 +25,7 @@ shared_ptr<Operator> OperatorConditionalUncoder::uncode(string code, shared_ptr<
 
     CompoundModuleUncoder cm_unc;
     BooleanExpressionUncoder be_unc;
-    return make_shared<ConditionalOperator>(cm_unc.uncode(cm1_code, bench),
-                                            cm_unc.uncode(cm2_code, bench),
+    return make_shared<ConditionalOperator>(cm_unc.uncode(cm1_code, bench, psp_params),
+                                            cm_unc.uncode(cm2_code, bench, psp_params),
                                             be_unc.uncode(be_code));
 }

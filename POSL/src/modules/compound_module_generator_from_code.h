@@ -9,7 +9,9 @@
 class CompoundModuleGeneratorFromCode : public CompoundModule
 {
     public:
-        CompoundModuleGeneratorFromCode(std::string code, std::shared_ptr<Benchmark> bench);
+        CompoundModuleGeneratorFromCode(std::string code,
+                                        std::shared_ptr<Benchmark> bench,
+                                        shared_ptr<SearchProcessParamsStruct> psp_params);
 
         std::shared_ptr<ComputationData> execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData> input);
 
@@ -24,7 +26,9 @@ class CompoundModuleGeneratorFromCode : public CompoundModule
         void connect(ConnectorInfo connector, int procID) { module->connect(connector, procID); }
 
     private:
-        std::shared_ptr<CompoundModule> generateFrom(std::string code, std::shared_ptr<Benchmark> bench);
+        std::shared_ptr<CompoundModule> generateFrom(std::string code,
+                                                     std::shared_ptr<Benchmark> bench,
+                                                     shared_ptr<SearchProcessParamsStruct> psp_params);
 
         std::shared_ptr<CompoundModuleUncoder> m_uncoder;
         std::shared_ptr<CompoundModule> module;

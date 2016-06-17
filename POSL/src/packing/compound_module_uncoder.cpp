@@ -10,23 +10,25 @@ using namespace std;
 CompoundModuleUncoder::CompoundModuleUncoder()
 {}
 
-shared_ptr<CompoundModule> CompoundModuleUncoder::uncode(string code, shared_ptr<Benchmark> bench)
+shared_ptr<CompoundModule> CompoundModuleUncoder::uncode(string code,
+                                                         shared_ptr<Benchmark> bench,
+                                                         shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     pair<CM_type, string> info = CodingTools::extratModuleFromCM(code);
     if (info.first == SEQ_G)
     {
         GroupedSequentialComputationUncoder seq_unc;
-        return seq_unc.uncode(info.second, bench);
+        return seq_unc.uncode(info.second, bench, psp_params);
     }
     else if (info.first == PAR_G)
     {
         GroupedParallelComputationUncoder par_unc;
-        return par_unc.uncode(info.second, bench);
+        return par_unc.uncode(info.second, bench, psp_params);
     }
     else if (info.first == OM)
     {
         OperationModuleUncoder oper_unc;
-        return oper_unc.uncode(info.second, bench);
+        return oper_unc.uncode(info.second, bench, psp_params);
     }
     else if (info.first == OCH)
     {

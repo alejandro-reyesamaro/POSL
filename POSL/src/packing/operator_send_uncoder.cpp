@@ -9,7 +9,9 @@ OperatorSendUncoder::OperatorSendUncoder()
 {
 }
 
-shared_ptr<Operator> OperatorSendUncoder::uncode(string code, shared_ptr<Benchmark> bench)
+shared_ptr<Operator> OperatorSendUncoder::uncode(string code,
+                                                 shared_ptr<Benchmark> bench,
+                                                 shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     /*
     std::size_t pos_open = code.find_first_of("(");
@@ -25,5 +27,5 @@ shared_ptr<Operator> OperatorSendUncoder::uncode(string code, shared_ptr<Benchma
     string cm_code = p.second;
 
     CompoundModuleUncoder cm_unc;
-    return make_shared<SendDataOperator>(name, cm_unc.uncode(cm_code, bench));
+    return make_shared<SendDataOperator>(name, cm_unc.uncode(cm_code, bench, psp_params));
 }

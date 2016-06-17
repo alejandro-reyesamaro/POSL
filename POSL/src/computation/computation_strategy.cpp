@@ -11,9 +11,12 @@ ComputationStrategy::ComputationStrategy(string name, string code)
 {}
 
 
-void ComputationStrategy::Instantiate(vector<string> & om_instances, vector<string> & och_instances, shared_ptr<Benchmark> bench)
+void ComputationStrategy::Instantiate(vector<string> & om_instances,
+                                      vector<string> & och_instances,
+                                      shared_ptr<Benchmark> bench,
+                                      shared_ptr<SearchProcessParamsStruct> psp_params)
 {
-    module = cs_uncoder.uncode(cs_code, om_instances, och_instances, bench);
+    module = cs_uncoder.uncode(cs_code, om_instances, och_instances, bench, psp_params);
 }
 
 shared_ptr<Solution> ComputationStrategy::execute(shared_ptr<PSP> psp)

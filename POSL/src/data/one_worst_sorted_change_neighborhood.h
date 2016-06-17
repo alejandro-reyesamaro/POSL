@@ -8,7 +8,9 @@
 #include "dynamic_neighborhood.h"
 #include "dStrategy/apply_change_behavior.h"
 
-class OneWorstSortedChangeNeighborhood : public Neighborhood, public DynamicNeighborhood, public std::enable_shared_from_this<Neighborhood>
+class OneWorstSortedChangeNeighborhood : public Neighborhood,
+                                         public DynamicNeighborhood,
+                                         public std::enable_shared_from_this<Neighborhood>
 {
     friend class ElementsChangeIterator;
     public:

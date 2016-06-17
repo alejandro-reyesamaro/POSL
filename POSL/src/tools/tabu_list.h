@@ -11,6 +11,7 @@ class TabuList
 
         void push(std::vector<int> & conf);
         bool isTabu(std::vector<int> & conf);
+        bool isTabuByNorm(std::vector<int> & conf, float eps, std::function<float(std::vector<int>&, std::vector<int>&)> norm_func);
         bool isTabuByNorm1(std::vector<int> & conf, float eps);
         bool isTabuByNorm2(std::vector<int> & conf, float eps);
         bool isTabuByNorm8(std::vector<int> & conf, float eps);

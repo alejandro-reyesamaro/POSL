@@ -22,7 +22,8 @@ shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp,
     if(psp->CurrentCost() != cost)
     {
         cost = psp->CurrentCost();
-        cout << psp->GetIterations() << " - " << cost << " - " << psp->BestCostSoFar() << endl;
+        cout << "om_always_improve_decision.cpp" << psp->GetIterations() << " - " << cost << " - " << psp->BestCostSoFar() << endl;
+        cout << psp->GetBestSolutionSoFar()->configurationToString() << endl;
     }
     //cout << input->GetFound()->configurationToString() << endl;
     */

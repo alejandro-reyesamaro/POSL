@@ -47,7 +47,13 @@ class AllIntervalsCostStructure : public ProjectableCost
         void init(std::vector<int> _configuration);
 
         //! From <ProjectableCost>
-        int costOnVariable(int);
+        int costOnVariable(int index);
+
+        //! Returns the index of the variable with the highest cost if swaped.
+        /*!
+            \return Index of the worst variable.
+         */
+        int worst_variable();
 
         //! Performs a <i>reset</i> w.r.t the current configuration.
         /*!

@@ -3,8 +3,7 @@ runs=3
 files_results=g_eps7.pres;
 strs=g_base.posl
 
-n=(17);
-cores=20
+cores=40
 
 
 echo "---- ${n[r]} : $cores  -----" >> $item

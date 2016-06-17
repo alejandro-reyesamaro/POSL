@@ -37,10 +37,19 @@ bool TabuList::is_tabu(vector<int> & conf, std::function<float(vector<int>&, vec
     for (std::list<vector<int>>::iterator it = tabu_list.begin(); it != tabu_list.end(); ++it)
     {
         //vector<int> current = *it;
+        //cout << "tabu_list.cpp TabuList size to compare: " << conf.size() << ", " << current.size() << endl;
         if(norm(conf, *it) < eps)
+        {
+            //cout << "tabu_list.cpp TABU found ;)" << endl;
             return true;
+        }
     }
     return false;
+}
+
+bool TabuList::isTabuByNorm(vector<int> & conf, float eps, function<float(vector<int>&, vector<int>&)> norm_func)
+{
+    return is_tabu(conf, norm_func, eps);
 }
 
 bool TabuList::isTabuByNorm1(vector<int> & conf, float eps)

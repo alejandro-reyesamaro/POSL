@@ -2,12 +2,12 @@ St_g01 := cStrategy
         oModule: OM_S, OM_V, OM_SS, OM_D;
 {
 <S>
-    OP.Cyc ( BE.LoopBnd 300 )
+    OP.Cyc ( BE.LoopBnd 1000 )
     <S>
         OP.|->
         OM_S
         <S>
-            OP.Cyc ( BE.LoopBnd 200 )
+            OP.Cyc ( BE.LoopBnd 1000 )
             <S>
                 OP.|->
                 <S>
@@ -18,7 +18,7 @@ St_g01 := cStrategy
                             OP.|->
                             OM_V
                             <S>
-                                OP.? ( BE.SCI 25 )
+                                OP.? ( BE.SCI 50 )
                                 OM_SS
                                 OM_SS.Rand
                             </S>
@@ -33,17 +33,17 @@ St_g01 := cStrategy
 };
 
 St_g02 := cStrategy
-    oModule: OM_S, OM_V, OM_SS, OM_D;
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
 {
 <S>
-    OP.Cyc ( BE.LoopBnd 300 )
+    OP.Cyc ( BE.LoopBnd 1000 )
     <S>
         OP.|->
         OM_S
         <S>
             OP.|->
             <S>
-                OP.Cyc ( BE.LoopBnd 200 )
+                OP.Cyc ( BE.LoopBnd 1500 )
                 <S>
                     OP.|->
                     <S>
@@ -54,7 +54,7 @@ St_g02 := cStrategy
                                 OP.|->
                                 OM_V
                                 <S>
-                                    OP.? ( BE.SCI 25 )
+                                    OP.? ( BE.SCI 30 )
                                     OM_SS
                                     OM_SS.Rand
                                 </S>
@@ -64,14 +64,14 @@ St_g02 := cStrategy
                     </S> OMS.TimeCounter
                 </S>
             </S>
-            OM_R.Tabu
+            OM_R
         </S>
     </S>
 </S>
 };
 
 St_g01COMM := cStrategy
-    oModule: OM_S, OM_V, OM_SS, OM_D;
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
     oChannel: OCh;
 {
 <S>
@@ -80,7 +80,7 @@ St_g01COMM := cStrategy
         OP.|->
         <S>
             OP.First
-            <S> OP.|-> OCh (Ch1) OM_R.Tabu </S>
+            <S> OP.|-> OCh (Ch1) OM_R </S>
             OM_S
         </S>
         <S>
@@ -107,7 +107,7 @@ St_g01COMM := cStrategy
                     </S> OMS.TimeCounter
                 </S>
             </S>
-            <S> OP.OSend (send_1) OM_R.Tabu </S>
+            <S> OP.OSend (send_1) OM_R </S>
         </S>
     </S>
 </S>
@@ -115,26 +115,33 @@ St_g01COMM := cStrategy
 
 solver1 := solver
 {
-    cStrategy: St_g02;
+    cStrategy: St_g01;
     oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+solver2 := solver
+{
+    cStrategy: St_g02;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:7:8);
 };
 
 solverc1 := solver
 {
     cStrategy: St_g01COMM;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:7:8);
     oChannel: OCh.Sol_Last;
 };
 
 solverc2 := solver
 {
     cStrategy: St_g01COMM;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:7:8);
     oChannel: OCh.Sol_Last;
 };
 
 connections:
 
-[solver1]40;
-//[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]2;
+//[solver1]4;
+[solver2]4;
+//[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]1;
 

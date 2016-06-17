@@ -2,34 +2,41 @@
 
 #include <algorithm>
 #include <iostream>
+#include <climits>
 
 using namespace std;
 
 #define EXIT_TIME 300000
 
-PSP::PSP(shared_ptr<Benchmark> _bench, int _pID, string _logs_path)
+PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)
+    : PSP (_bench, make_shared<SearchProcessParamsStruct>())//PSP (_bench, _pID, "./logs")
+{
+    params->SetID(_pID);
+}
+
+PSP::PSP(shared_ptr<Benchmark> _bench)
+    : PSP (_bench, make_shared<SearchProcessParamsStruct>())//-1, "./logs")
+{}
+
+PSP::PSP(std::shared_ptr<Benchmark> _bench, std::shared_ptr<SearchProcessParamsStruct> _params)
     : bench(_bench),
       iterations(0),
       milisecs(0),
       best_found_configuration(_bench->Dimension(),1),
-      best_found_cost(100000),
-      pID(_pID),
+      best_found_cost(INT_MAX),
+      //pID(params->pID),
       outer_information(false),
       found_thanks_outer_information(false),
-      time_out(EXIT_TIME),
-      plog(max(0, _pID), _logs_path),
-      logs_path(_logs_path),      
+      //time_out(params->max_time_miliseconds),
+      plog(max(0, _params->pID), _params->logs_path),
+      //logs_path(params->logs_path),
       restarts(-1),
-      rand(make_shared<Randomizer>(_bench->Dimension(), max(0, _pID))),
-      tabu_object(make_shared<TabuObject>(_bench->Dimension()))
-{}
-
-PSP::PSP(shared_ptr<Benchmark> _bench, int _pID)
-    : PSP (_bench, _pID, "./logs")
-{}
-
-PSP::PSP(shared_ptr<Benchmark> _bench)
-    : PSP (_bench, -1, "./logs")
+      rand(make_shared<Randomizer>(_bench->Dimension(), max(0, _params->pID))),
+      tabu_object(make_shared<TabuObject>(_bench->Dimension(),
+                                          _params->GetpTabuListSize(),
+                                          _params->GetTabuEps(),
+                                          _params->GetpTabuNormType())),
+      params(_params)
 {}
 
 void PSP::UpdateSolution(vector<int> & config)
@@ -48,7 +55,7 @@ void PSP::UpdateSolution(vector<int> & config)
 void PSP::Start(vector<int> & config)
 {
     bench->InitializeCostData(config);
-    if(iterations == 0)
+    if(iterations <= 0)
     {
         copy(config.begin(), config.end(), best_found_configuration.begin());
         best_found_cost = bench->currentCost();

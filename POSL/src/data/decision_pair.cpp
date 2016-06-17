@@ -30,3 +30,16 @@ void DecisionPair::updateFromPack(int * pack)
 bool DecisionPair::equals(){ return current->equal(found); }
 
 std::shared_ptr<FactoryPacker> DecisionPair::BuildPacker(){ return std::make_shared<FactoryDecisionPairPacker>(shared_from_this()); }
+
+int DecisionPair::comapareTo(std::shared_ptr<ComputationData> other,
+                             std::function<int(std::shared_ptr<ComputationData>)> criteria)
+{
+    if(other->Tag() == TAGDECISSIONPAIR)
+    {
+        int ranking_this = criteria(found);
+        int ranking_other = criteria(static_pointer_cast<DecisionPair>(other)->GetFound());
+        int difference = ranking_this - ranking_other;
+        return (difference == 0) ? 0 : difference / abs(difference);
+    }
+    else throw "(POSL Exception) Not compearing allowed (DecisionPair::comapareTo)";
+}

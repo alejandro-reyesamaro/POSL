@@ -115,7 +115,7 @@ St_g01COMM := cStrategy
 
 solver1 := solver
 {
-    cStrategy: St_g01;
+    cStrategy: St_g02;
     oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
@@ -135,6 +135,6 @@ solverc2 := solver
 
 connections:
 
-[solver1]2;
-[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]2;
+//[solver1]40;
+[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]20;
 

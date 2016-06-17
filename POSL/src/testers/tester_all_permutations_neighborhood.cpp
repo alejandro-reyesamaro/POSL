@@ -27,6 +27,7 @@ string Tester_AllPermutationsNeighborhood::test()
 
     bool two_permutations = true;
     int changes = 0;
+    shared_ptr<Solution> aux;
 
     while(two_permutations && it->SomeNext())
     {
@@ -37,11 +38,11 @@ string Tester_AllPermutationsNeighborhood::test()
             if(v[i] != neighbor[i]) changes ++;
         two_permutations = two_permutations && (changes == 0 || changes == 2)   ;
 
-        //aux = make_shared<Solution>(bench->Variable_Domain(), v);
-        //cout << aux->configurationToString() << endl;
-        //aux = make_shared<Solution>(bench->Variable_Domain(), neighbor);
-        //cout << aux->configurationToString() << endl;
-        //cout << endl;
+        aux = make_shared<Solution>(bench->Variable_Domain(), v);
+        cout << aux->configurationToString() << endl;
+        aux = make_shared<Solution>(bench->Variable_Domain(), neighbor);
+        cout << aux->configurationToString() << endl;
+        cout << endl;
     }
     return (two_permutations) ? "OM_AllPermutationsNeighborhood: OK !" : "OM_AllPermutationsNeighborhood: fail :/";
 }

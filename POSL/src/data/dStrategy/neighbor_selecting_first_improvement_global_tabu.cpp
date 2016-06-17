@@ -6,7 +6,7 @@ NeighborSelectingFirstImprovementGlobalTabu::NeighborSelectingFirstImprovementGl
     : rPair(make_shared<DecisionPair>(make_shared<Solution>(domain, dimension), make_shared<Solution>(domain, dimension)))
 {}
 
-shared_ptr<DecisionPair> NeighborSelectingFirstImprovementGlobalTabu::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V, float eps)
+shared_ptr<DecisionPair> NeighborSelectingFirstImprovementGlobalTabu::select(shared_ptr<PSP> psp, shared_ptr<Neighborhood> V)
 {
     current_config = psp->GetCurrentSolution()->get_conf_by_copy();
     int current_cost = psp->CurrentCost();
@@ -21,8 +21,7 @@ shared_ptr<DecisionPair> NeighborSelectingFirstImprovementGlobalTabu::select(sha
     {
         neighbor = it->GetNext();
         c = psp->GetBenchmark()->relativeSolutionCost(neighbor);
-        is_global_tabu = (eps == 0) ? psp->GetTabuObject()->isGlobalTabu(neighbor)
-                                    : psp->GetTabuObject()->isGlobalTabu(neighbor,eps);
+        is_global_tabu = psp->GetTabuObject()->isGlobalNeighborTabu(neighbor);
         if (!is_global_tabu)
         {
             if(c < best_found_cost)

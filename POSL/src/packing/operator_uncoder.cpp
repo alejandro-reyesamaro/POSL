@@ -6,7 +6,6 @@
 #include "operator_flo_uncoder.h"
 #include "operator_rho_uncoder.h"
 #include "operator_send_uncoder.h"
-#include "operator_tabu_uncoder.h"
 #include "compound_module_uncoder.h"
 #include "../tools/tokens_definition.h"
 
@@ -23,7 +22,9 @@ OperatorUncoder::OperatorUncoder()
 {
 }
 
-shared_ptr<Operator> OperatorUncoder::uncode(string code, shared_ptr<Benchmark> bench)
+shared_ptr<Operator> OperatorUncoder::uncode(string code,
+                                             shared_ptr<Benchmark> bench,
+                                             shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     pair<pair<string, string>, string> p_tnc = CodingTools::separateTokenAndCode(code);
     string op_name = p_tnc.first.second;
@@ -31,27 +32,27 @@ shared_ptr<Operator> OperatorUncoder::uncode(string code, shared_ptr<Benchmark> 
     if (op_name == OP_CONDITIONAL_EXECUTION_TOK_NAME)
     {
         OperatorConditionalUncoder op_cond_unc;
-        return op_cond_unc.uncode(code, bench);
+        return op_cond_unc.uncode(code, bench, psp_params);
     }
     else if (op_name == OP_CYCLIC_TOK_NAME)
     {
         OperatorCyclicUncoder op_cyc_unc;
-        return op_cyc_unc.uncode(code, bench);
+        return op_cyc_unc.uncode(code, bench, psp_params);
     }
     else if (op_name == OP_PLORIAN_TOK_NAME)
     {
         OperatorFloUncoder op_flo_unc;
-        return op_flo_unc.uncode(code, bench);
+        return op_flo_unc.uncode(code, bench, psp_params);
     }
     else if (op_name == OP_RHO_TOK_NAME)
     {
         OperatorRhoUncoder op_rho_unc;
-        return op_rho_unc.uncode(code, bench);
+        return op_rho_unc.uncode(code, bench, psp_params);
     }
     else if (op_name == OP_SEND_DATA_TOK_NAME)
     {
         OperatorSendUncoder op_send_unc;
-        return op_send_unc.uncode(code, bench);
+        return op_send_unc.uncode(code, bench, psp_params);
     }
     else
     {
@@ -62,17 +63,17 @@ shared_ptr<Operator> OperatorUncoder::uncode(string code, shared_ptr<Benchmark> 
         CompoundModuleUncoder cm_unc;
 
         if (op_name == OP_MIN_TOK_NAME)
-            return make_shared<MinOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
+            return make_shared<MinOperator>(cm_unc.uncode(cm1_code, bench, psp_params), cm_unc.uncode(cm2_code, bench, psp_params));
         else if (op_name == OP_NOTNULL_TOK_NAME)
-            return make_shared<NotNullOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
+            return make_shared<NotNullOperator>(cm_unc.uncode(cm1_code, bench, psp_params), cm_unc.uncode(cm2_code, bench, psp_params));
         else if (op_name == OP_FIRST_TOK_NAME)
-            return make_shared<FirstOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
+            return make_shared<FirstOperator>(cm_unc.uncode(cm1_code, bench, psp_params), cm_unc.uncode(cm2_code, bench, psp_params));
         else if (op_name == OP_SEQUENTIAL_EXECUTION_TOK_NAME)
-            return make_shared<SequentialExecOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
+            return make_shared<SequentialExecOperator>(cm_unc.uncode(cm1_code, bench, psp_params), cm_unc.uncode(cm2_code, bench, psp_params));
         else if (op_name == OP_SPEED_TOK_NAME)
-            return make_shared<SpeedOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
+            return make_shared<SpeedOperator>(cm_unc.uncode(cm1_code, bench, psp_params), cm_unc.uncode(cm2_code, bench, psp_params));
         else if (op_name == OP_UNION_TOK_NAME)
-            return make_shared<UnionOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench));
+            return make_shared<UnionOperator>(cm_unc.uncode(cm1_code, bench, psp_params), cm_unc.uncode(cm2_code, bench, psp_params));
         else
             throw "(POSL Exception) Not well coded Binary Operator (OperatorUncoder::uncode)";
     }

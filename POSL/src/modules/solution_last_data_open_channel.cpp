@@ -2,6 +2,8 @@
 #include "../packing/packers/solution_packer.h"
 #include "../tools/tokens_definition.h"
 
+#include <iostream>
+
 using namespace std;
 
 SolutionLastDataOpenChannel::SolutionLastDataOpenChannel(string name, shared_ptr<Benchmark> _bench)
@@ -22,5 +24,6 @@ string SolutionLastDataOpenChannel::codeToSend()
 shared_ptr<ComputationData> SolutionLastDataOpenChannel::storeMessage(int * buffer, std::shared_ptr<PSP>)
 {
     solution_data->UpdateConfigurationFromPack(buffer);
+    //cout << solution_data->get_conf_by_ref().size() << endl;
     return solution_data;
 }

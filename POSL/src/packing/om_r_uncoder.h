@@ -6,5 +6,7 @@ class OM_R_Uncoder
 {
     public:
         OM_R_Uncoder();
-        std::shared_ptr<OperationModule> uncode(std::string code, std::shared_ptr<Benchmark> bench);
+        std::shared_ptr<OperationModule> uncode(std::string code,
+                                                std::shared_ptr<Benchmark> bench,
+                                                shared_ptr<SearchProcessParamsStruct> psp_params);
 };

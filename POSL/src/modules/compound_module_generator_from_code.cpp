@@ -2,9 +2,11 @@
 
 using namespace std;
 
-CompoundModuleGeneratorFromCode::CompoundModuleGeneratorFromCode(string code, shared_ptr<Benchmark> bench)
+CompoundModuleGeneratorFromCode::CompoundModuleGeneratorFromCode(string code,
+                                                                 shared_ptr<Benchmark> bench,
+                                                                 shared_ptr<SearchProcessParamsStruct> psp_params)
     : m_uncoder(make_shared<CompoundModuleUncoder>()),
-      module(generateFrom(code, bench)),
+      module(generateFrom(code, bench, psp_params)),
       mycode(code)
 {}
 
@@ -13,9 +15,11 @@ shared_ptr<ComputationData> CompoundModuleGeneratorFromCode::execute(shared_ptr<
     return module->execute(psp, input);
 }
 
-shared_ptr<CompoundModule> CompoundModuleGeneratorFromCode::generateFrom(string code, shared_ptr<Benchmark> bench)
+shared_ptr<CompoundModule> CompoundModuleGeneratorFromCode::generateFrom(string code,
+                                                                         shared_ptr<Benchmark> bench,
+                                                                         shared_ptr<SearchProcessParamsStruct> psp_params)
 {
-    return m_uncoder->uncode(code, bench);
+    return m_uncoder->uncode(code, bench, psp_params);
 }
 
 string CompoundModuleGeneratorFromCode::codeToSend()

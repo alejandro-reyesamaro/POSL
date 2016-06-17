@@ -24,4 +24,5 @@ class POSL_MetaSolver
         shared_ptr<SolveInParallelStrategy> par_str;
         shared_ptr<SolveSequentiallyStrategy> seq_str;
         shared_ptr<SolveToTestStrategy> test_str;
+        std::shared_ptr<SearchProcessParamsStruct> psp_params;
 };

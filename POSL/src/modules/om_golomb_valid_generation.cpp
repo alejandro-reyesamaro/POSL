@@ -18,7 +18,8 @@ OM_GolombValidGeneration::OM_GolombValidGeneration(shared_ptr<Benchmark> bench)
 
 shared_ptr<Solution> OM_GolombValidGeneration::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<Seed>)
 {
-
+    //int it = psp->GetIterations();
+    //int cost = psp->BestCostSoFar();
     if(psp->GetTabuObject()->ThereIsTabu())
     {
         //cout << "tabu arrived" << endl;

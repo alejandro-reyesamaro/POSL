@@ -10,7 +10,7 @@ Comunicator::Comunicator()
 {}
 
 void Comunicator::sendMessage(vector<int> package, int procID)
-{    
+{
     int tag = package[0];
     int pack_size = package.size();
     int * buffer = &package[0];    
@@ -19,7 +19,7 @@ void Comunicator::sendMessage(vector<int> package, int procID)
     {
         int id;
         MPI_Comm_rank(MPI_COMM_WORLD, &id);
-        cout << "Sending information (" << tag << ")  from " << id << " to " << procID << endl;
+        cout << "Sending information (" << pack_size << "INT of " << tag << ")  from " << id << " to " << procID << endl;
         logging = false;
     }
 

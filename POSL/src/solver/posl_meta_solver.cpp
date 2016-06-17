@@ -22,11 +22,12 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
       exe_path(_exe_path),
       par_str(make_shared<SolveInParallelStrategy>(bench, exe_path)),
       seq_str(make_shared<SolveSequentiallyStrategy>(bench)),
-      test_str(make_shared<SolveToTestStrategy>(bench))
+      test_str(make_shared<SolveToTestStrategy>(bench)),
+      psp_params(make_shared<SearchProcessParamsStruct>())
 {
     shared_ptr<PoslUncoder> posl_unc;
     pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);
-    HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench);
+    HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench, psp_params);
     vector<ConnectionsDeclaration> connections = posl_unc->uncode_connections(codes.second);
 
     ConnectionsDeclaration current_declaration;
@@ -81,14 +82,14 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
 void POSL_MetaSolver::solve_in_parallel()
 {
     //cout << scheduler->schedulerSize() << endl;
-    cout << par_str->solve(scheduler) << endl;
+    cout << par_str->solve(scheduler, psp_params) << endl;
     //psp->log(output);
     exit(0);
 }
 
 void POSL_MetaSolver::solve_sequentially()
 {
-    cout << seq_str->solve(scheduler) << endl;
+    cout << seq_str->solve(scheduler, psp_params) << endl;
     //psp->log(output);
     exit(0);
 }

@@ -40,6 +40,9 @@ class Solution : public ComputationData, public std::enable_shared_from_this<Sol
 
         std::string Tag() { return TAGSOLUTION; }
 
+        int comapareTo(std::shared_ptr<ComputationData> other,
+                       std::function<int(std::shared_ptr<ComputationData>)> criteria);
+
     private:
         std::shared_ptr<Domain> variables_domains;
         std::vector<int> configuration;

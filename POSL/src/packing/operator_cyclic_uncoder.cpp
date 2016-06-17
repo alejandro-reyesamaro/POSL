@@ -10,7 +10,9 @@ OperatorCyclicUncoder::OperatorCyclicUncoder()
 {
 }
 
-shared_ptr<Operator> OperatorCyclicUncoder::uncode(string code, shared_ptr<Benchmark> bench)
+shared_ptr<Operator> OperatorCyclicUncoder::uncode(string code,
+                                                   shared_ptr<Benchmark> bench,
+                                                   shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     //std::size_t pos_open = code.find_first_of("(");
     //std::size_t pos_close = code.find_first_of(")");
@@ -22,5 +24,5 @@ shared_ptr<Operator> OperatorCyclicUncoder::uncode(string code, shared_ptr<Bench
 
     CompoundModuleUncoder cm_unc;
     BooleanExpressionUncoder be_unc;
-    return make_shared<CyclicOperator>(cm_unc.uncode(cm_code, bench), be_unc.uncode(be_code));
+    return make_shared<CyclicOperator>(cm_unc.uncode(cm_code, bench, psp_params), be_unc.uncode(be_code));
 }

@@ -12,14 +12,16 @@ SolveInParallelStrategy::SolveInParallelStrategy(std::shared_ptr<Benchmark> benc
       exe_path(_exe_path)
 {}
 
-string SolveInParallelStrategy::solve(shared_ptr<Scheduler> scheduler)
+string SolveInParallelStrategy::solve(shared_ptr<Scheduler> scheduler, shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     int myid = 0;
     MPI_Comm_rank(MPI_COMM_WORLD,&myid);
     if(myid < scheduler->schedulerSize())
     {
         shared_ptr<POSL_Solver> solver = scheduler->getSolverAt(myid);
-        shared_ptr<PSP> psp(make_shared<PSP>(benchmark, myid, exe_path));
+        psp_params->SetID(myid);
+        psp_params->SetLogPath(exe_path);
+        shared_ptr<PSP> psp(make_shared<PSP>(benchmark, psp_params));
         solver->solve(psp);
         string output = solver->show(psp);
         //string path = exe_path + "/POSLExRes_" + Tools::int2str(myid) + ".tmp";

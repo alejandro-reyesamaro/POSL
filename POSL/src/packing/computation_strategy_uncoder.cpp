@@ -10,7 +10,8 @@ ComputationStrategyUncoder::ComputationStrategyUncoder()
 shared_ptr<CompoundModule> ComputationStrategyUncoder::uncode(string code,
                                                               vector<string> om_instances,
                                                               vector<std::string> och_instances,
-                                                              shared_ptr<Benchmark> bench)
+                                                              shared_ptr<Benchmark> bench,
+                                                              shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     pair<vector<string>, vector<string>> p = CodingTools::extractModulesNamesFromDeclaration(code);
 
@@ -22,5 +23,5 @@ shared_ptr<CompoundModule> ComputationStrategyUncoder::uncode(string code,
         CodingTools::replace(cm_code, om_names, om_instances);
     if(och_names.size() > 0)
         CodingTools::replace(cm_code, och_names, och_instances);
-    return make_shared<CompoundModuleGeneratorFromCode>(cm_code, bench);
+    return make_shared<CompoundModuleGeneratorFromCode>(cm_code, bench, psp_params);
 }

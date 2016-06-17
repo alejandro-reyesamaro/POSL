@@ -10,7 +10,9 @@ OperatorRhoUncoder::OperatorRhoUncoder()
 {
 }
 
-shared_ptr<Operator> OperatorRhoUncoder::uncode(string code, shared_ptr<Benchmark> bench)
+shared_ptr<Operator> OperatorRhoUncoder::uncode(string code,
+                                                shared_ptr<Benchmark> bench,
+                                                shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     /*
     std::size_t pos_open = code.find_first_of("(");
@@ -36,5 +38,5 @@ shared_ptr<Operator> OperatorRhoUncoder::uncode(string code, shared_ptr<Benchmar
     string cm2_code = pm.second;
 
     CompoundModuleUncoder cm_unc;
-    return make_shared<RhoOperator>(cm_unc.uncode(cm1_code, bench), cm_unc.uncode(cm2_code, bench), param);
+    return make_shared<RhoOperator>(cm_unc.uncode(cm1_code, bench, psp_params), cm_unc.uncode(cm2_code, bench, psp_params), param);
 }

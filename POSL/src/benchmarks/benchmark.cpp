@@ -80,7 +80,7 @@ vector<int> Benchmark::Reset()
 
 void Benchmark::SetDefaultConfiguration(std::vector<int> & _default_configuration)
 {
-    copy(_default_configuration.begin(), _default_configuration.end(), configuration.begin());
+    copy(_default_configuration.begin(), _default_configuration.end(), default_configuration.begin());
 }
 vector<int> Benchmark::GetDefaultConfiguration()
 {

@@ -7,7 +7,7 @@
 class OM_FirstImprovementGlobalTabuSelection : public AOM_SelectionFunction
 {
     public:
-        OM_FirstImprovementGlobalTabuSelection(shared_ptr<Benchmark> bench, float _eps);
+        OM_FirstImprovementGlobalTabuSelection(shared_ptr<Benchmark> bench);
 
         shared_ptr<DecisionPair> spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input);
 

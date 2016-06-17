@@ -1,12 +1,11 @@
 runs=3
 
-files_results=g_eps7.pres;
-strs=g_base.posl
+files_results=golomb_8_34[noTabu_tabu_comm].pres;
+strs=golomb.posl
 
 cores=40
 
-
-echo "---- ${n[r]} : $cores  -----" >> $item
+echo "---- 8-34 : $cores  -----" >> $item
 		
 for (( i = 0; i < $runs; i++ ))
 do

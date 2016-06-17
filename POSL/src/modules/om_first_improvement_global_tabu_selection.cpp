@@ -4,14 +4,13 @@
 #include <iostream>
 using namespace std;
 
-OM_FirstImprovementGlobalTabuSelection::OM_FirstImprovementGlobalTabuSelection(shared_ptr<Benchmark> bench, float _eps)
-    : search_strategy(make_shared<NeighborSelectingFirstImprovementGlobalTabu>(bench->Variable_Domain(), bench->Dimension())),
-      eps(_eps)
+OM_FirstImprovementGlobalTabuSelection::OM_FirstImprovementGlobalTabuSelection(shared_ptr<Benchmark> bench)
+    : search_strategy(make_shared<NeighborSelectingFirstImprovementGlobalTabu>(bench->Variable_Domain(), bench->Dimension()))
 {}
 
 shared_ptr<DecisionPair> OM_FirstImprovementGlobalTabuSelection::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Neighborhood> input)
 {
-    return search_strategy->select(psp, input, eps);
+    return search_strategy->select(psp, input);
 }
 
 string OM_FirstImprovementGlobalTabuSelection::codeToSend()

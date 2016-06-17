@@ -15,4 +15,5 @@ class SameCostIterationsBoundExpression : public BooleanExpression
         int max_iter;
         int iterations;
         int cost;
+        int current_cost;
 };

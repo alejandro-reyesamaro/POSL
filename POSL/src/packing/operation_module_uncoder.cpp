@@ -17,7 +17,9 @@ OperationModuleUncoder::OperationModuleUncoder()
 {
 }
 
-shared_ptr<OperationModule> OperationModuleUncoder::uncode(string code, shared_ptr<Benchmark> bench)
+shared_ptr<OperationModule> OperationModuleUncoder::uncode(string code,
+                                                           shared_ptr<Benchmark> bench,
+                                                           shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     string om_type = CodingTools::extractTypeFromToken(code);
 
@@ -29,7 +31,7 @@ shared_ptr<OperationModule> OperationModuleUncoder::uncode(string code, shared_p
     else if(om_type == OM_R_TOK_TYPE) // REARRENGEMENT
     {
         OM_R_Uncoder omv_unc;
-        return omv_unc.uncode(code, bench);
+        return omv_unc.uncode(code, bench, psp_params);
     }
     else if(om_type == OM_V_TOK_TYPE) // NEIGHBORHOOD
     {

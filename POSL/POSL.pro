@@ -347,7 +347,10 @@ SOURCES += src/main.cpp \
     src/modules/om_default_processing.cpp \
     src/modules/om_daniel_as_restart_processing.cpp \
     src/modules/om_adaptive_search_processing.cpp \
-    src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.cpp
+    src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.cpp \
+    src/solver/search_process_params_struct.cpp \
+    src/packing/om_r_tabu_uncoder.cpp \
+    src/testers/tester_iteration_all_intervals.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -701,7 +704,10 @@ HEADERS += \
     src/modules/om_tabu_processing.h \
     src/modules/om_default_processing.h \
     src/modules/om_daniel_as_restart_processing.h \
-    src/modules/om_adaptive_search_processing.h
+    src/modules/om_adaptive_search_processing.h \
+    src/solver/search_process_params_struct.h \
+    src/packing/om_r_tabu_uncoder.h \
+    src/testers/tester_iteration_all_intervals.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

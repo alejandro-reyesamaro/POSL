@@ -51,5 +51,6 @@ int AllIntervalRelativeCostStrategy::costOnVariable(int variable_index)
 
 int AllIntervalRelativeCostStrategy::sickestVariable()
 {
-    return sickest_variable_strategy->sickestVariable();
+    //return sickest_variable_strategy->sickestVariable();
+    return cost_str->worst_variable();
 }

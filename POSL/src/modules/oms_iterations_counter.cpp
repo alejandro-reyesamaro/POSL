@@ -10,7 +10,14 @@ OMS_IterationsCounter::OMS_IterationsCounter()
 shared_ptr<ComputationData> OMS_IterationsCounter::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
     psp->CountIteration();
-    //cout << psp->GetIterations() << endl;
+    // <debug code>
+    /*
+    int current_cost = psp->CurrentCost();
+    int best_cost = psp->BestCostSoFar();
+    int it = psp->GetIterations();
+    cout << psp->GetIterations() << ": " << psp->CurrentCost() << " - " << psp->BestCostSoFar() << endl;
+    */
+    // </debug code>
     return input;
 }
 

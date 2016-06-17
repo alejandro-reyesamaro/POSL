@@ -12,6 +12,8 @@
 #include "computation_data.h"
 #include "solution.h"
 
+#include <functional>
+
 #define DECISIONPAIR_PACKING_ID 658202
 #define TAGDECISSIONPAIR "cd_DP"
 
@@ -34,6 +36,9 @@ class DecisionPair : public ComputationData, public std::enable_shared_from_this
         void updateFromPack(int * pack);
 
         std::string Tag() { return TAGDECISSIONPAIR; }
+
+        int comapareTo(std::shared_ptr<ComputationData> other,
+                       std::function<int(std::shared_ptr<ComputationData>)> criteria);
 
     private :
         std::shared_ptr<Solution> current;

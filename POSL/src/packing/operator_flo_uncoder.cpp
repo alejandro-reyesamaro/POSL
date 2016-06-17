@@ -10,7 +10,9 @@ OperatorFloUncoder::OperatorFloUncoder()
 {
 }
 
-shared_ptr<Operator> OperatorFloUncoder::uncode(string code, shared_ptr<Benchmark> bench)
+shared_ptr<Operator> OperatorFloUncoder::uncode(string code,
+                                                shared_ptr<Benchmark> bench,
+                                                shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     /*
     std::size_t pos_open = code.find_first_of("(");
@@ -26,5 +28,5 @@ shared_ptr<Operator> OperatorFloUncoder::uncode(string code, shared_ptr<Benchmar
     //CodingTools::trim(cm_code);
 
     CompoundModuleUncoder cm_unc;
-    return make_shared<FlorianOperator>(param, cm_unc.uncode(cm_code, bench));
+    return make_shared<FlorianOperator>(param, cm_unc.uncode(cm_code, bench, psp_params));
 }
