@@ -11,7 +11,6 @@
 
 #include "../solver/psp.h"
 #include "neighborhood.h"
-//#include "solution.h"
 #include "../tools/randomizer.h"
 #include "../tools/t_changes.h"
 #include "dynamic_neighborhood.h"

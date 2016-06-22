@@ -1,15 +1,15 @@
 runs=3
 
-files_results=golomb_10_55[tabu].pres;
+files_results=golomb_8_34[noTabu_tabu_comm].pres;
 strs=golomb.posl
 
 cores=40
 
-echo "---- 10-55 : $cores  -----" >> $item
+echo "---- 8-34 : $cores  -----" >> $item
 		
 for (( i = 0; i < $runs; i++ ))
 do
-	mpiexec.mpich2 -np $cores ./bin/POSL golomb 10-55 $strs >> $files_results
+	mpiexec.mpich2 -np $cores ./bin/POSL golomb 8-34 $strs >> $files_results
 done
 echo "----END-----" >> $files_results
 #w >> $files_results

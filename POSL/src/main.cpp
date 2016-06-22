@@ -78,12 +78,12 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_OneWorstSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
-    //tests.push_back(make_shared<Tester_GlobalTabu>(argc, argv));
+    tests.push_back(make_shared<Tester_GlobalTabu>(argc, argv));
 
     //tests.push_back(make_shared<Tester_CostOfSolutionAllIntervals>(argc, argv));
 
     //tests.push_back(make_shared<Tester_FarRandomConfGeneration>(argc, argv));
-    tests.push_back(make_shared<Tester_SolverAllIntervals>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverAllIntervals>(argc, argv));
     //tests.push_back(make_shared<Tester_AllPermutationsNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationAllIntervals>(argc, argv));
 

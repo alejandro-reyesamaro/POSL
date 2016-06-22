@@ -142,6 +142,6 @@ solverc2 := solver
 connections:
 
 //[solver1]4;
-//[solver2]4;
-[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]20;
+[solver2]4;
+//[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]1;
 

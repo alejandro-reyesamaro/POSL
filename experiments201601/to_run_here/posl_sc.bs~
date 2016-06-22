@@ -9,7 +9,7 @@ cores=4
 		
 for (( i = 0; i < $runs; i++ ))
 do
-	mpiexec.mpich -np $cores /home/reyesamaro-a/Documents/POSL/POSL/bin/POSL golomb 9-44 $strs #>> $files_results
+	mpiexec.mpich -np $cores /home/reyesamaro-a/Documents/POSL/POSL/bin/POSL golomb 10-55 $strs #>> $files_results
 done
 #echo "----END-----" >> $files_results
 #w >> $files_results
