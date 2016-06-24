@@ -5,9 +5,10 @@
 using namespace std;
 
 SolutionFirstDataOpenChannel::SolutionFirstDataOpenChannel(string name, shared_ptr<Benchmark> _bench)
-    : DataOpenChannel(name, _bench),
-      solution_data(make_shared<Solution>(_bench->Variable_Domain(), _bench->Dimension()))
-{}
+    : DataOpenChannel(name, _bench)
+{
+    received_data = make_shared<Solution>(_bench->Variable_Domain(), _bench->Dimension());
+}
 
 int SolutionFirstDataOpenChannel::dataID()
 {
@@ -19,12 +20,13 @@ string SolutionFirstDataOpenChannel::codeToSend()
     return string(OCH_SOLUTION_FIRST_TOK) + "(" + name + ")";
 }
 
-shared_ptr<ComputationData> SolutionFirstDataOpenChannel::storeMessage(int * buffer, std::shared_ptr<PSP>)
+std::shared_ptr<Solution> SolutionFirstDataOpenChannel::cast_to_solution()
+{
+    return static_pointer_cast<Solution>(received_data);
+}
+
+void SolutionFirstDataOpenChannel::storeMessage(int * buffer, std::shared_ptr<PSP>)
 {
     if(!ContainsInformation())
-    {
-        solution_data->UpdateConfigurationFromPack(buffer);
-        return solution_data;
-    }
-    else return nullptr;
+        cast_to_solution()->UpdateConfigurationFromPack(buffer);
 }

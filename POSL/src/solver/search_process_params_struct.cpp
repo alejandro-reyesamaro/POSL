@@ -10,6 +10,10 @@ SearchProcessParamsStruct::SearchProcessParamsStruct()
     : SearchProcessParamsStruct(-1, "./logs", TABU_SIZE, 2, TABU_EPS, EXIT_TIME)
 {}
 
+SearchProcessParamsStruct::SearchProcessParamsStruct(int _tabu_list_size, int _tabu_norm_type, float _tabu_eps)
+    : SearchProcessParamsStruct(-1, "./logs", _tabu_list_size, _tabu_norm_type, _tabu_eps, EXIT_TIME)
+{}
+
 SearchProcessParamsStruct::SearchProcessParamsStruct(int _pID,
                                                      std::string _logs_path,
                                                      int _tabu_list_size,

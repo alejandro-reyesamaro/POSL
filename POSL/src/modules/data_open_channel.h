@@ -23,19 +23,19 @@ class DataOpenChannel : public OpenChannel
         std::shared_ptr<ComputationData> execute(std::shared_ptr<PSP> psp, std::shared_ptr<ComputationData>);
 
         virtual int dataID() = 0;        
-        virtual std::shared_ptr<ComputationData> storeMessage(int * buffer, std::shared_ptr<PSP> psp) = 0;
-        std::shared_ptr<ComputationData> selectMessage();
+        virtual void storeMessage(int * buffer, std::shared_ptr<PSP> psp) = 0;
+        virtual std::shared_ptr<ComputationData> selectMessage();
 
     protected:
         void receive_and_log(int id, int tag, std::shared_ptr<PSP> psp);
         bool ContainsInformation() { return contains_information; }
 
+        bool contains_information;
         std::shared_ptr<Benchmark> bench;
         std::shared_ptr<ComputationData> received_data;
 
     private:
         bool logging;
         MPI_Status status;
-        bool contains_information;        
         std::vector<int> buffer;        
 };

@@ -19,7 +19,7 @@ string NeighborhoodLastDataOpenChannel::codeToSend()
     return string(OCH_NEIGHBORHOOD_LAST_TOK) + "(" + name + ")";
 }
 
-std::shared_ptr<ComputationData> NeighborhoodLastDataOpenChannel::storeMessage(int * buffer, std::shared_ptr<PSP>)
+void NeighborhoodLastDataOpenChannel::storeMessage(int * buffer, std::shared_ptr<PSP>)
 {
-    return make_shared<FromPackNeighborhood>(buffer);
+    received_data = make_shared<FromPackNeighborhood>(buffer);
 }

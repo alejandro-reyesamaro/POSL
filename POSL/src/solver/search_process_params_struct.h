@@ -7,6 +7,7 @@ class SearchProcessParamsStruct
     friend class PSP;
     public:
         SearchProcessParamsStruct();
+        SearchProcessParamsStruct(int _tabu_list_size, int _tabu_norm_type, float _tabu_eps);
         SearchProcessParamsStruct(int _pID,
                                   std::string _logs_path,
                                   int _tabu_list_size,

@@ -3,24 +3,12 @@
 #include "../data/solution.h"
 #include "../tools/tools.h"
 #include "../tools/tabu_list.h"
+#include "../solver/search_process_params_struct.h"
 
-#include "../modules/om_random_conf_permutation_by_blocks_generation.h"
 #include "../modules/om_fixed_first_configuration.h"
-#include "../modules/om_one_sorted_change_neighborhood.h"
-#include "../modules/om_best_improvement_selection.h"
-#include "../modules/om_always_improve_decision.h"
 #include "../modules/om_tabu_processing.h"
-
-#include "../operators/rho_operator.h"
 #include "../operators/sequential_exec_operator.h"
-#include "../operators/conditional_operator.h"
-#include "../operators/cyclic_operator.h"
 #include "../modules/grouped_sequential_computation.h"
-#include "../expressions/reached_cost_expression.h"
-#include "../expressions/loop_bound_expression.h"
-#include "../expressions/same_cost_iterations_bound_expression.h"
-#include "../expressions/or_expression.h"
-#include "../expressions/and_expression.h"
 
 #include <algorithm>
 
@@ -51,31 +39,22 @@ string Tester_GlobalTabu::test()
     tabu = tabu && ! tl->isTabuByNorm1(new_config1, 3);
 
     shared_ptr<Benchmark> bench(make_shared<GolombRuler>(10,55));
-    shared_ptr<PSP> psp(make_shared<PSP>(bench));
+    shared_ptr<SearchProcessParamsStruct> spps (make_shared<SearchProcessParamsStruct>(15, 2, 6));
+    shared_ptr<PSP> psp(make_shared<PSP>(bench, spps));
 
     shared_ptr<CompoundModule> OM_S (make_shared<OM_FixedFirstConfiguration>(bench));
-    shared_ptr<CompoundModule> OM_V (make_shared<OM_OneSortedChangeNeighborhood>(bench));
-    shared_ptr<CompoundModule> OM_SS (make_shared<OM_BestImprovementSelection>(bench));
-    shared_ptr<CompoundModule> OM_D (make_shared<OM_AlwaysImproveDecision>());
     shared_ptr<CompoundModule> OM_R (make_shared<OM_TabuProcessing>());
 
-    shared_ptr<Operator> sec_1(make_shared<SequentialExecOperator>(OM_S, OM_V));
+    shared_ptr<Operator> sec_1(make_shared<SequentialExecOperator>(OM_S, OM_R));
     shared_ptr<GroupedComputation> Gsec1(make_shared<GroupedSequentialComputation>(sec_1));
-
-    shared_ptr<Operator> sec_2(make_shared<SequentialExecOperator>(Gsec1, OM_SS));
-    shared_ptr<GroupedComputation> Gsec2(make_shared<GroupedSequentialComputation>(sec_2));
-
-    shared_ptr<Operator> sec_3(make_shared<SequentialExecOperator>(Gsec2, OM_D));
-    shared_ptr<GroupedComputation> Gsec3(make_shared<GroupedSequentialComputation>(sec_3));
-
-    shared_ptr<Operator> sec_4(make_shared<SequentialExecOperator>(Gsec3, OM_R));
-    shared_ptr<GroupedComputation> Gsec4(make_shared<GroupedSequentialComputation>(sec_4));
 
     vector<int> init_config2 ({0, 1, 3, 6, 10, 15, 21, 28, 37, 55});
     bench->SetDefaultConfiguration(init_config2);
     shared_ptr<Solution> sol(make_shared<Solution>(bench->Variable_Domain(), init_config2));
     psp->UpdateSolution(sol->get_conf_by_ref());
-    sol = static_pointer_cast<Solution>(Gsec4->execute(psp, t_seed));
+    sol = static_pointer_cast<Solution>(Gsec1->execute(psp, t_seed));
 
+    vector<int> init_config3 ({0, 1, 3, 6, 8, 20, 21, 28, 37, 55});
+    tabu = tabu && psp->GetTabuObject()->isGlobalNeighborTabu(init_config3);
     return (tabu) ? "Global Tabu: OK !" : "Global Tabu: fail :/";
 }

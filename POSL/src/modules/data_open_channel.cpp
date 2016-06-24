@@ -5,10 +5,10 @@ using namespace std;
 
 DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
     : OpenChannel(name),
+      contains_information(false),
       bench(_bench),
       received_data(nullptr),
-      logging(false), // manually turn it on/of to log behavior
-      contains_information(false),
+      logging(false), // manually turn it on/of to log behavior      
       buffer(2 + _bench->Dimension() * 2)
 {}
 
@@ -20,7 +20,7 @@ void DataOpenChannel::receive_and_log(int id, int tag, shared_ptr<PSP> psp)
     //int * buffer = new int[pack_size];
     cout << "Op.Ch: PID = " << id <<". Receiving " << pack_size << "INT from " << status.MPI_SOURCE << endl;
     MPI_Recv(&buffer[0], pack_size, MPI_INT, status.MPI_SOURCE, tag, MPI_COMM_WORLD, &status);
-    received_data = storeMessage(&buffer[0], psp);
+    storeMessage(&buffer[0], psp);
     contains_information = true;
     cout << "Op.Ch: PID = "<< id <<". Received " << tag << endl;
     logging = false;
@@ -47,7 +47,7 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
             //cout << "data_open_channel.cpp count = " << pack_size << endl;
             //int * buffer = new int[pack_size];
             MPI_Recv(&buffer[0], pack_size, MPI_INT, status.MPI_SOURCE, tag, MPI_COMM_WORLD, &status);
-            received_data = storeMessage(&buffer[0], psp);
+            storeMessage(&buffer[0], psp);
             contains_information = true;
             //delete[] buffer;
             //return r;
@@ -68,3 +68,4 @@ shared_ptr<ComputationData> DataOpenChannel::selectMessage()
     }
     else return nullptr;
 }
+

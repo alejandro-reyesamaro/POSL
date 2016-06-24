@@ -23,7 +23,9 @@
  * \class OneElementChangedNeighborhood one_element_changed_neighborhood.h
  * \brief Class to represent a neighborhood, changing one value rndomly at the time
  */
-class OneElementChangedNeighborhood : public Neighborhood, public DynamicNeighborhood, public std::enable_shared_from_this<Neighborhood>
+class OneElementChangedNeighborhood : public Neighborhood,
+                                      public DynamicNeighborhood,
+                                      public std::enable_shared_from_this<Neighborhood>
 {
     friend class ElementsChangeIterator;
     public:

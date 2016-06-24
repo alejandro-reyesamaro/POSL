@@ -350,7 +350,10 @@ SOURCES += src/main.cpp \
     src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.cpp \
     src/solver/search_process_params_struct.cpp \
     src/packing/om_r_tabu_uncoder.cpp \
-    src/testers/tester_iteration_all_intervals.cpp
+    src/testers/tester_iteration_all_intervals.cpp \
+    src/data/configuration_set.cpp \
+    src/data/dStrategy/configuration_set_iterator.cpp \
+    src/modules/configuration_set_data_open_channel.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -707,7 +710,10 @@ HEADERS += \
     src/modules/om_adaptive_search_processing.h \
     src/solver/search_process_params_struct.h \
     src/packing/om_r_tabu_uncoder.h \
-    src/testers/tester_iteration_all_intervals.h
+    src/testers/tester_iteration_all_intervals.h \
+    src/data/configuration_set.h \
+    src/data/dStrategy/configuration_set_iterator.h \
+    src/modules/configuration_set_data_open_channel.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

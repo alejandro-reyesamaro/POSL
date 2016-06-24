@@ -10,8 +10,8 @@ class DecisionPairLastDataOpenChannel : public DataOpenChannel
         int dataID();
         std::string codeToSend();
 
-        std::shared_ptr<ComputationData> storeMessage(int * buffer, std::shared_ptr<PSP>);
+        void storeMessage(int * buffer, std::shared_ptr<PSP>);
 
     private:
-        std::shared_ptr<DecisionPair> pair_data;
+        std::shared_ptr<DecisionPair> cast_to_pair();
 };
