@@ -3,6 +3,7 @@
 #include <vector>
 #include <list>
 #include <functional>
+#include "../tools/list_iterator.h"
 
 class TabuList
 {
@@ -15,6 +16,7 @@ class TabuList
         bool isTabuByNorm1(std::vector<int> & conf, float eps);
         bool isTabuByNorm2(std::vector<int> & conf, float eps);
         bool isTabuByNorm8(std::vector<int> & conf, float eps);
+        std::shared_ptr<ListIterator> GetConfigurationsIterator();
 
     private:
         bool is_tabu(std::vector<int> & conf, std::function<float(std::vector<int> &, std::vector<int> &)> norm, float eps);

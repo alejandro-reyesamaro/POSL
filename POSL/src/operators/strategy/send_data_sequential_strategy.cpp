@@ -14,7 +14,7 @@ SendDataSequentialStrategy::SendDataSequentialStrategy(shared_ptr<CompoundModule
 
 shared_ptr<ComputationData> SendDataSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
-    //cout << "sending data" << endl;
+    //cout << "SendDataSequentialStrategy::evaluate - sending data to " << destinies.size() << " destinies." << endl;
     output = M1->execute(psp, input);
     for(vector<int>::iterator it = destinies.begin(); it != destinies.end(); ++it)
     {

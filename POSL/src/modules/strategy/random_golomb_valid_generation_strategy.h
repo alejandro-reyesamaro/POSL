@@ -12,6 +12,7 @@ class RandomGolombValidGenerationStrategy
 
         std::vector<int> generate(vector<int> &configuration_tabu);
         std::vector<int> generate();
+        std::vector<int> generate(std::shared_ptr<TabuObject> tabu_object);
 
     private:
         std::vector<int> generate_conf();

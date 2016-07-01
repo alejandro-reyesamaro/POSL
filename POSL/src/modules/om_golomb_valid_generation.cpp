@@ -23,11 +23,12 @@ shared_ptr<Solution> OM_GolombValidGeneration::spcf_execute(shared_ptr<PSP> psp,
     if(psp->GetTabuObject()->ThereIsTabu())
     {
         //cout << "tabu arrived" << endl;
-        last_global_tabu_configuration = psp->GetTabuObject()->GetLastArrivedTabu();
-        rsolution->UpdateConfiguration(rconf_strategy->generate(last_global_tabu_configuration));
+        //last_global_tabu_configuration = psp->GetTabuObject()->GetLastArrivedTabu();
+        //rsolution->UpdateConfiguration(rconf_strategy->generate(last_global_tabu_configuration));
+        rsolution->UpdateConfiguration(rconf_strategy->generate(psp->GetTabuObject()));
     }
     else
-        rsolution->UpdateConfiguration(rconf_strategy->generate());
+        rsolution->UpdateConfiguration(rconf_strategy->generate(psp->GetTabuObject()));
     psp->Start(rsolution->get_conf_by_ref());
     //psp->log("Start ");
     //cout << rsolution->configurationToString() << endl;//"OM_S" << endl;

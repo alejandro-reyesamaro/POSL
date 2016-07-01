@@ -95,6 +95,29 @@ vector<int> RandomGolombValidGenerationStrategy::generate(vector<int> & configur
     return generate_conf();
 }
 
+
+vector<int> RandomGolombValidGenerationStrategy::generate(std::shared_ptr<TabuObject> tabu_object)
+{
+    shared_ptr<SearchProcessParamsStruct> params(make_shared<SearchProcessParamsStruct>(tabu_object->GetTabuListSize(),
+                                                                                        tabu_object->GetTabuNormType(),
+                                                                                        tabu_object->GetTabuEps()));
+    psp = make_shared<PSP>(bench, params);
+    shared_ptr<ListIterator> tabu_iterator = tabu_object->GetTabusIterator();
+    tabu_iterator->Reset();
+    while(tabu_iterator->SomeNext())
+    {
+        vector<int> g_tabu = tabu_iterator->GetNext();
+        for(int i = 0; i < golomb_order - 1; i++)
+            subsum_configuration[i] = g_tabu[i+1] - g_tabu[i];
+        if(!psp->GetTabuObject()->isGlobalTabu(subsum_configuration))
+        {
+            //cout << "random_golomb_valid_generation_strategy.cpp tabu size: " << subsum_configuration.size() << endl;
+            psp->GetTabuObject()->addTabuSolution(subsum_configuration);
+        }
+    }
+    return generate_conf();
+}
+
 vector<int> RandomGolombValidGenerationStrategy::generate()
 {
     return generate_conf();

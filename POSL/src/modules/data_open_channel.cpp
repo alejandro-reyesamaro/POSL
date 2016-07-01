@@ -8,7 +8,7 @@ DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
       contains_information(false),
       bench(_bench),
       received_data(nullptr),
-      logging(false), // manually turn it on/of to log behavior      
+      logging(false), // manually turn it on/of to log behavior
       buffer(2 + _bench->Dimension() * 2)
 {}
 
@@ -27,11 +27,13 @@ void DataOpenChannel::receive_and_log(int id, int tag, shared_ptr<PSP> psp)
 }
 
 shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData>)
-{
-    //cout << "OPCh..." << endl;
+{    
     int id;
     MPI_Comm_rank(MPI_COMM_WORLD, &id);
     int tag = dataID();
+
+    //cout << "OPCh... " << tag << endl;
+
     int pack_size;
     int test_flag;
 
@@ -53,7 +55,7 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
             //return r;
         }
         MPI_Iprobe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &test_flag, &status);        
-    }
+    }    
     //cout << "...OPCh" << endl;
     return selectMessage();
     //return nullptr;

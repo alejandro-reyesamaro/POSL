@@ -14,6 +14,11 @@ class TabuObject
         bool isGlobalTabu(std::vector<int> & configuration);
         bool ThereIsTabu() {return something_has_arrived; }
         std::vector<int> GetLastArrivedTabu() { return last_arrived_tabu_configuration; }
+        std::shared_ptr<ListIterator> GetTabusIterator();
+
+        float GetTabuEps() { return eps; }
+        int GetTabuNormType() { return norm; }
+        int GetTabuListSize() { return tabu_size; }
 
     private:
         std::shared_ptr<TabuList> tabu_list;
@@ -21,5 +26,6 @@ class TabuObject
         bool something_has_arrived;
         float eps;
         int norm;
+        int tabu_size;
         std::function<float(std::vector<int>&, std::vector<int>&)> norm_function;
 };

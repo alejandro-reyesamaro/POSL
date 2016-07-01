@@ -69,3 +69,8 @@ bool TabuList::isTabuByNorm8(vector<int> & conf, float eps)
     std::function<float(vector<int>&, vector<int>&)> norm = Tools::norm8;
     return is_tabu(conf, norm, eps);
 }
+
+std::shared_ptr<ListIterator> TabuList::GetConfigurationsIterator()
+{
+    return make_shared<ListIterator>(tabu_list);
+}

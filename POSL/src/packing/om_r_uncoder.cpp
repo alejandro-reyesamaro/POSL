@@ -5,7 +5,6 @@
 #include "../modules/om_default_processing.h"
 #include "../modules/om_adaptive_search_processing.h"
 #include "../modules/om_daniel_as_restart_processing.h"
-//#include "../modules/om_tabu_processing.h"
 #include "om_r_tabu_uncoder.h"
 
 using namespace std;
@@ -26,7 +25,7 @@ shared_ptr<OperationModule> OM_R_Uncoder::uncode(string code,
         return make_shared<OM_AdaptiveSearchProcessing>(bench);
     else if(code == OM_DANIEL_PROCESSING_TOK)
         return make_shared<OM_DanielASRestartProcessing>();
-    else if(code.find(OM_TABU_PROCESSING_TOK) != std::string::npos)
+    else if(code.find(OM_TABU_CONFIGURATION_PROCESSING_TOK) != std::string::npos)
     {
         OM_R_Tabu_Uncoder tabu_unc;
         return tabu_unc.uncode(code, bench, psp_params);

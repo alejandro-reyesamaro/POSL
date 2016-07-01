@@ -374,7 +374,6 @@ SOURCES       = ../src/main.cpp \
 		../src/operators/strategy/first_sequential_strategy.cpp \
 		../src/operators/first_operator.cpp \
 		../src/modules/aom_process_configuration.cpp \
-		../src/modules/om_tabu_processing.cpp \
 		../src/modules/om_default_processing.cpp \
 		../src/modules/om_daniel_as_restart_processing.cpp \
 		../src/modules/om_adaptive_search_processing.cpp \
@@ -384,7 +383,14 @@ SOURCES       = ../src/main.cpp \
 		../src/testers/tester_iteration_all_intervals.cpp \
 		../src/data/configuration_set.cpp \
 		../src/data/dStrategy/configuration_set_iterator.cpp \
-		../src/modules/configuration_set_data_open_channel.cpp 
+		../src/modules/configuration_set_data_open_channel.cpp \
+		../src/modules/aom_process_configuration_set.cpp \
+		../src/modules/om_tabu_configuration_processing.cpp \
+		../src/modules/om_tabu_configuration_set_processing.cpp \
+		../src/packing/om_p_uncoder.cpp \
+		../src/packing/om_p_tabu_uncoder.cpp \
+		../src/tools/list_iterator.cpp \
+		../src/modules/aom_first_configuration_generation_from_set.cpp 
 OBJECTS       = main.o \
 		benchmark.o \
 		golfers.o \
@@ -714,7 +720,6 @@ OBJECTS       = main.o \
 		first_sequential_strategy.o \
 		first_operator.o \
 		aom_process_configuration.o \
-		om_tabu_processing.o \
 		om_default_processing.o \
 		om_daniel_as_restart_processing.o \
 		om_adaptive_search_processing.o \
@@ -724,7 +729,14 @@ OBJECTS       = main.o \
 		tester_iteration_all_intervals.o \
 		configuration_set.o \
 		configuration_set_iterator.o \
-		configuration_set_data_open_channel.o
+		configuration_set_data_open_channel.o \
+		aom_process_configuration_set.o \
+		om_tabu_configuration_processing.o \
+		om_tabu_configuration_set_processing.o \
+		om_p_uncoder.o \
+		om_p_tabu_uncoder.o \
+		list_iterator.o \
+		aom_first_configuration_generation_from_set.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -946,7 +958,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/POSL1.0.0 || mkdir -p .tmp/POSL1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../src/modules/compound_module.h ../src/modules/operation_module.h ../src/modules/open_channel.h ../src/modules/data_open_channel.h ../src/modules/object_open_channel.h ../src/modules/om_random_conf_generation.h ../src/modules/om_one_element_changed_neighborhood.h ../src/modules/om_first_improvement_selection.h ../src/modules/om_best_improvement_selection.h ../src/modules/grouped_computation.h ../src/modules/grouped_sequential_computation.h ../src/modules/grouped_parallel_computation.h ../src/modules/om_fixed_first_configuration.h ../src/modules/om_random_selection.h ../src/modules/om_random_conf_permutation_by_blocks_generation.h ../src/modules/om_best_improvement_tabu_selection.h ../src/modules/om_multi_elements_changed_neighborhood.h ../src/modules/om_golfers_single_swap_neighborhood.h ../src/modules/om_multi_sorted_changes_neighborhood.h ../src/modules/om_one_sorted_change_neighborhood.h ../src/modules/aom_first_configuration_generation.h ../src/modules/aom_neighborhood_function.h ../src/modules/aom_selection_function.h ../src/modules/aom_decision_function.h ../src/modules/om_always_improve_decision.h ../src/modules/om_simulated_annealing_decision.h ../src/modules/compound_module_generator_from_code.h ../src/modules/oms_time_counter.h ../src/modules/oms_iterations_counter.h ../src/modules/om_random_conf_ordered_generation.h ../src/modules/strategy/random_ordered_generation_strategy.h ../src/modules/strategy/random_configuration_generation_strategy.h ../src/modules/strategy/random_permutation_by_blocks_generation_strategy.h ../src/modules/om_random_permutation_generation.h ../src/modules/strategy/random_permutation_configuration_strategy.h ../src/modules/om_one_permutation_neighborhood.h ../src/data/domain.h ../src/data/dStrategy/factory_domain.h ../src/data/dStrategy/factory_n_int_domain.h ../src/data/dom_interval.h ../src/data/node.h ../src/data/solution.h ../src/data/dStrategy/posl_iterator.h ../src/data/decision_pair.h ../src/data/neighborhood.h ../src/data/one_element_changed_neighborhood.h ../src/data/computation_data.h ../src/data/seed.h ../src/data/union_neighborhood.h ../src/data/dStrategy/union_iterator.h ../src/data/dStrategy/elements_change_iterator.h ../src/data/multi_elements_changed_neighborhood.h ../src/data/multi_sorted_changes_neighborhood.h ../src/data/one_sorted_change_neighborhood.h ../src/data/dStrategy/neighbor_selecting_best_improvement_tabu.h ../src/data/dStrategy/neighbor_selecting_best_improvement.h ../src/data/dStrategy/neighbor_selecting_first_improvement.h ../src/data/dStrategy/neighbor_selecting_random.h ../src/data/golfers_single_swap_neighborhood.h ../src/data/from_pack_neighborhood.h ../src/data/one_permutation_neighborhood.h ../src/benchmarks/benchmark.h ../src/benchmarks/golfers.h ../src/benchmarks/squaring_square.h ../src/benchmarks/golomb_ruler.h ../src/benchmarks/n_queens.h ../src/operators/operator.h ../src/operators/binary_operator.h ../src/operators/sequential_exec_operator.h ../src/operators/rho_operator.h ../src/operators/unary_operator.h ../src/operators/cyclic_operator.h ../src/operators/conditional_operator.h ../src/operators/min_operator.h ../src/operators/union_operator.h ../src/operators/speed_operator.h ../src/operators/send_data_operator.h ../src/operators/strategy/not_implemented_parallel_strategy.h ../src/operators/strategy/sequential_execution_sequential_strategy.h ../src/operators/strategy/union_sequential_strategy.h ../src/operators/strategy/cyclic_sequential_strategy.h ../src/operators/strategy/conditional_sequential_strategy.h ../src/operators/strategy/rho_sequential_strategy.h ../src/operators/strategy/execution_strategy.h ../src/operators/strategy/sequential_execution_strategy.h ../src/operators/strategy/parallel_execution_strategy.h ../src/operators/strategy/executer.h ../src/operators/strategy/send_data_sequential_strategy.h ../src/operators/strategy/min_sequential_strategy.h ../src/operators/strategy/min_parallel_strategy.h ../src/operators/strategy/min_crit_comparison.h ../src/operators/strategy/union_parallel_strategy.h ../src/operators/strategy/speed_parallel_strategy.h ../src/operators/strategy/speed_sequential_strategy.h ../src/operators/florian_operator.h ../src/operators/strategy/florian_sequential_strategy.h ../src/computation/computation_strategy.h ../src/testers/tester.h ../src/testers/tester_random_configuration_generation.h ../src/testers/tester_florian_random_configuration_generation.h ../src/testers/tester_one_element_changed_neighborhood.h ../src/testers/tester_first_improvement_selection.h ../src/testers/tester_rho_operator.h ../src/testers/tester_cyclic_operator.h ../src/testers/tester_best_improvement_selection.h ../src/testers/tester_sets_index_generator.h ../src/testers/tester_multi_elements_changed_neighborhood.h ../src/testers/tester_random_selection.h ../src/testers/tester_simulated_annealing_decition.h ../src/testers/tester_best_improvement_tabu_selection.h ../src/testers/tester_random_permutation_configuration_generation.h ../src/testers/tester_golfers_permutation_neighborhood.h ../src/testers/tester_packing_solution.h ../src/testers/tester_packing_decision_pair.h ../src/testers/tester_packing_one_element_changed_neighborhood.h ../src/testers/tester_packing_multi_changes_neighborhood.h ../src/testers/tester_packing_golfers_permutation_neighborhood.h ../src/testers/packing_neighborhood_tester.h ../src/testers/tester_packing_union_neighborhood.h ../src/testers/tester_conditional_operator.h ../src/testers/tester_union_operator.h ../src/testers/tester_multi_sorted_changes_neighborhood.h ../src/testers/tester_cost_of_solution_golfers.h ../src/testers/tester_cost_of_solution_golom_rules.h ../src/testers/tester_cost_of_solution_quaring_square.h ../src/testers/tester_solver_golfers.h ../src/testers/tester_solver_golomb_ruler.h ../src/testers/tester_solver_squaring_square.h ../src/testers/tester_random_ordered_confgeneration.h ../src/testers/tester_one_sorted_change_neighborhood.h ../src/testers/tester_speed_operator.h ../src/testers/tester_cost_of_solution_nqueens.h ../src/testers/tester_solver_n_queens.h ../src/testers/tester_comunication.h ../src/tools/tools.h ../src/tools/rand_index_generator.h ../src/tools/randomizer.h ../src/tools/tabu_list.h ../src/tools/long_int.h ../src/tools/merged_longint.h ../src/tools/matrix.h ../src/tools/chronometer.h ../src/expressions/loop_bound_expression.h ../src/expressions/iteretion_bound_expression.h ../src/expressions/boolean_expression.h ../src/expressions/reached_cost_expression.h ../src/packing/codable.h ../src/packing/packers/packer.h ../src/packing/packers/decision_pair_packer.h ../src/packing/packers/golfers_single_swap_packer.h ../src/packing/packers/neighborhood_packer.h ../src/packing/packers/multi_changes_neighborhood_packer.h ../src/packing/packers/one_change_neighborhood_packer.h ../src/packing/packers/solution_packer.h ../src/packing/factory/factory_packer.h ../src/packing/factory/factory_solution_packer.h ../src/packing/factory/factory_decision_pair_packer.h ../src/packing/factory/factory_one_change_neighborhood_packer.h ../src/packing/factory/factory_multi_changes_neighborhood_packer.h ../src/packing/factory/factory_golfers_single_swap_neighborhood_packer.h ../src/solver/psp.h ../src/solver/posl_solver.h ../src/solver/posl_meta_solver.h ../src/solver/comunicator.h ../src/testers/tester_from_pack_neighborhood.h ../src/data/dynamic_neighborhood.h ../src/data/dStrategy/apply_change_behavior.h ../src/data/dStrategy/single_swap_apply_change_behavior.h ../src/data/dStrategy/standard_apply_change_behavior.h ../src/data/dStrategy/sorted_apply_change_behavior.h ../src/packing/module_uncoder.h ../src/benchmarks/cost_strategy/solution_cost_strategy.h ../src/benchmarks/cost_strategy/golfers_long_int_cost_strategy.h ../src/benchmarks/cost_strategy/golomb_ruler_distances_cost_strategy.h ../src/benchmarks/cost_strategy/n_queens_daniel_cost_strategy.h ../src/benchmarks/cost_strategy/squaring_square_superposition_cost_strategy.h ../src/testers/tester_tabuselection.h ../src/expressions/or_expression.h ../src/expressions/same_cost_iterations_bound_expression.h ../src/expressions/and_expression.h ../src/benchmarks/cost_strategy/golfers_3pn_cost_strategy.h ../src/testers/tester_longint.h ../src/benchmarks/show_strategy/golfers_default_show_strategy.h ../src/benchmarks/show_strategy/show_strategy.h ../src/benchmarks/show_strategy/golomb_ruler_default_show_strategy.h ../src/benchmarks/show_strategy/n_queens_default_show_strategy.h ../src/benchmarks/show_strategy/squaring_square_default_show_strategy.h ../src/tools/t_changes.h ../src/testers/tester_iteration_golfers.h ../src/tools/connection_matrix.h ../src/operators/strategy/min_och_sequential_strategy.h ../src/solver/strategy/showing_result_strategy.h ../src/solver/strategy/show_plain_result_strategy.h ../src/solver/strategy/show_bechmark_result_strategy.h ../src/solver/strategy/show_to_collect_strategy.h ../src/tools/hash_map.h ../src/connections/connectable.h ../src/packing/compound_module_uncoder.h ../src/packing/grouped_sequential_computation_uncoder.h ../src/packing/grouped_parallel_computation_uncoder.h ../src/packing/operation_module_uncoder.h ../src/packing/om_s_uncoder.h ../src/packing/om_v_uncoder.h ../src/packing/om_ss_uncoder.h ../src/packing/om_d_uncoder.h ../src/packing/operator_uncoder.h ../src/packing/operator_conditional_uncoder.h ../src/packing/operator_cyclic_uncoder.h ../src/packing/operator_flo_uncoder.h ../src/packing/operator_rho_uncoder.h ../src/packing/operator_send_uncoder.h ../src/packing/boolean_expression_uncoder.h ../src/packing/bool_expression_and_uncoder.h ../src/packing/bool_expression_or_uncoder.h ../src/testers/tester_coding_posl.h ../src/testers/include_testers.h ../src/tools/tokens_definition.h ../src/tools/coding_tools.h ../src/packing/open_channel_uncoder.h ../src/connections/connector_info.h ../src/connections/scheduler.h ../src/connections/connection_operator_broadcasting.h ../src/packing/computation_strategy_uncoder.h ../src/packing/posl_solver_declaration.h ../src/packing/solver_declaration_uncoder.h ../src/packing/posl_uncoder.h ../src/packing/connections_declaration.h ../src/packing/posl_declaration_uncoder.h ../src/packing/posl_connections_uncoder.h ../src/connections/connection_operator.h ../src/connections/connection_operator_no_connection.h ../src/connections/connection_operator_bipartition.h ../src/connections/connection_operator_rin.h ../src/testers/tester_packing_strategies.h ../src/benchmarks/cost_strategy/golfers_relative_cost_strategy.h ../src/benchmarks/cost_strategy/golomb_ruler_relative_cost_strategy.h ../src/benchmarks/cost_strategy/relative_cost_strategy.h ../src/benchmarks/cost_strategy/squaring_square_relative_cost_strategy.h ../src/benchmarks/cost_strategy/n_queens_relative_cost_strategy.h ../src/benchmarks/cost_strategy/n_queens_cost_structure.h ../src/data/adaptive_search_neighborhood.h ../src/tools/fixed_size_vector.h ../src/modules/om_adaptive_search_neighborhood.h ../src/testers/tester_adaptive_search_neighborhood.h ../src/data/golfers_adaptive_search_neighborhood.h ../src/modules/om_golfers_adaptive_search_neigborhood.h ../src/testers/tester_golfers_as_neighborhood.h ../src/benchmarks/costas_array.h ../src/benchmarks/show_strategy/costas_array_default_show_strategy.h ../src/benchmarks/cost_strategy/costas_array_cost_structure.h ../src/benchmarks/cost_strategy/costas_array_relative_cost_strategy.h ../src/benchmarks/cost_strategy/costas_array_daniel_cost_strategy.h ../src/testers/tester_cost_of_solution_costas_array.h ../src/testers/tester_solver_costas_array.h ../src/benchmarks/cost_strategy/squaring_square_cost_structure.h ../src/tools/upper_matrix.h ../src/packing/om_r_uncoder.h ../src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.h ../src/modules/strategy/add_a_constant_rearrange_strategy.h ../src/testers/tester_as_restart.h ../src/modules/strategy/circular_shift_around_bad_rearrange_strategy.h ../src/modules/strategy/rearrange_strategy.h ../src/testers/tester_daniel_restart.h ../src/data/dStrategy/neighbor_selecting_k_best_improvement.h ../src/tools/binary_search_tree.h ../src/testers/tester_binary_search_tree.h ../src/modules/om_k_best_improvement_selection.h ../src/testers/tester_k_best_improvement_selection.h ../src/data/golfers_single_week_swap_neighborhood.h ../src/modules/om_golfers_single_week_swap_neighborhood.h ../src/testers/tester_golfers_1_week_neighborhood.h ../src/operators/strategy/not_null_sequential_strategy.h ../src/operators/not_null_operator.h ../src/tools/posl_log.h ../src/packing/operation_module_simulated_anealing_uncoder.h ../src/testers/tester_same_cost_iterations_be.h ../src/data/golfers_adaptive_search_single_week_neighborhood.h ../src/modules/om_golfers_single_week_adaptive_search_neighborhood.h ../src/modules/decision_pair_first_data_open_channel.h ../src/modules/solution_first_data_open_channel.h ../src/modules/solution_last_data_open_channel.h ../src/modules/decision_pair_last_data_open_channel.h ../src/modules/neighborhood_last_data_open_channel.h ../src/modules/solution_best_data_open_channel.h ../src/expressions/singleton_expression.h ../src/testers/tester_singleton_experession.h ../src/tools/random_generator.h ../src/solver/strategy/solve_in_parallel_strategy.h ../src/solver/strategy/solve_sequentially_strategy.h ../src/solver/strategy/solve_to_test_strategy.h ../src/benchmarks/cost_strategy/golomb_ruler_cost_structure.h ../src/benchmarks/cost_strategy/sickest_variable_strategy.h ../src/benchmarks/cost_strategy/projectable_cost.h ../src/benchmarks/cost_strategy/default_sickest_variable_strategy.h ../src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.h ../src/testers/tester_cost_on_variable_golomb_ruler.h ../src/data/one_worst_sorted_change_neighborhood.h ../src/testers/tester_one_worst_sorted_change_neighborhood.h ../src/modules/om_one_worst_sorted_neighborhood.h ../src/benchmarks/cost_strategy/golomb_ruler_relative_cost_structure.h ../src/benchmarks/cost_strategy/golomb_measures_struct.h ../src/testers/tester_iteration_golomb_ruler.h ../src/tools/golomb_tools.h ../src/modules/strategy/random_golomb_valid_generation_strategy.h ../src/benchmarks/cost_strategy/subsum_cost_structure.h ../src/benchmarks/cost_strategy/subsum_cost_strategy.h ../src/benchmarks/cost_strategy/subsum_relative_cost_strategy.h ../src/testers/tester_cost_of_solution_subsum.h ../src/benchmarks/subsum.h ../src/benchmarks/show_strategy/subsum_show_strategy.h ../src/data/subsum_single_permitation_neighborhood.h ../src/modules/om_subsum_single_permutation_neighborhood.h ../src/testers/tester_subsum_single_swap_neighborhood.h ../src/testers/tester_solver_subsum.h ../src/modules/om_golomb_valid_generation.h ../src/benchmarks/cost_strategy/all_intervals_cost_structure.h ../src/benchmarks/all_intervals.h ../src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.h ../src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.h ../src/benchmarks/show_strategy/all_interval_default_show_strategy.h ../src/modules/strategy/far_random_configuration_generation_strategy.h ../src/testers/tester_far_random_conf_generation.h ../src/testers/tester_cost_of_solution_all_intervals.h ../src/testers/tester_solver_all_intervals.h ../src/benchmarks/cost_strategy/reseteable.h ../src/data/all_permutations_neighborhood.h ../src/modules/om_all_permutations_neighborhood.h ../src/testers/tester_all_permutations_neighborhood.h ../src/testers/tester_iteration_squaring_square.h ../src/data/uniform_domain.h ../src/data/irregular_domain.h ../src/data/one_2d_change_neighborhood.h ../src/modules/om_one_2d_change_neighborhood.h ../src/testers/tester_one_2d_change_neighborhood.h ../src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.h ../src/modules/om_h_first_improvement_selection.h ../src/expressions/module_iteration_expression.h ../src/modules/strategy/not_tabu_random_configuration_generation_strategy.h ../src/testers/tester_global_tabu.h ../src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.h ../src/modules/om_first_improvement_global_tabu_selection.h ../src/solver/tabu_object.h ../src/operators/strategy/first_sequential_strategy.h ../src/operators/first_operator.h ../src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.h ../src/modules/aom_process_configuration.h ../src/modules/om_tabu_processing.h ../src/modules/om_default_processing.h ../src/modules/om_daniel_as_restart_processing.h ../src/modules/om_adaptive_search_processing.h ../src/solver/search_process_params_struct.h ../src/packing/om_r_tabu_uncoder.h ../src/testers/tester_iteration_all_intervals.h ../src/data/configuration_set.h ../src/data/dStrategy/configuration_set_iterator.h ../src/modules/configuration_set_data_open_channel.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../src/main.cpp ../src/benchmarks/benchmark.cpp ../src/benchmarks/golfers.cpp ../src/benchmarks/squaring_square.cpp ../src/benchmarks/golomb_ruler.cpp ../src/benchmarks/n_queens.cpp ../src/data/domain.cpp ../src/data/dStrategy/factory_n_int_domain.cpp ../src/data/node.cpp ../src/data/solution.cpp ../src/data/dom_interval.cpp ../src/data/neighborhood.cpp ../src/data/one_element_changed_neighborhood.cpp ../src/data/seed.cpp ../src/data/decision_pair.cpp ../src/data/dStrategy/elements_change_iterator.cpp ../src/data/multi_elements_changed_neighborhood.cpp ../src/data/union_neighborhood.cpp ../src/data/dStrategy/union_iterator.cpp ../src/data/golfers_single_swap_neighborhood.cpp ../src/data/from_pack_neighborhood.cpp ../src/data/dStrategy/neighbor_selecting_best_improvement_tabu.cpp ../src/data/dStrategy/neighbor_selecting_best_improvement.cpp ../src/data/dStrategy/neighbor_selecting_first_improvement.cpp ../src/data/dStrategy/neighbor_selecting_random.cpp ../src/data/computation_data.cpp ../src/data/one_sorted_change_neighborhood.cpp ../src/data/multi_sorted_changes_neighborhood.cpp ../src/data/one_permutation_neighborhood.cpp ../src/modules/om_random_conf_generation.cpp ../src/modules/om_one_element_changed_neighborhood.cpp ../src/modules/om_first_improvement_selection.cpp ../src/modules/om_best_improvement_selection.cpp ../src/modules/grouped_computation.cpp ../src/modules/grouped_sequential_computation.cpp ../src/modules/grouped_parallel_computation.cpp ../src/modules/om_multi_sorted_changes_neighborhood.cpp ../src/modules/om_random_conf_ordered_generation.cpp ../src/modules/compound_module_generator_from_code.cpp ../src/modules/om_random_conf_permutation_by_blocks_generation.cpp ../src/modules/om_best_improvement_tabu_selection.cpp ../src/modules/om_random_selection.cpp ../src/modules/om_multi_elements_changed_neighborhood.cpp ../src/modules/om_fixed_first_configuration.cpp ../src/modules/om_golfers_single_swap_neighborhood.cpp ../src/modules/om_one_sorted_change_neighborhood.cpp ../src/modules/aom_first_configuration_generation.cpp ../src/modules/aom_neighborhood_function.cpp ../src/modules/aom_selection_function.cpp ../src/modules/aom_decision_function.cpp ../src/modules/om_always_improve_decision.cpp ../src/modules/om_simulated_annealing_decision.cpp ../src/modules/data_open_channel.cpp ../src/modules/oms_time_counter.cpp ../src/modules/oms_iterations_counter.cpp ../src/modules/strategy/random_configuration_generation_strategy.cpp ../src/modules/strategy/random_permutation_by_blocks_generation_strategy.cpp ../src/modules/strategy/random_ordered_generation_strategy.cpp ../src/modules/om_random_permutation_generation.cpp ../src/modules/strategy/random_permutation_configuration_strategy.cpp ../src/modules/om_one_permutation_neighborhood.cpp ../src/computation/computation_strategy.cpp ../src/testers/tester_random_configuration_generation.cpp ../src/testers/tester_florian_random_configuration_generation.cpp ../src/testers/tester_one_element_changed_neighborhood.cpp ../src/testers/tester.cpp ../src/testers/tester_first_improvement_selection.cpp ../src/testers/tester_sets_index_generator.cpp ../src/testers/tester_best_improvement_selection.cpp ../src/testers/tester_cyclic_operator.cpp ../src/testers/tester_multi_elements_changed_neighborhood.cpp ../src/testers/tester_union_operator.cpp ../src/testers/tester_conditional_operator.cpp ../src/testers/tester_random_selection.cpp ../src/testers/tester_simulated_annealing_decition.cpp ../src/testers/tester_best_improvement_tabu_selection.cpp ../src/testers/tester_rho_operator.cpp ../src/testers/tester_random_permutation_configuration_generation.cpp ../src/testers/tester_golfers_permutation_neighborhood.cpp ../src/testers/tester_packing_solution.cpp ../src/testers/tester_packing_decision_pair.cpp ../src/testers/tester_packing_one_element_changed_neighborhood.cpp ../src/testers/tester_packing_multi_changes_neighborhood.cpp ../src/testers/tester_packing_golfers_permutation_neighborhood.cpp ../src/testers/packing_neighborhood_tester.cpp ../src/testers/tester_packing_union_neighborhood.cpp ../src/testers/tester_speed_operator.cpp ../src/testers/tester_random_ordered_confgeneration.cpp ../src/testers/tester_cost_of_solution_golfers.cpp ../src/testers/tester_cost_of_solution_golom_rules.cpp ../src/testers/tester_cost_of_solution_quaring_square.cpp ../src/testers/tester_solver_golfers.cpp ../src/testers/tester_solver_golomb_ruler.cpp ../src/testers/tester_solver_squaring_square.cpp ../src/testers/tester_multi_sorted_changes_neighborhood.cpp ../src/testers/tester_one_sorted_change_neighborhood.cpp ../src/testers/tester_comunication.cpp ../src/testers/tester_solver_n_queens.cpp ../src/testers/tester_cost_of_solution_nqueens.cpp ../src/operators/binary_operator.cpp ../src/operators/unary_operator.cpp ../src/operators/rho_operator.cpp ../src/operators/union_operator.cpp ../src/operators/cyclic_operator.cpp ../src/operators/speed_operator.cpp ../src/operators/conditional_operator.cpp ../src/operators/sequential_exec_operator.cpp ../src/operators/operator.cpp ../src/operators/send_data_operator.cpp ../src/operators/min_operator.cpp ../src/operators/strategy/not_implemented_parallel_strategy.cpp ../src/operators/strategy/sequential_execution_sequential_strategy.cpp ../src/operators/strategy/min_sequential_strategy.cpp ../src/operators/strategy/min_parallel_strategy.cpp ../src/operators/strategy/min_crit_comparison.cpp ../src/operators/strategy/send_data_sequential_strategy.cpp ../src/operators/strategy/conditional_sequential_strategy.cpp ../src/operators/strategy/executer.cpp ../src/operators/strategy/speed_parallel_strategy.cpp ../src/operators/strategy/speed_sequential_strategy.cpp ../src/operators/strategy/union_parallel_strategy.cpp ../src/operators/strategy/union_sequential_strategy.cpp ../src/operators/strategy/cyclic_sequential_strategy.cpp ../src/operators/strategy/rho_sequential_strategy.cpp ../src/operators/florian_operator.cpp ../src/operators/strategy/florian_sequential_strategy.cpp ../src/expressions/iteretion_bound_expression.cpp ../src/expressions/boolean_expression.cpp ../src/expressions/loop_bound_expression.cpp ../src/expressions/reached_cost_expression.cpp ../src/tools/randomizer.cpp ../src/tools/tabu_list.cpp ../src/tools/chronometer.cpp ../src/tools/rand_index_generator.cpp ../src/tools/long_int.cpp ../src/tools/merged_longint.cpp ../src/tools/matrix.cpp ../src/tools/tools.cpp ../src/packing/packers/decision_pair_packer.cpp ../src/packing/packers/golfers_single_swap_packer.cpp ../src/packing/packers/neighborhood_packer.cpp ../src/packing/packers/multi_changes_neighborhood_packer.cpp ../src/packing/packers/one_change_neighborhood_packer.cpp ../src/packing/packers/solution_packer.cpp ../src/packing/factory/factory_packer.cpp ../src/packing/factory/factory_solution_packer.cpp ../src/packing/factory/factory_decision_pair_packer.cpp ../src/packing/factory/factory_one_change_neighborhood_packer.cpp ../src/packing/factory/factory_multi_changes_neighborhood_packer.cpp ../src/packing/factory/factory_golfers_single_swap_neighborhood_packer.cpp ../src/packing/packers/packer.cpp ../src/solver/posl_solver.cpp ../src/solver/posl_meta_solver.cpp ../src/solver/psp.cpp ../src/solver/comunicator.cpp ../src/testers/tester_from_pack_neighborhood.cpp ../src/data/dynamic_neighborhood.cpp ../src/data/dStrategy/apply_change_behavior.cpp ../src/data/dStrategy/single_swap_apply_change_behavior.cpp ../src/data/dStrategy/standard_apply_change_behavior.cpp ../src/data/dStrategy/sorted_apply_change_behavior.cpp ../src/packing/module_uncoder.cpp ../src/benchmarks/cost_strategy/solution_cost_strategy.cpp ../src/benchmarks/cost_strategy/golfers_long_int_cost_strategy.cpp ../src/benchmarks/cost_strategy/golomb_ruler_distances_cost_strategy.cpp ../src/benchmarks/cost_strategy/n_queens_daniel_cost_strategy.cpp ../src/benchmarks/cost_strategy/squaring_square_superposition_cost_strategy.cpp ../src/testers/tester_tabuselection.cpp ../src/expressions/same_cost_iterations_bound_expression.cpp ../src/expressions/or_expression.cpp ../src/expressions/and_expression.cpp ../src/benchmarks/cost_strategy/golfers_3pn_cost_strategy.cpp ../src/testers/tester_longint.cpp ../src/benchmarks/show_strategy/golfers_default_show_strategy.cpp ../src/benchmarks/show_strategy/show_strategy.cpp ../src/benchmarks/show_strategy/golomb_ruler_default_show_strategy.cpp ../src/benchmarks/show_strategy/n_queens_default_show_strategy.cpp ../src/benchmarks/show_strategy/squaring_square_default_show_strategy.cpp ../src/testers/tester_iteration_golfers.cpp ../src/tools/connection_matrix.cpp ../src/modules/operation_module.cpp ../src/operators/strategy/min_och_sequential_strategy.cpp ../src/solver/strategy/showing_result_strategy.cpp ../src/solver/strategy/show_plain_result_strategy.cpp ../src/solver/strategy/show_bechmark_result_strategy.cpp ../src/solver/strategy/show_to_collect_strategy.cpp ../src/tools/hash_map.cpp ../src/modules/open_channel.cpp ../src/packing/compound_module_uncoder.cpp ../src/packing/grouped_sequential_computation_uncoder.cpp ../src/packing/grouped_parallel_computation_uncoder.cpp ../src/packing/operation_module_uncoder.cpp ../src/packing/om_s_uncoder.cpp ../src/packing/om_v_uncoder.cpp ../src/packing/om_ss_uncoder.cpp ../src/packing/om_d_uncoder.cpp ../src/packing/operator_uncoder.cpp ../src/packing/operator_conditional_uncoder.cpp ../src/packing/operator_cyclic_uncoder.cpp ../src/packing/operator_flo_uncoder.cpp ../src/packing/operator_rho_uncoder.cpp ../src/packing/operator_send_uncoder.cpp ../src/packing/boolean_expression_uncoder.cpp ../src/packing/bool_expression_and_uncoder.cpp ../src/packing/bool_expression_or_uncoder.cpp ../src/testers/tester_coding_posl.cpp ../src/tools/coding_tools.cpp ../src/packing/open_channel_uncoder.cpp ../src/connections/scheduler.cpp ../src/connections/connection_operator_broadcasting.cpp ../src/packing/computation_strategy_uncoder.cpp ../src/packing/posl_solver_declaration.cpp ../src/packing/solver_declaration_uncoder.cpp ../src/packing/posl_uncoder.cpp ../src/packing/connections_declaration.cpp ../src/packing/posl_declaration_uncoder.cpp ../src/packing/posl_connections_uncoder.cpp ../src/connections/connection_operator.cpp ../src/connections/connection_operator_no_connection.cpp ../src/connections/connection_operator_bipartition.cpp ../src/connections/connection_operator_rin.cpp ../src/tools/coding_tools_ff.cpp ../src/testers/tester_packing_strategies.cpp ../src/benchmarks/cost_strategy/golfers_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/golomb_ruler_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/squaring_square_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/n_queens_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/n_queens_cost_structure.cpp ../src/data/adaptive_search_neighborhood.cpp ../src/tools/fixed_size_vector.cpp ../src/modules/om_adaptive_search_neighborhood.cpp ../src/testers/tester_adaptive_search_neighborhood.cpp ../src/data/golfers_adaptive_search_neighborhood.cpp ../src/modules/om_golfers_adaptive_searchneigborhood.cpp ../src/testers/tester_golfers_as_neighborhood.cpp ../src/benchmarks/costas_array.cpp ../src/benchmarks/show_strategy/costas_array_default_show_strategy.cpp ../src/benchmarks/cost_strategy/costas_array_cost_structure.cpp ../src/benchmarks/cost_strategy/costas_array_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/costas_array_daniel_cost_strategy.cpp ../src/testers/tester_cost_of_solution_costas_array.cpp ../src/testers/tester_solver_costas_array.cpp ../src/benchmarks/cost_strategy/squaring_square_cost_structure.cpp ../src/tools/upper_matrix.cpp ../src/packing/om_r_uncoder.cpp ../src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.cpp ../src/modules/strategy/add_a_constant_rearrange_strategy.cpp ../src/testers/tester_as_restart.cpp ../src/modules/strategy/circular_shift_around_bad_rearrange_strategy.cpp ../src/testers/tester_daniel_restart.cpp ../src/data/dStrategy/neighbor_selecting_k_best_improvement.cpp ../src/tools/binary_search_tree.cpp ../src/testers/tester_binary_search_tree.cpp ../src/modules/om_k_best_improvement_selection.cpp ../src/testers/tester_k_best_improvement_selection.cpp ../src/data/golfers_single_week_swap_neighborhood.cpp ../src/modules/om_golfers_single_week_swap_neighborhood.cpp ../src/testers/tester_golfers_1_week_neighborhood.cpp ../src/operators/strategy/not_null_sequential_strategy.cpp ../src/operators/not_null_operator.cpp ../src/tools/posl_log.cpp ../src/packing/operation_module_simulated_anealing_uncoder.cpp ../src/testers/tester_same_cost_iterations_be.cpp ../src/data/golfers_adaptive_search_single_week_neighborhood.cpp ../src/modules/om_golfers_single_week_adaptive_search_neighborhood.cpp ../src/modules/decision_pair_first_data_open_channel.cpp ../src/modules/solution_first_data_open_channel.cpp ../src/modules/solution_last_data_open_channel.cpp ../src/modules/decision_pair_last_data_open_channel.cpp ../src/modules/neighborhood_last_data_open_channel.cpp ../src/modules/solution_best_data_open_channel.cpp ../src/expressions/singleton_expression.cpp ../src/testers/tester_singleton_experession.cpp ../src/tools/std/random_generator.cpp ../src/solver/strategy/solve_in_parallel_strategy.cpp ../src/solver/strategy/solve_sequentially_strategy.cpp ../src/solver/strategy/solve_to_test_strategy.cpp ../src/benchmarks/cost_strategy/golomb_ruler_cost_structure.cpp ../src/benchmarks/cost_strategy/default_sickest_variable_strategy.cpp ../src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.cpp ../src/testers/tester_cost_on_variable_golomb_ruler.cpp ../src/data/one_worst_sorted_change_neighborhood.cpp ../src/testers/tester_one_worst_sorted_change_neighborhood.cpp ../src/modules/om_one_worst_sorted_neighborhood.cpp ../src/benchmarks/cost_strategy/golomb_ruler_relative_cost_structure.cpp ../src/benchmarks/cost_strategy/golomb_measures_struct.cpp ../src/testers/tester_iteration_golomb_ruler.cpp ../src/tools/golomb_tools.cpp ../src/modules/strategy/random_golomb_valid_generation_strategy.cpp ../src/benchmarks/cost_strategy/subsum_cost_structure.cpp ../src/benchmarks/cost_strategy/subsum_cost_strategy.cpp ../src/benchmarks/cost_strategy/subsum_relative_cost_strategy.cpp ../src/testers/tester_cost_of_solution_subsum.cpp ../src/benchmarks/subsum.cpp ../src/benchmarks/show_strategy/subsum_show_strategy.cpp ../src/data/subsum_single_permitation_neighborhood.cpp ../src/modules/om_subsum_single_permutation_neighborhood.cpp ../src/testers/tester_subsum_single_swap_neighborhood.cpp ../src/testers/tester_solver_subsum.cpp ../src/modules/om_golomb_valid_generation.cpp ../src/benchmarks/cost_strategy/all_intervals_cost_structure.cpp ../src/benchmarks/all_intervals.cpp ../src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.cpp ../src/benchmarks/show_strategy/all_interval_default_show_strategy.cpp ../src/modules/strategy/far_random_configuration_generation_strategy.cpp ../src/testers/tester_far_random_conf_generation.cpp ../src/testers/tester_cost_of_solution_all_intervals.cpp ../src/testers/tester_solver_all_intervals.cpp ../src/data/all_permutations_neighborhood.cpp ../src/modules/om_all_permutations_neighborhood.cpp ../src/testers/tester_all_permutations_neighborhood.cpp ../src/testers/tester_iteration_squaring_square.cpp ../src/data/uniform_domain.cpp ../src/data/irregular_domain.cpp ../src/data/one_2d_change_neighborhood.cpp ../src/modules/om_one_2d_change_neighborhood.cpp ../src/testers/tester_one_2d_change_neighborhood.cpp ../src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.cpp ../src/modules/om_h_first_improvement_selection.cpp ../src/expressions/module_iteration_expression.cpp ../src/modules/strategy/not_tabu_random_configuration_generation_strategy.cpp ../src/testers/tester_global_tabu.cpp ../src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.cpp ../src/modules/om_first_improvement_global_tabu_selection.cpp ../src/solver/tabu_object.cpp ../src/operators/strategy/first_sequential_strategy.cpp ../src/operators/first_operator.cpp ../src/modules/aom_process_configuration.cpp ../src/modules/om_tabu_processing.cpp ../src/modules/om_default_processing.cpp ../src/modules/om_daniel_as_restart_processing.cpp ../src/modules/om_adaptive_search_processing.cpp ../src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.cpp ../src/solver/search_process_params_struct.cpp ../src/packing/om_r_tabu_uncoder.cpp ../src/testers/tester_iteration_all_intervals.cpp ../src/data/configuration_set.cpp ../src/data/dStrategy/configuration_set_iterator.cpp ../src/modules/configuration_set_data_open_channel.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../src/modules/compound_module.h ../src/modules/operation_module.h ../src/modules/open_channel.h ../src/modules/data_open_channel.h ../src/modules/object_open_channel.h ../src/modules/om_random_conf_generation.h ../src/modules/om_one_element_changed_neighborhood.h ../src/modules/om_first_improvement_selection.h ../src/modules/om_best_improvement_selection.h ../src/modules/grouped_computation.h ../src/modules/grouped_sequential_computation.h ../src/modules/grouped_parallel_computation.h ../src/modules/om_fixed_first_configuration.h ../src/modules/om_random_selection.h ../src/modules/om_random_conf_permutation_by_blocks_generation.h ../src/modules/om_best_improvement_tabu_selection.h ../src/modules/om_multi_elements_changed_neighborhood.h ../src/modules/om_golfers_single_swap_neighborhood.h ../src/modules/om_multi_sorted_changes_neighborhood.h ../src/modules/om_one_sorted_change_neighborhood.h ../src/modules/aom_first_configuration_generation.h ../src/modules/aom_neighborhood_function.h ../src/modules/aom_selection_function.h ../src/modules/aom_decision_function.h ../src/modules/om_always_improve_decision.h ../src/modules/om_simulated_annealing_decision.h ../src/modules/compound_module_generator_from_code.h ../src/modules/oms_time_counter.h ../src/modules/oms_iterations_counter.h ../src/modules/om_random_conf_ordered_generation.h ../src/modules/strategy/random_ordered_generation_strategy.h ../src/modules/strategy/random_configuration_generation_strategy.h ../src/modules/strategy/random_permutation_by_blocks_generation_strategy.h ../src/modules/om_random_permutation_generation.h ../src/modules/strategy/random_permutation_configuration_strategy.h ../src/modules/om_one_permutation_neighborhood.h ../src/data/domain.h ../src/data/dStrategy/factory_domain.h ../src/data/dStrategy/factory_n_int_domain.h ../src/data/dom_interval.h ../src/data/node.h ../src/data/solution.h ../src/data/dStrategy/posl_iterator.h ../src/data/decision_pair.h ../src/data/neighborhood.h ../src/data/one_element_changed_neighborhood.h ../src/data/computation_data.h ../src/data/seed.h ../src/data/union_neighborhood.h ../src/data/dStrategy/union_iterator.h ../src/data/dStrategy/elements_change_iterator.h ../src/data/multi_elements_changed_neighborhood.h ../src/data/multi_sorted_changes_neighborhood.h ../src/data/one_sorted_change_neighborhood.h ../src/data/dStrategy/neighbor_selecting_best_improvement_tabu.h ../src/data/dStrategy/neighbor_selecting_best_improvement.h ../src/data/dStrategy/neighbor_selecting_first_improvement.h ../src/data/dStrategy/neighbor_selecting_random.h ../src/data/golfers_single_swap_neighborhood.h ../src/data/from_pack_neighborhood.h ../src/data/one_permutation_neighborhood.h ../src/benchmarks/benchmark.h ../src/benchmarks/golfers.h ../src/benchmarks/squaring_square.h ../src/benchmarks/golomb_ruler.h ../src/benchmarks/n_queens.h ../src/operators/operator.h ../src/operators/binary_operator.h ../src/operators/sequential_exec_operator.h ../src/operators/rho_operator.h ../src/operators/unary_operator.h ../src/operators/cyclic_operator.h ../src/operators/conditional_operator.h ../src/operators/min_operator.h ../src/operators/union_operator.h ../src/operators/speed_operator.h ../src/operators/send_data_operator.h ../src/operators/strategy/not_implemented_parallel_strategy.h ../src/operators/strategy/sequential_execution_sequential_strategy.h ../src/operators/strategy/union_sequential_strategy.h ../src/operators/strategy/cyclic_sequential_strategy.h ../src/operators/strategy/conditional_sequential_strategy.h ../src/operators/strategy/rho_sequential_strategy.h ../src/operators/strategy/execution_strategy.h ../src/operators/strategy/sequential_execution_strategy.h ../src/operators/strategy/parallel_execution_strategy.h ../src/operators/strategy/executer.h ../src/operators/strategy/send_data_sequential_strategy.h ../src/operators/strategy/min_sequential_strategy.h ../src/operators/strategy/min_parallel_strategy.h ../src/operators/strategy/min_crit_comparison.h ../src/operators/strategy/union_parallel_strategy.h ../src/operators/strategy/speed_parallel_strategy.h ../src/operators/strategy/speed_sequential_strategy.h ../src/operators/florian_operator.h ../src/operators/strategy/florian_sequential_strategy.h ../src/computation/computation_strategy.h ../src/testers/tester.h ../src/testers/tester_random_configuration_generation.h ../src/testers/tester_florian_random_configuration_generation.h ../src/testers/tester_one_element_changed_neighborhood.h ../src/testers/tester_first_improvement_selection.h ../src/testers/tester_rho_operator.h ../src/testers/tester_cyclic_operator.h ../src/testers/tester_best_improvement_selection.h ../src/testers/tester_sets_index_generator.h ../src/testers/tester_multi_elements_changed_neighborhood.h ../src/testers/tester_random_selection.h ../src/testers/tester_simulated_annealing_decition.h ../src/testers/tester_best_improvement_tabu_selection.h ../src/testers/tester_random_permutation_configuration_generation.h ../src/testers/tester_golfers_permutation_neighborhood.h ../src/testers/tester_packing_solution.h ../src/testers/tester_packing_decision_pair.h ../src/testers/tester_packing_one_element_changed_neighborhood.h ../src/testers/tester_packing_multi_changes_neighborhood.h ../src/testers/tester_packing_golfers_permutation_neighborhood.h ../src/testers/packing_neighborhood_tester.h ../src/testers/tester_packing_union_neighborhood.h ../src/testers/tester_conditional_operator.h ../src/testers/tester_union_operator.h ../src/testers/tester_multi_sorted_changes_neighborhood.h ../src/testers/tester_cost_of_solution_golfers.h ../src/testers/tester_cost_of_solution_golom_rules.h ../src/testers/tester_cost_of_solution_quaring_square.h ../src/testers/tester_solver_golfers.h ../src/testers/tester_solver_golomb_ruler.h ../src/testers/tester_solver_squaring_square.h ../src/testers/tester_random_ordered_confgeneration.h ../src/testers/tester_one_sorted_change_neighborhood.h ../src/testers/tester_speed_operator.h ../src/testers/tester_cost_of_solution_nqueens.h ../src/testers/tester_solver_n_queens.h ../src/testers/tester_comunication.h ../src/tools/tools.h ../src/tools/rand_index_generator.h ../src/tools/randomizer.h ../src/tools/tabu_list.h ../src/tools/long_int.h ../src/tools/merged_longint.h ../src/tools/matrix.h ../src/tools/chronometer.h ../src/expressions/loop_bound_expression.h ../src/expressions/iteretion_bound_expression.h ../src/expressions/boolean_expression.h ../src/expressions/reached_cost_expression.h ../src/packing/codable.h ../src/packing/packers/packer.h ../src/packing/packers/decision_pair_packer.h ../src/packing/packers/golfers_single_swap_packer.h ../src/packing/packers/neighborhood_packer.h ../src/packing/packers/multi_changes_neighborhood_packer.h ../src/packing/packers/one_change_neighborhood_packer.h ../src/packing/packers/solution_packer.h ../src/packing/factory/factory_packer.h ../src/packing/factory/factory_solution_packer.h ../src/packing/factory/factory_decision_pair_packer.h ../src/packing/factory/factory_one_change_neighborhood_packer.h ../src/packing/factory/factory_multi_changes_neighborhood_packer.h ../src/packing/factory/factory_golfers_single_swap_neighborhood_packer.h ../src/solver/psp.h ../src/solver/posl_solver.h ../src/solver/posl_meta_solver.h ../src/solver/comunicator.h ../src/testers/tester_from_pack_neighborhood.h ../src/data/dynamic_neighborhood.h ../src/data/dStrategy/apply_change_behavior.h ../src/data/dStrategy/single_swap_apply_change_behavior.h ../src/data/dStrategy/standard_apply_change_behavior.h ../src/data/dStrategy/sorted_apply_change_behavior.h ../src/packing/module_uncoder.h ../src/benchmarks/cost_strategy/solution_cost_strategy.h ../src/benchmarks/cost_strategy/golfers_long_int_cost_strategy.h ../src/benchmarks/cost_strategy/golomb_ruler_distances_cost_strategy.h ../src/benchmarks/cost_strategy/n_queens_daniel_cost_strategy.h ../src/benchmarks/cost_strategy/squaring_square_superposition_cost_strategy.h ../src/testers/tester_tabuselection.h ../src/expressions/or_expression.h ../src/expressions/same_cost_iterations_bound_expression.h ../src/expressions/and_expression.h ../src/benchmarks/cost_strategy/golfers_3pn_cost_strategy.h ../src/testers/tester_longint.h ../src/benchmarks/show_strategy/golfers_default_show_strategy.h ../src/benchmarks/show_strategy/show_strategy.h ../src/benchmarks/show_strategy/golomb_ruler_default_show_strategy.h ../src/benchmarks/show_strategy/n_queens_default_show_strategy.h ../src/benchmarks/show_strategy/squaring_square_default_show_strategy.h ../src/tools/t_changes.h ../src/testers/tester_iteration_golfers.h ../src/tools/connection_matrix.h ../src/operators/strategy/min_och_sequential_strategy.h ../src/solver/strategy/showing_result_strategy.h ../src/solver/strategy/show_plain_result_strategy.h ../src/solver/strategy/show_bechmark_result_strategy.h ../src/solver/strategy/show_to_collect_strategy.h ../src/tools/hash_map.h ../src/connections/connectable.h ../src/packing/compound_module_uncoder.h ../src/packing/grouped_sequential_computation_uncoder.h ../src/packing/grouped_parallel_computation_uncoder.h ../src/packing/operation_module_uncoder.h ../src/packing/om_s_uncoder.h ../src/packing/om_v_uncoder.h ../src/packing/om_ss_uncoder.h ../src/packing/om_d_uncoder.h ../src/packing/operator_uncoder.h ../src/packing/operator_conditional_uncoder.h ../src/packing/operator_cyclic_uncoder.h ../src/packing/operator_flo_uncoder.h ../src/packing/operator_rho_uncoder.h ../src/packing/operator_send_uncoder.h ../src/packing/boolean_expression_uncoder.h ../src/packing/bool_expression_and_uncoder.h ../src/packing/bool_expression_or_uncoder.h ../src/testers/tester_coding_posl.h ../src/testers/include_testers.h ../src/tools/tokens_definition.h ../src/tools/coding_tools.h ../src/packing/open_channel_uncoder.h ../src/connections/connector_info.h ../src/connections/scheduler.h ../src/connections/connection_operator_broadcasting.h ../src/packing/computation_strategy_uncoder.h ../src/packing/posl_solver_declaration.h ../src/packing/solver_declaration_uncoder.h ../src/packing/posl_uncoder.h ../src/packing/connections_declaration.h ../src/packing/posl_declaration_uncoder.h ../src/packing/posl_connections_uncoder.h ../src/connections/connection_operator.h ../src/connections/connection_operator_no_connection.h ../src/connections/connection_operator_bipartition.h ../src/connections/connection_operator_rin.h ../src/testers/tester_packing_strategies.h ../src/benchmarks/cost_strategy/golfers_relative_cost_strategy.h ../src/benchmarks/cost_strategy/golomb_ruler_relative_cost_strategy.h ../src/benchmarks/cost_strategy/relative_cost_strategy.h ../src/benchmarks/cost_strategy/squaring_square_relative_cost_strategy.h ../src/benchmarks/cost_strategy/n_queens_relative_cost_strategy.h ../src/benchmarks/cost_strategy/n_queens_cost_structure.h ../src/data/adaptive_search_neighborhood.h ../src/tools/fixed_size_vector.h ../src/modules/om_adaptive_search_neighborhood.h ../src/testers/tester_adaptive_search_neighborhood.h ../src/data/golfers_adaptive_search_neighborhood.h ../src/modules/om_golfers_adaptive_search_neigborhood.h ../src/testers/tester_golfers_as_neighborhood.h ../src/benchmarks/costas_array.h ../src/benchmarks/show_strategy/costas_array_default_show_strategy.h ../src/benchmarks/cost_strategy/costas_array_cost_structure.h ../src/benchmarks/cost_strategy/costas_array_relative_cost_strategy.h ../src/benchmarks/cost_strategy/costas_array_daniel_cost_strategy.h ../src/testers/tester_cost_of_solution_costas_array.h ../src/testers/tester_solver_costas_array.h ../src/benchmarks/cost_strategy/squaring_square_cost_structure.h ../src/tools/upper_matrix.h ../src/packing/om_r_uncoder.h ../src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.h ../src/modules/strategy/add_a_constant_rearrange_strategy.h ../src/testers/tester_as_restart.h ../src/modules/strategy/circular_shift_around_bad_rearrange_strategy.h ../src/modules/strategy/rearrange_strategy.h ../src/testers/tester_daniel_restart.h ../src/data/dStrategy/neighbor_selecting_k_best_improvement.h ../src/tools/binary_search_tree.h ../src/testers/tester_binary_search_tree.h ../src/modules/om_k_best_improvement_selection.h ../src/testers/tester_k_best_improvement_selection.h ../src/data/golfers_single_week_swap_neighborhood.h ../src/modules/om_golfers_single_week_swap_neighborhood.h ../src/testers/tester_golfers_1_week_neighborhood.h ../src/operators/strategy/not_null_sequential_strategy.h ../src/operators/not_null_operator.h ../src/tools/posl_log.h ../src/packing/operation_module_simulated_anealing_uncoder.h ../src/testers/tester_same_cost_iterations_be.h ../src/data/golfers_adaptive_search_single_week_neighborhood.h ../src/modules/om_golfers_single_week_adaptive_search_neighborhood.h ../src/modules/decision_pair_first_data_open_channel.h ../src/modules/solution_first_data_open_channel.h ../src/modules/solution_last_data_open_channel.h ../src/modules/decision_pair_last_data_open_channel.h ../src/modules/neighborhood_last_data_open_channel.h ../src/modules/solution_best_data_open_channel.h ../src/expressions/singleton_expression.h ../src/testers/tester_singleton_experession.h ../src/tools/random_generator.h ../src/solver/strategy/solve_in_parallel_strategy.h ../src/solver/strategy/solve_sequentially_strategy.h ../src/solver/strategy/solve_to_test_strategy.h ../src/benchmarks/cost_strategy/golomb_ruler_cost_structure.h ../src/benchmarks/cost_strategy/sickest_variable_strategy.h ../src/benchmarks/cost_strategy/projectable_cost.h ../src/benchmarks/cost_strategy/default_sickest_variable_strategy.h ../src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.h ../src/testers/tester_cost_on_variable_golomb_ruler.h ../src/data/one_worst_sorted_change_neighborhood.h ../src/testers/tester_one_worst_sorted_change_neighborhood.h ../src/modules/om_one_worst_sorted_neighborhood.h ../src/benchmarks/cost_strategy/golomb_ruler_relative_cost_structure.h ../src/benchmarks/cost_strategy/golomb_measures_struct.h ../src/testers/tester_iteration_golomb_ruler.h ../src/tools/golomb_tools.h ../src/modules/strategy/random_golomb_valid_generation_strategy.h ../src/benchmarks/cost_strategy/subsum_cost_structure.h ../src/benchmarks/cost_strategy/subsum_cost_strategy.h ../src/benchmarks/cost_strategy/subsum_relative_cost_strategy.h ../src/testers/tester_cost_of_solution_subsum.h ../src/benchmarks/subsum.h ../src/benchmarks/show_strategy/subsum_show_strategy.h ../src/data/subsum_single_permitation_neighborhood.h ../src/modules/om_subsum_single_permutation_neighborhood.h ../src/testers/tester_subsum_single_swap_neighborhood.h ../src/testers/tester_solver_subsum.h ../src/modules/om_golomb_valid_generation.h ../src/benchmarks/cost_strategy/all_intervals_cost_structure.h ../src/benchmarks/all_intervals.h ../src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.h ../src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.h ../src/benchmarks/show_strategy/all_interval_default_show_strategy.h ../src/modules/strategy/far_random_configuration_generation_strategy.h ../src/testers/tester_far_random_conf_generation.h ../src/testers/tester_cost_of_solution_all_intervals.h ../src/testers/tester_solver_all_intervals.h ../src/benchmarks/cost_strategy/reseteable.h ../src/data/all_permutations_neighborhood.h ../src/modules/om_all_permutations_neighborhood.h ../src/testers/tester_all_permutations_neighborhood.h ../src/testers/tester_iteration_squaring_square.h ../src/data/uniform_domain.h ../src/data/irregular_domain.h ../src/data/one_2d_change_neighborhood.h ../src/modules/om_one_2d_change_neighborhood.h ../src/testers/tester_one_2d_change_neighborhood.h ../src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.h ../src/modules/om_h_first_improvement_selection.h ../src/expressions/module_iteration_expression.h ../src/modules/strategy/not_tabu_random_configuration_generation_strategy.h ../src/testers/tester_global_tabu.h ../src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.h ../src/modules/om_first_improvement_global_tabu_selection.h ../src/solver/tabu_object.h ../src/operators/strategy/first_sequential_strategy.h ../src/operators/first_operator.h ../src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.h ../src/modules/aom_process_configuration.h ../src/modules/om_default_processing.h ../src/modules/om_daniel_as_restart_processing.h ../src/modules/om_adaptive_search_processing.h ../src/solver/search_process_params_struct.h ../src/packing/om_r_tabu_uncoder.h ../src/testers/tester_iteration_all_intervals.h ../src/data/configuration_set.h ../src/data/dStrategy/configuration_set_iterator.h ../src/modules/configuration_set_data_open_channel.h ../src/modules/aom_process_configuration_set.h ../src/modules/om_tabu_configuration_processing.h ../src/modules/om_tabu_configuration_set_processing.h ../src/packing/om_p_uncoder.h ../src/packing/om_p_tabu_uncoder.h ../src/tools/list_iterator.h ../src/modules/aom_first_configuration_generation_from_set.h .tmp/POSL1.0.0/ && $(COPY_FILE) --parents ../src/main.cpp ../src/benchmarks/benchmark.cpp ../src/benchmarks/golfers.cpp ../src/benchmarks/squaring_square.cpp ../src/benchmarks/golomb_ruler.cpp ../src/benchmarks/n_queens.cpp ../src/data/domain.cpp ../src/data/dStrategy/factory_n_int_domain.cpp ../src/data/node.cpp ../src/data/solution.cpp ../src/data/dom_interval.cpp ../src/data/neighborhood.cpp ../src/data/one_element_changed_neighborhood.cpp ../src/data/seed.cpp ../src/data/decision_pair.cpp ../src/data/dStrategy/elements_change_iterator.cpp ../src/data/multi_elements_changed_neighborhood.cpp ../src/data/union_neighborhood.cpp ../src/data/dStrategy/union_iterator.cpp ../src/data/golfers_single_swap_neighborhood.cpp ../src/data/from_pack_neighborhood.cpp ../src/data/dStrategy/neighbor_selecting_best_improvement_tabu.cpp ../src/data/dStrategy/neighbor_selecting_best_improvement.cpp ../src/data/dStrategy/neighbor_selecting_first_improvement.cpp ../src/data/dStrategy/neighbor_selecting_random.cpp ../src/data/computation_data.cpp ../src/data/one_sorted_change_neighborhood.cpp ../src/data/multi_sorted_changes_neighborhood.cpp ../src/data/one_permutation_neighborhood.cpp ../src/modules/om_random_conf_generation.cpp ../src/modules/om_one_element_changed_neighborhood.cpp ../src/modules/om_first_improvement_selection.cpp ../src/modules/om_best_improvement_selection.cpp ../src/modules/grouped_computation.cpp ../src/modules/grouped_sequential_computation.cpp ../src/modules/grouped_parallel_computation.cpp ../src/modules/om_multi_sorted_changes_neighborhood.cpp ../src/modules/om_random_conf_ordered_generation.cpp ../src/modules/compound_module_generator_from_code.cpp ../src/modules/om_random_conf_permutation_by_blocks_generation.cpp ../src/modules/om_best_improvement_tabu_selection.cpp ../src/modules/om_random_selection.cpp ../src/modules/om_multi_elements_changed_neighborhood.cpp ../src/modules/om_fixed_first_configuration.cpp ../src/modules/om_golfers_single_swap_neighborhood.cpp ../src/modules/om_one_sorted_change_neighborhood.cpp ../src/modules/aom_first_configuration_generation.cpp ../src/modules/aom_neighborhood_function.cpp ../src/modules/aom_selection_function.cpp ../src/modules/aom_decision_function.cpp ../src/modules/om_always_improve_decision.cpp ../src/modules/om_simulated_annealing_decision.cpp ../src/modules/data_open_channel.cpp ../src/modules/oms_time_counter.cpp ../src/modules/oms_iterations_counter.cpp ../src/modules/strategy/random_configuration_generation_strategy.cpp ../src/modules/strategy/random_permutation_by_blocks_generation_strategy.cpp ../src/modules/strategy/random_ordered_generation_strategy.cpp ../src/modules/om_random_permutation_generation.cpp ../src/modules/strategy/random_permutation_configuration_strategy.cpp ../src/modules/om_one_permutation_neighborhood.cpp ../src/computation/computation_strategy.cpp ../src/testers/tester_random_configuration_generation.cpp ../src/testers/tester_florian_random_configuration_generation.cpp ../src/testers/tester_one_element_changed_neighborhood.cpp ../src/testers/tester.cpp ../src/testers/tester_first_improvement_selection.cpp ../src/testers/tester_sets_index_generator.cpp ../src/testers/tester_best_improvement_selection.cpp ../src/testers/tester_cyclic_operator.cpp ../src/testers/tester_multi_elements_changed_neighborhood.cpp ../src/testers/tester_union_operator.cpp ../src/testers/tester_conditional_operator.cpp ../src/testers/tester_random_selection.cpp ../src/testers/tester_simulated_annealing_decition.cpp ../src/testers/tester_best_improvement_tabu_selection.cpp ../src/testers/tester_rho_operator.cpp ../src/testers/tester_random_permutation_configuration_generation.cpp ../src/testers/tester_golfers_permutation_neighborhood.cpp ../src/testers/tester_packing_solution.cpp ../src/testers/tester_packing_decision_pair.cpp ../src/testers/tester_packing_one_element_changed_neighborhood.cpp ../src/testers/tester_packing_multi_changes_neighborhood.cpp ../src/testers/tester_packing_golfers_permutation_neighborhood.cpp ../src/testers/packing_neighborhood_tester.cpp ../src/testers/tester_packing_union_neighborhood.cpp ../src/testers/tester_speed_operator.cpp ../src/testers/tester_random_ordered_confgeneration.cpp ../src/testers/tester_cost_of_solution_golfers.cpp ../src/testers/tester_cost_of_solution_golom_rules.cpp ../src/testers/tester_cost_of_solution_quaring_square.cpp ../src/testers/tester_solver_golfers.cpp ../src/testers/tester_solver_golomb_ruler.cpp ../src/testers/tester_solver_squaring_square.cpp ../src/testers/tester_multi_sorted_changes_neighborhood.cpp ../src/testers/tester_one_sorted_change_neighborhood.cpp ../src/testers/tester_comunication.cpp ../src/testers/tester_solver_n_queens.cpp ../src/testers/tester_cost_of_solution_nqueens.cpp ../src/operators/binary_operator.cpp ../src/operators/unary_operator.cpp ../src/operators/rho_operator.cpp ../src/operators/union_operator.cpp ../src/operators/cyclic_operator.cpp ../src/operators/speed_operator.cpp ../src/operators/conditional_operator.cpp ../src/operators/sequential_exec_operator.cpp ../src/operators/operator.cpp ../src/operators/send_data_operator.cpp ../src/operators/min_operator.cpp ../src/operators/strategy/not_implemented_parallel_strategy.cpp ../src/operators/strategy/sequential_execution_sequential_strategy.cpp ../src/operators/strategy/min_sequential_strategy.cpp ../src/operators/strategy/min_parallel_strategy.cpp ../src/operators/strategy/min_crit_comparison.cpp ../src/operators/strategy/send_data_sequential_strategy.cpp ../src/operators/strategy/conditional_sequential_strategy.cpp ../src/operators/strategy/executer.cpp ../src/operators/strategy/speed_parallel_strategy.cpp ../src/operators/strategy/speed_sequential_strategy.cpp ../src/operators/strategy/union_parallel_strategy.cpp ../src/operators/strategy/union_sequential_strategy.cpp ../src/operators/strategy/cyclic_sequential_strategy.cpp ../src/operators/strategy/rho_sequential_strategy.cpp ../src/operators/florian_operator.cpp ../src/operators/strategy/florian_sequential_strategy.cpp ../src/expressions/iteretion_bound_expression.cpp ../src/expressions/boolean_expression.cpp ../src/expressions/loop_bound_expression.cpp ../src/expressions/reached_cost_expression.cpp ../src/tools/randomizer.cpp ../src/tools/tabu_list.cpp ../src/tools/chronometer.cpp ../src/tools/rand_index_generator.cpp ../src/tools/long_int.cpp ../src/tools/merged_longint.cpp ../src/tools/matrix.cpp ../src/tools/tools.cpp ../src/packing/packers/decision_pair_packer.cpp ../src/packing/packers/golfers_single_swap_packer.cpp ../src/packing/packers/neighborhood_packer.cpp ../src/packing/packers/multi_changes_neighborhood_packer.cpp ../src/packing/packers/one_change_neighborhood_packer.cpp ../src/packing/packers/solution_packer.cpp ../src/packing/factory/factory_packer.cpp ../src/packing/factory/factory_solution_packer.cpp ../src/packing/factory/factory_decision_pair_packer.cpp ../src/packing/factory/factory_one_change_neighborhood_packer.cpp ../src/packing/factory/factory_multi_changes_neighborhood_packer.cpp ../src/packing/factory/factory_golfers_single_swap_neighborhood_packer.cpp ../src/packing/packers/packer.cpp ../src/solver/posl_solver.cpp ../src/solver/posl_meta_solver.cpp ../src/solver/psp.cpp ../src/solver/comunicator.cpp ../src/testers/tester_from_pack_neighborhood.cpp ../src/data/dynamic_neighborhood.cpp ../src/data/dStrategy/apply_change_behavior.cpp ../src/data/dStrategy/single_swap_apply_change_behavior.cpp ../src/data/dStrategy/standard_apply_change_behavior.cpp ../src/data/dStrategy/sorted_apply_change_behavior.cpp ../src/packing/module_uncoder.cpp ../src/benchmarks/cost_strategy/solution_cost_strategy.cpp ../src/benchmarks/cost_strategy/golfers_long_int_cost_strategy.cpp ../src/benchmarks/cost_strategy/golomb_ruler_distances_cost_strategy.cpp ../src/benchmarks/cost_strategy/n_queens_daniel_cost_strategy.cpp ../src/benchmarks/cost_strategy/squaring_square_superposition_cost_strategy.cpp ../src/testers/tester_tabuselection.cpp ../src/expressions/same_cost_iterations_bound_expression.cpp ../src/expressions/or_expression.cpp ../src/expressions/and_expression.cpp ../src/benchmarks/cost_strategy/golfers_3pn_cost_strategy.cpp ../src/testers/tester_longint.cpp ../src/benchmarks/show_strategy/golfers_default_show_strategy.cpp ../src/benchmarks/show_strategy/show_strategy.cpp ../src/benchmarks/show_strategy/golomb_ruler_default_show_strategy.cpp ../src/benchmarks/show_strategy/n_queens_default_show_strategy.cpp ../src/benchmarks/show_strategy/squaring_square_default_show_strategy.cpp ../src/testers/tester_iteration_golfers.cpp ../src/tools/connection_matrix.cpp ../src/modules/operation_module.cpp ../src/operators/strategy/min_och_sequential_strategy.cpp ../src/solver/strategy/showing_result_strategy.cpp ../src/solver/strategy/show_plain_result_strategy.cpp ../src/solver/strategy/show_bechmark_result_strategy.cpp ../src/solver/strategy/show_to_collect_strategy.cpp ../src/tools/hash_map.cpp ../src/modules/open_channel.cpp ../src/packing/compound_module_uncoder.cpp ../src/packing/grouped_sequential_computation_uncoder.cpp ../src/packing/grouped_parallel_computation_uncoder.cpp ../src/packing/operation_module_uncoder.cpp ../src/packing/om_s_uncoder.cpp ../src/packing/om_v_uncoder.cpp ../src/packing/om_ss_uncoder.cpp ../src/packing/om_d_uncoder.cpp ../src/packing/operator_uncoder.cpp ../src/packing/operator_conditional_uncoder.cpp ../src/packing/operator_cyclic_uncoder.cpp ../src/packing/operator_flo_uncoder.cpp ../src/packing/operator_rho_uncoder.cpp ../src/packing/operator_send_uncoder.cpp ../src/packing/boolean_expression_uncoder.cpp ../src/packing/bool_expression_and_uncoder.cpp ../src/packing/bool_expression_or_uncoder.cpp ../src/testers/tester_coding_posl.cpp ../src/tools/coding_tools.cpp ../src/packing/open_channel_uncoder.cpp ../src/connections/scheduler.cpp ../src/connections/connection_operator_broadcasting.cpp ../src/packing/computation_strategy_uncoder.cpp ../src/packing/posl_solver_declaration.cpp ../src/packing/solver_declaration_uncoder.cpp ../src/packing/posl_uncoder.cpp ../src/packing/connections_declaration.cpp ../src/packing/posl_declaration_uncoder.cpp ../src/packing/posl_connections_uncoder.cpp ../src/connections/connection_operator.cpp ../src/connections/connection_operator_no_connection.cpp ../src/connections/connection_operator_bipartition.cpp ../src/connections/connection_operator_rin.cpp ../src/tools/coding_tools_ff.cpp ../src/testers/tester_packing_strategies.cpp ../src/benchmarks/cost_strategy/golfers_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/golomb_ruler_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/squaring_square_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/n_queens_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/n_queens_cost_structure.cpp ../src/data/adaptive_search_neighborhood.cpp ../src/tools/fixed_size_vector.cpp ../src/modules/om_adaptive_search_neighborhood.cpp ../src/testers/tester_adaptive_search_neighborhood.cpp ../src/data/golfers_adaptive_search_neighborhood.cpp ../src/modules/om_golfers_adaptive_searchneigborhood.cpp ../src/testers/tester_golfers_as_neighborhood.cpp ../src/benchmarks/costas_array.cpp ../src/benchmarks/show_strategy/costas_array_default_show_strategy.cpp ../src/benchmarks/cost_strategy/costas_array_cost_structure.cpp ../src/benchmarks/cost_strategy/costas_array_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/costas_array_daniel_cost_strategy.cpp ../src/testers/tester_cost_of_solution_costas_array.cpp ../src/testers/tester_solver_costas_array.cpp ../src/benchmarks/cost_strategy/squaring_square_cost_structure.cpp ../src/tools/upper_matrix.cpp ../src/packing/om_r_uncoder.cpp ../src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.cpp ../src/modules/strategy/add_a_constant_rearrange_strategy.cpp ../src/testers/tester_as_restart.cpp ../src/modules/strategy/circular_shift_around_bad_rearrange_strategy.cpp ../src/testers/tester_daniel_restart.cpp ../src/data/dStrategy/neighbor_selecting_k_best_improvement.cpp ../src/tools/binary_search_tree.cpp ../src/testers/tester_binary_search_tree.cpp ../src/modules/om_k_best_improvement_selection.cpp ../src/testers/tester_k_best_improvement_selection.cpp ../src/data/golfers_single_week_swap_neighborhood.cpp ../src/modules/om_golfers_single_week_swap_neighborhood.cpp ../src/testers/tester_golfers_1_week_neighborhood.cpp ../src/operators/strategy/not_null_sequential_strategy.cpp ../src/operators/not_null_operator.cpp ../src/tools/posl_log.cpp ../src/packing/operation_module_simulated_anealing_uncoder.cpp ../src/testers/tester_same_cost_iterations_be.cpp ../src/data/golfers_adaptive_search_single_week_neighborhood.cpp ../src/modules/om_golfers_single_week_adaptive_search_neighborhood.cpp ../src/modules/decision_pair_first_data_open_channel.cpp ../src/modules/solution_first_data_open_channel.cpp ../src/modules/solution_last_data_open_channel.cpp ../src/modules/decision_pair_last_data_open_channel.cpp ../src/modules/neighborhood_last_data_open_channel.cpp ../src/modules/solution_best_data_open_channel.cpp ../src/expressions/singleton_expression.cpp ../src/testers/tester_singleton_experession.cpp ../src/tools/std/random_generator.cpp ../src/solver/strategy/solve_in_parallel_strategy.cpp ../src/solver/strategy/solve_sequentially_strategy.cpp ../src/solver/strategy/solve_to_test_strategy.cpp ../src/benchmarks/cost_strategy/golomb_ruler_cost_structure.cpp ../src/benchmarks/cost_strategy/default_sickest_variable_strategy.cpp ../src/benchmarks/cost_strategy/golomb_ruler_max_possible_distances_cost_strategy.cpp ../src/testers/tester_cost_on_variable_golomb_ruler.cpp ../src/data/one_worst_sorted_change_neighborhood.cpp ../src/testers/tester_one_worst_sorted_change_neighborhood.cpp ../src/modules/om_one_worst_sorted_neighborhood.cpp ../src/benchmarks/cost_strategy/golomb_ruler_relative_cost_structure.cpp ../src/benchmarks/cost_strategy/golomb_measures_struct.cpp ../src/testers/tester_iteration_golomb_ruler.cpp ../src/tools/golomb_tools.cpp ../src/modules/strategy/random_golomb_valid_generation_strategy.cpp ../src/benchmarks/cost_strategy/subsum_cost_structure.cpp ../src/benchmarks/cost_strategy/subsum_cost_strategy.cpp ../src/benchmarks/cost_strategy/subsum_relative_cost_strategy.cpp ../src/testers/tester_cost_of_solution_subsum.cpp ../src/benchmarks/subsum.cpp ../src/benchmarks/show_strategy/subsum_show_strategy.cpp ../src/data/subsum_single_permitation_neighborhood.cpp ../src/modules/om_subsum_single_permutation_neighborhood.cpp ../src/testers/tester_subsum_single_swap_neighborhood.cpp ../src/testers/tester_solver_subsum.cpp ../src/modules/om_golomb_valid_generation.cpp ../src/benchmarks/cost_strategy/all_intervals_cost_structure.cpp ../src/benchmarks/all_intervals.cpp ../src/benchmarks/cost_strategy/all_interval_relative_cost_strategy.cpp ../src/benchmarks/cost_strategy/all_intervals_daniel_cost_strategy.cpp ../src/benchmarks/show_strategy/all_interval_default_show_strategy.cpp ../src/modules/strategy/far_random_configuration_generation_strategy.cpp ../src/testers/tester_far_random_conf_generation.cpp ../src/testers/tester_cost_of_solution_all_intervals.cpp ../src/testers/tester_solver_all_intervals.cpp ../src/data/all_permutations_neighborhood.cpp ../src/modules/om_all_permutations_neighborhood.cpp ../src/testers/tester_all_permutations_neighborhood.cpp ../src/testers/tester_iteration_squaring_square.cpp ../src/data/uniform_domain.cpp ../src/data/irregular_domain.cpp ../src/data/one_2d_change_neighborhood.cpp ../src/modules/om_one_2d_change_neighborhood.cpp ../src/testers/tester_one_2d_change_neighborhood.cpp ../src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.cpp ../src/modules/om_h_first_improvement_selection.cpp ../src/expressions/module_iteration_expression.cpp ../src/modules/strategy/not_tabu_random_configuration_generation_strategy.cpp ../src/testers/tester_global_tabu.cpp ../src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.cpp ../src/modules/om_first_improvement_global_tabu_selection.cpp ../src/solver/tabu_object.cpp ../src/operators/strategy/first_sequential_strategy.cpp ../src/operators/first_operator.cpp ../src/modules/aom_process_configuration.cpp ../src/modules/om_default_processing.cpp ../src/modules/om_daniel_as_restart_processing.cpp ../src/modules/om_adaptive_search_processing.cpp ../src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.cpp ../src/solver/search_process_params_struct.cpp ../src/packing/om_r_tabu_uncoder.cpp ../src/testers/tester_iteration_all_intervals.cpp ../src/data/configuration_set.cpp ../src/data/dStrategy/configuration_set_iterator.cpp ../src/modules/configuration_set_data_open_channel.cpp ../src/modules/aom_process_configuration_set.cpp ../src/modules/om_tabu_configuration_processing.cpp ../src/modules/om_tabu_configuration_set_processing.cpp ../src/packing/om_p_uncoder.cpp ../src/packing/om_p_tabu_uncoder.cpp ../src/tools/list_iterator.cpp ../src/modules/aom_first_configuration_generation_from_set.cpp .tmp/POSL1.0.0/ && (cd `dirname .tmp/POSL1.0.0` && $(TAR) POSL1.0.0.tar POSL1.0.0 && $(COMPRESS) POSL1.0.0.tar) && $(MOVE) `dirname .tmp/POSL1.0.0`/POSL1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/POSL1.0.0
 
 
 clean:compiler_clean 
@@ -1018,6 +1030,7 @@ main.o: ../src/main.cpp ../src/testers/include_testers.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/testers/tester_cost_of_solution_golfers.h \
 		../src/testers/tester_cost_of_solution_quaring_square.h \
@@ -1285,6 +1298,7 @@ one_element_changed_neighborhood.o: ../src/data/one_element_changed_neighborhood
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dynamic_neighborhood.h \
 		../src/data/dStrategy/apply_change_behavior.h \
@@ -1340,6 +1354,7 @@ multi_elements_changed_neighborhood.o: ../src/data/multi_elements_changed_neighb
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/neighborhood.h \
 		../src/data/dStrategy/posl_iterator.h \
@@ -1398,6 +1413,7 @@ golfers_single_swap_neighborhood.o: ../src/data/golfers_single_swap_neighborhood
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/apply_change_behavior.h \
 		../src/tools/rand_index_generator.h \
@@ -1446,6 +1462,7 @@ neighbor_selecting_best_improvement_tabu.o: ../src/data/dStrategy/neighbor_selec
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighbor_selecting_best_improvement_tabu.o ../src/data/dStrategy/neighbor_selecting_best_improvement_tabu.cpp
 
@@ -1472,6 +1489,7 @@ neighbor_selecting_best_improvement.o: ../src/data/dStrategy/neighbor_selecting_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighbor_selecting_best_improvement.o ../src/data/dStrategy/neighbor_selecting_best_improvement.cpp
 
@@ -1498,6 +1516,7 @@ neighbor_selecting_first_improvement.o: ../src/data/dStrategy/neighbor_selecting
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighbor_selecting_first_improvement.o ../src/data/dStrategy/neighbor_selecting_first_improvement.cpp
@@ -1525,6 +1544,7 @@ neighbor_selecting_random.o: ../src/data/dStrategy/neighbor_selecting_random.cpp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighbor_selecting_random.o ../src/data/dStrategy/neighbor_selecting_random.cpp
 
@@ -1551,6 +1571,7 @@ one_sorted_change_neighborhood.o: ../src/data/one_sorted_change_neighborhood.cpp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/neighborhood.h \
 		../src/data/dStrategy/posl_iterator.h \
@@ -1582,6 +1603,7 @@ multi_sorted_changes_neighborhood.o: ../src/data/multi_sorted_changes_neighborho
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/neighborhood.h \
 		../src/data/dStrategy/posl_iterator.h \
@@ -1613,6 +1635,7 @@ one_permutation_neighborhood.o: ../src/data/one_permutation_neighborhood.cpp ../
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/neighborhood.h \
 		../src/data/dStrategy/posl_iterator.h \
@@ -1645,6 +1668,7 @@ om_random_conf_generation.o: ../src/modules/om_random_conf_generation.cpp ../src
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1677,6 +1701,7 @@ om_one_element_changed_neighborhood.o: ../src/modules/om_one_element_changed_nei
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1712,6 +1737,7 @@ om_first_improvement_selection.o: ../src/modules/om_first_improvement_selection.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1746,6 +1772,7 @@ om_best_improvement_selection.o: ../src/modules/om_best_improvement_selection.cp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1779,6 +1806,7 @@ grouped_computation.o: ../src/modules/grouped_computation.cpp ../src/modules/gro
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1811,6 +1839,7 @@ grouped_sequential_computation.o: ../src/modules/grouped_sequential_computation.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1843,6 +1872,7 @@ grouped_parallel_computation.o: ../src/modules/grouped_parallel_computation.cpp 
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1875,6 +1905,7 @@ om_multi_sorted_changes_neighborhood.o: ../src/modules/om_multi_sorted_changes_n
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1910,6 +1941,7 @@ om_random_conf_ordered_generation.o: ../src/modules/om_random_conf_ordered_gener
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1940,6 +1972,7 @@ compound_module_generator_from_code.o: ../src/modules/compound_module_generator_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -1975,6 +2008,7 @@ om_random_conf_permutation_by_blocks_generation.o: ../src/modules/om_random_conf
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2007,6 +2041,7 @@ om_best_improvement_tabu_selection.o: ../src/modules/om_best_improvement_tabu_se
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2041,6 +2076,7 @@ om_random_selection.o: ../src/modules/om_random_selection.cpp ../src/modules/om_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2075,6 +2111,7 @@ om_multi_elements_changed_neighborhood.o: ../src/modules/om_multi_elements_chang
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2110,6 +2147,7 @@ om_fixed_first_configuration.o: ../src/modules/om_fixed_first_configuration.cpp 
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2140,6 +2178,7 @@ om_golfers_single_swap_neighborhood.o: ../src/modules/om_golfers_single_swap_nei
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2177,6 +2216,7 @@ om_one_sorted_change_neighborhood.o: ../src/modules/om_one_sorted_change_neighbo
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2211,6 +2251,7 @@ aom_first_configuration_generation.o: ../src/modules/aom_first_configuration_gen
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2239,6 +2280,7 @@ aom_neighborhood_function.o: ../src/modules/aom_neighborhood_function.cpp ../src
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2269,6 +2311,7 @@ aom_selection_function.o: ../src/modules/aom_selection_function.cpp ../src/modul
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2300,6 +2343,7 @@ aom_decision_function.o: ../src/modules/aom_decision_function.cpp ../src/modules
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2330,6 +2374,7 @@ om_always_improve_decision.o: ../src/modules/om_always_improve_decision.cpp ../s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2362,6 +2407,7 @@ om_simulated_annealing_decision.o: ../src/modules/om_simulated_annealing_decisio
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2392,6 +2438,7 @@ data_open_channel.o: ../src/modules/data_open_channel.cpp ../src/modules/data_op
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2420,6 +2467,7 @@ oms_time_counter.o: ../src/modules/oms_time_counter.cpp ../src/modules/oms_time_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2450,6 +2498,7 @@ oms_iterations_counter.o: ../src/modules/oms_iterations_counter.cpp ../src/modul
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2519,6 +2568,7 @@ om_random_permutation_generation.o: ../src/modules/om_random_permutation_generat
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2565,6 +2615,7 @@ om_one_permutation_neighborhood.o: ../src/modules/om_one_permutation_neighborhoo
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2598,6 +2649,7 @@ computation_strategy.o: ../src/computation/computation_strategy.cpp ../src/compu
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -2641,6 +2693,7 @@ tester_random_configuration_generation.o: ../src/testers/tester_random_configura
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -2687,6 +2740,7 @@ tester_florian_random_configuration_generation.o: ../src/testers/tester_florian_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -2743,6 +2797,7 @@ tester_one_element_changed_neighborhood.o: ../src/testers/tester_one_element_cha
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -2792,6 +2847,7 @@ tester.o: ../src/testers/tester.cpp ../src/testers/tester.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/factory_n_int_domain.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester.o ../src/testers/tester.cpp
@@ -2831,6 +2887,7 @@ tester_first_improvement_selection.o: ../src/testers/tester_first_improvement_se
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_random_conf_generation.h \
 		../src/modules/operation_module.h \
@@ -2897,6 +2954,7 @@ tester_sets_index_generator.o: ../src/testers/tester_sets_index_generator.cpp ..
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/rand_index_generator.h \
 		../src/tools/tools.h
@@ -2937,6 +2995,7 @@ tester_best_improvement_selection.o: ../src/testers/tester_best_improvement_sele
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_fixed_first_configuration.h \
 		../src/modules/aom_first_configuration_generation.h \
@@ -3002,6 +3061,7 @@ tester_cyclic_operator.o: ../src/testers/tester_cyclic_operator.cpp ../src/teste
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_fixed_first_configuration.h \
 		../src/modules/aom_first_configuration_generation.h \
@@ -3077,6 +3137,7 @@ tester_multi_elements_changed_neighborhood.o: ../src/testers/tester_multi_elemen
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -3127,6 +3188,7 @@ tester_union_operator.o: ../src/testers/tester_union_operator.cpp ../src/testers
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -3192,6 +3254,7 @@ tester_conditional_operator.o: ../src/testers/tester_conditional_operator.cpp ..
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_fixed_first_configuration.h \
 		../src/modules/aom_first_configuration_generation.h \
@@ -3269,6 +3332,7 @@ tester_random_selection.o: ../src/testers/tester_random_selection.cpp ../src/tes
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_random_conf_generation.h \
 		../src/modules/operation_module.h \
@@ -3335,6 +3399,7 @@ tester_simulated_annealing_decition.o: ../src/testers/tester_simulated_annealing
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_simulated_annealing_decision.h \
 		../src/modules/aom_decision_function.h \
@@ -3393,6 +3458,7 @@ tester_best_improvement_tabu_selection.o: ../src/testers/tester_best_improvement
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_fixed_first_configuration.h \
 		../src/modules/aom_first_configuration_generation.h \
@@ -3458,6 +3524,7 @@ tester_rho_operator.o: ../src/testers/tester_rho_operator.cpp ../src/testers/tes
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_fixed_first_configuration.h \
 		../src/modules/aom_first_configuration_generation.h \
@@ -3514,6 +3581,7 @@ tester_random_permutation_configuration_generation.o: ../src/testers/tester_rand
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -3560,6 +3628,7 @@ tester_golfers_permutation_neighborhood.o: ../src/testers/tester_golfers_permuta
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -3612,6 +3681,7 @@ tester_packing_solution.o: ../src/testers/tester_packing_solution.cpp ../src/tes
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/packing/packers/solution_packer.h
@@ -3652,6 +3722,7 @@ tester_packing_decision_pair.o: ../src/testers/tester_packing_decision_pair.cpp 
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/decision_pair.h \
 		../src/tools/tools.h \
@@ -3693,6 +3764,7 @@ tester_packing_one_element_changed_neighborhood.o: ../src/testers/tester_packing
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_one_element_changed_neighborhood.h \
 		../src/modules/aom_neighborhood_function.h \
@@ -3746,6 +3818,7 @@ tester_packing_multi_changes_neighborhood.o: ../src/testers/tester_packing_multi
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_multi_elements_changed_neighborhood.h \
 		../src/modules/aom_neighborhood_function.h \
@@ -3799,6 +3872,7 @@ tester_packing_golfers_permutation_neighborhood.o: ../src/testers/tester_packing
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_golfers_single_swap_neighborhood.h \
 		../src/modules/aom_neighborhood_function.h \
@@ -3878,6 +3952,7 @@ tester_speed_operator.o: ../src/testers/tester_speed_operator.cpp ../src/testers
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -3943,6 +4018,7 @@ tester_random_ordered_confgeneration.o: ../src/testers/tester_random_ordered_con
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -3989,6 +4065,7 @@ tester_cost_of_solution_golfers.o: ../src/testers/tester_cost_of_solution_golfer
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution_golfers.o ../src/testers/tester_cost_of_solution_golfers.cpp
@@ -4028,6 +4105,7 @@ tester_cost_of_solution_golom_rules.o: ../src/testers/tester_cost_of_solution_go
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution_golom_rules.o ../src/testers/tester_cost_of_solution_golom_rules.cpp
 
@@ -4066,6 +4144,7 @@ tester_cost_of_solution_quaring_square.o: ../src/testers/tester_cost_of_solution
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution_quaring_square.o ../src/testers/tester_cost_of_solution_quaring_square.cpp
 
@@ -4104,6 +4183,7 @@ tester_solver_golfers.o: ../src/testers/tester_solver_golfers.cpp ../src/testers
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/solver/posl_meta_solver.h \
 		../src/solver/posl_solver.h \
@@ -4157,6 +4237,7 @@ tester_solver_golomb_ruler.o: ../src/testers/tester_solver_golomb_ruler.cpp ../s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/solver/posl_meta_solver.h \
 		../src/solver/posl_solver.h \
@@ -4210,6 +4291,7 @@ tester_solver_squaring_square.o: ../src/testers/tester_solver_squaring_square.cp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/solver/posl_meta_solver.h \
 		../src/solver/posl_solver.h \
@@ -4263,6 +4345,7 @@ tester_multi_sorted_changes_neighborhood.o: ../src/testers/tester_multi_sorted_c
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -4315,6 +4398,7 @@ tester_one_sorted_change_neighborhood.o: ../src/testers/tester_one_sorted_change
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -4366,6 +4450,7 @@ tester_comunication.o: ../src/testers/tester_comunication.cpp ../src/testers/tes
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_fixed_first_configuration.h \
 		../src/modules/aom_first_configuration_generation.h \
@@ -4432,6 +4517,7 @@ tester_solver_n_queens.o: ../src/testers/tester_solver_n_queens.cpp ../src/teste
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/solver/posl_meta_solver.h \
 		../src/solver/posl_solver.h \
@@ -4485,6 +4571,7 @@ tester_cost_of_solution_nqueens.o: ../src/testers/tester_cost_of_solution_nqueen
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution_nqueens.o ../src/testers/tester_cost_of_solution_nqueens.cpp
 
@@ -4510,6 +4597,7 @@ binary_operator.o: ../src/operators/binary_operator.cpp ../src/operators/binary_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4542,6 +4630,7 @@ unary_operator.o: ../src/operators/unary_operator.cpp ../src/operators/unary_ope
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4575,6 +4664,7 @@ rho_operator.o: ../src/operators/rho_operator.cpp ../src/operators/rho_operator.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4611,6 +4701,7 @@ union_operator.o: ../src/operators/union_operator.cpp ../src/operators/union_ope
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4650,6 +4741,7 @@ cyclic_operator.o: ../src/operators/cyclic_operator.cpp ../src/operators/cyclic_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4686,6 +4778,7 @@ speed_operator.o: ../src/operators/speed_operator.cpp ../src/operators/speed_ope
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4723,6 +4816,7 @@ conditional_operator.o: ../src/operators/conditional_operator.cpp ../src/operato
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4760,6 +4854,7 @@ sequential_exec_operator.o: ../src/operators/sequential_exec_operator.cpp ../src
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4793,6 +4888,7 @@ operator.o: ../src/operators/operator.cpp ../src/operators/operator.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4825,6 +4921,7 @@ send_data_operator.o: ../src/operators/send_data_operator.cpp ../src/operators/s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4861,6 +4958,7 @@ min_operator.o: ../src/operators/min_operator.cpp ../src/operators/min_operator.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4901,6 +4999,7 @@ not_implemented_parallel_strategy.o: ../src/operators/strategy/not_implemented_p
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4930,6 +5029,7 @@ sequential_execution_sequential_strategy.o: ../src/operators/strategy/sequential
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4959,6 +5059,7 @@ min_sequential_strategy.o: ../src/operators/strategy/min_sequential_strategy.cpp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -4989,6 +5090,7 @@ min_parallel_strategy.o: ../src/operators/strategy/min_parallel_strategy.cpp ../
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5017,6 +5119,7 @@ min_crit_comparison.o: ../src/operators/strategy/min_crit_comparison.cpp ../src/
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/decision_pair.h \
 		../src/data/neighborhood.h \
@@ -5046,6 +5149,7 @@ send_data_sequential_strategy.o: ../src/operators/strategy/send_data_sequential_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5077,6 +5181,7 @@ conditional_sequential_strategy.o: ../src/operators/strategy/conditional_sequent
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5107,6 +5212,7 @@ executer.o: ../src/operators/strategy/executer.cpp ../src/operators/strategy/exe
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5136,6 +5242,7 @@ speed_parallel_strategy.o: ../src/operators/strategy/speed_parallel_strategy.cpp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5167,6 +5274,7 @@ speed_sequential_strategy.o: ../src/operators/strategy/speed_sequential_strategy
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5200,6 +5308,7 @@ union_parallel_strategy.o: ../src/operators/strategy/union_parallel_strategy.cpp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5235,6 +5344,7 @@ union_sequential_strategy.o: ../src/operators/strategy/union_sequential_strategy
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5267,6 +5377,7 @@ cyclic_sequential_strategy.o: ../src/operators/strategy/cyclic_sequential_strate
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5298,6 +5409,7 @@ rho_sequential_strategy.o: ../src/operators/strategy/rho_sequential_strategy.cpp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5327,6 +5439,7 @@ florian_operator.o: ../src/operators/florian_operator.cpp ../src/operators/flori
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5363,6 +5476,7 @@ florian_sequential_strategy.o: ../src/operators/strategy/florian_sequential_stra
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -5391,6 +5505,7 @@ iteretion_bound_expression.o: ../src/expressions/iteretion_bound_expression.cpp 
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/tools/tokens_definition.h
@@ -5417,6 +5532,7 @@ boolean_expression.o: ../src/expressions/boolean_expression.cpp ../src/expressio
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o boolean_expression.o ../src/expressions/boolean_expression.cpp
 
@@ -5442,6 +5558,7 @@ loop_bound_expression.o: ../src/expressions/loop_bound_expression.cpp ../src/exp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/tools/tokens_definition.h
@@ -5469,6 +5586,7 @@ reached_cost_expression.o: ../src/expressions/reached_cost_expression.cpp ../src
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/tools/tokens_definition.h
@@ -5486,6 +5604,7 @@ randomizer.o: ../src/tools/randomizer.cpp ../src/tools/randomizer.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o randomizer.o ../src/tools/randomizer.cpp
 
 tabu_list.o: ../src/tools/tabu_list.cpp ../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/tools/tools.h \
 		../src/tools/t_changes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tabu_list.o ../src/tools/tabu_list.cpp
@@ -5546,6 +5665,7 @@ golfers_single_swap_packer.o: ../src/packing/packers/golfers_single_swap_packer.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/apply_change_behavior.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o golfers_single_swap_packer.o ../src/packing/packers/golfers_single_swap_packer.cpp
@@ -5587,6 +5707,7 @@ multi_changes_neighborhood_packer.o: ../src/packing/packers/multi_changes_neighb
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dynamic_neighborhood.h \
 		../src/data/dStrategy/apply_change_behavior.h
@@ -5616,6 +5737,7 @@ one_change_neighborhood_packer.o: ../src/packing/packers/one_change_neighborhood
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dynamic_neighborhood.h \
 		../src/data/dStrategy/apply_change_behavior.h
@@ -5677,6 +5799,7 @@ factory_one_change_neighborhood_packer.o: ../src/packing/factory/factory_one_cha
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dynamic_neighborhood.h \
 		../src/data/dStrategy/apply_change_behavior.h
@@ -5707,6 +5830,7 @@ factory_multi_changes_neighborhood_packer.o: ../src/packing/factory/factory_mult
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dynamic_neighborhood.h \
 		../src/data/dStrategy/apply_change_behavior.h
@@ -5738,6 +5862,7 @@ factory_golfers_single_swap_neighborhood_packer.o: ../src/packing/factory/factor
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/apply_change_behavior.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory_golfers_single_swap_neighborhood_packer.o ../src/packing/factory/factory_golfers_single_swap_neighborhood_packer.cpp
@@ -5765,6 +5890,7 @@ posl_solver.o: ../src/solver/posl_solver.cpp ../src/solver/posl_solver.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -5799,6 +5925,7 @@ posl_meta_solver.o: ../src/solver/posl_meta_solver.cpp ../src/solver/posl_meta_s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -5842,6 +5969,7 @@ psp.o: ../src/solver/psp.cpp ../src/solver/psp.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o psp.o ../src/solver/psp.cpp
 
@@ -5883,6 +6011,7 @@ tester_from_pack_neighborhood.o: ../src/testers/tester_from_pack_neighborhood.cp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -5923,6 +6052,7 @@ dynamic_neighborhood.o: ../src/data/dynamic_neighborhood.cpp ../src/data/dynamic
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dynamic_neighborhood.o ../src/data/dynamic_neighborhood.cpp
 
@@ -6019,6 +6149,7 @@ tester_tabuselection.o: ../src/testers/tester_tabuselection.cpp ../src/testers/t
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -6058,6 +6189,7 @@ same_cost_iterations_bound_expression.o: ../src/expressions/same_cost_iterations
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/tools/tokens_definition.h
@@ -6085,6 +6217,7 @@ or_expression.o: ../src/expressions/or_expression.cpp ../src/expressions/or_expr
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tokens_definition.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o or_expression.o ../src/expressions/or_expression.cpp
@@ -6111,6 +6244,7 @@ and_expression.o: ../src/expressions/and_expression.cpp ../src/expressions/and_e
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tokens_definition.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o and_expression.o ../src/expressions/and_expression.cpp
@@ -6157,6 +6291,7 @@ tester_longint.o: ../src/testers/tester_longint.cpp ../src/testers/tester_longin
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_longint.o ../src/testers/tester_longint.cpp
 
@@ -6245,6 +6380,7 @@ tester_iteration_golfers.o: ../src/testers/tester_iteration_golfers.cpp ../src/t
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/modules/om_random_conf_permutation_by_blocks_generation.h \
@@ -6315,6 +6451,7 @@ operation_module.o: ../src/modules/operation_module.cpp ../src/modules/operation
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6344,6 +6481,7 @@ min_och_sequential_strategy.o: ../src/operators/strategy/min_och_sequential_stra
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6375,6 +6513,7 @@ showing_result_strategy.o: ../src/solver/strategy/showing_result_strategy.cpp ..
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o showing_result_strategy.o ../src/solver/strategy/showing_result_strategy.cpp
 
@@ -6399,6 +6538,7 @@ show_plain_result_strategy.o: ../src/solver/strategy/show_plain_result_strategy.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o show_plain_result_strategy.o ../src/solver/strategy/show_plain_result_strategy.cpp
@@ -6424,6 +6564,7 @@ show_bechmark_result_strategy.o: ../src/solver/strategy/show_bechmark_result_str
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o show_bechmark_result_strategy.o ../src/solver/strategy/show_bechmark_result_strategy.cpp
@@ -6449,6 +6590,7 @@ show_to_collect_strategy.o: ../src/solver/strategy/show_to_collect_strategy.cpp 
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o show_to_collect_strategy.o ../src/solver/strategy/show_to_collect_strategy.cpp
@@ -6477,6 +6619,7 @@ open_channel.o: ../src/modules/open_channel.cpp ../src/modules/open_channel.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6504,6 +6647,7 @@ compound_module_uncoder.o: ../src/packing/compound_module_uncoder.cpp ../src/pac
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6548,6 +6692,7 @@ grouped_sequential_computation_uncoder.o: ../src/packing/grouped_sequential_comp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6582,6 +6727,7 @@ grouped_parallel_computation_uncoder.o: ../src/packing/grouped_parallel_computat
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6614,6 +6760,7 @@ operation_module_uncoder.o: ../src/packing/operation_module_uncoder.cpp ../src/p
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6622,6 +6769,7 @@ operation_module_uncoder.o: ../src/packing/operation_module_uncoder.cpp ../src/p
 		../src/tools/tokens_definition.h \
 		../src/packing/om_s_uncoder.h \
 		../src/packing/om_r_uncoder.h \
+		../src/packing/om_p_uncoder.h \
 		../src/packing/om_v_uncoder.h \
 		../src/packing/om_ss_uncoder.h \
 		../src/packing/om_d_uncoder.h \
@@ -6652,6 +6800,7 @@ om_s_uncoder.o: ../src/packing/om_s_uncoder.cpp ../src/packing/om_s_uncoder.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6701,6 +6850,7 @@ om_v_uncoder.o: ../src/packing/om_v_uncoder.cpp ../src/packing/om_v_uncoder.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6767,6 +6917,7 @@ om_ss_uncoder.o: ../src/packing/om_ss_uncoder.cpp ../src/packing/om_ss_uncoder.h
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6816,6 +6967,7 @@ om_d_uncoder.o: ../src/packing/om_d_uncoder.cpp ../src/packing/om_d_uncoder.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6851,6 +7003,7 @@ operator_uncoder.o: ../src/packing/operator_uncoder.cpp ../src/packing/operator_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6897,6 +7050,7 @@ operator_conditional_uncoder.o: ../src/packing/operator_conditional_uncoder.cpp 
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6934,6 +7088,7 @@ operator_cyclic_uncoder.o: ../src/packing/operator_cyclic_uncoder.cpp ../src/pac
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -6971,6 +7126,7 @@ operator_flo_uncoder.o: ../src/packing/operator_flo_uncoder.cpp ../src/packing/o
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -7009,6 +7165,7 @@ operator_rho_uncoder.o: ../src/packing/operator_rho_uncoder.cpp ../src/packing/o
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -7045,6 +7202,7 @@ operator_send_uncoder.o: ../src/packing/operator_send_uncoder.cpp ../src/packing
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -7083,6 +7241,7 @@ boolean_expression_uncoder.o: ../src/packing/boolean_expression_uncoder.cpp ../s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/coding_tools.h \
 		../src/tools/tools.h \
@@ -7119,6 +7278,7 @@ bool_expression_and_uncoder.o: ../src/packing/bool_expression_and_uncoder.cpp ..
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/coding_tools.h \
 		../src/expressions/and_expression.h \
@@ -7147,6 +7307,7 @@ bool_expression_or_uncoder.o: ../src/packing/bool_expression_or_uncoder.cpp ../s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/coding_tools.h \
 		../src/expressions/or_expression.h \
@@ -7188,6 +7349,7 @@ tester_coding_posl.o: ../src/testers/tester_coding_posl.cpp ../src/testers/teste
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/compound_module_generator_from_code.h \
 		../src/modules/compound_module.h \
@@ -7241,6 +7403,7 @@ open_channel_uncoder.o: ../src/packing/open_channel_uncoder.cpp ../src/packing/o
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -7258,7 +7421,9 @@ open_channel_uncoder.o: ../src/packing/open_channel_uncoder.cpp ../src/packing/o
 		../src/data/from_pack_neighborhood.h \
 		../src/data/neighborhood.h \
 		../src/data/dStrategy/posl_iterator.h \
-		../src/data/dStrategy/apply_change_behavior.h
+		../src/data/dStrategy/apply_change_behavior.h \
+		../src/modules/configuration_set_data_open_channel.h \
+		../src/data/configuration_set.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o open_channel_uncoder.o ../src/packing/open_channel_uncoder.cpp
 
 scheduler.o: ../src/connections/scheduler.cpp ../src/connections/scheduler.h \
@@ -7282,6 +7447,7 @@ scheduler.o: ../src/connections/scheduler.cpp ../src/connections/scheduler.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7314,6 +7480,7 @@ connection_operator_broadcasting.o: ../src/connections/connection_operator_broad
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7348,6 +7515,7 @@ computation_strategy_uncoder.o: ../src/packing/computation_strategy_uncoder.cpp 
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -7391,6 +7559,7 @@ posl_uncoder.o: ../src/packing/posl_uncoder.cpp ../src/packing/posl_uncoder.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7429,6 +7598,7 @@ posl_declaration_uncoder.o: ../src/packing/posl_declaration_uncoder.cpp ../src/p
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7465,6 +7635,7 @@ posl_connections_uncoder.o: ../src/packing/posl_connections_uncoder.cpp ../src/p
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7502,6 +7673,7 @@ connection_operator.o: ../src/connections/connection_operator.cpp ../src/connect
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7534,6 +7706,7 @@ connection_operator_no_connection.o: ../src/connections/connection_operator_no_c
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7568,6 +7741,7 @@ connection_operator_bipartition.o: ../src/connections/connection_operator_bipart
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7602,6 +7776,7 @@ connection_operator_rin.o: ../src/connections/connection_operator_rin.cpp ../src
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -7654,6 +7829,7 @@ tester_packing_strategies.o: ../src/testers/tester_packing_strategies.cpp ../src
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_random_conf_permutation_by_blocks_generation.h \
 		../src/modules/aom_first_configuration_generation.h \
@@ -7781,6 +7957,7 @@ adaptive_search_neighborhood.o: ../src/data/adaptive_search_neighborhood.cpp ../
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/apply_change_behavior.h \
 		../src/data/dStrategy/elements_change_iterator.h \
@@ -7814,6 +7991,7 @@ om_adaptive_search_neighborhood.o: ../src/modules/om_adaptive_search_neighborhoo
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -7861,6 +8039,7 @@ tester_adaptive_search_neighborhood.o: ../src/testers/tester_adaptive_search_nei
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -7910,6 +8089,7 @@ golfers_adaptive_search_neighborhood.o: ../src/data/golfers_adaptive_search_neig
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/apply_change_behavior.h \
 		../src/benchmarks/golfers.h \
@@ -7946,6 +8126,7 @@ om_golfers_adaptive_searchneigborhood.o: ../src/modules/om_golfers_adaptive_sear
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -7995,6 +8176,7 @@ tester_golfers_as_neighborhood.o: ../src/testers/tester_golfers_as_neighborhood.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -8139,6 +8321,7 @@ tester_cost_of_solution_costas_array.o: ../src/testers/tester_cost_of_solution_c
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution_costas_array.o ../src/testers/tester_cost_of_solution_costas_array.cpp
 
@@ -8177,6 +8360,7 @@ tester_solver_costas_array.o: ../src/testers/tester_solver_costas_array.cpp ../s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/solver/posl_meta_solver.h \
 		../src/solver/posl_solver.h \
@@ -8227,6 +8411,7 @@ om_r_uncoder.o: ../src/packing/om_r_uncoder.cpp ../src/packing/om_r_uncoder.h \
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -8240,7 +8425,7 @@ om_r_uncoder.o: ../src/packing/om_r_uncoder.cpp ../src/packing/om_r_uncoder.h \
 		../src/modules/om_daniel_as_restart_processing.h \
 		../src/benchmarks/cost_strategy/reseteable.h \
 		../src/packing/om_r_tabu_uncoder.h \
-		../src/modules/om_tabu_processing.h
+		../src/modules/om_tabu_configuration_processing.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_r_uncoder.o ../src/packing/om_r_uncoder.cpp
 
 all_circular_shift_around_worst_rearrange_strategy.o: ../src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.cpp ../src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.h \
@@ -8264,6 +8449,7 @@ all_circular_shift_around_worst_rearrange_strategy.o: ../src/modules/strategy/al
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o all_circular_shift_around_worst_rearrange_strategy.o ../src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.cpp
 
@@ -8288,6 +8474,7 @@ add_a_constant_rearrange_strategy.o: ../src/modules/strategy/add_a_constant_rear
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o add_a_constant_rearrange_strategy.o ../src/modules/strategy/add_a_constant_rearrange_strategy.cpp
 
@@ -8326,6 +8513,7 @@ tester_as_restart.o: ../src/testers/tester_as_restart.cpp ../src/testers/tester_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/strategy/all_circular_shift_around_worst_rearrange_strategy.h \
 		../src/modules/strategy/rearrange_strategy.h \
@@ -8354,6 +8542,7 @@ circular_shift_around_bad_rearrange_strategy.o: ../src/modules/strategy/circular
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o circular_shift_around_bad_rearrange_strategy.o ../src/modules/strategy/circular_shift_around_bad_rearrange_strategy.cpp
@@ -8393,6 +8582,7 @@ tester_daniel_restart.o: ../src/testers/tester_daniel_restart.cpp ../src/testers
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -8438,6 +8628,7 @@ neighbor_selecting_k_best_improvement.o: ../src/data/dStrategy/neighbor_selectin
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/binary_search_tree.h \
 		../src/tools/hash_map.h
@@ -8481,6 +8672,7 @@ tester_binary_search_tree.o: ../src/testers/tester_binary_search_tree.cpp ../src
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/binary_search_tree.h \
 		../src/tools/tools.h
@@ -8509,6 +8701,7 @@ om_k_best_improvement_selection.o: ../src/modules/om_k_best_improvement_selectio
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -8557,6 +8750,7 @@ tester_k_best_improvement_selection.o: ../src/testers/tester_k_best_improvement_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_fixed_first_configuration.h \
 		../src/modules/aom_first_configuration_generation.h \
@@ -8612,6 +8806,7 @@ golfers_single_week_swap_neighborhood.o: ../src/data/golfers_single_week_swap_ne
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/apply_change_behavior.h \
 		../src/tools/rand_index_generator.h \
@@ -8647,6 +8842,7 @@ om_golfers_single_week_swap_neighborhood.o: ../src/modules/om_golfers_single_wee
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -8696,6 +8892,7 @@ tester_golfers_1_week_neighborhood.o: ../src/testers/tester_golfers_1_week_neigh
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -8746,6 +8943,7 @@ not_null_sequential_strategy.o: ../src/operators/strategy/not_null_sequential_st
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -8779,6 +8977,7 @@ not_null_operator.o: ../src/operators/not_null_operator.cpp ../src/operators/not
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -8820,6 +9019,7 @@ operation_module_simulated_anealing_uncoder.o: ../src/packing/operation_module_s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -8868,6 +9068,7 @@ tester_same_cost_iterations_be.o: ../src/testers/tester_same_cost_iterations_be.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/expressions/same_cost_iterations_bound_expression.h \
 		../src/expressions/boolean_expression.h \
@@ -8898,6 +9099,7 @@ golfers_adaptive_search_single_week_neighborhood.o: ../src/data/golfers_adaptive
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/apply_change_behavior.h \
 		../src/benchmarks/golfers.h \
@@ -8930,6 +9132,7 @@ om_golfers_single_week_adaptive_search_neighborhood.o: ../src/modules/om_golfers
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -8967,6 +9170,7 @@ decision_pair_first_data_open_channel.o: ../src/modules/decision_pair_first_data
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9000,6 +9204,7 @@ solution_first_data_open_channel.o: ../src/modules/solution_first_data_open_chan
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9031,6 +9236,7 @@ solution_last_data_open_channel.o: ../src/modules/solution_last_data_open_channe
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9062,6 +9268,7 @@ decision_pair_last_data_open_channel.o: ../src/modules/decision_pair_last_data_o
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9095,6 +9302,7 @@ neighborhood_last_data_open_channel.o: ../src/modules/neighborhood_last_data_ope
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9130,6 +9338,7 @@ solution_best_data_open_channel.o: ../src/modules/solution_best_data_open_channe
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9160,6 +9369,7 @@ singleton_expression.o: ../src/expressions/singleton_expression.cpp ../src/expre
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/tools/tokens_definition.h
@@ -9200,6 +9410,7 @@ tester_singleton_experession.o: ../src/testers/tester_singleton_experession.cpp 
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/om_simulated_annealing_decision.h \
 		../src/modules/aom_decision_function.h \
@@ -9248,6 +9459,7 @@ solve_in_parallel_strategy.o: ../src/solver/strategy/solve_in_parallel_strategy.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -9282,6 +9494,7 @@ solve_sequentially_strategy.o: ../src/solver/strategy/solve_sequentially_strateg
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -9315,6 +9528,7 @@ solve_to_test_strategy.o: ../src/solver/strategy/solve_to_test_strategy.cpp ../s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/computation/computation_strategy.h \
 		../src/modules/compound_module.h \
@@ -9386,6 +9600,7 @@ tester_cost_on_variable_golomb_ruler.o: ../src/testers/tester_cost_on_variable_g
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_on_variable_golomb_ruler.o ../src/testers/tester_cost_on_variable_golomb_ruler.cpp
 
@@ -9409,6 +9624,7 @@ one_worst_sorted_change_neighborhood.o: ../src/data/one_worst_sorted_change_neig
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/neighborhood.h \
 		../src/data/dStrategy/posl_iterator.h \
@@ -9455,6 +9671,7 @@ tester_one_worst_sorted_change_neighborhood.o: ../src/testers/tester_one_worst_s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -9494,6 +9711,7 @@ om_one_worst_sorted_neighborhood.o: ../src/modules/om_one_worst_sorted_neighborh
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9552,6 +9770,7 @@ tester_iteration_golomb_ruler.o: ../src/testers/tester_iteration_golomb_ruler.cp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/modules/om_random_conf_permutation_by_blocks_generation.h \
@@ -9622,6 +9841,7 @@ random_golomb_valid_generation_strategy.o: ../src/modules/strategy/random_golomb
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9727,6 +9947,7 @@ tester_cost_of_solution_subsum.o: ../src/testers/tester_cost_of_solution_subsum.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution_subsum.o ../src/testers/tester_cost_of_solution_subsum.cpp
 
@@ -9791,6 +10012,7 @@ subsum_single_permitation_neighborhood.o: ../src/data/subsum_single_permitation_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/apply_change_behavior.h \
 		../src/tools/rand_index_generator.h \
@@ -9826,6 +10048,7 @@ om_subsum_single_permutation_neighborhood.o: ../src/modules/om_subsum_single_per
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -9875,6 +10098,7 @@ tester_subsum_single_swap_neighborhood.o: ../src/testers/tester_subsum_single_sw
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -9926,6 +10150,7 @@ tester_solver_subsum.o: ../src/testers/tester_solver_subsum.cpp ../src/testers/t
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/solver/posl_meta_solver.h \
 		../src/solver/posl_solver.h \
@@ -9969,6 +10194,7 @@ om_golomb_valid_generation.o: ../src/modules/om_golomb_valid_generation.cpp ../s
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10118,6 +10344,7 @@ tester_far_random_conf_generation.o: ../src/testers/tester_far_random_conf_gener
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/strategy/far_random_configuration_generation_strategy.h \
 		../src/tools/tools.h \
@@ -10159,6 +10386,7 @@ tester_cost_of_solution_all_intervals.o: ../src/testers/tester_cost_of_solution_
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_cost_of_solution_all_intervals.o ../src/testers/tester_cost_of_solution_all_intervals.cpp
 
@@ -10197,6 +10425,7 @@ tester_solver_all_intervals.o: ../src/testers/tester_solver_all_intervals.cpp ..
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/solver/posl_meta_solver.h \
 		../src/solver/posl_solver.h \
@@ -10235,6 +10464,7 @@ all_permutations_neighborhood.o: ../src/data/all_permutations_neighborhood.cpp .
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/neighborhood.h \
 		../src/data/dStrategy/posl_iterator.h \
@@ -10268,6 +10498,7 @@ om_all_permutations_neighborhood.o: ../src/modules/om_all_permutations_neighborh
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10315,6 +10546,7 @@ tester_all_permutations_neighborhood.o: ../src/testers/tester_all_permutations_n
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -10366,6 +10598,7 @@ tester_iteration_squaring_square.o: ../src/testers/tester_iteration_squaring_squ
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/modules/om_random_conf_permutation_by_blocks_generation.h \
@@ -10444,6 +10677,7 @@ one_2d_change_neighborhood.o: ../src/data/one_2d_change_neighborhood.cpp ../src/
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dynamic_neighborhood.h \
 		../src/data/dStrategy/apply_change_behavior.h \
@@ -10479,6 +10713,7 @@ om_one_2d_change_neighborhood.o: ../src/modules/om_one_2d_change_neighborhood.cp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10526,6 +10761,7 @@ tester_one_2d_change_neighborhood.o: ../src/testers/tester_one_2d_change_neighbo
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -10574,6 +10810,7 @@ neighbor_selecting_heuristic_first_improvement.o: ../src/data/dStrategy/neighbor
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighbor_selecting_heuristic_first_improvement.o ../src/data/dStrategy/neighbor_selecting_heuristic_first_improvement.cpp
@@ -10601,6 +10838,7 @@ om_h_first_improvement_selection.o: ../src/modules/om_h_first_improvement_select
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10634,6 +10872,7 @@ module_iteration_expression.o: ../src/expressions/module_iteration_expression.cp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/tools/tokens_definition.h
@@ -10677,6 +10916,7 @@ tester_global_tabu.o: ../src/testers/tester_global_tabu.cpp ../src/testers/teste
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/modules/om_fixed_first_configuration.h \
@@ -10686,7 +10926,7 @@ tester_global_tabu.o: ../src/testers/tester_global_tabu.cpp ../src/testers/teste
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
 		../src/connections/connector_info.h \
-		../src/modules/om_tabu_processing.h \
+		../src/modules/om_tabu_configuration_processing.h \
 		../src/modules/aom_process_configuration.h \
 		../src/operators/sequential_exec_operator.h \
 		../src/operators/binary_operator.h \
@@ -10721,6 +10961,7 @@ neighbor_selecting_first_improvement_global_tabu.o: ../src/data/dStrategy/neighb
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neighbor_selecting_first_improvement_global_tabu.o ../src/data/dStrategy/neighbor_selecting_first_improvement_global_tabu.cpp
 
@@ -10747,6 +10988,7 @@ om_first_improvement_global_tabu_selection.o: ../src/modules/om_first_improvemen
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10760,6 +11002,7 @@ om_first_improvement_global_tabu_selection.o: ../src/modules/om_first_improvemen
 
 tabu_object.o: ../src/solver/tabu_object.cpp ../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/tools/tools.h \
 		../src/tools/t_changes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tabu_object.o ../src/solver/tabu_object.cpp
@@ -10787,6 +11030,7 @@ first_sequential_strategy.o: ../src/operators/strategy/first_sequential_strategy
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10819,6 +11063,7 @@ first_operator.o: ../src/operators/first_operator.cpp ../src/operators/first_ope
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10854,41 +11099,12 @@ aom_process_configuration.o: ../src/modules/aom_process_configuration.cpp ../src
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
 		../src/connections/connector_info.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o aom_process_configuration.o ../src/modules/aom_process_configuration.cpp
-
-om_tabu_processing.o: ../src/modules/om_tabu_processing.cpp ../src/modules/om_tabu_processing.h \
-		../src/modules/aom_process_configuration.h \
-		../src/modules/operation_module.h \
-		../src/modules/compound_module.h \
-		../src/data/computation_data.h \
-		../src/packing/factory/factory_packer.h \
-		../src/packing/packers/packer.h \
-		../src/solver/psp.h \
-		../src/benchmarks/benchmark.h \
-		../src/data/solution.h \
-		../src/data/domain.h \
-		../src/tools/t_changes.h \
-		../src/benchmarks/cost_strategy/solution_cost_strategy.h \
-		../src/benchmarks/show_strategy/show_strategy.h \
-		../src/benchmarks/cost_strategy/relative_cost_strategy.h \
-		../src/data/seed.h \
-		../src/tools/randomizer.h \
-		../src/tools/matrix.h \
-		../src/tools/random_generator.h \
-		../src/solver/comunicator.h \
-		../src/tools/posl_log.h \
-		../src/solver/tabu_object.h \
-		../src/tools/tabu_list.h \
-		../src/solver/search_process_params_struct.h \
-		../src/packing/codable.h \
-		../src/connections/connectable.h \
-		../src/connections/connector_info.h \
-		../src/tools/tokens_definition.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_tabu_processing.o ../src/modules/om_tabu_processing.cpp
 
 om_default_processing.o: ../src/modules/om_default_processing.cpp ../src/modules/om_default_processing.h \
 		../src/modules/aom_process_configuration.h \
@@ -10913,6 +11129,7 @@ om_default_processing.o: ../src/modules/om_default_processing.cpp ../src/modules
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10943,6 +11160,7 @@ om_daniel_as_restart_processing.o: ../src/modules/om_daniel_as_restart_processin
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10978,6 +11196,7 @@ om_adaptive_search_processing.o: ../src/modules/om_adaptive_search_processing.cp
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -10999,7 +11218,7 @@ search_process_params_struct.o: ../src/solver/search_process_params_struct.cpp .
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search_process_params_struct.o ../src/solver/search_process_params_struct.cpp
 
 om_r_tabu_uncoder.o: ../src/packing/om_r_tabu_uncoder.cpp ../src/packing/om_r_tabu_uncoder.h \
-		../src/modules/om_tabu_processing.h \
+		../src/modules/om_tabu_configuration_processing.h \
 		../src/modules/aom_process_configuration.h \
 		../src/modules/operation_module.h \
 		../src/modules/compound_module.h \
@@ -11022,6 +11241,7 @@ om_r_tabu_uncoder.o: ../src/packing/om_r_tabu_uncoder.cpp ../src/packing/om_r_ta
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -11065,6 +11285,7 @@ tester_iteration_all_intervals.o: ../src/testers/tester_iteration_all_intervals.
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/tools/tools.h \
 		../src/modules/om_random_conf_permutation_by_blocks_generation.h \
@@ -11131,6 +11352,7 @@ configuration_set.o: ../src/data/configuration_set.cpp ../src/data/configuration
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/data/dStrategy/configuration_set_iterator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o configuration_set.o ../src/data/configuration_set.cpp
@@ -11158,6 +11380,7 @@ configuration_set_iterator.o: ../src/data/dStrategy/configuration_set_iterator.c
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o configuration_set_iterator.o ../src/data/dStrategy/configuration_set_iterator.cpp
 
@@ -11184,6 +11407,7 @@ configuration_set_data_open_channel.o: ../src/modules/configuration_set_data_ope
 		../src/tools/posl_log.h \
 		../src/solver/tabu_object.h \
 		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
 		../src/solver/search_process_params_struct.h \
 		../src/packing/codable.h \
 		../src/connections/connectable.h \
@@ -11194,6 +11418,208 @@ configuration_set_data_open_channel.o: ../src/modules/configuration_set_data_ope
 		../src/packing/packers/solution_packer.h \
 		../src/tools/tokens_definition.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o configuration_set_data_open_channel.o ../src/modules/configuration_set_data_open_channel.cpp
+
+aom_process_configuration_set.o: ../src/modules/aom_process_configuration_set.cpp ../src/modules/aom_process_configuration_set.h \
+		../src/modules/operation_module.h \
+		../src/modules/compound_module.h \
+		../src/data/computation_data.h \
+		../src/packing/factory/factory_packer.h \
+		../src/packing/packers/packer.h \
+		../src/solver/psp.h \
+		../src/benchmarks/benchmark.h \
+		../src/data/solution.h \
+		../src/data/domain.h \
+		../src/tools/t_changes.h \
+		../src/benchmarks/cost_strategy/solution_cost_strategy.h \
+		../src/benchmarks/show_strategy/show_strategy.h \
+		../src/benchmarks/cost_strategy/relative_cost_strategy.h \
+		../src/data/seed.h \
+		../src/tools/randomizer.h \
+		../src/tools/matrix.h \
+		../src/tools/random_generator.h \
+		../src/solver/comunicator.h \
+		../src/tools/posl_log.h \
+		../src/solver/tabu_object.h \
+		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
+		../src/solver/search_process_params_struct.h \
+		../src/packing/codable.h \
+		../src/connections/connectable.h \
+		../src/connections/connector_info.h \
+		../src/data/configuration_set.h \
+		../src/data/neighborhood.h \
+		../src/data/dStrategy/posl_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o aom_process_configuration_set.o ../src/modules/aom_process_configuration_set.cpp
+
+om_tabu_configuration_processing.o: ../src/modules/om_tabu_configuration_processing.cpp ../src/modules/om_tabu_configuration_processing.h \
+		../src/modules/aom_process_configuration.h \
+		../src/modules/operation_module.h \
+		../src/modules/compound_module.h \
+		../src/data/computation_data.h \
+		../src/packing/factory/factory_packer.h \
+		../src/packing/packers/packer.h \
+		../src/solver/psp.h \
+		../src/benchmarks/benchmark.h \
+		../src/data/solution.h \
+		../src/data/domain.h \
+		../src/tools/t_changes.h \
+		../src/benchmarks/cost_strategy/solution_cost_strategy.h \
+		../src/benchmarks/show_strategy/show_strategy.h \
+		../src/benchmarks/cost_strategy/relative_cost_strategy.h \
+		../src/data/seed.h \
+		../src/tools/randomizer.h \
+		../src/tools/matrix.h \
+		../src/tools/random_generator.h \
+		../src/solver/comunicator.h \
+		../src/tools/posl_log.h \
+		../src/solver/tabu_object.h \
+		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
+		../src/solver/search_process_params_struct.h \
+		../src/packing/codable.h \
+		../src/connections/connectable.h \
+		../src/connections/connector_info.h \
+		../src/tools/tokens_definition.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_tabu_configuration_processing.o ../src/modules/om_tabu_configuration_processing.cpp
+
+om_tabu_configuration_set_processing.o: ../src/modules/om_tabu_configuration_set_processing.cpp ../src/modules/om_tabu_configuration_set_processing.h \
+		../src/modules/aom_process_configuration_set.h \
+		../src/modules/operation_module.h \
+		../src/modules/compound_module.h \
+		../src/data/computation_data.h \
+		../src/packing/factory/factory_packer.h \
+		../src/packing/packers/packer.h \
+		../src/solver/psp.h \
+		../src/benchmarks/benchmark.h \
+		../src/data/solution.h \
+		../src/data/domain.h \
+		../src/tools/t_changes.h \
+		../src/benchmarks/cost_strategy/solution_cost_strategy.h \
+		../src/benchmarks/show_strategy/show_strategy.h \
+		../src/benchmarks/cost_strategy/relative_cost_strategy.h \
+		../src/data/seed.h \
+		../src/tools/randomizer.h \
+		../src/tools/matrix.h \
+		../src/tools/random_generator.h \
+		../src/solver/comunicator.h \
+		../src/tools/posl_log.h \
+		../src/solver/tabu_object.h \
+		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
+		../src/solver/search_process_params_struct.h \
+		../src/packing/codable.h \
+		../src/connections/connectable.h \
+		../src/connections/connector_info.h \
+		../src/data/configuration_set.h \
+		../src/data/neighborhood.h \
+		../src/data/dStrategy/posl_iterator.h \
+		../src/tools/tokens_definition.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_tabu_configuration_set_processing.o ../src/modules/om_tabu_configuration_set_processing.cpp
+
+om_p_uncoder.o: ../src/packing/om_p_uncoder.cpp ../src/packing/om_p_uncoder.h \
+		../src/modules/operation_module.h \
+		../src/modules/compound_module.h \
+		../src/data/computation_data.h \
+		../src/packing/factory/factory_packer.h \
+		../src/packing/packers/packer.h \
+		../src/solver/psp.h \
+		../src/benchmarks/benchmark.h \
+		../src/data/solution.h \
+		../src/data/domain.h \
+		../src/tools/t_changes.h \
+		../src/benchmarks/cost_strategy/solution_cost_strategy.h \
+		../src/benchmarks/show_strategy/show_strategy.h \
+		../src/benchmarks/cost_strategy/relative_cost_strategy.h \
+		../src/data/seed.h \
+		../src/tools/randomizer.h \
+		../src/tools/matrix.h \
+		../src/tools/random_generator.h \
+		../src/solver/comunicator.h \
+		../src/tools/posl_log.h \
+		../src/solver/tabu_object.h \
+		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
+		../src/solver/search_process_params_struct.h \
+		../src/packing/codable.h \
+		../src/connections/connectable.h \
+		../src/connections/connector_info.h \
+		../src/tools/coding_tools.h \
+		../src/tools/tokens_definition.h \
+		../src/packing/om_r_tabu_uncoder.h \
+		../src/modules/om_tabu_configuration_processing.h \
+		../src/modules/aom_process_configuration.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_p_uncoder.o ../src/packing/om_p_uncoder.cpp
+
+om_p_tabu_uncoder.o: ../src/packing/om_p_tabu_uncoder.cpp ../src/packing/om_p_tabu_uncoder.h \
+		../src/modules/om_tabu_configuration_set_processing.h \
+		../src/modules/aom_process_configuration_set.h \
+		../src/modules/operation_module.h \
+		../src/modules/compound_module.h \
+		../src/data/computation_data.h \
+		../src/packing/factory/factory_packer.h \
+		../src/packing/packers/packer.h \
+		../src/solver/psp.h \
+		../src/benchmarks/benchmark.h \
+		../src/data/solution.h \
+		../src/data/domain.h \
+		../src/tools/t_changes.h \
+		../src/benchmarks/cost_strategy/solution_cost_strategy.h \
+		../src/benchmarks/show_strategy/show_strategy.h \
+		../src/benchmarks/cost_strategy/relative_cost_strategy.h \
+		../src/data/seed.h \
+		../src/tools/randomizer.h \
+		../src/tools/matrix.h \
+		../src/tools/random_generator.h \
+		../src/solver/comunicator.h \
+		../src/tools/posl_log.h \
+		../src/solver/tabu_object.h \
+		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
+		../src/solver/search_process_params_struct.h \
+		../src/packing/codable.h \
+		../src/connections/connectable.h \
+		../src/connections/connector_info.h \
+		../src/data/configuration_set.h \
+		../src/data/neighborhood.h \
+		../src/data/dStrategy/posl_iterator.h \
+		../src/tools/coding_tools.h \
+		../src/tools/tools.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_p_tabu_uncoder.o ../src/packing/om_p_tabu_uncoder.cpp
+
+list_iterator.o: ../src/tools/list_iterator.cpp ../src/tools/list_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o list_iterator.o ../src/tools/list_iterator.cpp
+
+aom_first_configuration_generation_from_set.o: ../src/modules/aom_first_configuration_generation_from_set.cpp ../src/modules/aom_first_configuration_generation_from_set.h \
+		../src/modules/operation_module.h \
+		../src/modules/compound_module.h \
+		../src/data/computation_data.h \
+		../src/packing/factory/factory_packer.h \
+		../src/packing/packers/packer.h \
+		../src/solver/psp.h \
+		../src/benchmarks/benchmark.h \
+		../src/data/solution.h \
+		../src/data/domain.h \
+		../src/tools/t_changes.h \
+		../src/benchmarks/cost_strategy/solution_cost_strategy.h \
+		../src/benchmarks/show_strategy/show_strategy.h \
+		../src/benchmarks/cost_strategy/relative_cost_strategy.h \
+		../src/data/seed.h \
+		../src/tools/randomizer.h \
+		../src/tools/matrix.h \
+		../src/tools/random_generator.h \
+		../src/solver/comunicator.h \
+		../src/tools/posl_log.h \
+		../src/solver/tabu_object.h \
+		../src/tools/tabu_list.h \
+		../src/tools/list_iterator.h \
+		../src/solver/search_process_params_struct.h \
+		../src/packing/codable.h \
+		../src/connections/connectable.h \
+		../src/connections/connector_info.h \
+		../src/data/configuration_set.h \
+		../src/data/neighborhood.h \
+		../src/data/dStrategy/posl_iterator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o aom_first_configuration_generation_from_set.o ../src/modules/aom_first_configuration_generation_from_set.cpp
 
 ####### Install
 

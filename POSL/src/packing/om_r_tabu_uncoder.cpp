@@ -8,9 +8,9 @@ OM_R_Tabu_Uncoder::OM_R_Tabu_Uncoder()
 {
 }
 
-shared_ptr<OM_TabuProcessing> OM_R_Tabu_Uncoder::uncode(string code,
-                                                        shared_ptr<Benchmark>,
-                                                        shared_ptr<SearchProcessParamsStruct> psp_params)
+std::shared_ptr<OM_TabuConfigurationProcessing> OM_R_Tabu_Uncoder::uncode(string code,
+                                                                          shared_ptr<Benchmark>,
+                                                                          shared_ptr<SearchProcessParamsStruct> psp_params)
 {
     if(code.find("(") != std::string::npos)
     {
@@ -26,5 +26,5 @@ shared_ptr<OM_TabuProcessing> OM_R_Tabu_Uncoder::uncode(string code,
         psp_params->SetTabuEps(eps);
         psp_params->SetTabuNormType(tabu_norm);
     }
-    return make_shared<OM_TabuProcessing>();
+    return make_shared<OM_TabuConfigurationProcessing>();
 }

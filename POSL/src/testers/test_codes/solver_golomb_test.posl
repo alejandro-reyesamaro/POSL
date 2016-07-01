@@ -113,6 +113,87 @@ St_g01COMM := cStrategy
 </S>
 };
 
+St_g02COMM_sender := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 300 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.|->
+            <S>
+                OP.Cyc ( BE.LoopBnd 200 )
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.|->
+                                OM_V
+                                <S>
+                                    OP.? ( BE.SCI 25 )
+                                    OM_SS
+                                    OM_SS.Rand
+                                </S>
+                            </S>
+                            OM_D
+                        </S> OMS.IterCounter
+                    </S> OMS.TimeCounter
+                </S>
+            </S>
+            <S> OP.OSend (send_1) OM_R </S>
+        </S>
+    </S>
+</S>
+};
+
+St_g02COMM_receiver := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R, OM_P;
+    oChannel: OCh;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 300 )
+    <S>
+        OP.|->
+        <S>
+            OP.First
+            <S> OP.|-> OCh (Ch1) OM_P </S>
+            OM_S
+        </S>
+        <S>
+            OP.|->
+            <S>
+                OP.Cyc ( BE.LoopBnd 200 )
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.|->
+                                OM_V
+                                <S>
+                                    OP.? ( BE.SCI 25 )
+                                    OM_SS
+                                    OM_SS.Rand
+                                </S>
+                            </S>
+                            OM_D
+                        </S> OMS.IterCounter
+                    </S> OMS.TimeCounter
+                </S>
+            </S>
+            OM_R
+        </S>
+    </S>
+</S>
+};
+
 solver1 := solver
 {
     cStrategy: St_g01;
@@ -122,25 +203,52 @@ solver1 := solver
 solver2 := solver
 {
     cStrategy: St_g02;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:7:8);
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:2:8);
 };
 
 solverc1 := solver
 {
     cStrategy: St_g01COMM;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:7:8);
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:3:8);
     oChannel: OCh.Sol_Last;
 };
 
 solverc2 := solver
 {
     cStrategy: St_g01COMM;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:7:8);
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:5:2);
     oChannel: OCh.Sol_Last;
+};
+
+solver_sender := solver
+{
+    cStrategy: St_g02COMM_sender;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:90:8);
+};
+
+solver_sender2 := solver
+{
+    cStrategy: St_g02COMM_sender;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:90:8);
+};
+
+solver_receiver := solver
+{
+    cStrategy: St_g02COMM_receiver;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:30:8), OM_P.Tabu(15:2:2);
+    oChannel: OCh.Sol_CS;
+};
+
+solver_receiver2 := solver
+{
+    cStrategy: St_g02COMM_receiver;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:30:8), OM_P.Tabu(15:2:2);
+    oChannel: OCh.Sol_CS;
 };
 
 connections:
 
 //[solver1]3;
-[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]1;
-[solver2]2;
+//[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]1;
+[solver_sender.send_1, solver_sender2.send_1] OP.#-> [solver_receiver.Ch1, solver_receiver2.Ch1];
+[solver2]6;

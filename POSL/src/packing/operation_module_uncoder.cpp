@@ -4,6 +4,7 @@
 
 #include "om_s_uncoder.h"
 #include "om_r_uncoder.h"
+#include "om_p_uncoder.h"
 #include "om_v_uncoder.h"
 #include "om_ss_uncoder.h"
 #include "om_d_uncoder.h"
@@ -28,9 +29,14 @@ shared_ptr<OperationModule> OperationModuleUncoder::uncode(string code,
         OM_S_Uncoder oms_unc;
         return oms_unc.uncode(code, bench);
     }
-    else if(om_type == OM_R_TOK_TYPE) // REARRENGEMENT
+    else if(om_type == OM_R_TOK_TYPE) // REARRENGEMENT_CONF
     {
         OM_R_Uncoder omv_unc;
+        return omv_unc.uncode(code, bench, psp_params);
+    }
+    else if(om_type == OM_P_TOK_TYPE) // REARRENGEMENT_SET
+    {
+        OM_P_Uncoder omv_unc;
         return omv_unc.uncode(code, bench, psp_params);
     }
     else if(om_type == OM_V_TOK_TYPE) // NEIGHBORHOOD

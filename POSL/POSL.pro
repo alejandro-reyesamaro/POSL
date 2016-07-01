@@ -343,7 +343,6 @@ SOURCES += src/main.cpp \
     src/operators/strategy/first_sequential_strategy.cpp \
     src/operators/first_operator.cpp \
     src/modules/aom_process_configuration.cpp \
-    src/modules/om_tabu_processing.cpp \
     src/modules/om_default_processing.cpp \
     src/modules/om_daniel_as_restart_processing.cpp \
     src/modules/om_adaptive_search_processing.cpp \
@@ -353,7 +352,14 @@ SOURCES += src/main.cpp \
     src/testers/tester_iteration_all_intervals.cpp \
     src/data/configuration_set.cpp \
     src/data/dStrategy/configuration_set_iterator.cpp \
-    src/modules/configuration_set_data_open_channel.cpp
+    src/modules/configuration_set_data_open_channel.cpp \
+    src/modules/aom_process_configuration_set.cpp \
+    src/modules/om_tabu_configuration_processing.cpp \
+    src/modules/om_tabu_configuration_set_processing.cpp \
+    src/packing/om_p_uncoder.cpp \
+    src/packing/om_p_tabu_uncoder.cpp \
+    src/tools/list_iterator.cpp \
+    src/modules/aom_first_configuration_generation_from_set.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -704,7 +710,6 @@ HEADERS += \
     src/operators/first_operator.h \
     src/benchmarks/cost_strategy/golfers_intersections_cost_strategy.h \
     src/modules/aom_process_configuration.h \
-    src/modules/om_tabu_processing.h \
     src/modules/om_default_processing.h \
     src/modules/om_daniel_as_restart_processing.h \
     src/modules/om_adaptive_search_processing.h \
@@ -713,7 +718,14 @@ HEADERS += \
     src/testers/tester_iteration_all_intervals.h \
     src/data/configuration_set.h \
     src/data/dStrategy/configuration_set_iterator.h \
-    src/modules/configuration_set_data_open_channel.h
+    src/modules/configuration_set_data_open_channel.h \
+    src/modules/aom_process_configuration_set.h \
+    src/modules/om_tabu_configuration_processing.h \
+    src/modules/om_tabu_configuration_set_processing.h \
+    src/packing/om_p_uncoder.h \
+    src/packing/om_p_tabu_uncoder.h \
+    src/tools/list_iterator.h \
+    src/modules/aom_first_configuration_generation_from_set.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

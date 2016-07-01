@@ -6,7 +6,7 @@
 #include "../solver/search_process_params_struct.h"
 
 #include "../modules/om_fixed_first_configuration.h"
-#include "../modules/om_tabu_processing.h"
+#include "../modules/om_tabu_configuration_processing.h"
 #include "../operators/sequential_exec_operator.h"
 #include "../modules/grouped_sequential_computation.h"
 
@@ -43,7 +43,7 @@ string Tester_GlobalTabu::test()
     shared_ptr<PSP> psp(make_shared<PSP>(bench, spps));
 
     shared_ptr<CompoundModule> OM_S (make_shared<OM_FixedFirstConfiguration>(bench));
-    shared_ptr<CompoundModule> OM_R (make_shared<OM_TabuProcessing>());
+    shared_ptr<CompoundModule> OM_R (make_shared<OM_TabuConfigurationProcessing>());
 
     shared_ptr<Operator> sec_1(make_shared<SequentialExecOperator>(OM_S, OM_R));
     shared_ptr<GroupedComputation> Gsec1(make_shared<GroupedSequentialComputation>(sec_1));

@@ -13,7 +13,7 @@ void Comunicator::sendMessage(vector<int> package, int procID)
 {
     int tag = package[0];
     int pack_size = package.size();
-    int * buffer = &package[0];    
+    int * buffer = &package[0];
 
     if (logging)
     {
