@@ -359,7 +359,9 @@ SOURCES += src/main.cpp \
     src/packing/om_p_uncoder.cpp \
     src/packing/om_p_tabu_uncoder.cpp \
     src/tools/list_iterator.cpp \
-    src/modules/aom_first_configuration_generation_from_set.cpp
+    src/modules/aom_first_configuration_generation_from_set.cpp \
+    src/modules/om_golomb_valid_generation_fromset.cpp \
+    src/testers/tester_golomb_subsum_conversions.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -725,7 +727,9 @@ HEADERS += \
     src/packing/om_p_uncoder.h \
     src/packing/om_p_tabu_uncoder.h \
     src/tools/list_iterator.h \
-    src/modules/aom_first_configuration_generation_from_set.h
+    src/modules/aom_first_configuration_generation_from_set.h \
+    src/modules/om_golomb_valid_generation_fromset.h \
+    src/testers/tester_golomb_subsum_conversions.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

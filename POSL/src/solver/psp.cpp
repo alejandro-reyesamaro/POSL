@@ -39,6 +39,17 @@ PSP::PSP(std::shared_ptr<Benchmark> _bench, std::shared_ptr<SearchProcessParamsS
       params(_params)
 {}
 
+void PSP::clear_information()
+{
+    iterations = 0;
+    milisecs = 0;
+    fill(best_found_configuration.begin(), best_found_configuration.end(),1);
+    best_found_cost = INT_MAX;
+    outer_information = false;
+    found_thanks_outer_information = false;
+    restarts = -1;
+}
+
 void PSP::UpdateSolution(vector<int> & config)
 {
     bench->UpdateSolution(config);

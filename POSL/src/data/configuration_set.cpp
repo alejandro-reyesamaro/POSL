@@ -1,6 +1,10 @@
 #include "configuration_set.h"
 #include "dStrategy/configuration_set_iterator.h"
 
+#include <iostream>
+
+using namespace std;
+
 ConfigurationSet::ConfigurationSet()
 {
 }
@@ -30,6 +34,7 @@ void ConfigurationSet::addElement(std::vector<int> & new_config)
 
 void ConfigurationSet::clearAll()
 {
+    //cout << "configuration_set.cpp ... cleaning " << endl;
     configurations.clear();
 }
 

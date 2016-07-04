@@ -1,9 +1,12 @@
 #include "coding_tools.h"
+#include "tools.h"
 #include "tokens_definition.h"
 
 #include <boost/algorithm/string.hpp>
 #include <fstream>
 #include <sstream>
+
+using namespace std;
 
 ///
 /// \brief extractInnerCode Extract the code between delimiters
@@ -245,11 +248,11 @@ void CodingTools::trim(std::string & code)
 /// \param delim Char separator
 /// \return The string list
 ///
-std::vector<std::string> CodingTools::split_string(const std::string & s, char separator)
+vector<string> CodingTools::split_string(const string & s, char separator)
 {
-    std::vector<std::string> elems;
-    std::stringstream ss(s);
-    std::string item;
+    vector<string> elems;
+    stringstream ss(s);
+    string item;
     while (std::getline(ss, item, separator)) {
         CodingTools::trim(item);
         elems.push_back(item);
@@ -259,14 +262,14 @@ std::vector<std::string> CodingTools::split_string(const std::string & s, char s
 
 // computation strategy and solver
 
-std::string CodingTools::extractDeclarationName(std::string code)
+string CodingTools::extractDeclarationName(string code)
 {
-    std::string name = code.substr(0, code.find_first_of(":="));
+    string name = code.substr(0, code.find_first_of(":="));
     CodingTools::trim(name);
     return name;
 }
 
-std::pair<std::vector<std::string>, std::vector<std::string>> CodingTools::extractModulesNamesFromDeclaration(std::string code)
+pair<std::vector<string>, vector<string>> CodingTools::extractModulesNamesFromDeclaration(string code)
 {
     size_t pos_kw_om = code.find(CS_OM_KEYWORD);
     size_t pos_2p;
@@ -299,25 +302,25 @@ std::pair<std::vector<std::string>, std::vector<std::string>> CodingTools::extra
     return { oms, ochs };
 }
 
-std::string CodingTools::extractCompoundModuleCodeFromCS(std::string code)
+string CodingTools::extractCompoundModuleCodeFromCS(string code)
 {
     size_t pos_open = code.find("{");
     size_t pos_close = code.find("}");
     pos_open ++;
-    std::string cm_code = code.substr(pos_open, pos_close - pos_open);
+    string cm_code = code.substr(pos_open, pos_close - pos_open);
     CodingTools::trim(cm_code);
     return cm_code;
 }
 
-bool CodingTools::isInThere(std::string code, std::string word)
+bool CodingTools::isInThere(string code, string word)
 {
     size_t pos = code.find(word);
-    return pos != std::string::npos;
+    return pos != string::npos;
 }
 
-void CodingTools::replace(std::string & code, std::vector<std::string> names, std::vector<std::string> instances)
+void CodingTools::replace(string & code, vector<std::string> names, vector<std::string> instances)
 {
-    std::string n_str;
+    string n_str;
     for(unsigned int i = 0; i < names.size(); i++)
     {
       n_str = names[i];
@@ -331,23 +334,55 @@ void CodingTools::replace(std::string & code, std::vector<std::string> names, st
     }
 }
 
-std::string CodingTools::extractCSName(std::string code)
+string CodingTools::extractCSName(string code)
 {
     size_t pos_kw_cs = code.find(CS_KEYWORD);
     size_t pos_2p = code.find(':', pos_kw_cs);
     size_t pos_pc = code.find(';', pos_2p);
     pos_2p ++;
-    std::string cs_name = code.substr(pos_2p, pos_pc - pos_2p);
+    string cs_name = code.substr(pos_2p, pos_pc - pos_2p);
     return cs_name;
 }
 
 // connections
 
-std::string CodingTools::removeFirstConnection(std::string & code)
+string CodingTools::removeFirstConnection(string & code)
 {
     size_t pos_pc = code.find(';');
-    std::string line = code.substr(0, pos_pc + 1);
+    string line = code.substr(0, pos_pc + 1);
     code = code.substr(pos_pc + 1);
     CodingTools::trim(code);
     return line;
+}
+
+vector<string> CodingTools::expand_solvers_connections_declarations(vector<std::string> solvers_connectors)
+{
+    vector<string> final_declaration_list;
+    size_t pos_parenthesis, pos_point;
+    pair<string, string> p;
+    int n_solvers;
+    //unsigned int current_position;
+    string solver_name, solver_connector;
+    for (unsigned int i = 0; i < solvers_connectors.size(); ++i)
+    {
+        pos_parenthesis = solvers_connectors[i].find('(');
+        if (pos_parenthesis == std::string::npos)
+            final_declaration_list.push_back(solvers_connectors[i]);
+        else
+        {
+            p = CodingTools::extractInnerCode(solvers_connectors[i], "(", ")", false, true);
+            n_solvers = Tools::str2int(p.first);
+            pos_point = solvers_connectors[i].find('.');
+            solver_name = solvers_connectors[i].substr(0, pos_point);
+            solver_connector = solvers_connectors[i].substr(pos_point + 1, pos_parenthesis - pos_point - 1);
+
+            //current_position = final_declaration_list.size();
+            //final_declaration_list.reserve(final_declaration_list.size() + n_solvers);
+            for (int j = 0; j < n_solvers; j++)
+                final_declaration_list.push_back(solver_name + /*"__" + Tools::int2str(j+1) + */ "." + solver_connector);
+                //final_declaration_list[current_position++] = solver_name + "__" + Tools::int2str(j+1) + "." + solver_connector;
+        }
+    }
+    return final_declaration_list;
+
 }

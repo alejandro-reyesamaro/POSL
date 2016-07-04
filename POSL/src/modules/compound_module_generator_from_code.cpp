@@ -1,5 +1,7 @@
 #include "compound_module_generator_from_code.h"
 
+#include <iostream>
+
 using namespace std;
 
 CompoundModuleGeneratorFromCode::CompoundModuleGeneratorFromCode(string code,
@@ -18,7 +20,7 @@ shared_ptr<ComputationData> CompoundModuleGeneratorFromCode::execute(shared_ptr<
 shared_ptr<CompoundModule> CompoundModuleGeneratorFromCode::generateFrom(string code,
                                                                          shared_ptr<Benchmark> bench,
                                                                          shared_ptr<SearchProcessParamsStruct> psp_params)
-{
+{    
     return m_uncoder->uncode(code, bench, psp_params);
 }
 

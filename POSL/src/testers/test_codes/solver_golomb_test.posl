@@ -79,9 +79,7 @@ St_g01COMM := cStrategy
     <S>
         OP.|->
         <S>
-            OP.First
-            <S> OP.|-> OCh (Ch1) OM_R </S>
-            OM_S
+            OP.|-> OCh (Ch1) OM_R
         </S>
         <S>
             OP.|->
@@ -160,9 +158,7 @@ St_g02COMM_receiver := cStrategy
     <S>
         OP.|->
         <S>
-            OP.First
-            <S> OP.|-> OCh (Ch1) OM_P </S>
-            OM_S
+            OP.|-> OCh (Ch1) OM_S
         </S>
         <S>
             OP.|->
@@ -226,29 +222,14 @@ solver_sender := solver
     oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:90:8);
 };
 
-solver_sender2 := solver
-{
-    cStrategy: St_g02COMM_sender;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:90:8);
-};
-
 solver_receiver := solver
 {
     cStrategy: St_g02COMM_receiver;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:30:8), OM_P.Tabu(15:2:2);
-    oChannel: OCh.Sol_CS;
-};
-
-solver_receiver2 := solver
-{
-    cStrategy: St_g02COMM_receiver;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:30:8), OM_P.Tabu(15:2:2);
+    oModule: OM_S.GolombValidFS, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:4:8), OM_P.Tabu(15:1:2);
     oChannel: OCh.Sol_CS;
 };
 
 connections:
 
-//[solver1]3;
-//[solverc1.send_1, solverc2.send_1] OP.<> [solverc1.Ch1, solverc2.Ch1]1;
-[solver_sender.send_1, solver_sender2.send_1] OP.#-> [solver_receiver.Ch1, solver_receiver2.Ch1];
+[solver_sender.send_1] OP.--> [solver_receiver.Ch1];
 [solver2]6;

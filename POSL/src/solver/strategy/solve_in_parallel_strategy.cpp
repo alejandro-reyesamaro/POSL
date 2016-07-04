@@ -21,8 +21,9 @@ string SolveInParallelStrategy::solve(shared_ptr<Scheduler> scheduler, shared_pt
         shared_ptr<POSL_Solver> solver = scheduler->getSolverAt(myid);
         psp_params->SetID(myid);
         psp_params->SetLogPath(exe_path);
-        shared_ptr<PSP> psp(make_shared<PSP>(benchmark, psp_params));
+        shared_ptr<PSP> psp(make_shared<PSP>(benchmark, psp_params));        
         solver->solve(psp);
+        //cout << "sole_in_parallel_strategy..." << endl;
         string output = solver->show(psp);
         //string path = exe_path + "/POSLExRes_" + Tools::int2str(myid) + ".tmp";
         //outfile.open (path,  ios::out | ios::app);

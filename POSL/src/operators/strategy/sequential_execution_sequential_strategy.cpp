@@ -9,5 +9,14 @@ SequentialExecutionSequentialStrategy::SequentialExecutionSequentialStrategy(sha
 
 shared_ptr<ComputationData> SequentialExecutionSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
+    /*
+    shared_ptr<ComputationData> aux = M1->execute(psp, input);
+    if(!aux)
+    {
+        cout << "sequential_execution_sequential_strategy.cpp " << endl;
+        cout << M1->Tag() << endl;
+        cout << M2->Tag() << endl;
+    }
+    */
     return M2->execute(psp, M1->execute(psp, input));
 }

@@ -79,6 +79,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_IterationGolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_OneSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_GlobalTabu>(argc, argv));
+    //tests.push_back(make_shared<Tester_GolombSubsumConversions>(argc, argv));
 
     //tests.push_back(make_shared<Tester_CostOfSolutionAllIntervals>(argc, argv));
 

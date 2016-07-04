@@ -47,7 +47,9 @@ class PSP
         void SearchingWithOuterInformation_ON() { outer_information = true; }
         void SearchingWithOuterInformation_OFF() { outer_information = false; }
 
-        //void log(std::string text);                
+        //void log(std::string text);
+
+        void clear_information();
 
     private:
 

@@ -29,6 +29,11 @@ vector<ConnectionsDeclaration> POSL_ConnectionsUncoder::uncode(string code)
 
         p = CodingTools::extractInnerCode(declaration, "[", "]", false, true);
         jacks_declar = CodingTools::split_string(p.first, ',');
+
+        // Expanding the solvers declarations
+        jacks_declar = CodingTools::expand_solvers_connections_declarations(jacks_declar);
+        // end expanding
+
         rest = p.second;
         CodingTools::trim(rest);
         if(rest.empty())
@@ -46,6 +51,11 @@ vector<ConnectionsDeclaration> POSL_ConnectionsUncoder::uncode(string code)
         p_op = CodingTools::separateTokenAndCode(rest);
         p = CodingTools::extractInnerCode(p_op.second, "[", "]", false, true);
         outlets_declar = CodingTools::split_string(p.first, ',');
+
+        // Expanding the solvers declarations
+        outlets_declar = CodingTools::expand_solvers_connections_declarations(outlets_declar);
+        // end expanding
+
         rest = p.second;
         CodingTools::trim(rest);
         if(jacks_declar.size() != outlets_declar.size())

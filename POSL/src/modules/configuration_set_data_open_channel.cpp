@@ -46,5 +46,9 @@ shared_ptr<ComputationData> ConfigurationSetDataOpenChannel::selectMessage()
         //cout << "configuration_set_data_open_channel.cpp -> message selected " << endl;
         return received_data;
     }
-    else return nullptr;
+    else
+    {
+        //cout << "configuration_set_data_open_channel.cpp -> nothing " << endl;
+        return nullptr;
+    }
 }

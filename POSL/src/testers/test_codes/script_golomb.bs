@@ -1,1 +1,1 @@
-mpiexec.mpich -np 6 ../../../bin/POSL golomb 8-34 ./solver_golomb_test.posl
+mpiexec.mpich -np 2 ../../../bin/POSL golomb 8-34 ./solver_golomb_test.posl

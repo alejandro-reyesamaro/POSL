@@ -4,6 +4,9 @@
 #include "posl_solver_declaration.h"
 #include "solver_declaration_uncoder.h"
 #include "computation_strategy_uncoder.h"
+
+#include <iostream>
+
 using namespace std;
 
 POSL_DeclarationUncoder::POSL_DeclarationUncoder()
@@ -28,29 +31,29 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
         code = vcode[i];
         CodingTools::trim(code);
         while(!code.empty())
-        {
+        {            
             pair<pair<string, string>, string> p_info = CodingTools::findDeclarationName(code);
             //pos_2peq = code.find(":=");
             //pos_sp = code.find(' ', pos_2peq);
             //pos_2peq += 2;
             type_declar = p_info.first.second;// code.substr(pos_2peq, pos_br - pos_2peq);
             if(type_declar == SOLVER_KEYWORD)
-            {
+            {                
                 pos_br_clse = code.find("}");
                 solver_declar_code = code.substr(0, pos_br_clse + 1);
                 sdec = sd_unc.uncode(solver_declar_code);
-                strategy_name = sdec.Computation_Strategy_Name;
+                strategy_name = sdec.Computation_Strategy_Name;                
                 if(strategies.existsKey(strategy_name))
-                {
-                    strategy_code = strategies.mapOf(strategy_name);
-                    st_instance = make_shared<ComputationStrategy>(strategy_name, strategy_code);
+                {                    
+                    strategy_code = strategies.mapOf(strategy_name);                    
+                    st_instance = make_shared<ComputationStrategy>(strategy_name, strategy_code);                    
                     st_instance->Instantiate(sdec.Operation_Module_Instance_Names, sdec.Open_Channel_Instance_Names, bench, psp_params);
                     solver = make_shared<POSL_Solver>(sdec.Solver_Name, bench, st_instance);
                     solvers_list.insert_or_replace(sdec.Solver_Name, solver);//push_back(solver);
                 }
                 else
                     throw "(POSL Exception) No such strategy declared (PoslUncoder::uncode) [" + strategy_name + "]";
-                code = code.substr(pos_br_clse + 1);
+                code = code.substr(pos_br_clse + 1);                
             }
             else if(type_declar == CS_KEYWORD)
             {

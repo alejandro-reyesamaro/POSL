@@ -10,10 +10,10 @@ OM_TabuConfigurationSetProcessing::OM_TabuConfigurationSetProcessing()
 
 shared_ptr<ConfigurationSet> OM_TabuConfigurationSetProcessing::spcf_execute(shared_ptr<PSP> psp, shared_ptr<ConfigurationSet> input)
 {
-    cout << "om_tabu_configuration_set_processing.cpp .... " <<  endl;
+    //cout << "om_tabu_configuration_set_processing.cpp .... " <<  endl;
     if (input != nullptr)
     {
-        cout << "om_tabu_configuration_set_processing.cpp input size: " << input->size() << endl;
+        //cout << "om_tabu_configuration_set_processing.cpp input size: " << input->size() << endl;
 
         it = input->getIterator();
         it->Reset();

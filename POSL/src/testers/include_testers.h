@@ -70,3 +70,4 @@
 #include "tester_one_2d_change_neighborhood.h"
 #include "tester_global_tabu.h"
 #include "tester_iteration_all_intervals.h"
+#include "tester_golomb_subsum_conversions.h"

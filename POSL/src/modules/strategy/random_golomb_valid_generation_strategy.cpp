@@ -23,20 +23,18 @@ using namespace std;
 #define MAX_ATTEMPTS 100
 #define MAX_ITERS 2000
 
-RandomGolombValidGenerationStrategy::RandomGolombValidGenerationStrategy(int _order, int _length)
-    : subsum(_length),
-      n(_order - 1),
-      golomb_order(_order),
-      values(Tools::generateMonotony(1, GolombTools::max_posible_distances(_order, _length))),
-      bench(make_shared<Subsum>(values, subsum, n)),
-      psp(make_shared<PSP>(bench)),
+RandomGolombValidGenerationStrategy::RandomGolombValidGenerationStrategy(shared_ptr<Benchmark> _bench_subsum,
+                                                                         int _golomb_order,
+                                                                         int _subsum_order)
+    : //bench(_bench_subsum),
+      golomb_order(_golomb_order),
       CM
       (
         make_shared<GroupedSequentialComputation>
           (
              make_shared<SequentialExecOperator>
               (
-                  make_shared<OM_RandomPermutationGeneration>(bench),
+                  make_shared<OM_RandomPermutationGeneration>(_bench_subsum),
                   make_shared<GroupedSequentialComputation>
                   (
                       make_shared<CyclicOperator>
@@ -49,9 +47,9 @@ RandomGolombValidGenerationStrategy::RandomGolombValidGenerationStrategy(int _or
                                   (
                                       make_shared<SequentialExecOperator>
                                       (
-                                          make_shared<OM_SubsumSinglePermutationNeighborhood>(bench),
+                                          make_shared<OM_SubsumSinglePermutationNeighborhood>(_bench_subsum),
                                           //make_shared<OM_FirstImprovementSelection>(bench)
-                                          make_shared<OM_FirstImprovementGlobalTabuSelection>(bench)
+                                          make_shared<OM_FirstImprovementGlobalTabuSelection>(_bench_subsum)
                                       )
                                   ),
                                   make_shared<OM_AlwaysImproveDecision>()
@@ -63,39 +61,26 @@ RandomGolombValidGenerationStrategy::RandomGolombValidGenerationStrategy(int _or
               )
           )
       ),
-      golomb_configuration(_order, 0),
-      subsum_configuration(values.size(), 0)
+      golomb_configuration(_golomb_order, 0),
+      subsum_configuration(_subsum_order, 0)
 {}
 
-vector<int> RandomGolombValidGenerationStrategy::generate_conf()
-{
+vector<int> RandomGolombValidGenerationStrategy::generate(shared_ptr<PSP> psp_subsum)
+{    
     int count = 0;
     do{
-        sol = static_pointer_cast<Solution>(CM->execute(psp, make_shared<Seed>()));
+        sol = static_pointer_cast<Solution>(CM->execute(psp_subsum, make_shared<Seed>()));
     }
-    while(psp->BestCostSoFar() != 0 && count ++ < MAX_ATTEMPTS);
-    if(psp->BestCostSoFar() != 0)
+    while(psp_subsum->BestCostSoFar() != 0 && count ++ < MAX_ATTEMPTS);
+    if(psp_subsum->BestCostSoFar() != 0)
         throw "(POSL Exception) Unable to find a starting solution (RandomGolombValidGenerationStrategy::generate)";
     subsum_configuration = sol->get_conf_by_copy();
-    for(int i = 0; i < golomb_order - 1; i++)
-        golomb_configuration[i+1] = golomb_configuration[i] + subsum_configuration[i];
+    golomb_configuration = GolombTools::subsum2golomb(subsum_configuration, golomb_order);
     //cout << "random_golomb_valid_generation_strategy.cpp new conf size: " << golomb_configuration.size() << endl;
     return golomb_configuration;
 }
 
-vector<int> RandomGolombValidGenerationStrategy::generate(vector<int> & configuration_tabu)
-{    
-    for(int i = 0; i < golomb_order - 1; i++)
-        subsum_configuration[i] = configuration_tabu[i+1] - configuration_tabu[i];
-    if(!psp->GetTabuObject()->isGlobalTabu(subsum_configuration))
-    {
-        //cout << "random_golomb_valid_generation_strategy.cpp tabu size: " << subsum_configuration.size() << endl;
-        psp->GetTabuObject()->addTabuSolution(subsum_configuration);
-    }
-    return generate_conf();
-}
-
-
+/*
 vector<int> RandomGolombValidGenerationStrategy::generate(std::shared_ptr<TabuObject> tabu_object)
 {
     shared_ptr<SearchProcessParamsStruct> params(make_shared<SearchProcessParamsStruct>(tabu_object->GetTabuListSize(),
@@ -122,3 +107,4 @@ vector<int> RandomGolombValidGenerationStrategy::generate()
 {
     return generate_conf();
 }
+*/

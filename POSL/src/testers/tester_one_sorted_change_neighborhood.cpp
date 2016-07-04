@@ -13,12 +13,14 @@ Tester_OneSortedChangeNeighborhood::Tester_OneSortedChangeNeighborhood(int argc,
 
 string Tester_OneSortedChangeNeighborhood::test()
 {
-    shared_ptr<Benchmark> bench(make_shared<GolombRuler>(12,85));
+    //shared_ptr<Benchmark> bench(make_shared<GolombRuler>(12,85));
+    shared_ptr<Benchmark> bench(make_shared<GolombRuler>(8,34));
     //shared_ptr<Benchmark> bench(make_shared<GolombRuler>(6,17));
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     //vector<int> config( { 0, 1, 4, 10, 12, 17 } );
-    vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
+    vector<int> config( { 0, 1, 5, 8, 10, 17, 25, 34 } );
+    //vector<int> config( { 0, 2, 6, 24, 29, 40, 43, 55, 68, 75, 76, 85 } );
 
     shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), config);
     shared_ptr<OperationModule> op(make_shared<OM_OneSortedChangeNeighborhood>(bench));
@@ -30,15 +32,23 @@ string Tester_OneSortedChangeNeighborhood::test()
 
     int ch = 0;
     bool v = true;
+    int i_1;
 
+    vector<bool> pv(13, false);
     while(it->SomeNext())
     {
         vector<int> neighbor = it->GetNext();
         ch = Tools::mismatches(neighbor, config);
 
         cout << "[ ";
-        for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)
-            cout << *j << " ";
+        cout << neighbor[0] << " ";
+        i_1 = neighbor[0];
+        for(int i = 1; i < neighbor.size(); i++)
+        {
+            v = (!pv[neighbor[i] - i_1]);
+            cout << neighbor[i] << " ";
+            i_1 = neighbor[i];
+        }
         cout << "]" << endl;
 
         v = v && (ch <= 3 || ch >= 1);

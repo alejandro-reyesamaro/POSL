@@ -25,9 +25,11 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
       test_str(make_shared<SolveToTestStrategy>(bench)),
       psp_params(make_shared<SearchProcessParamsStruct>())
 {
+
+
     shared_ptr<PoslUncoder> posl_unc;
-    pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);
-    HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench, psp_params);
+    pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);    
+    HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench, psp_params);        
     vector<ConnectionsDeclaration> connections = posl_unc->uncode_connections(codes.second);
 
     ConnectionsDeclaration current_declaration;
@@ -37,6 +39,7 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
     vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> jacks_solvers_info, outlets_solvers_info;
 
     shared_ptr<ConnectionOperator> connection_operator;
+
 
     for(unsigned int i = 0; i < connections.size(); i++)
     {
@@ -68,7 +71,6 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
 
             connection_operator->connect(scheduler);
             scheduler->checkOut();
-
             jacks_solvers_info.clear();
             outlets_solvers_info.clear();
         }

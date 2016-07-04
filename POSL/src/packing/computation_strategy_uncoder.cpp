@@ -2,6 +2,8 @@
 #include "../tools/coding_tools.h"
 #include "../modules/compound_module_generator_from_code.h"
 
+#include <iostream>
+
 using namespace std;
 
 ComputationStrategyUncoder::ComputationStrategyUncoder()
@@ -13,6 +15,7 @@ shared_ptr<CompoundModule> ComputationStrategyUncoder::uncode(string code,
                                                               shared_ptr<Benchmark> bench,
                                                               shared_ptr<SearchProcessParamsStruct> psp_params)
 {
+
     pair<vector<string>, vector<string>> p = CodingTools::extractModulesNamesFromDeclaration(code);
 
     string cm_code = CodingTools::extractCompoundModuleCodeFromCS(code);
@@ -23,5 +26,6 @@ shared_ptr<CompoundModule> ComputationStrategyUncoder::uncode(string code,
         CodingTools::replace(cm_code, om_names, om_instances);
     if(och_names.size() > 0)
         CodingTools::replace(cm_code, och_names, och_instances);
+
     return make_shared<CompoundModuleGeneratorFromCode>(cm_code, bench, psp_params);
 }
