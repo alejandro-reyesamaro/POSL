@@ -4,6 +4,7 @@
 #include "posl_solver_declaration.h"
 #include "solver_declaration_uncoder.h"
 #include "computation_strategy_uncoder.h"
+#include "../tools/tools.h"
 
 #include <iostream>
 
@@ -21,7 +22,7 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
     HashMap<string, shared_ptr<POSL_Solver>> solvers_list;
 
     size_t pos_br_clse;
-    string type_declar, strategy_name, strategy_code, solver_declar_code, code;
+    string strategy_name, strategy_code, solver_declar_code, code;
     PoslSolverDeclaration sdec;
     shared_ptr<POSL_Solver> solver;
     shared_ptr<ComputationStrategy> st_instance;
@@ -30,40 +31,47 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
     {
         code = vcode[i];
         CodingTools::trim(code);
+        string solver_name;
         while(!code.empty())
         {            
-            pair<pair<string, string>, string> p_info = CodingTools::findDeclarationName(code);
+            DeclarationInfo p_info = CodingTools::findDeclarationName(code);
             //pos_2peq = code.find(":=");
             //pos_sp = code.find(' ', pos_2peq);
-            //pos_2peq += 2;
-            type_declar = p_info.first.second;// code.substr(pos_2peq, pos_br - pos_2peq);
-            if(type_declar == SOLVER_KEYWORD)
+            //pos_2peq += 2;            
+            pos_br_clse = code.find("}");
+            if(p_info.keyword == SOLVER_KEYWORD)
             {                
-                pos_br_clse = code.find("}");
+
                 solver_declar_code = code.substr(0, pos_br_clse + 1);
+
                 sdec = sd_unc.uncode(solver_declar_code);
                 strategy_name = sdec.Computation_Strategy_Name;                
                 if(strategies.existsKey(strategy_name))
-                {                    
-                    strategy_code = strategies.mapOf(strategy_name);                    
-                    st_instance = make_shared<ComputationStrategy>(strategy_name, strategy_code);                    
-                    st_instance->Instantiate(sdec.Operation_Module_Instance_Names, sdec.Open_Channel_Instance_Names, bench, psp_params);
-                    solver = make_shared<POSL_Solver>(sdec.Solver_Name, bench, st_instance);
-                    solvers_list.insert_or_replace(sdec.Solver_Name, solver);//push_back(solver);
+                {
+                    for(int k = 0; k < p_info.expantion; k++)
+                    {
+                        solver_name = sdec.Solver_Name + ((p_info.expantion > 1)
+                                                         ? "__" + Tools::int2str(k+1)
+                                                         : "");
+                        strategy_code = strategies.mapOf(strategy_name);
+                        st_instance = make_shared<ComputationStrategy>(strategy_name, strategy_code);
+                        st_instance->Instantiate(sdec.Operation_Module_Instance_Names, sdec.Open_Channel_Instance_Names, bench, psp_params);
+                        solver = make_shared<POSL_Solver>(solver_name, bench, st_instance);
+                        solvers_list.insert_or_replace(solver_name, solver);//push_back(solver);
+                    }
                 }
                 else
-                    throw "(POSL Exception) No such strategy declared (PoslUncoder::uncode) [" + strategy_name + "]";
-                code = code.substr(pos_br_clse + 1);                
+                    throw "(POSL Exception) No such strategy declared (PoslUncoder::uncode) [" + strategy_name + "]";                
             }
-            else if(type_declar == CS_KEYWORD)
+            else if(p_info.keyword == CS_KEYWORD)
             {
-                pos_br_clse = code.find("}");
                 strategy_code = code.substr(0, pos_br_clse + 1);
                 strategy_name = CodingTools::extractDeclarationName(strategy_code);
                 strategies.insert_or_replace(strategy_name, strategy_code);
-                code = code.substr(pos_br_clse + 1);
+
             }
 
+            code = code.substr(pos_br_clse + 1);
             CodingTools::trim(code);
         }
     }

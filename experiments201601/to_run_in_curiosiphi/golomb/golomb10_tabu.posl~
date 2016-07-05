@@ -1,0 +1,47 @@
+St_tabu := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 300 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.|->
+            <S>
+                OP.Cyc ( BE.LoopBnd 200 )
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.|->
+                                OM_V
+                                <S>
+                                    OP.? ( BE.SCI 25 )
+                                    OM_SS
+                                    OM_SS.Rand
+                                </S>
+                            </S>
+                            OM_D
+                        </S> OMS.IterCounter
+                    </S> OMS.TimeCounter
+                </S>
+            </S>
+            OM_R
+        </S>
+    </S>
+</S>
+};
+
+solver2 := solver
+{
+    cStrategy: St_tabu;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:2:8);
+};
+
+connections:
+
+[solver2]40;

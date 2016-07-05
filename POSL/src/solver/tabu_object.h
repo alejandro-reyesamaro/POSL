@@ -18,7 +18,8 @@ class TabuObject
 
         float GetTabuEps() { return eps; }
         int GetTabuNormType() { return norm; }
-        int GetTabuListSize() { return tabu_size; }
+        int GetTabuListCapacity() { return tabu_size; }
+        int GetTabuSize() { return tabu_list->Size(); }
 
     private:
         std::shared_ptr<TabuList> tabu_list;

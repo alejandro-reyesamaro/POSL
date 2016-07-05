@@ -14,7 +14,7 @@ class ConfigurationSetDataOpenChannel : public DataOpenChannel
         shared_ptr<ComputationData> selectMessage();
 
     private:
-        std::shared_ptr<ConfigurationSet> cast_to_configuration_set();
-
-        std::vector<int> aux_conf;
+        std::shared_ptr<ConfigurationSet> received_data;
+        std::vector<int> arriving_conf;
+        std::vector<std::vector<int>> configutrations;
 };

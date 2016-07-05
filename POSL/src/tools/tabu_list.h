@@ -18,6 +18,8 @@ class TabuList
         bool isTabuByNorm8(std::vector<int> & conf, float eps);
         std::shared_ptr<ListIterator> GetConfigurationsIterator();
 
+        int Size() { return tabu_list.size(); }
+
     private:
         bool is_tabu(std::vector<int> & conf, std::function<float(std::vector<int> &, std::vector<int> &)> norm, float eps);
 

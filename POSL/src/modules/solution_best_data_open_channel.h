@@ -10,10 +10,10 @@ class SolutionBestDataOpenChannel : public DataOpenChannel
         std::string codeToSend();
 
         void storeMessage(int * buffer, std::shared_ptr<PSP> psp);
+        shared_ptr<ComputationData> selectMessage();
 
     private:
-        std::shared_ptr<Solution> cast_to_solution();
-
+        std::shared_ptr<Solution> received_data;
         std::shared_ptr<Solution> solution_data;
         int best_cost;
         bool contains_information;

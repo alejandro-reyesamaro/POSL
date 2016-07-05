@@ -6,7 +6,8 @@
 using namespace std;
 
 NeighborhoodLastDataOpenChannel::NeighborhoodLastDataOpenChannel(string name, shared_ptr<Benchmark> _bench)
-    : DataOpenChannel(name, _bench)
+    : DataOpenChannel(name, _bench),
+      received_data(nullptr)
 {}
 
 int NeighborhoodLastDataOpenChannel::dataID()
@@ -22,4 +23,14 @@ string NeighborhoodLastDataOpenChannel::codeToSend()
 void NeighborhoodLastDataOpenChannel::storeMessage(int * buffer, std::shared_ptr<PSP>)
 {
     received_data = make_shared<FromPackNeighborhood>(buffer);
+}
+
+shared_ptr<ComputationData> NeighborhoodLastDataOpenChannel::selectMessage()
+{
+    if (contains_information)
+    {
+        contains_information = false;
+        return received_data;
+    }
+    else return nullptr;
 }

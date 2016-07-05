@@ -14,6 +14,8 @@ shared_ptr<Solution> OM_TabuConfigurationProcessing::spcf_execute(shared_ptr<PSP
     if (input != nullptr)
     {
         //cout << "om_tabu_processing.cpp input size: " << input->get_conf_by_ref().size() << endl;
+        //if(psp->GetPID() == 1)
+        //    cout << "om_tabu_processing.cpp tabu size: " << psp->GetTabuObject()->GetTabuSize() << endl;
         psp->GetTabuObject()->addTabuSolution(input->get_conf_by_ref());
     }
     return input;

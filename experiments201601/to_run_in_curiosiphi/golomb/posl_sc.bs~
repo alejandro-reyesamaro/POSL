@@ -1,18 +1,24 @@
-runs=3
+runs=2
 
-files_results=golomb_8_34[noTabu_tabu_comm].pres;
-strs=golomb.posl
+files_results=(golomb_no_tabu.pres golomb_tabu.pres golomb_comm_1-1.pres golomb_comm_1-n.pres);
+strs=(./golomb_no_tabu.posl ./golomb_tabu.posl ./golomb_comm_1-1.posl ./golomb_comm_1-n.posl); 
 
+o=(8 10);
+l=(34 55);
 cores=40
 
-echo "---- 8-34 : $cores  -----" >> $item
-		
-for (( i = 0; i < $runs; i++ ))
+for (( r = 0; r < 2; r++ ))
 do
-	mpiexec.mpich2 -np $cores ./bin/POSL golomb 8-34 $strs >> $files_results
+	for (( j = 0; j < 4; j++ ))
+	do
+		echo "----GOLOMB ${o[r]}-${l[r]} : $cores  -----" >> ${files_results[j]}
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich2 -np $cores ./bin/POSL golomb ${o[r]}-${l[r]} ${strs[j]} >> ${files_results[j]}	
+		done
+		echo "----END-----" >> ${files_results[j]}
+		#w >> ${files_results[j]}
+		echo "   " >> ${files_results[j]}
+	done
 done
-echo "----END-----" >> $files_results
-#w >> $files_results
-echo "   " >> $files_results
-
 

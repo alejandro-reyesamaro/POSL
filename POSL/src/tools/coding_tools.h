@@ -5,6 +5,15 @@
 
 enum CM_type {SEQ_G, PAR_G, OM, OCH};
 
+struct DeclarationInfo
+{
+    public :
+        std::string name;
+        int expantion;
+        std::string keyword;
+        std::string rest;
+};
+
 class CodingTools
 {
     public:
@@ -36,7 +45,7 @@ class CodingTools
         static bool isInThere(std::string code, std::string word);
         static void trim(std::string & code);
         static std::vector<std::string> split_string(const std::string & s, char separator);
-        static std::pair<std::pair<std::string, std::string>, std::string> findDeclarationName(std::string code);
+        static DeclarationInfo findDeclarationName(std::string code);
         static std::vector<std::string> extractDeclarationListFromKeyword(std::string code, std::string kw);
         static std::vector<std::string> expand_solvers_connections_declarations(std::vector<std::string> solvers_connectors);
 };

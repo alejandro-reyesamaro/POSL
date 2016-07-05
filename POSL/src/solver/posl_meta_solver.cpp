@@ -26,7 +26,6 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
       psp_params(make_shared<SearchProcessParamsStruct>())
 {
 
-
     shared_ptr<PoslUncoder> posl_unc;
     pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);    
     HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench, psp_params);        
@@ -82,7 +81,7 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
 {}
 
 void POSL_MetaSolver::solve_in_parallel()
-{
+{    
     //cout << scheduler->schedulerSize() << endl;
     cout << par_str->solve(scheduler, psp_params) << endl;
     //psp->log(output);

@@ -11,7 +11,9 @@ class DecisionPairFirstDataOpenChannel : public DataOpenChannel
         std::string codeToSend();
 
         void storeMessage(int * buffer, std::shared_ptr<PSP>);
+        shared_ptr<ComputationData> selectMessage();
 
     private:
-        std::shared_ptr<DecisionPair> cast_to_pair();
+        //std::shared_ptr<DecisionPair> cast_to_pair();
+        std::shared_ptr<DecisionPair> received_data;
 };

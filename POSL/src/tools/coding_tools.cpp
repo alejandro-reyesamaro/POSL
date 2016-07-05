@@ -60,7 +60,7 @@ std::pair<std::string, std::string> CodingTools::extractInnerCode(std::string co
 /// \param code
 /// \return pair.first.first: name, pair.firs.second: keyword, pair.second.first: header, pair.second.second: rest
 ///
-std::pair<std::pair<std::string, std::string>, std::string> CodingTools::findDeclarationName(std::string code)
+DeclarationInfo CodingTools::findDeclarationName(std::string code)
 {
     std::string asign = ":=";
     size_t pos_2peq = code.find(asign);
@@ -68,11 +68,26 @@ std::pair<std::pair<std::string, std::string>, std::string> CodingTools::findDec
     CodingTools::trim(name);
     std::string rest = code.substr(pos_2peq + asign.size());
     CodingTools::trim(rest);
+
     size_t pos_esp = rest.find(' ');
-    std::string kw = rest.substr(0, pos_esp);
+    size_t pos_par_open = rest.find('(');
+    size_t pos_br_open = rest.find('{');
+    //std::string kw = rest.substr(0, pos_esp);
+    std::string kw_expantion = rest.substr(0, pos_esp);
+    int expantion = 1;
+    std::string kw;
+    if(pos_par_open != std::string::npos && pos_par_open < pos_br_open)
+    {
+        pair<string, string> str_expantion = extractInnerCode(kw_expantion, "(", ")", false, true);
+        CodingTools::trim(str_expantion.first);
+        expantion = Tools::str2int(str_expantion.first);
+        kw = rest.substr(0, pos_par_open);
+    }
+    else
+        kw = rest.substr(0, pos_esp);
     CodingTools::trim(kw);
     rest = rest.substr(pos_esp + 1);
-    return {{name, kw}, rest };
+    return {name, expantion, kw, rest };
 }
 
 
@@ -379,7 +394,7 @@ vector<string> CodingTools::expand_solvers_connections_declarations(vector<std::
             //current_position = final_declaration_list.size();
             //final_declaration_list.reserve(final_declaration_list.size() + n_solvers);
             for (int j = 0; j < n_solvers; j++)
-                final_declaration_list.push_back(solver_name + /*"__" + Tools::int2str(j+1) + */ "." + solver_connector);
+                final_declaration_list.push_back(solver_name + "__" + Tools::int2str(j+1) + "." + solver_connector);
                 //final_declaration_list[current_position++] = solver_name + "__" + Tools::int2str(j+1) + "." + solver_connector;
         }
     }

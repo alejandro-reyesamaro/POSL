@@ -9,6 +9,8 @@
 #include "../modules/neighborhood_last_data_open_channel.h"
 #include "../modules/configuration_set_data_open_channel.h"
 
+#include <iostream>
+
 using namespace std;
 
 OpenChannelUncoder::OpenChannelUncoder()
@@ -33,7 +35,10 @@ std::shared_ptr<OpenChannel> OpenChannelUncoder::uncode(string code, shared_ptr<
     else if(och_token_name == OCH_DECISIONPAIR_LAST_TOK_NAME) // DECISION PAIR
         return make_shared<DecisionPairLastDataOpenChannel>(och_name, bench);
     else if (och_token_name == OCH_CONFIGURATION_SET_TOK_NAME)
+    {
+        //cout << "open_channel_uncoder..." << endl;
         return make_shared<ConfigurationSetDataOpenChannel>(och_name, bench);
+    }
     else
         throw "(POSL Exception) Not well coded Open Channel (OpenChannelUncoder::uncode)";
 }

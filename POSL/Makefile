@@ -35,7 +35,7 @@ vpath %.cpp $(SRCDIR)
 all: CXXFLAGS += -DNDEBUG
 all: $(BINDIR)/$(EXEC)
 
-debug: CXXFLAGS += -g
+debug: CXXFLAGS += -g -DDEBUG
 debug: $(BINDIR)/$(EXEC)
 
 $(BINDIR)/$(EXEC): $(OBJECTS)

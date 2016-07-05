@@ -30,7 +30,7 @@ shared_ptr<Solution> OM_GolombValidGeneration::spcf_execute(shared_ptr<PSP> psp,
     if(!subsum_psp)
     {
         shared_ptr<SearchProcessParamsStruct> params =
-                make_shared<SearchProcessParamsStruct>(psp->GetTabuObject()->GetTabuListSize(),
+                make_shared<SearchProcessParamsStruct>(psp->GetTabuObject()->GetTabuListCapacity(),
                                                        psp->GetTabuObject()->GetTabuNormType(),
                                                        psp->GetTabuObject()->GetTabuEps());
         subsum_psp = make_shared<PSP>(object_subsum, params);

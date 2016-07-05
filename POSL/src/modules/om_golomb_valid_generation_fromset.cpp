@@ -25,12 +25,11 @@ OM_GolombValidGenerationFromSet::OM_GolombValidGenerationFromSet(shared_ptr<Benc
 {}
 
 shared_ptr<Solution> OM_GolombValidGenerationFromSet::spcf_execute(shared_ptr<PSP> psp, std::shared_ptr<ConfigurationSet> conf_set)
-{    
-    //cout << "om_golomb_valid_generation_from_set..." << endl;
+{
     if(!subsum_psp)
     {
         shared_ptr<SearchProcessParamsStruct> params =
-                make_shared<SearchProcessParamsStruct>(psp->GetTabuObject()->GetTabuListSize(),
+                make_shared<SearchProcessParamsStruct>(psp->GetTabuObject()->GetTabuListCapacity(),
                                                        psp->GetTabuObject()->GetTabuNormType(),
                                                        psp->GetTabuObject()->GetTabuEps());
         subsum_psp = make_shared<PSP>(object_subsum, params);
@@ -39,22 +38,35 @@ shared_ptr<Solution> OM_GolombValidGenerationFromSet::spcf_execute(shared_ptr<PS
     // The tabu list remains, but the rest is restarted
     subsum_psp->clear_information();
 
+    //if(psp->GetPID() == 1)
+    //    cout << "om_golomb_valid_generation_from_set..." << subsum_psp->GetTabuObject()->GetTabuSize() << endl;
+
     // TABU coming from outside    
     if(conf_set)
     {
+        //if(psp->GetPID() == 1)
+        //    cout << "om_golomb_valid_generation_from_set..." << conf_set->size() << endl;
         shared_ptr<POSL_Iterator> tabu_iterator = conf_set->getIterator();
         tabu_iterator->Reset();
 
+        // just for debug
+        //int count = 0;
+
         while(tabu_iterator->SomeNext())
         {
+
             vector<int> g_tabu = tabu_iterator->GetNext();
             for(int i = 0; i < golomb_order - 1; i++)
                 subsum_configuration[i] = g_tabu[i+1] - g_tabu[i];
             if(!subsum_psp->GetTabuObject()->isGlobalTabu(subsum_configuration))
             {
+                //count ++;
                 subsum_psp->GetTabuObject()->addTabuSolution(subsum_configuration);
-            }
+            }            
         }
+
+        //if(psp->GetPID() == 1)
+        //    cout << "om_golomb_valid_generation_from_set..." << count << endl;
     }
 
     // TABU coming from inside
