@@ -149,7 +149,7 @@ float Tools::norm1(std::vector<int> & v1, std::vector<int> & v2)
 {
     if(v1.size() != v2.size())
         throw "(PSOL Exception) vectors sizes mismatch (Tools::norm1)";
-    float sum = 0;
+    int sum = 0;
     for (unsigned int i = 0; i < v1.size(); ++i)
         sum += abs(v1[i] - v2[i]);
     return sum;
@@ -164,7 +164,7 @@ float Tools::norm2(std::vector<int> & v1, std::vector<int> & v2)
         cout << Tools::configurationToString(v2) << endl;
         throw "(PSOL Exception) vectors sizes mismatch (Tools::norm2)";
     }
-    float sum = 0;
+    int sum = 0;
     for (unsigned int i = 0; i < v1.size(); ++i)
         sum += (v1[i] - v2[i]) * (v1[i] - v2[i]);
     return sqrt(sum);
@@ -177,14 +177,40 @@ float Tools::norm8(std::vector<int> & v1, std::vector<int> & v2)
         //cout << v1.size() << " != " << v2.size() << endl;
         throw "(PSOL Exception) vectors sizes mismatch (Tools::norm8)";
     }
-    float max = abs(v1[0] - v2[0]);
-    float diff;
+    int max = abs(v1[0] - v2[0]);
+    int diff;
     for (unsigned int i = 1; i < v1.size(); ++i)
     {
         diff = abs(v1[i] - v2[i]);
         if (diff > max) max = diff;
     }
     return max;
+}
+
+int Tools::element_mismatches(std::vector<int> & v1, std::vector<int> & v2, int distance)
+{
+    if(v1.size() != v2.size())
+        throw "(PSOL Exception) vectors sizes mismatch (Tools::norm8)";
+    int count = 0;
+    //int diff;
+    for (unsigned int i = 0; i < v1.size(); ++i)
+    {
+        //diff = abs(v1[i] - v2[i]);
+        if (abs(v1[i] - v2[i]) >= distance) count++;
+    }
+    return count;
+}
+
+int Tools::element_mismatches(std::vector<int> & v1, std::vector<int> & v2, int end, int distance)
+{
+    if(v1.size() != v2.size())
+        throw "(PSOL Exception) vectors sizes mismatch (Tools::norm8)";
+    if(end >= v2.size())
+        end = v2.size() - 1;
+    int count = 0;
+    for (int i = 0; i < end; ++i)
+        if (abs(v1[i] - v2[i]) >= distance) count++;
+    return count;
 }
 
 int Tools::max(std::vector<int> & v)

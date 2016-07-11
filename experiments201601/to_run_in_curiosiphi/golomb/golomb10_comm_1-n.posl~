@@ -2,14 +2,14 @@ St_g02COMM_sender := cStrategy
     oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
 {
 <S>
-    OP.Cyc ( BE.LoopBnd 300 )
+    OP.Cyc ( BE.LoopBnd 1000 )
     <S>
         OP.|->
         OM_S
         <S>
             OP.|->
             <S>
-                OP.Cyc ( BE.LoopBnd 200 )
+                OP.Cyc ( BE.LoopBnd 1500 )
                 <S>
                     OP.|->
                     <S>
@@ -20,7 +20,7 @@ St_g02COMM_sender := cStrategy
                                 OP.|->
                                 OM_V
                                 <S>
-                                    OP.? ( BE.SCI 25 )
+                                    OP.? ( BE.SCI 30 )
                                     OM_SS
                                     OM_SS.Rand
                                 </S>
@@ -41,7 +41,7 @@ St_g02COMM_receiver := cStrategy
     oChannel: OCh;
 {
 <S>
-    OP.Cyc ( BE.LoopBnd 300 )
+    OP.Cyc ( BE.LoopBnd 1000 )
     <S>
         OP.|->
         <S>
@@ -50,7 +50,7 @@ St_g02COMM_receiver := cStrategy
         <S>
             OP.|->
             <S>
-                OP.Cyc ( BE.LoopBnd 200 )
+                OP.Cyc ( BE.LoopBnd 1500 )
                 <S>
                     OP.|->
                     <S>
@@ -61,7 +61,7 @@ St_g02COMM_receiver := cStrategy
                                 OP.|->
                                 OM_V
                                 <S>
-                                    OP.? ( BE.SCI 25 )
+                                    OP.? ( BE.SCI 30 )
                                     OM_SS
                                     OM_SS.Rand
                                 </S>

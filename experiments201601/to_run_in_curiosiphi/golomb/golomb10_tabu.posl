@@ -39,7 +39,7 @@ St_tabu := cStrategy
 solver2 := solver
 {
     cStrategy: St_tabu;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:2:8);
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:10:2);
 };
 
 connections:

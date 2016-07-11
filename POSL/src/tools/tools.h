@@ -43,6 +43,9 @@ class Tools
         static float norm1(std::vector<int> & v1, std::vector<int> & v2);
         static float norm2(std::vector<int> & v1, std::vector<int> & v2);
         static float norm8(std::vector<int> & v1, std::vector<int> & v2);
+        static int element_mismatches(std::vector<int> & v1, std::vector<int> & v2, int distance);
+        static int element_mismatches(std::vector<int> & v1, std::vector<int> & v2, int end, int distance);
+
         static int max(std::vector<int> & v);
         static int min(std::vector<int> & v);
         static int sum(std::vector<int> &v);
