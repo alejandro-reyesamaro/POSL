@@ -8,7 +8,7 @@ Tester_CostOfSolutionNQueens::Tester_CostOfSolutionNQueens(int argc, char *argv[
 
 string Tester_CostOfSolutionNQueens::test()
 {
-    vector<int> config5({6, 4, 9, 0, 5, 1, 3, 7, 2, 8}); // costo ?
+    //vector<int> config5({6, 4, 9, 0, 5, 1, 3, 7, 2, 8}); // costo ?
 
     shared_ptr<Benchmark> bench(make_shared<NQueens>(10));
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
@@ -33,8 +33,8 @@ string Tester_CostOfSolutionNQueens::test()
 
     vector<int> nq_10_c10 = Tester::NQueens_10_c10();
     int rc2 = bench->relativeSolutionCost(nq_10_c10);
-    int rc5 = bench->relativeSolutionCost(config5);
-    rc5 = psp->GetBenchmark()->solutionCost(config5);
+    //int rc5 = bench->relativeSolutionCost(config5);
+    //rc5 = psp->GetBenchmark()->solutionCost(config5);
 
     return (c1 == 0 && c2 == 6 && c3 == 11 && c4 == 10 &&
             rc1 == 11 && rc2 == 10)

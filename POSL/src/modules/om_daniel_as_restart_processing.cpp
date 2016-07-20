@@ -11,7 +11,7 @@ using namespace std;
 OM_DanielASRestartProcessing::OM_DanielASRestartProcessing()
 {}
 
-shared_ptr<Solution> OM_DanielASRestartProcessing::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
+shared_ptr<Solution> OM_DanielASRestartProcessing::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution>)
 {
     //reseteable_bench = static_pointer_cast<Reseteable>(psp->GetBenchmark());
     //base_bench = static_pointer_cast<Benchmark>(psp->GetBenchmark());

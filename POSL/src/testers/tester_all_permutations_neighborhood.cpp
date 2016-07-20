@@ -34,7 +34,7 @@ string Tester_AllPermutationsNeighborhood::test()
         changes = 0;
         vector<int> neighbor = it->GetNext();
         two_permutations = two_permutations && is_permutation(v.begin(), v.end(), neighbor.begin());
-        for(int i = 0; i < neighbor.size(); i++)
+        for(unsigned int i = 0; i < neighbor.size(); i++)
             if(v[i] != neighbor[i]) changes ++;
         two_permutations = two_permutations && (changes == 0 || changes == 2)   ;
 

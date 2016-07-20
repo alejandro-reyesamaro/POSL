@@ -11,7 +11,7 @@ IrregularDomain::IrregularDomain(vector<int> _min_values, vector<int> _max_value
 
 std::vector<int> IrregularDomain::GetValues(int variable)
 {
-    if(variable >= min_values.size())
+    if(variable >= (int)min_values.size())
         throw "(POSLException) Not valid variable index (IrregularDomain::GetValues)";
     return Tools::generateMonotony(min_values[variable], max_values[variable]);
 }

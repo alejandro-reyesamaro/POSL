@@ -141,7 +141,7 @@ T_Changes Tools::GetChanges(std::vector<int> & config_before, std::vector<int> &
 
         p = mismatch (p.first, config_before.end(), p.second);
     }
-    T_Changes changes = {ch_possitions, ch_values, ch_possitions.size()};
+    T_Changes changes = {ch_possitions, ch_values, (int)ch_possitions.size()};
     return changes;
 }
 
@@ -205,8 +205,8 @@ int Tools::element_mismatches(std::vector<int> & v1, std::vector<int> & v2, int 
 {
     if(v1.size() != v2.size())
         throw "(PSOL Exception) vectors sizes mismatch (Tools::norm8)";
-    if(end >= v2.size())
-        end = v2.size() - 1;
+    if(end >= (int)v2.size())
+        end = (int)v2.size() - 1;
     int count = 0;
     for (int i = 0; i < end; ++i)
         if (abs(v1[i] - v2[i]) >= distance) count++;

@@ -43,7 +43,7 @@ string Tester_OneSortedChangeNeighborhood::test()
         cout << "[ ";
         cout << neighbor[0] << " ";
         i_1 = neighbor[0];
-        for(int i = 1; i < neighbor.size(); i++)
+        for(unsigned int i = 1; i < neighbor.size(); i++)
         {
             v = (!pv[neighbor[i] - i_1]);
             cout << neighbor[i] << " ";

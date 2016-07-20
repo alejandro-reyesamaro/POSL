@@ -39,7 +39,7 @@ void AllPermutationsNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
             vector<int> new_indexes ({monotony[i], monotony[j]});
             vector<int> new_values ({current_configuration[monotony[j]], current_configuration[monotony[i]]});
 
-            T_Changes next_changes = {new_indexes, new_values, new_values.size()};
+            T_Changes next_changes = {new_indexes, new_values, (int)new_values.size()};
             changes.push_back(next_changes);
         }
 }

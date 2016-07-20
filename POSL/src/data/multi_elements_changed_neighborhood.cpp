@@ -21,7 +21,7 @@ MultiElementsChangedNeighborhood::MultiElementsChangedNeighborhood(std::shared_p
 void MultiElementsChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
-    int n = current_configuration.size();
+    //unsigned int n = current_configuration.size();
     //RandIndexGenerator rig(n-1);
     std::vector<vector<int>> the_changes = rand->generate_multichanges();
 
@@ -51,7 +51,7 @@ void MultiElementsChangedNeighborhood::updateChanges(shared_ptr<Randomizer> rand
 
         //cout << "]" << endl;
 
-        T_Changes next_changes = {new_indexes, new_values, new_values.size()};
+        T_Changes next_changes = {new_indexes, new_values, (int)new_values.size()};
         changes.push_back(next_changes);
     }
 }

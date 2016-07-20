@@ -6,7 +6,10 @@
 #include <iostream>
 using namespace std;
 
-POSL_Solver::POSL_Solver(string name, shared_ptr<Benchmark> _bench, shared_ptr<ComputationStrategy> _strategy)
+POSL_Solver::POSL_Solver(string name,
+                         shared_ptr<Benchmark> _bench,
+                         shared_ptr<ComputationStrategy> _strategy,
+                         shared_ptr<SearchProcessParamsStruct> _psp_params)
     : solver_name(name),
       final_solution(nullptr),
       best_solution(nullptr),
@@ -17,7 +20,8 @@ POSL_Solver::POSL_Solver(string name, shared_ptr<Benchmark> _bench, shared_ptr<C
       strategy(_strategy),
       bench(_bench),
       //showing_strategy(make_shared<ShowBechmarkResultStrategy>())
-      showing_strategy(make_shared<ShowToCollectStrategy>())
+      showing_strategy(make_shared<ShowToCollectStrategy>()),
+      psp_params(_psp_params)
 {}
 
 void POSL_Solver::solve(shared_ptr<PSP> psp)

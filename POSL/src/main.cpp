@@ -47,7 +47,6 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_PackingUnionNeighborhood>(argc, argv));
 
     //tests.push_back(make_shared<Tester_TabuSelection>(argc, argv));
-    //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
 
     //tests.push_back(make_shared<Tester_IterationGolfers>(argc, argv));
     //tests.push_back(make_shared<Tester_CodingPOSL>(argc, argv));
@@ -62,10 +61,10 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_SingletonExperession>(argc, argv));
 
     //tests.push_back(make_shared<Tester_CostOfSolutionNQueens>(argc, argv));
-    //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
+
 
     //tests.push_back(make_shared<Tester_DanielRestart>(argc, argv));
-    //tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
+
     //tests.push_back(make_shared<Tester_CostOfSolutionCostasArray>(argc, argv));
 
     //tests.push_back(make_shared<Tester_CostOfSolutionSubsum>(argc, argv));
@@ -73,7 +72,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_SolverSubsum>(argc, argv));
 
     //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
-    tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOnVariableGolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_OneWorstSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolombRuler>(argc, argv));
@@ -93,6 +92,12 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_One2DChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
 
+
+
+
+    //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
+    //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
+    tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
 
     string output_str;
     //for(int k = 0; k < 25; k ++)

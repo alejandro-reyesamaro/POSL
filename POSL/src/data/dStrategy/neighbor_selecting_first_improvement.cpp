@@ -35,6 +35,8 @@ shared_ptr<DecisionPair> NeighborSelectingFirstImprovement::select(shared_ptr<PS
             //cout << "better has been found : " << c << endl;
             break;
         }
+        else if(c == best_found_cost)
+            best_found_config = neighbor;
     }
     rPair->update(current_config, best_found_config);
     //cout << "... first" << endl;

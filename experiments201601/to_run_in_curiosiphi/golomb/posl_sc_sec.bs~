@@ -1,32 +1,31 @@
 runs=50
 
-files_results=(golomb_no_tabu.pres golomb_tabu.pres golomb_comm_1-1.pres golomb_comm_1-n.pres);
-strs8=(./golomb8_no_tabu.posl ./golomb8_tabu.posl ./golomb8_comm_1-1.posl ./golomb8_comm_1-n.posl); 
-strs10=(./golomb10_no_tabu.posl ./golomb10_tabu.posl ./golomb10_comm_1-1.posl ./golomb10_comm_1-n.posl);
-strs11=(./golomb11_no_tabu.posl ./golomb11_tabu.posl ./golomb11_comm_1-1.posl ./golomb11_comm_1-n.posl); 
+files_results=(golomb_8-34_sec.pres golomb_10-55_sec.pres golomb_11-72_sec.pres);
+strs_no_tabu=(./golomb8_no_tabu.posl ./golomb10_no_tabu.posl ./golomb11_no_tabu.posl); 
+strs_tabu=(./golomb8_tabu.posl ./golomb10_tabu.posl ./golomb11_tabu.posl);
 
-o=(11 10);
-l=(72 55);
-cores=40
+o=(8 10 11);
+l=(34 55 72);
+cores=1
 
-for (( j = 2; j < 4; j++ ))
+for (( j = 0; j < 3; j++ ))
 do
-	echo "----GOLOMB 11-72 : $cores  ----- (10:2)" >> ${files_results[j]}
+	echo "----GOLOMB ${o[j]}-${l[j]} : $cores  -----" >> ${files_results[j]}
 	for (( i = 0; i < $runs; i++ ))
 	do
-		mpiexec.mpich2 -np $cores ./bin/POSL golomb 11-72 ${strs11[j]} >> ${files_results[j]}	
+		mpiexec.mpich2 -np $cores ./bin/POSL golomb ${o[j]}-${l[j]} ${strs_no_tabu[j]} >> ${files_results[j]}	
 	done
 	echo "----END-----" >> ${files_results[j]}
 	#w >> ${files_results[j]}
 	echo "   " >> ${files_results[j]}
 done
 
-for (( j = 0; j < 4; j++ ))
+for (( j = 0; j < 3; j++ ))
 do
-	echo "----GOLOMB 10-55 : $cores  ----- (10:2)" >> ${files_results[j]}
+	echo "----GOLOMB ${o[j]}-${l[j]} : $cores  -----" >> ${files_results[j]}
 	for (( i = 0; i < $runs; i++ ))
 	do
-		mpiexec.mpich2 -np $cores ./bin/POSL golomb 10-55 ${strs10[j]} >> ${files_results[j]}	
+		mpiexec.mpich2 -np $cores ./bin/POSL golomb ${o[j]}-${l[j]} ${strs_tabu[j]} >> ${files_results[j]}	
 	done
 	echo "----END-----" >> ${files_results[j]}
 	#w >> ${files_results[j]}

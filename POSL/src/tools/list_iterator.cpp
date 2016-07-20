@@ -14,7 +14,7 @@ std::vector<int> ListIterator::GetNext()
 
 bool ListIterator::SomeNext()
 {
-    return current_index < list.size();
+    return current_index < (int)list.size();
 }
 
 void ListIterator::Reset()

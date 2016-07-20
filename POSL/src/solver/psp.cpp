@@ -33,9 +33,9 @@ PSP::PSP(std::shared_ptr<Benchmark> _bench, std::shared_ptr<SearchProcessParamsS
       restarts(-1),
       rand(make_shared<Randomizer>(_bench->Dimension(), max(0, _params->pID))),
       tabu_object(make_shared<TabuObject>(_bench->Dimension(),
-                                          _params->GetpTabuListSize(),
+                                          _params->GetTabuListSize(),
                                           _params->GetTabuEps(),
-                                          _params->GetpTabuNormType())),
+                                          _params->GetTabuNormType())),
       params(_params)
 {}
 

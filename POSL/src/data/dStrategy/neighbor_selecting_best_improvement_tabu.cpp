@@ -25,14 +25,15 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovementTabu::select(shared_ptr
         c = psp->GetBenchmark()->relativeSolutionCost(neighbor);
 
         if (!tabu_list->isTabu(neighbor))
+        {
             if(c < best_found_cost)
             {
                 best_found_cost   = c;
                 best_found_config = neighbor;
             }
-            else if(c = best_found_cost && psp->GetRandomizer()->bernoulli(0.5))
+            else if(c == best_found_cost && psp->GetRandomizer()->bernoulli(0.5))
                 best_found_config = neighbor;
-
+        }
     }
     tabu_list->push(best_found_config);
     rPair->update(current_config, best_found_config);

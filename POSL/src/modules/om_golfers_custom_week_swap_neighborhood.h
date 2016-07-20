@@ -5,12 +5,12 @@
 #include "../benchmarks/benchmark.h"
 #include "../data/neighborhood.h"
 #include "../benchmarks/golfers.h"
-#include "../data/golfers_single_week_swap_neighborhood.h"
+#include "../data/golfers_custom_week_swap_neighborhood.h"
 
-class OM_GolfersSingleWeekSwapNeighborhood : public AOM_NeighborhoodFunction
+class OM_GolfersCustomWeekSwapNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
-        OM_GolfersSingleWeekSwapNeighborhood(std::shared_ptr<Benchmark> bench, int _zero_based_week);
+        OM_GolfersCustomWeekSwapNeighborhood(std::shared_ptr<Benchmark> bench, vector<int> _zero_based_weeks);
 
         std::shared_ptr<Neighborhood> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
@@ -21,5 +21,5 @@ class OM_GolfersSingleWeekSwapNeighborhood : public AOM_NeighborhoodFunction
 
     protected:
         std::shared_ptr<Golfers> object_bench;
-        std::shared_ptr<GolfersSingleWeekSwapNeighborhood> V;
+        std::shared_ptr<GolfersCustomWeekSwapNeighborhood> V;
 };

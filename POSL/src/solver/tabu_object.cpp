@@ -26,8 +26,8 @@ TabuObject::TabuObject(int problem_dimention, int _tabu_size, float _eps, int _n
       something_has_arrived(false),
       eps(_eps),
       norm(_norm),
-      norm_function(get_norm_function(_norm)),
-      tabu_size(_tabu_size)
+      tabu_size(_tabu_size),
+      norm_function(get_norm_function(_norm))
 {}
 
 void TabuObject::addTabuSolution(vector<int> & configuration)

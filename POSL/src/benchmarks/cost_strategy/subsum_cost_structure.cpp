@@ -16,10 +16,10 @@ SubsumCostStructure::SubsumCostStructure(std::vector<int> values, int subsum, un
         throw "(POSL Exception) invalid value of N (SubsumCostStructure)";
 }
 
-int SubsumCostStructure::relative_cost(vector<int> & new_config, T_Changes change, bool updating)
+int SubsumCostStructure::relative_cost(vector<int> &, T_Changes change, bool updating)
 {
     int cost = 0, sum = current_sum;
-    for(unsigned int i = 0; i < change.dim; i++)
+    for(int i = 0; i < change.dim; i++)
     {
         if(change.positions[i] < N)
         {
@@ -44,7 +44,7 @@ void SubsumCostStructure::init(vector<int> config)
     CurrentCost = abs(Subsum - current_sum);
 }
 
-int SubsumCostStructure::costOnVariable(int index)
+int SubsumCostStructure::costOnVariable(int)
 {
     return 1; // default behavior
 }

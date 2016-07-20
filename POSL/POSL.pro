@@ -269,16 +269,12 @@ SOURCES += src/main.cpp \
     src/testers/tester_binary_search_tree.cpp \
     src/modules/om_k_best_improvement_selection.cpp \
     src/testers/tester_k_best_improvement_selection.cpp \
-    src/data/golfers_single_week_swap_neighborhood.cpp \
-    src/modules/om_golfers_single_week_swap_neighborhood.cpp \
     src/testers/tester_golfers_1_week_neighborhood.cpp \
     src/operators/strategy/not_null_sequential_strategy.cpp \
     src/operators/not_null_operator.cpp \
     src/tools/posl_log.cpp \
     src/packing/operation_module_simulated_anealing_uncoder.cpp \
     src/testers/tester_same_cost_iterations_be.cpp \
-    src/data/golfers_adaptive_search_single_week_neighborhood.cpp \
-    src/modules/om_golfers_single_week_adaptive_search_neighborhood.cpp \
     src/modules/decision_pair_first_data_open_channel.cpp \
     src/modules/solution_first_data_open_channel.cpp \
     src/modules/solution_last_data_open_channel.cpp \
@@ -361,7 +357,12 @@ SOURCES += src/main.cpp \
     src/tools/list_iterator.cpp \
     src/modules/aom_first_configuration_generation_from_set.cpp \
     src/modules/om_golomb_valid_generation_fromset.cpp \
-    src/testers/tester_golomb_subsum_conversions.cpp
+    src/testers/tester_golomb_subsum_conversions.cpp \
+    src/data/golfers_adaptive_search_custom_week_neighborhood.cpp \
+    src/data/golfers_custom_week_swap_neighborhood.cpp \
+    src/modules/om_golfers_custom_week_adaptive_search_neighborhood.cpp \
+    src/modules/om_golfers_custom_week_swap_neighborhood.cpp \
+    src/packing/om_v_golfers_custom_week_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -634,16 +635,12 @@ HEADERS += \
     src/testers/tester_binary_search_tree.h \
     src/modules/om_k_best_improvement_selection.h \
     src/testers/tester_k_best_improvement_selection.h \
-    src/data/golfers_single_week_swap_neighborhood.h \
-    src/modules/om_golfers_single_week_swap_neighborhood.h \
     src/testers/tester_golfers_1_week_neighborhood.h \
     src/operators/strategy/not_null_sequential_strategy.h \
     src/operators/not_null_operator.h \
     src/tools/posl_log.h \
     src/packing/operation_module_simulated_anealing_uncoder.h \
     src/testers/tester_same_cost_iterations_be.h \
-    src/data/golfers_adaptive_search_single_week_neighborhood.h \
-    src/modules/om_golfers_single_week_adaptive_search_neighborhood.h \
     src/modules/decision_pair_first_data_open_channel.h \
     src/modules/solution_first_data_open_channel.h \
     src/modules/solution_last_data_open_channel.h \
@@ -729,7 +726,12 @@ HEADERS += \
     src/tools/list_iterator.h \
     src/modules/aom_first_configuration_generation_from_set.h \
     src/modules/om_golomb_valid_generation_fromset.h \
-    src/testers/tester_golomb_subsum_conversions.h
+    src/testers/tester_golomb_subsum_conversions.h \
+    src/data/golfers_adaptive_search_custom_week_neighborhood.h \
+    src/data/golfers_custom_week_swap_neighborhood.h \
+    src/modules/om_golfers_custom_week_swap_neighborhood.h \
+    src/modules/om_golfers_custom_week_adaptive_search_neighborhood.h \
+    src/packing/om_v_golfers_custom_week_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx

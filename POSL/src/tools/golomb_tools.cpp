@@ -54,8 +54,8 @@ vector<int> GolombTools::golomb2subsum(vector<int> & golomb_config, int golomb_o
         values[golomb_config[i+1] - golomb_config[i]] = true;
         subsum_config[i] = golomb_config[i+1] - golomb_config[i];
     }
-    int k = golomb_order - 1;
-    for(int i = 1; i < values.size(); i++)
+    unsigned int k = golomb_order - 1;
+    for(unsigned int i = 1; i < values.size(); i++)
         if(!values[i] && k >= subsum_config.size())
             throw "(POSL Exception) not valid golom to subsum construction [2] (GolombTools::golomb2subsum)";
         else if (!values[i]) subsum_config[k++] = i;

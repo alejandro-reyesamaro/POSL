@@ -9,11 +9,11 @@ ConnectionOperatorNoConnection::ConnectionOperatorNoConnection(vector<pair<share
 void ConnectionOperatorNoConnection::connect(shared_ptr<Scheduler> scheduler)
 {
     shared_ptr<POSL_Solver> s;
-    int pid;
+    //int pid;
 
     for(unsigned int i = 0; i < solvers.size(); i++)
     {
         s = solvers[i].first;
-        pid = scheduler->schedule(s);
+        /*pid = */scheduler->schedule(s);
     }
 }

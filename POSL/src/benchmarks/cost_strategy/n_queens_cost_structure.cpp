@@ -58,7 +58,7 @@ int NQueensCostStructure::relative_cost(std::vector<int> & new_config, T_Changes
     int new_value;
     int current_value;
     int cost = 0;
-    for(unsigned int i = 0; i < change.dim; i++)
+    for(int i = 0; i < change.dim; i++)
     {
         pos_change = change.positions[i];
         new_value = new_config[pos_change];
@@ -92,7 +92,7 @@ int NQueensCostStructure::relative_cost(std::vector<int> & new_config, T_Changes
         CurrentCost = cost;
     }
     else
-        for(unsigned int i = 0; i < change.dim; i++)
+        for(int i = 0; i < change.dim; i++)
         {
             pos_change = change.positions[i];
             new_value = new_config[pos_change];

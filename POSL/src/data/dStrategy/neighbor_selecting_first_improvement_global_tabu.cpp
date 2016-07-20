@@ -30,6 +30,8 @@ shared_ptr<DecisionPair> NeighborSelectingFirstImprovementGlobalTabu::select(sha
                 best_found_config = neighbor;
                 break;
             }
+            else if(c == best_found_cost)
+                best_found_config = neighbor;
         }
         //else
         //    cout<< "found tabu (NeighborSelectingFirstImprovementGlobalTabu)" << endl;
