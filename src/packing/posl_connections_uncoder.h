@@ -2,7 +2,7 @@
 
 #include "../solver/posl_solver.h"
 #include "../tools/hash_map.h"
-#include "connections_declaration.h"
+#include "../connections/connections_declaration.h"
 
 class POSL_ConnectionsUncoder
 {

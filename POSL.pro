@@ -228,7 +228,6 @@ SOURCES += src/main.cpp \
     src/packing/posl_solver_declaration.cpp \
     src/packing/solver_declaration_uncoder.cpp \
     src/packing/posl_uncoder.cpp \
-    src/packing/connections_declaration.cpp \
     src/packing/posl_declaration_uncoder.cpp \
     src/packing/posl_connections_uncoder.cpp \
     src/connections/connection_operator.cpp \
@@ -362,7 +361,9 @@ SOURCES += src/main.cpp \
     src/data/golfers_custom_week_swap_neighborhood.cpp \
     src/modules/om_golfers_custom_week_adaptive_search_neighborhood.cpp \
     src/modules/om_golfers_custom_week_swap_neighborhood.cpp \
-    src/packing/om_v_golfers_custom_week_uncoder.cpp
+    src/packing/om_v_golfers_custom_week_uncoder.cpp \
+    src/connections/connection_strategy.cpp \
+    src/connections/connections_declaration.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -593,7 +594,6 @@ HEADERS += \
     src/packing/posl_solver_declaration.h \
     src/packing/solver_declaration_uncoder.h \
     src/packing/posl_uncoder.h \
-    src/packing/connections_declaration.h \
     src/packing/posl_declaration_uncoder.h \
     src/packing/posl_connections_uncoder.h \
     src/connections/connection_operator.h \
@@ -731,7 +731,9 @@ HEADERS += \
     src/data/golfers_custom_week_swap_neighborhood.h \
     src/modules/om_golfers_custom_week_swap_neighborhood.h \
     src/modules/om_golfers_custom_week_adaptive_search_neighborhood.h \
-    src/packing/om_v_golfers_custom_week_uncoder.h
+    src/packing/om_v_golfers_custom_week_uncoder.h \
+    src/connections/connection_strategy.h \
+    src/connections/connections_declaration.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -749,7 +751,6 @@ OTHER_FILES += \
     src/testers/test_codes/sa_test.posl \
     src/testers/test_codes/solver_golfers_ring_test.posl \
     src/testers/test_codes/golfers_communication.posl \
-    src/testers/test_codes/solver_golfers_switch_test.posl \
     src/testers/test_codes/script_golfers.bs \
     src/testers/test_codes/solver_golfers_test.posl \
     src/testers/test_codes/solver_nqueens_test.posl \
@@ -763,4 +764,5 @@ OTHER_FILES += \
     src/testers/test_codes/solver_subsum_test.posl \
     src/testers/test_codes/solver_all_intervals_test.posl \
     src/testers/test_codes/squaring_square_test.posl \
-    src/testers/test_codes/script_golomb.bs
+    src/testers/test_codes/script_golomb.bs \
+    src/testers/test_codes/solver_golfers_dicotomie_test.posl

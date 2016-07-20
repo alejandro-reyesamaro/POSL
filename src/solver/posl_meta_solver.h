@@ -6,6 +6,7 @@
 #include "strategy/solve_in_parallel_strategy.h"
 #include "strategy/solve_sequentially_strategy.h"
 #include "strategy/solve_to_test_strategy.h"
+#include "../connections/connection_strategy.h"
 
 class POSL_MetaSolver
 {
@@ -25,4 +26,6 @@ class POSL_MetaSolver
         shared_ptr<SolveSequentiallyStrategy> seq_str;
         shared_ptr<SolveToTestStrategy> test_str;
         std::shared_ptr<SearchProcessParamsStruct> psp_params;
+
+        shared_ptr<ConnectionStrategy> connection_strategy;
 };

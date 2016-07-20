@@ -9,9 +9,8 @@ class Comunicator
     public:
         Comunicator();
 
-        void sendMessage(std::vector<int> package, int procID);
+        void sendMessage(std::vector<int> package, int procID, bool logging);
 
     private:
         MPI_Request request;
-        bool logging;
 };

@@ -1,2 +1,1 @@
-#mpiexec.mpich -np 6 ../../../bin/POSL golfers 4-4-4 ./solver_golfers_ring_test.posl
-mpiexec.mpich -np 6 ../../../bin/POSL golfers 5-3-7 ./solver_golfers_test.posl
+mpiexec.mpich -np 7 ../../../bin/POSL golfers 9-5-5 ./solver_golfers_dicotomie_test.posl

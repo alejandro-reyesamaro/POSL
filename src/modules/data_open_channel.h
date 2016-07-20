@@ -37,6 +37,7 @@ class DataOpenChannel : public OpenChannel
 
     private:
         bool logging;
+        bool logged;
         MPI_Status status;
         std::vector<int> buffer;        
 };

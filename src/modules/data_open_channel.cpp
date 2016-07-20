@@ -8,7 +8,8 @@ DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
     : OpenChannel(name),
       contains_information(false),
       bench(_bench),
-      logging(false), // manually turn it on/of to log behavior
+      logging(true), // manually turn it on/of to log behavior
+      logged(false),
       buffer(2 + _bench->Dimension() * 2)
 {}
 
@@ -23,7 +24,8 @@ void DataOpenChannel::receive_and_log(int id, int tag, shared_ptr<PSP> psp)
     storeMessage(&buffer[0], psp);
     contains_information = true;
     //cout << "Op.Ch: PID = "<< id <<". Received " << tag << endl;
-    logging = false;
+    //logging = false;
+    logged = true;
 }
 
 shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData>)
@@ -56,6 +58,8 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
         MPI_Iprobe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &test_flag, &status);
         //times ++;
     }
+    if(logged) logging = false;
+
     //if(psp->GetPID() == 1)
     //    cout << "...OPCh" << times << endl;
     return selectMessage();

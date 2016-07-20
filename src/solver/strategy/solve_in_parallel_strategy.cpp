@@ -18,6 +18,7 @@ string SolveInParallelStrategy::solve(shared_ptr<Scheduler> scheduler)//, shared
     MPI_Comm_rank(MPI_COMM_WORLD,&myid);
     if(myid < scheduler->schedulerSize())
     {
+        //cout << "sole_in_parallel_strategy.cpp PiD:" << myid << endl;
         shared_ptr<POSL_Solver> solver = scheduler->getSolverAt(myid);
         shared_ptr<SearchProcessParamsStruct> psp_params = solver->GetPspParams();
         psp_params->SetID(myid);

@@ -17,7 +17,8 @@ class POSL_Solver : public Connectable
 
         void solve(std::shared_ptr<PSP> psp);
         std::string show(std::shared_ptr<PSP> psp);
-        std::string solverName() { return solver_name; }
+        std::string GetSolverName() { return solver_name; }
+        void expandSolverName(std::string sufix);
         shared_ptr<SearchProcessParamsStruct> GetPspParams(){ return psp_params; }
 
         bool isOpen();

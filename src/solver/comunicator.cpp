@@ -5,11 +5,10 @@
 using namespace std;
 
 Comunicator::Comunicator()
-    : request(MPI_REQUEST_NULL),
-      logging(false) // manually turned on/of to log behavior
+    : request(MPI_REQUEST_NULL)
 {}
 
-void Comunicator::sendMessage(vector<int> package, int procID)
+void Comunicator::sendMessage(vector<int> package, int procID, bool logging)
 {
     int tag = package[0];
     int pack_size = package.size();

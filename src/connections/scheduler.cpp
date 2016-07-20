@@ -18,7 +18,7 @@ void Scheduler:: checkOut()
 
 int Scheduler::schedule(shared_ptr<POSL_Solver> solver)
 {    
-    string solver_name = solver->solverName();
+    string solver_name = solver->GetSolverName();
     vector<string>::iterator ptr_solver_name = find(solver_names.begin() + process_base, solver_names.end(), solver_name);
     int pos_to_return = 0;
     if(ptr_solver_name == solver_names.end())
@@ -27,7 +27,7 @@ int Scheduler::schedule(shared_ptr<POSL_Solver> solver)
         if(first_available_process == capacity)
             return -1;
 
-        solver_names.push_back(solver->solverName());
+        solver_names.push_back(solver->GetSolverName());
         connections.push_back(vector<pair<ConnectorInfo, int>>()); // the vector connections to the solver
         pos_to_return = first_available_process ++;
     }
@@ -41,7 +41,7 @@ int Scheduler::schedule(shared_ptr<POSL_Solver> solver)
 
 void Scheduler::connect(shared_ptr<POSL_Solver> solver, ConnectorInfo connector, int pID)
 {
-    string solver_name = solver->solverName();
+    string solver_name = solver->GetSolverName();
     vector<string>::iterator ptr_solver_name = find(solver_names.begin() + process_base, solver_names.end(), solver_name);
     if(ptr_solver_name != solver_names.end())
     {

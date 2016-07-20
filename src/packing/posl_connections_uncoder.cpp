@@ -9,7 +9,7 @@ POSL_ConnectionsUncoder::POSL_ConnectionsUncoder()
 }
 
 vector<ConnectionsDeclaration> POSL_ConnectionsUncoder::uncode(string code)
-{
+{    
     CodingTools::trim(code);
     size_t pos_pc;
     vector<ConnectionsDeclaration> declars;
@@ -58,14 +58,20 @@ vector<ConnectionsDeclaration> POSL_ConnectionsUncoder::uncode(string code)
 
         rest = p.second;
         CodingTools::trim(rest);
-        if(jacks_declar.size() != outlets_declar.size())
+
+        if(p_op.first.second != OP_CONNECTION_BC_NAME && jacks_declar.size() != outlets_declar.size())
             throw "(POSL Exception) Not matching connectors (PoslConnectionsUncoder::uncode_connections)";
 
+        // JACKS
         for(unsigned int i = 0; i < jacks_declar.size(); i++)
         {
             dot_separated = CodingTools::split_string(jacks_declar[i], '.');
             v_solvers_jacks.push_back(dot_separated[0]);
             v_jacks.push_back(dot_separated[1]);
+        }
+        // OUTLETS
+        for(unsigned int i = 0; i < outlets_declar.size(); i++)
+        {
             dot_separated = CodingTools::split_string(outlets_declar[i], '.');
             v_solvers_outlets.push_back(dot_separated[0]);
             v_outlets.push_back(dot_separated[1]);

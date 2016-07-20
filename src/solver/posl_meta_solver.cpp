@@ -2,7 +2,7 @@
 #include "../tools/hash_map.h"
 #include "../tools/coding_tools.h"
 #include "../packing/posl_uncoder.h"
-#include "../packing/connections_declaration.h"
+#include "../connections/connections_declaration.h"
 #include "../tools/tokens_definition.h"
 #include "../connections/connection_operator_broadcasting.h"
 #include "../connections/connection_operator_no_connection.h"
@@ -23,27 +23,29 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
       par_str(make_shared<SolveInParallelStrategy>(bench, exe_path)),
       seq_str(make_shared<SolveSequentiallyStrategy>(bench)),
       test_str(make_shared<SolveToTestStrategy>(bench)),
-      psp_params(make_shared<SearchProcessParamsStruct>())
+      psp_params(make_shared<SearchProcessParamsStruct>()),
+      connection_strategy(make_shared<ConnectionStrategy>())
 {
 
     shared_ptr<PoslUncoder> posl_unc;
-    pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);    
+    pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);
     HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench);//, psp_params);
+
     vector<ConnectionsDeclaration> connections = posl_unc->uncode_connections(codes.second);
 
     ConnectionsDeclaration current_declaration;
-    shared_ptr<POSL_Solver> solver_j, solver_o;
-    string jack, outlet;
+    //shared_ptr<POSL_Solver> solver_j, solver_o;
+    //string jack, outlet;
 
-    vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> jacks_solvers_info, outlets_solvers_info;
+    //vector<pair<shared_ptr<POSL_Solver>, ConnectorInfo>> jacks_solvers_info, outlets_solvers_info;
 
-    shared_ptr<ConnectionOperator> connection_operator;
-
+    //shared_ptr<ConnectionOperator> connection_operator;
 
     for(unsigned int i = 0; i < connections.size(); i++)
     {
         current_declaration = connections[i];
-        for(int j = 0; j < current_declaration.Size; j++)
+        /*
+        for(int j = 0; j < current_declaration.TopologySize; j++)
         {
             for(unsigned int k = 0; k < current_declaration.Jack_solvers.size(); k++)
             {
@@ -73,6 +75,8 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
             jacks_solvers_info.clear();
             outlets_solvers_info.clear();
         }
+        */
+        connection_strategy->declareConnection(current_declaration, scheduler, solver_list);
     }
 }
 

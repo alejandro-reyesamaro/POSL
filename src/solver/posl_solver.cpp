@@ -34,6 +34,11 @@ void POSL_Solver::solve(shared_ptr<PSP> psp)
     time = psp->GetTime();
 }
 
+void POSL_Solver::expandSolverName(std::string sufix)
+{
+    solver_name += "_" + sufix;
+}
+
 bool POSL_Solver::isOpen()
 {
     vector<ConnectorInfo> j = Jacks();
