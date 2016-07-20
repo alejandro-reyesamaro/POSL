@@ -1,3 +1,0 @@
-#mpiexec.mpich -np 6 ../POSL/bin/POSL costas 15 ./costas_std.posl
-mpiexec.mpich -np 6 ../POSL/bin/POSL golfers 8-4-7 ./g_1.n.posl
-
