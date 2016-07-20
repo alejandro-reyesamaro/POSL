@@ -28,8 +28,8 @@ string Tester_One2DChangeNeighborhood::test()
 
     shared_ptr<POSL_Iterator> it = V ->getIterator();
     it->Reset();
-    int sum  = 0;
-    int prod = 1;
+    //int sum  = 0;
+    //int prod = 1;
     bool only_change_one = true;
 
     while(it->SomeNext())

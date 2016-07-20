@@ -6,14 +6,14 @@
 #include "../tools/t_changes.h"
 #include "dStrategy/apply_change_behavior.h"
 
-class GolfersSingleWeekSwapNeighborhood
+class GolfersCustomWeekSwapNeighborhood
         : public Neighborhood,
           public DynamicNeighborhood,
           public std::enable_shared_from_this<Neighborhood>
 {
     friend class ElementsChangeIterator;
     public:
-        GolfersSingleWeekSwapNeighborhood(int _config_size, int _players, int _groups, int _zero_based_week);
+        GolfersCustomWeekSwapNeighborhood(int _config_size, int _players, int _groups, vector<int> _zero_based_weeks);
 
         std::shared_ptr<POSL_Iterator> getIterator();
         int size() {return changes.size(); }
@@ -24,13 +24,13 @@ class GolfersSingleWeekSwapNeighborhood
         void Init(shared_ptr<PSP> psp, vector<int> &_configuration);
 
     private:
-        int init_weeks(int _week);
+        void normalize_weeks();
         void updateChanges(shared_ptr<Randomizer> rand);
         void save_changes(int g1, int g2, int week);
 
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
-        int players, groups;
+        int players, groups, weeks;
         std::vector<int> indexes;
         std::vector<T_Changes> changes;
-        int week;
+        vector<int> weeks_2_swap;
 };

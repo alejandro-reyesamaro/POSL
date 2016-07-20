@@ -38,8 +38,8 @@ void One2DChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
     //int min_possible_values_sizes = min(possible_values_d1.size(), possible_values_d1.size());
 
     int new_value_d1, new_value_d2;
-    for (int i = 0; i < possible_values_d1.size(); i++)
-        for (int j = 0; j < possible_values_d2.size(); j++)
+    for (unsigned int i = 0; i < possible_values_d1.size(); i++)
+        for (unsigned int j = 0; j < possible_values_d2.size(); j++)
         {
             new_value_d1 = possible_values_d1[i];
             new_value_d2 = possible_values_d1[j];

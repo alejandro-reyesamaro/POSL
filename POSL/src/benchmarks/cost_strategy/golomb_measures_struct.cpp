@@ -21,7 +21,7 @@ GolombMeasuresStruct::GolombMeasuresStruct(int size)
 
 void GolombMeasuresStruct::clear()
 {
-    for(int var = 0; var < measures.size(); var++)
+    for(unsigned int var = 0; var < measures.size(); var++)
         measures[var].clear();
 }
 

@@ -39,7 +39,7 @@ void AdaptiveSearchNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
         std::vector<int> new_indexes ({bad_variable, monotony[i]});
         std::vector<int> new_values ({current_configuration[bad_variable], current_configuration[monotony[i]]});
 
-        T_Changes next_changes = {new_indexes, new_values, new_values.size()};
+        T_Changes next_changes = {new_indexes, new_values, (int)new_values.size()};
         changes.push_back(next_changes);
     }
 }

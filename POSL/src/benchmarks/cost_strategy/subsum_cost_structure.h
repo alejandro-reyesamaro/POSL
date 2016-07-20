@@ -11,9 +11,9 @@ class SubsumCostStructure : public ProjectableCost
     public:
         SubsumCostStructure(std::vector<int> values, int subsum, unsigned int n);
 
-        int relative_cost(std::vector<int> & new_config, T_Changes change, bool updating);
+        int relative_cost(std::vector<int> &, T_Changes change, bool updating);
         void init(std::vector<int> config);
-        int costOnVariable(int index);
+        int costOnVariable(int);
         void reset();
 
         int Subsum;

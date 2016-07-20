@@ -28,7 +28,7 @@ shared_ptr<DecisionPair> NeighborSelectingHeuristicFirstImprovement::select(shar
         //cout << Tools::configurationToString(config) << endl;
         c = psp->GetBenchmark()->relativeSolutionCost(neighbor);
         //cout << c << endl;
-        if(c = best_found_cost && psp->GetRandomizer()->bernoulli(0.5))
+        if(c == best_found_cost && psp->GetRandomizer()->bernoulli(0.5))
         {
             best_found_config = neighbor;
             break;

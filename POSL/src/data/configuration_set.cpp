@@ -21,7 +21,7 @@ std::shared_ptr<POSL_Iterator> ConfigurationSet::getIterator()
 
 std::vector<int> ConfigurationSet::elementAt(int index)
 {
-    if (index < configurations.size())
+    if (index < (int)configurations.size())
         return configurations[index];
     else
         throw "(POSL Exception) Index out of bounds (ConfigurationSet::elementAt)";

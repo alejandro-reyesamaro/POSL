@@ -24,7 +24,7 @@ int GolombRulerRelativeCostStructure::relative_cost(vector<int> & new_config, T_
         copy(measure_counters.begin(), measure_counters.end(), aux_measure_counters.begin());
         copy(Configuration.begin(), Configuration.end(), aux_configuration.begin());
     }
-    for(unsigned int i = 0; i < change.dim; i++)
+    for(int i = 0; i < change.dim; i++)
     {
         update_measures(aux_configuration,
                         change.positions[i],

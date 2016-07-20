@@ -24,7 +24,7 @@ std::shared_ptr<POSL_Iterator> OneSortedChangeNeighborhood::getIterator()
 void OneSortedChangeNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _configuration)
 {
     // change this -> the neighborhood to give the posibility to reach the legnth at the end
-    if(measured_distances.size() != GolombTools::max_posible_distances(_configuration.size(), _configuration[_configuration.size()-1]) + 1)
+    if((int)measured_distances.size() != GolombTools::max_posible_distances(_configuration.size(), _configuration[_configuration.size()-1]) + 1)
         measured_distances.resize(GolombTools::max_posible_distances(_configuration.size(), _configuration[_configuration.size()-1]) + 1, false);
 
     fill(measured_distances.begin(), measured_distances.end(), false);
@@ -33,7 +33,7 @@ void OneSortedChangeNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _
     for(unsigned int i = 0; i < _configuration.size() - 1; i++)
     {
         distance = _configuration[i+1] - _configuration[i];
-        if(distance > 0 && distance < measured_distances.size())
+        if(distance > 0 && distance < (int)measured_distances.size())
            measured_distances[distance] = true;
     }
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
@@ -43,7 +43,7 @@ void OneSortedChangeNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _
 void OneSortedChangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
-    int sz = changes.size();
+    //int sz = changes.size();
     rand->vector_shuffle(indexes);
 
     int current_value, posible_values_size;

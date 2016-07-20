@@ -20,7 +20,7 @@ vector<list<int>> create_lists_for_measures(int size)
 
 void clear_measures(vector<list<int>> & _measures_par_variable)
 {
-    for(int i = 0; i <= _measures_par_variable.size() - 1; i++)
+    for(unsigned int i = 0; i <= _measures_par_variable.size() - 1; i++)
         _measures_par_variable[i].clear();
 }
 
@@ -37,7 +37,7 @@ GolombRulerCostStructure::GolombRulerCostStructure(int _order, int _length)
       //aux_new_config(_order)
 {}
 
-int GolombRulerCostStructure::relative_cost(vector<int> & new_config, T_Changes change, bool updating)
+int GolombRulerCostStructure::relative_cost(vector<int> & new_config, T_Changes, bool updating)
 {
     /*
     int new_value, new_pos, old_value, cost = CurrentCost, distance, other_intervenant, min_val, min_index;
@@ -69,9 +69,9 @@ int GolombRulerCostStructure::relative_cost(vector<int> & new_config, T_Changes 
                 : new_value - aux_new_config[j];
             other_intervenant = distance + old_value;
 
-            //************************************************************************
+            //---------------
             // to fix : it can't be applied find here (see .h)
-            //************************************************************************
+            //----------------
             it_small = find(measures_intervenants[j].begin(), measures_intervenants[j].end(), old_value);
             it_big = find(measures_intervenants[j].begin(), measures_intervenants[j].end(), other_intervenant);
 

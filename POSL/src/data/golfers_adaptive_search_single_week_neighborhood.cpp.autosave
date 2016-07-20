@@ -13,27 +13,30 @@ using namespace std;
 #define _TP (_players * _groups)
 #define _W (_config_size / _TP)
 
-int GolfersAdaptiveSearchSingleWeekNeighborhood::init_weeks(int _week)
-{
-    int weeks = current_configuration.size() / (players*groups);
-    if(_week < 1) return 1;
-    if(_week >= weeks) return weeks - 1;
-    return _week;
-}
-
 GolfersAdaptiveSearchSingleWeekNeighborhood::GolfersAdaptiveSearchSingleWeekNeighborhood(shared_ptr<Golfers> _bench,
                                                                                          int _config_size,
                                                                                          int _players,
                                                                                          int _groups,
-                                                                                         int _zero_based_week_2_swap)
+                                                                                         vector<int> _zero_based_weeks_2_swap)
     : Neighborhood(_config_size),
       benchmark(_bench),
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       players(_players),
       groups(_groups),
       weeks(_config_size / _TP),
-      week_2_swap(init_weeks(_zero_based_week_2_swap))
-{}
+      weeks_2_swap(_zero_based_weeks_2_swap)
+{
+    normalize_weeks();
+}
+
+void GolfersAdaptiveSearchSingleWeekNeighborhood::normalize_weeks()
+{
+    for(unsigned i = 0; i < weeks_2_swap.size(); i++)
+    {
+        if(weeks_2_swap[i] < 1) weeks_2_swap[i] = 1;
+        if(weeks_2_swap[i] >= weeks) weeks_2_swap[i] = weeks - 1;
+    }
+}
 
 void GolfersAdaptiveSearchSingleWeekNeighborhood::updateChanges()
 {

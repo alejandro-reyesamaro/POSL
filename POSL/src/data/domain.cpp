@@ -7,7 +7,6 @@ Domain::Domain(int _min_value, int _max_value)
       max_value(_max_value)
 {}
 
-/*
 std::vector<int> Domain::GetValues()
 {
     return Tools::generateMonotony(min_value, max_value);

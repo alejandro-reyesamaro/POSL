@@ -14,8 +14,7 @@ POSL_DeclarationUncoder::POSL_DeclarationUncoder()
 {}
 
 HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<string> vcode,
-                                                                         std::shared_ptr<Benchmark> bench,
-                                                                         shared_ptr<SearchProcessParamsStruct> psp_params)
+                                                                         std::shared_ptr<Benchmark> bench)
 {
     HashMap<string, string> strategies;
     SolverDeclarationUncoder sd_unc;
@@ -55,8 +54,10 @@ HashMap<string, shared_ptr<POSL_Solver>> POSL_DeclarationUncoder::uncode(vector<
                                                          : "");
                         strategy_code = strategies.mapOf(strategy_name);
                         st_instance = make_shared<ComputationStrategy>(strategy_name, strategy_code);
+                        // The params would be introduced into the solver
+                        shared_ptr<SearchProcessParamsStruct> psp_params = make_shared<SearchProcessParamsStruct>();
                         st_instance->Instantiate(sdec.Operation_Module_Instance_Names, sdec.Open_Channel_Instance_Names, bench, psp_params);
-                        solver = make_shared<POSL_Solver>(solver_name, bench, st_instance);
+                        solver = make_shared<POSL_Solver>(solver_name, bench, st_instance, psp_params);
                         solvers_list.insert_or_replace(solver_name, solver);//push_back(solver);
                     }
                 }

@@ -4,12 +4,12 @@
 #include "../benchmarks/benchmark.h"
 #include "../data/neighborhood.h"
 #include "../benchmarks/golfers.h"
-#include "../data/golfers_adaptive_search_single_week_neighborhood.h"
+#include "../data/golfers_adaptive_search_custom_week_neighborhood.h"
 
-class OM_GolfersSingleWeekAdaptiveSearchNeighborhood : public AOM_NeighborhoodFunction
+class OM_GolfersCustomWeekAdaptiveSearchNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
-        OM_GolfersSingleWeekAdaptiveSearchNeighborhood(std::shared_ptr<Benchmark> bench, int _zero_based_week);
+        OM_GolfersCustomWeekAdaptiveSearchNeighborhood(std::shared_ptr<Benchmark> bench, vector<int> _zero_based_weeks);
 
         std::shared_ptr<Neighborhood> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 
@@ -20,5 +20,5 @@ class OM_GolfersSingleWeekAdaptiveSearchNeighborhood : public AOM_NeighborhoodFu
 
     protected:
         std::shared_ptr<Golfers> object_bench;
-        std::shared_ptr<GolfersAdaptiveSearchSingleWeekNeighborhood> V;
+        std::shared_ptr<GolfersAdaptiveSearchCustomWeekNeighborhood> V;
 };

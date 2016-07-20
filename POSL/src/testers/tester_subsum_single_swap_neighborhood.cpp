@@ -24,12 +24,12 @@ string Tester_SubsumSingleSwapNeighborhood::test()
     shared_ptr<POSL_Iterator> it = V ->getIterator();
     it->Reset();
 
-    int ch = 0;
+    //int ch = 0;
 
     while(it->SomeNext())
     {
         vector<int> neighbor = it->GetNext();
-        ch = Tools::mismatches(neighbor, conf);
+        //ch = Tools::mismatches(neighbor, conf);
 
         cout << "[ ";
         for(std::vector<int>::iterator j = neighbor.begin(); j != neighbor.end(); ++j)

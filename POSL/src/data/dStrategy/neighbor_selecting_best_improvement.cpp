@@ -28,6 +28,8 @@ shared_ptr<DecisionPair> NeighborSelectingBestImprovement::select(shared_ptr<PSP
             best_found_cost   = c;
             best_found_config = neighbor;
         }
+        else if(c == best_found_cost)
+            best_found_config = neighbor;
     }
     rPair->update(current_config, best_found_config);
     return rPair;

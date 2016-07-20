@@ -17,7 +17,7 @@ MultiSortedChangesNeighborhood::MultiSortedChangesNeighborhood(std::shared_ptr<D
 void MultiSortedChangesNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
-    int n = current_configuration.size();
+    //int n = current_configuration.size();
     std::vector<vector<int>> the_changes = rand->generate_multichanges();
 
     //int pos_new_value = 0;
@@ -82,7 +82,7 @@ void MultiSortedChangesNeighborhood::pushSetOfValues(shared_ptr<Randomizer> rand
     {
         for (unsigned int j = 0; j < indexes.size(); j++)
             the_values.push_back(vector_values[j][i]);
-        T_Changes next_changes = {indexes, the_values, the_values.size()};
+        T_Changes next_changes = {indexes, the_values, (int)the_values.size()};
         changes.push_back(next_changes);
         the_values.clear();
     }

@@ -73,7 +73,7 @@ vector<vector<int>> Randomizer::generate_multichanges(int card_changes)
     }
 
     // mejorar esto :
-    if(card_changes < sets_of_index.size())
+    if(card_changes < (int)sets_of_index.size())
     {
         vector<vector<int>> v(card_changes);
         copy ( sets_of_index.begin(), sets_of_index.begin() + card_changes, v.begin() );

@@ -17,8 +17,6 @@ class SearchProcessParamsStruct
 
         int GetpID() { return pID; }
         std::string GetpLogPath() { return logs_path; }
-        int GetpTabuNormType() { return tabu_norm_type; }
-        int GetpTabuListSize() { return tabu_list_size; }
         float GetTabuEps() { return tabu_eps; }
         int GetTabuNormType() { return tabu_norm_type; }
         int GetTabuListSize() { return tabu_list_size; }

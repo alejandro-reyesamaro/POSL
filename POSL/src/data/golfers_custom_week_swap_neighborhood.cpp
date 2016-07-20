@@ -1,4 +1,4 @@
-#include "golfers_single_week_swap_neighborhood.h"
+#include "golfers_custom_week_swap_neighborhood.h"
 #include "../tools/rand_index_generator.h"
 #include "../packing/factory/factory_golfers_single_swap_neighborhood_packer.h"
 #include "../tools/tools.h"
@@ -12,35 +12,43 @@ using namespace std;
 
 #define TP (players * groups)
 
-int GolfersSingleWeekSwapNeighborhood::init_weeks(int _week)
-{
-    int weeks = current_configuration.size() / (players*groups);
-    if(_week < 1) return 1;
-    if(_week >= weeks) return weeks - 1;
-    return _week;
-}
-
-GolfersSingleWeekSwapNeighborhood::GolfersSingleWeekSwapNeighborhood(int _config_size, int _players, int _groups, int _zero_based_week)
+GolfersCustomWeekSwapNeighborhood::GolfersCustomWeekSwapNeighborhood(int _config_size,
+                                                                     int _players,
+                                                                     int _groups,
+                                                                     vector<int> _zero_based_weeks)
     : Neighborhood(_config_size),
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
       players(_players),
       groups(_groups),
+      weeks(_config_size / TP),
       indexes(Tools::generateMonotony(TP)),
-      week(init_weeks(_zero_based_week))
-{}
+      weeks_2_swap(_zero_based_weeks)
+{
+    normalize_weeks();
+}
 
-void GolfersSingleWeekSwapNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
+void GolfersCustomWeekSwapNeighborhood::normalize_weeks()
+{
+    for(unsigned i = 0; i < weeks_2_swap.size(); i++)
+    {
+        if(weeks_2_swap[i] < 1) weeks_2_swap[i] = 1;
+        if(weeks_2_swap[i] >= weeks) weeks_2_swap[i] = weeks - 1;
+    }
+}
+
+void GolfersCustomWeekSwapNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
     for(int i = 0; i < groups; i++)
         //random_shuffle(indexes.begin() + i * players, indexes.begin() + (i+1) * players);
         rand->vector_shuffle(indexes, i * players, (i+1) * players);
-    for (int i = 0; i < groups - 1; i++)
-        for(int j = i + 1; j < groups; j++)
-            save_changes(i,j,week);
+    for (unsigned int w = 0; w < weeks_2_swap.size(); w++)
+        for (int i = 0; i < groups - 1; i++)
+            for(int j = i + 1; j < groups; j++)
+                save_changes(i,j,weeks_2_swap[w]);
 }
 
-void GolfersSingleWeekSwapNeighborhood::save_changes(int g1, int g2, int week)
+void GolfersCustomWeekSwapNeighborhood::save_changes(int g1, int g2, int week)
 {
     for (int i = 0; i < players/2 + 1; i++)
         for (int j = 0; j < players/2 + 1; j++)
@@ -52,23 +60,23 @@ void GolfersSingleWeekSwapNeighborhood::save_changes(int g1, int g2, int week)
         }
 }
 
-shared_ptr<POSL_Iterator> GolfersSingleWeekSwapNeighborhood::getIterator()
+shared_ptr<POSL_Iterator> GolfersCustomWeekSwapNeighborhood::getIterator()
 {
     return make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void GolfersSingleWeekSwapNeighborhood::Init(shared_ptr<PSP> psp, vector<int> & _configuration)
+void GolfersCustomWeekSwapNeighborhood::Init(shared_ptr<PSP> psp, vector<int> & _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
     updateChanges(psp->GetRandomizer());
 }
 
-shared_ptr<FactoryPacker> GolfersSingleWeekSwapNeighborhood::BuildPacker()
+shared_ptr<FactoryPacker> GolfersCustomWeekSwapNeighborhood::BuildPacker()
 {
     return make_shared<FactoryGolfersSingleSwapNeighborhoodPacker>(current_configuration, size(), changes);
 }
 
-vector<int> GolfersSingleWeekSwapNeighborhood::neighborAt(int index)
+vector<int> GolfersCustomWeekSwapNeighborhood::neighborAt(int index)
 {
     return changeAtBhv->applyChangeAt(index, current_configuration, changes);
 }

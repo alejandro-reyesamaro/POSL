@@ -38,7 +38,7 @@ class GolombRulerCostStructure : public ProjectableCost
             \param updating Whether the information is updated or not
             \return Cost of the given configuration.
          */
-        int relative_cost(std::vector<int> & new_config, T_Changes change, bool updating);
+        int relative_cost(std::vector<int> & new_config, T_Changes, bool updating);
 
         //! Initialize the information related to the cost.
         /*!

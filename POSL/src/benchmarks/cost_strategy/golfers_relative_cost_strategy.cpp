@@ -52,7 +52,7 @@ int GolfersRelativeCostStrategy::relative_cost(std::vector<int> & new_config, T_
     int start_position_group_for_change, end_group_for_change;
     int current_player_at_pos, partner_current_group, partner_new_group;
 
-    for(unsigned int i = 0; i < change.dim; i++)
+    for(int i = 0; i < change.dim; i++)
     {
         pos = change.positions[i];
         new_value = change.new_values[i];

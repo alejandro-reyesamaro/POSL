@@ -44,7 +44,7 @@ vector<int> FarRandomConfigurationGenerationStrategy::generate(shared_ptr<Random
     }
 
     // Irrelevant values
-    for(int i = variables_to_change; i < config.size(); i ++)
+    for(int i = variables_to_change; i < (int)config.size(); i ++)
         config[variables_indexes[i]] = domain[rand->NextInt(0, domain.size())];
     return config;
 }
