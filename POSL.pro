@@ -765,4 +765,5 @@ OTHER_FILES += \
     src/testers/test_codes/solver_all_intervals_test.posl \
     src/testers/test_codes/squaring_square_test.posl \
     src/testers/test_codes/script_golomb.bs \
-    src/testers/test_codes/solver_golfers_dicotomie_test.posl
+    src/testers/test_codes/solver_golfers_dicotomie_test.posl \
+    src/testers/test_codes/solver_golfers_dicotomie_double_test.posl

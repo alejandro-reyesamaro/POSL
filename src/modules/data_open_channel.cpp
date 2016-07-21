@@ -1,4 +1,5 @@
 #include "data_open_channel.h"
+#include "../tools/tools.h"
 
 #include <iostream>
 
@@ -8,8 +9,9 @@ DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
     : OpenChannel(name),
       contains_information(false),
       bench(_bench),
-      logging(true), // manually turn it on/of to log behavior
-      logged(false),
+      logging(false),        // manually turn it on/of to log behavior
+      process_logged(0),
+      processes_to_log(2),  // manually insert the number of processes to wait for
       buffer(2 + _bench->Dimension() * 2)
 {}
 
@@ -25,7 +27,7 @@ void DataOpenChannel::receive_and_log(int id, int tag, shared_ptr<PSP> psp)
     contains_information = true;
     //cout << "Op.Ch: PID = "<< id <<". Received " << tag << endl;
     //logging = false;
-    logged = true;
+    Tools::activateBit(process_logged, status.MPI_SOURCE);
 }
 
 shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared_ptr<ComputationData>)
@@ -58,7 +60,7 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
         MPI_Iprobe(MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &test_flag, &status);
         //times ++;
     }
-    if(logged) logging = false;
+    if(logging && Tools::bitsCount(process_logged) >= processes_to_log) logging = false;
 
     //if(psp->GetPID() == 1)
     //    cout << "...OPCh" << times << endl;

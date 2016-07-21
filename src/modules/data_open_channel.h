@@ -36,8 +36,11 @@ class DataOpenChannel : public OpenChannel
         //std::shared_ptr<ComputationData> received_data;
 
     private:
+        // Fields to logging process
         bool logging;
-        bool logged;
+        int process_logged;
+        int processes_to_log;
+
         MPI_Status status;
         std::vector<int> buffer;        
 };

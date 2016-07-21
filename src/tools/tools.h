@@ -56,6 +56,9 @@ class Tools
         static int sign(int x);
         static bool equals_vectors(std::vector<int> &v1, std::vector<int> &v2);
 
+        static void activateBit(int & integer, int bit);
+        static int bitsCount(int integer);
+
         template<typename T>
         static std::vector<T> concat(std::vector<T> vector1, std::vector<T> vector2)
         {

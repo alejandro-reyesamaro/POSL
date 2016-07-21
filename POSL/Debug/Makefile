@@ -1093,6 +1093,8 @@ main.o: ../../src/main.cpp ../../src/testers/include_testers.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
 		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h \
 		../../src/testers/tester_iteration_golfers.h \
 		../../src/testers/tester_coding_posl.h \
 		../../src/testers/tester_packing_strategies.h \
@@ -2451,7 +2453,8 @@ data_open_channel.o: ../../src/modules/data_open_channel.cpp ../../src/modules/d
 		../../src/solver/search_process_params_struct.h \
 		../../src/packing/codable.h \
 		../../src/connections/connectable.h \
-		../../src/connections/connector_info.h
+		../../src/connections/connector_info.h \
+		../../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o data_open_channel.o ../../src/modules/data_open_channel.cpp
 
 oms_time_counter.o: ../../src/modules/oms_time_counter.cpp ../../src/modules/oms_time_counter.h \
@@ -3429,7 +3432,9 @@ tester_simulated_annealing_decition.o: ../../src/testers/tester_simulated_anneal
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_simulated_annealing_decition.o ../../src/testers/tester_simulated_annealing_decition.cpp
 
 tester_best_improvement_tabu_selection.o: ../../src/testers/tester_best_improvement_tabu_selection.cpp ../../src/testers/tester_best_improvement_tabu_selection.h \
@@ -4208,7 +4213,9 @@ tester_solver_golfers.o: ../../src/testers/tester_solver_golfers.cpp ../../src/t
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_solver_golfers.o ../../src/testers/tester_solver_golfers.cpp
 
 tester_solver_golomb_ruler.o: ../../src/testers/tester_solver_golomb_ruler.cpp ../../src/testers/tester_solver_golomb_ruler.h \
@@ -4262,7 +4269,9 @@ tester_solver_golomb_ruler.o: ../../src/testers/tester_solver_golomb_ruler.cpp .
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_solver_golomb_ruler.o ../../src/testers/tester_solver_golomb_ruler.cpp
 
 tester_solver_squaring_square.o: ../../src/testers/tester_solver_squaring_square.cpp ../../src/testers/tester_solver_squaring_square.h \
@@ -4316,7 +4325,9 @@ tester_solver_squaring_square.o: ../../src/testers/tester_solver_squaring_square
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_solver_squaring_square.o ../../src/testers/tester_solver_squaring_square.cpp
 
 tester_multi_sorted_changes_neighborhood.o: ../../src/testers/tester_multi_sorted_changes_neighborhood.cpp ../../src/testers/tester_multi_sorted_changes_neighborhood.h \
@@ -4542,7 +4553,9 @@ tester_solver_n_queens.o: ../../src/testers/tester_solver_n_queens.cpp ../../src
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_solver_n_queens.o ../../src/testers/tester_solver_n_queens.cpp
 
 tester_cost_of_solution_nqueens.o: ../../src/testers/tester_cost_of_solution_nqueens.cpp ../../src/testers/tester_cost_of_solution_nqueens.h \
@@ -5949,9 +5962,10 @@ posl_meta_solver.o: ../../src/solver/posl_meta_solver.cpp ../../src/solver/posl_
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
 		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h \
 		../../src/tools/coding_tools.h \
 		../../src/packing/posl_uncoder.h \
-		../../src/connections/connections_declaration.h \
 		../../src/tools/tokens_definition.h \
 		../../src/connections/connection_operator_broadcasting.h \
 		../../src/connections/connection_operator_no_connection.h \
@@ -7386,7 +7400,9 @@ tester_coding_posl.o: ../../src/testers/tester_coding_posl.cpp ../../src/testers
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_coding_posl.o ../../src/testers/tester_coding_posl.cpp
 
 coding_tools.o: ../../src/tools/coding_tools.cpp ../../src/tools/coding_tools.h \
@@ -7583,6 +7599,7 @@ posl_uncoder.o: ../../src/packing/posl_uncoder.cpp ../../src/packing/posl_uncode
 		../../src/packing/computation_strategy_uncoder.h \
 		../../src/solver/strategy/showing_result_strategy.h \
 		../../src/tools/hash_map.h \
+		../../src/connections/connections_declaration.h \
 		../../src/packing/posl_declaration_uncoder.h \
 		../../src/packing/posl_connections_uncoder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o posl_uncoder.o ../../src/packing/posl_uncoder.cpp
@@ -7656,6 +7673,7 @@ posl_connections_uncoder.o: ../../src/packing/posl_connections_uncoder.cpp ../..
 		../../src/packing/computation_strategy_uncoder.h \
 		../../src/solver/strategy/showing_result_strategy.h \
 		../../src/tools/hash_map.h \
+		../../src/connections/connections_declaration.h \
 		../../src/tools/coding_tools.h \
 		../../src/tools/tokens_definition.h \
 		../../src/tools/tools.h
@@ -8386,7 +8404,9 @@ tester_solver_costas_array.o: ../../src/testers/tester_solver_costas_array.cpp .
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_solver_costas_array.o ../../src/testers/tester_solver_costas_array.cpp
 
 squaring_square_cost_structure.o: ../../src/benchmarks/cost_strategy/squaring_square_cost_structure.cpp ../../src/benchmarks/cost_strategy/squaring_square_cost_structure.h \
@@ -9296,7 +9316,9 @@ tester_singleton_experession.o: ../../src/testers/tester_singleton_experession.c
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_singleton_experession.o ../../src/testers/tester_singleton_experession.cpp
 
 random_generator.o: ../../src/tools/std/random_generator.cpp ../../src/tools/random_generator.h
@@ -10034,6 +10056,8 @@ tester_solver_subsum.o: ../../src/testers/tester_solver_subsum.cpp ../../src/tes
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
 		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h \
 		../../src/tools/tools.h \
 		../../src/tools/golomb_tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_solver_subsum.o ../../src/testers/tester_solver_subsum.cpp
@@ -10311,7 +10335,9 @@ tester_solver_all_intervals.o: ../../src/testers/tester_solver_all_intervals.cpp
 		../../src/connections/connection_operator.h \
 		../../src/solver/strategy/solve_in_parallel_strategy.h \
 		../../src/solver/strategy/solve_sequentially_strategy.h \
-		../../src/solver/strategy/solve_to_test_strategy.h
+		../../src/solver/strategy/solve_to_test_strategy.h \
+		../../src/connections/connection_strategy.h \
+		../../src/connections/connections_declaration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tester_solver_all_intervals.o ../../src/testers/tester_solver_all_intervals.cpp
 
 all_permutations_neighborhood.o: ../../src/data/all_permutations_neighborhood.cpp ../../src/data/all_permutations_neighborhood.h \
@@ -11801,7 +11827,8 @@ connection_strategy.o: ../../src/connections/connection_strategy.cpp ../../src/c
 		../../src/connections/connection_operator_broadcasting.h \
 		../../src/connections/connection_operator_no_connection.h \
 		../../src/connections/connection_operator_bipartition.h \
-		../../src/connections/connection_operator_rin.h
+		../../src/connections/connection_operator_rin.h \
+		../../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o connection_strategy.o ../../src/connections/connection_strategy.cpp
 
 connections_declaration.o: ../../src/connections/connections_declaration.cpp ../../src/connections/connections_declaration.h

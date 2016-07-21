@@ -265,3 +265,18 @@ bool Tools::equals_vectors(vector<int> & v1, vector<int> & v2)
             return false;
     return true;
 }
+
+void Tools::activateBit(int & integer, int bit)
+{
+    if (bit >= 32) throw "(POSL Exception) Activation is not possible (Tools::activateBit)";
+    integer = integer | (int)pow(2,bit);
+}
+
+int Tools::bitsCount(int integer)
+{
+    int count;
+    integer = integer - ((integer >> 1) & 0x55555555);
+    integer = (integer & 0x33333333) + ((integer >> 2) & 0x33333333);
+    count = (((integer + (integer >> 4)) & 0x0F0F0F0F) * 0x01010101) >> 24;
+    return count;
+}
