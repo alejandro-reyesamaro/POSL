@@ -1,0 +1,32 @@
+St_test := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
+{
+<S>
+    OP.Cyc (BE.LoopBnd 1000)
+    <S>
+        OP.|->
+        <S>
+            OP.|->
+            <S>
+                OP.|->
+                OM_S
+                <S>
+                    OP.? ( BE.AND ( BE.LoopBnd 10 , BE.RC 4 ) )
+                    OM_R
+                    <S> OP.|-> <S> OP.|-> OM_V OM_SS </S> OM_D </S>
+                </S>
+            </S> OMS.IterCounter
+        </S> OMS.TimeCounter
+    </S>
+</S>
+};
+
+test_solver := solver
+{
+    cStrategy: St_test;
+    oModule: OM_S.Fix, OM_V.AS_Golfers, OM_SS.BestImpr, OM_D.AlwImpr, OM_R.Default;
+};
+
+connections:
+
+[test_solver]6;

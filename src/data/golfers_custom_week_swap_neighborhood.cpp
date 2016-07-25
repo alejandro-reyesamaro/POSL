@@ -50,8 +50,8 @@ void GolfersCustomWeekSwapNeighborhood::updateChanges(shared_ptr<Randomizer> ran
 
 void GolfersCustomWeekSwapNeighborhood::save_changes(int g1, int g2, int week)
 {
-    for (int i = 0; i < players/2 + 1; i++)
-        for (int j = 0; j < players/2 + 1; j++)
+    for (int i = 0; i < players; i++)
+        for (int j = 0; j < players; j++)
         {
             int pos1 = (week * TP) + indexes[g1 * players + i];
             int pos2 = (week * TP) + indexes[g2 * players + j];

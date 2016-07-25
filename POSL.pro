@@ -363,7 +363,8 @@ SOURCES += src/main.cpp \
     src/modules/om_golfers_custom_week_swap_neighborhood.cpp \
     src/packing/om_v_golfers_custom_week_uncoder.cpp \
     src/connections/connection_strategy.cpp \
-    src/connections/connections_declaration.cpp
+    src/connections/connections_declaration.cpp \
+    src/testers/tester_and_or_expresions.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -733,7 +734,8 @@ HEADERS += \
     src/modules/om_golfers_custom_week_adaptive_search_neighborhood.h \
     src/packing/om_v_golfers_custom_week_uncoder.h \
     src/connections/connection_strategy.h \
-    src/connections/connections_declaration.h
+    src/connections/connections_declaration.h \
+    src/testers/tester_and_or_expresions.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -766,4 +768,5 @@ OTHER_FILES += \
     src/testers/test_codes/squaring_square_test.posl \
     src/testers/test_codes/script_golomb.bs \
     src/testers/test_codes/solver_golfers_dicotomie_test.posl \
-    src/testers/test_codes/solver_golfers_dicotomie_double_test.posl
+    src/testers/test_codes/solver_golfers_dicotomie_double_test.posl \
+    src/testers/test_codes/test_and_or_expressions.posl
