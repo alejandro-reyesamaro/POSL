@@ -18,7 +18,7 @@ string Tester_Golfers1WeekNeighborhood::test()
     int g = 3;
     int p = 3;
     int w = 3;
-    vector<int> week(1,2);
+    vector<int> week = {1,2};
     vector<int> first_conf = Tester::Golfers_333_c();
 
     shared_ptr<Benchmark> bench(make_shared<Golfers>(g,p,w));
