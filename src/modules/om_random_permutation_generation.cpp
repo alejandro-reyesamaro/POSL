@@ -19,7 +19,7 @@ shared_ptr<Solution> OM_RandomPermutationGeneration::spcf_execute(shared_ptr<PSP
     rsolution->UpdateConfiguration(rconf_strategy->generate(psp->GetRandomizer()));
     psp->Start(rsolution->get_conf_by_ref());
     //psp->log("Start ");//->" + rsolution->configurationToString());
-    //cout << Tag() << endl;
+    //cout << psp->GetPID() << ": " << Tag() << endl;
     return rsolution;
 }
 

@@ -25,8 +25,7 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
       test_str(make_shared<SolveToTestStrategy>(bench)),
       psp_params(make_shared<SearchProcessParamsStruct>()),
       connection_strategy(make_shared<ConnectionStrategy>())
-{
-
+{    
     shared_ptr<PoslUncoder> posl_unc;
     pair<vector<string>, string> codes = CodingTools::splitDeclarationConnectionsFromFile(path);
     HashMap<string, shared_ptr<POSL_Solver>> solver_list = posl_unc->uncode_declarations(codes.first, bench);//, psp_params);
@@ -75,9 +74,10 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
             jacks_solvers_info.clear();
             outlets_solvers_info.clear();
         }
-        */
-        connection_strategy->declareConnection(current_declaration, scheduler, solver_list);
+        */        
+        connection_strategy->declareConnection(current_declaration, scheduler, solver_list);        
     }
+    //cout << "init" << endl;
 }
 
 POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchmark> bench)
@@ -87,7 +87,7 @@ POSL_MetaSolver::POSL_MetaSolver(string path, int _comm_size, shared_ptr<Benchma
 void POSL_MetaSolver::solve_in_parallel()
 {    
     //cout << scheduler->schedulerSize() << endl;
-    cout << par_str->solve(scheduler)/*, psp_params)*/ << endl;
+    cout << par_str->solve(scheduler)/*, psp_params)*/ << "\n";
     //psp->log(output);
     exit(0);
 }

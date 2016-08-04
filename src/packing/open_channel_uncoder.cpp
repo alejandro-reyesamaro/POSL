@@ -4,6 +4,7 @@
 
 #include "../modules/solution_last_data_open_channel.h"
 #include "../modules/solution_first_data_open_channel.h"
+#include "../modules/solution_best_data_open_channel.h"
 #include "../modules/decision_pair_last_data_open_channel.h"
 #include "../modules/decision_pair_first_data_open_channel.h"
 #include "../modules/neighborhood_last_data_open_channel.h"
@@ -28,6 +29,8 @@ std::shared_ptr<OpenChannel> OpenChannelUncoder::uncode(string code, shared_ptr<
         return make_shared<SolutionFirstDataOpenChannel>(och_name, bench);
     if(och_token_name == OCH_SOLUTION_LAST_TOK_NAME) // SOLUTION
         return make_shared<SolutionLastDataOpenChannel>(och_name, bench);
+    if(och_token_name == OCH_SOLUTION_BEST_TOK_NAME) // SOLUTION
+        return make_shared<SolutionBestDataOpenChannel>(och_name, bench);
     else if(och_token_name == OCH_NEIGHBORHOOD_LAST_TOK_NAME) // NEIGHBORHOOD
         return make_shared<NeighborhoodLastDataOpenChannel>(och_name, bench);
     else if(och_token_name == OCH_DECISIONPAIR_FIRST_TOK_NAME) // DECISION PAIR

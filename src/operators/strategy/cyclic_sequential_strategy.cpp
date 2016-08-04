@@ -10,6 +10,7 @@ CyclicSequentialStrategy::CyclicSequentialStrategy(shared_ptr<CompoundModule> _M
 
 shared_ptr<ComputationData> CyclicSequentialStrategy::evaluate(shared_ptr<PSP> psp, shared_ptr<ComputationData> input)
 {
+    //cout << psp->GetPID() << ": cyc" << endl;
     output = input;
     while(ex->evaluate(psp))
     {

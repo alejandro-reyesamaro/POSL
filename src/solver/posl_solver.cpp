@@ -19,13 +19,14 @@ POSL_Solver::POSL_Solver(string name,
       time(-1),
       strategy(_strategy),
       bench(_bench),
-      //showing_strategy(make_shared<ShowBechmarkResultStrategy>())
+      //showing_strategy(make_shared<ShowBechmarkResultStrategy>()),
       showing_strategy(make_shared<ShowToCollectStrategy>()),
       psp_params(_psp_params)
 {}
 
 void POSL_Solver::solve(shared_ptr<PSP> psp)
 {
+    //cout << psp->GetPID() << ": solver" << endl;
     final_solution = strategy->execute(psp);
     final_cost = psp->GetBenchmark()->solutionCost(final_solution);
     best_solution = psp->GetBestSolutionSoFar();

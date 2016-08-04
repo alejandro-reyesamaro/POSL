@@ -11,7 +11,7 @@ DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
       bench(_bench),
       logging(false),        // manually turn it on/of to log behavior
       process_logged(0),
-      processes_to_log(2),  // manually insert the number of processes to wait for
+      processes_to_log(1),  // manually insert the number of processes to wait for
       buffer(2 + _bench->Dimension() * 2)
 {}
 
@@ -25,6 +25,7 @@ void DataOpenChannel::receive_and_log(int id, int tag, shared_ptr<PSP> psp)
     MPI_Recv(&buffer[0], pack_size, MPI_INT, status.MPI_SOURCE, tag, MPI_COMM_WORLD, &status);
     storeMessage(&buffer[0], psp);
     contains_information = true;
+    cout << "Op.Ch: PID = " << id <<". Received " << endl;
     //cout << "Op.Ch: PID = "<< id <<". Received " << tag << endl;
     //logging = false;
     Tools::activateBit(process_logged, status.MPI_SOURCE);

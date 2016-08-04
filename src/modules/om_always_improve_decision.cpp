@@ -27,7 +27,15 @@ shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp,
     }
     //cout << input->GetFound()->configurationToString() << endl;
     */
+
+
+    int id;
+    MPI_Comm_rank(MPI_COMM_WORLD, &id);
+    string text = "ID->" + Tools::int2str(id) + " I:" + Tools::int2str(psp->GetIterations()) + " cost:" + Tools::int2str(psp->CurrentCost());
+    cout << text << endl;
+
     // </debug code>
+
     return input->GetFound();
 }
 

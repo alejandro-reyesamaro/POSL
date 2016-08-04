@@ -1,5 +1,5 @@
 St_b001 := cStrategy
-        oModule: OM_S, OM_V, OM_SS1, OM_SS2, OM_D;
+        oModule: OM_S, OM_V, OM_SS, OM_D;
 {
 <S>
     OP.Cyc ( BE.LoopBnd 5 )
@@ -16,12 +16,12 @@ St_b001 := cStrategy
                         OP.|->
                         <S>
                             OP.|->
-                            OM_V
-                            <S>
-                                OP.? ( BE.SCI 20 )
-                                OM_SS1
-                                OM_SS2
-                            </S>
+                            OM_V OM_SS
+                            //<S>
+                            //    OP.? ( BE.SCI 5 )
+                            //    OM_SS1
+                            //    OM_SS2
+                            //</S>
                         </S>
                         OM_D
                     </S> OMS.IterCounter
@@ -32,12 +32,12 @@ St_b001 := cStrategy
 </S>
 };
 
-solver1 := solver
+single_solver := solver
 {
     cStrategy: St_b001;
-    oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+    oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 connections:
 
-[solver1]6;
+[single_solver]6;

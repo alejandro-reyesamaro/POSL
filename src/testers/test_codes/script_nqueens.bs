@@ -1,3 +1,3 @@
-mpiexec.mpich -np 6 ../../../bin/POSL nqueens 1000 ./solver_nqueens_test.posl
-#mpiexec.mpich -np 6 ../../../bin/POSL nqueens 100 ./solver_nqueens_communication.posl
-mpiexec.mpich -np 6 ../../../bin/POSL nqueens 1000 ./solver_nqueens_focus.posl
+#mpiexec.mpich -np 6 ../../../bin/POSL nqueens 2000 ./solver_nqueens_test.posl
+#mpiexec.mpich -np 1 ../../../bin/POSL nqueens 2000 ./solver_nqueens_test.posl
+mpiexec.mpich -np 4 ../../../bin/POSL nqueens 6000 ./solver_nqueens_test2.posl

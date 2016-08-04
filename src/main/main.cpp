@@ -96,7 +96,9 @@ int main(int argc, char *argv[])
 
 	try
 	{
+		//cout << "Meta-solver building" << endl;
 	    shared_ptr<POSL_MetaSolver> s(make_shared<POSL_MetaSolver>(path, comm_size, bench, log_path));
+	    //cout << "solving" << endl;
 	    s->solve_in_parallel();
 	}catch (const char* msg)
 	{

@@ -2,10 +2,12 @@
 #include "../data/solution.h"
 #include "../modules/operation_module.h"
 #include "../modules/om_adaptive_search_neighborhood.h"
+#include "../modules/om_adaptive_search_range_neighborhood.h"
 #include "../data/one_element_changed_neighborhood.h"
 #include "../modules/grouped_sequential_computation.h"
 #include "../operators/sequential_exec_operator.h"
 #include "../modules/om_fixed_first_configuration.h"
+#include "../tools/tools.h"
 
 Tester_AdaptiveSearchNeighborhood::Tester_AdaptiveSearchNeighborhood(int argc, char *argv[])
     : Tester(argc, argv)
@@ -22,7 +24,8 @@ string Tester_AdaptiveSearchNeighborhood::test()
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
 
     shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench));
-    shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchNeighborhood>(bench));
+    //shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchNeighborhood>(bench));
+    shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchRangeNeighborhood>(bench, 0, 4));
     shared_ptr<Operator> op(make_shared<SequentialExecOperator>(om_s, om_v));
     shared_ptr<GroupedComputation> G(make_shared<GroupedSequentialComputation>(op));
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(G->execute(psp, t_seed));
@@ -32,6 +35,8 @@ string Tester_AdaptiveSearchNeighborhood::test()
     int sum  = 0;
     int prod = 1;
     bool only_change_one = true;
+
+    cout << Tools::configurationToString(config1) << endl;
 
     while(it->SomeNext())
     {

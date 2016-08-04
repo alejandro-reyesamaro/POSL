@@ -26,20 +26,26 @@ void NQueensRelativeCostStrategy::updateConfiguration(std::vector<int> &new_conf
         relative_cost(new_config, changes, true);
 }
 
-int NQueensRelativeCostStrategy::relative_cost(std::vector<int> &new_config, T_Changes change, bool updating)
+int NQueensRelativeCostStrategy::relative_cost(std::vector<int> & new_config, T_Changes change, bool updating)
 {
-    return nq_str ->relative_cost(new_config, change, updating);
+    return nq_str->relative_cost(new_config, change, updating);
+    //nq_str->set(new_config);
+    //return nq_str->CurrentCost;
 }
 
-int NQueensRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configuration)
+int NQueensRelativeCostStrategy::relativeSolutionCost(std::vector<int> & _configuration)
 {
     T_Changes changes = Tools::GetChanges(nq_str->Configuration, _configuration);
     return relativeSolutionCost(_configuration, changes);
+    //nq_str->set(_configuration);
+    //return nq_str->CurrentCost;
 }
 
 int NQueensRelativeCostStrategy::relativeSolutionCost(std::vector<int> &_configuration, T_Changes change)
 {
     return relative_cost(_configuration, change, false);
+    //nq_str->set(_configuration);
+    //return nq_str->CurrentCost;
 }
 
 int NQueensRelativeCostStrategy::costOnVariable(int variable_index)

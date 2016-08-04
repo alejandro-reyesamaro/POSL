@@ -364,7 +364,10 @@ SOURCES += src/main.cpp \
     src/packing/om_v_golfers_custom_week_uncoder.cpp \
     src/connections/connection_strategy.cpp \
     src/connections/connections_declaration.cpp \
-    src/testers/tester_and_or_expresions.cpp
+    src/testers/tester_and_or_expresions.cpp \
+    src/data/adaptive_search_range_neighborhood.cpp \
+    src/modules/om_adaptive_search_range_neighborhood.cpp \
+    src/packing/om_v_as_range_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -735,7 +738,10 @@ HEADERS += \
     src/packing/om_v_golfers_custom_week_uncoder.h \
     src/connections/connection_strategy.h \
     src/connections/connections_declaration.h \
-    src/testers/tester_and_or_expresions.h
+    src/testers/tester_and_or_expresions.h \
+    src/data/adaptive_search_range_neighborhood.h \
+    src/modules/om_adaptive_search_range_neighborhood.h \
+    src/packing/om_v_as_range_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -769,4 +775,6 @@ OTHER_FILES += \
     src/testers/test_codes/script_golomb.bs \
     src/testers/test_codes/solver_golfers_dicotomie_test.posl \
     src/testers/test_codes/solver_golfers_dicotomie_double_test.posl \
-    src/testers/test_codes/test_and_or_expressions.posl
+    src/testers/test_codes/test_and_or_expressions.posl \
+    src/testers/test_codes/solver_nqueens_test2.posl \
+    src/testers/test_codes/trash.txt

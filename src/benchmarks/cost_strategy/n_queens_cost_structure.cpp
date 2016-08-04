@@ -1,4 +1,4 @@
-    #include "n_queens_cost_structure.h"
+#include "n_queens_cost_structure.h"
 
 #include <algorithm>
 
@@ -46,10 +46,10 @@ void NQueensCostStructure::set(std::vector<int> & _configuration)
     CurrentCost = r;
 
     // penalizing the configurations with repetitions
-    fill(flags.begin(), flags.end(), 0);
-    for(vector<int>::iterator it = _configuration.begin(); it != _configuration.end(); ++it)
-        if(++flags[_configuration[*it]] > 1)
-            CurrentCost += N/2;
+    //fill(flags.begin(), flags.end(), 0);
+    //for(vector<int>::iterator it = _configuration.begin(); it != _configuration.end(); ++it)
+    //    if(++flags[_configuration[*it]] > 1)
+    //        CurrentCost += N/2;
 }
 
 int NQueensCostStructure::relative_cost(std::vector<int> & new_config, T_Changes change, bool updating)
@@ -81,10 +81,10 @@ int NQueensCostStructure::relative_cost(std::vector<int> & new_config, T_Changes
     cost = r;
 
     // penalizing the configurations with repetitions
-    fill(flags.begin(), flags.end(), 0);
-    for(vector<int>::iterator it = new_config.begin(); it != new_config.end(); ++it)
-        if(++flags[new_config[*it]] > 1)
-            cost += N/2;
+    //fill(flags.begin(), flags.end(), 0);
+    //for(vector<int>::iterator it = new_config.begin(); it != new_config.end(); ++it)
+    //    if(++flags[new_config[*it]] > 1)
+    //        cost += N/2;
 
     if(updating)
     {
