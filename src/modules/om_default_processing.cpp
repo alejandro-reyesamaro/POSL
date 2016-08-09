@@ -10,7 +10,7 @@ OM_DefaultProcessing::OM_DefaultProcessing()
 
 shared_ptr<Solution> OM_DefaultProcessing::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)
 {
-    cout << psp->GetIterations() << " R: OM_DefaultProcessing::spcf_execute " << endl;
+    //cout << psp->GetIterations() << " R: OM_DefaultProcessing::spcf_execute " << endl;
     return input;
 }
 

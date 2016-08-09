@@ -777,4 +777,6 @@ OTHER_FILES += \
     src/testers/test_codes/solver_golfers_dicotomie_double_test.posl \
     src/testers/test_codes/test_and_or_expressions.posl \
     src/testers/test_codes/solver_nqueens_test2.posl \
-    src/testers/test_codes/trash.txt
+    src/testers/test_codes/trash.txt \
+    src/testers/test_codes/solver_costas_comm.posl \
+    src/testers/test_codes/solver_nqueens_test3.posl

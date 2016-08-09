@@ -32,6 +32,7 @@ void AdaptiveSearchRangeNeighborhood::Init(shared_ptr<PSP> psp, vector<int> & _c
 
 int AdaptiveSearchRangeNeighborhood::sickestVariableOnRange()
 {
+    //cout << "IN" << endl;
     bad_variables.clear();
     int cost_on_variable;
     int worst_cost_on_variable = benchmark->costOnVariable(a);
@@ -48,6 +49,7 @@ int AdaptiveSearchRangeNeighborhood::sickestVariableOnRange()
             bad_variables.pushBack(i);
         }
     }
+    //cout << "OUT" << endl;
     return bad_variables.elementAt(r_gen.next_int(0, bad_variables.size()-1));
 }
 
@@ -57,7 +59,7 @@ void AdaptiveSearchRangeNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
     rand->vector_shuffle(monotony);
     int bad_variable = sickestVariableOnRange();
 
-    for(int i = a; i <= b; i++)
+    for(unsigned int i = 0; i <= monotony.size(); i++)
     {
         if(monotony[i] == bad_variable) continue;
         std::vector<int> new_indexes ({bad_variable, monotony[i]});

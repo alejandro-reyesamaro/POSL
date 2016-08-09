@@ -83,7 +83,7 @@ St_sender2 := cStrategy
                                     OM_SS
                                 </S>
                                 <S>
-                                    OP.? (BE.LoopBnd 10)
+                                    OP.? (BE.LoopBnd 20)
                                     OM_D
                                     <S> OP.OSend (send_1) OM_D </S>
                                 </S>
@@ -114,7 +114,12 @@ St_receiver := cStrategy
                                         <S>
                                             OP.|->
                                             OM_SS
-                                            <S> OP.Min OM_D OCh (Ch1) </S>
+                                            <S>
+                                                OP.? (BE.LoopBnd 10)
+                                                OM_D
+                                                <S> OP.Min OM_D OCh (Ch1) </S>
+                                            </S>
+                                            //<S> OP.Min OM_D OCh (Ch1) </S>
                                         </S>
                             </S> OMS.IterCounter
                         </S> OMS.TimeCounter
@@ -133,19 +138,19 @@ single_solver := solver
 s_solver1 := solver
 {
         cStrategy: St_sender2;
-        oModule: OM_S.PermRand, OM_V.ASR(0-3000), OM_SS.FirstImpr, OM_D.AlwImpr;//, OM_R.Default;
+        oModule: OM_S.PermRand, OM_V.ASR(0-2000), OM_SS.FirstImpr, OM_D.AlwImpr;//, OM_R.Default;
 };
 
 s_solver2 := solver
 {
         cStrategy: St_sender2;
-        oModule: OM_S.PermRand, OM_V.ASR(3000-6000), OM_SS.FirstImpr, OM_D.AlwImpr;//, OM_R.Default;
+        oModule: OM_S.PermRand, OM_V.ASR(2000-4000), OM_SS.FirstImpr, OM_D.AlwImpr;//, OM_R.Default;
 };
 
 s_solver3 := solver
 {
         cStrategy: St_sender2;
-        oModule: OM_S.PermRand, OM_V.ASR(2000-4000), OM_SS.FirstImpr, OM_D.AlwImpr;//, OM_R.Default;
+        oModule: OM_S.PermRand, OM_V.ASR(1000-3000), OM_SS.FirstImpr, OM_D.AlwImpr;//, OM_R.Default;
 };
 
 r_solver := solver
