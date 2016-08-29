@@ -36,8 +36,8 @@ void OnePermutationNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 
     for(int i = 0; i < n_changes; i++)
     {
-        vector<int> new_indexes ({monotony[2*i], monotony[2*1 + 1]});
-        vector<int> new_values ({current_configuration[monotony[2*1 + 1]], current_configuration[monotony[2*i]]});
+        vector<int> new_indexes ({monotony[2*i], monotony[2*i + 1]});
+        vector<int> new_values ({current_configuration[monotony[2*i + 1]], current_configuration[monotony[2*i]]});
 
         T_Changes next_changes = {new_indexes, new_values, (int)new_values.size()};
         changes.push_back(next_changes);
