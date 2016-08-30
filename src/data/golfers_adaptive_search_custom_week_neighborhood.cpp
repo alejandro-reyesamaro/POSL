@@ -24,9 +24,9 @@ GolfersAdaptiveSearchCustomWeekNeighborhood::GolfersAdaptiveSearchCustomWeekNeig
       players(_players),
       groups(_groups),
       weeks(_config_size / _TP),
-      weeks_2_swap(_zero_based_weeks_2_swap)
+      weeks_2_swap(Tools::generateMonotony(1,_W-1))//(_zero_based_weeks_2_swap)
 {
-    normalize_weeks();
+    //normalize_weeks();
 }
 
 void GolfersAdaptiveSearchCustomWeekNeighborhood::normalize_weeks()
@@ -38,15 +38,19 @@ void GolfersAdaptiveSearchCustomWeekNeighborhood::normalize_weeks()
     }
 }
 
-void GolfersAdaptiveSearchCustomWeekNeighborhood::updateChanges()
+void GolfersAdaptiveSearchCustomWeekNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
 {
     changes.clear();
     int bad_variable = benchmark->sickestVariable();
 
+    // new
+    rand->vector_shuffle(weeks_2_swap);
+    //cout << weeks_2_swap.size() << endl;
+
     vector<int>::iterator it;
     size_t pos_bv;
     int g_bv, gw, pl;
-    for (unsigned int w = 0; w < weeks_2_swap.size(); w++)
+    for (unsigned int w = 0; w < weeks_2_swap.size()/2; w++)
     {
         it = find(current_configuration.begin()+(weeks_2_swap[w] * TP), current_configuration.begin()+((weeks_2_swap[w]+1) * TP), bad_variable + 1);
         pos_bv = it - current_configuration.begin();
@@ -72,10 +76,10 @@ shared_ptr<POSL_Iterator> GolfersAdaptiveSearchCustomWeekNeighborhood::getIterat
     return make_shared<ElementsChangeIterator>(shared_from_this());
 }
 
-void GolfersAdaptiveSearchCustomWeekNeighborhood::Init(shared_ptr<PSP>, std::vector<int> & _configuration)
+void GolfersAdaptiveSearchCustomWeekNeighborhood::Init(shared_ptr<PSP> psp, std::vector<int> & _configuration)
 {
     copy(_configuration.begin(), _configuration.end(), current_configuration.begin());
-    updateChanges();
+    updateChanges(psp->GetRandomizer());
 }
 
 shared_ptr<FactoryPacker> GolfersAdaptiveSearchCustomWeekNeighborhood::BuildPacker()

@@ -25,10 +25,10 @@ class GolfersAdaptiveSearchCustomWeekNeighborhood
 
         std::vector<int> neighborAt(int index);
         std::shared_ptr<FactoryPacker> BuildPacker();
-        void Init(shared_ptr<PSP>, std::vector<int> & _configuration);
+        void Init(shared_ptr<PSP> psp, std::vector<int> & _configuration);
 
     private:
-        void updateChanges();
+        void updateChanges(shared_ptr<Randomizer> rand);
         void save_swap(int pos1, int pos2);
         void normalize_weeks();
 

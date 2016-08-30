@@ -17,6 +17,7 @@
 #include "../modules/om_one_2d_change_neighborhood.h"
 
 #include "om_v_golfers_custom_week_uncoder.h"
+#include "om_v_tournament_partial_week_uncoder.h"
 #include "om_v_as_range_uncoder.h"
 
 using namespace std;
@@ -68,6 +69,11 @@ shared_ptr<OperationModule> OM_V_Uncoder::uncode(string code, shared_ptr<Benchma
     {
         OM_V_GolfersCustomWeek_Uncoder custom_week_unc;
         return custom_week_unc.uncode(code, bench, true);
+    }    
+    else if(code.find(OM_TOURNAMENT_PARTIAL_ADAPTIVE_SEARCH_NEIGHBORHOOD_TOK) != std::string::npos)
+    {
+        OM_V_TournamentPartialWeek_Uncoder partial_week_unc;
+        return partial_week_unc.uncode(code, bench);
     }
     else if(code.find(OM_ADAPTIVE_SEARCH_RANGE_NEIGHBORHOOD_TOK) != std::string::npos)
     {

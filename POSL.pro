@@ -367,7 +367,10 @@ SOURCES += src/main.cpp \
     src/testers/tester_and_or_expresions.cpp \
     src/data/adaptive_search_range_neighborhood.cpp \
     src/modules/om_adaptive_search_range_neighborhood.cpp \
-    src/packing/om_v_as_range_uncoder.cpp
+    src/packing/om_v_as_range_uncoder.cpp \
+    src/modules/om_as_tournament_partial_neighborhood.cpp \
+    src/data/as_tournament_partial_neighborhood.cpp \
+    src/packing/om_v_tournament_partial_week_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -741,7 +744,10 @@ HEADERS += \
     src/testers/tester_and_or_expresions.h \
     src/data/adaptive_search_range_neighborhood.h \
     src/modules/om_adaptive_search_range_neighborhood.h \
-    src/packing/om_v_as_range_uncoder.h
+    src/packing/om_v_as_range_uncoder.h \
+    src/modules/om_as_tournament_partial_neighborhood.h \
+    src/data/as_tournament_partial_neighborhood.h \
+    src/packing/om_v_tournament_partial_week_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -758,7 +764,6 @@ QMAKE_CXXFLAGS_RELEASE += $$system(mpicxx --showme:compile) -DMPICH_IGNORE_CXX_S
 OTHER_FILES += \
     src/testers/test_codes/sa_test.posl \
     src/testers/test_codes/solver_golfers_ring_test.posl \
-    src/testers/test_codes/golfers_communication.posl \
     src/testers/test_codes/script_golfers.bs \
     src/testers/test_codes/solver_golfers_test.posl \
     src/testers/test_codes/solver_nqueens_test.posl \
@@ -779,4 +784,6 @@ OTHER_FILES += \
     src/testers/test_codes/solver_nqueens_test2.posl \
     src/testers/test_codes/trash.txt \
     src/testers/test_codes/solver_costas_comm.posl \
-    src/testers/test_codes/solver_nqueens_test3.posl
+    src/testers/test_codes/solver_nqueens_test3.posl \
+    src/testers/test_codes/golfers_test_comm.posl \
+    src/testers/test_codes/golfers_no_comm.posl
