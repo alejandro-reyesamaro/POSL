@@ -10,6 +10,7 @@
 
 #include "sequential_execution_strategy.h"
 #include "../../expressions/iteretion_bound_expression.h"
+#include "../../tools/chronometer.h"
 
 /*!
  * \class SendDataSequentialStrategy send_data_sequential_strategy.h
@@ -24,10 +25,12 @@ class SendDataSequentialStrategy : public SequentialExecutionStrategy
         void addDestiny(int pID);
 
     private:
+        std::shared_ptr<Chronometer> chrono;
         std::shared_ptr<CompoundModule> M1;
         std::shared_ptr<ComputationData> output;
         std::shared_ptr<Comunicator> comm;
         std::vector<int> destinies;
 
         bool log_first_delivery;
+
 };

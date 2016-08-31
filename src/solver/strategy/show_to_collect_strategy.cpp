@@ -23,6 +23,8 @@ std::string ShowToCollectStrategy::show(shared_ptr<PSP> psp,
                strategy_tag +
                (psp->FoundThanksOuterInformation() ? " (thanks!)" : "") +
                //" " + Tools::int2str(psp->GetPID()) +
-               " " + Tools::int2str(psp->Restarts());//" r(" + Tools::int2str(psp->Restarts()) + ")";
+               //" " + Tools::int2str(psp->Restarts());//" r(" + Tools::int2str(psp->Restarts()) + ")";
+               " rcv:" + Tools::int2str(psp->get_received_packages()) + " acc:" + Tools::int2str(psp->get_accepted_packages()) +
+               " t:" + Tools::float2str(psp->get_average_time_of_received_packages());
     else return "Unsucceful (" + Tools::int2str(iterations) + ")";
 }

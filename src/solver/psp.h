@@ -44,28 +44,52 @@ class PSP
         void StartSearch();
         int Restarts(){ return restarts; }
         void UpdateSolution(vector<int> & config);
-        void SearchingWithOuterInformation_ON() { outer_information = true; }
+        void SearchingWithOuterInformation_ON() { outer_information = true; report_accepted_package(); }
         void SearchingWithOuterInformation_OFF() { outer_information = false; }
 
         //void log(std::string text);
 
         void clear_information();
 
+        //! Statistic
+
+
+        void report_received_package(int milliseconds);
+        void report_accepted_package();
+        void report_sent_package(int milliseconds);
+
+        int get_sent_packages(){ return data_counters[0]; }
+        int get_average_time_of_sent_packages(){ return data_times_averages[0]; }
+        int get_received_packages(){ return data_counters[1]; }
+        int get_average_time_of_received_packages(){ return data_times_averages[1]; }
+        int get_accepted_packages(){ return data_counters[2]; }
+        int get_average_time_of_accepted_packages(){ return data_times_averages[2]; }
+
     private:
+        void store_information_exchange_statistic(int milliseconds, int & packages_count, float &time);
 
         std::shared_ptr<Benchmark> bench;
         int iterations;
         int milisecs;
+
         std::vector<int> best_found_configuration;
         int best_found_cost;
         //int pID;
         bool outer_information;
         bool found_thanks_outer_information;
+
         //int time_out;
-        POSL_Log plog;
+        //POSL_Log plog;
         //std::string logs_path;
         int restarts;
         std::shared_ptr<Randomizer> rand;
-        std::shared_ptr<TabuObject> tabu_object;
+        std::shared_ptr<TabuObject> tabu_object;        
         std::shared_ptr<SearchProcessParamsStruct> params;
+
+        //! [ sent, received, accepted ]
+        std::vector<int> data_counters;
+        std::vector<float> data_times_averages;
+
+        //! AUX vars
+        float sum;
 };

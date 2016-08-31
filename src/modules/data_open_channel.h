@@ -10,6 +10,7 @@
  */
 
 #include "open_channel.h"
+#include "../tools/chronometer.h"
 
 /*!
  * \class DataOpenChannel data_open_channel.h
@@ -42,5 +43,8 @@ class DataOpenChannel : public OpenChannel
         int processes_to_log;
 
         MPI_Status status;
-        std::vector<int> buffer;        
+        std::vector<int> buffer;
+
+        std::shared_ptr<Chronometer> chrono;
+        std::shared_ptr<ComputationData> msg;
 };

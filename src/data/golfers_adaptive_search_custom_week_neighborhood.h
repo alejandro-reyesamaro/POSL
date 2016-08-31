@@ -17,7 +17,7 @@ class GolfersAdaptiveSearchCustomWeekNeighborhood
                                                     int _config_size,
                                                     int _players,
                                                     int _groups,
-                                                    std::vector<int> _zero_based_weeks_2_swap);
+                                                    std::vector<int>);// _zero_based_weeks_2_swap);
 
         std::shared_ptr<POSL_Iterator> getIterator();
         int size() {return changes.size(); }

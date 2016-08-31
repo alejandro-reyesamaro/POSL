@@ -34,8 +34,8 @@ string Tester_AdaptiveSearchNeighborhood::test()
 
     shared_ptr<POSL_Iterator> it = V ->getIterator();
     it->Reset();
-    int sum  = 0;
-    int prod = 1;
+    //int sum  = 0;
+    //int prod = 1;
     bool only_change_one = true;
 
     //cout << Tools::configurationToString(config1) << endl;

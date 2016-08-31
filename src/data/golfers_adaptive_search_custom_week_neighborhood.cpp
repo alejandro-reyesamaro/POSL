@@ -17,7 +17,7 @@ GolfersAdaptiveSearchCustomWeekNeighborhood::GolfersAdaptiveSearchCustomWeekNeig
                                                                                          int _config_size,
                                                                                          int _players,
                                                                                          int _groups,
-                                                                                         vector<int> _zero_based_weeks_2_swap)
+                                                                                         vector<int>)// _zero_based_weeks_2_swap)
     : Neighborhood(_config_size),
       benchmark(_bench),
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),

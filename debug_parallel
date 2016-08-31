@@ -1,0 +1,1 @@
+mpiexec.mpich -np 6 xterm -e gdb ./../../../bin/POSL golfers 9-4-8 ./golfers_no_comm.posl

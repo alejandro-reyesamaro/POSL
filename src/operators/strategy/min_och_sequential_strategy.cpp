@@ -28,7 +28,7 @@ shared_ptr<ComputationData> MinOChSequentialStrategy::evaluate(shared_ptr<PSP> p
     }
     else
     {
-        psp->SearchingWithOuterInformation_ON();        
+        psp->SearchingWithOuterInformation_ON();
         // Solution
         if(result_och->Tag() == TAGSOLUTION)
         {

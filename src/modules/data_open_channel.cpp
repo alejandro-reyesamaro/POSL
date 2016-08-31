@@ -12,8 +12,11 @@ DataOpenChannel::DataOpenChannel(string name, shared_ptr<Benchmark> _bench)
       logging(false),        // manually turn it on/of to log behavior
       process_logged(0),
       processes_to_log(1),  // manually insert the number of processes to wait for
-      buffer(2 + _bench->Dimension() * 2)
-{}
+      buffer(2 + _bench->Dimension() * 2),
+      chrono(make_shared<Chronometer>())
+{
+    chrono->reset();
+}
 
 void DataOpenChannel::receive_and_log(int id, int tag, shared_ptr<PSP> psp)
 {
@@ -46,8 +49,12 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
     // just for debug
     //int times = 0;
 
+    chrono->reset();
     while(test_flag)
     {
+        if(!chrono->isRunning())
+            chrono->start();
+
         if(logging)
             receive_and_log(id, tag, psp);
         else
@@ -65,7 +72,15 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
 
     //if(psp->GetPID() == 1)
     //    cout << "...OPCh" << times << endl;
-    return selectMessage();
+
+
+    msg = selectMessage();
+    if(chrono->isRunning())
+        chrono->stop();
+    psp->report_received_package(chrono->TimeMiliseconds());
+
+    return msg;
+    //return selectMessage();
 }
 
 /*
