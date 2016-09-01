@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 #include <memory>
+#include <limits.h>
+#include <unistd.h>
 
 #include "../tools/tools.h"
 #include "../tools/coding_tools.h"
@@ -16,9 +18,6 @@
 #include "mpi.h"
 
 using namespace std;
-
-#include <limits.h>
-#include <unistd.h>
 
 std::string getexepath()
 {

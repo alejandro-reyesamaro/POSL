@@ -2,6 +2,7 @@
 #include "../tools/tools.h"
 
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
@@ -49,7 +50,9 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
     // just for debug
     //int times = 0;
 
+#ifdef MST
     chrono->reset();
+#endif
     while(test_flag)
     {
         if(!chrono->isRunning())
@@ -61,7 +64,13 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
         {
             //psp->log("Receiving data");
             MPI_Get_count(&status, MPI_INT, &pack_size);
-            MPI_Recv(&buffer[0], pack_size, MPI_INT, status.MPI_SOURCE, tag, MPI_COMM_WORLD, &status);
+            MPI_Recv(&buffer[0], pack_size, MPI_INT, status.MPI_SOURCE, tag, MPI_COMM_WORLD, &status);            
+#ifdef MST
+            sending_tick = buffer[pack_size-1];
+            arriving_tick = clock();
+            psp->report_traveling_package(arriving_tick - sending_tick);
+            buffer.resize(pack_size-1);
+#endif
             storeMessage(&buffer[0], psp);
             contains_information = true;
         }
@@ -75,9 +84,12 @@ shared_ptr<ComputationData> DataOpenChannel::execute(shared_ptr<PSP> psp, shared
 
 
     msg = selectMessage();
+#ifdef MST
     if(chrono->isRunning())
         chrono->stop();
-    psp->report_received_package(chrono->TimeMiliseconds());
+    //cout << chrono->TimeTics() << endl;
+    psp->report_received_package(chrono->TimeTics());
+#endif
 
     return msg;
     //return selectMessage();

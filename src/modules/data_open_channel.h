@@ -47,4 +47,8 @@ class DataOpenChannel : public OpenChannel
 
         std::shared_ptr<Chronometer> chrono;
         std::shared_ptr<ComputationData> msg;
+
+#ifdef MST
+        int sending_tick, arriving_tick;
+#endif
 };

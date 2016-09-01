@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include <climits>
+#include <ctime>
 
 using namespace std;
 
@@ -37,8 +38,8 @@ PSP::PSP(std::shared_ptr<Benchmark> _bench, std::shared_ptr<SearchProcessParamsS
                                           _params->GetTabuEps(),
                                           _params->GetTabuNormType())),      
       params(_params),
-      data_counters(3,0),
-      data_times_averages(3,0.0),
+      data_counters(4,0),
+      data_times_averages(4,0),
       sum(0.0)
 {}
 
@@ -85,28 +86,45 @@ void PSP::StartSearch(){ restarts ++ ;}
 //void PSP::log(std::string text){ plog.log(text); }
 
 
-void PSP::report_sent_package(int milliseconds)
-{ store_information_exchange_statistic(milliseconds, data_counters[0], data_times_averages[0]);
-    cout << milliseconds << endl;
+void PSP::report_sent_package(int tics)
+{
+    store_information_exchange_statistic(tics, data_counters[0], data_times_averages[0]);
 }
 
-void PSP::report_received_package(int milliseconds)
+int PSP::get_average_time_of_sent_packages()
 {
-    //store_information_exchange_statistic(milliseconds, data_counters[1], data_times_averages[1]);
-    //cout << milliseconds << endl;
-    data_counters[1] ++;
-    data_times_averages[1] += milliseconds;
-    cout << data_times_averages[1] << endl;
+    return (data_counters[0] == 0)
+            ? 0
+            : (int((double(data_times_averages[0]) / CLOCKS_PER_SEC)*1000))/data_counters[0];
+}
+
+void PSP::report_received_package(int tics)
+{
+    store_information_exchange_statistic(tics, data_counters[1], data_times_averages[1]);
+}
+
+int PSP::get_average_time_of_received_packages()
+{
+    return int((double(data_times_averages[1]) / CLOCKS_PER_SEC)*1000);
+    //return data_times_averages[1];
 }
 
 void PSP::report_accepted_package(){ data_counters[2] ++; }
 
-void PSP::store_information_exchange_statistic(int milliseconds, int & packages_count, float & time)
+void PSP::report_traveling_package(int tics)
 {
-    //cout << milliseconds << endl;
-    //sum = (float)(packages_count * time);
-    //sum += (float)milliseconds;
+    store_information_exchange_statistic(tics, data_counters[3], data_times_averages[3]);
+}
+
+int PSP::get_average_time_of_traveling_packages()
+{
+    return int((double(data_times_averages[3]) / CLOCKS_PER_SEC)*1000);
+}
+
+void PSP::store_information_exchange_statistic(int tics, int & packages_count, int & time)
+{
+    sum = (double)(packages_count * time);
+    sum += (double)tics;
     packages_count ++;
-    //time += sum / packages_count;
-    time += milliseconds;
+    time = int(sum / packages_count);
 }

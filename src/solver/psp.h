@@ -7,6 +7,8 @@
 #include "tabu_object.h"
 #include "search_process_params_struct.h"
 
+//#define MST //measuring sendig time
+
 class PSP
 {
     public:
@@ -54,19 +56,21 @@ class PSP
         //! Statistic
 
 
-        void report_received_package(int milliseconds);
+        void report_received_package(int tics);
         void report_accepted_package();
-        void report_sent_package(int milliseconds);
+        void report_sent_package(int tics);
+        void report_traveling_package(int tics);
 
         int get_sent_packages(){ return data_counters[0]; }
-        int get_average_time_of_sent_packages(){ return data_times_averages[0]; }
+        int get_average_time_of_sent_packages();
         int get_received_packages(){ return data_counters[1]; }
-        int get_average_time_of_received_packages(){ return data_times_averages[1]; }
+        int get_average_time_of_received_packages();
         int get_accepted_packages(){ return data_counters[2]; }
-        int get_average_time_of_accepted_packages(){ return data_times_averages[2]; }
+        int get_average_time_of_traveling_packages();
+        int get_traveling_packages(){ return data_counters[3]; }
 
     private:
-        void store_information_exchange_statistic(int milliseconds, int & packages_count, float &time);
+        void store_information_exchange_statistic(int tics, int & packages_count, int &time);
 
         std::shared_ptr<Benchmark> bench;
         int iterations;
@@ -86,10 +90,10 @@ class PSP
         std::shared_ptr<TabuObject> tabu_object;        
         std::shared_ptr<SearchProcessParamsStruct> params;
 
-        //! [ sent, received, accepted ]
+        //! [ sent, received, accepted, trip]
         std::vector<int> data_counters;
-        std::vector<float> data_times_averages;
+        std::vector<int> data_times_averages;
 
         //! AUX vars
-        float sum;
+        double sum;
 };

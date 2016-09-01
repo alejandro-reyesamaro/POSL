@@ -18,13 +18,18 @@ std::string ShowToCollectStrategy::show(shared_ptr<PSP> psp,
                                         int time)
 {
     if(final_solution != nullptr && best_solution != nullptr && best_cost == 0)
-        return Tools::int2str(time) + " " +
+    {
+        string output_str = Tools::int2str(time) + " " +
                Tools::int2str(iterations) + " " +
                strategy_tag +
-               (psp->FoundThanksOuterInformation() ? " (thanks!)" : "") +
+               (psp->FoundThanksOuterInformation() ? " (thanks!)" : "");
                //" " + Tools::int2str(psp->GetPID()) +
                //" " + Tools::int2str(psp->Restarts());//" r(" + Tools::int2str(psp->Restarts()) + ")";
-               " rcv:" + Tools::int2str(psp->get_received_packages()) + " acc:" + Tools::int2str(psp->get_accepted_packages()) +
-               " t:" + Tools::float2str(psp->get_average_time_of_received_packages());
+#ifdef MST
+        output_str += " rcv:" + Tools::int2str(psp->get_received_packages()) + " acc:" + Tools::int2str(psp->get_accepted_packages()) +
+                      " t:" + Tools::int2str(psp->get_average_time_of_traveling_packages());
+#endif
+        return output_str;
+    }
     else return "Unsucceful (" + Tools::int2str(iterations) + ")";
 }

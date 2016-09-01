@@ -30,6 +30,7 @@ class SendDataSequentialStrategy : public SequentialExecutionStrategy
         std::shared_ptr<ComputationData> output;
         std::shared_ptr<Comunicator> comm;
         std::vector<int> destinies;
+        std::vector<int> vector_pack;
 
         bool log_first_delivery;
 

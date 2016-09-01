@@ -11,6 +11,7 @@ class Chronometer
         void start();
         int TimeMiliseconds();
         int TimeSeconds();
+        int TimeTics();
         void stop();
         void reset();
         bool isRunning();
