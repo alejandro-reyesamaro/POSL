@@ -370,7 +370,10 @@ SOURCES += src/main.cpp \
     src/packing/om_v_as_range_uncoder.cpp \
     src/modules/om_as_tournament_partial_neighborhood.cpp \
     src/data/as_tournament_partial_neighborhood.cpp \
-    src/packing/om_v_tournament_partial_week_uncoder.cpp
+    src/packing/om_v_tournament_partial_week_uncoder.cpp \
+    src/data/adaptive_search_partial_neighborhood.cpp \
+    src/modules/om_adaptive_search_partial_neighborhood.cpp \
+    src/packing/om_v_as_partial_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -747,7 +750,10 @@ HEADERS += \
     src/packing/om_v_as_range_uncoder.h \
     src/modules/om_as_tournament_partial_neighborhood.h \
     src/data/as_tournament_partial_neighborhood.h \
-    src/packing/om_v_tournament_partial_week_uncoder.h
+    src/packing/om_v_tournament_partial_week_uncoder.h \
+    src/data/adaptive_search_partial_neighborhood.h \
+    src/modules/om_adaptive_search_partial_neighborhood.h \
+    src/packing/om_v_as_partial_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
