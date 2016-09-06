@@ -1,12 +1,12 @@
-St_sender := cStrategy
+St_sender2 := cStrategy
     oModule: OM_S, OM_V, OM_SS, OM_D;
 {
 <S>
-    OP.Cyc (BE.LoopBnd 20)
+    OP.Cyc (BE.LoopBnd 50)
     <S>
         OP.|-> 	OM_S
                 <S>
-                    OP.Cyc ( BE.OR ( BE.LoopBnd 4000, BE.SCI 200 ) )
+                    OP.Cyc ( BE.OR ( BE.LoopBnd 3000, BE.SCI 60 ) )
                     <S>
                         OP.|->
                         <S>
@@ -31,44 +31,6 @@ St_sender := cStrategy
 </S>
 };
 
-St_sr := cStrategy
-    oModule: OM_S, OM_V, OM_SS, OM_D;
-    oChannel: OCh;
-{
-<S>
-    OP.Cyc (BE.LoopBnd 20)
-    <S>
-        OP.|-> 	OM_S
-                <S>
-                    OP.Cyc ( BE.OR ( BE.LoopBnd 4000, BE.SCI 200 ) )
-                    <S>
-                        OP.|->
-                        <S>
-                            OP.|->
-                            <S>
-                                OP.|->
-                                <S>
-                                    OP.|->
-                                    OM_V
-                                    OM_SS
-                                </S>
-                                <S>
-                                    OP.? (BE.LoopBnd 10)
-                                    OM_D
-                                    <S>
-                                        OP.Min
-                                        <S> OP.OSend (send_1) OM_D </S>
-                                        OCh (Ch1)
-                                    </S>
-                                </S>
-                            </S> OMS.IterCounter
-                        </S> OMS.TimeCounter
-                    </S>
-                </S>
-    </S>
-</S>
-};
-
 St_receiver := cStrategy
     oModule: OM_S, OM_V, OM_SS, OM_D;
     oChannel: OCh;
@@ -77,7 +39,7 @@ St_receiver := cStrategy
         OP.|->
         OM_S
         <S>
-          OP.Cyc ( BE.LoopBnd 4000 )
+          OP.Cyc ( BE.LoopBnd 3000 )
           <S>
                    OP.|->
                    <S>
@@ -102,40 +64,14 @@ St_receiver := cStrategy
 
 s_solver1 := solver
 {
-        cStrategy: St_sender;
-        oModule: OM_S.PermRand, OM_V.ASR(0-1000), OM_SS.FirstImpr, OM_D.AlwImpr;
+        cStrategy: St_sender2;
+        oModule: OM_S.PermRand, OM_V.ASR(0-500), OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 s_solver2 := solver
 {
-        cStrategy: St_sender;
-        oModule: OM_S.PermRand, OM_V.ASR(1000-2000), OM_SS.FirstImpr, OM_D.AlwImpr;
-};
-
-s_solver3 := solver
-{
-        cStrategy: St_sender;
-        oModule: OM_S.PermRand, OM_V.ASR(2000-3000), OM_SS.FirstImpr, OM_D.AlwImpr;
-};
-
-s_solver4 := solver
-{
-        cStrategy: St_sender;
-        oModule: OM_S.PermRand, OM_V.ASR(3000-4000), OM_SS.FirstImpr, OM_D.AlwImpr;
-};
-
-sr_solver1 := solver
-{
-        cStrategy: St_sr;
-        oModule: OM_S.PermRand, OM_V.ASR(0-2000), OM_SS.FirstImpr, OM_D.AlwImpr;
-        oChannel: OCh.Sol_Last;
-};
-
-sr_solver2 := solver
-{
-        cStrategy: St_sr;
-        oModule: OM_S.PermRand, OM_V.ASR(2000-4000), OM_SS.FirstImpr, OM_D.AlwImpr;
-        oChannel: OCh.Sol_Last;
+        cStrategy: St_sender2;
+        oModule: OM_S.PermRand, OM_V.ASR(500-1000), OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 r_solver := solver
@@ -147,6 +83,4 @@ r_solver := solver
 
 connections:
 
-[s_solver1.send_1, s_solver2.send_1] OP.#-> [sr_solver1.Ch1];
-[s_solver3.send_1, s_solver4.send_1] OP.#-> [sr_solver2.Ch1];
-[sr_solver1.send_1, sr_solver2.send_1] OP.#-> [r_solver.Ch1];
+[s_solver1.send_1, s_solver2.send_1] OP.#-> [r_solver.Ch1]2;

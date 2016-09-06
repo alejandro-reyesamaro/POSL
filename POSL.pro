@@ -373,7 +373,8 @@ SOURCES += src/main.cpp \
     src/packing/om_v_tournament_partial_week_uncoder.cpp \
     src/data/adaptive_search_partial_neighborhood.cpp \
     src/modules/om_adaptive_search_partial_neighborhood.cpp \
-    src/packing/om_v_as_partial_uncoder.cpp
+    src/packing/om_v_as_partial_uncoder.cpp \
+    src/packing/om_v_all_permutations_uncoder.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -753,7 +754,8 @@ HEADERS += \
     src/packing/om_v_tournament_partial_week_uncoder.h \
     src/data/adaptive_search_partial_neighborhood.h \
     src/modules/om_adaptive_search_partial_neighborhood.h \
-    src/packing/om_v_as_partial_uncoder.h
+    src/packing/om_v_as_partial_uncoder.h \
+    src/packing/om_v_all_permutations_uncoder.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -792,4 +794,6 @@ OTHER_FILES += \
     src/testers/test_codes/solver_costas_comm.posl \
     src/testers/test_codes/solver_nqueens_test3.posl \
     src/testers/test_codes/golfers_test_comm.posl \
-    src/testers/test_codes/golfers_no_comm.posl
+    src/testers/test_codes/golfers_no_comm.posl \
+    src/testers/test_codes/solver_nqueens_test4.posl \
+    src/testers/test_codes/solver_nqueens_test5.posl

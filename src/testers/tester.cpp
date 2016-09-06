@@ -281,7 +281,7 @@ vector<int> Tester::Golomb_12_85_c19(){ return {0, 2, 6, 24, 29, 40, 43, 55, 68,
 vector<int> Tester::NQueens_10_c0(){ return {4, 9, 3, 8, 2, 7, 1, 6, 0, 5}; } // costo 0
 vector<int> Tester::NQueens_10_c6(){ return {4, 3, 9, 8, 2, 7, 1, 6, 0, 5}; } // costo 6
 vector<int> Tester::NQueens_10_c11(){ return {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}; } // costo 11
-vector<int> Tester::NQueens_10_c10(){ return {4, 8, 3, 8, 2, 7, 1, 6, 0, 5}; } // costo 10
+vector<int> Tester::NQueens_10_c12(){ return {1, 6, 3, 4, 5, 2, 7, 8, 9, 0}; } // costo 12
 
 
 vector<int> Tester::Costas_6_c0(){ return {4,2,3,6,5,1}; }

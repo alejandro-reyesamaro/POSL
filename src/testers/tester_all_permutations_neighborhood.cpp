@@ -17,7 +17,7 @@ string Tester_AllPermutationsNeighborhood::test()
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
     vector<int> v ({16, 2, 15, 0, 17, 1, 13, 3, 14, 5, 12, 4, 10, 8, 9, 6, 11, 7});
     shared_ptr<Solution> sol = make_shared<Solution>(psp->GetBenchmark()->Variable_Domain(), v);
-    shared_ptr<OperationModule> op(make_shared<OM_AllPermutationsNeighborhood>(bench));
+    shared_ptr<OperationModule> op(make_shared<OM_AllPermutationsNeighborhood>(bench, 1));
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(op->execute(psp, sol));
 
     shared_ptr<POSL_Iterator> it = V ->getIterator();

@@ -43,7 +43,7 @@ string Tester_IterationAllIntervals::test()
     bench->SetDefaultConfiguration(all_init);
 
     shared_ptr<CompoundModule> OM_S (make_shared<OM_FixedFirstConfiguration>(bench));
-    shared_ptr<CompoundModule> OM_V (make_shared<OM_AllPermutationsNeighborhood>(bench));
+    shared_ptr<CompoundModule> OM_V (make_shared<OM_AllPermutationsNeighborhood>(bench, 1));
     shared_ptr<CompoundModule> OM_SS (make_shared<OM_BestImprovementSelection>(bench));
     shared_ptr<CompoundModule> OM_D (make_shared<OM_AlwaysImproveDecision>());
 

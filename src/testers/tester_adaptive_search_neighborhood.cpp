@@ -3,6 +3,7 @@
 #include "../modules/operation_module.h"
 #include "../modules/om_adaptive_search_neighborhood.h"
 #include "../modules/om_adaptive_search_range_neighborhood.h"
+#include "../modules/om_adaptive_search_partial_neighborhood.h"
 #include "../data/one_element_changed_neighborhood.h"
 #include "../modules/grouped_sequential_computation.h"
 #include "../operators/sequential_exec_operator.h"
@@ -19,7 +20,7 @@ string Tester_AdaptiveSearchNeighborhood::test()
 {
     vector<int> config1({ 0, 2, 4, 6, 1, 7, 3, 5 });
 
-    shared_ptr<Benchmark> bench(make_shared<NQueens>(4000));
+    shared_ptr<Benchmark> bench(make_shared<NQueens>(1000));
     bench->SetDefaultConfiguration(config1);
 
     shared_ptr<PSP> psp(make_shared<PSP>(bench));
@@ -27,7 +28,8 @@ string Tester_AdaptiveSearchNeighborhood::test()
     //shared_ptr<OperationModule> om_s(make_shared<OM_FixedFirstConfiguration>(bench));
     shared_ptr<OperationModule> om_s(make_shared<OM_RandomPermutationGeneration>(bench));
     //shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchNeighborhood>(bench));
-    shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchRangeNeighborhood>(bench, 2000, 3000));
+    //shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchRangeNeighborhood>(bench, 100, 500));
+    shared_ptr<OperationModule> om_v(make_shared<OM_AdaptiveSearchPartialNeighborhood>(bench, 3));
     shared_ptr<Operator> op(make_shared<SequentialExecOperator>(om_s, om_v));
     shared_ptr<GroupedComputation> G(make_shared<GroupedSequentialComputation>(op));
     shared_ptr<Neighborhood> V = static_pointer_cast<Neighborhood>(G->execute(psp, t_seed));
@@ -39,7 +41,7 @@ string Tester_AdaptiveSearchNeighborhood::test()
     bool only_change_one = true;
 
     //cout << Tools::configurationToString(config1) << endl;
-
+    cout << "size: " << V->size() << endl;
     /*
     while(it->SomeNext())
     {

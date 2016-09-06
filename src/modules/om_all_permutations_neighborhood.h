@@ -10,7 +10,7 @@ class OM_AllPermutationsNeighborhood : public AOM_NeighborhoodFunction
 {
     public:
         //! Constructor
-        OM_AllPermutationsNeighborhood(std::shared_ptr<Benchmark> bench);
+        OM_AllPermutationsNeighborhood(std::shared_ptr<Benchmark> bench, int part);
 
         std::shared_ptr<Neighborhood> spcf_execute(std::shared_ptr<PSP> psp, std::shared_ptr<Solution> input);
 

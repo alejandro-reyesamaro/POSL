@@ -97,8 +97,8 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_One2DChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
 
-    tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
-    //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
+    tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
     //tests.push_back(make_shared<Tester_AndOrExpresions>(argc, argv));
 

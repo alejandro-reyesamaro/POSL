@@ -59,5 +59,5 @@ class Tester
         static vector<int> NQueens_10_c0();
         static vector<int> NQueens_10_c6();
         static vector<int> NQueens_10_c11();
-        static vector<int> NQueens_10_c10();
+        static vector<int> NQueens_10_c12();
 };

@@ -27,7 +27,8 @@ class AdaptiveSearchPartialNeighborhood
 
     private:
         void updateChanges(std::shared_ptr<Randomizer> rand);
-        int sickestVariableOnRange();
+        int sickestVariableOnRange(std::shared_ptr<Randomizer> rand);
+        void sickestVariables();
 
         std::shared_ptr<Benchmark> benchmark;
         int variables_to_analize;
@@ -35,8 +36,7 @@ class AdaptiveSearchPartialNeighborhood
         std::vector<int> monotony;
         std::vector<T_Changes> changes;
 
-        //! A temporal vector to store the dab variables (same projected cost)
+        //! A vector to store the dab variables (same projected cost)
         FixedSizeVector<int> bad_variables;
-        //! Random generator to choose the <i>bad variable</i>s
-        RandomGenerator r_gen;
+        vector<int> cost_n_variable;
 };

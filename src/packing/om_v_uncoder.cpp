@@ -19,6 +19,8 @@
 #include "om_v_golfers_custom_week_uncoder.h"
 #include "om_v_tournament_partial_week_uncoder.h"
 #include "om_v_as_range_uncoder.h"
+#include "om_v_as_partial_uncoder.h"
+#include "om_v_all_permutations_uncoder.h"
 
 using namespace std;
 
@@ -52,8 +54,11 @@ shared_ptr<OperationModule> OM_V_Uncoder::uncode(string code, shared_ptr<Benchma
         return make_shared<OM_OneSortedChangeNeighborhood>(bench);
     else if(code == OM_ONE_PERMUTATION_NEIGHBORHOOD_TOK)
         return make_shared<OM_OnePermutationNeighborhood>(bench);
-    else if(code == OM_ALL_PERMUTATIONS_NEIGHBORHOOD_TOK)
-        return make_shared<OM_AllPermutationsNeighborhood>(bench);
+    else if(code.find(OM_ALL_PERMUTATIONS_NEIGHBORHOOD_TOK) != std::string::npos)
+    {
+        OM_V_AllPermutations_Uncoder allpermut_unc;
+        return allpermut_unc.uncode(code, bench);
+    }
     else if(code == OM_ONE_2DCHANGE_NEIHBORHOOD_TOK)
         return make_shared<OM_One2DChangeNeighborhood>(bench);
     else if(code == OM_ADAPTIVE_SEARCH_NEIGHBORHOOD_TOK)
@@ -79,6 +84,11 @@ shared_ptr<OperationModule> OM_V_Uncoder::uncode(string code, shared_ptr<Benchma
     {
         OM_V_ASRange_Uncoder as_range_unc;
         return as_range_unc.uncode(code, bench);
+    }
+    else if(code.find(OM_ADAPTIVE_SEARCH_PARTIAL_NEIGHBORHOOD_TOK) != std::string::npos)
+    {
+        OM_V_ASPartial_Uncoder as_partial_unc;
+        return as_partial_unc.uncode(code, bench);
     }
     else
         throw "(POSL Exception) OM does not exists (OM_V_Uncoder::uncode)";

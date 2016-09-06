@@ -5,8 +5,8 @@
 
 using namespace std;
 
-OM_AllPermutationsNeighborhood::OM_AllPermutationsNeighborhood(shared_ptr<Benchmark> bench)
-    : V(make_shared<AllPermutationsNeighborhood>(bench->Dimension()))
+OM_AllPermutationsNeighborhood::OM_AllPermutationsNeighborhood(shared_ptr<Benchmark> bench, int part)
+    : V(make_shared<AllPermutationsNeighborhood>(bench->Dimension(), part))
 {}
 
 shared_ptr<Neighborhood> OM_AllPermutationsNeighborhood::spcf_execute(shared_ptr<PSP> psp, shared_ptr<Solution> input)

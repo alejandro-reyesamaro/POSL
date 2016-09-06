@@ -12,7 +12,7 @@ class AllPermutationsNeighborhood : public Neighborhood, public DynamicNeighborh
 {
     friend class ElementsChangeIterator;
     public:
-        AllPermutationsNeighborhood(int _config_size);
+        AllPermutationsNeighborhood(int _config_size, int part);
 
         std::shared_ptr<POSL_Iterator> getIterator();
         int size(){ return changes.size(); }
@@ -28,4 +28,5 @@ class AllPermutationsNeighborhood : public Neighborhood, public DynamicNeighborh
         std::shared_ptr<ApplyChangeBehavior> changeAtBhv;
         std::vector<int> monotony;
         std::vector<T_Changes> changes;
+        int variables_to_analize;
 };

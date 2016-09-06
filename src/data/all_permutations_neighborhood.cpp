@@ -9,10 +9,11 @@
 
 using namespace std;
 
-AllPermutationsNeighborhood::AllPermutationsNeighborhood(int _config_size)
+AllPermutationsNeighborhood::AllPermutationsNeighborhood(int _config_size, int part)
     : Neighborhood(_config_size),
       changeAtBhv(make_shared<SingleSwapApplyChangeBehavior>(_config_size)),
-      monotony(Tools::generateMonotony(_config_size))
+      monotony(Tools::generateMonotony(_config_size)),
+      variables_to_analize(_config_size/part - 1)
 {}
 
 shared_ptr<POSL_Iterator> AllPermutationsNeighborhood::getIterator()
@@ -32,9 +33,10 @@ void AllPermutationsNeighborhood::updateChanges(shared_ptr<Randomizer> rand)
     int n = current_configuration.size();
 
     rand->vector_shuffle(monotony);
+    //int index = rand.next_int(0, n-1)
 
-    for(int i = 0; i < n - 1; i++)
-        for(int j = i; j < n; j++)
+    for(int i = 0; i < variables_to_analize; i++)
+        for(int j = i; j <= variables_to_analize; j++)
         {
             vector<int> new_indexes ({monotony[i], monotony[j]});
             vector<int> new_values ({current_configuration[monotony[j]], current_configuration[monotony[i]]});
