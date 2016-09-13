@@ -9,9 +9,12 @@
 
 using namespace std;
 
+#define MAX_VAL_GR_DOMAIN ( _length - ( (_order - 2) * (_order - 1) ) / 2 )
+
 GolombRuler::GolombRuler(int _order, int _length)
     : Benchmark(_order,
-                make_shared<UniformDomain>(0, _length),
+                //make_shared<UniformDomain>(0, _length), // UNCOMENT for the previews version of modelization
+                make_shared<UniformDomain>(1, MAX_VAL_GR_DOMAIN), // NEW VERSION modelization
                 make_shared<GolombRulerMaxPossibleDistancesCostStrategy>(_order, _length),
                 make_shared<GolombRulerRelativeCostStrategy>(_order, _length),
                 make_shared<GolombRulerDefaultShowStrategy>(_order, _length)),

@@ -374,7 +374,8 @@ SOURCES += src/main.cpp \
     src/data/adaptive_search_partial_neighborhood.cpp \
     src/modules/om_adaptive_search_partial_neighborhood.cpp \
     src/packing/om_v_as_partial_uncoder.cpp \
-    src/packing/om_v_all_permutations_uncoder.cpp
+    src/packing/om_v_all_permutations_uncoder.cpp \
+    src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -755,7 +756,8 @@ HEADERS += \
     src/data/adaptive_search_partial_neighborhood.h \
     src/modules/om_adaptive_search_partial_neighborhood.h \
     src/packing/om_v_as_partial_uncoder.h \
-    src/packing/om_v_all_permutations_uncoder.h
+    src/packing/om_v_all_permutations_uncoder.h \
+    src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
