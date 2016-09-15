@@ -1,0 +1,91 @@
+St_master := cStrategy
+oModule: OM_S, OM_V, OM_SS, OM_D;
+oChannel: OCh;
+{
+<S>
+    OP.Cyc (BE.LoopBnd 2)
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.LoopBnd 100000 )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        OM_V
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.? (BE.SCI 5)
+                                OM_SS
+                                OM_SS.Rand
+                            </S>
+                            <S>
+                                OP.? (BE.LoopBnd 5)
+                                <S> OP.OSend (send_1) OM_D </S>
+                                <S> OP.Min OM_D OCh (Ch1) </S>
+                            </S>
+                        </S>
+                    </S> OMS.IterCounter
+                </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+St_slave := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+	oChannel: OCh;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 200 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.LoopBnd 1000 )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        OM_V
+                        <S>
+                            OP.? (BE.SCI 5)
+                            <S> OP.|-> OM_SS <S> OP.OSend (send_1) OM_D </S> </S>
+                            <S> OP.|-> OM_SS.Rand <S> OP.Min OM_D OCh (Ch1) </S> </S>
+                        </S>
+                    </S> OMS.IterCounter
+                </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+solver_slave := solver(3)
+{
+   cStrategy: St_slave;
+   oModule: OM_S.PermBlocks, OM_V.TournPartialWeek(9-4-3), OM_SS.FirstImpr, OM_D.AlwImpr;
+	oChannel: OCh.Sol_Last;
+};
+
+solver_master := solver
+{
+    cStrategy: St_master;
+    oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.Sol_Last;
+};
+
+connections:
+
+[solver_slave.send_1(3)] OP.#-> [solver_master.Ch1]10;
+[solver_master.send1] OP.#-> [solver_slave.Ch1(3)]10;
+
+
+

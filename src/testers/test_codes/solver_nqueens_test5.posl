@@ -34,11 +34,11 @@ St_sr := cStrategy
 </S>
 };
 
-sm1 := solver
+sm1 := solver(2)
 {
         cStrategy: St_sr;
         oModule: OM_S.PermRand, OM_V.ASP(80), OM_SS.FirstImpr, OM_D.AlwImpr;
-        oChannel: OCh.Sol_Last;
+        oChannel: OCh.Sol_Best;
 };
 
 sm2 := solver
@@ -52,10 +52,12 @@ sf := solver
 {
         cStrategy: St_sr;
         oModule: OM_S.PermRand, OM_V.ASP(40), OM_SS.FirstImpr, OM_D.AlwImpr;
-        oChannel: OCh.Sol_Last;
+        oChannel: OCh.Sol_Best;
 };
 
 connections:
 
-[sm1.send_1, sm2.send_1] OP.#-> [sf.Ch1]2;
-[sf.send_1] OP.#-> [sm1.Ch1, sm2.Ch1]2;
+//[sm1.send_1, sm2.send_1] OP.#-> [sf.Ch1]2;
+//[sf.send_1] OP.#-> [sm1.Ch1, sm2.Ch1]2;
+[sm1.send_1(2)] OP.#-> [sf.Ch1]2;
+[sf.send_1] OP.#-> [sm1.Ch1(2)]2;

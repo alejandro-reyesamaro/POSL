@@ -1,14 +1,14 @@
-runs=1
+runs=50
 
-files_results=(golfers_sec.pres golfers11_50.pres golfers11_25.pres);
-strs=(./g9.posl ./g9_1-1_50.posl ./g9_1-1_25.posl);
+files_results=(golfers11_50.pres golfers11_25.pres);
+strs=(./g_1-1_50.posl ./g_1-1_25.posl);
 
-p=9
-g=4
-w=8
-cores=(1 40 40);
+p=5
+g=3
+w=7
+cores=40
 
-for (( j = 0; j < 3; j++ ))
+for (( j = 0; j < 2; j++ ))
 do	
 		echo "----$p-$g-$w : ${cores[j]}  -----" >> ${files_results[j]}
 		for (( i = 0; i < $runs; i++ ))

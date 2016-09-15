@@ -1,0 +1,37 @@
+St_simple := cStrategy
+	oModule: OM_S, OM_V, OM_SS, OM_D;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 1 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.Cyc ( BE.LoopBnd 15000 )
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|-> OM_V OM_SS
+                        </S>
+                        OM_D
+                    </S> OMS.IterCounter
+                </S> OMS.TimeCounter
+            </S>
+        </S>
+    </S>
+</S>
+};
+
+single_solver := solver
+{
+    cStrategy: St_simple;
+    oModule: OM_S.PermRand, OM_V.ASP(40), OM_SS.FirstImpr, OM_D.AlwImpr;
+};
+
+connections:
+
+[single_solver]6;

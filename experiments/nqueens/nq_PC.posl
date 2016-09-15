@@ -1,0 +1,54 @@
+St_sr := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D;
+    oChannel: OCh;
+{
+<S>
+    OP.Cyc (BE.LoopBnd 50)
+    <S>
+        OP.|-> 	OM_S
+                <S>
+                    OP.Cyc ( BE.OR ( BE.LoopBnd 3000, BE.SCI 60 ) )
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.|->
+                                <S>
+                                    OP.|-> OM_V OM_SS
+                                </S>
+                                <S>
+                                    OP.? (BE.LoopBnd 10)
+                                    <S>
+                                        OP.? (BE.LoopBnd 5)
+                                        OM_D
+                                        <S> OP.Min OM_D OCh (Ch1) </S>
+                                    </S>
+                                    <S> OP.OSend (send_1) OM_D </S>
+                                </S>
+                            </S> OMS.IterCounter
+                        </S> OMS.TimeCounter
+                    </S>
+                </S>
+    </S>
+</S>
+};
+
+sm := solver(2)
+{
+        cStrategy: St_sr;
+        oModule: OM_S.PermRand, OM_V.ASP(80), OM_SS.FirstImpr, OM_D.AlwImpr;
+        oChannel: OCh.Sol_Last;
+};
+
+sf := solver
+{
+        cStrategy: St_sr;
+        oModule: OM_S.PermRand, OM_V.ASP(40), OM_SS.FirstImpr, OM_D.AlwImpr;
+        oChannel: OCh.Sol_Last;
+};
+
+connections:
+
+[sm.send_1(2)] OP.#-> [sf.Ch1]13;
+[sf.send_1] OP.#-> [sm.Ch1(2)]13;

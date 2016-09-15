@@ -5,7 +5,7 @@ St_ca000 := cStrategy
     OP.|->
     OM_S
     <S>
-        OP.Cyc ( BE.LoopBnd 20000 )
+        OP.Cyc ( BE.LoopBnd 2000000 )
         <S>
             OP.|->
             OM_R
@@ -96,7 +96,7 @@ St_receiver := cStrategy
 single_solver := solver
 {
         cStrategy: St_ca000;
-        oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+        oModule: OM_S.PermRand, OM_R.Daniel, OM_V.AS, OM_SS.BestImpr, OM_D.AlwImpr;
 };
 
 s_solver := solver
@@ -114,5 +114,5 @@ r_solver := solver
 
 connections:
 
-//[single_solver]6;
+[single_solver]6;
 [s_solver.send_1] OP.--> [r_solver.Ch1]3;

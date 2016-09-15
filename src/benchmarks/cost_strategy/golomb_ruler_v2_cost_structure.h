@@ -19,15 +19,17 @@
  * \class GolombRulerCostStructure golomb_ruler_cost_structure.h
  * \brief Class to represent the necessary functionality to compute the solution cost of Golomb Ruler Problem
  */
-class GolombRulerV2CostStructure : public ProjectableCost
-{
-    public:
+
+
+//class GolombRulerV2CostStructure : public ProjectableCost
+//{
+//    public:
         //! Default constructor.
         /*!
             \param _order Problem order: number of marks.
             \param _length Maximal measure (final mark).
          */
-        GolombRulerV2CostStructure(int _order, int _length);
+        //GolombRulerV2CostStructure(int _order, int _length);
 
         /*! Computes the cost of a configuration relative to the current configuration.
          *  User must specify if the information will be updated or not
@@ -38,48 +40,43 @@ class GolombRulerV2CostStructure : public ProjectableCost
             \param updating Whether the information is updated or not
             \return Cost of the given configuration.
          */
-        int relative_cost(std::vector<int> & new_config, T_Changes, bool updating);
+        //int relative_cost(std::vector<int> & new_config, T_Changes, bool updating);
 
         //! Initialize the information related to the cost.
         /*!
             \param _configuration A configuration (solution).
          */
-        void init(std::vector<int> config);
+        //void init(std::vector<int> config);
 
         //! From <ProjectableCost>
-        int costOnVariable(int index);
+        //int costOnVariable(int index);
 
         //! Performs a <i>reset</i> w.r.t the current configuration.
         /*!
             \return A configuration <i>reseted</i>.
          */
-        void reset();
+        //void reset();
 
         //! (Field) Number of marks.
-        int Order;
+        //int Order;
         //! (Field) Final mark.
-        int Length;
+        //int Length;
         //! (Field) The current cost
-        int CurrentCost;
+        //int CurrentCost;
         //! (Field) The current configuration
-        std::vector<int> Configuration;
+        //std::vector<int> Configuration;
 
-    private:
+    //private:
         //! Function to compute and initialize the cost.
         /*!
             \param config A given configuration.
             \return The current (computed) cost.
          */
-        int cost(std::vector<int> & config);
+        //int cost(std::vector<int> & config);
 
         //! A global counter of the measures
-        std::vector<int> measure_counters;
+        //std::vector<int> measure_counters;
         //! A counter of the measures for each variable
-        std::vector<std::list<int>> measure_per_variable;
+        //std::vector<std::list<int>> measure_per_variable;
 
-        //std::vector<std::list<int>> measures_intervenants;
-        //std::vector<std::list<int>> measures_intervenants_index;
-        //std::vector<std::list<int>> negative_measures_intervenants;
-        //std::vector<int> variables_in_negative_measures;
-        //std::vector<int> aux_new_config;
-};
+//};
