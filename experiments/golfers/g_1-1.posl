@@ -38,7 +38,7 @@ oChannel: OCh;
 };
 
 St_sb001 := cStrategy
-        oModule: OM_S, OM_V, OM_SS, OM_D;
+	oModule: OM_S, OM_V, OM_SS, OM_D;
 {
 <S>
     OP.Cyc ( BE.LoopBnd 50 )

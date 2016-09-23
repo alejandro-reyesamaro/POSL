@@ -30,4 +30,5 @@ class OMS_TimeCounter : public OperationModule
 
     protected:
         shared_ptr<Chronometer> chrono;
+        int milisecs_count;
 };

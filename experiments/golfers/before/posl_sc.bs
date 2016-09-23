@@ -1,0 +1,25 @@
+runs=1
+
+files_results=(golfers_best.pres golfers_1-1.pres golfers_1-1_50.pres golfers_1-1_25.press golfers_1-n.pres golfers_1-n_50.pres golfers_1-n_25.pres);
+strs=(./g_best.posl ./g_1-1.posl ./g_1-1_50.posl ./g_1-1_25.posl ./g_1-n.posl ./g_1-n_50.posl ./g_1-n_25.posl); 
+
+p=(5 8 9);
+g=(3 4 4);
+w=(7 7 8);
+cores=40
+
+for (( r = 0; r < 3; r++ ))
+do
+	for (( j = 0; j < 7; j++ ))
+	do	
+		echo "----${p[r]}-${g[r]}-${w[r]} : $cores  -----" >> ${files_results[j]}	
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich2 -np $cores ./bin/POSL golfers ${p[r]}-${g[r]}-${w[r]} ${strs[j]} >> ${files_results[j]}	
+		done
+		echo "----END-----" >> ${files_results[j]}
+		#w >> ${files_results[j]}
+		echo "   " >> ${files_results[j]}
+	done
+done
+

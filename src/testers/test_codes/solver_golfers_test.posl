@@ -29,7 +29,8 @@ St_b001 := cStrategy
 solver_single := solver
 {
     cStrategy: St_b001;
-    oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+    //oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
+    oModule: OM_S.PermBlocks, OM_V.TournPartialWeek(9-4-2), OM_SS.FirstImpr, OM_SS.Rand, OM_D.AlwImpr;
 };
 
 connections:

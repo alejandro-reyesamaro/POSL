@@ -788,7 +788,6 @@ OTHER_FILES += \
     src/testers/test_codes/solver_all_intervals_test.posl \
     src/testers/test_codes/squaring_square_test.posl \
     src/testers/test_codes/script_golomb.bs \
-    src/testers/test_codes/solver_golfers_dicotomie_test.posl \
     src/testers/test_codes/solver_golfers_dicotomie_double_test.posl \
     src/testers/test_codes/test_and_or_expressions.posl \
     src/testers/test_codes/solver_nqueens_test2.posl \
@@ -798,4 +797,5 @@ OTHER_FILES += \
     src/testers/test_codes/golfers_test_comm.posl \
     src/testers/test_codes/golfers_no_comm.posl \
     src/testers/test_codes/solver_nqueens_test4.posl \
-    src/testers/test_codes/solver_nqueens_test5.posl
+    src/testers/test_codes/solver_nqueens_test5.posl \
+    src/testers/test_codes/solver_golfers_comm.posl

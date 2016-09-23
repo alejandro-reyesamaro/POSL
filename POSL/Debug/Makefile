@@ -2511,7 +2511,8 @@ oms_time_counter.o: ../../src/modules/oms_time_counter.cpp ../../src/modules/oms
 		../../src/connections/connectable.h \
 		../../src/connections/connector_info.h \
 		../../src/tools/chronometer.h \
-		../../src/tools/tokens_definition.h
+		../../src/tools/tokens_definition.h \
+		../../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o oms_time_counter.o ../../src/modules/oms_time_counter.cpp
 
 oms_iterations_counter.o: ../../src/modules/oms_iterations_counter.cpp ../../src/modules/oms_iterations_counter.h \
@@ -12302,11 +12303,7 @@ om_v_all_permutations_uncoder.o: ../../src/packing/om_v_all_permutations_uncoder
 		../../src/tools/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o om_v_all_permutations_uncoder.o ../../src/packing/om_v_all_permutations_uncoder.cpp
 
-golomb_ruler_v2_cost_structure.o: ../../src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.cpp ../../src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.h \
-		../../src/tools/t_changes.h \
-		../../src/tools/long_int.h \
-		../../src/benchmarks/cost_strategy/projectable_cost.h \
-		../../src/tools/tools.h
+golomb_ruler_v2_cost_structure.o: ../../src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o golomb_ruler_v2_cost_structure.o ../../src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.cpp
 
 ####### Install
