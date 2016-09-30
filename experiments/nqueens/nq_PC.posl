@@ -2,36 +2,33 @@ St_sr := cStrategy
     oModule: OM_S, OM_V, OM_SS, OM_D;
     oChannel: OCh;
 {
-<S>
-    OP.Cyc (BE.LoopBnd 50)
-    <S>
-        OP.|-> 	OM_S
-                <S>
-                    OP.Cyc ( BE.OR ( BE.LoopBnd 3000, BE.SCI 60 ) )
-                    <S>
-                        OP.|->
-                        <S>
-                            OP.|->
-                            <S>
-                                OP.|->
-                                <S>
-                                    OP.|-> OM_V OM_SS
-                                </S>
-                                <S>
-                                    OP.? (BE.LoopBnd 10)
-                                    <S>
-                                        OP.? (BE.LoopBnd 5)
-                                        OM_D
-                                        <S> OP.Min OM_D OCh (Ch1) </S>
-                                    </S>
-                                    <S> OP.OSend (send_1) OM_D </S>
-                                </S>
-                            </S> OMS.IterCounter
-                        </S> OMS.TimeCounter
-                    </S>
-                </S>
-    </S>
-</S>
+ <S>
+     OP.|-> 	OM_S
+             <S>
+                 OP.Cyc ( BE.LoopBnd 10000 ) 
+                 <S>
+                     OP.|->
+                     <S>
+                         OP.|->
+                         <S>
+                             OP.|->
+                             <S>
+                                 OP.|-> OM_V OM_SS
+                             </S>
+                             <S>
+                                 OP.? (BE.LoopBnd 10)
+                                 <S>
+                                     OP.? (BE.LoopBnd 5)
+                                     OM_D
+                                     <S> OP.Min OM_D OCh (Ch1) </S>
+                                 </S>
+                                 <S> OP.OSend (send_1) OM_D </S>
+                             </S>
+                         </S> OMS.IterCounter
+                     </S> OMS.TimeCounter
+                 </S>
+             </S>
+ </S>
 };
 
 sm := solver(2)

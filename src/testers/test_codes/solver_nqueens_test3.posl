@@ -6,7 +6,7 @@ St_sender2 := cStrategy
     <S>
         OP.|-> 	OM_S
                 <S>
-                    OP.Cyc ( BE.OR ( BE.LoopBnd 3000, BE.SCI 60 ) )
+                    OP.Cyc ( BE.OR ( BE.LoopBnd 5000, BE.SCI 60 ) )
                     <S>
                         OP.|->
                         <S>
@@ -39,7 +39,7 @@ St_receiver := cStrategy
         OP.|->
         OM_S
         <S>
-          OP.Cyc ( BE.LoopBnd 3000 )
+          OP.Cyc ( BE.LoopBnd 5000 )
           <S>
                    OP.|->
                    <S>
@@ -65,19 +65,19 @@ St_receiver := cStrategy
 s_solver1 := solver
 {
         cStrategy: St_sender2;
-        oModule: OM_S.PermRand, OM_V.ASR(0-500), OM_SS.FirstImpr, OM_D.AlwImpr;
+        oModule: OM_S.PermRand, OM_V.ASR(0-2000), OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 s_solver2 := solver
 {
         cStrategy: St_sender2;
-        oModule: OM_S.PermRand, OM_V.ASR(500-1000), OM_SS.FirstImpr, OM_D.AlwImpr;
+        oModule: OM_S.PermRand, OM_V.ASR(2000-4000), OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
 r_solver := solver
 {
         cStrategy: St_receiver;
-        oModule: OM_S.PermRand, OM_V.AS, OM_SS.FirstImpr, OM_D.AlwImpr;
+        oModule: OM_S.PermRand, OM_V.ASP(40), OM_SS.FirstImpr, OM_D.AlwImpr;
         oChannel: OCh.Sol_Last;
 };
 

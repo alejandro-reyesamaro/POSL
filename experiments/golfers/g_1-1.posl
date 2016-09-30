@@ -70,7 +70,7 @@ St_sb001 := cStrategy
 solver_sender_partial := solver
 {
     cStrategy: St_sb001;
-    oModule: OM_S.PermBlocks, OM_V.TournPartialWeek(11-7-2), OM_SS.FirstImpr, OM_D.AlwImpr; //OM_V.TournPartialWeek(9-4-2) - OM_V.TournPartialWeek(5-3-2)
+    oModule: OM_S.PermBlocks, OM_V.TournPartialWeek(5-3-2), OM_SS.FirstImpr, OM_D.AlwImpr; //OM_V.TournPartialWeek(9-4-2) - OM_V.TournPartialWeek(5-3-2)
 };
 
 solver_receiver := solver

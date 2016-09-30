@@ -1,6 +1,6 @@
 St_rb001 := cStrategy
-	oModule: OM_S, OM_V, OM_SS, OM_D;
-	oChannel: OCh;
+oModule: OM_S, OM_V, OM_SS, OM_D;
+oChannel: OCh;
 {
 <S>
     OP.Cyc (BE.LoopBnd 50)
@@ -38,7 +38,7 @@ St_rb001 := cStrategy
 };
 
 St_sb001 := cStrategy
-	oModule: OM_S, OM_V, OM_SS, OM_D;
+        oModule: OM_S, OM_V, OM_SS, OM_D;
 {
 <S>
     OP.Cyc ( BE.LoopBnd 50 )
@@ -67,48 +67,13 @@ St_sb001 := cStrategy
 </S>
 };
 
-St_b001 := cStrategy
-	oModule: OM_S, OM_V, OM_SS, OM_D;
-{
-<S>
-    OP.Cyc (BE.LoopBnd 50)
-    <S>
-        OP.|-> 	OM_S
-        <S>
-            OP.Cyc ( BE.LoopBnd 5000 )
-            <S>
-                OP.|->
-                <S>
-                    OP.|->
-                        <S>
-                            OP.|->
-                            OM_V
-                            <S>
-                                OP.? (BE.SCI 5)
-                                <S> OP.|-> OM_SS OM_D </S>
-                                <S> OP.|-> OM_SS.Rand OM_D </S>
-                            </S>
-                        </S> OMS.IterCounter
-                </S> OMS.TimeCounter
-            </S>
-        </S>
-    </S>
-</S>
-};
-
-solver_single := solver
-{
-     cStrategy: St_b001;
-     oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr;
-};
-
-solver_sender_partial := solver
+solver_sender_partial := solver(20)
 {
     cStrategy: St_sb001;
-    oModule: OM_S.PermBlocks, OM_V.TournPartialWeek(5-3-2), OM_SS.FirstImpr, OM_D.AlwImpr; //OM_V.TournPartialWeek(9-4-2) - OM_V.TournPartialWeek(5-3-2)
+    oModule: OM_S.PermBlocks, OM_V.TournPartialWeek(11-7-2), OM_SS.FirstImpr, OM_D.AlwImpr; //OM_V.TournPartialWeek(9-4-2) - OM_V.TournPartialWeek(5-3-2)
 };
 
-solver_receiver := solver
+solver_receiver := solver(20)
 {
     cStrategy: St_rb001;
     oModule: OM_S.PermBlocks, OM_V.AS_Golfers, OM_SS.FirstImpr, OM_D.AlwImpr;
@@ -117,7 +82,6 @@ solver_receiver := solver
 
 connections:
 
-[solver_sender_partial.send_1] OP.--> [solver_receiver.Ch1]10;
-[solver_single]20;
+[solver_sender_partial.send_1(20)] OP.#-> [solver_receiver.Ch1(20)];
 
 
