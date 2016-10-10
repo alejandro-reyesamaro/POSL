@@ -34,7 +34,7 @@ St_sr := cStrategy
 sm := solver(2)
 {
         cStrategy: St_sr;
-        oModule: OM_S.PermRand, OM_V.ASP(80), OM_SS.FirstImpr, OM_D.AlwImpr;
+        oModule: OM_S.PermRand, OM_V.ASP(100), OM_SS.BestImpr, OM_D.AlwImpr;
         oChannel: OCh.Sol_Last;
 };
 

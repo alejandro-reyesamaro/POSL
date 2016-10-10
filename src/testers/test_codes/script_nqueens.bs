@@ -1,2 +1,2 @@
-mpiexec.mpich -np 6 ../../../bin/POSL nqueens 1000 ./solver_nqueens_test.posl
-mpiexec.mpich -np 6 ../../../bin/POSL nqueens 1000 ./solver_nqueens_test5.posl
+mpiexec.mpich -np 6 ../../../bin/POSL nqueens 250 ./solver_nqueens_test.posl
+mpiexec.mpich -np 6 ../../../bin/POSL nqueens 250 ./solver_nqueens_test5.posl

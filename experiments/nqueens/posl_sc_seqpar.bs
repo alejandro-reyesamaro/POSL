@@ -1,0 +1,18 @@
+runs=1
+
+n=(250 500 1000 3000 6000);
+cores=40
+
+for (( nq = 0; nq < 5; nq++ )) do
+		echo "----${n[nq]} : 1  -----" >> nqueens_seq.pres
+		echo "----${n[nq]} : 40  -----" >> nqueens_par.pres
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich2 -np 1 ./bin/POSL nqueens ${n[nq]} ./nq_p.posl >> nqueens_seq.pres
+			mpiexec.mpich2 -np 40 ./bin/POSL nqueens ${n[nq]} ./nq_p.posl >> nqueens_par.pres
+		done
+		echo "----END-----" >> nqueens_seq.pres
+		echo "----END-----" >> nqueens_par.pres
+		echo "   " >> nqueens_seq.pres
+		echo "   " >> nqueens_par.pres
+done

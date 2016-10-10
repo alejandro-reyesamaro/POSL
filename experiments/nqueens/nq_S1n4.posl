@@ -4,7 +4,7 @@ St_s := cStrategy
  <S>
      OP.|-> 	OM_S
              <S>
-                 OP.Cyc ( BE.LoopBnd 10000 )
+                 OP.Cyc ( BE.LoopBnd 10000 ) 
                  <S>
                      OP.|->
                      <S>
@@ -33,7 +33,7 @@ St_r := cStrategy
  <S>
      OP.|-> 	OM_S
              <S>
-                 OP.Cyc ( BE.LoopBnd 10000 )
+                 OP.Cyc ( BE.LoopBnd 10000 ) 
                  <S>
                      OP.|->
                      <S>
@@ -55,13 +55,13 @@ St_r := cStrategy
  </S>
 };
 
-sender := solver
+sender := solver(5)
 {
         cStrategy: St_s;
-        oModule: OM_S.PermRand, OM_V.ASP(80), OM_SS.FirsImpr, OM_D.AlwImpr;
+        oModule: OM_S.PermRand, OM_V.ASP(80), OM_SS.FirstImpr, OM_D.AlwImpr;
 };
 
-receiver := solver
+receiver := solver(5)
 {
         cStrategy: St_r;
         oModule: OM_S.PermRand, OM_V.ASP(80), OM_SS.FirstImpr, OM_D.AlwImpr;
@@ -70,4 +70,4 @@ receiver := solver
 
 connections:
 
-[sender.send_1] OP.--> [receiver.Ch1]3;
+[sender.send_1(5)] OP.#-> [receiver.Ch1(5)]4;

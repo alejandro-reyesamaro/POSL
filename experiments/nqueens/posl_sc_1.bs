@@ -1,0 +1,22 @@
+runs=1
+
+files_results=(nqueens.pres nqueens_p.pres nqueensPC1-1.pres nqueensPC1-n.pres nqueensS1-1.pres nqueensS1-n.pres nqueensS1-n2.pres nqueensS1-n4.pres);
+strs=(./nq.posl ./nq_p.posl ./nq_PC1-1.posl ./nq_PC1n.posl ./nq_S11.posl ./nq_S1n.posl ./nq_S1n2.posl ./nq_S1n4.posl);
+
+n=250#(500 1000 3000 6000);
+#cores=(40 40 40 39 40 40 40 40);
+cores=40
+
+#for (( nq = 0; nq < 4; nq++ )) do
+for (( j = 0; j < 8; j++ ))
+do	
+		echo "----$n : $cores  -----" >> ${files_results[j]}
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich2 -np $cores ./bin/POSL nqueens $n ${strs[j]} >> ${files_results[j]}	
+		done
+		echo "----END-----" >> ${files_results[j]}
+		#w >> ${files_results[j]}
+		echo "   " >> ${files_results[j]}
+done
+#done
