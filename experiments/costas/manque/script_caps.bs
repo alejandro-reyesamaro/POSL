@@ -1,0 +1,18 @@
+runs=1
+
+fr=CAP_SC1n.pres;
+str=cap_sc_a_1n.posl;
+
+n=19
+cores=39
+
+
+echo "---- $n : $cores  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich2 -np $cores ./bin/POSL costas $n $str >> $fr
+done
+echo "----END-----" >> $fr
+echo "   " >> $fr
+
+

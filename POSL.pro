@@ -375,7 +375,9 @@ SOURCES += src/main.cpp \
     src/modules/om_adaptive_search_partial_neighborhood.cpp \
     src/packing/om_v_as_partial_uncoder.cpp \
     src/packing/om_v_all_permutations_uncoder.cpp \
-    src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.cpp
+    src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.cpp \
+    src/data/ones_orted_change_companion_neighborhood.cpp \
+    src/modules/om_one_sorted_change_companion_neighborhood.cpp
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -757,7 +759,9 @@ HEADERS += \
     src/modules/om_adaptive_search_partial_neighborhood.h \
     src/packing/om_v_as_partial_uncoder.h \
     src/packing/om_v_all_permutations_uncoder.h \
-    src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.h
+    src/benchmarks/cost_strategy/golomb_ruler_v2_cost_structure.h \
+    src/data/one_sorted_change_companion_neighborhood.h \
+    src/modules/om_one_sorted_change_companion_neighborhood.h
 
 # MPI Settings
 QMAKE_CXX = mpicxx
@@ -798,4 +802,11 @@ OTHER_FILES += \
     src/testers/test_codes/golfers_no_comm.posl \
     src/testers/test_codes/solver_nqueens_test4.posl \
     src/testers/test_codes/solver_nqueens_test5.posl \
-    src/testers/test_codes/solver_golfers_comm.posl
+    src/testers/test_codes/solver_golfers_comm.posl \
+    src/testers/test_codes/cap_cyc.posl \
+    src/testers/test_codes/cap_sc.posl \
+    src/testers/test_codes/grp_simp.posl \
+    src/testers/test_codes/grp_cyc.posl \
+    src/testers/test_codes/nqp_cyc.posl \
+    src/testers/test_codes/sgp_cyc.posl \
+    src/testers/test_codes/grp_sc.posl

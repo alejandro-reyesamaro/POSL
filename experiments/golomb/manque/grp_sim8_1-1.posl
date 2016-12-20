@@ -1,0 +1,96 @@
+St_g02COMM_sender := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 300 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.|->
+            <S>
+                OP.Cyc ( BE.LoopBnd 200 )
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.|->
+                                OM_V
+                                <S>
+                                    OP.? ( BE.SCI 25 )
+                                    OM_SS
+                                    OM_SS.Rand
+                                </S>
+                            </S>
+                            <S> OP.OSend (send_1) OM_D </S>
+                        </S> OMS.IterCounter
+                    </S> OMS.TimeCounter
+                </S>
+            </S>
+            OM_R
+        </S>
+    </S>
+</S>
+};
+
+St_g02COMM_receiver := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
+    oChannel: OCh;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 300 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.|->
+            <S>
+                OP.Cyc ( BE.LoopBnd 200 )
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.|->
+                                OM_V
+                                <S>
+                                    OP.? ( BE.SCI 25 )
+                                    OM_SS
+                                    OM_SS.Rand
+                                </S>
+                            </S>
+                            <S>
+                                OP.Min OCh (Ch1) OM_D
+                            </S>
+                        </S> OMS.IterCounter
+                    </S> OMS.TimeCounter
+                </S>
+            </S>
+            OM_R
+        </S>
+    </S>
+</S>
+};
+
+solver_sender := solver
+{
+    cStrategy: St_g02COMM_sender;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:10:2);
+};
+
+solver_receiver := solver
+{
+    cStrategy: St_g02COMM_receiver;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:10:2);
+    oChannel: OCh.Sol_Last;
+};
+
+connections:
+
+[solver_sender.send_1] OP.--> [solver_receiver.Ch1]20;
+

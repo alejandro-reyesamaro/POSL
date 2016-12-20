@@ -31,8 +31,10 @@ shared_ptr<Solution> OM_AlwaysImproveDecision::spcf_execute(shared_ptr<PSP> psp,
 
     //int id = psp->GetPID();
     //string text = "ID->" + Tools::int2str(id) + " I:" + Tools::int2str(psp->GetIterations()) + " cost:" + Tools::int2str(psp->CurrentCost());
+    //string text = Tools::int2str(psp->CurrentCost());
     //string text2 = Tools::int2str(psp->CurrentCost());
-    //cout << text2 << endl;
+    //if(id == 0)
+    //    cout << text << endl;
 
     // </debug code>
 

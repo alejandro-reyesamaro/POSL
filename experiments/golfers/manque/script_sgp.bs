@@ -1,0 +1,28 @@
+runs=1
+
+fr=SGP.pres;
+cores=40
+
+echo "----5-3-7 : 36  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich2 -np 36 ./bin/POSL golfers 5-3-7 ./sgp_7w_cyc.posl >> $fr
+done
+echo "----END-----" >> $fr
+echo "   " >> $fr
+
+echo "----8-4-7 : 36  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich2 -np 36 ./bin/POSL golfers 8-4-7 ./sgp_7w_cyc.posl >> $fr
+done
+echo "----END-----" >> $fr
+echo "   " >> $fr
+
+echo "----9-4-8 : 35  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich2 -np 35 ./bin/POSL golfers 9-4-8 ./sgp_8w_cyc.posl >> $fr
+done
+echo "----END-----" >> $fr
+echo "   " >> $fr

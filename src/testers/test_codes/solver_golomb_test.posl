@@ -36,14 +36,14 @@ St_tabu := cStrategy
     oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
 {
 <S>
-    OP.Cyc ( BE.LoopBnd 300 )
+    OP.Cyc ( BE.LoopBnd 500 )
     <S>
         OP.|->
         OM_S
         <S>
             OP.|->
             <S>
-                OP.Cyc ( BE.LoopBnd 200 )
+                OP.Cyc ( BE.LoopBnd 100 )
                 <S>
                     OP.|->
                     <S>
@@ -53,11 +53,11 @@ St_tabu := cStrategy
                             <S>
                                 OP.|->
                                 OM_V
-                                <S>
-                                    OP.? ( BE.SCI 25 )
+                                //<S>
+                                    //OP.? ( BE.SCI 5 )
                                     OM_SS
-                                    OM_SS.Rand
-                                </S>
+                                    //OM_SS.Rand
+                                //</S>
                             </S>
                             OM_D
                         </S> OMS.IterCounter
@@ -158,7 +158,7 @@ solver1 := solver
 solver2 := solver
 {
     cStrategy: St_tabu;
-    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:2:8);
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrdCompanion, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:2:8);
 };
 
 solver_sender := solver(2)
@@ -189,6 +189,6 @@ solver_r := solver
 
 connections:
 
-[solver_sender.send_1(2), solver_s.send_1] OP.#-> [solver_receiver.Ch1(2), solver_r.send_1];
-//[solver1]
-//[solver2]6;
+//[solver_sender.send_1(2), solver_s.send_1] OP.#-> [solver_receiver.Ch1(2), solver_r.send_1];
+//[solver1];
+[solver2]6;

@@ -1,0 +1,14 @@
+runs=1
+
+fr=SGP.pres;
+cores=40
+
+echo "----5-3-7 : 40  -----" >> $fr
+for (( i = 0; i < $runs; i++ ))
+do
+	mpiexec.mpich2 -np 40 ./bin/POSL golfers 5-3-7 ${strs[j]} >> ${files_results[j]}	
+done
+echo "----END-----" >> ${files_results[j]}
+#w >> ${files_results[j]}
+echo "   " >> ${files_results[j]}
+

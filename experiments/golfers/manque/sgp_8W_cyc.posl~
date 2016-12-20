@@ -1,0 +1,82 @@
+St_sr := cStrategy
+oModule: OM_S, OM_V, OM_SS, OM_D;
+oChannel: OCh;
+{
+<S>
+    OP.|->
+    OM_S
+    <S>
+        OP.Cyc ( BE.LoopBnd 5000 )
+        <S>
+            OP.|->
+            <S>
+                OP.|->
+                <S>
+                    OP.|->
+                    OM_V
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.? (BE.SCI 5)
+                            OM_SS
+                            OM_SS.Rand
+                        </S>
+                        <S>
+                            OP.? (BE.LoopBnd 5)
+                            <S> OP.OSend (send_1) OM_D </S>
+                            <S> OP.NotNull OCh (Ch1) OM_D </S>
+                        </S>
+                    </S>
+                </S> OMS.IterCounter
+            </S> OMS.TimeCounter
+        </S>
+    </S>
+</S>
+};
+
+solver_w1 := solver
+{
+    cStrategy: St_sr;
+    oModule: OM_S.PermBlocks, OM_V.CWSwapBtwnBlocks(1), OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.Sol_Last;
+};
+
+solver_w2 := solver
+{
+    cStrategy: St_sr;
+    oModule: OM_S.PermBlocks, OM_V.CWSwapBtwnBlocks(2), OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.Sol_Last;
+};
+
+solver_w3 := solver
+{
+    cStrategy: St_sr;
+    oModule: OM_S.PermBlocks, OM_V.CWSwapBtwnBlocks(3), OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.Sol_Last;
+};
+
+solver_w4 := solver
+{
+    cStrategy: St_sr;
+    oModule: OM_S.PermBlocks, OM_V.CWSwapBtwnBlocks(4), OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.Sol_Last;
+};
+
+solver_w5 := solver
+{
+    cStrategy: St_sr;
+    oModule: OM_S.PermBlocks, OM_V.CWSwapBtwnBlocks(5), OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.Sol_Last;
+};
+
+solver_w6 := solver
+{
+    cStrategy: St_sr;
+    oModule: OM_S.PermBlocks, OM_V.CWSwapBtwnBlocks(6), OM_SS.FirstImpr, OM_D.AlwImpr;
+    oChannel: OCh.Sol_Last;
+};
+
+connections:
+
+[solver_w1.send_1, solver_w2.send_1, solver_w3.send_1, solver_w4.send_1, solver_w5.send_1, solver_w6.send_1] OP.<> [solver_w1.Ch1, solver_w2.Ch1, solver_w3.Ch1, solver_w4.Ch1, solver_w5.Ch1, solver_w6.Ch1]6;
+

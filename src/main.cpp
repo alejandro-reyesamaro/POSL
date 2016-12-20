@@ -77,7 +77,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_SolverSubsum>(argc, argv));
 
     //tests.push_back(make_shared<Tester_CostOfSolutionGolomRules>(argc, argv));
-    //tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
+    tests.push_back(make_shared<Tester_Solver_GolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_CostOnVariableGolombRuler>(argc, argv));
     //tests.push_back(make_shared<Tester_OneWorstSortedChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_IterationGolombRuler>(argc, argv));
@@ -97,7 +97,7 @@ int main(int argc, char **argv)
     //tests.push_back(make_shared<Tester_One2DChangeNeighborhood>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverSquaringSquare>(argc, argv));
 
-    tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
+    //tests.push_back(make_shared<Tester_Solver_Golfers>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverNQueens>(argc, argv));
     //tests.push_back(make_shared<Tester_SolverCostasArray>(argc, argv));
     //tests.push_back(make_shared<Tester_AndOrExpresions>(argc, argv));

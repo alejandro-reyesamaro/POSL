@@ -27,8 +27,8 @@ shared_ptr<ComputationData> OMS_TimeCounter::execute(shared_ptr<PSP> psp, shared
         if(m > milisecs_count)
         {
             milisecs_count = m;
-            string text2 = Tools::int2str(psp->CurrentCost());
-            cout << m << " - " << text2 << endl;
+            //string text2 = Tools::int2str(psp->CurrentCost());
+            //cout << m << " - " << text2 << endl;
         }
         //! </debuging>
         if(psp->GetTime() > psp->GetTimeOut())

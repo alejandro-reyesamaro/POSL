@@ -1,0 +1,18 @@
+runs=1
+
+fr=NQP.pres;
+str=./nqp_cyc.posl;
+
+n=(250 500 1000 3000 6000);
+cores=40;
+
+for (( j = 0; j < 5; j++ ))
+do	
+		echo "----${n[j]} : $cores  (cyc)-----" >> $fr
+		for (( i = 0; i < $runs; i++ ))
+		do
+			mpiexec.mpich2 -np $cores ./bin/POSL nqueens ${n[j]} $str >> $fr
+		done
+		echo "----END-----" >> $fr
+		echo "   " >> $fr
+done

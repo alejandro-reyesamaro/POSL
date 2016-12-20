@@ -1,0 +1,51 @@
+runs=1
+
+files_result=GRP.pres;
+strs=(./grp_sim8_1-1.posl ./grp_sim8_1-n.posl ./grp_cyc8.posl ./grp_sc8_1-1.posl ./grp_sc8_1-n.posl ./grp_sim10_1-1.posl ./grp_sim10_1-n.posl ./grp_cyc10.posl ./grp_sc10_1-1.posl ./grp_sc10_1-n.posl ./grp_sim11_1-1.posl ./grp_sim11_1-n.posl ./grp_cyc11.posl ./grp_sc11_1-1.posl ./grp_sc11_1-n.posl);
+
+o=(8 10 11);
+l=(34 55 72);
+cores=40
+
+for (( ol = 0; ol < 3; ol++ ))
+do
+	echo "----GOLOMB ${o[ol]}-${l[ol]} : $cores  ----- S1-1" >> $files_result
+	for (( i = 0; i < $runs; i++ ))
+	do
+		mpiexec.mpich2 -np $cores ./bin/POSL golomb ${o[ol]}-${l[ol]} ${strs[5*ol]} >> $files_result
+	done
+	echo "----END-----" >> $files_result
+	echo "   " >> $files_result
+
+	echo "----GOLOMB ${o[ol]}-${l[ol]} : $cores  ----- S1-n" >> $files_result
+	for (( i = 0; i < $runs; i++ ))
+	do
+		mpiexec.mpich2 -np $cores ./bin/POSL golomb ${o[ol]}-${l[ol]} ${strs[5*ol+1]} >> $files_result
+	done
+	echo "----END-----" >> $files_result
+	echo "   " >> $files_result
+
+	echo "----GOLOMB ${o[ol]}-${l[ol]} : $cores  ----- cyclic" >> $files_result
+	for (( i = 0; i < $runs; i++ ))
+	do
+		mpiexec.mpich2 -np $cores ./bin/POSL golomb ${o[ol]}-${l[ol]} ${strs[5*ol+2]} >> $files_result
+	done
+	echo "----END-----" >> $files_result
+	echo "   " >> $files_result
+
+	echo "----GOLOMB ${o[ol]}-${l[ol]} : $cores  ----- sc_1-1" >> $files_result
+	for (( i = 0; i < $runs; i++ ))
+	do
+		mpiexec.mpich2 -np $cores ./bin/POSL golomb ${o[ol]}-${l[ol]} ${strs[5*ol+3]} >> $files_result
+	done
+	echo "----END-----" >> $files_result
+	echo "   " >> $files_result
+
+	echo "----GOLOMB ${o[ol]}-${l[ol]} : 39  ----- sc_1-n" >> $files_result
+	for (( i = 0; i < $runs; i++ ))
+	do
+		mpiexec.mpich2 -np 39 ./bin/POSL golomb ${o[ol]}-${l[ol]} ${strs[5*ol+4]} >> $files_result
+	done
+	echo "----END-----" >> $files_result
+	echo "   " >> $files_result
+done

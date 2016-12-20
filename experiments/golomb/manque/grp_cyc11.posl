@@ -1,0 +1,54 @@
+St_cyc := cStrategy
+    oModule: OM_S, OM_V, OM_SS, OM_D, OM_R;
+    oChannel: OCh;
+{
+<S>
+    OP.Cyc ( BE.LoopBnd 2000 )
+    <S>
+        OP.|->
+        OM_S
+        <S>
+            OP.|->
+            <S>
+                OP.Cyc ( BE.LoopBnd 3000 )
+                <S>
+                    OP.|->
+                    <S>
+                        OP.|->
+                        <S>
+                            OP.|->
+                            <S>
+                                OP.|->
+                                OM_V
+                                <S>
+                                    OP.? ( BE.SCI 100 )
+                                    OM_SS
+                                    OM_SS.Rand
+                                </S>
+                            </S>
+									 <S>
+										  OP.? ( BE.SCI 5 )
+										  <S> OP.OSend (send_1) OM_D </S>
+                           	  <S> OP.NotNull OCh (Ch1) OM_D </S>                            
+									 </S>									 
+                        </S> OMS.IterCounter
+                    </S> OMS.TimeCounter
+                </S>
+            </S>
+            OM_R
+        </S>
+    </S>
+</S>
+};
+
+cyc_sender := solver(40)
+{
+    cStrategy: St_cyc;
+    oModule: OM_S.GolombValid, OM_V.1ChangeOrd, OM_SS.FirstImpr, OM_D.AlwImpr, OM_R.Tabu(15:10:2);
+	 oChannel: OCh.Sol_Last;
+};
+
+connections:
+
+[cyc_sender.send_1(40)] OP.<> [cyc_sender.Ch1(40)];
+
